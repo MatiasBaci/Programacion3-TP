@@ -1,6 +1,6 @@
+package org.fiuba.algoritmos3;
 import java.util.ArrayList;
 import java.util.List;
-
 public class Juego {
 
     //Atributos:
@@ -11,7 +11,7 @@ public class Juego {
     //Metodos:
 
     public Juego(Datos datos){
-        jugador_1.setPokemones(datos.getDatosPokemones());
+        //jugador_1.setPokemones(datos.getDatosPokemones());
     }
 
     public void inicializarMenu(){

@@ -1,3 +1,4 @@
+package org.fiuba.algoritmos3;
 public class Estadisticas {
 
     //Atributos:
@@ -14,41 +15,12 @@ public class Estadisticas {
         this.defensa = defensa;
         this.ataque = ataque;
     }
-    public int getVidaMaxima() {
+    public int getVidaMaxima() { return vidaMaxima ;}
 
-        return vidaMaxima;
-    }
+    public int getVelocidad() {return velocidad;}
 
-    public int getVelocidad() {
+    public int getDefensa() {return defensa;}
 
-        return velocidad;
-    }
+    public int getAtaque() {return ataque;}
 
-    public int getDefensa() {
-
-        return defensa;
-    }
-
-    public int getAtaque() {
-
-        return ataque;
-    }
-
-    public void setVidaMaxima(int vidaMaxima) {
-
-        this.vidaMaxima = vidaMaxima;
-    }
-
-    public void setVelocidad(int velocidad) {
-
-        this.velocidad = velocidad;
-    }
-
-    public void setDefensa(int defensa) {
-        this.defensa = defensa;
-    }
-
-    public void setAtaque(int ataque) {
-        ataque = ataque;
-    }
 }

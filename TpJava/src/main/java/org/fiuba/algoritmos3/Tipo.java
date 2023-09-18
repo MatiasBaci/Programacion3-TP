@@ -1,3 +1,4 @@
+package org.fiuba.algoritmos3;
 public class Tipo {
 
     private String nombre;
@@ -16,5 +17,9 @@ public class Tipo {
         this.nombre = nombre;
     }
 
+    public void calcularEfectividad(Tipo unTipo){
+        // Aun falta implementar como abstracto, por ahora trabaje con la clase Hija -> AGUA
+        // Cuando se cambie a abstracto, es ahi donde se modificara algunas cosas en las demas clases
+    }
 
 }
