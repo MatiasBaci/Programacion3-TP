@@ -14,8 +14,8 @@ public class Juego {
 
     public Juego(){
         Datos datos = new Datos();
-        jugador1 = new Jugador("Ash",datos.getMochilaDePokemonAsh(),datos.getItemsDeAsh());
-        jugador2 = new Jugador("Mario",datos.getMochilaDePokemonMario(),datos.getItemsDeAsh());
+        jugador1 = new Jugador("Ash",datos.getMochilaJugador1(),datos.getItemsJugador1());
+        jugador2 = new Jugador("Mario",datos.getMochilaJugador2(),datos.getItemsJugador1());
 
         jugador1.añadirAdversario(jugador2);
         jugador2.añadirAdversario(jugador1);
@@ -31,11 +31,11 @@ public class Juego {
     public void inicializarJuego(){
         System.out.println("Pruebas de Jugador - Creacion");
 
-        getJugador1().elegirPokemon("Squirtle");
-        getJugador1().elegirPokemon("Ratata");
-        getJugador2().elegirPokemon("Charmander");
+        jugador1.elegirPokemon("Squirtle");
+        jugador1.elegirPokemon("Ratata");
+        jugador2.elegirPokemon("Charmander");
 
-        getJugador1().atacarAdversario(); // Si se corre sin añadir habilidades al pokemon salta error,
+        jugador1.atacarAdversario(); // Si se corre sin añadir habilidades al pokemon salta error,
     }
 
 
