@@ -21,7 +21,6 @@ public class Pokemon {
     private Boolean estaVivo;
 
 
-
     public static Pokemon(String nombre, int nivel, String tipo, String historia, int vidaMaxima, int vidaActual, int velocidad, int defensa, int ataque, List<String> habilidades) {
 
         this.nombre = nombre;
@@ -38,5 +37,13 @@ public class Pokemon {
 
         this.estado = "";
         this.estaVivo = true;
+    }
+
+    public void curar(int vida) {
+        this.vidaActual += vida;
+    }
+
+    public void recibirDanio(int vida) {
+        this.vidaActual -= vida;
     }
 }
