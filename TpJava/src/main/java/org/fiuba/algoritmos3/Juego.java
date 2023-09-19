@@ -28,6 +28,15 @@ public class Juego {
     public Jugador getJugador2() {
         return jugador2;
     }
+    public void inicializarJuego(){
+        System.out.println("Pruebas de Jugador - Creacion");
+
+        getJugador1().elegirPokemon("Squirtle");
+        getJugador1().elegirPokemon("Ratata");
+        getJugador2().elegirPokemon("Charmander");
+
+        getJugador1().atacarAdversario(); // Si se corre sin añadir habilidades al pokemon salta error,
+    }
 
 
 }
