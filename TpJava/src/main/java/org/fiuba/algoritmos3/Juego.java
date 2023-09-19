@@ -4,20 +4,30 @@ import java.util.List;
 public class Juego {
 
     //Atributos:
-    private Jugador jugador_1;
-    private Jugador jugador_2;
+    private Jugador jugador1;
+    private Jugador jugador2;
     private Controlador controlador;
+
+    private Datos datos;
 
     //Metodos:
 
-    public Juego(Datos datos){
-        //jugador_1.setPokemones(datos.getDatosPokemones());
+    public Juego(){
+        Datos datos = new Datos();
+        jugador1 = new Jugador("Ash",datos.getMochilaDePokemonAsh(),datos.getItemsDeAsh());
+        jugador2 = new Jugador("Mario",datos.getMochilaDePokemonMario(),datos.getItemsDeAsh());
+
+        jugador1.añadirAdversario(jugador2);
+        jugador2.añadirAdversario(jugador1);
     }
 
-    public void inicializarMenu(){
-
-        System.out.println("Bienvenido al juego.");
-        //System.out.println("El jugador 1 tiene un"+ jugador_1.getPokemones().get(0).getNombre()+ "de nivel"+ jugador_1.getPokemones().get(0).getNivel());
+    public Jugador getJugador1() {
+        return jugador1;
     }
+
+    public Jugador getJugador2() {
+        return jugador2;
+    }
+
 
 }
