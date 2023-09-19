@@ -56,4 +56,11 @@ public class Jugador{
         this.pokemonActual.atacar(this.enemigo.getPokemonActual(),unaHabilidad); // es flexible, puede ser otra habilidad que no sea ataque
     }
 
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
 }

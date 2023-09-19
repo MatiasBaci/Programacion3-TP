@@ -6,14 +6,14 @@ public class Juego {
     //Atributos:
     private Jugador jugador1;
     private Jugador jugador2;
-    private Controlador controlador;
-
     private Datos datos;
+    private Controlador controlador;
 
     //Metodos:
 
     public Juego(){
-        Datos datos = new Datos();
+        datos = new Datos();
+        controlador = new Controlador();
         jugador1 = new Jugador("Ash",datos.getMochilaJugador1(),datos.getItemsJugador1());
         jugador2 = new Jugador("Mario",datos.getMochilaJugador2(),datos.getItemsJugador1());
 
@@ -36,6 +36,11 @@ public class Juego {
         jugador2.elegirPokemon("Charmander");
 
         jugador1.atacarAdversario(); // Si se corre sin añadir habilidades al pokemon salta error,
+    }
+
+    public void menu(){
+        //controlador.menuSeleccion(jugador1, jugador2);
+
     }
 
 

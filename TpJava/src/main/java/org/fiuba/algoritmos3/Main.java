@@ -10,6 +10,8 @@ public class Main {
 
         Juego juego = new Juego();
         juego.inicializarJuego();
+        juego.menu();
+
 
     }
 
