@@ -17,22 +17,28 @@ public class Datos {
 
     //Metodos:
 
-    public Datos(){
+    public Datos() {
 
         mochilaJugador1 = new HashMap<>();
         mochilaJugador2 = new HashMap<>();
         itemsJugador1 = new ArrayList<>();
         itemsJugador2 = new ArrayList<>();
 
-        Pokemon pokemon1 = new Pokemon("Squirtle",5,"Agua","Es un pokemon de Agua",100,15,20,20);
-        Pokemon pokemon2 = new Pokemon("Charmander",5,"Fuego","Es un pokemon de Fuego",100,20,25,25);
-        Pokemon pokemon3 = new Pokemon("Pikachu",5,"Agua","Es un pokemon de Agua",100,15,20,20);
-        Pokemon pokemon4 = new Pokemon("Charizard",5,"Fuego","Es un pokemon de Fuego",100,20,25,25);
-        Pokemon pokemon5 = new Pokemon("Vaporeon",5,"Fuego","Es un pokemon de Fuego",100,20,25,25);
-        Pokemon pokemon6 = new Pokemon("Charmander_1",10,"Fuego","Es un pokemon de Fuego",100,20,25,25);
+        InicialzarPokemonesJugador1();
+        InicialzarPokemonesJugador2();
+    }
 
-        pokemon1.añadirHabilidad("ChorroDeAgua","Agua");
-        pokemon2.añadirHabilidad("Lanzallamas","Agua");
+    private void InicialzarPokemonesJugador1(){
+
+        Pokemon pokemon1 = new Pokemon("Squirtle", 5, "Agua", "Es un pokemon de Agua", 100, 15, 20, 20);
+        Pokemon pokemon2 = new Pokemon("Charmander", 5, "Fuego", "Es un pokemon de Fuego", 100, 20, 25, 25);
+        Pokemon pokemon3 = new Pokemon("Pikachu", 5, "Agua", "Es un pokemon de Agua", 100, 15, 20, 20);
+        Pokemon pokemon4 = new Pokemon("Charizard", 5, "Fuego", "Es un pokemon de Fuego", 100, 20, 25, 25);
+        Pokemon pokemon5 = new Pokemon("Vaporeon", 5, "Fuego", "Es un pokemon de Fuego", 100, 20, 25, 25);
+        Pokemon pokemon6 = new Pokemon("Charmander_1", 10, "Fuego", "Es un pokemon de Fuego", 100, 20, 25, 25);
+
+        pokemon1.añadirHabilidad("ChorroDeAgua", "Agua");
+        pokemon2.añadirHabilidad("Lanzallamas", "Agua");
 
         mochilaJugador1.put(pokemon1.getNombre(), pokemon1);
         mochilaJugador1.put(pokemon2.getNombre(), pokemon2);
@@ -40,6 +46,18 @@ public class Datos {
         mochilaJugador1.put(pokemon4.getNombre(), pokemon4);
         mochilaJugador1.put(pokemon5.getNombre(), pokemon5);
         mochilaJugador1.put(pokemon6.getNombre(), pokemon6);
+    }
+
+    private void InicialzarPokemonesJugador2(){
+
+        Pokemon pokemon1 = new Pokemon("Squirtle", 5, "Agua", "Es un pokemon de Agua", 100, 15, 20, 20);
+        Pokemon pokemon2 = new Pokemon("Charmander", 5, "Fuego", "Es un pokemon de Fuego", 100, 20, 25, 25);
+        Pokemon pokemon3 = new Pokemon("Pikachu", 5, "Agua", "Es un pokemon de Agua", 100, 15, 20, 20);
+        Pokemon pokemon4 = new Pokemon("Charizard", 5, "Fuego", "Es un pokemon de Fuego", 100, 20, 25, 25);
+        Pokemon pokemon5 = new Pokemon("Vaporeon", 5, "Fuego", "Es un pokemon de Fuego", 100, 20, 25, 25);
+        Pokemon pokemon6 = new Pokemon("Charmander_1", 10, "Fuego", "Es un pokemon de Fuego", 100, 20, 25, 25);
+
+
         mochilaJugador2.put(pokemon1.getNombre(), pokemon1);
         mochilaJugador2.put(pokemon2.getNombre(), pokemon2);
         mochilaJugador2.put(pokemon3.getNombre(), pokemon3);
@@ -47,6 +65,8 @@ public class Datos {
         mochilaJugador2.put(pokemon5.getNombre(), pokemon5);
         mochilaJugador2.put(pokemon6.getNombre(), pokemon6);
     }
+
+
 
 
     public List<Items> getItemsJugador1() {

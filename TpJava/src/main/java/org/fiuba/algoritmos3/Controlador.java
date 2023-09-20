@@ -144,11 +144,25 @@ public class Controlador {
         while (jugadorActual.isAtacante()) {
             mensajeMenu();
             numeroOpcion = scanner.next();
-            if(Objects.equals(numeroOpcion, "Uno")){
+            if(Objects.equals(numeroOpcion, "1")){
                 opcionRendirse(jugadorActual);
                 jugadorActual.setGanoJuego(true);
             }
+            if(Objects.equals(numeroOpcion, "2")){
 
+            }
+            if(Objects.equals(numeroOpcion, "3")){
+
+            }
+            if(Objects.equals(numeroOpcion, "4")){
+
+            }
+            if(Objects.equals(numeroOpcion, "5")){
+
+            }
+            else{
+
+            }
 
         }
     }
