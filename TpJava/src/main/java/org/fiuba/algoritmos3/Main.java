@@ -10,7 +10,7 @@ public static void main(String[] args) {
 
         Juego juego = new Juego();
         juego.inicializarJuego();
-        juego.menu();
+        juego.DesarrollarJuego();
 
     }
 

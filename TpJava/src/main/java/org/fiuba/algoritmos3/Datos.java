@@ -48,6 +48,7 @@ public class Datos {
         mochilaJugador2.put(pokemon6.getNombre(), pokemon6);
     }
 
+
     public List<Items> getItemsJugador1() {
         return itemsJugador1;
     }

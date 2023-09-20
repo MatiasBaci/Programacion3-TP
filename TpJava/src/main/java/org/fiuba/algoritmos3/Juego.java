@@ -38,8 +38,9 @@ public class Juego {
         //jugador1.atacarAdversario(); // Si se corre sin añadir habilidades al pokemon salta error,
     }
 
-    public void menu(){
+    public void DesarrollarJuego(){
         controlador.menuSeleccion(jugador1, jugador2);
+        controlador.iteracionesJugadores(jugador1, jugador2);
 
     }
 

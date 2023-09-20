@@ -15,6 +15,7 @@ public class Jugador{
 
     private Jugador enemigo;
     private boolean atacante; //Si es atacante es su turno.
+    private boolean ganoJuego;  //True si gano el juego
 
     // Metodos:
 
@@ -75,6 +76,15 @@ public class Jugador{
     public boolean isAtacante() {
         return atacante;
     }
+
+    public void setGanoJuego(boolean ganoJuego) {
+        this.ganoJuego = ganoJuego;
+    }
+
+    public boolean isGanoJuego() {
+        return ganoJuego;
+    }
+
 }
 
 
