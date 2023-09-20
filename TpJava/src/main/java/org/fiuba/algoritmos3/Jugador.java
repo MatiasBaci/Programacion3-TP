@@ -7,7 +7,6 @@ public class Jugador{
 
     //Atributos:
     private String nombre;
-    private List<Pokemon> pokemones;  // luego se elimina si funciona mas el mapa
 
     private Map<String,Pokemon> misPokemones;
     private List<Items> items;
@@ -15,6 +14,7 @@ public class Jugador{
     private Pokemon pokemonActual;
 
     private Jugador enemigo;
+    private boolean atacante; //Si es atacante es su turno.
 
     // Metodos:
 
@@ -22,12 +22,12 @@ public class Jugador{
         this.nombre = nombre;
         this.misPokemones = misPokemones;
         this.items = items;
+        this.atacante = false;
     }
     public List<Items> getItems() {return items;}
 
-    public List<Pokemon> getPokemones() {return pokemones;} // Posiblemente sera reemplazado por el dicc de pokemones
 
-    private Pokemon getPokemonActual() {return pokemonActual;}
+    public Pokemon getPokemonActual() {return pokemonActual;}
 
     private Pokemon seleccionarPokemon(String unPokemon){
         return this.misPokemones.get(unPokemon);
@@ -63,4 +63,18 @@ public class Jugador{
     public String getNombre() {
         return nombre;
     }
+
+    public Map<String, Pokemon> getMisPokemones() {
+        return misPokemones;
+    }
+
+    public void setAtacante(boolean atacante) {
+        this.atacante = atacante;
+    }
+
+    public boolean isAtacante() {
+        return atacante;
+    }
 }
+
+

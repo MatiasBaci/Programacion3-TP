@@ -35,11 +35,11 @@ public class Juego {
         jugador1.elegirPokemon("Ratata");
         jugador2.elegirPokemon("Charmander");
 
-        jugador1.atacarAdversario(); // Si se corre sin añadir habilidades al pokemon salta error,
+        //jugador1.atacarAdversario(); // Si se corre sin añadir habilidades al pokemon salta error,
     }
 
     public void menu(){
-        //controlador.menuSeleccion(jugador1, jugador2);
+        controlador.menuSeleccion(jugador1, jugador2);
 
     }
 
