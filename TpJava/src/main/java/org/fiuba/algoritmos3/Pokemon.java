@@ -8,9 +8,9 @@ public class Pokemon {
     //Atributos:
     private String nombre;
     private int nivel;
-    private Tipo tipo;
+    private Tipo tipo; //DEBE SER UNA REFERENCIA A LA CLASE AGUA, NO UNA INSTANCIA DE AGUA
 
-    private Agua untipo; // esto es solo para probar, luego se eliminara poque es hija de Tipo ( por ahora )
+    private Agua untipo; // esto es solo para probar, luego se eliminara poque es hija de Tipo ( por ahora ) 
     private String historia;
     private Estadisticas estadisticas;
     private List<Habilidad> habilidades; //Posiblemente se va ir o no.

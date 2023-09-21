@@ -1,7 +1,11 @@
 package org.fiuba.algoritmos3;
+
+import java.util.Map;
+
 public abstract class Tipo {
 
     private String nombre;
+    private Map<String,String> efectividades;
 
     //Metodos:
 
@@ -13,13 +17,39 @@ public abstract class Tipo {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
     public Tipo(String nombre){
         this.nombre = nombre;
     }
 
-    public void calcularEfectividad(Tipo unTipo){
-        // Aun falta implementar como abstracto, por ahora trabaje con la clase Hija -> AGUA
-        // Cuando se cambie a abstracto, es ahi donde se modificara algunas cosas en las demas clases
+    private String compararseConTipo(Tipo unTipo){
+        return this.efectividades.get(unTipo.getNombre());
+    }
+
+    public double calcularMultiplicadorDeDanio(Tipo unTipo){
+    
+        double multiplicador = 1;
+        String efectividad = this.compararseConTipo(unTipo);
+        switch (efectividad){
+            case "Fuerte":
+                multiplicador = 2;
+                break;
+            case "Debil":
+                multiplicador = 0.5;
+                break;
+            case "Nula":
+                multiplicador = 0;
+                break;
+        }
+        return multiplicador;
+    }
+
+    public double calcularSTAB(Tipo unTipo){
+        double STAB = 1;
+        if(this.getNombre().equals(unTipo.getNombre())){
+            STAB = 1.5;
+        }
+        return STAB;
     }
 
 }
