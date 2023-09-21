@@ -4,12 +4,12 @@ import java.util.HashMap;
 
 public class Fuego extends Tipo{ //extends de Tipo
 
-    public Fuego(){
+    public Fuego(String nombre){
 
-        super("Fuego"); //Aqui se le pasa el nombre del tipo
+        super(nombre); //Aqui se le pasa el nombre del tipo
         this.tablaEfectividad = new HashMap<>();
     }
-    
+
 //  public static void completarTablaEfectividad(){
     public void completarTablaEfectividad(){
         this.tablaEfectividad.put("Agua","Debil");

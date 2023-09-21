@@ -75,37 +75,35 @@ public class Controlador {
 
     private void validarNombresJugador(Jugador jugador) {
         Scanner scanner = new Scanner(System.in);
-        Boolean nombreValido = false;
-        while (!nombreValido) {
-            mensajeNombreJugador();
-            System.out.println("Ingrese el nombre del jugador: ");
-            String nombreJugador = scanner.next();
-            if (nombreJugador.length() < 50) {
+            Boolean nombreValido = false;
+            while (!nombreValido) {
                 mensajeNombreJugador();
-                jugador.setNombre(nombreJugador);
-                nombreValido = true;
-                System.out.println("Bienvenido al juego " + nombreJugador);
-            } else {
-                mensajeNombreJugador();
-                System.out.println("El nombre tiene mas de 50 caracteres, vuevla a intentar");
+                System.out.println("Ingrese el nombre del jugador: ");
+                String nombreJugador = scanner.next();
+                if (nombreJugador.length() < 50) {
+                    mensajeNombreJugador();
+                    jugador.setNombre(nombreJugador);
+                    nombreValido = true;
+                    System.out.println("Bienvenido al juego " + nombreJugador);
+                } else {
+                    mensajeNombreJugador();
+                    System.out.println("El nombre tiene mas de 50 caracteres, vuevla a intentar");
+                }
             }
-        }
-
     }
 
     private void seleccionarPokemonInicial(Jugador jugador) {
 
         Scanner scanner = new Scanner(System.in);
-        Boolean pokemonValido = false;
-        while (!pokemonValido) {
-            mensajePokemonInicial();
-            System.out.println("Los pokemones disponibles de " + jugador.getNombre() + " son: ");
-            jugador.getMisPokemones().forEach((k, v) -> System.out.println(v.getNombre() + " Lv: " + v.getNivel() + " Velocidad: " + v.getEstadisticas().getVelocidad()));
-            System.out.println("Ingrese el nombre del pokemon: ");
-            String nombrepokemon = scanner.next();
-            pokemonValido = jugador.elegirPokemon(nombrepokemon);
-        }
-
+            Boolean pokemonValido = false;
+            while (!pokemonValido) {
+                mensajePokemonInicial();
+                System.out.println("Los pokemones disponibles de " + jugador.getNombre() + " son: ");
+                jugador.getMisPokemones().forEach((k, v) -> System.out.println(v.getNombre() + " Lv: " + v.getNivel() + " Velocidad: " + v.getEstadisticas().getVelocidad()));
+                System.out.println("Ingrese el nombre del pokemon: ");
+                String nombrepokemon = scanner.next();
+                pokemonValido = jugador.elegirPokemon(nombrepokemon);
+            }
     }
 
     private void compararIniciales(Jugador jugador1, Jugador jugador2) {
@@ -139,32 +137,31 @@ public class Controlador {
     public void opcionesJugadores(Jugador jugadorActual) {
 
         Scanner scanner = new Scanner(System.in);
-        String numeroOpcion;
+            String numeroOpcion;
 
-        while (jugadorActual.isAtacante()) {
-            mensajeMenu();
-            numeroOpcion = scanner.next();
-            if(Objects.equals(numeroOpcion, "1")){
-                opcionRendirse(jugadorActual);
-                jugadorActual.setGanoJuego(true);
+            while (jugadorActual.isAtacante()) {
+                mensajeMenu();
+                numeroOpcion = scanner.next();
+                if(Objects.equals(numeroOpcion, "1")){
+                    opcionRendirse(jugadorActual);
+                    jugadorActual.setGanoJuego(true);
+                }
+                if(Objects.equals(numeroOpcion, "2")){
+
+                }
+                if(Objects.equals(numeroOpcion, "3")){
+
+                }
+                if(Objects.equals(numeroOpcion, "4")){
+
+                }
+                if(Objects.equals(numeroOpcion, "5")){
+
+                }
+                else{
+
+                }
             }
-            if(Objects.equals(numeroOpcion, "2")){
-
-            }
-            if(Objects.equals(numeroOpcion, "3")){
-
-            }
-            if(Objects.equals(numeroOpcion, "4")){
-
-            }
-            if(Objects.equals(numeroOpcion, "5")){
-
-            }
-            else{
-
-            }
-
-        }
     }
 
     public void iteracionesJugadores(Jugador jugador1, Jugador jugador2) {

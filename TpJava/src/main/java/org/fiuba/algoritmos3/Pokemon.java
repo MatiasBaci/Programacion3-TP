@@ -22,7 +22,7 @@ public class Pokemon {
     public Pokemon(String nombre, int nivel,String tipo, String historia,int vidaMax,int velocidad,int defensa,int ataque){
         this.nombre = nombre;
         this.nivel = nivel;
-        this.tipo = new Tipo(tipo);
+        this.tipo = Tipo.getTipo(tipo); //Aqui se le pasa el nombre del tipo (Fuego,Agua,etc
         this.historia = historia;
         this.estadisticas = new Estadisticas(vidaMax,velocidad,defensa,ataque);
 
@@ -47,8 +47,8 @@ public class Pokemon {
         return misHabilidades.get(unaHabilidad);
     }
 
-    public void añadirHabilidad(String nombre,Tipo tipo){
-        this.misHabilidades.put(nombre,new Habilidad(nombre,tipo));
+    public void añadirHabilidad(String nombre,Tipo unTipo){
+        this.misHabilidades.put(nombre,new Habilidad(nombre,unTipo));
     }
 
     public void atacar(Pokemon pokemonEnemigoActual,Habilidad ataque) {

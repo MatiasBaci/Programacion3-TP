@@ -1,6 +1,6 @@
 package org.fiuba.algoritmos3;
-import java.util.ArrayList;
-import java.util.List;
+/* import java.util.ArrayList;
+import java.util.List; */
 public class Juego {
 
     //Atributos:

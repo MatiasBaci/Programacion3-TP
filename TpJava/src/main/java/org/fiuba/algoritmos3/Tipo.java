@@ -6,11 +6,19 @@ public abstract class Tipo {
 
     private String nombre;
     protected HashMap<String,String> tablaEfectividad;
+    private static HashMap<String,Tipo> tipos = new HashMap<>();
 
     //Metodos:
 
     public Tipo(String nombre){
         this.nombre = nombre;
+        tipos.put("Fuego",new Fuego("Fuego"));
+        tipos.put("Agua",new Agua("Agua"));
+        
+    }
+
+    public static Tipo getTipo(String nombre){ //Posible cambio en el nombre del metodo para más claridad
+        return tipos.get(nombre);
     }
 
     public String getNombre() {

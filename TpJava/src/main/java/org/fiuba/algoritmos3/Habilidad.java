@@ -3,7 +3,6 @@ public class Habilidad {
     private String nombre;
 
     private Tipo untipo;
-
     public String getTipo() {return untipo.getNombre();}
 
     public String getNombre() {return nombre;}
@@ -16,4 +15,5 @@ public class Habilidad {
     public double potenciaDeDaño(Tipo tipoPokemon){
         return this.untipo.calcularMultiplicadorDeDanio(tipoPokemon);
     }
+
 }

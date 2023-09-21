@@ -1,24 +1,22 @@
 package org.fiuba.algoritmos3;
 
 import java.util.HashMap;
-import java.util.Map;
 
-public class Agua{ //extends de Tipo
-    private Map<String,Double> tablaEfectividad;
-    public Agua(){
+public class Agua extends Tipo{ //extends de Tipo
+
+    public Agua(String nombre){
+
+        super(nombre); //Aqui se le pasa el nombre del tipo
         this.tablaEfectividad = new HashMap<>();
-        tablaEfectividad.put("Agua",1.5);
-        tablaEfectividad.put("Dragon",2.0);
-        tablaEfectividad.put("Fuego",2.0);
-        tablaEfectividad.put("Planta",1.5);
-        tablaEfectividad.put("Roca",2.0);
-        tablaEfectividad.put("Tierra",2.0);
-
     }
-    public double calcularEfectividad(Tipo unTipo){
-        if(this.tablaEfectividad.get(unTipo.getNombre()) == null){
-            return 1.0;
-        }
-        return this.tablaEfectividad.get(unTipo.getNombre());
+
+//  public static void completarTablaEfectividad(){
+    public void completarTablaEfectividad(){
+        this.tablaEfectividad.put("Agua","Debil");
+        this.tablaEfectividad.put("Dragon","Debil");
+        this.tablaEfectividad.put("Fuego","Fuerte");
+        this.tablaEfectividad.put("Planta","Debil");
+        this.tablaEfectividad.put("Roca","Fuerte");
+        this.tablaEfectividad.put("Tierra","Fuerte");
     }
 }

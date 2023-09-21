@@ -12,8 +12,9 @@ public class Datos {
     private Map<String, Pokemon> mochilaJugador2;
     private List<Items> itemsJugador1;
     private List<Items> itemsJugador2;
-    private String nombreJugador1;
-    private String nombreJugador2;
+/*     private String nombreJugador1;
+    private String nombreJugador2; */
+    // no se esta usando
 
     //Metodos:
 
@@ -37,8 +38,8 @@ public class Datos {
         Pokemon pokemon5 = new Pokemon("Vaporeon", 5, "Fuego", "Es un pokemon de Fuego", 100, 20, 25, 25);
         Pokemon pokemon6 = new Pokemon("Charmander_1", 10, "Fuego", "Es un pokemon de Fuego", 100, 20, 25, 25);
 
-        pokemon1.añadirHabilidad("ChorroDeAgua", "Agua");
-        pokemon2.añadirHabilidad("Lanzallamas", "Agua");
+        pokemon1.añadirHabilidad("ChorroDeAgua", Tipo.getTipo("Agua"));
+        pokemon2.añadirHabilidad("Lanzallamas", Tipo.getTipo("Fuego"));
 
         mochilaJugador1.put(pokemon1.getNombre(), pokemon1);
         mochilaJugador1.put(pokemon2.getNombre(), pokemon2);
