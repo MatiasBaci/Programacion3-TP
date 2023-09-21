@@ -10,7 +10,6 @@ public class Pokemon {
     private int nivel;
     private Tipo tipo; //DEBE SER UNA REFERENCIA A LA CLASE AGUA, NO UNA INSTANCIA DE AGUA
 
-    private Agua untipo; // esto es solo para probar, luego se eliminara poque es hija de Tipo ( por ahora ) 
     private String historia;
     private Estadisticas estadisticas;
     private List<Habilidad> habilidades; //Posiblemente se va ir o no.
@@ -24,7 +23,6 @@ public class Pokemon {
         this.nombre = nombre;
         this.nivel = nivel;
         this.tipo = new Tipo(tipo);
-        this.untipo = new Agua(); // De prueba -> Luego se elimina.
         this.historia = historia;
         this.estadisticas = new Estadisticas(vidaMax,velocidad,defensa,ataque);
 
@@ -49,8 +47,8 @@ public class Pokemon {
         return misHabilidades.get(unaHabilidad);
     }
 
-    public void añadirHabilidad(String nombre,String tipo){ //Este metodo no es flexible para añadir habilidades sin tipo.
-        this.misHabilidades.put(nombre,new Habilidad(nombre,tipo,new Agua())); // esto es un ejemplo de ahi se sacara el new.AGUA
+    public void añadirHabilidad(String nombre,Tipo tipo){
+        this.misHabilidades.put(nombre,new Habilidad(nombre,tipo));
     }
 
     public void atacar(Pokemon pokemonEnemigoActual,Habilidad ataque) {

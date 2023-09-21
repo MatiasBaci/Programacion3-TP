@@ -2,22 +2,18 @@ package org.fiuba.algoritmos3;
 public class Habilidad {
     private String nombre;
 
-    private String tipo; //-> posiblemente una clase
+    private Tipo untipo;
 
-    private Agua untipo; // -> de clase Tipo pero para el ejemplo sera Agua directamente
-    //Metodos:
-    public String getTipo() {return tipo;} // para el ejemplo
+    public String getTipo() {return untipo.getNombre();}
 
-    public Habilidad(String nombre,String tipo,Agua ejemplo){ // SE TIENE QUE QUITAR EL AGUA DEL EJEMPLO DESPUES
+    public String getNombre() {return nombre;}
+
+    public Habilidad(String nombre,Tipo tipo){
         this.nombre = nombre;
-        this.tipo = tipo;
-        this.untipo = ejemplo;
+        this.untipo = tipo;
     }
 
     public double potenciaDeDaño(Tipo tipoPokemon){
-        return this.untipo.calcularEfectividad(tipoPokemon);
-
+        return this.untipo.calcularMultiplicadorDeDanio(tipoPokemon);
     }
-
-
 }

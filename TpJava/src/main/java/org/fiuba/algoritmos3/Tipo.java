@@ -1,14 +1,17 @@
 package org.fiuba.algoritmos3;
 
-import java.util.Map;
+import java.util.HashMap;
 
 public abstract class Tipo {
 
     private String nombre;
-    private Map<String,String> efectividades;
+    protected HashMap<String,String> tablaEfectividad;
 
     //Metodos:
 
+    public Tipo(String nombre){
+        this.nombre = nombre;
+    }
 
     public String getNombre() {
         return nombre;
@@ -18,12 +21,8 @@ public abstract class Tipo {
         this.nombre = nombre;
     }
 
-    public Tipo(String nombre){
-        this.nombre = nombre;
-    }
-
     private String compararseConTipo(Tipo unTipo){
-        return this.efectividades.get(unTipo.getNombre());
+        return this.tablaEfectividad.get(unTipo.getNombre());
     }
 
     public double calcularMultiplicadorDeDanio(Tipo unTipo){
