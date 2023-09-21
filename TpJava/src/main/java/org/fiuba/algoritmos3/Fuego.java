@@ -8,6 +8,7 @@ public class Fuego extends Tipo{ //extends de Tipo
 
         super(nombre); //Aqui se le pasa el nombre del tipo
         this.tablaEfectividad = new HashMap<>();
+        this.completarTablaEfectividad(); // Consultarlo si se puede hacer esto o hacer un metodo estatico que se inicialice al hacer new ()
     }
 
 //  public static void completarTablaEfectividad(){

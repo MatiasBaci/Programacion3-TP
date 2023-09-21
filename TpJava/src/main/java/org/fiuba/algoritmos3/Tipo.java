@@ -12,9 +12,12 @@ public abstract class Tipo {
 
     public Tipo(String nombre){
         this.nombre = nombre;
-        tipos.put("Fuego",new Fuego("Fuego"));
-        tipos.put("Agua",new Agua("Agua"));
-        
+    }
+
+    static {  // OJO: Esto funciona como un inicializador, Investigarlo mas a detalle para saber si esta correcto o no.
+        tipos.put("Fuego", new Fuego("Fuego"));
+        tipos.put("Agua", new Agua("Agua"));
+        // Aqui se pueden agregar mas instancias de otros tipos.
     }
 
     public static Tipo getTipo(String nombre){ //Posible cambio en el nombre del metodo para más claridad
