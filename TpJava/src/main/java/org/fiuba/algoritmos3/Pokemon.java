@@ -13,6 +13,8 @@ public class Pokemon {
     private Estadisticas estadisticas;
     private Map<String,Habilidad> misHabilidades;
 
+    private String estadoActual; //Probablemente sea una clase despues
+
 
     //Metodos:
 
@@ -24,6 +26,7 @@ public class Pokemon {
         this.estadisticas = new Estadisticas(vidaMax,velocidad,defensa,ataque);
 
         this.misHabilidades = new HashMap<>();
+        this.estadoActual = "Normal";
 
     }
     public String getNombre() {return nombre;}
@@ -56,5 +59,9 @@ public class Pokemon {
         System.out.println("El daño total es = " + damage);
         System.out.println("La vida del enemigo es = " + pokemonEnemigoActual.getEstadisticas().getVidaMaxima()); // Esto esta mal debido aque es .get().get()
 
+    }
+
+    public String getEstadoActual() {
+        return estadoActual;
     }
 }

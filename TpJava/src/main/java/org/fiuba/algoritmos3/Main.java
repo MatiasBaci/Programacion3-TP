@@ -17,10 +17,10 @@ public static void main(String[] args) {
         charmander.atacar(squirtle, charmander.seleccionarHabilidad("Lanzallamas"));
         squirtle.atacar(charmander, squirtle.seleccionarHabilidad("Chorro de agua"));
 
-        /* Juego juego = new Juego();
+        Juego juego = new Juego();
         juego.inicializarJuego();
         juego.DesarrollarJuego();
- */
+
     }
 
 

@@ -85,6 +85,9 @@ public class Jugador{
         return ganoJuego;
     }
 
+    public Jugador getAdversario() {
+        return adversario;
+    }
 }
 
 
