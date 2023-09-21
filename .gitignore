@@ -2,3 +2,8 @@
 *.class
 TpJava/target/classes/org/fiuba/algoritmos3/Datos.class
 TpJava/target/classes/org/fiuba/algoritmos3/Juego.class
+TpJava/target/classes/org/fiuba/algoritmos3/Agua.class
+TpJava/target/classes/org/fiuba/algoritmos3/Habilidad.class
+TpJava/target/classes/org/fiuba/algoritmos3/Jugador.class
+.gitignore
+TpJava/target/classes/org/fiuba/algoritmos3/Tipo.class

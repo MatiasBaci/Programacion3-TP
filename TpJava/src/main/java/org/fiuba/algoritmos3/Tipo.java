@@ -1,5 +1,5 @@
 package org.fiuba.algoritmos3;
-public class Tipo {
+public abstract class Tipo {
 
     private String nombre;
 
