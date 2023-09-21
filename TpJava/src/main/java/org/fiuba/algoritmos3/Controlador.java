@@ -100,7 +100,7 @@ public class Controlador {
         while (!pokemonValido) {
             mensajePokemonInicial();
             System.out.println("Los pokemones disponibles de " + jugador.getNombre() + " son: ");
-            jugador.getMisPokemones().forEach((k, v) -> System.out.println(v.getNombre() + "-" + v.getNivel() + "-" + v.getEstadisticas().getVelocidad()));
+            jugador.getMisPokemones().forEach((k, v) -> System.out.println(v.getNombre() + " Lv: " + v.getNivel() + " Velocidad: " + v.getEstadisticas().getVelocidad()));
             System.out.println("Ingrese el nombre del pokemon: ");
             String nombrepokemon = scanner.next();
             pokemonValido = jugador.elegirPokemon(nombrepokemon);
