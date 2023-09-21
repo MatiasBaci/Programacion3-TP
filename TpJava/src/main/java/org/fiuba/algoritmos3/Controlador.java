@@ -164,7 +164,7 @@ public class Controlador {
             }
     }
 
-    public void iteracionesJugadores(Jugador jugador1, Jugador jugador2) {
+    public void iterac ionesJugadores(Jugador jugador1, Jugador jugador2) {
 
         while (!jugador1.isGanoJuego() && !jugador2.isGanoJuego()) {
 

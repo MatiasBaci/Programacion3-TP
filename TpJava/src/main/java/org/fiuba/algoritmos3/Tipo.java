@@ -17,6 +17,8 @@ public abstract class Tipo {
     static {  // OJO: Esto funciona como un inicializador, Investigarlo mas a detalle para saber si esta correcto o no.
         tipos.put("Fuego", new Fuego("Fuego"));
         tipos.put("Agua", new Agua("Agua"));
+        tipos.put("Normal", new Agua("Normal"));
+        tipos.put("Planta", new Agua("Planta"));
         // Aqui se pueden agregar mas instancias de otros tipos.
     }
 
@@ -37,7 +39,7 @@ public abstract class Tipo {
     }
 
     public double calcularMultiplicadorDeDanio(Tipo unTipo){
-    
+
         double multiplicador = 1;
         String efectividad = this.compararseConTipo(unTipo);
         switch (efectividad){
