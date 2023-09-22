@@ -1,26 +1,24 @@
 package org.fiuba.algoritmos3;
-public class Habilidad {
 
+import java.util.HashMap;
+
+public abstract class Habilidad {
+    private static HashMap<String,Habilidad> tiposDeHabilidades = new HashMap<>();
     private String nombre;
-    private Tipo untipo;
+    private int cantidad;
 
-    private int poder;
-
-    // Metodos------------------------------------------------------------
-
-    public Habilidad(String nombre,Tipo tipo){
+    public Habilidad(String nombre,int cantidad){
         this.nombre = nombre;
-        this.untipo = tipo;
-        this.poder = 5;
-    }
-    public Tipo getTipo() {return untipo;}
-
-    public String getNombre() {return nombre;}
-
-    public double getPoder() { return poder; }
-
-    public double potenciaDeDaño(Tipo tipoPokemon){
-        return this.untipo.calcularMultiplicadorDeDanio(tipoPokemon);
+        this.cantidad = cantidad;
     }
 
+    static {
+        /*tiposDeHabilidades.put("ataque",new HabilidadAtaque());
+        tiposDeHabilidades.put("estadistica",new HabilidadEstadistica());
+        tiposDeHabilidades.put("estado"new HabilidadEstado());*/
+
+        // EL PROBLEMA AQUI SON LOS PARAMETROS DE CADA CONSTRUCTOR
+    }
+
+    public abstract void efectuarHabilidad(Pokemon unPokemon);
 }

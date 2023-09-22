@@ -169,7 +169,7 @@ public class Controlador {
                     opcionVerCampoBatalla(jugadorActual,jugadorActual.getPokemonActual());
                     opcionVerCampoBatalla(jugadorAdversario,jugadorAdversario.getPokemonActual());
                     System.out.println("Oprima una tecla para dejar de ver el campo de batalla: ");
-                    numeroOpcion = scanner.next();
+
                 }
                 else if(Objects.equals(numeroOpcion, "3")){
 
@@ -182,6 +182,7 @@ public class Controlador {
                 else{
                     this.mensajeOpcionInvalida();
                 }
+                numeroOpcion = scanner.next();
             }
     }
 

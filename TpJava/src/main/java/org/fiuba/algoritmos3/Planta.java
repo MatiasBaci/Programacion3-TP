@@ -6,7 +6,6 @@ public class Planta extends Tipo{
 
     public Planta(String nombre){
         super(nombre);
-        this.tablaEfectividad = new HashMap<>();
         this.completarTablaEfectividad();
     }
     public void completarTablaEfectividad(){

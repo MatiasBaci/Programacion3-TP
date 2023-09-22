@@ -6,8 +6,7 @@ public class Agua extends Tipo{ //extends de Tipo
 
     public Agua(String nombre){
 
-        super(nombre); //Aqui se le pasa el nombre del tipo
-        this.tablaEfectividad = new HashMap<>();
+        super(nombre); //Aqui se le pasa el nombre del tipo ---> Deberia borrarse
         this.completarTablaEfectividad(); // Consultarlo si se puede hacer esto o hacer un metodo estatico que se inicialice al hacer new ()
     }
 

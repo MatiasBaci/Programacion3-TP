@@ -14,20 +14,19 @@ public class CalculoAtaque {
         this.unRandom = new Random();
     }
 
-    public double calculoAtaqueTotal(Tipo unTipoPokemonEnemigo,Tipo unTipoPokemonPropio, Habilidad unaHabilidadPokemonPropio,int nivelPokemonPropio){
+    public double calculoAtaqueTotal(Tipo unTipoPokemonEnemigo, Tipo unTipoPokemonPropio, HabilidadAtaque unaHabilidadPokemonPropioAtaque, int nivelPokemonPropio){
 
         // faltaria critico.
         double ataquePropio = (double)estadisticasPropio.getAtaque();
         double defensaEnemigo = (double)estadisticasEnemigo.getDefensa();
-        double poderHabilidad = (double)unaHabilidadPokemonPropio.getPoder();
-        double efectividadTipo = unaHabilidadPokemonPropio.potenciaDeDaño(unTipoPokemonEnemigo);
-        double mismoTipo = unTipoPokemonPropio.calcularSTAB(unaHabilidadPokemonPropio.getTipo());
+        double poderHabilidad = (double) unaHabilidadPokemonPropioAtaque.getPoder();
+        double efectividadTipo = unaHabilidadPokemonPropioAtaque.potenciaDeDaño(unTipoPokemonEnemigo);
+        double mismoTipo = unTipoPokemonPropio.calcularSTAB(unaHabilidadPokemonPropioAtaque.getTipo());
         double random = ((double)this.unRandom.nextInt(39)+217 ) / 255.0;
         double nivel = (double)nivelPokemonPropio;
 
         double numerador = ((2.0*nivel*poderHabilidad*ataquePropio/defensaEnemigo)/5.0) + 2.0;
         return (numerador/50.0)*mismoTipo*efectividadTipo*random;
-
 
 
     }

@@ -38,8 +38,8 @@ public class Datos {
         Pokemon pokemon5 = new Pokemon("Vaporeon", 5, "Fuego", "Es un pokemon de Fuego", 100, 20, 25, 25);
         Pokemon pokemon6 = new Pokemon("Charmander_1", 10, "Fuego", "Es un pokemon de Fuego", 100, 20, 25, 25);
 
-        pokemon1.añadirHabilidad("ChorroDeAgua", Tipo.getTipo("Agua"));
-        pokemon2.añadirHabilidad("Lanzallamas", Tipo.getTipo("Fuego"));
+        pokemon1.añadirHabilidad("ChorroDeAgua", Tipo.getTipo("Agua"),15,10);
+        pokemon2.añadirHabilidad("Lanzallamas", Tipo.getTipo("Fuego"),10,10);
 
         mochilaJugador1.put(pokemon1.getNombre(), pokemon1);
         mochilaJugador1.put(pokemon2.getNombre(), pokemon2);

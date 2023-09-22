@@ -11,7 +11,7 @@ public class Pokemon {
     private Tipo tipo; //DEBE SER UNA REFERENCIA A LA CLASE AGUA, NO UNA INSTANCIA DE AGUA
     private String historia;
     private Estadisticas estadisticas;
-    private Map<String,Habilidad> misHabilidades;
+    private Map<String, HabilidadAtaque> misHabilidades;
 
     private String estadoActual; //Probablemente sea una clase despues
 
@@ -35,26 +35,26 @@ public class Pokemon {
     public String getHistoria() {return historia;}
     public Estadisticas getEstadisticas() { return estadisticas;}
 
-    public Habilidad seleccionarHabilidad(String unaHabilidad){
+    public HabilidadAtaque seleccionarHabilidad(String unaHabilidad){
         return misHabilidades.get(unaHabilidad);
     }
 
-    public void añadirHabilidad(String nombre,Tipo unTipo){
-        this.misHabilidades.put(nombre,new Habilidad(nombre,unTipo));
+    public void añadirHabilidad(String nombre,Tipo unTipo,int poder,int cantidad){
+        this.misHabilidades.put(nombre,new HabilidadAtaque(nombre,unTipo,poder,cantidad));
     }
 
     public void recibirDaño(double damageEnemigo){
         this.estadisticas.reduccionVida(damageEnemigo);
     }
 
-    public void atacar(Pokemon pokemonEnemigoActual,Habilidad unaHabilidad) {
+    public void atacar(Pokemon pokemonEnemigoActual, HabilidadAtaque unaHabilidadAtaque) {
         CalculoAtaque unCalculo = new CalculoAtaque(this.estadisticas,pokemonEnemigoActual.getEstadisticas());
-        double damage = unCalculo.calculoAtaqueTotal(pokemonEnemigoActual.getTipo(),this.getTipo(),unaHabilidad,this.getNivel());
-        double daño = unaHabilidad.potenciaDeDaño(pokemonEnemigoActual.getTipo()); //Aqui se calcula la efectividad
+        double damage = unCalculo.calculoAtaqueTotal(pokemonEnemigoActual.getTipo(),this.getTipo(), unaHabilidadAtaque,this.getNivel());
+        double daño = unaHabilidadAtaque.potenciaDeDaño(pokemonEnemigoActual.getTipo()); //Aqui se calcula la efectividad, se borrara
 
         pokemonEnemigoActual.recibirDaño(damage);
 
-        System.out.println("La efectividad del ATAQUE "+ unaHabilidad.getNombre() +" con el Pokemon "+ pokemonEnemigoActual.getNombre()
+        System.out.println("La efectividad del ATAQUE "+ unaHabilidadAtaque.getNombre() +" con el Pokemon "+ pokemonEnemigoActual.getNombre()
                 + " es: "+ daño);
         System.out.println("El daño total es = " + damage);
         System.out.println("La vida del enemigo es = " + pokemonEnemigoActual.getEstadisticas().getVidaMaxima()); // Esto esta mal debido aque es .get().get()

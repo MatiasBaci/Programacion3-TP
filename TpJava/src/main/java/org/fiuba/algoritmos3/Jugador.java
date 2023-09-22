@@ -43,8 +43,11 @@ public class Jugador{
         return true;
     }
 
+    public void elegirItem(){
+
+    }
+
     public void añadirAdversario(Jugador unEnemigo){
-        // NECESARIAMENTE SE DEBE PENSAR SI ESTO ESTA EN JUGADOR O EN EL JUEGO :3 pero de alguna manera se tiene que llenar.
         this.adversario = unEnemigo;
     }
 
@@ -53,8 +56,8 @@ public class Jugador{
             System.out.println("ERROR: Primero elige tu pokemon >:V ");
         }
 
-        Habilidad unaHabilidad = this.pokemonActual.seleccionarHabilidad("ChorroDeAgua"); //Aqui no es flexible por ende deberia estar como parametro en el metodo
-        this.pokemonActual.atacar(this.adversario.getPokemonActual(),unaHabilidad); // es flexible, puede ser otra habilidad que no sea ataque
+        HabilidadAtaque unaHabilidadAtaque = this.pokemonActual.seleccionarHabilidad("ChorroDeAgua"); //Aqui no es flexible por ende deberia estar como parametro en el metodo
+        this.pokemonActual.atacar(this.adversario.getPokemonActual(), unaHabilidadAtaque); // es flexible, puede ser otra habilidad que no sea ataque
     }
 
     public void setNombre(String nombre) {
