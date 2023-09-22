@@ -38,6 +38,10 @@ public class Jugador{
             System.out.println("ERROR: No se encontro el pokemon en tu mochila :C ");
             return false;
         }
+        else if(this.seleccionarPokemon(unPokemon).getEstadisticas().getVidaMaxima() == 0){ //Hay get().get()
+            System.out.println("ERROR: El pokemon no tiene vida. :C ");
+            return false;
+        }
         this.pokemonActual = this.seleccionarPokemon(unPokemon);
         System.out.println("Seleccionaste el pokemon -> "+ this.pokemonActual.getNombre());
         return true;
@@ -90,6 +94,10 @@ public class Jugador{
 
     public Jugador getAdversario() {
         return adversario;
+    }
+
+    public void setPokemonActual(Pokemon pokemonActual) {
+        this.pokemonActual = pokemonActual;
     }
 }
 

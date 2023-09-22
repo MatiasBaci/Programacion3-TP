@@ -1,6 +1,7 @@
 package org.fiuba.algoritmos3;
 
 import javax.naming.ldap.UnsolicitedNotification;
+import java.util.HashMap;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -44,6 +45,15 @@ public class Controlador {
     }
 
 
+    private void mensajeIntercambiarPokemon() {
+        System.out.println(" ");
+        System.out.println("╔══════════════════════╗");
+        System.out.println("║ Intercambiar Pokemon ║");
+        System.out.println("╚══════════════════════╝");
+        System.out.println(" ");
+    }
+
+
     private void mensajeNombreJugador() {
         System.out.println(" ");
         System.out.println("╔════════════════════╗");
@@ -53,9 +63,9 @@ public class Controlador {
     }
 
     private void mensajePokemonInicial() {
-        System.out.println("╔══════════════════════════════╗");
-        System.out.println("║ Seleccion de Pokemon Inicial ║");
-        System.out.println("╚══════════════════════════════╝");
+        System.out.println("╔══════════════════════╗");
+        System.out.println("║ Seleccion de Pokemon ║");
+        System.out.println("╚══════════════════════╝");
         System.out.println(" ");
 
         System.out.println("╔════════════════════════════════════════════════════════════╗");
@@ -94,7 +104,7 @@ public class Controlador {
             }
     }
 
-    private void seleccionarPokemonInicial(Jugador jugador) {
+    private void seleccionarPokemon(Jugador jugador) {
 
         Scanner scanner = new Scanner(System.in);
             boolean pokemonValido = false;
@@ -120,13 +130,13 @@ public class Controlador {
         }
     }
 
-    public void opcionRendirse(Jugador jugadorActual){
+    public void opcionRendirse(Jugador jugadorActual, Jugador jugadorAdversario){
         System.out.println("╔═════════════════╗");
         System.out.println("║ Usted se rindio ║ ");
         System.out.println("╚═════════════════╝");
         jugadorActual.setAtacante(false);
-        jugadorActual.getAdversario().setGanoJuego(true);
-        System.out.println("¡¡Felicidades a " + jugadorActual.getAdversario().getNombre() + "!! Ganaste el jeugo");
+        jugadorAdversario.setGanoJuego(true);
+        System.out.println("¡¡Felicidades a " + jugadorAdversario.getNombre() + "!! Ganaste el jeugo");
     }
 
     private void mostratDatosPokemones(String nombre,Pokemon unPokemon,Estadisticas estadisticasPropias){
@@ -142,13 +152,35 @@ public class Controlador {
         mostratDatosPokemones(unJugador.getNombre(),unPokemon,unPokemon.getEstadisticas());
     }
 
+
+    public void opcionInercambarPokemon(Jugador jugadorActual){
+
+        //Hay que modularizar y que aparezaca el emnsaje de cambio en el oponente.
+
+        mensajeIntercambiarPokemon();
+        System.out.println("Sus pokemones actuales son: ");
+        Pokemon pokemonAuxliar = jugadorActual.getPokemonActual();
+        seleccionarPokemon(jugadorActual);
+        System.out.println("Desea Realizar el cambio? Si - No");
+        Scanner scanner = new Scanner(System.in);
+        String decision = scanner.next();
+        if(Objects.equals(decision, "No")){
+            jugadorActual.setPokemonActual(pokemonAuxliar);
+            System.out.println("No se realizo el cambio. ");
+            jugadorActual.setAtacante(false);
+        }
+        else{
+            System.out.println("Se realizo el cambio. ");
+        }
+    }
+
     public void menuSeleccion(Jugador jugador1, Jugador jugador2) {
 
         mensajeBienvenida();
         validarNombresJugador(jugador1);
         validarNombresJugador(jugador2);
-        seleccionarPokemonInicial(jugador1);
-        seleccionarPokemonInicial(jugador2);
+        seleccionarPokemon(jugador1);
+        seleccionarPokemon(jugador2);
         compararIniciales(jugador1, jugador2);
 
     }
@@ -162,7 +194,7 @@ public class Controlador {
                 this.mensajeMenu();
                 numeroOpcion = scanner.next();
                 if(Objects.equals(numeroOpcion, "1")){
-                    opcionRendirse(jugadorActual);
+                    opcionRendirse(jugadorActual, jugadorAdversario);
                 }
                 else if(Objects.equals(numeroOpcion, "2")){
                     this.mensajeCampoBatalla();
@@ -172,6 +204,7 @@ public class Controlador {
 
                 }
                 else if(Objects.equals(numeroOpcion, "3")){
+                    opcionInercambarPokemon(jugadorActual);
 
                 }
                 else if(Objects.equals(numeroOpcion, "4")){
