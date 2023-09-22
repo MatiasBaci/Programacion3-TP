@@ -15,9 +15,8 @@ public class CalculoAtaque {
     }
 
     public double calculoAtaqueTotal(Tipo unTipoPokemonEnemigo,Tipo unTipoPokemonPropio, Habilidad unaHabilidadPokemonPropio,int nivelPokemonPropio){
-        //double ataquePropio = unPokemonPropio.getEstadisticas().getAtaque(); // VIOLA UN PRINCIPIO .get().get()
-        // faltaria critico.
 
+        // faltaria critico.
         double ataquePropio = (double)estadisticasPropio.getAtaque();
         double defensaEnemigo = (double)estadisticasEnemigo.getDefensa();
         double poderHabilidad = (double)unaHabilidadPokemonPropio.getPoder();

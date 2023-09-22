@@ -1,10 +1,11 @@
 package org.fiuba.algoritmos3;
 
+import javax.naming.ldap.UnsolicitedNotification;
 import java.util.Objects;
 import java.util.Scanner;
 
 public class Controlador {
-
+     //[k,v] -> String input -> metodoQueSeUsa
     //Metodos:
 
     private void mensajeBienvenida() {
@@ -126,28 +127,19 @@ public class Controlador {
         jugadorActual.setAtacante(false);
         jugadorActual.getAdversario().setGanoJuego(true);
         System.out.println("¡¡Felicidades a " + jugadorActual.getAdversario().getNombre() + "!! Ganaste el jeugo");
-
-
     }
 
-    private void mostratDatosPokemones(Jugador jugador){
+    private void mostratDatosPokemones(String nombre,Pokemon unPokemon,Estadisticas estadisticasPropias){
         System.out.println(" ");
-        System.out.println("=>" + jugador.getNombre());
-        System.out.println("Nombre: " + jugador.getPokemonActual().getNombre());
-        System.out.println("*LV: " + jugador.getPokemonActual().getNivel());
-        System.out.println("*HP: " + jugador.getPokemonActual().getEstadisticas().getVidaMaxima());
-        System.out.println("Estado: " + jugador.getPokemonActual().getEstadoActual());
+        System.out.println("=>" + nombre);
+        System.out.println("Nombre: " + unPokemon.getNombre());
+        System.out.println("*LV: " + unPokemon.getNivel());
+        System.out.println("*HP: " + estadisticasPropias.getVidaMaxima());
+        System.out.println("Estado: " + unPokemon.getEstadoActual());
         System.out.println(" ");
-
     }
-    public  void opcionVerCampoBaralla(Jugador jugadorActual){
-        mensajeCampoBatalla();
-        mostratDatosPokemones(jugadorActual);
-        mostratDatosPokemones(jugadorActual.getAdversario());
-        System.out.println("Oprima una tecla para dejar de ver el campo de batalla: ");
-        Scanner scanner = new Scanner(System.in);
-        String numeroOpcion = scanner.next();
-
+    public  void opcionVerCampoBatalla(Jugador unJugador,Pokemon unPokemon){
+        mostratDatosPokemones(unJugador.getNombre(),unPokemon,unPokemon.getEstadisticas());
     }
 
     public void menuSeleccion(Jugador jugador1, Jugador jugador2) {
@@ -161,19 +153,23 @@ public class Controlador {
 
     }
 
-    public void opcionesJugadores(Jugador jugadorActual) {
+    public void opcionesJugadores(Jugador jugadorActual,Jugador jugadorAdversario) {
 
         Scanner scanner = new Scanner(System.in);
-            String numeroOpcion;
+        String numeroOpcion;
 
             while (jugadorActual.isAtacante()) {
-                mensajeMenu();
+                this.mensajeMenu();
                 numeroOpcion = scanner.next();
                 if(Objects.equals(numeroOpcion, "1")){
                     opcionRendirse(jugadorActual);
                 }
                 else if(Objects.equals(numeroOpcion, "2")){
-                    opcionVerCampoBaralla(jugadorActual);
+                    this.mensajeCampoBatalla();
+                    opcionVerCampoBatalla(jugadorActual,jugadorActual.getPokemonActual());
+                    opcionVerCampoBatalla(jugadorAdversario,jugadorAdversario.getPokemonActual());
+                    System.out.println("Oprima una tecla para dejar de ver el campo de batalla: ");
+                    numeroOpcion = scanner.next();
                 }
                 else if(Objects.equals(numeroOpcion, "3")){
 
@@ -184,7 +180,7 @@ public class Controlador {
                 else if(Objects.equals(numeroOpcion, "5")){
                 }
                 else{
-                    mensajeOpcionInvalida();
+                    this.mensajeOpcionInvalida();
                 }
             }
     }
@@ -195,11 +191,11 @@ public class Controlador {
 
             if (jugador1.isAtacante()) {
                 System.out.println("Es el turno de " + jugador1.getNombre());
-                opcionesJugadores(jugador1);
+                this.opcionesJugadores(jugador1,jugador2);
                 jugador2.setAtacante(true);
             } else if (jugador2.isAtacante()) {
                 System.out.println("Es el turno de " + jugador2.getNombre());
-                opcionesJugadores(jugador2);
+                this.opcionesJugadores(jugador2,jugador1);
                 jugador1.setAtacante(true);
             }
         }
