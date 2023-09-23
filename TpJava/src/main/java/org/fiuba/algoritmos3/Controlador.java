@@ -141,11 +141,11 @@ public class Controlador {
     }
 
 
-    public  void opcionVerCampoBatalla(Jugador jugador){
+    public  void opcionVerCampoBatalla(Jugador jugador, Jugador jugadorAdversario){
 
         Scanner scanner = new Scanner(System.in);
         jugador.mostrarPokemones();
-        jugador.getAdversario().mostrarPokemones();
+        jugadorAdversario.mostrarPokemones();
         System.out.println("Oprima una tecla para dejar de ver el campo de batalla: ");
         String numeroOpcion = scanner.next();
     }
@@ -180,29 +180,25 @@ public class Controlador {
         Scanner scanner = new Scanner(System.in);
         String numeroOpcion;
 
-            while (jugador.isAtacante()) {
-                this.mensajeMenu();
-                numeroOpcion = scanner.next();
-                if(Objects.equals(numeroOpcion, "1")){
-                    opcionRendirse(jugador, jugador.getAdversario());
-                }
-                else if(Objects.equals(numeroOpcion, "2")){
-                    opcionVerCampoBatalla(jugador);
-                }
-                else if(Objects.equals(numeroOpcion, "3")){
-                    opcionInercambarPokemon(jugador);
-                }
-                else if(Objects.equals(numeroOpcion, "4")){
-
-                }
-                else if(Objects.equals(numeroOpcion, "5")){
-                }
-                else{
-                    this.mensajeOpcionInvalida();
-                }
-                numeroOpcion = scanner.next();
+        while (jugador.isAtacante()) {
+            this.mensajeMenu();
+            numeroOpcion = scanner.next();
+            if(Objects.equals(numeroOpcion, "1")){
+                opcionRendirse(jugador, jugador.getAdversario());
             }
+            else if(Objects.equals(numeroOpcion, "2")){
+                opcionVerCampoBatalla(jugador, jugador.getAdversario());
+            }
+            else if(Objects.equals(numeroOpcion, "3")){
+                opcionInercambarPokemon(jugador);
+            }
+            else if(Objects.equals(numeroOpcion, "4")){
+                }
+            else if(Objects.equals(numeroOpcion, "5")){
+            } else{
+                this.mensajeOpcionInvalida();
+            }
+        }
     }
-
 
 }
