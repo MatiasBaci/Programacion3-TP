@@ -27,4 +27,12 @@ public class Estadisticas {
         this.vidaMaxima -= damage;
     }
 
+    public void mostrarEstadisticas(){
+
+        System.out.println(" ");
+        System.out.println("HP: " + vidaMaxima + " -Velocidad: " + velocidad + " -Defensa: " + defensa + " -Ataque: " + ataque);
+
+
+    }
+
 }

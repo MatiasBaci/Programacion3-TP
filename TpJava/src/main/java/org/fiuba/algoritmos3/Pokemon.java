@@ -64,4 +64,18 @@ public class Pokemon {
     public String getEstadoActual() {
         return estadoActual;
     }
+
+    public void mostrarPokemon(){
+
+        System.out.println(" ");
+        System.out.println("Nombre: " + this.nombre);
+        this.estadisticas.mostrarEstadisticas();
+        System.out.println("Estado: " + this.estadoActual);
+        System.out.println(" ");;
+
+    }
+
+    public int getVelocidad(){
+        return estadisticas.getVelocidad();
+    }
 }

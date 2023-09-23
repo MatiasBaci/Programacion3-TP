@@ -98,7 +98,15 @@ public class Jugador{
 
     public void setPokemonActual(Pokemon pokemonActual) {
         this.pokemonActual = pokemonActual;
+
     }
+
+    public void mostrarPokemones(){
+
+        misPokemones.forEach((k, v) -> v.mostrarPokemon());
+    }
+
+
 }
 
 

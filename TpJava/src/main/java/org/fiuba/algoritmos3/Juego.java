@@ -13,12 +13,12 @@ public class Juego {
 
     public Juego(){
         datos = new Datos();
-        controlador = new Controlador();
         jugador1 = new Jugador("Ash",datos.getMochilaJugador1(),datos.getItemsJugador1());
         jugador2 = new Jugador("Mario",datos.getMochilaJugador2(),datos.getItemsJugador1());
 
         jugador1.añadirAdversario(jugador2);
         jugador2.añadirAdversario(jugador1);
+        controlador = new Controlador();
     }
 
     public Jugador getJugador1() {
@@ -38,11 +38,64 @@ public class Juego {
         //jugador1.atacarAdversario(); // Si se corre sin añadir habilidades al pokemon salta error,
     }
 
-    public void DesarrollarJuego(){
-        controlador.menuSeleccion(jugador1, jugador2);
-        controlador.iteracionesJugadores(jugador1, jugador2);
+    private boolean CompararPokemonesIniciales(Pokemon pokemonJugador1, Pokemon pokemonJugador2){
+
+        boolean jugador1MayorVelocidad;
+
+        jugador1MayorVelocidad = (pokemonJugador1.getVelocidad() >= pokemonJugador2.getVelocidad());
+
+        return jugador1MayorVelocidad;
 
     }
+    private void decidirTurnoInicial() {
+        if (CompararPokemonesIniciales(jugador1.getPokemonActual(), jugador2.getPokemonActual())) {
+            jugador1.setAtacante(true);
+            System.out.println("Comienza atacando " + jugador1.getNombre());
+        } else {
+            jugador2.setAtacante(true);
+            System.out.println("Comienza atacando " + jugador2.getNombre());
+        }
+    }
+
+    public void menuSeleccion(Jugador jugador1, Jugador jugador2) {
+
+        controlador.mensajeBienvenida();
+        controlador.validarNombresJugador(this.jugador1);
+        controlador.validarNombresJugador(this.jugador2);
+        controlador.seleccionarPokemon(this.jugador1);
+        controlador.seleccionarPokemon(this.jugador2);
+        decidirTurnoInicial();
+
+    }
+
+    public void iteracionesJugadores() {
+
+        System.out.println(jugador1.isAtacante());
+        System.out.println(jugador2.isAtacante());
+
+        while (!jugador1.isGanoJuego() && !jugador2.isGanoJuego()){
+
+            if(jugador1.isAtacante()){
+                System.out.println("Es el turno de " + jugador1.getNombre());
+                controlador.opcionesJugadores(jugador1);
+                jugador2.setAtacante(true);
+            } else{
+                System.out.println("Es el turno de " + jugador2.getNombre());
+                controlador.opcionesJugadores(jugador2);
+                jugador1.setAtacante(true);
+            }
+
+        }
+    }
+
+
+    public void DesarrollarJuego(){
+        menuSeleccion(jugador1, jugador2);
+        iteracionesJugadores();
+
+    }
+
+
 
 
 }
