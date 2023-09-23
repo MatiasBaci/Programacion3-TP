@@ -106,6 +106,9 @@ public class Jugador{
         misPokemones.forEach((k, v) -> v.mostrarPokemon());
     }
 
+    public void ganar() {
+        ganoJuego = true;
+    }
 
 }
 
