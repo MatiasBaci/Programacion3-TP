@@ -55,14 +55,23 @@ public class Jugador{
         this.adversario = unEnemigo;
     }
 
-    public void atacarAdversario(){ // puede recibir la opcion de la habilidada elegida y usarala para buscarla en pokemon
+   /*  public void atacarAdversario(){ // puede recibir la opcion de la habilidada elegida y usarala para buscarla en pokemon
         if(this.pokemonActual == null){
             System.out.println("ERROR: Primero elige tu pokemon >:V ");
         }
 
         HabilidadAtaque unaHabilidadAtaque = this.pokemonActual.seleccionarHabilidad("ChorroDeAgua"); //Aqui no es flexible por ende deberia estar como parametro en el metodo
         this.pokemonActual.atacar(this.adversario.getPokemonActual(), unaHabilidadAtaque); // es flexible, puede ser otra habilidad que no sea ataque
-    }
+    } */
+
+    public void atacar(Jugador oponente) {
+        if(this.pokemonActual == null){
+            System.out.println("ERROR: Primero elige tu pokemon >:V ");
+        }
+
+        HabilidadAtaque unaHabilidadAtaque = this.pokemonActual.seleccionarHabilidad("ChorroDeAgua"); //Aqui no es flexible por ende deberia estar como parametro en el metodo
+        this.pokemonActual.atacar(oponente.getPokemonActual(), "ChorroDeAgua"); // es flexible, puede ser otra habilidad que no sea ataque
+    } 
 
     public void setNombre(String nombre) {
         this.nombre = nombre;

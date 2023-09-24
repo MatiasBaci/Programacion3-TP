@@ -36,6 +36,9 @@ public class Pokemon {
     public Estadisticas getEstadisticas() { return estadisticas;}
 
     public HabilidadAtaque seleccionarHabilidad(String unaHabilidad){
+  /*       if(!misHabilidades.containsKey(unaHabilidad)){
+            throw new HabilidadNoExisteException();
+        } */
         return misHabilidades.get(unaHabilidad);
     }
 
@@ -43,23 +46,11 @@ public class Pokemon {
         this.misHabilidades.put(nombre,new HabilidadAtaque(nombre,unTipo,poder,cantidad));
     }
 
-    public void recibirDaño(double damageEnemigo){
+    public void recibirDanio(double damageEnemigo){
         this.estadisticas.reduccionVida(damageEnemigo);
     }
 
-    public void atacar(Pokemon pokemonEnemigoActual, HabilidadAtaque unaHabilidadAtaque) {
-        CalculoAtaque unCalculo = new CalculoAtaque(this.estadisticas,pokemonEnemigoActual.getEstadisticas());
-        double damage = unCalculo.calculoAtaqueTotal(pokemonEnemigoActual.getTipo(),this.getTipo(), unaHabilidadAtaque,this.getNivel());
-        double daño = unaHabilidadAtaque.potenciaDeDaño(pokemonEnemigoActual.getTipo()); //Aqui se calcula la efectividad, se borrara
-
-        pokemonEnemigoActual.recibirDaño(damage);
-
-        System.out.println("La efectividad del ATAQUE "+ unaHabilidadAtaque.getNombre() +" con el Pokemon "+ pokemonEnemigoActual.getNombre()
-                + " es: "+ daño);
-        System.out.println("El daño total es = " + damage);
-        System.out.println("La vida del enemigo es = " + pokemonEnemigoActual.getEstadisticas().getVidaMaxima()); // Esto esta mal debido aque es .get().get()
-
-    }
+    
 
     public String getEstadoActual() {
         return estadoActual;
@@ -71,11 +62,38 @@ public class Pokemon {
         System.out.println("Nombre: " + this.nombre);
         this.estadisticas.mostrarEstadisticas();
         System.out.println("Estado: " + this.estadoActual);
-        System.out.println(" ");;
+        System.out.println(" ");
 
     }
 
     public int getVelocidad(){
         return estadisticas.getVelocidad();
     }
+
+    public void mostrarHabilidades() {
+        this.misHabilidades.forEach((k, v) -> v.mostrarHabilidad());
+    }
+
+
+    public void usarHabilidad(Pokemon pokemonEnemigoActual, String nombreDeHabilidad){
+        Habilidad unaHabilidad = this.seleccionarHabilidad(nombreDeHabilidad);
+        unaHabilidad.usarHabilidad(this,pokemonEnemigoActual);
+
+    }
+
+
+    public void atacar(Pokemon pokemonEnemigoActual, String nombreDeHabilidad) {
+
+        HabilidadAtaque unaHabilidadAtaque = this.seleccionarHabilidad(nombreDeHabilidad);//deberia ser un puntero a la habilidad, no una copia
+        unaHabilidadAtaque.usarHabilidad(this, pokemonEnemigoActual);
+
+/*         System.out.println("La efectividad del ATAQUE "+ unaHabilidadAtaque.getNombre() +" con el Pokemon "+ pokemonEnemigoActual.getNombre()
+                + " es: "+ daño);
+        System.out.println("El daño total es = " + damage); */
+        System.out.println("La vida del enemigo es = " + pokemonEnemigoActual.getEstadisticas().getVida()); // Esto esta mal debido aque es .get().get()
+
+    }
+
+
+    
 }

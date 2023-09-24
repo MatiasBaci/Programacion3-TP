@@ -4,21 +4,22 @@ import java.util.HashMap;
 
 public abstract class Habilidad {
     private static HashMap<String,Habilidad> tiposDeHabilidades = new HashMap<>();
-    private String nombre;
-    private int cantidad;
+    protected String nombre;
+    protected int cantidadDeUsos;
+    
 
-    public Habilidad(String nombre,int cantidad){
+    public Habilidad(String nombre, int cantidad){
         this.nombre = nombre;
-        this.cantidad = cantidad;
+        this.cantidadDeUsos = cantidad;
     }
 
-    static {
-        /*tiposDeHabilidades.put("ataque",new HabilidadAtaque());
+    static {/* 
+        tiposDeHabilidades.put("ataque",new HabilidadAtaque(this.nombre,this.tipo,this.poder,this.cantidadDeUsos));
         tiposDeHabilidades.put("estadistica",new HabilidadEstadistica());
-        tiposDeHabilidades.put("estado"new HabilidadEstado());*/
-
+        tiposDeHabilidades.put("estado",new HabilidadEstado());
+ */
         // EL PROBLEMA AQUI SON LOS PARAMETROS DE CADA CONSTRUCTOR
     }
 
-    public abstract void efectuarHabilidad(Pokemon unPokemon);
+    public abstract void usarHabilidad(Pokemon unPokemonEnemigo,Pokemon unPokemonPropio);
 }

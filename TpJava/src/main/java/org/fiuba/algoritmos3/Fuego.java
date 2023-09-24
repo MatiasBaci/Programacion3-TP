@@ -1,7 +1,5 @@
 package org.fiuba.algoritmos3;
 
-import java.util.HashMap;
-
 public class Fuego extends Tipo{ //extends de Tipo
 
     public Fuego(String nombre){

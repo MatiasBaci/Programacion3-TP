@@ -1,7 +1,5 @@
 package org.fiuba.algoritmos3;
 
-import java.util.HashMap;
-
 public class Planta extends Tipo{
 
     public Planta(String nombre){

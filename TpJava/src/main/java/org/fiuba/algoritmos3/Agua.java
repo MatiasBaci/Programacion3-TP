@@ -1,6 +1,6 @@
 package org.fiuba.algoritmos3;
 
-import java.util.HashMap;
+// import java.util.HashMap;
 
 public class Agua extends Tipo{ //extends de Tipo
 
