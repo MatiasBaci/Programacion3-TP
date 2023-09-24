@@ -174,7 +174,6 @@ public class Controlador {
     }
 
 
-
     public void opcionesJugadores(Jugador jugador) {
 
         Scanner scanner = new Scanner(System.in);
