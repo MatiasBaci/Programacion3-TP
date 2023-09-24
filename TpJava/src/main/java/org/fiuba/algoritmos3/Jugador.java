@@ -69,7 +69,7 @@ public class Jugador{
             System.out.println("ERROR: Primero elige tu pokemon >:V ");
         }
 
-        HabilidadAtaque unaHabilidadAtaque = this.pokemonActual.seleccionarHabilidad("ChorroDeAgua"); //Aqui no es flexible por ende deberia estar como parametro en el metodo
+        Habilidad unaHabilidadAtaque = this.pokemonActual.seleccionarHabilidad("ChorroDeAgua"); //Aqui no es flexible por ende deberia estar como parametro en el metodo
         this.pokemonActual.atacar(oponente.getPokemonActual(), "ChorroDeAgua"); // es flexible, puede ser otra habilidad que no sea ataque
     } 
 
@@ -111,7 +111,6 @@ public class Jugador{
     }
 
     public void mostrarPokemones(){
-
         misPokemones.forEach((k, v) -> v.mostrarPokemon());
     }
 

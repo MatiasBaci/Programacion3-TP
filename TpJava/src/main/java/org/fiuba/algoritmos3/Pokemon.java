@@ -11,7 +11,7 @@ public class Pokemon {
     private Tipo tipo; //DEBE SER UNA REFERENCIA A LA CLASE AGUA, NO UNA INSTANCIA DE AGUA
     private String historia;
     private Estadisticas estadisticas;
-    private Map<String, HabilidadAtaque> misHabilidades;
+    private Map<String, Habilidad> misHabilidades;
 
     private String estadoActual; //Probablemente sea una clase despues
 
@@ -35,22 +35,20 @@ public class Pokemon {
     public String getHistoria() {return historia;}
     public Estadisticas getEstadisticas() { return estadisticas;}
 
-    public HabilidadAtaque seleccionarHabilidad(String unaHabilidad){
-  /*       if(!misHabilidades.containsKey(unaHabilidad)){
+    public Habilidad seleccionarHabilidad(String unaHabilidad){
+     /*if(!misHabilidades.containsKey(unaHabilidad)){
             throw new HabilidadNoExisteException();
         } */
         return misHabilidades.get(unaHabilidad);
     }
 
-    public void añadirHabilidad(String nombre,Tipo unTipo,int poder,int cantidad){
-        this.misHabilidades.put(nombre,new HabilidadAtaque(nombre,unTipo,poder,cantidad));
+    public void añadirHabilidad(Habilidad unaHabilidad){
+        this.misHabilidades.put(unaHabilidad.getNombre(), unaHabilidad);
     }
 
     public void recibirDanio(double damageEnemigo){
         this.estadisticas.reduccionVida(damageEnemigo);
     }
-
-    
 
     public String getEstadoActual() {
         return estadoActual;
@@ -75,17 +73,19 @@ public class Pokemon {
     }
 
 
-    /*public void usarHabilidad(Pokemon pokemonEnemigoActual, String nombreDeHabilidad){
-        Habilidad unaHabilidad = this.seleccionarHabilidad(nombreDeHabilidad);
-        unaHabilidad.usarHabilidad(this,pokemonEnemigoActual);
-    }*/
-
-
     public void atacar(Pokemon pokemonEnemigoActual, String nombreDeHabilidad) {
-        HabilidadAtaque unaHabilidadAtaque = this.seleccionarHabilidad(nombreDeHabilidad);//deberia ser un puntero a la habilidad, no una copia
-        unaHabilidadAtaque.usarHabilidad(pokemonEnemigoActual,this);
+        Habilidad unaHabilidad = this.seleccionarHabilidad(nombreDeHabilidad);//deberia ser un puntero a la habilidad, no una copia
+        unaHabilidad.usarHabilidad(pokemonEnemigoActual,this);
         System.out.println("La vida de "+pokemonEnemigoActual.getNombre() + " es = " + pokemonEnemigoActual.getEstadisticas().getVida()); // Esto esta mal debido aque es .get().get()
     }
+
+    public void modificarEstadisticas(String unaModificacion, int  etapa){
+        this.estadisticas.modificarEstadistica(unaModificacion,etapa);
+    }
+    public void modificarVida(){
+
+    }
+
 
 
     

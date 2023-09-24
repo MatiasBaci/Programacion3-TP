@@ -26,7 +26,7 @@ public class Estadisticas {
         this.defensa = defensa;
         this.ataqueBase = ataque;
         this.ataque = ataque;
-        this.nivel = nivel; //modificar
+        this.nivel = nivel;
     }
 
     public double getVidaMaxima() { return vidaMaxima ;} // es necesario retornar la vida? o que la estadistica se encargue de reducir la misma
@@ -55,29 +55,18 @@ public class Estadisticas {
         this.vidaActual -= vida;
     }
 
-    public void aumentarVelocidad(int etapas){
+    private void modificarVelocidad(int etapas){
         this.velocidad += velocidad * etapas * 0.1; 
     }
 
-    public void aumentarDefensa(int etapas){
+    private void modificarDefensa(int etapas){
         this.defensa += defensa * etapas * 0.1; 
     }
 
-    public void aumentarAtaque(int etapas){
+    private void modificarAtaque(int etapas){
         this.ataque += ataque * etapas * 0.1; 
     }
 
-    public void disminuirVelocidad(int etapas){
-        this.velocidad -= velocidad * etapas * 0.1; 
-    }
-
-    public void disminuirDefensa(int etapas){
-        this.defensa -= defensa * etapas * 0.1; 
-    }
-
-    public void disminuirAtaque(int etapas){
-        this.ataque -= ataque * etapas * 0.1; 
-    }
 
     public double getNivel() {
         return this.nivel;
@@ -85,6 +74,16 @@ public class Estadisticas {
 
     public double getVida() {
         return this.vidaActual;
+    }
+
+    public void modificarEstadistica(String unaEstadistica,int etapa){ //AQUI REFACTORIZAR LOS IFS :C
+        if(unaEstadistica == "Defensa"){
+            this.modificarDefensa(etapa);
+        } else if(unaEstadistica == "Ataque"){
+            this.modificarAtaque(etapa);
+        } else if(unaEstadistica == "Velocidad"){
+            this.modificarVelocidad(etapa);
+        }
     }
 
 }

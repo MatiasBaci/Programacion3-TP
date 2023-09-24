@@ -38,8 +38,14 @@ public class Datos {
         Pokemon pokemon5 = new Pokemon("Vaporeon", 5, "Fuego", "Es un pokemon de Fuego", 100, 20, 25, 25);
         Pokemon pokemon6 = new Pokemon("Charmander_1", 10, "Fuego", "Es un pokemon de Fuego", 100, 20, 25, 25);
 
-        pokemon1.añadirHabilidad("ChorroDeAgua", Tipo.getTipo("Agua"),15,10);
-        pokemon2.añadirHabilidad("Lanzallamas", Tipo.getTipo("Fuego"),10,10);
+        Habilidad chorroDeAgua = new HabilidadAtaque("chorroDeAgua",Tipo.getTipo("Agua"),15,10);
+        Habilidad Lanzallamas = new HabilidadAtaque("Lanzallamas",Tipo.getTipo("Fuego"),15,10);
+        Habilidad estadisticias = new HabilidadEstadistica("Chirrido",20);
+        //Habilidad chirrido =  new HabilidadEstadistica();
+
+        pokemon1.añadirHabilidad(chorroDeAgua);
+        pokemon2.añadirHabilidad(Lanzallamas);
+        pokemon2.añadirHabilidad(chorroDeAgua);
 
         mochilaJugador1.put(pokemon1.getNombre(), pokemon1);
         mochilaJugador1.put(pokemon2.getNombre(), pokemon2);
@@ -58,6 +64,12 @@ public class Datos {
         Pokemon pokemon5 = new Pokemon("Vaporeon", 5, "Fuego", "Es un pokemon de Fuego", 100, 20, 25, 25);
         Pokemon pokemon6 = new Pokemon("Charmander_1", 10, "Fuego", "Es un pokemon de Fuego", 100, 20, 25, 25);
 
+        Habilidad chorroDeAgua = new HabilidadAtaque("chorroDeAgua",Tipo.getTipo("Agua"),15,10);
+        Habilidad Lanzallamas = new HabilidadAtaque("Lanzallamas",Tipo.getTipo("Fuego"),15,10);
+        //Habilidad chirrido =  new HabilidadEstadistica();
+
+        pokemon1.añadirHabilidad(chorroDeAgua);
+        pokemon2.añadirHabilidad(Lanzallamas);
 
         mochilaJugador2.put(pokemon1.getNombre(), pokemon1);
         mochilaJugador2.put(pokemon2.getNombre(), pokemon2);

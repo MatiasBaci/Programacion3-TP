@@ -11,16 +11,21 @@ public static void main(String[] args) {
         Pokemon charmander = new Pokemon("Charmander", 15, "Fuego", "historia de charmander", 100.0, 100, 100, 100);
         Pokemon squirtle = new Pokemon("Squirtle", 5, "Agua", "historia de squirtle", 100.0, 100, 100, 100);
 
-        charmander.añadirHabilidad("Lanzallamas", Tipo.getTipo("Fuego"),100,10);
-        squirtle.añadirHabilidad("Chorro de agua", Tipo.getTipo("Agua"),100,10);
+
+        Habilidad chorroDeAgua = new HabilidadAtaque("chorrodeAgua",Tipo.getTipo("Agua"),15,10);
+        Habilidad Lanzallamas = new HabilidadAtaque("Lanzallamas",Tipo.getTipo("Fuego"),15,10);
+
+
+        charmander.añadirHabilidad(Lanzallamas);
+        squirtle.añadirHabilidad(chorroDeAgua);
 
         charmander.atacar(squirtle, "Lanzallamas");
-        squirtle.atacar(charmander, "Chorro de agua");
+        squirtle.atacar(charmander, "chorrodeAgua");
 
-        /* Juego juego = new Juego();
+
+        Juego juego = new Juego();
         juego.inicializarJuego();
-        juego.DesarrollarJuego(); */
-
+        juego.DesarrollarJuego();
     }
 
 

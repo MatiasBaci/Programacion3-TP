@@ -4,6 +4,11 @@ import java.util.HashMap;
 
 public abstract class Habilidad {
     private static HashMap<String,Habilidad> tiposDeHabilidades = new HashMap<>();
+
+    public String getNombre() { //Porque no lo toma la hija
+        return nombre;
+    }
+
     protected String nombre;
     protected int cantidadDeUsos;
     
@@ -22,4 +27,6 @@ public abstract class Habilidad {
     }
 
     public abstract void usarHabilidad(Pokemon unPokemonEnemigo,Pokemon unPokemonPropio);
+
+    public abstract void mostrarHabilidad();
 }

@@ -199,23 +199,21 @@ public class Controlador {
                 opcionInercambarPokemon(jugador);
             }
             else if(Objects.equals(numeroOpcion, "4")){
-                opcionAtacar(jugador.getPokemonActual(), jugador.getAdversario());
             }
             else if(Objects.equals(numeroOpcion, "5")){
+                opcionAtacar(jugador.getPokemonActual(), jugador.getAdversario());
             } else{
                 this.mensajeOpcionInvalida();
             }
         }
     }
-
-
-
     public void opcionAtacar(Pokemon pokemon, Jugador jugadorAdversario) {
         
         System.out.println("Las habilidades de " + pokemon.getNombre() + " actuales son: ");
         // Pokemon pokemonAuxliar = jugador.getPokemonActual();
         pokemon.mostrarHabilidades();
 
+        System.out.println("Elige una habilidad: ");
         Scanner scanner = new Scanner(System.in);
         String opcion;
         opcion = scanner.next();

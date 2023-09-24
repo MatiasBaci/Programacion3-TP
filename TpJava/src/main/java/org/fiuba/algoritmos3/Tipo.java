@@ -13,7 +13,7 @@ public abstract class Tipo {
         this.tablaEfectividad = new HashMap<>();
     }
 
-    // METODOS ESTATICOS------------------------------------------------------------:
+    // METODOS ESTATICOS------------------------------------------------------------------------------------------:
 
     static {  // OJO: Esto funciona como un inicializador, Investigarlo mas a detalle para saber si esta correcto o no.
         tipos.put("Fuego", new Fuego("Fuego"));
@@ -26,7 +26,8 @@ public abstract class Tipo {
     public static Tipo getTipo(String nombre){ //Posible cambio en el nombre del metodo para más claridad
         return tipos.get(nombre);
     }
-    // METODOS DE INSTANCIA------------------------------------------------------------:
+
+    // METODOS DE INSTANCIA-----------------------------------------------------------------------------------------:
 
     public String getNombre() {
         return nombre;

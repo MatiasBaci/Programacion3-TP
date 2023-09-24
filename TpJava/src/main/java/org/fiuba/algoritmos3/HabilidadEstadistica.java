@@ -4,6 +4,8 @@ package org.fiuba.algoritmos3;
 
 public class HabilidadEstadistica extends Habilidad{
 
+    private String modificaEstadistica;
+    private int etapas;
     public HabilidadEstadistica(String nombre,int cantidadDeUsos){
         super(nombre,cantidadDeUsos);
     }
@@ -17,8 +19,17 @@ public class HabilidadEstadistica extends Habilidad{
     @Override
     public void usarHabilidad(Pokemon unPokemon, Pokemon pokemonOponente){
         this.cantidadDeUsos -= 1;
-        this.modificarEstadisticaPokemon(unPokemon);
+        unPokemon.modificarEstadisticas("",2);
     }
 
-    
+    @Override
+    public void mostrarHabilidad() {
+        System.out.println("Nombre: " + this.nombre);
+        System.out.println("Modifica: " + this.modificaEstadistica);
+        System.out.println("Cuantas Etapas: " + this.etapas);
+        System.out.println("Cantidad de usos: " + this.cantidadDeUsos);
+        System.out.println("\n");
+    }
+
+
 }
