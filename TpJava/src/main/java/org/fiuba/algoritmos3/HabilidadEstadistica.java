@@ -12,9 +12,6 @@ public class HabilidadEstadistica extends Habilidad{
         /* Debemos teneer en cuenta si restaura o no restaura vida o aumenta ataque o disminuye
          - O lo podemos hacer que sea abstracto tambien y crear las clases restauracionHP,etc
         posiblemente en las clases como restauracionHP y etc sean interfaces, debido a que items tambien quizas lo implementan
-
-             pero lo que pasa es que aqui tendremos if :'3 ( PENSAR LUEGO COMO SOLUCIONARLO)
-
          */
     }
     @Override

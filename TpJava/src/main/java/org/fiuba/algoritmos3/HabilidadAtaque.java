@@ -2,9 +2,7 @@ package org.fiuba.algoritmos3;
 
 import java.util.Random;
 
-public class HabilidadAtaque extends Habilidad { //Posiblemente se convierta en un abstraccto y que los ataques en si sean las hijas clases
-                               // Osea crear una Clase LLAMARADA
-
+public class HabilidadAtaque extends Habilidad {
     private Tipo tipo;
     private int poder;
 
@@ -15,11 +13,11 @@ public class HabilidadAtaque extends Habilidad { //Posiblemente se convierta en 
     }
 
     // METODOS DE INSTANCIA------------------------------------------------------------
-    public Tipo getTipo() {return tipo;}
+    public Tipo getTipo() {return tipo;} //NO SE USA
 
     public String getNombre() {return nombre;}
 
-    public double getPoder() { return poder; }
+    public double getPoder() { return poder; } //NO SE USA
 
     public double potenciaDeDaño(Tipo tipoPokemon){
         return this.tipo.calcularMultiplicadorDeDanio(tipoPokemon);

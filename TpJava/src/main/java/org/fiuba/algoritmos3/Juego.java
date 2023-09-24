@@ -92,7 +92,6 @@ public class Juego {
     public void DesarrollarJuego(){
         menuSeleccion(jugador1, jugador2);
         iteracionesJugadores();
-
     }
 
 
