@@ -1,7 +1,7 @@
 package org.fiuba.algoritmos3;
 
-import javax.naming.ldap.UnsolicitedNotification;
-import java.util.HashMap;
+// import javax.naming.ldap.UnsolicitedNotification;
+// import java.util.HashMap;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -123,6 +123,15 @@ public class Controlador {
     }
 
 
+    public void ganar(Jugador jugador) {
+        this.felicitar(jugador);
+        jugador.ganar();
+    }
+
+
+    private void felicitar(Jugador jugador) {
+        System.out.println("¡¡Felicidades a " + jugador.getNombre() + "!! Ganaste el juego");
+    }
 
 
 
@@ -132,13 +141,10 @@ public class Controlador {
         System.out.println("╚═════════════════╝");
 
         jugador.setAtacante(false);
-        System.out.println("¡¡Felicidades a " + jugadorAdversario.getNombre() + "!! Ganaste el jeugo");
 
-
-        jugadorAdversario.setGanoJuego(true);
-        jugador.setAtacante(false);
-
+        this.ganar(jugadorAdversario);
     }
+
 
 
     public  void opcionVerCampoBatalla(Jugador jugador, Jugador jugadorAdversario){
@@ -147,8 +153,9 @@ public class Controlador {
         jugador.mostrarPokemones();
         jugadorAdversario.mostrarPokemones();
         System.out.println("Oprima una tecla para dejar de ver el campo de batalla: ");
-        String numeroOpcion = scanner.next();
+        scanner.next();
     }
+
 
 
     public void opcionInercambarPokemon(Jugador jugador){
@@ -193,7 +200,8 @@ public class Controlador {
                 opcionInercambarPokemon(jugador);
             }
             else if(Objects.equals(numeroOpcion, "4")){
-                }
+                opcionAtacar(jugador.getPokemonActual(), jugador.getAdversario());
+            }
             else if(Objects.equals(numeroOpcion, "5")){
             } else{
                 this.mensajeOpcionInvalida();
@@ -201,4 +209,21 @@ public class Controlador {
         }
     }
 
-}
+
+
+    public void opcionAtacar(Pokemon pokemon, Jugador jugadorAdversario) {
+        
+        System.out.println("Las habilidades de " + pokemon.getNombre() + " actuales son: ");
+        // Pokemon pokemonAuxliar = jugador.getPokemonActual();
+        pokemon.mostrarHabilidades();
+
+        Scanner scanner = new Scanner(System.in);
+        String opcion;
+        opcion = scanner.next();
+
+        pokemon.atacar(jugadorAdversario.getPokemonActual(), opcion);
+
+
+        }
+    }
+
