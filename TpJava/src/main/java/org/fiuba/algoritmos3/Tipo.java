@@ -58,7 +58,7 @@ public abstract class Tipo {
     }
 
     public double calcularSTAB(Tipo unTipo){
-        double STAB = 1;
+        double STAB = 1.0;
         if(this.getNombre().equals(unTipo.getNombre())){
             STAB = 1.5;
         }

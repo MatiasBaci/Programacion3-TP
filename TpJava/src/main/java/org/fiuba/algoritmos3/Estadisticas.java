@@ -17,7 +17,7 @@ public class Estadisticas {
 
     //Metodos:
 
-    public Estadisticas(double vida, int velocidad, int defensa, int ataque){
+    public Estadisticas(double vida,int nivel ,int velocidad, int defensa, int ataque){
         this.vidaMaxima = vida;
         this.vidaActual = vidaMaxima;
         this.velocidadBase = velocidad;
@@ -26,7 +26,7 @@ public class Estadisticas {
         this.defensa = defensa;
         this.ataqueBase = ataque;
         this.ataque = ataque;
-        this.nivel = 1; //modificar
+        this.nivel = nivel; //modificar
     }
 
     public double getVidaMaxima() { return vidaMaxima ;} // es necesario retornar la vida? o que la estadistica se encargue de reducir la misma

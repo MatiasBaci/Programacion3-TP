@@ -20,10 +20,10 @@ public class Pokemon {
 
     public Pokemon(String nombre, int nivel,String tipo, String historia,double vidaMax,int velocidad,int defensa,int ataque){
         this.nombre = nombre;
-        this.nivel = nivel;
-        this.tipo = Tipo.getTipo(tipo); //Aqui se le pasa el nombre del tipo (Fuego,Agua,etc
+        this.nivel = nivel;             // ahora esta en estadisticas deberiamos sacarlo
+        this.tipo = Tipo.getTipo(tipo);
         this.historia = historia;
-        this.estadisticas = new Estadisticas(vidaMax,velocidad,defensa,ataque);
+        this.estadisticas = new Estadisticas(vidaMax,nivel,velocidad,defensa,ataque);
 
         this.misHabilidades = new HashMap<>();
         this.estadoActual = "Normal";
@@ -75,23 +75,16 @@ public class Pokemon {
     }
 
 
-    public void usarHabilidad(Pokemon pokemonEnemigoActual, String nombreDeHabilidad){
+    /*public void usarHabilidad(Pokemon pokemonEnemigoActual, String nombreDeHabilidad){
         Habilidad unaHabilidad = this.seleccionarHabilidad(nombreDeHabilidad);
         unaHabilidad.usarHabilidad(this,pokemonEnemigoActual);
-
-    }
+    }*/
 
 
     public void atacar(Pokemon pokemonEnemigoActual, String nombreDeHabilidad) {
-
         HabilidadAtaque unaHabilidadAtaque = this.seleccionarHabilidad(nombreDeHabilidad);//deberia ser un puntero a la habilidad, no una copia
-        unaHabilidadAtaque.usarHabilidad(this, pokemonEnemigoActual);
-
-/*         System.out.println("La efectividad del ATAQUE "+ unaHabilidadAtaque.getNombre() +" con el Pokemon "+ pokemonEnemigoActual.getNombre()
-                + " es: "+ daño);
-        System.out.println("El daño total es = " + damage); */
-        System.out.println("La vida del enemigo es = " + pokemonEnemigoActual.getEstadisticas().getVida()); // Esto esta mal debido aque es .get().get()
-
+        unaHabilidadAtaque.usarHabilidad(pokemonEnemigoActual,this);
+        System.out.println("La vida de "+pokemonEnemigoActual.getNombre() + " es = " + pokemonEnemigoActual.getEstadisticas().getVida()); // Esto esta mal debido aque es .get().get()
     }
 
 

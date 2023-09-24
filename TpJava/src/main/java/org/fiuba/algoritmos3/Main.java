@@ -8,11 +8,11 @@ public class Main {
 
 public static void main(String[] args) {
 
-        Pokemon charmander = new Pokemon("Charmander", 5, "Fuego", "historia de charmander", 100.0, 100, 100, 100);
-        Pokemon squirtle = new Pokemon("Squirtle", 555, "Agua", "historia de squirtle", 100.0, 100, 100, 100);
+        Pokemon charmander = new Pokemon("Charmander", 15, "Fuego", "historia de charmander", 100.0, 100, 100, 100);
+        Pokemon squirtle = new Pokemon("Squirtle", 5, "Agua", "historia de squirtle", 100.0, 100, 100, 100);
 
-        charmander.añadirHabilidad("Lanzallamas", Tipo.getTipo("Fuego"),10,10);
-        squirtle.añadirHabilidad("Chorro de agua", Tipo.getTipo("Agua"),10,10);
+        charmander.añadirHabilidad("Lanzallamas", Tipo.getTipo("Fuego"),100,10);
+        squirtle.añadirHabilidad("Chorro de agua", Tipo.getTipo("Agua"),100,10);
 
         charmander.atacar(squirtle, "Lanzallamas");
         squirtle.atacar(charmander, "Chorro de agua");

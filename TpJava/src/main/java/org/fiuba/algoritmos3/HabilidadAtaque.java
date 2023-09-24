@@ -31,6 +31,7 @@ public class HabilidadAtaque extends Habilidad { //Posiblemente se convierta en 
         this.cantidadDeUsos -= 1;
         double danio = this.atacar(unPokemonPropio,unPokemonEnemigo);
         unPokemonEnemigo.recibirDanio(danio);
+        System.out.println("El daño infligido de la habiilidad: "+this.nombre +" es = " +danio );
     }
 
 
@@ -47,10 +48,10 @@ public class HabilidadAtaque extends Habilidad { //Posiblemente se convierta en 
         double ataque = (double)estadisticasPropio.getAtaque();
         double defensa = (double)estadisticasEnemigo.getDefensa();
         double poderHabilidad = (double) this.poder;
-        double critico = (double)this.calculoCritico();
+        double critico = this.calculoCritico();
         double nivel = (double)estadisticasPropio.getNivel();
 
-        return (2*nivel*poderHabilidad*ataque*critico/(defensa*5)+2)/50.0;
+        return (2.0*nivel*poderHabilidad*ataque*critico/(defensa*5.0)+2.0)/50.0;
     }
 
     private double calculoAtaqueSegunTipo(Tipo tipoDeUnPokemonPropio, Tipo unTipoPokemonEnemigo) {
@@ -64,13 +65,13 @@ public class HabilidadAtaque extends Habilidad { //Posiblemente se convierta en 
         return efectividadTipo*mismoTipo*random;
     }
 
-    private int calculoCritico() {
+    private double calculoCritico() {
         Random unRandom = new Random();
         int resultado = unRandom.nextInt(100);
         if (resultado < 90) {
-            return 1;
+            return 1.0;
         }
-        return 2;
+        return 2.0;
     }
 
    
