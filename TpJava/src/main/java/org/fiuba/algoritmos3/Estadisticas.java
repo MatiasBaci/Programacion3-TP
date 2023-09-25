@@ -55,15 +55,15 @@ public class Estadisticas {
         this.vidaActual -= vida;
     }
 
-    private void modificarVelocidad(int etapas){
+    public void modificarVelocidad(int etapas){
         this.velocidad += velocidad * etapas * 0.1; 
     }
 
-    private void modificarDefensa(int etapas){
+    public void modificarDefensa(int etapas){
         this.defensa += defensa * etapas * 0.1; 
     }
 
-    private void modificarAtaque(int etapas){
+    public void modificarAtaque(int etapas){
         this.ataque += ataque * etapas * 0.1; 
     }
 

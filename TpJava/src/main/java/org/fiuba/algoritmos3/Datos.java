@@ -40,7 +40,7 @@ public class Datos {
 
         Habilidad chorroDeAgua = new HabilidadAtaque("chorroDeAgua",Tipo.getTipo("Agua"),15,10);
         Habilidad Lanzallamas = new HabilidadAtaque("Lanzallamas",Tipo.getTipo("Fuego"),15,10);
-        Habilidad estadisticias = new HabilidadEstadistica("Chirrido",20);
+        //Habilidad estadisticias = new HabilidadEstadistica("Chirrido",20);
         //Habilidad chirrido =  new HabilidadEstadistica();
 
         pokemon1.añadirHabilidad(chorroDeAgua);

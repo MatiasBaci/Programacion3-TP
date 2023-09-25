@@ -5,21 +5,26 @@ package org.fiuba.algoritmos3;
 public class HabilidadEstadistica extends Habilidad{
 
     private String modificaEstadistica;
+
+    private boolean modificacionPropia;
     private int etapas;
-    public HabilidadEstadistica(String nombre,int cantidadDeUsos){
+
+    private Modificacion unaModificacion;
+    public HabilidadEstadistica(String nombre, int cantidadDeUsos, boolean propio,int etapas,Modificacion modificar){
         super(nombre,cantidadDeUsos);
+        this.modificacionPropia = propio;
+        this.unaModificacion = modificar;
+        this.etapas = etapas;
     }
 
-    private void modificarEstadisticaPokemon(Pokemon unPokemon){
-        /* Debemos teneer en cuenta si restaura o no restaura vida o aumenta ataque o disminuye
-         - O lo podemos hacer que sea abstracto tambien y crear las clases restauracionHP,etc
-        posiblemente en las clases como restauracionHP y etc sean interfaces, debido a que items tambien quizas lo implementan
-         */
-    }
     @Override
     public void usarHabilidad(Pokemon unPokemon, Pokemon pokemonOponente){
         this.cantidadDeUsos -= 1;
-        unPokemon.modificarEstadisticas("",2);
+        if(!this.modificacionPropia){
+            this.unaModificacion.modificar(pokemonOponente.getEstadisticas(),this.etapas);
+        }
+        //modificaAmiPropioPokemon
+        this.unaModificacion.modificar(unPokemon.getEstadisticas(),this.etapas);
     }
 
     @Override

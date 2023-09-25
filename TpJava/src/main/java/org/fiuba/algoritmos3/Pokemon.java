@@ -77,16 +77,12 @@ public class Pokemon {
         Habilidad unaHabilidad = this.seleccionarHabilidad(nombreDeHabilidad);//deberia ser un puntero a la habilidad, no una copia
         unaHabilidad.usarHabilidad(pokemonEnemigoActual,this);
         System.out.println("La vida de "+pokemonEnemigoActual.getNombre() + " es = " + pokemonEnemigoActual.getEstadisticas().getVida()); // Esto esta mal debido aque es .get().get()
+        pokemonEnemigoActual.getEstadisticas().mostrarEstadisticas();
     }
 
     public void modificarEstadisticas(String unaModificacion, int  etapa){
         this.estadisticas.modificarEstadistica(unaModificacion,etapa);
     }
-    public void modificarVida(){
-
-    }
-
-
 
     
 }

@@ -15,17 +15,27 @@ public static void main(String[] args) {
         Habilidad chorroDeAgua = new HabilidadAtaque("chorrodeAgua",Tipo.getTipo("Agua"),15,10);
         Habilidad Lanzallamas = new HabilidadAtaque("Lanzallamas",Tipo.getTipo("Fuego"),15,10);
 
-
-        charmander.añadirHabilidad(Lanzallamas);
-        squirtle.añadirHabilidad(chorroDeAgua);
-
-        charmander.atacar(squirtle, "Lanzallamas");
-        squirtle.atacar(charmander, "chorrodeAgua");
+        Habilidad rugido = new HabilidadEstadistica("Rugido",20,false,-2,new ModificacionAtaque());
+        Habilidad dobleEquipo = new HabilidadEstadistica("DobleEquipo",20,true,4,new ModificacionVelocidad());
 
 
-        Juego juego = new Juego();
+        charmander.añadirHabilidad(Lanzallamas); // HABILIDAD ATAQUE
+        charmander.añadirHabilidad(rugido); //HABILIDAD ESTADISTICA
+
+        squirtle.añadirHabilidad(chorroDeAgua); //HABILIDAD ATAQUE
+        squirtle.añadirHabilidad(dobleEquipo); //HABILIDAD ESTADISTICA
+
+
+        //charmander.atacar(squirtle, "Lanzallamas");
+        //squirtle.atacar(charmander, "chorrodeAgua");
+
+        charmander.atacar(squirtle,"Rugido");
+        squirtle.atacar(charmander,"DobleEquipo");
+
+
+        /*Juego juego = new Juego();
         juego.inicializarJuego();
-        juego.DesarrollarJuego();
+        juego.DesarrollarJuego();*/
     }
 
 
