@@ -13,7 +13,7 @@ public class Pokemon {
     private Estadisticas estadisticas;
     private Map<String, Habilidad> misHabilidades;
 
-    private String estadoActual; //Probablemente sea una clase despues
+    private Estado estadoActual; //Probablemente sea una clase despues
 
 
     //Metodos:
@@ -26,14 +26,20 @@ public class Pokemon {
         this.estadisticas = new Estadisticas(vidaMax,nivel,velocidad,defensa,ataque);
 
         this.misHabilidades = new HashMap<>();
-        this.estadoActual = "Normal";
+        //this.estadoActual = "Normal";
 
     }
     public String getNombre() {return nombre;}
-    public int getNivel() {return nivel;}
     public Tipo getTipo() {return tipo;}
-    public String getHistoria() {return historia;}
     public Estadisticas getEstadisticas() { return estadisticas;}
+    public int getVelocidad(){ return estadisticas.getVelocidad();}
+    public double obtenerVidaMaxima() { return this.estadisticas.getVidaMaxima();}
+
+    public int getNivel() {return nivel;}
+
+    public String getHistoria() {return historia;}
+
+    public Estado getEstadoActual() {return this.estadoActual ;}
 
     public Habilidad seleccionarHabilidad(String unaHabilidad){
      /*if(!misHabilidades.containsKey(unaHabilidad)){
@@ -50,22 +56,12 @@ public class Pokemon {
         this.estadisticas.reduccionVida(damageEnemigo);
     }
 
-    public String getEstadoActual() {
-        return estadoActual;
-    }
-
     public void mostrarPokemon(){
-
         System.out.println(" ");
         System.out.println("Nombre: " + this.nombre);
         this.estadisticas.mostrarEstadisticas();
         System.out.println("Estado: " + this.estadoActual);
         System.out.println(" ");
-
-    }
-
-    public int getVelocidad(){
-        return estadisticas.getVelocidad();
     }
 
     public void mostrarHabilidades() {
@@ -74,15 +70,30 @@ public class Pokemon {
 
 
     public void atacar(Pokemon pokemonEnemigoActual, String nombreDeHabilidad) {
+
+        //this.aplicarEfecto();
         Habilidad unaHabilidad = this.seleccionarHabilidad(nombreDeHabilidad);//deberia ser un puntero a la habilidad, no una copia
         unaHabilidad.usarHabilidad(pokemonEnemigoActual,this);
         System.out.println("La vida de "+pokemonEnemigoActual.getNombre() + " es = " + pokemonEnemigoActual.getEstadisticas().getVida()); // Esto esta mal debido aque es .get().get()
         pokemonEnemigoActual.getEstadisticas().mostrarEstadisticas();
     }
 
+    //NO SE ESTA USANDO MAS QUE EN LAS CLASES DE CHIRRIDO Y LLAMADARA
     public void modificarEstadisticas(String unaModificacion, int  etapa){
         this.estadisticas.modificarEstadistica(unaModificacion,etapa);
     }
 
-    
+    public void aplicarEfecto(){ //---------> debe ser private por ahora
+        //Por ejemplo esto es cuando ya tiene un efecto el pokemon: VENENO, tiene que aplicarse a su vida en cada turno
+        //hasta que se recupere con un item
+        this.estadoActual.efecto(this);
+        // por ejemplo este metodo se puede llamar cada vez que sea el turno del pokemon, cuando intenta atacar se le resta vida
+        // pero cuando cambia de pokemon, no debe restarse.
+    }
+
+    public void cambiarseEstado(Estado unEstado){
+        this.estadoActual = unEstado;
+    }
+
+
 }

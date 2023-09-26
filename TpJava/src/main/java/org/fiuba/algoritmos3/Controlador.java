@@ -86,26 +86,31 @@ public class Controlador {
 
     }
 
-
+    private void limpiarTerminal() {
+        for (int i = 0; i < 50; i++) {
+            System.out.println();
+        }
+    }
     public void validarNombresJugador(Jugador jugador) {
         Scanner scanner = new Scanner(System.in);
-            boolean nombreValido = false;
-            while (!nombreValido) {
+        boolean nombreValido = false;
+        while (!nombreValido) {
+            mensajeNombreJugador();
+            System.out.println("Ingrese el nombre del jugador: ");
+            String nombreJugador = scanner.next();
+            if (nombreJugador.length() < 50) {
                 mensajeNombreJugador();
-                System.out.println("Ingrese el nombre del jugador: ");
-                String nombreJugador = scanner.next();
-                if (nombreJugador.length() < 50) {
-                    mensajeNombreJugador();
-                    jugador.setNombre(nombreJugador);
-                    nombreValido = true;
-                    System.out.println("Bienvenido al juego " + nombreJugador);
-                } else {
-                    mensajeNombreJugador();
-                    System.out.println("╔═══════════════════════════════════════════════════════════╗");
-                    System.out.println("║ El nombre tiene mas de 50 caracteres, vuelva a intentarlo ║");
-                    System.out.println("╚═══════════════════════════════════════════════════════════╝");
+                jugador.setNombre(nombreJugador);
+                nombreValido = true;
+                System.out.println("Bienvenido al juego " + nombreJugador);
+            } else {
+                mensajeNombreJugador();
+                System.out.println("╔═══════════════════════════════════════════════════════════╗");
+                System.out.println("║ El nombre tiene mas de 50 caracteres, vuelva a intentarlo ║");
+                System.out.println("╚═══════════════════════════════════════════════════════════╝");
                 }
             }
+        //this.limpiarTerminal();
     }
 
     public void seleccionarPokemon(Jugador jugador) {

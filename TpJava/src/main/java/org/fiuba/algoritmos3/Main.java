@@ -8,7 +8,7 @@ public class Main {
 
 public static void main(String[] args) {
 
-        Pokemon charmander = new Pokemon("Charmander", 15, "Fuego", "historia de charmander", 100.0, 100, 100, 100);
+        /*Pokemon charmander = new Pokemon("Charmander", 15, "Fuego", "historia de charmander", 100.0, 100, 100, 100);
         Pokemon squirtle = new Pokemon("Squirtle", 5, "Agua", "historia de squirtle", 100.0, 100, 100, 100);
 
 
@@ -30,12 +30,12 @@ public static void main(String[] args) {
         //squirtle.atacar(charmander, "chorrodeAgua");
 
         charmander.atacar(squirtle,"Rugido");
-        squirtle.atacar(charmander,"DobleEquipo");
+        squirtle.atacar(charmander,"DobleEquipo");*/
 
 
-        /*Juego juego = new Juego();
+        Juego juego = new Juego();
         juego.inicializarJuego();
-        juego.DesarrollarJuego();*/
+        juego.DesarrollarJuego();
     }
 
 
