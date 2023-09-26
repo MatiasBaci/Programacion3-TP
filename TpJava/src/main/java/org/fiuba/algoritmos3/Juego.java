@@ -70,9 +70,6 @@ public class Juego {
 
     public void iteracionesJugadores() {
 
-        System.out.println(jugador1.isAtacante());
-        System.out.println(jugador2.isAtacante());
-
         while (!jugador1.isGanoJuego() && !jugador2.isGanoJuego()){
 
             if(jugador1.isAtacante()){

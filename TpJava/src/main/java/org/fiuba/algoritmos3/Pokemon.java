@@ -41,12 +41,7 @@ public class Pokemon {
 
     public Estado getEstadoActual() {return this.estadoActual ;}
 
-    public Habilidad seleccionarHabilidad(String unaHabilidad){
-     /*if(!misHabilidades.containsKey(unaHabilidad)){
-            throw new HabilidadNoExisteException();
-        } */
-        return misHabilidades.get(unaHabilidad);
-    }
+
 
     public void añadirHabilidad(Habilidad unaHabilidad){
         this.misHabilidades.put(unaHabilidad.getNombre(), unaHabilidad);
@@ -57,25 +52,37 @@ public class Pokemon {
     }
 
     public void mostrarPokemon(){
-        System.out.println(" ");
         System.out.println("Nombre: " + this.nombre);
         this.estadisticas.mostrarEstadisticas();
-        System.out.println("Estado: " + this.estadoActual);
-        System.out.println(" ");
+        System.out.println(" Estado: " + this.estadoActual);
     }
 
     public void mostrarHabilidades() {
         this.misHabilidades.forEach((k, v) -> v.mostrarHabilidad());
     }
 
+    public boolean validarHabilidar(String nombreHabilidad){
+       if(this.misHabilidades.get(nombreHabilidad) == null){
+
+           System.out.println("No existe la habilidad.");
+           return false;
+       }
+       System.out.println("La habilidad elegida es: " + nombreHabilidad);
+       return true;
+    }
+    public Habilidad seleccionarHabilidad(String unaHabilidad){
+        return misHabilidades.get(unaHabilidad);
+    }
 
     public void atacar(Pokemon pokemonEnemigoActual, String nombreDeHabilidad) {
 
-        //this.aplicarEfecto();
+
         Habilidad unaHabilidad = this.seleccionarHabilidad(nombreDeHabilidad);//deberia ser un puntero a la habilidad, no una copia
         unaHabilidad.usarHabilidad(pokemonEnemigoActual,this);
         System.out.println("La vida de "+pokemonEnemigoActual.getNombre() + " es = " + pokemonEnemigoActual.getEstadisticas().getVida()); // Esto esta mal debido aque es .get().get()
         pokemonEnemigoActual.getEstadisticas().mostrarEstadisticas();
+
+
     }
 
     //NO SE ESTA USANDO MAS QUE EN LAS CLASES DE CHIRRIDO Y LLAMADARA

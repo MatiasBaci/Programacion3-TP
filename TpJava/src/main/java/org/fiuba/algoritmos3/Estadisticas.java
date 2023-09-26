@@ -39,12 +39,11 @@ public class Estadisticas {
 
     public void mostrarEstadisticas(){
 
-        System.out.println(" ");
         System.out.println(
-            " -HP: " + this.vidaActual + 
-            "\n -Velocidad: " + this.velocidad + 
-            "\n -Defensa: " + this.defensa + 
-            "\n -Ataque: " + this.ataque);
+            " HP: " + this.vidaActual + " --" +
+            " Velocidad: " + this.velocidad + " --" +
+            " Defensa: " + this.defensa + " --" +
+            " Ataque: " + this.ataque);
     }
 
     public void aumentarVida(double vida){
