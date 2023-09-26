@@ -13,8 +13,8 @@ public class Juego {
 
     public Juego(){
         datos = new Datos();
-        jugador1 = new Jugador("Ash",datos.getMochilaJugador1(),datos.getItemsJugador1());
-        jugador2 = new Jugador("Mario",datos.getMochilaJugador2(),datos.getItemsJugador1());
+        jugador1 = new Jugador("-",datos.getMochilaJugador1(),datos.getItemsJugador1());
+        jugador2 = new Jugador("-",datos.getMochilaJugador2(),datos.getItemsJugador1());
 
         jugador1.añadirAdversario(jugador2);
         jugador2.añadirAdversario(jugador1);

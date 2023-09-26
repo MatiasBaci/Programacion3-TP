@@ -40,12 +40,15 @@ public class Datos {
 
         Habilidad chorroDeAgua = new HabilidadAtaque("chorroDeAgua",Tipo.getTipo("Agua"),15,10);
         Habilidad Lanzallamas = new HabilidadAtaque("Lanzallamas",Tipo.getTipo("Fuego"),15,10);
+
         //Habilidad estadisticias = new HabilidadEstadistica("Chirrido",20);
         //Habilidad chirrido =  new HabilidadEstadistica();
+        Habilidad sanacion = new HabilidadEstadistica("Sanacion", 10,true, 2, new ModificacionVida());
 
         pokemon1.añadirHabilidad(chorroDeAgua);
         pokemon2.añadirHabilidad(Lanzallamas);
         pokemon2.añadirHabilidad(chorroDeAgua);
+        pokemon1.añadirHabilidad(sanacion);
 
         mochilaJugador1.put(pokemon1.getNombre(), pokemon1);
         mochilaJugador1.put(pokemon2.getNombre(), pokemon2);
@@ -67,9 +70,12 @@ public class Datos {
         Habilidad chorroDeAgua = new HabilidadAtaque("chorroDeAgua",Tipo.getTipo("Agua"),15,10);
         Habilidad Lanzallamas = new HabilidadAtaque("Lanzallamas",Tipo.getTipo("Fuego"),15,10);
         //Habilidad chirrido =  new HabilidadEstadistica();
+        Habilidad sanacion = new HabilidadEstadistica("Sanacion", 10,true, 2, new ModificacionVida());
 
         pokemon1.añadirHabilidad(chorroDeAgua);
         pokemon2.añadirHabilidad(Lanzallamas);
+        pokemon2.añadirHabilidad(chorroDeAgua);
+        pokemon1.añadirHabilidad(sanacion);
 
         mochilaJugador2.put(pokemon1.getNombre(), pokemon1);
         mochilaJugador2.put(pokemon2.getNombre(), pokemon2);
@@ -78,9 +84,6 @@ public class Datos {
         mochilaJugador2.put(pokemon5.getNombre(), pokemon5);
         mochilaJugador2.put(pokemon6.getNombre(), pokemon6);
     }
-
-
-
 
     public List<Items> getItemsJugador1() {
         return itemsJugador1;

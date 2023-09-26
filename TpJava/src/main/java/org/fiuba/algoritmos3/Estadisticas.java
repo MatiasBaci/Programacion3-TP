@@ -47,11 +47,20 @@ public class Estadisticas {
     }
 
     public void aumentarVida(double vida){
-        this.vidaMaxima += vida;
+        double vidaTotal = (vidaActual + vida);
+        if(vidaTotal > vidaMaxima){
+            this.vidaActual = this.vidaMaxima;
+        }else {
+            this.vidaActual += vida;
+        }
     }
 
     public void reduccionVida(double vida){
-        this.vidaActual -= vida;
+        double vidaTotal = (vidaActual - vida);
+        if(vidaTotal < 0){
+            vidaActual = 0;
+        }
+        else{ this.vidaActual -= vida;}
     }
 
     public void modificarVelocidad(int etapas){

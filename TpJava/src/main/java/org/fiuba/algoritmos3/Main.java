@@ -32,7 +32,6 @@ public static void main(String[] args) {
         charmander.atacar(squirtle,"Rugido");
         squirtle.atacar(charmander,"DobleEquipo");*/
 
-
         Juego juego = new Juego();
         juego.inicializarJuego();
         juego.DesarrollarJuego();
