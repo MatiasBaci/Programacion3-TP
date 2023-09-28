@@ -2,6 +2,7 @@ package org.fiuba.algoritmos3;
 import java.util.HashMap;
 // import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class Pokemon {
 
@@ -24,8 +25,9 @@ public class Pokemon {
         this.tipo = Tipo.getTipo(tipo);
         this.historia = historia;
         this.estadisticas = new Estadisticas(vidaMax,nivel,velocidad,defensa,ataque);
-
+        this.estadoActual = new EstadoNormal("Nomral", 0);
         this.misHabilidades = new HashMap<>();
+
         //this.estadoActual = "Normal";
 
     }
@@ -54,7 +56,7 @@ public class Pokemon {
     public void mostrarPokemon(){
         System.out.println("Nombre: " + this.nombre);
         this.estadisticas.mostrarEstadisticas();
-        System.out.println(" Estado: " + this.estadoActual);
+        System.out.println(" Estado: " + this.estadoActual.getNombre());
     }
 
     public void mostrarHabilidades() {
@@ -74,33 +76,46 @@ public class Pokemon {
         return misHabilidades.get(unaHabilidad);
     }
 
-    public void atacar(Pokemon pokemonEnemigoActual, String nombreDeHabilidad) {
-
-
-        Habilidad unaHabilidad = this.seleccionarHabilidad(nombreDeHabilidad);//deberia ser un puntero a la habilidad, no una copia
-        unaHabilidad.usarHabilidad(pokemonEnemigoActual,this);
-        System.out.println("La vida de "+pokemonEnemigoActual.getNombre() + " es = " + pokemonEnemigoActual.getEstadisticas().getVida()); // Esto esta mal debido aque es .get().get()
-        pokemonEnemigoActual.getEstadisticas().mostrarEstadisticas();
-
+    public void aplicarEfectoPasivoPokemon(Pokemon unPokemon){
+        estadoActual.efectoPasivo(unPokemon);
+    }
+    public void atacarTurnoPerdido(Pokemon pokemonActual){
+        estadoActual.efectoActivo(pokemonActual);
 
     }
+    public void atacar(Pokemon pokemonEnemigoActual, String nombreDeHabilidad) {
+
+        Habilidad unaHabilidad = this.seleccionarHabilidad(nombreDeHabilidad);//deberia ser un puntero a la habilidad, no una copia
+        unaHabilidad.usarHabilidad(pokemonEnemigoActual, this);
+        System.out.println("La vida de " + pokemonEnemigoActual.getNombre() + " es = " + pokemonEnemigoActual.getEstadisticas().getVida()); // Esto esta mal debido aque es .get().get()
+        pokemonEnemigoActual.getEstadisticas().mostrarEstadisticas();
+
+    }
+
+
 
     //NO SE ESTA USANDO MAS QUE EN LAS CLASES DE CHIRRIDO Y LLAMADARA
     public void modificarEstadisticas(String unaModificacion, int  etapa){
         this.estadisticas.modificarEstadistica(unaModificacion,etapa);
     }
 
-    public void aplicarEfecto(){ //---------> debe ser private por ahora
+    //public void aplicarEfecto(){ //---------> debe ser private por ahora
         //Por ejemplo esto es cuando ya tiene un efecto el pokemon: VENENO, tiene que aplicarse a su vida en cada turno
         //hasta que se recupere con un item
-        this.estadoActual.efecto(this);
+       // this.estadoActual.efecto(this);
         // por ejemplo este metodo se puede llamar cada vez que sea el turno del pokemon, cuando intenta atacar se le resta vida
         // pero cuando cambia de pokemon, no debe restarse.
-    }
+   // }
 
     public void cambiarseEstado(Estado unEstado){
         this.estadoActual = unEstado;
     }
 
+    public String getNombreEstadoActual(){
+        return estadoActual.getNombre();
+    }
 
+
+    public void alterarEfectoPasivo(Pokemon pokemonActual) {
+    }
 }

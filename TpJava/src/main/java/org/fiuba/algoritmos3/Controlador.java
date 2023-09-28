@@ -219,6 +219,7 @@ public class Controlador {
             System.out.println("El jugador actual es " + jugador.getNombre());
             System.out.println("Oprima una de las opciones: ");
             numeroOpcion = scanner.next();
+
             if (Objects.equals(numeroOpcion, "1")) {
                 opcionRendirse(jugador, jugador.getAdversario());
             } else if (Objects.equals(numeroOpcion, "2")) {
@@ -234,6 +235,7 @@ public class Controlador {
             if(IntercambioPokemon) {
                 mensajeIntercambioAlAdversario(IntercambioPokemon);
             }
+            jugador.aplicarEfectoPasivo(jugador.getPokemonActual());
         }
     }
 

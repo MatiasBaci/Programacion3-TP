@@ -44,11 +44,13 @@ public class Datos {
         //Habilidad estadisticias = new HabilidadEstadistica("Chirrido",20);
         //Habilidad chirrido =  new HabilidadEstadistica();
         Habilidad sanacion = new HabilidadEstadistica("Sanacion", 10,true, 2, new ModificacionVida());
+        Habilidad dormir = new HabilidadEstado("Dormir", 4, new EstadoDormido("Dormido", 4));
 
         pokemon1.añadirHabilidad(chorroDeAgua);
         pokemon2.añadirHabilidad(Lanzallamas);
         pokemon2.añadirHabilidad(chorroDeAgua);
         pokemon1.añadirHabilidad(sanacion);
+        pokemon1.añadirHabilidad(dormir);
 
         mochilaJugador1.put(pokemon1.getNombre(), pokemon1);
         mochilaJugador1.put(pokemon2.getNombre(), pokemon2);
@@ -72,10 +74,13 @@ public class Datos {
         //Habilidad chirrido =  new HabilidadEstadistica();
         Habilidad sanacion = new HabilidadEstadistica("Sanacion", 10,true, 2, new ModificacionVida());
 
+        Habilidad dormir = new HabilidadEstado("Dormir", 4, new EstadoDormido("Dormido", 4));
+
         pokemon1.añadirHabilidad(chorroDeAgua);
         pokemon2.añadirHabilidad(Lanzallamas);
         pokemon2.añadirHabilidad(chorroDeAgua);
         pokemon1.añadirHabilidad(sanacion);
+        pokemon1.añadirHabilidad(dormir);
 
         mochilaJugador2.put(pokemon1.getNombre(), pokemon1);
         mochilaJugador2.put(pokemon2.getNombre(), pokemon2);

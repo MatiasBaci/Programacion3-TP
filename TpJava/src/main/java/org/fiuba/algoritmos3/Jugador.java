@@ -118,13 +118,26 @@ public class Jugador {
         pokemonActual.mostrarHabilidades();
 
     }
+    public void aplicarEfectoPasivo(Pokemon unPokemon){
+        unPokemon.aplicarEfectoPasivoPokemon(pokemonActual);
+    }
 
     public void atacarJugador(Jugador jugadorAdversario, String nombreHabilidad){
 
-        if(this.pokemonActual.validarHabilidar(nombreHabilidad)) {
-            pokemonActual.atacar(jugadorAdversario.getPokemonActual(), nombreHabilidad);
+        boolean validarHabilidad =this.pokemonActual.validarHabilidar(nombreHabilidad);
+
+        if(validarHabilidad) {
+            if(!Objects.equals(pokemonActual.getNombreEstadoActual(), "Dormido")) {
+                pokemonActual.atacar(jugadorAdversario.getPokemonActual(), nombreHabilidad);
+
+            }else{
+                pokemonActual.atacarTurnoPerdido(pokemonActual);
+
+            }
             setAtacante(false);
+
         }
+
 
     }
     public boolean intercambiarPokemon(String decision, Pokemon pokemon){

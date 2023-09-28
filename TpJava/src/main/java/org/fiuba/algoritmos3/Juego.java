@@ -68,18 +68,24 @@ public class Juego {
 
     }
 
+    public void aplicarIteracion(Jugador jugador, Jugador jugadorAversario){
+
+        System.out.println("Es el turno de " + jugador.getNombre());
+        controlador.opcionesJugadores(jugador);
+        jugadorAversario.setAtacante(true);
+       // jugador.getPokemonActual().getEstadoActual().efectoPasivo(jugador.getPokemonActual()); //Creo que iria aca
+
+
+    }
+
     public void iteracionesJugadores() {
 
         while (!jugador1.isGanoJuego() && !jugador2.isGanoJuego()){
 
             if(jugador1.isAtacante()){
-                System.out.println("Es el turno de " + jugador1.getNombre());
-                controlador.opcionesJugadores(jugador1);
-                jugador2.setAtacante(true);
+                aplicarIteracion(jugador1, jugador2);
             } else{
-                System.out.println("Es el turno de " + jugador2.getNombre());
-                controlador.opcionesJugadores(jugador2);
-                jugador1.setAtacante(true);
+                aplicarIteracion(jugador2, jugador1);
             }
 
         }
