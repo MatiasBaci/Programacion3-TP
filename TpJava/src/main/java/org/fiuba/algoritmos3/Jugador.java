@@ -127,7 +127,7 @@ public class Jugador {
         boolean validarHabilidad =this.pokemonActual.validarHabilidar(nombreHabilidad);
 
         if(validarHabilidad) {
-            if(!Objects.equals(pokemonActual.getNombreEstadoActual(), "Dormido")) {
+            if(!Objects.equals(pokemonActual.suEstadoEs(), "Dormido")) {
                 pokemonActual.atacar(jugadorAdversario.getPokemonActual(), nombreHabilidad);
 
             }else{

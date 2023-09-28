@@ -1,8 +1,6 @@
 package org.fiuba.algoritmos3;
 import java.util.HashMap;
-// import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 public class Pokemon {
 
@@ -111,10 +109,9 @@ public class Pokemon {
         this.estadoActual = unEstado;
     }
 
-    public String getNombreEstadoActual(){
+    public String suEstadoEs(){
         return estadoActual.getNombre();
     }
-
 
     public void alterarEfectoPasivo(Pokemon pokemonActual) {
     }

@@ -12,8 +12,15 @@ public class HabilidadEstado extends Habilidad{
     public void usarHabilidad(Pokemon unPokemonEnemigo, Pokemon unPokemonPropio) {
         // se encarga de que haga el efecto y como tambien que cambie el estado del pokemon enemigo
         this.cantidadDeUsos --;
-        unEstado.efectoActivo(unPokemonEnemigo);
-        unPokemonEnemigo.cambiarseEstado(this.unEstado);
+
+        if (unPokemonEnemigo.suEstadoEs() == "Normal") {
+            // unPokemonEnemigo.cambiarseEstado(new Estado(this.unEstado.getNombre()));
+            unPokemonEnemigo.cambiarseEstado(this.unEstado);
+        } 
+
+        else {
+            System.out.println(this.nombre + " no tuvo efecto porque el pokemon enemigo ya se encuentra " + unPokemonEnemigo.suEstadoEs() + ".");
+        }
     }
 
     @Override
