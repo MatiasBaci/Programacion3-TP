@@ -94,4 +94,11 @@ public class Estadisticas {
         }
     }
 
+    public void resetearEstadisticas(){
+        this.vidaActual = this.vidaMaxima;
+        this.velocidad = this.velocidadBase;
+        this.defensa = this.defensaBase;
+        this.ataque = this.ataqueBase;
+    }
+
 }

@@ -3,7 +3,6 @@ package org.fiuba.algoritmos3;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Scanner;
 
 public class Jugador {
 
