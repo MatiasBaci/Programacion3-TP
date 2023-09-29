@@ -23,7 +23,7 @@ public class Pokemon {
         this.tipo = Tipo.getTipo(tipo);
         this.historia = historia;
         this.estadisticas = new Estadisticas(vidaMax,nivel,velocidad,defensa,ataque);
-        this.estadoActual = new EstadoNormal("Nomral", 0);
+        this.estadoActual = new EstadoNormal("Normal", 0);
         this.misHabilidades = new HashMap<>();
 
         //this.estadoActual = "Normal";
