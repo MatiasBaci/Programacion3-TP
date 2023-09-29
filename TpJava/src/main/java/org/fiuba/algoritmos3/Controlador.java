@@ -237,7 +237,6 @@ public class Controlador {
             if(IntercambioPokemon) {
                 mensajeIntercambioAlAdversario(IntercambioPokemon);
             }
-            jugador.aplicarEfectoPasivo();
         }
     }
 

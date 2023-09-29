@@ -77,8 +77,8 @@ public class Juego {
 
         System.out.println("Es el turno de " + jugador.getNombre());
         controlador.opcionesJugadores(jugador);
+        jugador.aplicarEfectoPasivo();
         jugadorAversario.setAtacante(true);
-       // jugador.getPokemonActual().getEstadoActual().efectoPasivo(jugador.getPokemonActual()); //Creo que iria aca
     }
 
 
