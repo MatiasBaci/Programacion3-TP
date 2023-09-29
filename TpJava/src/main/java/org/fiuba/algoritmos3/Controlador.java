@@ -103,10 +103,12 @@ public class Controlador {
     public void validarNombresJugador(Jugador jugador) {
         Scanner scanner = new Scanner(System.in);
         boolean nombreValido = false;
+
         while (!nombreValido) {
             mensajeNombreJugador();
             System.out.println("Ingrese el nombre del jugador: ");
             String nombreJugador = scanner.next();
+            
             if (nombreJugador.length() < 50) {
                 mensajeNombreJugador();
                 jugador.setNombre(nombreJugador);
@@ -235,7 +237,7 @@ public class Controlador {
             if(IntercambioPokemon) {
                 mensajeIntercambioAlAdversario(IntercambioPokemon);
             }
-            jugador.aplicarEfectoPasivo(jugador.getPokemonActual());
+            jugador.aplicarEfectoPasivo();
         }
     }
 

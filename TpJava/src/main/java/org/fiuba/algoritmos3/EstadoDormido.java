@@ -18,8 +18,8 @@ public class EstadoDormido extends Estado{
         this.turnosDormido ++;
     }
 
-
-    public void efectoActivo(Pokemon unPokemon){
+    @Override
+    public boolean puedeAtacar(Pokemon unPokemon){
 
         Random newRandom = new Random();
         
@@ -31,17 +31,18 @@ public class EstadoDormido extends Estado{
         {
             System.out.println("El pokemon se despertó!");
             unPokemon.cambiarseEstado(new EstadoNormal("Normal", 0));
-
+            return true;
         }
         else
         {
             this.turnosDormido ++;
             System.out.println("El pokemon esta dormido.");
+            return false;
         }
     }
 
-    public void efectoPasivo(Pokemon unPokemon){
-
+    @Override
+    public void aplicarEfectoPasivoDeEstado(Pokemon unPokemon){
     }
 
 }

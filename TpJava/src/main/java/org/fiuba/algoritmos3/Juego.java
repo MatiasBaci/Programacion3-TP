@@ -20,14 +20,18 @@ public class Juego {
         jugador2.añadirAdversario(jugador1);
         controlador = new Controlador();
     }
+    
 
     public Jugador getJugador1() {
         return jugador1;
     }
 
+
     public Jugador getJugador2() {
         return jugador2;
     }
+
+
     public void inicializarJuego(){
         System.out.println("Pruebas de Jugador - Creacion");
 
@@ -38,15 +42,15 @@ public class Juego {
         //jugador1.atacarAdversario(); // Si se corre sin añadir habilidades al pokemon salta error,
     }
 
+
     private boolean CompararPokemonesIniciales(Pokemon pokemonJugador1, Pokemon pokemonJugador2){
 
         boolean jugador1MayorVelocidad;
-
         jugador1MayorVelocidad = (pokemonJugador1.getVelocidad() >= pokemonJugador2.getVelocidad());
-
         return jugador1MayorVelocidad;
-
     }
+
+    
     private void decidirTurnoInicial() {
         if (CompararPokemonesIniciales(jugador1.getPokemonActual(), jugador2.getPokemonActual())) {
             jugador1.setAtacante(true);
@@ -57,6 +61,7 @@ public class Juego {
         }
     }
 
+
     public void menuSeleccion(Jugador jugador1, Jugador jugador2) {
 
         controlador.mensajeBienvenida();
@@ -65,8 +70,8 @@ public class Juego {
         controlador.seleccionarPokemon(this.jugador1);
         controlador.seleccionarPokemon(this.jugador2);
         decidirTurnoInicial();
-
     }
+
 
     public void aplicarIteracion(Jugador jugador, Jugador jugadorAversario){
 
@@ -74,9 +79,8 @@ public class Juego {
         controlador.opcionesJugadores(jugador);
         jugadorAversario.setAtacante(true);
        // jugador.getPokemonActual().getEstadoActual().efectoPasivo(jugador.getPokemonActual()); //Creo que iria aca
-
-
     }
+
 
     public void iteracionesJugadores() {
 
@@ -87,7 +91,6 @@ public class Juego {
             } else{
                 aplicarIteracion(jugador2, jugador1);
             }
-
         }
     }
 

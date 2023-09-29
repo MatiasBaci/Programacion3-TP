@@ -11,9 +11,9 @@ public abstract class Estado { // debería ser una interfaz probalbemente
     }
 
 
-    public abstract void efectoActivo(Pokemon unPokemon);
+    public abstract boolean puedeAtacar(Pokemon unPokemon);
 
-    public abstract void efectoPasivo(Pokemon unPokemon);
+    public abstract void aplicarEfectoPasivoDeEstado(Pokemon unPokemon);
 
 
     public String getNombre() {

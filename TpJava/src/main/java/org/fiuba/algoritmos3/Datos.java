@@ -44,7 +44,7 @@ public class Datos {
         //Habilidad estadisticias = new HabilidadEstadistica("Chirrido",20);
         //Habilidad chirrido =  new HabilidadEstadistica();
         Habilidad sanacion = new HabilidadEstadistica("Sanacion", 10,true, 2, new ModificacionVida());
-        Habilidad dormir = new HabilidadEstado("Dormir", 4, new EstadoDormido("Dormido", 4));
+        Habilidad dormir = new HabilidadEstado("Dormir", 4, new EstadoDormido("Dormido"));
 
         pokemon1.añadirHabilidad(chorroDeAgua);
         pokemon2.añadirHabilidad(Lanzallamas);
@@ -74,7 +74,7 @@ public class Datos {
         //Habilidad chirrido =  new HabilidadEstadistica();
         Habilidad sanacion = new HabilidadEstadistica("Sanacion", 10,true, 2, new ModificacionVida());
 
-        Habilidad dormir = new HabilidadEstado("Dormir", 4, new EstadoDormido("Dormido", 4));
+        Habilidad dormir = new HabilidadEstado("Dormir", 4, new EstadoDormido("Dormido"));
 
         pokemon1.añadirHabilidad(chorroDeAgua);
         pokemon2.añadirHabilidad(Lanzallamas);

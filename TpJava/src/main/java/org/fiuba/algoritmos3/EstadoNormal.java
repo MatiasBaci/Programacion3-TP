@@ -7,11 +7,11 @@ public class EstadoNormal extends Estado{
     }
 
 
-    public void efectoActivo(Pokemon unPokemon){
-
-        // System.out.println("El Pokemon esta normal y no tiene efectos negativos.");
+    public boolean puedeAtacar(Pokemon unPokemon){
+        return true;
     }
+    
 
-    public void efectoPasivo(Pokemon unPokemon){
+    public void aplicarEfectoPasivoDeEstado(Pokemon unPokemon){
     }
 }

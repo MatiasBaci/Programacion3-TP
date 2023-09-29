@@ -31,25 +31,23 @@ public class Pokemon {
     }
     public String getNombre() {return nombre;}
     public Tipo getTipo() {return tipo;}
-    public Estadisticas getEstadisticas() { return estadisticas;}
-    public int getVelocidad(){ return estadisticas.getVelocidad();}
-    public double obtenerVidaMaxima() { return this.estadisticas.getVidaMaxima();}
-
+    public Estadisticas getEstadisticas() {return estadisticas;}
+    public int getVelocidad() {return estadisticas.getVelocidad();}
+    public double obtenerVidaMaxima() {return this.estadisticas.getVidaMaxima();}
     public int getNivel() {return nivel;}
-
     public String getHistoria() {return historia;}
-
     public Estado getEstadoActual() {return this.estadoActual ;}
-
 
 
     public void añadirHabilidad(Habilidad unaHabilidad){
         this.misHabilidades.put(unaHabilidad.getNombre(), unaHabilidad);
     }
 
+
     public void recibirDanio(double damageEnemigo){
         this.estadisticas.reduccionVida(damageEnemigo);
     }
+
 
     public void mostrarPokemon(){
         System.out.println("Nombre: " + this.nombre);
@@ -57,37 +55,49 @@ public class Pokemon {
         System.out.println(" Estado: " + this.estadoActual.getNombre());
     }
 
+
     public void mostrarHabilidades() {
         this.misHabilidades.forEach((k, v) -> v.mostrarHabilidad());
     }
 
-    public boolean validarHabilidar(String nombreHabilidad){
-       if(this.misHabilidades.get(nombreHabilidad) == null){
 
+    public boolean validarHabilidar(String nombreHabilidad){
+
+       if(this.misHabilidades.get(nombreHabilidad) == null){
            System.out.println("No existe la habilidad.");
            return false;
        }
        System.out.println("La habilidad elegida es: " + nombreHabilidad);
        return true;
     }
+
+
     public Habilidad seleccionarHabilidad(String unaHabilidad){
         return misHabilidades.get(unaHabilidad);
     }
 
-    public void aplicarEfectoPasivoPokemon(Pokemon unPokemon){
-        estadoActual.efectoPasivo(unPokemon);
-    }
-    public void atacarTurnoPerdido(Pokemon pokemonActual){
-        estadoActual.efectoActivo(pokemonActual);
 
+    public void aplicarEfectoPasivoPokemon(){
+        estadoActual.aplicarEfectoPasivoDeEstado(this);
     }
+
+
+    public boolean puedeAtacar(){
+        return estadoActual.puedeAtacar(this);
+    }
+
+
     public void atacar(Pokemon pokemonEnemigoActual, String nombreDeHabilidad) {
 
         Habilidad unaHabilidad = this.seleccionarHabilidad(nombreDeHabilidad);//deberia ser un puntero a la habilidad, no una copia
-        unaHabilidad.usarHabilidad(pokemonEnemigoActual, this);
-        System.out.println("La vida de " + pokemonEnemigoActual.getNombre() + " es = " + pokemonEnemigoActual.getEstadisticas().getVida()); // Esto esta mal debido aque es .get().get()
-        pokemonEnemigoActual.getEstadisticas().mostrarEstadisticas();
+        
+        if (this.puedeAtacar()) {
+            unaHabilidad.usarHabilidad(pokemonEnemigoActual, this);
+            System.out.println("La vida de " + pokemonEnemigoActual.getNombre() + " es = " + pokemonEnemigoActual.getEstadisticas().getVida()); // Esto esta mal debido aque es .get().get()
+            pokemonEnemigoActual.getEstadisticas().mostrarEstadisticas();
+        }
 
+        
     }
 
 
@@ -109,10 +119,8 @@ public class Pokemon {
         this.estadoActual = unEstado;
     }
 
+
     public String suEstadoEs(){
         return estadoActual.getNombre();
-    }
-
-    public void alterarEfectoPasivo(Pokemon pokemonActual) {
     }
 }
