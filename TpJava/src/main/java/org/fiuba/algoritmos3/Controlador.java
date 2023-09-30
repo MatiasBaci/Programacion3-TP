@@ -94,6 +94,15 @@ public class Controlador {
 
     }
 
+    private void mensajeOpcionAplicarItem() {
+        System.out.println(" ");
+        System.out.println("╔══════════════╗");
+        System.out.println("║ Aplicar Item ║");
+        System.out.println("╚══════════════╝");
+        System.out.println(" ");
+
+    }
+
     private void limpiarTerminal() {
         for (int i = 0; i < 50; i++) {
             System.out.println();
@@ -205,6 +214,21 @@ public class Controlador {
         opcion = scanner.next();
 
         jugador.atacarJugador(jugadorAdversario, opcion);
+
+
+    }
+
+    public void aplicarItem(Jugador jugador){
+        mensajeOpcionAplicarItem();
+        jugador.mostrarPokemones();
+        System.out.println("Seleccione el item a aplicar: ");
+        Scanner scanner = new Scanner(System.in);
+        String nombreItem = scanner.next();
+        Item itemAplicable = jugador.elegirItem(nombreItem);
+        System.out.println("Seleccione el Pokemon a aplicar el item: ");
+        String nombrePokemon = scanner.next();
+        jugador.aplicarItem(nombrePokemon, itemAplicable);
+
 
 
     }

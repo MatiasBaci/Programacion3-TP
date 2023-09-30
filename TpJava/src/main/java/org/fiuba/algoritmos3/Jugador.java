@@ -1,5 +1,6 @@
 package org.fiuba.algoritmos3;
 // import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -10,7 +11,7 @@ public class Jugador {
     private String nombre;
 
     private Map<String, Pokemon> misPokemones;
-    private List<Items> items;
+    private Map<String, Item> items;
 
     private Pokemon pokemonActual;
 
@@ -20,14 +21,14 @@ public class Jugador {
 
     // Metodos:
 
-    public Jugador(String nombre, Map<String, Pokemon> misPokemones, List<Items> items) {
+    public Jugador(String nombre, Map<String, Pokemon> misPokemones, Map<String, Item> items) {
         this.nombre = nombre;
         this.misPokemones = misPokemones;
         this.items = items;
         this.atacante = false;
     }
 
-    public List<Items> getItems() {
+    public Map<String, Item> getItems() {
         return items;
     }
 
@@ -165,6 +166,25 @@ public class Jugador {
             this.setAtacante(false);
             return true;
         }
+    }
+
+    public void mostrarItems() {
+
+        System.out.println("-----------------------------------------------------------------");
+        System.out.println("Items de " + this.nombre);
+        items.forEach((k, v) -> v.mostrarItem());
+        System.out.println("-----------------------------------------------------------------");
+    }
+
+    public Item elegirItem(String nombreItem){
+
+        Item itemAplicable = this.items.get(nombreItem);
+        return itemAplicable;
+
+    }
+
+    public void aplicarItem(String nombrePokemon, Item itemAplicable){
+        itemAplicable.aplicarItem(misPokemones.get(nombrePokemon));
     }
 
 }

@@ -123,4 +123,5 @@ public class Pokemon {
     public String suEstadoEs(){
         return estadoActual.getNombre();
     }
+
 }

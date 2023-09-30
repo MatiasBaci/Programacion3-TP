@@ -10,8 +10,8 @@ public class Datos {
     //Atributos:
     private Map<String, Pokemon> mochilaJugador1;
     private Map<String, Pokemon> mochilaJugador2;
-    private List<Items> itemsJugador1;
-    private List<Items> itemsJugador2;
+    private Map<String, Item> itemsJugador1;
+    private Map<String, Item> itemsJugador2;
 /*     private String nombreJugador1;
     private String nombreJugador2; */
     // no se esta usando
@@ -22,8 +22,8 @@ public class Datos {
 
         mochilaJugador1 = new HashMap<>();
         mochilaJugador2 = new HashMap<>();
-        itemsJugador1 = new ArrayList<>();
-        itemsJugador2 = new ArrayList<>();
+        itemsJugador1 = new HashMap<>();
+        itemsJugador2 = new HashMap<>();
 
         InicialzarPokemonesJugador1();
         InicialzarPokemonesJugador2();
@@ -90,11 +90,11 @@ public class Datos {
         mochilaJugador2.put(pokemon6.getNombre(), pokemon6);
     }
 
-    public List<Items> getItemsJugador1() {
+    public Map<String, Item> getItemsJugador1() {
         return itemsJugador1;
     }
 
-    public List<Items> getItemsJugador2() {
+    public Map<String, Item> getItemsJugador2() {
         return itemsJugador2;
     }
 
