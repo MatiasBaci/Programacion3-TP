@@ -103,10 +103,6 @@ public class Estadisticas {
         this.ataque = this.ataqueBase;
     }
 
-    public double getVidaActual() {
-        return vidaActual;
-    }
-
 
 
 }

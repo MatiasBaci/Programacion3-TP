@@ -1,6 +1,6 @@
 package org.fiuba.algoritmos3;
 
-public abstract class   Estado { // debería ser una interfaz probalbemente
+public abstract class   Estado {
 
 
     protected String nombre;

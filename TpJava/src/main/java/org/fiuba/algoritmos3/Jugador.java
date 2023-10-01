@@ -16,8 +16,8 @@ public class Jugador {
     private Pokemon pokemonActual;
 
     private Jugador adversario;
-    private boolean atacante; //Si es atacante es su turno.
-    private boolean ganoJuego;  //True si gano el juego
+    private boolean atacante;
+    private boolean ganoJuego;
 
     // Metodos:
 
@@ -27,11 +27,6 @@ public class Jugador {
         this.items = items;
         this.atacante = false;
     }
-
-    public Map<String, Item> getItems() {
-        return items;
-    }
-
 
     public Pokemon getPokemonActual() {
         return pokemonActual;
@@ -50,20 +45,16 @@ public class Jugador {
         } else if (this.seleccionarPokemon(unPokemon).getEstadisticas().getVidaMaxima() == 0) { //Hay get().get()
             System.out.println("ERROR: El pokemon no tiene vida. :C ");
             return false;
-            // } //else if(this.seleccionarPokemon(unPokemon).getNombre() == pokemonActual.getNombre()){
-            //System.out.println("Estas eligindo a tu Pokemon actual. :C ");
-            // return false;
+        } if(this.pokemonActual != null){
+            if(Objects.equals(unPokemon, pokemonActual.getNombre())) {
+                System.out.println("Estas eligindo a tu Pokemon actual. :C ");
+                return false;
+            }
         }
         this.pokemonActual = this.seleccionarPokemon(unPokemon);
         System.out.println("Seleccionaste el pokemon -> " + this.pokemonActual.getNombre());
         return true;
     }
-
-
-    public void elegirItem() {
-
-    }
-
 
     public void añadirAdversario(Jugador unEnemigo) {
         this.adversario = unEnemigo;
@@ -77,11 +68,6 @@ public class Jugador {
 
     public String getNombre() {
         return nombre;
-    }
-
-
-    public Map<String, Pokemon> getMisPokemones() {
-        return misPokemones;
     }
 
 
@@ -138,19 +124,20 @@ public class Jugador {
         pokemonActual.aplicarEfectoPasivoPokemon();
     }
 
+    public boolean validarHabilidadPokemon(String nombreHabilidad){
+        return pokemonActual.validarHabilidard(nombreHabilidad);
 
-/*     public String validarHabilidad() {
-        boolean validarHabilidad = false;
-        while(!validarHabilidad) {
-            validarHabilidad = this.pokemonActual.validarHabilidar(nombreHabilidad);
-        }
-    } */
-
+    }
 
     public void atacarJugador(Jugador jugadorAdversario, String nombreHabilidad){
 
-        pokemonActual.atacar(jugadorAdversario.getPokemonActual(), nombreHabilidad);
-        setAtacante(false);
+        if(validarHabilidadPokemon(nombreHabilidad)) {
+            pokemonActual.atacar(jugadorAdversario.getPokemonActual(), nombreHabilidad);
+            setAtacante(false);
+
+        }
+        else{System.out.println("La habilidad no existe. ");
+        }
 
     }
 
@@ -193,6 +180,10 @@ public class Jugador {
 
     public void usarItem(String nombrePokemon, Item itemAplicable){
         itemAplicable.realizarCasosDeApliacion(misPokemones.get(nombrePokemon));
+    }
+
+    public boolean validarPokemonActual(String nombrePokemon){
+        return (Objects.equals(nombrePokemon, pokemonActual.getNombre()));
     }
 
 }

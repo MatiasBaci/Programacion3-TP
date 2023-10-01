@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-//Esta clase se encarga de cargar los datos de ambos jugadores nada mas.
 public class Datos {
 
     //Atributos:
@@ -12,9 +11,6 @@ public class Datos {
     private Map<String, Pokemon> mochilaJugador2;
     private Map<String, Item> itemsJugador1;
     private Map<String, Item> itemsJugador2;
-/*     private String nombreJugador1;
-    private String nombreJugador2; */
-    // no se esta usando
 
     //Metodos:
 
@@ -41,8 +37,6 @@ public class Datos {
         Habilidad chorroDeAgua = new HabilidadAtaque("chorroDeAgua",Tipo.getTipo("Agua"),15,10);
         Habilidad Lanzallamas = new HabilidadAtaque("Lanzallamas",Tipo.getTipo("Fuego"),15,10);
 
-        //Habilidad estadisticias = new HabilidadEstadistica("Chirrido",20);
-        //Habilidad chirrido =  new HabilidadEstadistica();
         Habilidad sanacion = new HabilidadEstadistica("Sanacion", 10,true, 2, new ModificacionVida());
         Habilidad dormir = new HabilidadEstado("Dormir", 4, new EstadoDormido("Dormido"));
 
@@ -87,7 +81,6 @@ public class Datos {
 
         Habilidad chorroDeAgua = new HabilidadAtaque("chorroDeAgua",Tipo.getTipo("Agua"),15,10);
         Habilidad Lanzallamas = new HabilidadAtaque("Lanzallamas",Tipo.getTipo("Fuego"),15,10);
-        //Habilidad chirrido =  new HabilidadEstadistica();
         Habilidad sanacion = new HabilidadEstadistica("Sanacion", 10,true, 2, new ModificacionVida());
 
         Habilidad dormir = new HabilidadEstado("Dormir", 4, new EstadoDormido("Dormido"));

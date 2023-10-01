@@ -20,17 +20,6 @@ public class Juego {
         jugador2.añadirAdversario(jugador1);
         controlador = new Controlador();
     }
-    
-
-    public Jugador getJugador1() {
-        return jugador1;
-    }
-
-
-    public Jugador getJugador2() {
-        return jugador2;
-    }
-
 
     public void inicializarJuego(){
         System.out.println("Pruebas de Jugador - Creacion");

@@ -12,11 +12,6 @@ public class HabilidadAtaque extends Habilidad {
         this.poder = poder;
     }
 
-    // METODOS DE INSTANCIA------------------------------------------------------------
-    public Tipo getTipo() {return tipo;} //NO SE USA
-
-    public double getPoder() { return poder; } //NO SE USA
-
     public String getNombre() {return nombre;}
 
     public double potenciaDeDaño(Tipo tipoPokemon){

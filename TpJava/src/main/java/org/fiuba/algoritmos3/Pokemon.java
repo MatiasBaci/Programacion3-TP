@@ -33,10 +33,6 @@ public class Pokemon {
     public Estadisticas getEstadisticas() {return estadisticas;}
     public int getVelocidad() {return estadisticas.getVelocidad();}
     public double obtenerVidaMaxima() {return this.estadisticas.getVidaMaxima();}
-    public int getNivel() {return nivel;}
-    public String getHistoria() {return historia;}
-    public Estado getEstadoActual() {return this.estadoActual ;}
-
 
     public void añadirHabilidad(Habilidad unaHabilidad){
         this.misHabilidades.put(unaHabilidad.getNombre(), unaHabilidad);
@@ -60,14 +56,9 @@ public class Pokemon {
     }
 
 
-    public boolean validarHabilidar(String nombreHabilidad){
+    public boolean validarHabilidard(String nombreHabilidad){
 
-       if(this.misHabilidades.get(nombreHabilidad) == null){
-           System.out.println("No existe la habilidad.");
-           return false;
-       }
-       System.out.println("La habilidad elegida es: " + nombreHabilidad);
-       return true;
+       return this.misHabilidades.containsKey(nombreHabilidad);
     }
 
 
@@ -99,21 +90,6 @@ public class Pokemon {
 
         
     }
-
-
-
-    //NO SE ESTA USANDO MAS QUE EN LAS CLASES DE CHIRRIDO Y LLAMADARA
-    public void modificarEstadisticas(String unaModificacion, int  etapa){
-        this.estadisticas.modificarEstadistica(unaModificacion,etapa);
-    }
-
-    //public void aplicarEfecto(){ //---------> debe ser private por ahora
-        //Por ejemplo esto es cuando ya tiene un efecto el pokemon: VENENO, tiene que aplicarse a su vida en cada turno
-        //hasta que se recupere con un item
-       // this.estadoActual.efecto(this);
-        // por ejemplo este metodo se puede llamar cada vez que sea el turno del pokemon, cuando intenta atacar se le resta vida
-        // pero cuando cambia de pokemon, no debe restarse.
-   // }
 
     public void cambiarseEstado(Estado unEstado){
         this.estadoActual = unEstado;

@@ -12,12 +12,6 @@ public class EstadoDormido extends Estado{
         this.duracionMaxima = 4;
         this.turnosDormido = 0;
     }
-
-
-    public void dormirUnTurno(){
-        this.turnosDormido ++;
-    }
-
     @Override
     public boolean puedeAtacar(Pokemon unPokemon){
 

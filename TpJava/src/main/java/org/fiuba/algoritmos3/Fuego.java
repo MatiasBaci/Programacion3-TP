@@ -8,7 +8,6 @@ public class Fuego extends Tipo{ //extends de Tipo
         this.completarTablaEfectividad(); // Consultarlo si se puede hacer esto o hacer un metodo estatico que se inicialice al hacer new ()
     }
 
-//  public static void completarTablaEfectividad(){
     public void completarTablaEfectividad(){
         this.tablaEfectividad.put("Agua","Debil");
         this.tablaEfectividad.put("Bicho","Fuerte");
