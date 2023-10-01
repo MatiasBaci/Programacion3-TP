@@ -10,12 +10,20 @@ public class Pocion extends Item{
     }
 
     public void aplicarItem(Pokemon unPokemon){
-        unaModificacion.modificar(unPokemon.getEstadisticas(), 25);
+
+        if(unPokemon.getVida() != unPokemon.getVidaMaxima()) {
+            this.cantidad--;
+            this.itemUsado = true;
+            this.unaModificacion.modificar(unPokemon.getEstadisticas(), 25);
+        } else{
+            System.out.println(" ");
+            System.out.println("El Pokemon tiene toda la vida, no se puede usar este item.");
+        }
 
     }
 
     @Override
     public void mostrarItem() {
-        System.out.println("Pocion: Restaura 25 de vida - Cantidad: " + cantidad);
+        System.out.println(nombre + ": Restaura 25 de vida - Cantidad: " + cantidad);
     }
 }

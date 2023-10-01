@@ -14,7 +14,6 @@ public class Pokemon {
 
     private Estado estadoActual; //Probablemente sea una clase despues
 
-
     //Metodos:
 
     public Pokemon(String nombre, int nivel,String tipo, String historia,double vidaMax,int velocidad,int defensa,int ataque){
@@ -86,11 +85,12 @@ public class Pokemon {
         return estadoActual.puedeAtacar(this);
     }
 
-
     public void atacar(Pokemon pokemonEnemigoActual, String nombreDeHabilidad) {
 
-        Habilidad unaHabilidad = this.seleccionarHabilidad(nombreDeHabilidad);//deberia ser un puntero a la habilidad, no una copia
-        
+
+
+        Habilidad unaHabilidad = this.seleccionarHabilidad(nombreDeHabilidad);
+
         if (this.puedeAtacar()) {
             unaHabilidad.usarHabilidad(pokemonEnemigoActual, this);
             System.out.println("La vida de " + pokemonEnemigoActual.getNombre() + " es = " + pokemonEnemigoActual.getEstadisticas().getVida()); // Esto esta mal debido aque es .get().get()
@@ -122,6 +122,14 @@ public class Pokemon {
 
     public String suEstadoEs(){
         return estadoActual.getNombre();
+    }
+
+    public double getVidaMaxima(){
+        return this.estadisticas.getVidaMaxima();
+    }
+
+    public double getVida(){
+        return this.estadisticas.getVida();
     }
 
 }

@@ -50,9 +50,9 @@ public class Jugador {
         } else if (this.seleccionarPokemon(unPokemon).getEstadisticas().getVidaMaxima() == 0) { //Hay get().get()
             System.out.println("ERROR: El pokemon no tiene vida. :C ");
             return false;
-       // } //else if(this.seleccionarPokemon(unPokemon).getNombre() == pokemonActual.getNombre()){
+            // } //else if(this.seleccionarPokemon(unPokemon).getNombre() == pokemonActual.getNombre()){
             //System.out.println("Estas eligindo a tu Pokemon actual. :C ");
-           // return false;
+            // return false;
         }
         this.pokemonActual = this.seleccionarPokemon(unPokemon);
         System.out.println("Seleccionaste el pokemon -> " + this.pokemonActual.getNombre());
@@ -127,14 +127,14 @@ public class Jugador {
     }
 
 
-    public void mostratHabilidadesPokemonActual(){
+    public void mostratHabilidadesPokemonActual() {
 
         System.out.println("Las habilidades de " + pokemonActual.getNombre() + " actuales son: ");
         pokemonActual.mostrarHabilidades();
     }
 
 
-    public void aplicarEfectoPasivo(){
+    public void aplicarEfectoPasivo() {
         pokemonActual.aplicarEfectoPasivoPokemon();
     }
 
@@ -151,6 +151,7 @@ public class Jugador {
 
         pokemonActual.atacar(jugadorAdversario.getPokemonActual(), nombreHabilidad);
         setAtacante(false);
+
     }
 
 
@@ -178,13 +179,20 @@ public class Jugador {
 
     public Item elegirItem(String nombreItem){
 
-        Item itemAplicable = this.items.get(nombreItem);
-        return itemAplicable;
+        return this.items.get(nombreItem);
 
     }
 
-    public void aplicarItem(String nombrePokemon, Item itemAplicable){
-        itemAplicable.aplicarItem(misPokemones.get(nombrePokemon));
+    public boolean validadorClaveItems(String nombreItem){
+        return this.items.containsKey(nombreItem);
+    }
+
+    public boolean validadorClavePokemones(String nombrePokemon){
+        return this.misPokemones.containsKey(nombrePokemon);
+    }
+
+    public void usarItem(String nombrePokemon, Item itemAplicable){
+        itemAplicable.realizarCasosDeApliacion(misPokemones.get(nombrePokemon));
     }
 
 }

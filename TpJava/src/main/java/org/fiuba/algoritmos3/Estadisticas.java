@@ -48,10 +48,12 @@ public class Estadisticas {
 
     public void aumentarVida(double vida){
         double vidaTotal = (vidaActual + vida);
-        if(vidaTotal > vidaMaxima){
-            this.vidaActual = this.vidaMaxima;
-        }else {
-            this.vidaActual += vida;
+        if(vidaActual != vidaMaxima) {
+            if (vidaTotal > vidaMaxima) {
+                this.vidaActual = this.vidaMaxima;
+            } else {
+                this.vidaActual += vida;
+            }
         }
     }
 
@@ -100,5 +102,11 @@ public class Estadisticas {
         this.defensa = this.defensaBase;
         this.ataque = this.ataqueBase;
     }
+
+    public double getVidaActual() {
+        return vidaActual;
+    }
+
+
 
 }

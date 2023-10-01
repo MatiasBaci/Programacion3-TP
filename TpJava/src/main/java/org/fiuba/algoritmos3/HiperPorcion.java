@@ -11,11 +11,20 @@ public class HiperPorcion extends Item{
 
     @Override
     public void aplicarItem(Pokemon unPokemon) {
-        unaModificacion.modificar(unPokemon.getEstadisticas(), 100);
+
+        if(unPokemon.getVida() != unPokemon.getVidaMaxima()) {
+            this.cantidad--;
+            this.itemUsado = true;
+            this.unaModificacion.modificar(unPokemon.getEstadisticas(), 100);
+        } else{
+            System.out.println(" ");
+            System.out.println("El Pokemon tiene toda la vida, no se puede usar este item.");
+        }
+
     }
 
     public void mostrarItem() {
-        System.out.println("Hiper Pocion: Restaura 100 de vida - Cantidad: " + cantidad);
+        System.out.println(nombre + ": Restaura 100 de vida - Cantidad: " + cantidad);
     }
 }
 

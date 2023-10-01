@@ -52,12 +52,28 @@ public class Datos {
         pokemon1.añadirHabilidad(sanacion);
         pokemon1.añadirHabilidad(dormir);
 
+        Item pocion = new Pocion("Pocion", 4, new ModificacionVida());
+        Item megaPocion = new MegaPocion("Mega Pocion", 3, new ModificacionVida());
+        Item hiperPocion = new HiperPorcion("Hiper Pocion", 1, new ModificacionVida());
+        Item pocionDefensa = new PocionDefensa("Pocion de Defensa", 2, new ModificacionDefensa());
+        Item pocionAtaque = new PocionAtaque("Pocion de Ataque", 1, new ModificacionAtaque());
+        Item revivir = new Revivir("Revivir", 1, new ModificacionVida());
+        Item curarTodo = new PocionCuracionEstados("Curar todo",1);
         mochilaJugador1.put(pokemon1.getNombre(), pokemon1);
         mochilaJugador1.put(pokemon2.getNombre(), pokemon2);
         mochilaJugador1.put(pokemon3.getNombre(), pokemon3);
         mochilaJugador1.put(pokemon4.getNombre(), pokemon4);
         mochilaJugador1.put(pokemon5.getNombre(), pokemon5);
         mochilaJugador1.put(pokemon6.getNombre(), pokemon6);
+
+        itemsJugador1.put(pocion.getNombre(), pocion);
+        itemsJugador1.put(megaPocion.getNombre(), megaPocion);
+        itemsJugador1.put(hiperPocion.getNombre(), hiperPocion);
+        itemsJugador1.put(revivir.getNombre(), revivir);
+        itemsJugador1.put(pocionDefensa.getNombre(), pocionDefensa);
+        itemsJugador1.put(pocionAtaque.getNombre(), pocionAtaque);
+        itemsJugador1.put(curarTodo.getNombre(), curarTodo);
+
     }
 
     private void InicialzarPokemonesJugador2(){
@@ -82,12 +98,26 @@ public class Datos {
         pokemon1.añadirHabilidad(sanacion);
         pokemon1.añadirHabilidad(dormir);
 
+        Item pocion = new Pocion("Pocion", 1, new ModificacionVida());
+        Item megaPocion = new MegaPocion("Mega Pocion", 2, new ModificacionVida());
+        Item hiperPocion = new HiperPorcion("Hiper Pocion", 4, new ModificacionVida());
+        Item pocionDefensa = new PocionDefensa("Pocion de Defensa", 3, new ModificacionDefensa());
+        Item pocionAtaque = new PocionAtaque("Pocion de Ataque", 2, new ModificacionAtaque());
+        Item revivir = new Revivir("Revivir", 1, new ModificacionVida());
+
         mochilaJugador2.put(pokemon1.getNombre(), pokemon1);
         mochilaJugador2.put(pokemon2.getNombre(), pokemon2);
         mochilaJugador2.put(pokemon3.getNombre(), pokemon3);
         mochilaJugador2.put(pokemon4.getNombre(), pokemon4);
         mochilaJugador2.put(pokemon5.getNombre(), pokemon5);
         mochilaJugador2.put(pokemon6.getNombre(), pokemon6);
+
+        itemsJugador2.put(pocion.getNombre(), pocion);
+        itemsJugador2.put(megaPocion.getNombre(), megaPocion);
+        itemsJugador2.put(hiperPocion.getNombre(), hiperPocion);
+        itemsJugador2.put(revivir.getNombre(), revivir);
+        itemsJugador2.put(pocionDefensa.getNombre(), pocionDefensa);
+        itemsJugador2.put(pocionAtaque.getNombre(), pocionAtaque);
     }
 
     public Map<String, Item> getItemsJugador1() {

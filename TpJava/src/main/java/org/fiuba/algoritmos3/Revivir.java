@@ -14,15 +14,19 @@ public class Revivir extends Item{
     @Override
     public void aplicarItem(Pokemon unPokemon) {
         if(Objects.equals(unPokemon.suEstadoEs(), "Inhabilitado")) {
-            double vidaMaxima = unPokemon.getEstadisticas().getVidaMaxima(); //Hay que cambiarlo
-            unaModificacion.modificar(unPokemon.getEstadisticas(), (int) vidaMaxima);
+            this.cantidad --;
+            this.itemUsado = true;
+            unaModificacion.modificar(unPokemon.getEstadisticas(), (int) unPokemon.getVidaMaxima());
             unPokemon.cambiarseEstado(new EstadoNormal("Normal", 1));
 
-        }else{System.out.println("El Pokemon no se puede revivir ya que no esta Inhabilitado");}
+        }else{
+            System.out.println(" ");
+            System.out.println("El Pokemon no se puede revivir ya que no esta Inhabilitado");
+        }
 
     }
 
     public void mostrarItem() {
-        System.out.println("Revivir: Revive al pokemon con toda su salud - Cantidad: " + cantidad);
+        System.out.println(nombre + ": Revive al pokemon con toda su salud - Cantidad: " + cantidad);
     }
 }

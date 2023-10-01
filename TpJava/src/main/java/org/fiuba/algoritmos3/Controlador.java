@@ -218,22 +218,38 @@ public class Controlador {
 
     }
 
-    public void aplicarItem(Jugador jugador){
+    public void opcionAplicarItem(Jugador jugador){
+
         mensajeOpcionAplicarItem();
-        jugador.mostrarPokemones();
-        System.out.println("Seleccione el item a aplicar: ");
         Scanner scanner = new Scanner(System.in);
-        String nombreItem = scanner.next();
-        Item itemAplicable = jugador.elegirItem(nombreItem);
-        System.out.println("Seleccione el Pokemon a aplicar el item: ");
-        String nombrePokemon = scanner.next();
-        jugador.aplicarItem(nombrePokemon, itemAplicable);
+        jugador.mostrarItems();
+        System.out.println("Seleccione el item a aplicar: ");
+        String nombreItem = scanner.nextLine();
+        if(jugador.validadorClaveItems(nombreItem)){
+            Item itemAplicable = jugador.elegirItem(nombreItem);
+            jugador.mostrarPokemones();
+            System.out.println("Seleccione el Pokemon a aplicar el item: ");
+            String nombrePokemon = scanner.next();
+            if(jugador.validadorClavePokemones(nombrePokemon)){
+                System.out.println("Desea aplicar el item? Si - No:");
+                String decision = scanner.next();
+                if(Objects.equals(decision, "Si")){
+                    jugador.usarItem(nombrePokemon, itemAplicable);
+                } else{
+                    System.out.println("No se aplico ningun Item");
+                }
+            } else{
+                System.out.println("No se encontro el pokemon");
+            }
+
+        } else{
+            System.out.println("No se encontro el item.");
+        }
+
 
 
 
     }
-
-
     public void opcionesJugadores(Jugador jugador) {
 
         Scanner scanner = new Scanner(System.in);
@@ -253,6 +269,7 @@ public class Controlador {
             } else if (Objects.equals(numeroOpcion, "3")) {
                 IntercambioPokemon = opcionInercambarPokemon(jugador);
             } else if (Objects.equals(numeroOpcion, "4")) {
+                opcionAplicarItem(jugador);
             } else if (Objects.equals(numeroOpcion, "5")) {
                 opcionAtacar(jugador, jugador.getAdversario());
             } else {
