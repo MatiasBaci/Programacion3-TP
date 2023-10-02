@@ -46,7 +46,7 @@ public class Datos {
 
         Item pocion = new Pocion("Pocion", 4, new ModificacionVida());
         Item megaPocion = new MegaPocion("Mega Pocion", 3, new ModificacionVida());
-        Item hiperPocion = new HiperPorcion("Hiper Pocion", 1, new ModificacionVida());
+        Item hiperPocion = new HiperPocion("Hiper Pocion", 1, new ModificacionVida());
         Item pocionDefensa = new PocionDefensa("Pocion de Defensa", 2, new ModificacionDefensa());
         Item pocionAtaque = new PocionAtaque("Pocion de Ataque", 1, new ModificacionAtaque());
         Item revivir = new Revivir("Revivir", 1, new ModificacionVida());
@@ -91,7 +91,7 @@ public class Datos {
 
         Item pocion = new Pocion("Pocion", 1, new ModificacionVida());
         Item megaPocion = new MegaPocion("Mega Pocion", 2, new ModificacionVida());
-        Item hiperPocion = new HiperPorcion("Hiper Pocion", 4, new ModificacionVida());
+        Item hiperPocion = new HiperPocion("Hiper Pocion", 4, new ModificacionVida());
         Item pocionDefensa = new PocionDefensa("Pocion de Defensa", 3, new ModificacionDefensa());
         Item pocionAtaque = new PocionAtaque("Pocion de Ataque", 2, new ModificacionAtaque());
         Item revivir = new Revivir("Revivir", 1, new ModificacionVida());
