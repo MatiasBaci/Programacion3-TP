@@ -10,6 +10,8 @@ public class HabilidadEstadistica extends Habilidad{
     private int etapas;
 
     private Modificacion unaModificacion;
+
+
     public HabilidadEstadistica(String nombre, int cantidadDeUsos, boolean propio,int etapas,Modificacion modificar){
         super(nombre,cantidadDeUsos);
         this.modificacionPropia = propio;
@@ -17,15 +19,18 @@ public class HabilidadEstadistica extends Habilidad{
         this.etapas = etapas;
     }
 
+
     @Override
     public void usarHabilidad(Pokemon unPokemon, Pokemon pokemonOponente){
         this.cantidadDeUsos -= 1;
         if(!this.modificacionPropia){
+            this.unaModificacion.modificar(unPokemon.getEstadisticas(),this.etapas);
+
+        } else {
             this.unaModificacion.modificar(pokemonOponente.getEstadisticas(),this.etapas);
         }
-        //modificaAmiPropioPokemon
-        this.unaModificacion.modificar(unPokemon.getEstadisticas(),this.etapas);
     }
+
 
     @Override
     public void mostrarHabilidad() {

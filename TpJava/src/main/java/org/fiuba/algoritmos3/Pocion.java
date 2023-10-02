@@ -11,13 +11,13 @@ public class Pocion extends Item{
 
     public void aplicarItem(Pokemon unPokemon){
 
-        if(unPokemon.getVida() != unPokemon.getVidaMaxima()) {
+        if(unPokemon.getVida() != unPokemon.getVidaMaxima() && unPokemon.estaVivo()) {
             this.cantidad--;
             this.itemUsado = true;
             this.unaModificacion.modificar(unPokemon.getEstadisticas(), 25);
         } else{
             System.out.println(" ");
-            System.out.println("El Pokemon tiene toda la vida, no se puede usar este item.");
+            System.out.println("No se puede usar este item.");
         }
 
     }

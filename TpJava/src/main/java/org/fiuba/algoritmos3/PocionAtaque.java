@@ -8,6 +8,7 @@ public class PocionAtaque extends Item{
         super(nombre, cantidad);
         this.unaModificacion = unaModificacion;
     }
+    
 
     @Override
     public void aplicarItem(Pokemon unPokemon) {
@@ -16,6 +17,7 @@ public class PocionAtaque extends Item{
         this.itemUsado = true;
         this.unaModificacion.modificar(unPokemon.getEstadisticas(), 1);
     }
+
 
     public void mostrarItem() {
         System.out.println(nombre + ": Aumenta 10% el ataque - Cantidad: " + cantidad);

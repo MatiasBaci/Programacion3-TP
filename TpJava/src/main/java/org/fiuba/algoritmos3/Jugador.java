@@ -1,7 +1,5 @@
 package org.fiuba.algoritmos3;
 // import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -124,10 +122,11 @@ public class Jugador {
         pokemonActual.aplicarEfectoPasivoPokemon();
     }
 
-    public boolean validarHabilidadPokemon(String nombreHabilidad){
-        return pokemonActual.validarHabilidard(nombreHabilidad);
 
+    public boolean validarHabilidadPokemon(String nombreHabilidad){
+        return pokemonActual.validarHabilidad(nombreHabilidad);
     }
+
 
     public void atacarJugador(Jugador jugadorAdversario, String nombreHabilidad){
 
@@ -156,6 +155,7 @@ public class Jugador {
         }
     }
 
+
     public void mostrarItems() {
 
         System.out.println("-----------------------------------------------------------------");
@@ -164,23 +164,27 @@ public class Jugador {
         System.out.println("-----------------------------------------------------------------");
     }
 
+
     public Item elegirItem(String nombreItem){
 
         return this.items.get(nombreItem);
-
     }
+
 
     public boolean validadorClaveItems(String nombreItem){
         return this.items.containsKey(nombreItem);
     }
 
+
     public boolean validadorClavePokemones(String nombrePokemon){
         return this.misPokemones.containsKey(nombrePokemon);
     }
 
+
     public void usarItem(String nombrePokemon, Item itemAplicable){
         itemAplicable.realizarCasosDeApliacion(misPokemones.get(nombrePokemon));
     }
+    
 
     public boolean validarPokemonActual(String nombrePokemon){
         return (Objects.equals(nombrePokemon, pokemonActual.getNombre()));

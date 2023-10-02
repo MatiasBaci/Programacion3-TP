@@ -1,7 +1,5 @@
 package org.fiuba.algoritmos3;
 
-import java.util.HashMap;
-
 public abstract class Habilidad {
 
     public String getNombre() { //Porque no lo toma la hija

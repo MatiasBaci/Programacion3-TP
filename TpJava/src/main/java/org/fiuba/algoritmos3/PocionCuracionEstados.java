@@ -10,8 +10,8 @@ public class PocionCuracionEstados extends Item{
     @Override
     public void aplicarItem(Pokemon unPokemon) {
 
-        if (!Objects.equals(unPokemon.suEstadoEs(), "Normal") && !Objects.equals(unPokemon.suEstadoEs(), "Inhabilitado")) {
-            unPokemon.cambiarseEstado(new EstadoNormal("Normal", 1));
+        if (!Objects.equals(unPokemon.suEstadoEs(), "Normal") && !unPokemon.estaVivo()) {
+            unPokemon.cambiarseEstado(new EstadoNormal("Normal"));
             this.cantidad --;
             itemUsado = true;
 

@@ -65,13 +65,16 @@ public class Estadisticas {
         else{ this.vidaActual -= vida;}
     }
 
+
     public void modificarVelocidad(int etapas){
         this.velocidad += velocidad * etapas * 0.1; 
     }
 
+
     public void modificarDefensa(int etapas){
         this.defensa += defensa * etapas * 0.1; 
     }
+
 
     public void modificarAtaque(int etapas){
         this.ataque += ataque * etapas * 0.1; 
@@ -82,9 +85,11 @@ public class Estadisticas {
         return this.nivel;
     }
 
+
     public double getVida() {
         return this.vidaActual;
     }
+
 
     public void modificarEstadistica(String unaEstadistica,int etapa){ //AQUI REFACTORIZAR LOS IFS :C
         if(unaEstadistica == "Defensa"){
@@ -95,6 +100,7 @@ public class Estadisticas {
             this.modificarVelocidad(etapa);
         }
     }
+    
 
     public void resetearEstadisticas(){
         this.vidaActual = this.vidaMaxima;

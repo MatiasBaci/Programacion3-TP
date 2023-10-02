@@ -6,33 +6,34 @@ public class Pokemon {
 
     //Atributos:
     private String nombre;
-    private int nivel;
     private Tipo tipo; //DEBE SER UNA REFERENCIA A LA CLASE AGUA, NO UNA INSTANCIA DE AGUA
     private String historia;
     private Estadisticas estadisticas;
     private Map<String, Habilidad> misHabilidades;
 
-    private Estado estadoActual; //Probablemente sea una clase despues
+    private Estado estadoActual; 
 
     //Metodos:
 
     public Pokemon(String nombre, int nivel,String tipo, String historia,double vidaMax,int velocidad,int defensa,int ataque){
         this.nombre = nombre;
-        this.nivel = nivel;             // ahora esta en estadisticas deberiamos sacarlo
         this.tipo = Tipo.getTipo(tipo);
         this.historia = historia;
         this.estadisticas = new Estadisticas(vidaMax,nivel,velocidad,defensa,ataque);
-        this.estadoActual = new EstadoNormal("Normal", 0);
+        this.estadoActual = new EstadoNormal("Normal");
         this.misHabilidades = new HashMap<>();
-
-        //this.estadoActual = "Normal";
-
     }
+
+
     public String getNombre() {return nombre;}
     public Tipo getTipo() {return tipo;}
     public Estadisticas getEstadisticas() {return estadisticas;}
     public int getVelocidad() {return estadisticas.getVelocidad();}
-    public double obtenerVidaMaxima() {return this.estadisticas.getVidaMaxima();}
+    public double getVidaMaxima() {return this.estadisticas.getVidaMaxima();}
+    public double getVida() {return this.estadisticas.getVida();}
+
+    public String suEstadoEs() {return estadoActual.getNombre();}
+
 
     public void añadirHabilidad(Habilidad unaHabilidad){
         this.misHabilidades.put(unaHabilidad.getNombre(), unaHabilidad);
@@ -47,6 +48,7 @@ public class Pokemon {
     public void mostrarPokemon(){
         System.out.println("Nombre: " + this.nombre);
         this.estadisticas.mostrarEstadisticas();
+        System.out.println(" Historia: " + this.historia);
         System.out.println(" Estado: " + this.estadoActual.getNombre());
     }
 
@@ -56,8 +58,7 @@ public class Pokemon {
     }
 
 
-    public boolean validarHabilidard(String nombreHabilidad){
-
+    public boolean validarHabilidad(String nombreHabilidad){
        return this.misHabilidades.containsKey(nombreHabilidad);
     }
 
@@ -76,36 +77,26 @@ public class Pokemon {
         return estadoActual.puedeAtacar(this);
     }
 
+   
     public void atacar(Pokemon pokemonEnemigoActual, String nombreDeHabilidad) {
-
-
 
         Habilidad unaHabilidad = this.seleccionarHabilidad(nombreDeHabilidad);
 
         if (this.puedeAtacar()) {
             unaHabilidad.usarHabilidad(pokemonEnemigoActual, this);
-            System.out.println("La vida de " + pokemonEnemigoActual.getNombre() + " es = " + pokemonEnemigoActual.getEstadisticas().getVida()); // Esto esta mal debido aque es .get().get()
+            System.out.println("La vida de " + pokemonEnemigoActual.getNombre() + " es = " + pokemonEnemigoActual.getVida());
             pokemonEnemigoActual.getEstadisticas().mostrarEstadisticas();
         }
-
-        
     }
+
 
     public void cambiarseEstado(Estado unEstado){
         this.estadoActual = unEstado;
     }
 
 
-    public String suEstadoEs(){
-        return estadoActual.getNombre();
-    }
-
-    public double getVidaMaxima(){
-        return this.estadisticas.getVidaMaxima();
-    }
-
-    public double getVida(){
-        return this.estadisticas.getVida();
+    public boolean estaVivo() {
+        return (this.estadisticas.getVida() > 0);
     }
 
 }

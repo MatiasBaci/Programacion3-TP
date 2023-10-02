@@ -12,6 +12,8 @@ public class EstadoDormido extends Estado{
         this.duracionMaxima = 4;
         this.turnosDormido = 0;
     }
+
+    
     @Override
     public boolean puedeAtacar(Pokemon unPokemon){
 
@@ -24,7 +26,7 @@ public class EstadoDormido extends Estado{
         if (this.turnosDormido >= this.duracionMaxima || random >= 1)
         {
             System.out.println("El pokemon se despertó!");
-            unPokemon.cambiarseEstado(new EstadoNormal("Normal", 0));
+            unPokemon.cambiarseEstado(new EstadoNormal("Normal"));
             return true;
         }
         else
@@ -38,5 +40,4 @@ public class EstadoDormido extends Estado{
     @Override
     public void aplicarEfectoPasivoDeEstado(Pokemon unPokemon){
     }
-
 }
