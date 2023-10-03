@@ -245,24 +245,31 @@ public class Controlador {
     public void opcionesJugadores(Jugador jugador) {
 
         Scanner scanner = new Scanner(System.in);
-        String numeroOpcion;
+        String decision;
         boolean IntercambioPokemon = false;
+
+        if(!jugador.verficarEstadoPokemonActual()){
+            seleccionarPokemon(jugador);
+        }
 
         while (jugador.isAtacante()) {
             this.mensajeMenu();
             System.out.println("El jugador actual es " + jugador.getNombre());
             System.out.println("Oprima una de las opciones: ");
-            numeroOpcion = scanner.next();
+            decision = scanner.next();
 
-            if (Objects.equals(numeroOpcion, "1")) {
+
+
+
+            if (Objects.equals(decision, "1")) {
                 opcionRendirse(jugador, jugador.getAdversario());
-            } else if (Objects.equals(numeroOpcion, "2")) {
+            } else if (Objects.equals(decision, "2")) {
                 opcionVerCampoBatalla(jugador, jugador.getAdversario());
-            } else if (Objects.equals(numeroOpcion, "3")) {
+            } else if (Objects.equals(decision, "3")) {
                 IntercambioPokemon = opcionInercambarPokemon(jugador);
-            } else if (Objects.equals(numeroOpcion, "4")) {
+            } else if (Objects.equals(decision, "4")) {
                 opcionAplicarItem(jugador);
-            } else if (Objects.equals(numeroOpcion, "5")) {
+            } else if (Objects.equals(decision, "5")) {
                 opcionAtacar(jugador, jugador.getAdversario());
             } else {
                 this.mensajeOpcionInvalida();

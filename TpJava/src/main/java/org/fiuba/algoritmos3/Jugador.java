@@ -80,10 +80,12 @@ public class Jugador {
         if (this.seleccionarPokemon(unPokemon) == null) {
             System.out.println("ERROR: No se encontro el pokemon en tu mochila :C ");
             return false;
-        } else if (this.seleccionarPokemon(unPokemon).getEstadisticas().getVidaMaxima() == 0) { //Hay get().get()
+        }
+        else if (!this.seleccionarPokemon(unPokemon).estaConciente()) {
             System.out.println("ERROR: El pokemon no tiene vida. :C ");
             return false;
-        } if(this.pokemonActual != null){
+        }
+        else if(this.pokemonActual != null){
             if(Objects.equals(unPokemon, pokemonActual.getNombre())) {
                 System.out.println("Estas eligindo a tu Pokemon actual. :C ");
                 return false;
@@ -127,7 +129,10 @@ public class Jugador {
     }
 
     public void usarItem(String nombrePokemon, Item itemAplicable){
-        itemAplicable.realizarCasosDeApliacion(misPokemones.get(nombrePokemon));
+        if (itemAplicable.realizarCasosDeApliacion(misPokemones.get(nombrePokemon))){
+            this.setAtacante(false);
+        }
+
     }
 
     public void mostrarPokemones() {
@@ -164,6 +169,10 @@ public class Jugador {
 
     public boolean validarPokemonActual(String nombrePokemon){
         return (Objects.equals(nombrePokemon, pokemonActual.getNombre()));
+    }
+
+    public boolean verficarEstadoPokemonActual(){
+        return this.pokemonActual.estaConciente();
     }
 
 }

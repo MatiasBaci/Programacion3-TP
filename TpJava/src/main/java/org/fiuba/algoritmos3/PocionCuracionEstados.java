@@ -3,21 +3,19 @@ package org.fiuba.algoritmos3;
 import java.util.Objects;
 
 public class PocionCuracionEstados extends Item{
-
     public PocionCuracionEstados(String nombre, int cantidad){
         super(nombre, cantidad);
     }
     @Override
-    public void aplicarItem(Pokemon unPokemon) {
+    public boolean aplicarItem(Pokemon unPokemon) {
 
-        if (!Objects.equals(unPokemon.suEstadoEs(), "Normal") && !unPokemon.estaVivo()) {
+        if (!Objects.equals(unPokemon.suEstadoEs(), "Normal") && unPokemon.estaConciente()) {
             unPokemon.cambiarseEstado(new EstadoNormal("Normal"));
-            this.cantidad --;
-            itemUsado = true;
-
+            return realizarUsadoItemsDeEstado(unPokemon.getEstadoActual());
         } else {
             System.out.println(" ");
-            System.out.println("No hay estado que curar.");
+            System.out.println("No se puede aplicar este item a un Pokemon Inhabilitado o Normal.");
+            return false;
         }
     }
 

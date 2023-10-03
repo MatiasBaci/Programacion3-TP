@@ -2,7 +2,6 @@ package org.fiuba.algoritmos3;
 
 public class HiperPocion extends Item{
 
-    private Modificacion unaModificacion;
 
     public HiperPocion(String nombre, int cantidad, Modificacion unaModificacion){
         super(nombre, cantidad);
@@ -10,17 +9,10 @@ public class HiperPocion extends Item{
     }
 
     @Override
-    public void aplicarItem(Pokemon unPokemon) {
+    public boolean aplicarItem(Pokemon unPokemon) {
 
-        if(unPokemon.getVida() != unPokemon.getVidaMaxima()) {
-            this.cantidad--;
-            this.itemUsado = true;
-            this.unaModificacion.modificar(unPokemon.getEstadisticas(), 100);
-        } else{
-            System.out.println(" ");
-            System.out.println("El Pokemon tiene toda la vida, no se puede usar este item.");
-        }
-
+        this.unaModificacion.modificar(unPokemon.getEstadisticas(), 100);
+        return realizarUsadoItemsDeCuracion(unPokemon.getEstadisticas());
     }
 
     public void mostrarItem() {

@@ -14,7 +14,7 @@ public class Juego {
     public Juego(){
         datos = new Datos();
         jugador1 = new Jugador("-",datos.getMochilaJugador1(),datos.getItemsJugador1());
-        jugador2 = new Jugador("-",datos.getMochilaJugador2(),datos.getItemsJugador1());
+        jugador2 = new Jugador("-",datos.getMochilaJugador2(),datos.getItemsJugador2());
 
         jugador1.añadirAdversario(jugador2);
         jugador2.añadirAdversario(jugador1);
@@ -65,8 +65,11 @@ public class Juego {
     public void aplicarIteracion(Jugador jugador, Jugador jugadorAversario){
 
         System.out.println("Es el turno de " + jugador.getNombre());
-        controlador.opcionesJugadores(jugador);
+
         jugador.aplicarEfectoPasivo();
+        controlador.opcionesJugadores(jugador);
+
+
         jugadorAversario.setAtacante(true);
     }
 

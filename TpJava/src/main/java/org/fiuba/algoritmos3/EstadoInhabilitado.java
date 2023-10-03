@@ -2,7 +2,7 @@ package org.fiuba.algoritmos3;
 
 public class EstadoInhabilitado extends Estado{
 
-    public EstadoInhabilitado(String nombre, int duracion){
+    public EstadoInhabilitado(String nombre){
         super(nombre);
     }
 
@@ -11,5 +11,7 @@ public class EstadoInhabilitado extends Estado{
     }
 
     public void aplicarEfectoPasivoDeEstado(Pokemon unPokemon){
+        System.out.println("El pokemon actual esta inhabilitado.");
+
     }
 }

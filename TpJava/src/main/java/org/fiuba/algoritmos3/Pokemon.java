@@ -59,8 +59,14 @@ public class Pokemon {
     }
 
 
-    public boolean estaVivo() {
-        return (this.estadisticas.getVida() > 0);
+    public boolean estaConciente() {
+
+        if(this.estadisticas.getVida() > 0){
+            return true;
+        }else{
+            this.cambiarseEstado(new EstadoInhabilitado("Inhabilitado"));
+            return false;
+        }
     }
 
     public boolean puedeAtacar(){
@@ -95,6 +101,7 @@ public class Pokemon {
        return this.misHabilidades.containsKey(nombreHabilidad);
     }
 
-
-
+    public Estado getEstadoActual() {
+        return estadoActual;
+    }
 }

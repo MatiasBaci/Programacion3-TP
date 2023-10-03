@@ -1,6 +1,6 @@
 package org.fiuba.algoritmos3;
 
-public abstract class   Estado {
+public abstract class Estado {
 
 
     protected String nombre;
