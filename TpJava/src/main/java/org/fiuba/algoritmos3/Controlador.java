@@ -220,27 +220,30 @@ public class Controlador {
         jugador.mostrarItems();
         System.out.println("Seleccione el item a aplicar: ");
         String nombreItem = scanner.nextLine();
-        if(jugador.validadorClaveItems(nombreItem)){
-            Item itemAplicable = jugador.elegirItem(nombreItem);
-            jugador.mostrarPokemones();
-            System.out.println("Seleccione el Pokemon a aplicar el item: ");
-            String nombrePokemon = scanner.next();
-            if(jugador.validadorClavePokemones(nombrePokemon)){
-                System.out.println("Desea aplicar el item? Si - No:");
-                String decision = scanner.next();
-                if(Objects.equals(decision, "Si")){
-                    jugador.usarItem(nombrePokemon, itemAplicable);
-                } else{
-                    System.out.println("No se aplico ningun Item");
-                }
-            } else{
-                System.out.println("No se encontro el pokemon");
-            }
 
-        } else{
+        if(!jugador.validadorClaveItems(nombreItem)){
             System.out.println("No se encontro el item.");
+            return;
         }
 
+        Item itemAplicable = jugador.elegirItem(nombreItem);
+        jugador.mostrarPokemones();
+        System.out.println("Seleccione el Pokemon a aplicar el item: ");
+        String nombrePokemon = scanner.next();
+
+        if(!jugador.validadorClavePokemones(nombrePokemon)){
+            System.out.println("No se encontro el pokemon");
+            return;
+        }
+
+        System.out.println("Desea aplicar el item? Si - No:");
+        String decision = scanner.next();
+
+        if(!decision.equals("Si")){
+            System.out.println("No se aplico el Item seleccionado");
+            return;
+        }
+        jugador.usarItem(nombrePokemon, itemAplicable);
     }
     public void opcionesJugadores(Jugador jugador) {
 
@@ -257,9 +260,6 @@ public class Controlador {
             System.out.println("El jugador actual es " + jugador.getNombre());
             System.out.println("Oprima una de las opciones: ");
             decision = scanner.next();
-
-
-
 
             if (Objects.equals(decision, "1")) {
                 opcionRendirse(jugador, jugador.getAdversario());

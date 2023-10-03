@@ -100,14 +100,11 @@ public class Jugador {
 
     public void atacarJugador(Jugador jugadorAdversario, String nombreHabilidad){
 
-        if(validarHabilidadPokemon(nombreHabilidad)) {
-            pokemonActual.atacar(jugadorAdversario.getPokemonActual(), nombreHabilidad);
-            setAtacante(false);
-
+        if(!this.validarHabilidadPokemon(nombreHabilidad)) {
+            System.out.println("La habilidad no existe. ");
         }
-        else{System.out.println("La habilidad no existe. ");
-        }
-
+        pokemonActual.atacar(jugadorAdversario.getPokemonActual(), nombreHabilidad);
+        setAtacante(false);
     }
 
     public boolean intercambiarPokemon(String decision, Pokemon pokemon){
@@ -155,22 +152,20 @@ public class Jugador {
     }
 
     public boolean validarHabilidadPokemon(String nombreHabilidad){
-        return pokemonActual.validarHabilidad(nombreHabilidad);
+        Validacion validacion = new Validacion();
+        return validacion.estaContenidoHabilidad(nombreHabilidad,this.pokemonActual.getMisHabilidades());
     }
 
     public boolean validadorClaveItems(String nombreItem){
-        return this.items.containsKey(nombreItem);
+        Validacion validacion = new Validacion();
+        return validacion.estaContenidoItem(nombreItem,this.items);
     }
 
 
     public boolean validadorClavePokemones(String nombrePokemon){
-        return this.misPokemones.containsKey(nombrePokemon);
+        Validacion validacion = new Validacion();
+        return validacion.estaContenidoPokemon(nombrePokemon,this.misPokemones);
     }
-
-    public boolean validarPokemonActual(String nombrePokemon){
-        return (Objects.equals(nombrePokemon, pokemonActual.getNombre()));
-    }
-
     public boolean verficarEstadoPokemonActual(){
         return this.pokemonActual.estaConciente();
     }

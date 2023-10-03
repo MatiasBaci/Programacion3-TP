@@ -11,12 +11,13 @@ public class Pokemon {
     private Tipo tipo; //DEBE SER UNA REFERENCIA A LA CLASE AGUA, NO UNA INSTANCIA DE AGUA
     private String historia;
     private Estadisticas estadisticas;
+
     private Map<String, Habilidad> misHabilidades;
 
-    private Estado estadoActual; 
+    private Estado estadoActual;
+
 
     //Metodos:
-
     public Pokemon(String nombre, int nivel,String tipo, String historia,double vidaMax,int velocidad,int defensa,int ataque){
         this.nombre = nombre;
         this.tipo = Tipo.getTipo(tipo);
@@ -28,11 +29,19 @@ public class Pokemon {
 
 
     public String getNombre() {return nombre;}
+
     public Tipo getTipo() {return tipo;}
+    public Map<String, Habilidad> getMisHabilidades() {
+        return misHabilidades;
+    }
     public Estadisticas getEstadisticas() {return estadisticas;}
     public int getVelocidad() {return estadisticas.getVelocidad();}
     public double getVidaMaxima() {return this.estadisticas.getVidaMaxima();}
     public double getVida() {return this.estadisticas.getVida();}
+
+    public Estado getEstadoActual() {
+        return estadoActual;
+    }
 
     public String suEstadoEs() {return estadoActual.getNombre();}
 
@@ -60,13 +69,11 @@ public class Pokemon {
 
 
     public boolean estaConciente() {
-
-        if(this.estadisticas.getVida() > 0){
-            return true;
-        }else{
+        if(this.estadisticas.getVida() == 0){ //<=
             this.cambiarseEstado(new EstadoInhabilitado("Inhabilitado"));
             return false;
         }
+        return true;
     }
 
     public boolean puedeAtacar(){
@@ -91,17 +98,7 @@ public class Pokemon {
         System.out.println(" Estado: " + this.estadoActual.getNombre());
     }
 
-
     public void mostrarHabilidades() {
         this.misHabilidades.forEach((k, v) -> v.mostrarHabilidad());
-    }
-
-
-    public boolean validarHabilidad(String nombreHabilidad){
-       return this.misHabilidades.containsKey(nombreHabilidad);
-    }
-
-    public Estado getEstadoActual() {
-        return estadoActual;
     }
 }
