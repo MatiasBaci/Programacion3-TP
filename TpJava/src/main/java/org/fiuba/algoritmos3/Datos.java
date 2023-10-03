@@ -57,7 +57,7 @@ public class Datos {
         pikachu.añadirHabilidad(trueno);
         Habilidad ondaTrueno = new HabilidadEstado("OndaTrueno", 20, new EstadoParalizado("Paralizado"));
         pikachu.añadirHabilidad(ondaTrueno);
-        Habilidad colaFerrea = new HabilidadAtaque("ColaFerrea",Tipo.getTipo("Acero"),100,15);
+        Habilidad colaFerrea = new HabilidadAtaque("ColaFerrea",Tipo.getTipo("Normal"),100,15);
         pikachu.añadirHabilidad(colaFerrea);
         Habilidad agilidad = new HabilidadEstadistica("Agilidad", 30, true, 2, new ModificacionVelocidad());
         pikachu.añadirHabilidad(agilidad);
@@ -68,11 +68,11 @@ public class Datos {
         100, 110, 90, 135);
         Habilidad esferaAural = new HabilidadAtaque("EsferaAural",Tipo.getTipo("Lucha"),80,20);
         lucario.añadirHabilidad(esferaAural);
-        Habilidad pulsoNoche = new HabilidadAtaque("PulsoNoche",Tipo.getTipo("Siniestro"),80,15);
+        Habilidad pulsoNoche = new HabilidadAtaque("PulsoNoche",Tipo.getTipo("Normal"),80,15);
         lucario.añadirHabilidad(pulsoNoche);
         Habilidad ecoMetalico = new HabilidadEstadistica("EcoMetalico", 40, false, -2, new ModificacionDefensa());
         lucario.añadirHabilidad(ecoMetalico);
-        Habilidad metalaser = new HabilidadAtaque("Metalaser",Tipo.getTipo("Acero"),140,5);
+        Habilidad metalaser = new HabilidadAtaque("Metalaser",Tipo.getTipo("Normal"),140,5);
         lucario.añadirHabilidad(metalaser);
         mochilaJugador1.put(lucario.getNombre(), lucario);
 
@@ -83,7 +83,7 @@ public class Datos {
         dusknoir.añadirHabilidad(bolaSombra);
         Habilidad pazMental = new HabilidadEstadistica("PazMental", 20, true, 2, new ModificacionAtaque());
         dusknoir.añadirHabilidad(pazMental);
-        Habilidad pulsoUmbrio = new HabilidadAtaque("PulsoUmbrio",Tipo.getTipo("Siniestro"),80,15);
+        Habilidad pulsoUmbrio = new HabilidadAtaque("PulsoUmbrio",Tipo.getTipo("Normal"),80,15);
         dusknoir.añadirHabilidad(pulsoUmbrio);
         Habilidad terratemblor = new HabilidadAtaque("Terratemblor",Tipo.getTipo("Tierra"),60,20);
         dusknoir.añadirHabilidad(terratemblor);
@@ -169,7 +169,7 @@ public class Datos {
         rayquaza.añadirHabilidad(ascensoDraco);
         Habilidad poderPasado = new HabilidadAtaque("PoderPasado",Tipo.getTipo("Roca"),60,5);
         rayquaza.añadirHabilidad(poderPasado);
-        Habilidad triturar = new HabilidadAtaque("Triturar",Tipo.getTipo("Siniestro"),80,15);
+        Habilidad triturar = new HabilidadAtaque("Triturar",Tipo.getTipo("Normal"),80,15);
         rayquaza.añadirHabilidad(triturar);
         Habilidad danzaDragon = new HabilidadEstadistica("DanzaDragon", 20, true, 2, new ModificacionAtaque());
         rayquaza.añadirHabilidad(danzaDragon);
@@ -193,7 +193,7 @@ public class Datos {
         12, 5, 6, 6);
         Habilidad placaje = new HabilidadAtaque("Placaje",Tipo.getTipo("Normal"),40,35);
         bidoof.añadirHabilidad(placaje);
-        Habilidad mordisco = new HabilidadAtaque("Mordisco",Tipo.getTipo("Siniestro"),60,25);
+        Habilidad mordisco = new HabilidadAtaque("Mordisco",Tipo.getTipo("Normal"),60,25);
         bidoof.añadirHabilidad(mordisco);
         Habilidad ronquido = new HabilidadEstado("Ronquido", 5, new EstadoDormido("Dormido"));
         bidoof.añadirHabilidad(ronquido);

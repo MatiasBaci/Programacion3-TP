@@ -20,6 +20,17 @@ public abstract class Tipo {
         tipos.put("Agua", new Agua("Agua"));
         tipos.put("Normal", new Normal("Normal"));
         tipos.put("Planta", new Planta("Planta"));
+        tipos.put("Electrico", new Electrico("Electrico"));
+        tipos.put("Lucha", new Lucha("Lucha"));
+        tipos.put("Psiquico", new Psiquico("Psiquico"));
+        tipos.put("Roca", new Roca("Roca"));
+        tipos.put("Hielo", new Hielo("Hielo"));
+        tipos.put("Veneno", new Veneno("Veneno"));
+        tipos.put("Tierra", new Tierra("Tierra"));
+        tipos.put("Fantasma", new Fantasma("Fantasma"));
+        tipos.put("Volador", new Volador("Volador"));
+        tipos.put("Bicho", new Bicho("Bicho"));
+        tipos.put("Dragon", new Dragon("Dragon"));
         // Aqui se pueden agregar mas instancias de otros tipos.
     }
 
