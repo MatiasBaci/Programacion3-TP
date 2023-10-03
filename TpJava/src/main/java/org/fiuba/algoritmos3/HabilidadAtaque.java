@@ -14,8 +14,6 @@ public class HabilidadAtaque extends Habilidad {
         this.poder = poder;
     }
 
-    public String getNombre() {return nombre;}
-
     public double potenciaDeDaño(Tipo tipoPokemon){
         return this.tipo.calcularMultiplicadorDeDanio(tipoPokemon);
     }

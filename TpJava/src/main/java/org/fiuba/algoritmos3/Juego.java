@@ -12,13 +12,13 @@ public class Juego {
     //Metodos:
 
     public Juego(){
-        datos = new Datos();
-        jugador1 = new Jugador("-",datos.getMochilaJugador1(),datos.getItemsJugador1());
-        jugador2 = new Jugador("-",datos.getMochilaJugador2(),datos.getItemsJugador2());
+        this.datos = new Datos();
+        this.jugador1 = new Jugador("-",datos.getMochilaJugador1(),datos.getItemsJugador1());
+        this.jugador2 = new Jugador("-",datos.getMochilaJugador2(),datos.getItemsJugador2());
 
-        jugador1.añadirAdversario(jugador2);
-        jugador2.añadirAdversario(jugador1);
-        controlador = new Controlador();
+        this.jugador1.añadirAdversario(jugador2);
+        this.jugador2.añadirAdversario(jugador1);
+        this.controlador = new Controlador();
     }
 
     public void inicializarJuego(){
@@ -31,17 +31,12 @@ public class Juego {
         //jugador1.atacarAdversario(); // Si se corre sin añadir habilidades al pokemon salta error,
     }
 
-
-    private boolean CompararPokemonesIniciales(Pokemon pokemonJugador1, Pokemon pokemonJugador2){
-
-        boolean jugador1MayorVelocidad;
-        jugador1MayorVelocidad = (pokemonJugador1.getVelocidad() >= pokemonJugador2.getVelocidad());
-        return jugador1MayorVelocidad;
+    private boolean pokemonJugador1EsRapido(Pokemon pokemonJugador1, Pokemon pokemonJugador2){
+        return pokemonJugador1.getVelocidad() >= pokemonJugador2.getVelocidad();
     }
-
     
     private void decidirTurnoInicial() {
-        if (CompararPokemonesIniciales(jugador1.getPokemonActual(), jugador2.getPokemonActual())) {
+        if (this.pokemonJugador1EsRapido(jugador1.getPokemonActual(), jugador2.getPokemonActual())) {
             jugador1.setAtacante(true);
             System.out.println("Comienza atacando " + jugador1.getNombre());
         } else {
@@ -51,14 +46,14 @@ public class Juego {
     }
 
 
-    public void menuSeleccion(Jugador jugador1, Jugador jugador2) {
+    public void menuSeleccion() {
 
         controlador.mensajeBienvenida();
         controlador.validarNombresJugador(this.jugador1);
         controlador.validarNombresJugador(this.jugador2);
         controlador.seleccionarPokemon(this.jugador1);
         controlador.seleccionarPokemon(this.jugador2);
-        decidirTurnoInicial();
+        this.decidirTurnoInicial();
     }
 
 
@@ -69,26 +64,24 @@ public class Juego {
         jugador.aplicarEfectoPasivo();
         controlador.opcionesJugadores(jugador);
 
-
         jugadorAversario.setAtacante(true);
     }
 
 
     public void iteracionesJugadores() {
 
-        while (!jugador1.isGanoJuego() && !jugador2.isGanoJuego()){
-
-            if(jugador1.isAtacante()){
-                aplicarIteracion(jugador1, jugador2);
+        while (!this.jugador1.isGanoJuego() && !this.jugador2.isGanoJuego()){
+            if(this.jugador1.isAtacante()){
+                this.aplicarIteracion(this.jugador1, this.jugador2);
             } else{
-                aplicarIteracion(jugador2, jugador1);
+                this.aplicarIteracion(this.jugador2, this.jugador1);
             }
         }
     }
 
     public void DesarrollarJuego(){
-        menuSeleccion(jugador1, jugador2);
-        iteracionesJugadores();
+        this.menuSeleccion();
+        this.iteracionesJugadores();
     }
 
 

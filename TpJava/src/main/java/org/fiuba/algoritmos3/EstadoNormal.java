@@ -6,12 +6,12 @@ public class EstadoNormal extends Estado{
         super(nombre);
     }
 
-
+    @Override
     public boolean puedeAtacar(Pokemon unPokemon){
         return true;
     }
-    
 
+    @Override
     public void aplicarEfectoPasivoDeEstado(Pokemon unPokemon){
     }
 }

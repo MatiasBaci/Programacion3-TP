@@ -1,4 +1,5 @@
 package org.fiuba.algoritmos3;
+import Item.*;
 import Tipo.Tipo;
 
 import java.util.HashMap;
@@ -16,13 +17,13 @@ public class Datos {
 
     public Datos() {
 
-        mochilaJugador1 = new HashMap<>();
-        mochilaJugador2 = new HashMap<>();
-        itemsJugador1 = new HashMap<>();
-        itemsJugador2 = new HashMap<>();
+        this.mochilaJugador1 = new HashMap<>();
+        this.mochilaJugador2 = new HashMap<>();
+        this.itemsJugador1 = new HashMap<>();
+        this.itemsJugador2 = new HashMap<>();
 
-        InicialzarPokemonesJugador1();
-        InicialzarPokemonesJugador2();
+        this.InicialzarPokemonesJugador1();
+        this.InicialzarPokemonesJugador2();
     }
 
     private void InicialzarPokemonesJugador1(){
@@ -35,7 +36,7 @@ public class Datos {
         squirtle.añadirHabilidad(cabezazo);
         Habilidad defensaFerrea = new HabilidadEstadistica("DefensaFerrea", 15, true, 2, new ModificacionDefensa());
         squirtle.añadirHabilidad(defensaFerrea);
-        mochilaJugador1.put(squirtle.getNombre(), squirtle);
+        this.mochilaJugador1.put(squirtle.getNombre(), squirtle);
 
 
         Pokemon charizard = new Pokemon("Charizard", 50, "Fuego", "Se dice que el fuego de Charizard arde con más fuerza cuantas más duras batallas haya vivido.",
@@ -48,7 +49,7 @@ public class Datos {
         charizard.añadirHabilidad(garraDragon);
         Habilidad respiro = new HabilidadEstadistica("Respiro", 5, true, (int)(charizard.getVidaMaxima()/2), new ModificacionVida());
         charizard.añadirHabilidad(respiro);
-        mochilaJugador1.put(charizard.getNombre(), charizard);
+        this.mochilaJugador1.put(charizard.getNombre(), charizard);
 
 
         Pokemon pikachu = new Pokemon("Pikachu", 50, "Electrico", "Las bolsas de las mejillas están llenas de electricidad, que libera cuando se siente amenazado.",
@@ -61,7 +62,7 @@ public class Datos {
         pikachu.añadirHabilidad(colaFerrea);
         Habilidad agilidad = new HabilidadEstadistica("Agilidad", 30, true, 2, new ModificacionVelocidad());
         pikachu.añadirHabilidad(agilidad);
-        mochilaJugador1.put(pikachu.getNombre(), pikachu);
+        this.mochilaJugador1.put(pikachu.getNombre(), pikachu);
 
 
         Pokemon lucario = new Pokemon("Lucario", 50, "Lucha", "Puede leer los pensamientos de su adversario a través de su aura.",
@@ -74,7 +75,7 @@ public class Datos {
         lucario.añadirHabilidad(ecoMetalico);
         Habilidad metalaser = new HabilidadAtaque("Metalaser",Tipo.getTipo("Normal"),140,5);
         lucario.añadirHabilidad(metalaser);
-        mochilaJugador1.put(lucario.getNombre(), lucario);
+        this.mochilaJugador1.put(lucario.getNombre(), lucario);
 
 
         Pokemon dusknoir = new Pokemon("Dusknoir", 50, "Fantasma", "La antena de la cabeza captura ondas de radio lejanas que le permiten secuestrar a gente.",
@@ -87,7 +88,7 @@ public class Datos {
         dusknoir.añadirHabilidad(pulsoUmbrio);
         Habilidad terratemblor = new HabilidadAtaque("Terratemblor",Tipo.getTipo("Tierra"),60,20);
         dusknoir.añadirHabilidad(terratemblor);
-        mochilaJugador1.put(dusknoir.getNombre(), dusknoir);
+        this.mochilaJugador1.put(dusknoir.getNombre(), dusknoir);
 
 
         Pokemon crobat = new Pokemon("Crobat", 50, "Veneno", "Sus cuatro alas le permiten volar más rápida y sigilosamente. Es un Pokémon nocturno.",
@@ -100,7 +101,7 @@ public class Datos {
         crobat.añadirHabilidad(acrobata);
         Habilidad toxico = new HabilidadEstado("Toxico", 10, new EstadoEnvenenado("Envenenado"));
         crobat.añadirHabilidad(toxico);
-        mochilaJugador1.put(crobat.getNombre(), crobat);
+        this.mochilaJugador1.put(crobat.getNombre(), crobat);
 
 
         Item pocion = new Pocion("Pocion", 4, new ModificacionVida());
@@ -111,13 +112,13 @@ public class Datos {
         Item revivir = new Revivir("Revivir", 1, new ModificacionVida());
         Item curarTodo = new PocionCuracionEstados("Curar todo",1);
 
-        itemsJugador1.put(pocion.getNombre(), pocion);
-        itemsJugador1.put(megaPocion.getNombre(), megaPocion);
-        itemsJugador1.put(hiperPocion.getNombre(), hiperPocion);
-        itemsJugador1.put(revivir.getNombre(), revivir);
-        itemsJugador1.put(pocionDefensa.getNombre(), pocionDefensa);
-        itemsJugador1.put(pocionAtaque.getNombre(), pocionAtaque);
-        itemsJugador1.put(curarTodo.getNombre(), curarTodo);
+        this.itemsJugador1.put(pocion.getNombre(), pocion);
+        this.itemsJugador1.put(megaPocion.getNombre(), megaPocion);
+        this.itemsJugador1.put(hiperPocion.getNombre(), hiperPocion);
+        this.itemsJugador1.put(revivir.getNombre(), revivir);
+        this.itemsJugador1.put(pocionDefensa.getNombre(), pocionDefensa);
+        this.itemsJugador1.put(pocionAtaque.getNombre(), pocionAtaque);
+        this.itemsJugador1.put(curarTodo.getNombre(), curarTodo);
     }
 
 
@@ -134,7 +135,7 @@ public class Datos {
         alakazam.añadirHabilidad(energibola);
         Habilidad maquinacion = new HabilidadEstadistica("Maquinacion", 20, true, 2, new ModificacionAtaque());
         alakazam.añadirHabilidad(maquinacion);
-        mochilaJugador2.put(alakazam.getNombre(), alakazam);
+        this.mochilaJugador2.put(alakazam.getNombre(), alakazam);
 
 
         Pokemon trevenant = new Pokemon("Trevenant", 50, "Planta", "Se dice que los árboles donde vive Trevenant están poseídos por los espíritus de los muertos.",
@@ -147,7 +148,7 @@ public class Datos {
         trevenant.añadirHabilidad(hypnosis);
         Habilidad caraSusto = new HabilidadEstado("CaraSusto", 5, new EstadoParalizado("Paralizado"));
         trevenant.añadirHabilidad(caraSusto);
-        mochilaJugador2.put(trevenant.getNombre(), trevenant);
+        this.mochilaJugador2.put(trevenant.getNombre(), trevenant);
 
 
         Pokemon golem = new Pokemon("Golem", 50, "Roca", "Es capaz de explotar a voluntad. Utiliza el impulso de la explosión para saltar de una montaña a otra.", 
@@ -160,7 +161,7 @@ public class Datos {
         golem.añadirHabilidad(punioTrueno);
         Habilidad defensaFerrea = new HabilidadEstadistica("DefensaFerrea", 15, true, 2, new ModificacionDefensa());
         golem.añadirHabilidad(defensaFerrea);
-        mochilaJugador2.put(golem.getNombre(), golem);
+        this.mochilaJugador2.put(golem.getNombre(), golem);
 
 
         Pokemon rayquaza = new Pokemon("Rayquaza", 50, "Dragon", "Se dice que vive en la capa de ozono. Los anillos que tiene en el cuerpo brillan de siete colores distintos.",
@@ -173,7 +174,7 @@ public class Datos {
         rayquaza.añadirHabilidad(triturar);
         Habilidad danzaDragon = new HabilidadEstadistica("DanzaDragon", 20, true, 2, new ModificacionAtaque());
         rayquaza.añadirHabilidad(danzaDragon);
-        mochilaJugador2.put(rayquaza.getNombre(), rayquaza);
+        this.mochilaJugador2.put(rayquaza.getNombre(), rayquaza);
 
 
         Pokemon araquanid = new Pokemon("Araquanid", 50, "Bicho", "Araquanid es capaz de expulsar un hilo de agua a gran presión y velocidad gracias a la fuerza de sus patas traseras.",
@@ -186,7 +187,7 @@ public class Datos {
         araquanid.añadirHabilidad(picadura);
         Habilidad ventisca = new HabilidadAtaque("Ventisca",Tipo.getTipo("Hielo"),110,5);
         araquanid.añadirHabilidad(ventisca);
-        mochilaJugador2.put(araquanid.getNombre(), araquanid);
+        this.mochilaJugador2.put(araquanid.getNombre(), araquanid);
 
 
         Pokemon bidoof = new Pokemon("Bidoof", 1, "Normal", "El Pokemon más fuerte de todos los tiempos.",
@@ -199,7 +200,7 @@ public class Datos {
         bidoof.añadirHabilidad(ronquido);
         Habilidad ultimoRecurso = new HabilidadAtaque("UltimoRecurso",Tipo.getTipo("Normal"),999,1);
         bidoof.añadirHabilidad(ultimoRecurso);
-        mochilaJugador2.put(bidoof.getNombre(), bidoof);
+        this.mochilaJugador2.put(bidoof.getNombre(), bidoof);
 
 
         Item pocion = new Pocion("Pocion", 1, new ModificacionVida());
@@ -210,29 +211,29 @@ public class Datos {
         Item revivir = new Revivir("Revivir", 1, new ModificacionEstadoInhabilitado());
         Item curarTodo = new PocionCuracionEstados("Curar todo",1);
 
-        itemsJugador2.put(pocion.getNombre(), pocion);
-        itemsJugador2.put(megaPocion.getNombre(), megaPocion);
-        itemsJugador2.put(hiperPocion.getNombre(), hiperPocion);
-        itemsJugador2.put(revivir.getNombre(), revivir);
-        itemsJugador2.put(pocionDefensa.getNombre(), pocionDefensa);
-        itemsJugador2.put(pocionAtaque.getNombre(), pocionAtaque);
-        itemsJugador1.put(curarTodo.getNombre(), curarTodo);
+        this.itemsJugador2.put(pocion.getNombre(), pocion);
+        this.itemsJugador2.put(megaPocion.getNombre(), megaPocion);
+        this.itemsJugador2.put(hiperPocion.getNombre(), hiperPocion);
+        this.itemsJugador2.put(revivir.getNombre(), revivir);
+        this.itemsJugador2.put(pocionDefensa.getNombre(), pocionDefensa);
+        this.itemsJugador2.put(pocionAtaque.getNombre(), pocionAtaque);
+        this.itemsJugador1.put(curarTodo.getNombre(), curarTodo);
     }
 
 
     public Map<String, Item> getItemsJugador1() {
-        return itemsJugador1;
+        return this.itemsJugador1;
     }
 
     public Map<String, Item> getItemsJugador2() {
-        return itemsJugador2;
+        return this.itemsJugador2;
     }
 
     public Map<String, Pokemon> getMochilaJugador1() {
-        return mochilaJugador1;
+        return this.mochilaJugador1;
     }
 
     public Map<String, Pokemon> getMochilaJugador2() {
-        return mochilaJugador2;
+        return this.mochilaJugador2;
     }
 }

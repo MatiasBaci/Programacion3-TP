@@ -7,5 +7,8 @@ public class ModificacionEstadoInhabilitado implements Modificacion{
         estadisticas.aumentarVida(etapas);
     }
 
-
+    @Override
+    public String obtenerNombreModificacion() {
+        return "Inhabilitado";
+    }
 }

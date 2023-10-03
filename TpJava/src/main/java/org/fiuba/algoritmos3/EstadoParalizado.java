@@ -21,7 +21,7 @@ public class EstadoParalizado extends Estado{
             return false;
         }
         return true;
-        }
+    }
 
 
     @Override

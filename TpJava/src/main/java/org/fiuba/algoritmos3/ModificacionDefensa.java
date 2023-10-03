@@ -10,4 +10,7 @@ public class ModificacionDefensa implements Modificacion{
             System.out.println("El Pokemon esta Inhabilitado, no se puede modificar su defensa.");
         }
     }
+    public String obtenerNombreModificacion(){
+        return "Defensa";
+    }
 }

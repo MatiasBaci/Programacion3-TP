@@ -15,5 +15,8 @@ public class ModificacionVida implements Modificacion{
             System.out.println("El Pokemon tiene toda la vida, no se puede curar.");
         }
     }
+    public String obtenerNombreModificacion(){
+        return "Vida";
+    }
 
 }

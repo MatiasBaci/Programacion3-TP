@@ -2,6 +2,8 @@ package org.fiuba.algoritmos3;
 
 // import javax.naming.ldap.UnsolicitedNotification;
 // import java.util.HashMap;
+import Item.Item;
+
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -156,7 +158,7 @@ public class Controlador {
 
     public void opcionVerCampoBatalla(Jugador jugador, Jugador jugadorAdversario) {
 
-        mensajeCampoBatalla();
+        this.mensajeCampoBatalla();
         Scanner scanner = new Scanner(System.in);
         System.out.println("-----------------------------------------------------------------");
         System.out.println("Pokemones de " + jugador.getNombre() + ":");
@@ -181,9 +183,9 @@ public class Controlador {
     }
     public boolean opcionInercambarPokemon(Jugador jugador) {
 
-        mensajeIntercambiarPokemon();
+        this.mensajeIntercambiarPokemon();
         Pokemon pokemonAuxliar = jugador.getPokemonActual();
-        seleccionarPokemon(jugador);
+        this.seleccionarPokemon(jugador);
         System.out.println("Desea Realizar el cambio? Si - No");
         Scanner scanner = new Scanner(System.in);
         String decision = scanner.next();
@@ -202,7 +204,7 @@ public class Controlador {
 
     public void opcionAtacar(Jugador jugador, Jugador jugadorAdversario) {
 
-        mensajeAtacarPokemon();
+        this.mensajeAtacarPokemon();
         jugador.mostratHabilidadesPokemonActual();
         System.out.println("Elige una habilidad: ");
         Scanner scanner = new Scanner(System.in);
@@ -215,7 +217,7 @@ public class Controlador {
 
     public void opcionAplicarItem(Jugador jugador){
 
-        mensajeOpcionAplicarItem();
+        this.mensajeOpcionAplicarItem();
         Scanner scanner = new Scanner(System.in);
         jugador.mostrarItems();
         System.out.println("Seleccione el item a aplicar: ");
@@ -252,7 +254,7 @@ public class Controlador {
         boolean IntercambioPokemon = false;
 
         if(!jugador.verficarEstadoPokemonActual()){
-            seleccionarPokemon(jugador);
+            this.seleccionarPokemon(jugador);
         }
 
         while (jugador.isAtacante()) {
@@ -262,20 +264,20 @@ public class Controlador {
             decision = scanner.next();
 
             if (Objects.equals(decision, "1")) {
-                opcionRendirse(jugador, jugador.getAdversario());
+                this.opcionRendirse(jugador, jugador.getAdversario());
             } else if (Objects.equals(decision, "2")) {
-                opcionVerCampoBatalla(jugador, jugador.getAdversario());
+                this.opcionVerCampoBatalla(jugador, jugador.getAdversario());
             } else if (Objects.equals(decision, "3")) {
-                IntercambioPokemon = opcionInercambarPokemon(jugador);
+                IntercambioPokemon = this.opcionInercambarPokemon(jugador);
             } else if (Objects.equals(decision, "4")) {
-                opcionAplicarItem(jugador);
+                this.opcionAplicarItem(jugador);
             } else if (Objects.equals(decision, "5")) {
-                opcionAtacar(jugador, jugador.getAdversario());
+                this.opcionAtacar(jugador, jugador.getAdversario());
             } else {
                 this.mensajeOpcionInvalida();
             }
             if(IntercambioPokemon) {
-                mensajeIntercambioAlAdversario(IntercambioPokemon);
+                this.mensajeIntercambioAlAdversario(IntercambioPokemon);
             }
         }
     }

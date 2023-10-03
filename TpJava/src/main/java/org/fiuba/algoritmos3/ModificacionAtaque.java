@@ -12,5 +12,8 @@ public class ModificacionAtaque implements Modificacion { //implementsModificabl
             System.out.println("El Pokemon esta Inhabilitado, no se puede modificar su ataque.");
         }
     }
+    public String obtenerNombreModificacion(){
+        return "Ataque";
+    }
 
 }

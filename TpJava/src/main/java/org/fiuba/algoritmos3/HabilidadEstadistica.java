@@ -35,7 +35,7 @@ public class HabilidadEstadistica extends Habilidad{
     @Override
     public void mostrarHabilidad() {
         System.out.println("Nombre: " + this.nombre);
-        System.out.println("Modifica: " + this.modificaEstadistica);
+        System.out.println("Modifica: " + this.unaModificacion.obtenerNombreModificacion()); //Problema en el nombre
         System.out.println("Cuantas Etapas: " + this.etapas);
         System.out.println("Cantidad de usos: " + this.cantidadDeUsos);
         System.out.println("\n");

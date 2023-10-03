@@ -6,4 +6,9 @@ public class ModificacionEstado implements Modificacion{
     public void modificar(Estadisticas estadisticas, int etapas) {
 
     }
+
+    @Override
+    public String obtenerNombreModificacion() {
+        return "Estado";
+    }
 }

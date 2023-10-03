@@ -46,9 +46,9 @@ public class Estadisticas {
     }
 
     public void aumentarVida(double vida){
-        double vidaTotal = (vidaActual + vida);
-        if(vidaActual != vidaMaxima) {
-            if (vidaTotal > vidaMaxima) {
+        double vidaTotal = (this.vidaActual + vida);
+        if(this.vidaActual != this.vidaMaxima) {
+            if (vidaTotal > this.vidaMaxima) {
                 this.vidaActual = this.vidaMaxima;
             } else {
                 this.vidaActual += vida;
@@ -59,24 +59,24 @@ public class Estadisticas {
     public void reduccionVida(double vida){
         double vidaTotal = (vidaActual - vida);
         if(vidaTotal < 0){
-            vidaActual = 0;
+            this.vidaActual = 0;
         }
         else{ this.vidaActual -= vida;}
     }
 
 
     public void modificarVelocidad(int etapas){
-        this.velocidad += velocidad * etapas * 0.1;
+        this.velocidad += this.velocidad * etapas * 0.1;
     }
 
 
     public void modificarDefensa(int etapas){
-        this.defensa += defensa * etapas * 0.1;
+        this.defensa += this.defensa * etapas * 0.1;
     }
 
 
     public void modificarAtaque(int etapas){
-        this.ataque += ataque * etapas * 0.1;
+        this.ataque += this.ataque * etapas * 0.1;
     }
 
 

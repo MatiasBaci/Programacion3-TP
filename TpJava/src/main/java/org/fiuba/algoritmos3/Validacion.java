@@ -1,5 +1,7 @@
 package org.fiuba.algoritmos3;
 
+import Item.Item;
+
 import java.util.Map;
 
 public class Validacion {

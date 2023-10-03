@@ -92,7 +92,8 @@ public class Pokemon {
     }
 
     public void mostrarPokemon(){
-        System.out.println("Nombre: " + this.nombre);
+        System.out.println(" Nombre: " + this.nombre);
+        System.out.println(" Tipo: " + this.tipo.getNombre());
         this.estadisticas.mostrarEstadisticas();
         System.out.println(" Historia: " + this.historia);
         System.out.println(" Estado: " + this.estadoActual.getNombre());

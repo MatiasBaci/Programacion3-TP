@@ -10,4 +10,7 @@ public class ModificacionVelocidad implements Modificacion{
             System.out.println("El Pokemon esta Inhabilitado, no se puede modificar su velocidad.");
         }
     }
+    public String obtenerNombreModificacion(){
+        return "Velocidad";
+    }
 }
