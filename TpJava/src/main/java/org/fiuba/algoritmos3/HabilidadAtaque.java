@@ -1,5 +1,7 @@
 package org.fiuba.algoritmos3;
 
+import Tipo.Tipo;
+
 import java.util.Random;
 
 public class HabilidadAtaque extends Habilidad {
@@ -17,7 +19,6 @@ public class HabilidadAtaque extends Habilidad {
     public double potenciaDeDaño(Tipo tipoPokemon){
         return this.tipo.calcularMultiplicadorDeDanio(tipoPokemon);
     }
-
 
     private double calculoAtaqueSegunTipo(Tipo tipoDeUnPokemonPropio, Tipo unTipoPokemonEnemigo) {
 

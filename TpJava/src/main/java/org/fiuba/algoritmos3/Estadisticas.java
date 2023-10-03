@@ -19,7 +19,7 @@ public class Estadisticas {
 
     public Estadisticas(double vida,int nivel ,int velocidad, int defensa, int ataque){
         this.vidaMaxima = vida;
-        this.vidaActual = vidaMaxima;
+        this.vidaActual = vida;
         this.velocidadBase = velocidad;
         this.velocidad = velocidad;
         this.defensaBase = defensa;
@@ -29,21 +29,20 @@ public class Estadisticas {
         this.nivel = nivel;
     }
 
-    public double getVidaMaxima() { return vidaMaxima ;} // es necesario retornar la vida? o que la estadistica se encargue de reducir la misma
+    public double getVidaMaxima() { return this.vidaMaxima ;} // es necesario retornar la vida? o que la estadistica se encargue de reducir la misma
 
-    public int getVelocidad() {return velocidad;}
+    public int getVelocidad() {return this.velocidad;}
 
-    public int getDefensa() {return defensa;}
+    public int getDefensa() {return this.defensa;}
 
-    public int getAtaque() {return ataque;}
+    public int getAtaque() {return this.ataque;}
 
-    public void mostrarEstadisticas(){
+    public double getNivel() {
+        return this.nivel;
+    }
 
-        System.out.println(
-            " HP: " + this.vidaActual + " --" +
-            " Velocidad: " + this.velocidad + " --" +
-            " Defensa: " + this.defensa + " --" +
-            " Ataque: " + this.ataque);
+    public double getVida() {
+        return this.vidaActual;
     }
 
     public void aumentarVida(double vida){
@@ -67,27 +66,17 @@ public class Estadisticas {
 
 
     public void modificarVelocidad(int etapas){
-        this.velocidad += velocidad * etapas * 0.1; 
+        this.velocidad += velocidad * etapas * 0.1;
     }
 
 
     public void modificarDefensa(int etapas){
-        this.defensa += defensa * etapas * 0.1; 
+        this.defensa += defensa * etapas * 0.1;
     }
 
 
     public void modificarAtaque(int etapas){
-        this.ataque += ataque * etapas * 0.1; 
-    }
-
-
-    public double getNivel() {
-        return this.nivel;
-    }
-
-
-    public double getVida() {
-        return this.vidaActual;
+        this.ataque += ataque * etapas * 0.1;
     }
 
 
@@ -100,13 +89,20 @@ public class Estadisticas {
             this.modificarVelocidad(etapa);
         }
     }
-    
 
     public void resetearEstadisticas(){
         this.vidaActual = this.vidaMaxima;
         this.velocidad = this.velocidadBase;
         this.defensa = this.defensaBase;
         this.ataque = this.ataqueBase;
+    }
+
+    public void mostrarEstadisticas(){
+        System.out.println(
+                " HP: " + this.vidaActual + " --" +
+                        " Velocidad: " + this.velocidad + " --" +
+                        " Defensa: " + this.defensa + " --" +
+                        " Ataque: " + this.ataque);
     }
 
 

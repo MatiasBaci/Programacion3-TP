@@ -30,11 +30,51 @@ public class Jugador {
         return pokemonActual;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public Jugador getAdversario() { return adversario; }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setAtacante(boolean atacante) {
+        this.atacante = atacante;
+    }
+
+    public void setPokemonActual(Pokemon pokemonActual) {
+        this.pokemonActual = pokemonActual;
+    }
+
+    public void setGanoJuego(boolean ganoJuego) {
+        this.ganoJuego = ganoJuego;
+    }
+
+    public boolean isAtacante() {
+        return atacante;
+    }
+
+    public boolean isGanoJuego() {
+        return ganoJuego;
+    }
 
     private Pokemon seleccionarPokemon(String unPokemon) {
         return this.misPokemones.get(unPokemon);
     }
 
+    public void añadirAdversario(Jugador unEnemigo) {
+        this.adversario = unEnemigo;
+    }
+
+    public void ganar() {
+        ganoJuego = true;
+    }
+
+    public void aplicarEfectoPasivo() {
+        pokemonActual.aplicarEfectoPasivoPokemon();
+    }
 
     public boolean elegirPokemon(String unPokemon) {
         if (this.seleccionarPokemon(unPokemon) == null) {
@@ -54,78 +94,6 @@ public class Jugador {
         return true;
     }
 
-    public void añadirAdversario(Jugador unEnemigo) {
-        this.adversario = unEnemigo;
-    }
-
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-
-    public String getNombre() {
-        return nombre;
-    }
-
-
-    public void setAtacante(boolean atacante) {
-        this.atacante = atacante;
-    }
-
-
-    public boolean isAtacante() {
-        return atacante;
-    }
-
-
-    public void setGanoJuego(boolean ganoJuego) {
-        this.ganoJuego = ganoJuego;
-    }
-
-
-    public boolean isGanoJuego() {
-        return ganoJuego;
-    }
-
-
-    public Jugador getAdversario() {
-        return adversario;
-    }
-
-
-    public void setPokemonActual(Pokemon pokemonActual) {
-        this.pokemonActual = pokemonActual;
-    }
-
-
-    public void mostrarPokemones() {
-        System.out.println("-----------------------------------------------------------------");
-        misPokemones.forEach((k, v) -> v.mostrarPokemon());
-        System.out.println("-----------------------------------------------------------------");
-    }
-
-
-    public void ganar() {
-        ganoJuego = true;
-    }
-
-
-    public void mostratHabilidadesPokemonActual() {
-
-        System.out.println("Las habilidades de " + pokemonActual.getNombre() + " actuales son: ");
-        pokemonActual.mostrarHabilidades();
-    }
-
-
-    public void aplicarEfectoPasivo() {
-        pokemonActual.aplicarEfectoPasivoPokemon();
-    }
-
-
-    public boolean validarHabilidadPokemon(String nombreHabilidad){
-        return pokemonActual.validarHabilidad(nombreHabilidad);
-    }
 
 
     public void atacarJugador(Jugador jugadorAdversario, String nombreHabilidad){
@@ -139,7 +107,6 @@ public class Jugador {
         }
 
     }
-
 
     public boolean intercambiarPokemon(String decision, Pokemon pokemon){
 
@@ -155,6 +122,24 @@ public class Jugador {
         }
     }
 
+    public Item elegirItem(String nombreItem){
+        return this.items.get(nombreItem);
+    }
+
+    public void usarItem(String nombrePokemon, Item itemAplicable){
+        itemAplicable.realizarCasosDeApliacion(misPokemones.get(nombrePokemon));
+    }
+
+    public void mostrarPokemones() {
+        System.out.println("-----------------------------------------------------------------");
+        misPokemones.forEach((k, v) -> v.mostrarPokemon());
+        System.out.println("-----------------------------------------------------------------");
+    }
+
+    public void mostratHabilidadesPokemonActual() {
+        System.out.println("Las habilidades de " + pokemonActual.getNombre() + " actuales son: ");
+        pokemonActual.mostrarHabilidades();
+    }
 
     public void mostrarItems() {
 
@@ -164,12 +149,9 @@ public class Jugador {
         System.out.println("-----------------------------------------------------------------");
     }
 
-
-    public Item elegirItem(String nombreItem){
-
-        return this.items.get(nombreItem);
+    public boolean validarHabilidadPokemon(String nombreHabilidad){
+        return pokemonActual.validarHabilidad(nombreHabilidad);
     }
-
 
     public boolean validadorClaveItems(String nombreItem){
         return this.items.containsKey(nombreItem);
@@ -179,12 +161,6 @@ public class Jugador {
     public boolean validadorClavePokemones(String nombrePokemon){
         return this.misPokemones.containsKey(nombrePokemon);
     }
-
-
-    public void usarItem(String nombrePokemon, Item itemAplicable){
-        itemAplicable.realizarCasosDeApliacion(misPokemones.get(nombrePokemon));
-    }
-    
 
     public boolean validarPokemonActual(String nombrePokemon){
         return (Objects.equals(nombrePokemon, pokemonActual.getNombre()));

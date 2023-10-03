@@ -130,11 +130,7 @@ public class Controlador {
                 System.out.println("╚═══════════════════════════════════════════════════════════╝");
             }
         }
-        //this.limpiarTerminal();
     }
-
-
-
 
     public void ganar(Jugador jugador) {
         this.felicitar(jugador);
@@ -215,7 +211,6 @@ public class Controlador {
 
         jugador.atacarJugador(jugadorAdversario, opcion);
 
-
     }
 
     public void opcionAplicarItem(Jugador jugador){
@@ -245,9 +240,6 @@ public class Controlador {
         } else{
             System.out.println("No se encontro el item.");
         }
-
-
-
 
     }
     public void opcionesJugadores(Jugador jugador) {

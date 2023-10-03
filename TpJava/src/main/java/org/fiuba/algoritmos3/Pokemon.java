@@ -1,4 +1,6 @@
 package org.fiuba.algoritmos3;
+import Tipo.Tipo;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,6 +46,37 @@ public class Pokemon {
         this.estadisticas.reduccionVida(damageEnemigo);
     }
 
+    public Habilidad seleccionarHabilidad(String unaHabilidad){
+        return misHabilidades.get(unaHabilidad);
+    }
+
+    public void aplicarEfectoPasivoPokemon(){
+        estadoActual.aplicarEfectoPasivoDeEstado(this);
+    }
+
+    public void cambiarseEstado(Estado unEstado){
+        this.estadoActual = unEstado;
+    }
+
+
+    public boolean estaVivo() {
+        return (this.estadisticas.getVida() > 0);
+    }
+
+    public boolean puedeAtacar(){
+        return estadoActual.puedeAtacar(this);
+    }
+
+    public void atacar(Pokemon pokemonEnemigoActual, String nombreDeHabilidad) {
+
+        Habilidad unaHabilidad = this.seleccionarHabilidad(nombreDeHabilidad); //es un puntero? :V
+
+        if (this.puedeAtacar()) {
+            unaHabilidad.usarHabilidad(pokemonEnemigoActual, this);
+            System.out.println("La vida de " + pokemonEnemigoActual.getNombre() + " es = " + pokemonEnemigoActual.getVida());
+            pokemonEnemigoActual.getEstadisticas().mostrarEstadisticas();
+        }
+    }
 
     public void mostrarPokemon(){
         System.out.println("Nombre: " + this.nombre);
@@ -63,40 +96,5 @@ public class Pokemon {
     }
 
 
-    public Habilidad seleccionarHabilidad(String unaHabilidad){
-        return misHabilidades.get(unaHabilidad);
-    }
-
-
-    public void aplicarEfectoPasivoPokemon(){
-        estadoActual.aplicarEfectoPasivoDeEstado(this);
-    }
-
-
-    public boolean puedeAtacar(){
-        return estadoActual.puedeAtacar(this);
-    }
-
-   
-    public void atacar(Pokemon pokemonEnemigoActual, String nombreDeHabilidad) {
-
-        Habilidad unaHabilidad = this.seleccionarHabilidad(nombreDeHabilidad);
-
-        if (this.puedeAtacar()) {
-            unaHabilidad.usarHabilidad(pokemonEnemigoActual, this);
-            System.out.println("La vida de " + pokemonEnemigoActual.getNombre() + " es = " + pokemonEnemigoActual.getVida());
-            pokemonEnemigoActual.getEstadisticas().mostrarEstadisticas();
-        }
-    }
-
-
-    public void cambiarseEstado(Estado unEstado){
-        this.estadoActual = unEstado;
-    }
-
-
-    public boolean estaVivo() {
-        return (this.estadisticas.getVida() > 0);
-    }
 
 }

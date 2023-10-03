@@ -1,4 +1,6 @@
 package org.fiuba.algoritmos3;
+import Tipo.Tipo;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,15 +27,15 @@ public class Datos {
 
     private void InicialzarPokemonesJugador1(){
 
-        Pokemon pokemon1 = new Pokemon("Squirtle", 5, "Agua", "Es un pokemon de Agua", 100, 15, 20, 20);
-        Pokemon pokemon2 = new Pokemon("Charmander", 5, "Fuego", "Es un pokemon de Fuego", 100, 20, 25, 25);
+        Pokemon pokemon1 = new Pokemon("Squirtle", 5, "Agua", "Es un pokemon de Agua", 44, 43, 65, 50);
+        Pokemon pokemon2 = new Pokemon("Charmander", 100, "Fuego", "Es un pokemon de Fuego", 39, 65, 50, 60);
         Pokemon pokemon3 = new Pokemon("Pikachu", 5, "Agua", "Es un pokemon de Agua", 100, 15, 20, 20);
         Pokemon pokemon4 = new Pokemon("Charizard", 5, "Fuego", "Es un pokemon de Fuego", 100, 20, 25, 25);
         Pokemon pokemon5 = new Pokemon("Vaporeon", 5, "Fuego", "Es un pokemon de Fuego", 100, 20, 25, 25);
         Pokemon pokemon6 = new Pokemon("Charmander_1", 10, "Fuego", "Es un pokemon de Fuego", 100, 20, 25, 25);
 
-        Habilidad chorroDeAgua = new HabilidadAtaque("chorroDeAgua",Tipo.getTipo("Agua"),15,10);
-        Habilidad Lanzallamas = new HabilidadAtaque("Lanzallamas",Tipo.getTipo("Fuego"),15,10);
+        Habilidad chorroDeAgua = new HabilidadAtaque("ChorroDeAgua",Tipo.getTipo("Agua"),40,25);
+        Habilidad Lanzallamas = new HabilidadAtaque("Lanzallamas",Tipo.getTipo("Fuego"),90,15);
 
         Habilidad sanacion = new HabilidadEstadistica("Sanacion", 10,true, 2, new ModificacionVida());
         Habilidad dormir = new HabilidadEstado("Dormir", 4, new EstadoDormido("Dormido"));
@@ -70,15 +72,15 @@ public class Datos {
 
     private void InicialzarPokemonesJugador2(){
 
-        Pokemon pokemon1 = new Pokemon("Squirtle", 5, "Agua", "Es un pokemon de Agua", 100, 15, 20, 20);
-        Pokemon pokemon2 = new Pokemon("Charmander", 5, "Fuego", "Es un pokemon de Fuego", 100, 20, 25, 25);
+        Pokemon pokemon1 = new Pokemon("Squirtle", 100, "Agua", "Es un pokemon de Agua", 44, 43, 65, 50);
+        Pokemon pokemon2 = new Pokemon("Charmander", 5, "Fuego", "Es un pokemon de Fuego", 39, 65, 50, 60);
         Pokemon pokemon3 = new Pokemon("Pikachu", 5, "Agua", "Es un pokemon de Agua", 100, 15, 20, 20);
         Pokemon pokemon4 = new Pokemon("Charizard", 5, "Fuego", "Es un pokemon de Fuego", 100, 20, 25, 25);
         Pokemon pokemon5 = new Pokemon("Vaporeon", 5, "Fuego", "Es un pokemon de Fuego", 100, 20, 25, 25);
         Pokemon pokemon6 = new Pokemon("Charmander_1", 10, "Fuego", "Es un pokemon de Fuego", 100, 20, 25, 25);
 
-        Habilidad chorroDeAgua = new HabilidadAtaque("chorroDeAgua",Tipo.getTipo("Agua"),15,10);
-        Habilidad Lanzallamas = new HabilidadAtaque("Lanzallamas",Tipo.getTipo("Fuego"),15,10);
+        Habilidad chorroDeAgua = new HabilidadAtaque("ChorroDeAgua",Tipo.getTipo("Agua"),40,25);
+        Habilidad Lanzallamas = new HabilidadAtaque("Lanzallamas",Tipo.getTipo("Fuego"),90,15);
         Habilidad sanacion = new HabilidadEstadistica("Sanacion", 10,true, 2, new ModificacionVida());
 
         Habilidad dormir = new HabilidadEstado("Dormir", 4, new EstadoDormido("Dormido"));
