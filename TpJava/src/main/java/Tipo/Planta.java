@@ -1,13 +1,12 @@
 package Tipo;
 
-import Tipo.Tipo;
-
 public class Planta extends Tipo {
 
     public Planta(String nombre){
         super(nombre);
         this.completarTablaEfectividad();
     }
+    
     @Override
     public void completarTablaEfectividad(){
         this.tablaEfectividad.put("Agua", "Fuerte");

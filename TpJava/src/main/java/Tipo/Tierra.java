@@ -6,6 +6,7 @@ public class Tierra extends Tipo {
         super(nombre);
         this.completarTablaEfectividad();
     }
+    
     @Override
     public void completarTablaEfectividad(){
         this.tablaEfectividad.put("Bicho","Debil");

@@ -6,6 +6,7 @@ public class Psiquico extends Tipo {
         super(nombre);
         this.completarTablaEfectividad();
     }
+    
     @Override
     public void completarTablaEfectividad(){
         this.tablaEfectividad.put("Lucha","Fuerte");

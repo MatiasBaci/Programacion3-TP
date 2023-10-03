@@ -1,10 +1,6 @@
 package Tipo;
 
-// import java.util.HashMap;
-
-import Tipo.Tipo;
-
-public class Agua extends Tipo { //extends de Tipo
+public class Agua extends Tipo {
 
     public Agua(String nombre){
 

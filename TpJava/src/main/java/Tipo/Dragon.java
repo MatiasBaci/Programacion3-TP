@@ -1,8 +1,6 @@
 package Tipo;
 
-// import java.util.HashMap;
-
-public class Dragon extends Tipo { //extends de Tipo
+public class Dragon extends Tipo {
 
     public Dragon(String nombre){
 
@@ -10,9 +8,8 @@ public class Dragon extends Tipo { //extends de Tipo
         this.completarTablaEfectividad(); // Consultarlo si se puede hacer esto o hacer un metodo estatico que se inicialice al hacer new ()
     }
 
-//  public static void completarTablaEfectividad(){
     @Override
     public void completarTablaEfectividad(){
-        this.tablaEfectividad.put("Dragon","Debil");
+        this.tablaEfectividad.put("Dragon","Fuerte");
     }
 }
