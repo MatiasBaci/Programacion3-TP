@@ -75,6 +75,7 @@ public class Juego {
 
     public void DesarrollarJuego(){
         this.menuSeleccion();
+        controlador.inicializarOpciones();
         this.iteracionesJugadores();
     }
 
