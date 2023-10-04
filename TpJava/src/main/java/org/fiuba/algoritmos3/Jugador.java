@@ -71,16 +71,19 @@ public class Jugador {
 
     public boolean elegirPokemon(String unPokemon) {
         if (this.seleccionarPokemon(unPokemon) == null) {
-            System.out.println("ERROR: No se encontro el pokemon en tu mochila :C ");
+            System.out.println("ERROR: NO SE ENCONTRO EL POKEMON EN LA MOCHILA.");
+            System.out.println("\n");
             return false;
         }
         else if (!this.seleccionarPokemon(unPokemon).estaConciente()) {
-            System.out.println("ERROR: El pokemon no tiene vida. :C ");
+            System.out.println("ERROR: EL POKEMON NO TIENE VIDA ");
+            System.out.println("\n");
             return false;
         }
         else if(this.pokemonActual != null){
             if(Objects.equals(unPokemon, pokemonActual.getNombre())) {
-                System.out.println("Estas eligindo a tu Pokemon actual. :C ");
+                System.out.println("ESTAS ELIGIENDO A TU POKEMON ACTUAL ");
+                System.out.println("\n");
                 return false;
             }
         }
@@ -101,17 +104,25 @@ public class Jugador {
         setAtacante(false);
     }
 
-    public boolean intercambiarPokemon(String decision, Pokemon pokemon){
+    private void mensajeIntercambioAlAdversario(){
+
+        System.out.println("╔══════════════════════════════════════╗");
+        System.out.println("║ El Adversario Intercambio el Pokemon ║ ");
+        System.out.println("╚══════════════════════════════════════╝");
+        System.out.println("\n");
+
+    }
+
+    public void intercambiarPokemon(String decision, Pokemon pokemon){
 
         if (Objects.equals(decision, "Si")) {
-            System.out.println("Se realizo el intercambio. ");
+            //System.out.println("Se realizo el intercambio. ");
+            mensajeIntercambioAlAdversario();
             this.setAtacante(false);
-            return true;
 
         } else {
             this.setPokemonActual(pokemon);
             System.out.println("No se realizo el intercambio. ");
-            return false;
 
         }
     }
@@ -165,6 +176,9 @@ public class Jugador {
         return this.pokemonActual.estaConciente();
     }
 
+    public String getNombrePokemonActual(){
+       return this.pokemonActual.getNombre();
+    }
 }
 
 

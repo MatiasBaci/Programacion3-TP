@@ -80,18 +80,7 @@ public class Estadisticas {
     }
 
 
-    public void modificarEstadistica(String unaEstadistica,int etapa){ //AQUI REFACTORIZAR LOS IFS :C
-        if(unaEstadistica == "Defensa"){
-            this.modificarDefensa(etapa);
-        } else if(unaEstadistica == "Ataque"){
-            this.modificarAtaque(etapa);
-        } else if(unaEstadistica == "Velocidad"){
-            this.modificarVelocidad(etapa);
-        }
-    }
-
     public void resetearEstadisticas(){
-        this.vidaActual = this.vidaMaxima;
         this.velocidad = this.velocidadBase;
         this.defensa = this.defensaBase;
         this.ataque = this.ataqueBase;
@@ -99,6 +88,7 @@ public class Estadisticas {
 
     public void mostrarEstadisticas(){
         System.out.println(
+                " Nivel: " + this.nivel + " --" +
                 " HP: " + this.vidaActual + " --" +
                         " Velocidad: " + this.velocidad + " --" +
                         " Defensa: " + this.defensa + " --" +

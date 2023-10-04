@@ -28,10 +28,10 @@ public class Juego {
     private void decidirTurnoInicial() {
         if (this.pokemonJugador1EsRapido(jugador1.getPokemonActual(), jugador2.getPokemonActual())) {
             jugador1.setAtacante(true);
-            System.out.println("Comienza atacando " + jugador1.getNombre());
+            System.out.println("COMIENZA ATACANDO " + jugador1.getNombre());
         } else {
             jugador2.setAtacante(true);
-            System.out.println("Comienza atacando " + jugador2.getNombre());
+            System.out.println("COMIENZA ATACANDO " + jugador2.getNombre());
         }
     }
 
@@ -48,8 +48,6 @@ public class Juego {
 
 
     public void aplicarIteracion(Jugador jugador, Jugador jugadorAversario){
-
-        System.out.println("Es el turno de " + jugador.getNombre());
 
         jugador.aplicarEfectoPasivo();
 

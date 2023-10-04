@@ -8,7 +8,7 @@ public class Pokemon {
 
     //Atributos:
     private String nombre;
-    private Tipo tipo; //DEBE SER UNA REFERENCIA A LA CLASE AGUA, NO UNA INSTANCIA DE AGUA
+    private Tipo tipo;
     private String historia;
     private Estadisticas estadisticas;
 
@@ -96,7 +96,7 @@ public class Pokemon {
         System.out.println(" Tipo: " + this.tipo.getNombre());
         this.estadisticas.mostrarEstadisticas();
         System.out.println(" Historia: " + this.historia);
-        System.out.println(" Estado: " + this.estadoActual.getNombre());
+        System.out.println(" Estado: " + this.estadoActual.getNombre() + "\n");
     }
 
     public void mostrarHabilidades() {

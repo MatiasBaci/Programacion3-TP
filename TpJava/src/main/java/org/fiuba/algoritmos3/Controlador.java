@@ -21,7 +21,7 @@ public class Controlador {
     }
 
     private void mensajeMenu() {
-        System.out.println(" ");
+
         System.out.println("╔═══════════════════════════╗");
         System.out.println("║           MENU            ║");
         System.out.println("║═══════════════════════════║");
@@ -36,51 +36,51 @@ public class Controlador {
         System.out.println("║                           ║");
         System.out.println("║ 5 => Atacar               ║");
         System.out.println("╚═══════════════════════════╝");
-        System.out.println(" ");
-        System.out.println("Seleccione una de las opciones: ");
+        System.out.println("\n");
 
 
     }
 
     private void mensajeCampoBatalla() {
-        System.out.println(" ");
+        System.out.println("\n");
         System.out.println("╔══════════════════╗");
         System.out.println("║ Campo de Batalla ║");
         System.out.println("╚══════════════════╝");
-        System.out.println(" ");
+        System.out.println("\n");
     }
 
 
     private void mensajeIntercambiarPokemon() {
-        System.out.println(" ");
+        System.out.println("\n");
         System.out.println("╔══════════════════════╗");
         System.out.println("║ Intercambiar Pokemon ║");
         System.out.println("╚══════════════════════╝");
-        System.out.println(" ");
+        System.out.println("\n");
     }
 
     private void mensajeAtacarPokemon() {
-        System.out.println(" ");
+        System.out.println("\n");
         System.out.println("╔════════════════╗");
         System.out.println("║ Atacar Pokemon ║");
         System.out.println("╚════════════════╝");
-        System.out.println(" ");
+        System.out.println("\n");
     }
 
 
     private void mensajeNombreJugador() {
-        System.out.println(" ");
+        System.out.println("\n");
         System.out.println("╔════════════════════╗");
         System.out.println("║ Eleccion de nombre ║ ");
         System.out.println("╚════════════════════╝");
-        System.out.println(" ");
+        System.out.println("\n");
     }
 
     private void mensajePokemonInicial() {
+        System.out.println("\n");
         System.out.println("╔══════════════════════╗");
         System.out.println("║ Seleccion de Pokemon ║");
         System.out.println("╚══════════════════════╝");
-        System.out.println(" ");
+        System.out.println("\n");
 
         System.out.println("╔════════════════════════════════════════════════════════════╗");
         System.out.println("║ Tenga en cuenta que empieza el pokemon con mayor velocidad ║");
@@ -88,20 +88,20 @@ public class Controlador {
     }
 
     private void mensajeOpcionInvalida() {
-        System.out.println(" ");
+        System.out.println("\n");
         System.out.println("╔═════════════════╗");
         System.out.println("║ Opcion Invalida ║");
         System.out.println("╚═════════════════╝");
-        System.out.println(" ");
+        System.out.println("\n");
 
     }
 
     private void mensajeOpcionAplicarItem() {
-        System.out.println(" ");
+        System.out.println("\n");
         System.out.println("╔══════════════╗");
         System.out.println("║ Aplicar Item ║");
         System.out.println("╚══════════════╝");
-        System.out.println(" ");
+        System.out.println("\n");
 
     }
 
@@ -127,6 +127,7 @@ public class Controlador {
                 System.out.println("Bienvenido al juego " + nombreJugador);
             } else {
                 mensajeNombreJugador();
+                System.out.println("\n");
                 System.out.println("╔═══════════════════════════════════════════════════════════╗");
                 System.out.println("║ El nombre tiene mas de 50 caracteres, vuelva a intentarlo ║");
                 System.out.println("╚═══════════════════════════════════════════════════════════╝");
@@ -181,7 +182,7 @@ public class Controlador {
             pokemonValido = jugador.elegirPokemon(nombrepokemon);
         }
     }
-    public boolean opcionInercambarPokemon(Jugador jugador) {
+    public void opcionInercambarPokemon(Jugador jugador) {
 
         this.mensajeIntercambiarPokemon();
         Pokemon pokemonAuxliar = jugador.getPokemonActual();
@@ -189,18 +190,10 @@ public class Controlador {
         System.out.println("Desea Realizar el cambio? Si - No");
         Scanner scanner = new Scanner(System.in);
         String decision = scanner.next();
-        return jugador.intercambiarPokemon(decision, pokemonAuxliar);
+        jugador.intercambiarPokemon(decision, pokemonAuxliar);
     }
 
-    private void mensajeIntercambioAlAdversario(boolean intercambioPokemon){
 
-        System.out.println(" ");
-        System.out.println("╔══════════════════════════════════════╗");
-        System.out.println("║ El Adversario Intercambio el Pokemon ║ ");
-        System.out.println("╚══════════════════════════════════════╝");
-        System.out.println(" ");
-
-    }
 
     public void opcionAtacar(Jugador jugador, Jugador jugadorAdversario) {
 
@@ -259,8 +252,9 @@ public class Controlador {
 
         while (jugador.isAtacante()) {
             this.mensajeMenu();
-            System.out.println("El jugador actual es " + jugador.getNombre());
-            System.out.println("Oprima una de las opciones: ");
+            System.out.println("TURNO: " + jugador.getNombre());
+            System.out.println("POKEMON: " + jugador.getNombrePokemonActual());
+            System.out.println("SELECCIONE UNA OPCION: ");
             decision = scanner.next();
 
             if (Objects.equals(decision, "1")) {
@@ -268,7 +262,7 @@ public class Controlador {
             } else if (Objects.equals(decision, "2")) {
                 this.opcionVerCampoBatalla(jugador, jugador.getAdversario());
             } else if (Objects.equals(decision, "3")) {
-                IntercambioPokemon = this.opcionInercambarPokemon(jugador);
+                this.opcionInercambarPokemon(jugador);
             } else if (Objects.equals(decision, "4")) {
                 this.opcionAplicarItem(jugador);
             } else if (Objects.equals(decision, "5")) {
@@ -276,9 +270,7 @@ public class Controlador {
             } else {
                 this.mensajeOpcionInvalida();
             }
-            if(IntercambioPokemon) {
-                this.mensajeIntercambioAlAdversario(IntercambioPokemon);
-            }
+
         }
     }
 

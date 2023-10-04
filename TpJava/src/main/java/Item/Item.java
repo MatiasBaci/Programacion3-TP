@@ -34,6 +34,7 @@ public abstract class Item {
         }
         else{
             System.out.print("Acaba de seleccionar el siguiente Item: " + nombre);
+            System.out.println("\n");
             return aplicarItem(unPokemon);
         }
     }

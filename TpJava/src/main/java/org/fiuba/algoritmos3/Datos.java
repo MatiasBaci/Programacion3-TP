@@ -125,8 +125,8 @@ public class Datos {
 
     private void InicialzarPokemonesJugador2(){
 
-        Pokemon alakazam = new Pokemon("Alakazam", 1, "Psiquico", "Se dice que tiene un coeficiente intelectual de unos 5.000.",
-        1	, 140, 65, 155);
+        Pokemon alakazam = new Pokemon("Alakazam", 50, "Psiquico", "Se dice que tiene un coeficiente intelectual de unos 5.000.",
+        100	, 140, 65, 155);
         Habilidad psiquico = new HabilidadAtaque("Psiquico",Tipo.getTipo("Psiquico"),90,10);
         alakazam.añadirHabilidad(psiquico);
         Habilidad recuperacion = new HabilidadEstadistica("Recuperacion", 5, true, (int)(alakazam.getVidaMaxima()/2), new ModificacionVida());
@@ -138,8 +138,8 @@ public class Datos {
         this.mochilaJugador2.put(alakazam.getNombre(), alakazam);
 
 
-        Pokemon trevenant = new Pokemon("Trevenant", 1, "Planta", "Se dice que los árboles donde vive Trevenant están poseídos por los espíritus de los muertos.",
-        1, 76, 102, 130);
+        Pokemon trevenant = new Pokemon("Trevenant", 50, "Planta", "Se dice que los árboles donde vive Trevenant están poseídos por los espíritus de los muertos.",
+        100, 76, 102, 130);
         Habilidad mazazo = new HabilidadAtaque("Mazazo",Tipo.getTipo("Planta"),120,15);
         trevenant.añadirHabilidad(mazazo);
         Habilidad sombraVil = new HabilidadAtaque("SombraVil",Tipo.getTipo("Fantasma"),80,15);
@@ -151,8 +151,8 @@ public class Datos {
         this.mochilaJugador2.put(trevenant.getNombre(), trevenant);
 
 
-        Pokemon golem = new Pokemon("Golem", 1, "Roca", "Es capaz de explotar a voluntad. Utiliza el impulso de la explosión para saltar de una montaña a otra.",
-        1, 65, 150, 140);
+        Pokemon golem = new Pokemon("Golem", 50, "Roca", "Es capaz de explotar a voluntad. Utiliza el impulso de la explosión para saltar de una montaña a otra.",
+        100, 65, 150, 140);
         Habilidad terremoto = new HabilidadAtaque("Terremoto",Tipo.getTipo("Tierra"),100,10);
         golem.añadirHabilidad(terremoto);
         Habilidad rocaAfilada = new HabilidadAtaque("RocaAfilada",Tipo.getTipo("Roca"),100,5);
@@ -164,8 +164,8 @@ public class Datos {
         this.mochilaJugador2.put(golem.getNombre(), golem);
 
 
-        Pokemon rayquaza = new Pokemon("Rayquaza", 1, "Dragon", "Se dice que vive en la capa de ozono. Los anillos que tiene en el cuerpo brillan de siete colores distintos.",
-        1, 115, 90, 170);
+        Pokemon rayquaza = new Pokemon("Rayquaza", 50, "Dragon", "Se dice que vive en la capa de ozono. Los anillos que tiene en el cuerpo brillan de siete colores distintos.",
+        100, 115, 90, 170);
         Habilidad ascensoDraco = new HabilidadAtaque("AscensoDraco",Tipo.getTipo("Dragon"),120,5);
         rayquaza.añadirHabilidad(ascensoDraco);
         Habilidad poderPasado = new HabilidadAtaque("PoderPasado",Tipo.getTipo("Roca"),60,5);
@@ -177,8 +177,8 @@ public class Datos {
         this.mochilaJugador2.put(rayquaza.getNombre(), rayquaza);
 
 
-        Pokemon araquanid = new Pokemon("Araquanid", 1, "Bicho", "Araquanid es capaz de expulsar un hilo de agua a gran presión y velocidad gracias a la fuerza de sus patas traseras.",
-        1, 62, 152, 90);
+        Pokemon araquanid = new Pokemon("Araquanid", 50, "Bicho", "Araquanid es capaz de expulsar un hilo de agua a gran presión y velocidad gracias a la fuerza de sus patas traseras.",
+        100, 62, 152, 90);
         Habilidad hidrobomba = new HabilidadAtaque("Hidrobomba",Tipo.getTipo("Agua"),110,5);
         araquanid.añadirHabilidad(hidrobomba);
         Habilidad toxico = new HabilidadEstado("Toxico", 5, new EstadoEnvenenado("Envenenado"));
@@ -203,7 +203,7 @@ public class Datos {
         this.mochilaJugador2.put(bidoof.getNombre(), bidoof);
 
 
-        Item pocion = new Pocion("Pocion", 1, new ModificacionVida());
+        Item pocion = new Pocion("Pocion", 50, new ModificacionVida());
         Item megaPocion = new MegaPocion("Mega Pocion", 2, new ModificacionVida());
         Item hiperPocion = new HiperPocion("Hiper Pocion", 4, new ModificacionVida());
         Item pocionDefensa = new PocionDefensa("Pocion de Defensa", 3, new ModificacionDefensa());
