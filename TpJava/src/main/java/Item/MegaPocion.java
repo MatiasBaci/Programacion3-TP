@@ -18,7 +18,7 @@ public class MegaPocion extends Item {
         return itemUsado;
 
     }
-
+    @Override
     public void mostrarItem() {
         System.out.println(nombre + ": Restaura 50 de vida - Cantidad: " + cantidad);
     }

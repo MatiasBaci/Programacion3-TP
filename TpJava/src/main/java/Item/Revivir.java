@@ -28,8 +28,7 @@ public class Revivir extends Item {
         return itemUsado;
 
     }
-    
-
+    @Override
     public void mostrarItem() {
         System.out.println(nombre + ": Revive al pokemon con toda su salud - Cantidad: " + cantidad);
     }

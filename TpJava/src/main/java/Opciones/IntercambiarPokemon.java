@@ -20,16 +20,16 @@ public class IntercambiarPokemon implements Opciones{
         System.out.println("╚══════════════════════╝");
         System.out.println("\n");
     }
-
+    @Override
     public void aplicarOpcion(Jugador jugador, Jugador jugadorAdversario){
 
-            this.mensajeIntercambiarPokemon();
-            Pokemon pokemonAuxliar = jugador.getPokemonActual();
-            this.controlador.seleccionarPokemon(jugador);
-            System.out.println("Desea Realizar el cambio? Si - No");
-            Scanner scanner = new Scanner(System.in);
-            String decision = scanner.next();
-            jugador.intercambiarPokemon(decision, pokemonAuxliar);
+        this.mensajeIntercambiarPokemon();
+        Pokemon pokemonAuxliar = jugador.getPokemonActual();
+        this.controlador.seleccionarPokemon(jugador);
+        System.out.println("Desea Realizar el cambio? Si - No");
+        Scanner scanner = new Scanner(System.in);
+        String decision = scanner.next();
+        jugador.intercambiarPokemon(decision, pokemonAuxliar);
 
     }
 }

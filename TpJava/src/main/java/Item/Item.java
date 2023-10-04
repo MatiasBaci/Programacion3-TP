@@ -12,7 +12,7 @@ public abstract class Item {
     protected String nombre;
     protected int cantidad;
     protected Modificacion unaModificacion;
-    boolean itemUsado;
+    protected boolean itemUsado;
 
     public Item(String nombre, int cantidad) {
         this.nombre = nombre;

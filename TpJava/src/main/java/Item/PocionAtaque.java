@@ -20,7 +20,7 @@ public class PocionAtaque extends Item {
         return itemUsado;
     }
 
-
+    @Override
     public void mostrarItem() {
         System.out.println(nombre + ": Aumenta 10% el ataque - Cantidad: " + cantidad);
     }

@@ -14,6 +14,7 @@ public class VerCampoDeBatalla implements Opciones{
         System.out.println("╚══════════════════╝");
         System.out.println("\n");
     }
+    @Override
     public void aplicarOpcion(Jugador jugador, Jugador jugadorAdversario){
 
         this.mensajeCampoBatalla();

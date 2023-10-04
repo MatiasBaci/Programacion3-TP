@@ -22,7 +22,7 @@ public class PocionDefensa extends Item {
 
 
     }
-
+    @Override
     public void mostrarItem() {
         System.out.println(nombre + ": Aumenta 10% la defensa - Cantidad: " + cantidad);
     }

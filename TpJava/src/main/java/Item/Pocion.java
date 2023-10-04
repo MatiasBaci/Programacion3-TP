@@ -9,7 +9,7 @@ public class Pocion extends Item {
         super(nombre, cantidad);
         this.unaModificacion = modificar;
     }
-
+    @Override
     public boolean aplicarItem(Pokemon unPokemon){
 
         realizarUsadoItemsDeCuracion(unPokemon.getEstadisticas());

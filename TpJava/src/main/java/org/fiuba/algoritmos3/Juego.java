@@ -1,6 +1,7 @@
 package org.fiuba.algoritmos3;
-/* import java.util.ArrayList;
-import java.util.List; */
+
+import Opciones.Opciones;
+
 public class Juego {
 
     //Atributos:
@@ -9,6 +10,7 @@ public class Juego {
     private Datos datos;
     private Controlador controlador;
 
+    private Opciones opciones;
     //Metodos:
 
     public Juego(){
@@ -75,7 +77,7 @@ public class Juego {
 
     public void DesarrollarJuego(){
         this.menuSeleccion();
-        controlador.inicializarOpciones();
+        this.controlador.inicializarOpciones();
         this.iteracionesJugadores();
     }
 
