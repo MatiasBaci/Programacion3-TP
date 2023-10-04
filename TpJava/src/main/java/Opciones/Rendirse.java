@@ -1,4 +1,5 @@
 package Opciones;
+
 import org.fiuba.algoritmos3.Jugador;
 
 public class Rendirse implements Opciones{
