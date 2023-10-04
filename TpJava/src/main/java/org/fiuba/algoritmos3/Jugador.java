@@ -95,6 +95,7 @@ public class Jugador {
 
         if(!this.validarHabilidadPokemon(nombreHabilidad)) {
             System.out.println("La habilidad no existe. ");
+            return;
         }
         pokemonActual.atacar(jugadorAdversario.getPokemonActual(), nombreHabilidad);
         setAtacante(false);
