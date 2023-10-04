@@ -17,7 +17,6 @@ public class Jugador {
 
     private Jugador adversario;
     private boolean atacante;
-    private boolean ganoJuego;
 
     // Metodos:
 
@@ -50,16 +49,12 @@ public class Jugador {
         this.pokemonActual = pokemonActual;
     }
 
-    public void setGanoJuego(boolean ganoJuego) {
-        this.ganoJuego = ganoJuego;
-    }
-
     public boolean isAtacante() {
         return atacante;
     }
 
-    public boolean isGanoJuego() {
-        return ganoJuego;
+    public boolean perdio() {
+        return !this.misPokemones.values().stream().anyMatch(Pokemon::estaConciente);
     }
 
     private Pokemon seleccionarPokemon(String unPokemon) {
@@ -68,10 +63,6 @@ public class Jugador {
 
     public void añadirAdversario(Jugador unEnemigo) {
         this.adversario = unEnemigo;
-    }
-
-    public void ganar() {
-        ganoJuego = true;
     }
 
     public void aplicarEfectoPasivo() {

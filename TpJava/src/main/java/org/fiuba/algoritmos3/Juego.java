@@ -70,12 +70,17 @@ public class Juego {
 
     public void iteracionesJugadores() {
 
-        while (!this.jugador1.isGanoJuego() && !this.jugador2.isGanoJuego()){
+        while (!this.jugador1.perdio() && !this.jugador2.perdio()){
             if(this.jugador1.isAtacante()){
                 this.aplicarIteracion(this.jugador1, this.jugador2);
             } else{
                 this.aplicarIteracion(this.jugador2, this.jugador1);
             }
+        }
+        if(this.jugador1.perdio()){
+            System.out.println("Gano " + this.jugador2.getNombre());
+        } else{
+            System.out.println("Gano " + this.jugador1.getNombre());
         }
     }
 
