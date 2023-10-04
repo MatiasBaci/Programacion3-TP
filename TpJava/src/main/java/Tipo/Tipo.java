@@ -49,11 +49,14 @@ public abstract class Tipo {
     }
 
     private String compararseConTipo(Tipo unTipo){
-        return this.tablaEfectividad.get(unTipo.getNombre());
+        if(tablaEfectividad.containsKey(unTipo.getNombre())) {
+            return this.tablaEfectividad.get(unTipo.getNombre());
+        }
+        return "Normal";
     }
 
     public double calcularMultiplicadorDeDanio(Tipo unTipo){
-        double multiplicador = 1;
+        double multiplicador;
         String efectividad = this.compararseConTipo(unTipo);
         switch (efectividad){
             case "Fuerte":
@@ -65,6 +68,7 @@ public abstract class Tipo {
             case "Nula":
                 multiplicador = 0;
                 break;
+            default: multiplicador = 1;
         }
         return multiplicador;
     }

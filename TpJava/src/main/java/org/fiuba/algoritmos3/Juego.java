@@ -21,16 +21,6 @@ public class Juego {
         this.controlador = new Controlador();
     }
 
-    public void inicializarJuego(){
-        System.out.println("Pruebas de Jugador - Creacion");
-
-        jugador1.elegirPokemon("Squirtle");
-        jugador1.elegirPokemon("Ratata");
-        jugador2.elegirPokemon("Charmander");
-
-        //jugador1.atacarAdversario(); // Si se corre sin añadir habilidades al pokemon salta error,
-    }
-
     private boolean pokemonJugador1EsRapido(Pokemon pokemonJugador1, Pokemon pokemonJugador2){
         return pokemonJugador1.getVelocidad() >= pokemonJugador2.getVelocidad();
     }
@@ -62,6 +52,7 @@ public class Juego {
         System.out.println("Es el turno de " + jugador.getNombre());
 
         jugador.aplicarEfectoPasivo();
+
         controlador.opcionesJugadores(jugador);
 
         jugadorAversario.setAtacante(true);

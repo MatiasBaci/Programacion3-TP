@@ -134,10 +134,10 @@ public class Controlador {
         }
     }
 
-    public void ganar(Jugador jugador) {
-        this.felicitar(jugador);
-        jugador.ganar();
-    }
+   // public void ganar(Jugador jugador) {
+     //   this.felicitar(jugador);
+       // jugador.ganar();
+    //}
 
 
     private void felicitar(Jugador jugador) {
@@ -152,7 +152,7 @@ public class Controlador {
 
         jugador.setAtacante(false);
 
-        this.ganar(jugadorAdversario);
+        //this.ganar(jugadorAdversario);
     }
 
 

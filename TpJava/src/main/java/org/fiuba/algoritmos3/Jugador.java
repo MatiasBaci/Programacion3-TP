@@ -102,15 +102,16 @@ public class Jugador {
 
     public boolean intercambiarPokemon(String decision, Pokemon pokemon){
 
-        if (Objects.equals(decision, "No")) {
+        if (Objects.equals(decision, "Si")) {
+            System.out.println("Se realizo el intercambio. ");
+            this.setAtacante(false);
+            return true;
+
+        } else {
             this.setPokemonActual(pokemon);
             System.out.println("No se realizo el intercambio. ");
             return false;
 
-        } else {
-            System.out.println("Se realizo el intercambio. ");
-            this.setAtacante(false);
-            return true;
         }
     }
 
