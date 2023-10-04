@@ -109,7 +109,7 @@ public class Datos {
         Item hiperPocion = new HiperPocion("Hiper Pocion", 1, new ModificacionVida());
         Item pocionDefensa = new PocionDefensa("Pocion de Defensa", 2, new ModificacionDefensa());
         Item pocionAtaque = new PocionAtaque("Pocion de Ataque", 1, new ModificacionAtaque());
-        Item revivir = new Revivir("Revivir", 1, new ModificacionVida());
+        Item revivir = new Revivir("Revivir", 1, new ModificacionEstadoInhabilitado());
         Item curarTodo = new PocionCuracionEstados("Curar todo",1);
 
         this.itemsJugador1.put(pocion.getNombre(), pocion);

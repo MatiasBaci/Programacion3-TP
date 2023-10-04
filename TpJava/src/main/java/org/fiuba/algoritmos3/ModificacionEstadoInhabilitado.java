@@ -4,7 +4,13 @@ public class ModificacionEstadoInhabilitado implements Modificacion{
 
     @Override
     public void modificar(Estadisticas estadisticas, int etapas) {
-        estadisticas.aumentarVida(etapas);
+        if(estadisticas.getVida() == 0) {
+            estadisticas.aumentarVida(etapas);
+        }else{
+            System.out.println(" ");
+            System.out.println("El Pokemon no se puede revivir ya que no esta Inhabilitado");
+        }
+
     }
 
     @Override

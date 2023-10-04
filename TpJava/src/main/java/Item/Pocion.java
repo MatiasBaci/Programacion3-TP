@@ -12,8 +12,9 @@ public class Pocion extends Item {
 
     public boolean aplicarItem(Pokemon unPokemon){
 
+        realizarUsadoItemsDeCuracion(unPokemon.getEstadisticas());
         this.unaModificacion.modificar(unPokemon.getEstadisticas(), 25);
-        return realizarUsadoItemsDeCuracion(unPokemon.getEstadisticas());
+        return itemUsado;
 
     }
 

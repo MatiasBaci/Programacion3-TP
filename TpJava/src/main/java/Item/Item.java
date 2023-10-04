@@ -39,40 +39,33 @@ public abstract class Item {
         }
     }
 
-    public boolean realizarUsadoItemsDeCuracion(Estadisticas estadistica){
+    public void realizarUsadoItemsDeCuracion(Estadisticas estadistica){
         if(estadistica.getVida() != 0 && estadistica.getVida() != estadistica.getVidaMaxima()){
             this.cantidad --;
             this.itemUsado = true;
-            return true;
         }
-        return false;
 
     }
 
-    public boolean realizarUsadoItemsDeEstadisitcas(Estadisticas estadistica){
+    public void realizarUsadoItemsDeEstadisitcas(Estadisticas estadistica){
         if(estadistica.getVida() != 0){
             this.cantidad --;
             this.itemUsado = true;
-            return true;
         }
 
-        return false;
 
     }
 
-    public boolean realizarUsadoItemsDeEstado(Estado unEstado){
+    public void realizarUsadoItemsDeEstado(Estado unEstado){
         if(Objects.equals(unEstado.getNombre(), "Inhabilitado")){
             this.cantidad --;
             this.itemUsado = true;
-            return true;
         }
         else if(!Objects.equals(unEstado.getNombre(), "Normal") && !Objects.equals(unEstado.getNombre(), "Inhabilitado")){
             this.cantidad --;
             this.itemUsado = true;
-            return true;
         }
 
-        return false;
 
     }
 

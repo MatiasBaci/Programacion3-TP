@@ -14,8 +14,9 @@ public class PocionCuracionEstados extends Item {
     public boolean aplicarItem(Pokemon unPokemon) {
 
         if (!Objects.equals(unPokemon.suEstadoEs(), "Normal") && unPokemon.estaConciente()) {
+            realizarUsadoItemsDeEstado(unPokemon.getEstadoActual());
             unPokemon.cambiarseEstado(new EstadoNormal("Normal"));
-            return realizarUsadoItemsDeEstado(unPokemon.getEstadoActual());
+            return itemUsado;
         } else {
             System.out.println(" ");
             System.out.println("No se puede aplicar este item a un Pokemon Inhabilitado o Normal.");

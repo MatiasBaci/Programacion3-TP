@@ -9,6 +9,9 @@ import java.util.Scanner;
 public class IntercambiarPokemon implements Opciones{
 
     private Controlador controlador;
+    public IntercambiarPokemon(){
+        this.controlador = new Controlador();
+    }
 
     private void mensajeIntercambiarPokemon() {
         System.out.println("\n");
