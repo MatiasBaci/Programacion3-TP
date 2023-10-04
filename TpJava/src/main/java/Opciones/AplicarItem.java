@@ -1,4 +1,5 @@
-package org.fiuba.algoritmos3;
+package Opciones;
+import org.fiuba.algoritmos3.Jugador;
 
 import Item.Item;
 

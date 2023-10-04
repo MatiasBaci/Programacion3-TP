@@ -1,4 +1,7 @@
-package org.fiuba.algoritmos3;
+package Opciones;
+import org.fiuba.algoritmos3.Jugador;
+import org.fiuba.algoritmos3.Controlador;
+import org.fiuba.algoritmos3.Pokemon;
 
 import java.util.Scanner;
 
