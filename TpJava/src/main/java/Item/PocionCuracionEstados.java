@@ -1,7 +1,6 @@
 package Item;
 import static org.fiuba.algoritmos3.Constantes.*;
 
-import Item.Item;
 import org.fiuba.algoritmos3.EstadoNormal;
 import org.fiuba.algoritmos3.Pokemon;
 

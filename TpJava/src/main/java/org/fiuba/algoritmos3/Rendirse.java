@@ -1,7 +1,5 @@
 package org.fiuba.algoritmos3;
 
-import org.fiuba.algoritmos3.Jugador;
-
 public class Rendirse implements Opciones{
 
     @Override
@@ -11,7 +9,7 @@ public class Rendirse implements Opciones{
         System.out.println("╚═════════════════╝");
 
        // jugador.setAtacante(false);
-
+        jugador.perder();
         //this.ganar(jugadorAdversario);
     }
 }

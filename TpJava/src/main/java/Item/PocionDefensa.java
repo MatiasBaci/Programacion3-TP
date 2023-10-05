@@ -1,6 +1,5 @@
 package Item;
 
-import Item.Item;
 import org.fiuba.algoritmos3.Modificacion;
 import org.fiuba.algoritmos3.Pokemon;
 

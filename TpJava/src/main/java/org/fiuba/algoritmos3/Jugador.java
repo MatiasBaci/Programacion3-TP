@@ -18,6 +18,8 @@ public class Jugador {
     private Jugador adversario;
     private boolean atacante;
 
+    private boolean esPerdedor;
+
     // Metodos:
 
     public Jugador(String nombre, Map<String, Pokemon> misPokemones, Map<String, Item> items) {
@@ -25,6 +27,7 @@ public class Jugador {
         this.misPokemones = misPokemones;
         this.items = items;
         this.atacante = false;
+        this.esPerdedor = false;
     }
 
     public Pokemon getPokemonActual() {
@@ -54,7 +57,12 @@ public class Jugador {
     }
 
     public boolean perdio() {
-        return !this.misPokemones.values().stream().anyMatch(Pokemon::estaConciente);
+        return (!this.misPokemones.values().stream().anyMatch(Pokemon::estaConciente)||
+        this.esPerdedor);
+    }
+
+    public void perder() {
+        this.esPerdedor = true;
     }
 
     private Pokemon seleccionarPokemon(String unPokemon) {
@@ -181,6 +189,7 @@ public class Jugador {
     public String getNombrePokemonActual(){
        return this.pokemonActual.getNombre();
     }
+
 }
 
 

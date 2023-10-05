@@ -1,8 +1,6 @@
 package org.fiuba.algoritmos3;
 
 import Item.Item;
-import org.fiuba.algoritmos3.Jugador;
-
 import java.util.Scanner;
 
 public class AplicarItem implements Opciones{

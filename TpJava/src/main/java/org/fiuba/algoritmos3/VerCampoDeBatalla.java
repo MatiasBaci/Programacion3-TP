@@ -1,6 +1,4 @@
 package org.fiuba.algoritmos3;
-import org.fiuba.algoritmos3.Jugador;
-
 import java.util.Scanner;
 
 public class VerCampoDeBatalla implements Opciones{
