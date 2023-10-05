@@ -1,4 +1,5 @@
 package Tipo;
+import static org.fiuba.algoritmos3.Constantes.*;
 
 public class Psiquico extends Tipo {
 
@@ -9,9 +10,9 @@ public class Psiquico extends Tipo {
     
     @Override
     public void completarTablaEfectividad(){
-        this.tablaEfectividad.put("Lucha","Fuerte");
-        this.tablaEfectividad.put("Psiquico","Debil");
-        this.tablaEfectividad.put("Veneno","Fuerte");
+        this.tablaEfectividad.put(TIPO_LUCHA, RELACION_FUERTE);
+        this.tablaEfectividad.put(TIPO_PSIQUICO, RELACION_DEBIL);
+        this.tablaEfectividad.put(TIPO_VENENO, RELACION_FUERTE);
     }
 }
 

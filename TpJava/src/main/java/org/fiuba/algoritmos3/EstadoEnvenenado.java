@@ -1,9 +1,10 @@
 package org.fiuba.algoritmos3;
+import static org.fiuba.algoritmos3.Constantes.*;
 
 public class EstadoEnvenenado extends Estado{
 
-    public EstadoEnvenenado(String nombre){
-        super(nombre);
+    public EstadoEnvenenado(){
+        this.nombre = ESTADO_ENVENENADO;
     }
     
 

@@ -21,7 +21,7 @@ public class Revivir extends Item {
 
         realizarUsadoItemsDeEstado(unPokemon.getEstadoActual());
         if(!unPokemon.estaConciente()){
-            unPokemon.cambiarseEstado(new EstadoNormal("Normal"));
+            unPokemon.cambiarseEstado(new EstadoNormal());
         }
         unaModificacion.modificar(unPokemon.getEstadisticas(), (int) unPokemon.getVidaMaxima());
 

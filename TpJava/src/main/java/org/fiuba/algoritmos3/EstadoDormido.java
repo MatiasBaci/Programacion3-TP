@@ -1,4 +1,5 @@
 package org.fiuba.algoritmos3;
+import static org.fiuba.algoritmos3.Constantes.*;
 
 import java.util.Random;
 
@@ -7,8 +8,8 @@ public class EstadoDormido extends Estado{
     private int turnosDormido;
     private int duracionMaxima;
 
-    public EstadoDormido(String nombre){
-        super(nombre);
+    public EstadoDormido(){
+        this.nombre = ESTADO_DORMIDO;
         this.duracionMaxima = 4;
         this.turnosDormido = 0;
     }
@@ -26,7 +27,7 @@ public class EstadoDormido extends Estado{
         if (this.turnosDormido >= this.duracionMaxima || random >= 1)
         {
             System.out.println("El pokemon se despertó!");
-            unPokemon.cambiarseEstado(new EstadoNormal("Normal"));
+            unPokemon.cambiarseEstado(new EstadoNormal());
             return true;
         }
         else

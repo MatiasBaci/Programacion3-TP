@@ -1,4 +1,5 @@
 package Item;
+import static org.fiuba.algoritmos3.Constantes.*;
 
 import Item.Item;
 import org.fiuba.algoritmos3.EstadoNormal;
@@ -13,9 +14,9 @@ public class PocionCuracionEstados extends Item {
     @Override
     public boolean aplicarItem(Pokemon unPokemon) {
 
-        if (!Objects.equals(unPokemon.suEstadoEs(), "Normal") && unPokemon.estaConciente()) {
+        if (!Objects.equals(unPokemon.suEstadoEs(), ESTADO_NORMAL) && unPokemon.estaConciente()) {
             realizarUsadoItemsDeEstado(unPokemon.getEstadoActual());
-            unPokemon.cambiarseEstado(new EstadoNormal("Normal"));
+            unPokemon.cambiarseEstado(new EstadoNormal());
             return itemUsado;
         } else {
             System.out.println(" ");

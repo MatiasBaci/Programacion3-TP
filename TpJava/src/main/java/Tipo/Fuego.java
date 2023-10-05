@@ -1,21 +1,22 @@
 package Tipo;
+import static org.fiuba.algoritmos3.Constantes.*;
 
 public class Fuego extends Tipo {
 
     public Fuego(String nombre){
 
-        super(nombre); //Aqui se le pasa el nombre del tipo -- deberiaBorrarse
-        this.completarTablaEfectividad(); // Consultarlo si se puede hacer esto o hacer un metodo estatico que se inicialice al hacer new ()
+        super(nombre);
+        this.completarTablaEfectividad();
     }
 
     @Override
     public void completarTablaEfectividad(){
-        this.tablaEfectividad.put("Agua","Debil");
-        this.tablaEfectividad.put("Bicho","Fuerte");
-        this.tablaEfectividad.put("Dragon","Debil");
-        this.tablaEfectividad.put("Fuego","Debil");
-        this.tablaEfectividad.put("Hielo","Fuerte");
-        this.tablaEfectividad.put("Planta","Fuerte");
-        this.tablaEfectividad.put("Roca","Debil");
+        this.tablaEfectividad.put(TIPO_AGUA, RELACION_DEBIL);
+        this.tablaEfectividad.put(TIPO_BICHO,RELACION_FUERTE);
+        this.tablaEfectividad.put(TIPO_DRAGON, RELACION_DEBIL);
+        this.tablaEfectividad.put(TIPO_FUEGO, RELACION_DEBIL);
+        this.tablaEfectividad.put(TIPO_HIELO, RELACION_FUERTE);
+        this.tablaEfectividad.put(TIPO_PLANTA, RELACION_FUERTE);
+        this.tablaEfectividad.put(TIPO_ROCA, RELACION_DEBIL);
     }
 }

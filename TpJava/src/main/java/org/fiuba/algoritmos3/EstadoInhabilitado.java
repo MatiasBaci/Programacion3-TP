@@ -1,9 +1,10 @@
 package org.fiuba.algoritmos3;
+import static org.fiuba.algoritmos3.Constantes.*;
 
 public class EstadoInhabilitado extends Estado{
 
-    public EstadoInhabilitado(String nombre){
-        super(nombre);
+    public EstadoInhabilitado(){
+        this.nombre = ESTADO_INHABILITADO;
     }
     @Override
     public boolean puedeAtacar(Pokemon unPokemon){

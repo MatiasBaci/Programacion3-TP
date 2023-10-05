@@ -1,4 +1,5 @@
 package org.fiuba.algoritmos3;
+import static org.fiuba.algoritmos3.Constantes.*;
 import Item.*;
 import Tipo.Tipo;
 
@@ -56,7 +57,7 @@ public class Datos {
         110, 110, 70, 75);
         Habilidad trueno = new HabilidadAtaque("Trueno",Tipo.getTipo("Electrico"),110,10);
         pikachu.añadirHabilidad(trueno);
-        Habilidad ondaTrueno = new HabilidadEstado("OndaTrueno", 20, new EstadoParalizado("Paralizado"));
+        Habilidad ondaTrueno = new HabilidadEstado("OndaTrueno", 20, new EstadoParalizado());
         pikachu.añadirHabilidad(ondaTrueno);
         Habilidad colaFerrea = new HabilidadAtaque("ColaFerrea",Tipo.getTipo("Normal"),100,15);
         pikachu.añadirHabilidad(colaFerrea);
@@ -99,7 +100,7 @@ public class Datos {
         crobat.añadirHabilidad(tijeraX);
         Habilidad acrobata = new HabilidadAtaque("Acrobata",Tipo.getTipo("Volador"),110,15);
         crobat.añadirHabilidad(acrobata);
-        Habilidad toxico = new HabilidadEstado("Toxico", 10, new EstadoEnvenenado("Envenenado"));
+        Habilidad toxico = new HabilidadEstado("Toxico", 10, new EstadoEnvenenado());
         crobat.añadirHabilidad(toxico);
         this.mochilaJugador1.put(crobat.getNombre(), crobat);
 
@@ -144,9 +145,9 @@ public class Datos {
         trevenant.añadirHabilidad(mazazo);
         Habilidad sombraVil = new HabilidadAtaque("SombraVil",Tipo.getTipo("Fantasma"),80,15);
         trevenant.añadirHabilidad(sombraVil);
-        Habilidad hypnosis = new HabilidadEstado("Hypnosis", 5, new EstadoDormido("Dormido"));
+        Habilidad hypnosis = new HabilidadEstado("Hypnosis", 5, new EstadoDormido());
         trevenant.añadirHabilidad(hypnosis);
-        Habilidad caraSusto = new HabilidadEstado("CaraSusto", 5, new EstadoParalizado("Paralizado"));
+        Habilidad caraSusto = new HabilidadEstado("CaraSusto", 5, new EstadoParalizado());
         trevenant.añadirHabilidad(caraSusto);
         this.mochilaJugador2.put(trevenant.getNombre(), trevenant);
 
@@ -181,7 +182,7 @@ public class Datos {
         100, 62, 152, 90);
         Habilidad hidrobomba = new HabilidadAtaque("Hidrobomba",Tipo.getTipo("Agua"),110,5);
         araquanid.añadirHabilidad(hidrobomba);
-        Habilidad toxico = new HabilidadEstado("Toxico", 5, new EstadoEnvenenado("Envenenado"));
+        Habilidad toxico = new HabilidadEstado("Toxico", 5, new EstadoEnvenenado());
         araquanid.añadirHabilidad(toxico);
         Habilidad picadura = new HabilidadAtaque("Picadura",Tipo.getTipo("Bicho"),70,20);
         araquanid.añadirHabilidad(picadura);
@@ -196,7 +197,7 @@ public class Datos {
         bidoof.añadirHabilidad(placaje);
         Habilidad mordisco = new HabilidadAtaque("Mordisco",Tipo.getTipo("Normal"),60,25);
         bidoof.añadirHabilidad(mordisco);
-        Habilidad ronquido = new HabilidadEstado("Ronquido", 5, new EstadoDormido("Dormido"));
+        Habilidad ronquido = new HabilidadEstado("Ronquido", 5, new EstadoDormido());
         bidoof.añadirHabilidad(ronquido);
         Habilidad ultimoRecurso = new HabilidadAtaque("UltimoRecurso",Tipo.getTipo("Normal"),999,1);
         bidoof.añadirHabilidad(ultimoRecurso);

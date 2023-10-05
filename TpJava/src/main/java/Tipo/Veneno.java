@@ -1,4 +1,5 @@
 package Tipo;
+import static org.fiuba.algoritmos3.Constantes.*;
 
 public class Veneno extends Tipo {
 
@@ -9,12 +10,12 @@ public class Veneno extends Tipo {
     
     @Override
     public void completarTablaEfectividad(){
-        this.tablaEfectividad.put("Bicho","Fuerte");
-        this.tablaEfectividad.put("Fantasma","Debil");
-        this.tablaEfectividad.put("Planta","Fuerte");
-        this.tablaEfectividad.put("Roca","Debil");
-        this.tablaEfectividad.put("Tierra","Debil");
-        this.tablaEfectividad.put("Veneno","Debil");
+        this.tablaEfectividad.put(TIPO_BICHO, RELACION_FUERTE);
+        this.tablaEfectividad.put(TIPO_FANTASMA, RELACION_DEBIL);
+        this.tablaEfectividad.put(TIPO_PLANTA, RELACION_FUERTE);
+        this.tablaEfectividad.put(TIPO_ROCA, RELACION_DEBIL);
+        this.tablaEfectividad.put(TIPO_TIERRA, RELACION_DEBIL);
+        this.tablaEfectividad.put(TIPO_VENENO, RELACION_DEBIL);
     }
 }
 

@@ -1,4 +1,5 @@
 package org.fiuba.algoritmos3;
+import static org.fiuba.algoritmos3.Constantes.*;
 public class Estadisticas {
 
     //Atributos:
@@ -66,17 +67,17 @@ public class Estadisticas {
 
 
     public void modificarVelocidad(int etapas){
-        this.velocidad += this.velocidad * etapas * 0.1;
+        this.velocidad += this.velocidad * etapas * PORCENTAJE;
     }
 
 
     public void modificarDefensa(int etapas){
-        this.defensa += this.defensa * etapas * 0.1;
+        this.defensa += this.defensa * etapas * PORCENTAJE;
     }
 
 
     public void modificarAtaque(int etapas){
-        this.ataque += this.ataque * etapas * 0.1;
+        this.ataque += this.ataque * etapas * PORCENTAJE;
     }
 
 

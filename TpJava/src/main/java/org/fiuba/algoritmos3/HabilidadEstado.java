@@ -1,4 +1,7 @@
 package org.fiuba.algoritmos3;
+import static org.fiuba.algoritmos3.Constantes.*;
+
+import java.util.Objects;
 
 public class HabilidadEstado extends Habilidad{
 
@@ -13,8 +16,7 @@ public class HabilidadEstado extends Habilidad{
         // se encarga de que haga el efecto y como tambien que cambie el estado del pokemon enemigo
         this.cantidadDeUsos --;
 
-        if (unPokemonEnemigo.suEstadoEs() == "Normal") {
-            // unPokemonEnemigo.cambiarseEstado(new Estado(this.unEstado.getNombre()));
+        if (Objects.equals(unPokemonEnemigo.suEstadoEs(), ESTADO_NORMAL)) {
             unPokemonEnemigo.cambiarseEstado(this.unEstado);
         } 
 

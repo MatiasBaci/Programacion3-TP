@@ -1,4 +1,5 @@
 package Tipo;
+import static org.fiuba.algoritmos3.Constantes.*;
 
 
 public class Normal extends Tipo {
@@ -10,8 +11,8 @@ public class Normal extends Tipo {
     
     @Override
     public void completarTablaEfectividad(){
-        this.tablaEfectividad.put("Fantasma","Nula");
-        this.tablaEfectividad.put("Roca","Debil");
+        this.tablaEfectividad.put(TIPO_FANTASMA, RELACION_NULA);
+        this.tablaEfectividad.put(TIPO_ROCA, RELACION_DEBIL);
     }
 }
 

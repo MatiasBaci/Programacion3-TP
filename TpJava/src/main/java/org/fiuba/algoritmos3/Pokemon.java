@@ -23,7 +23,7 @@ public class Pokemon {
         this.tipo = Tipo.getTipo(tipo);
         this.historia = historia;
         this.estadisticas = new Estadisticas(vidaMax,nivel,velocidad,defensa,ataque);
-        this.estadoActual = new EstadoNormal("Normal");
+        this.estadoActual = new EstadoNormal();
         this.misHabilidades = new HashMap<>();
     }
 
@@ -70,7 +70,7 @@ public class Pokemon {
 
     public boolean estaConciente() {
         if(this.estadisticas.getVida() == 0){ //<=
-            this.cambiarseEstado(new EstadoInhabilitado("Inhabilitado"));
+            this.cambiarseEstado(new EstadoInhabilitado());
             return false;
         }
         return true;

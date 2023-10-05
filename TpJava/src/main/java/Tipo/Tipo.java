@@ -1,4 +1,6 @@
 package Tipo;
+import static org.fiuba.algoritmos3.Constantes.*;
+
 
 import java.util.HashMap;
 
@@ -16,21 +18,21 @@ public abstract class Tipo {
     // METODOS ESTATICOS------------------------------------------------------------------------------------------:
 
     static {  // OJO: Esto funciona como un inicializador, Investigarlo mas a detalle para saber si esta correcto o no.
-        tipos.put("Fuego", new Fuego("Fuego"));
-        tipos.put("Agua", new Agua("Agua"));
-        tipos.put("Normal", new Normal("Normal"));
-        tipos.put("Planta", new Planta("Planta"));
-        tipos.put("Electrico", new Electrico("Electrico"));
-        tipos.put("Lucha", new Lucha("Lucha"));
-        tipos.put("Psiquico", new Psiquico("Psiquico"));
-        tipos.put("Roca", new Roca("Roca"));
-        tipos.put("Hielo", new Hielo("Hielo"));
-        tipos.put("Veneno", new Veneno("Veneno"));
-        tipos.put("Tierra", new Tierra("Tierra"));
-        tipos.put("Fantasma", new Fantasma("Fantasma"));
-        tipos.put("Volador", new Volador("Volador"));
-        tipos.put("Bicho", new Bicho("Bicho"));
-        tipos.put("Dragon", new Dragon("Dragon"));
+        tipos.put(TIPO_FUEGO, new Fuego("Fuego"));
+        tipos.put(TIPO_AGUA, new Agua("Agua"));
+        tipos.put(TIPO_NORMAL, new Normal("Normal"));
+        tipos.put(TIPO_PLANTA, new Planta("Planta"));
+        tipos.put(TIPO_ELECTRICO, new Electrico("Electrico"));
+        tipos.put(TIPO_LUCHA, new Lucha("Lucha"));
+        tipos.put(TIPO_PSIQUICO, new Psiquico("Psiquico"));
+        tipos.put(TIPO_ROCA, new Roca("Roca"));
+        tipos.put(TIPO_HIELO, new Hielo("Hielo"));
+        tipos.put(TIPO_VENENO, new Veneno("Veneno"));
+        tipos.put(TIPO_TIERRA, new Tierra("Tierra"));
+        tipos.put(TIPO_FANTASMA, new Fantasma("Fantasma"));
+        tipos.put(TIPO_VOLADOR, new Volador("Volador"));
+        tipos.put(TIPO_BICHO, new Bicho("Bicho"));
+        tipos.put(TIPO_DRAGON, new Dragon("Dragon"));
         // Aqui se pueden agregar mas instancias de otros tipos.
     }
 
@@ -52,20 +54,20 @@ public abstract class Tipo {
         if(tablaEfectividad.containsKey(unTipo.getNombre())) {
             return this.tablaEfectividad.get(unTipo.getNombre());
         }
-        return "Normal";
+        return RELACION_NORMAL;
     }
 
     public double calcularMultiplicadorDeDanio(Tipo unTipo){
         double multiplicador;
         String efectividad = this.compararseConTipo(unTipo);
         switch (efectividad){
-            case "Fuerte":
+            case RELACION_FUERTE:
                 multiplicador = 2;
                 break;
-            case "Debil":
+            case RELACION_DEBIL:
                 multiplicador = 0.5;
                 break;
-            case "Nula":
+            case RELACION_NULA:
                 multiplicador = 0;
                 break;
             default: multiplicador = 1;

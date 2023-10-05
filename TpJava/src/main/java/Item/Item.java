@@ -1,9 +1,7 @@
 package Item;
+import static org.fiuba.algoritmos3.Constantes.*;
 
-import org.fiuba.algoritmos3.Estadisticas;
-import org.fiuba.algoritmos3.Estado;
-import org.fiuba.algoritmos3.Modificacion;
-import org.fiuba.algoritmos3.Pokemon;
+import org.fiuba.algoritmos3.*;
 
 import java.util.Objects;
 
@@ -57,11 +55,11 @@ public abstract class Item {
     }
 
     public void realizarUsadoItemsDeEstado(Estado unEstado){
-        if(Objects.equals(unEstado.getNombre(), "Inhabilitado")){
+        if(Objects.equals(unEstado.getNombre(), ESTADO_INHABILITADO)){
             this.cantidad --;
             this.itemUsado = true;
         }
-        else if(!Objects.equals(unEstado.getNombre(), "Normal") && !Objects.equals(unEstado.getNombre(), "Inhabilitado")){
+        else if(!Objects.equals(unEstado.getNombre(), ESTADO_NORMAL) && !Objects.equals(unEstado.getNombre(), ESTADO_INHABILITADO)){
             this.cantidad --;
             this.itemUsado = true;
         }

@@ -1,4 +1,5 @@
 package Tipo;
+import static org.fiuba.algoritmos3.Constantes.*;
 
 public class Tierra extends Tipo {
 
@@ -9,13 +10,13 @@ public class Tierra extends Tipo {
     
     @Override
     public void completarTablaEfectividad(){
-        this.tablaEfectividad.put("Bicho","Debil");
-        this.tablaEfectividad.put("Electrico","Fuerte");
-        this.tablaEfectividad.put("Fuego","Fuerte");
-        this.tablaEfectividad.put("Planta","Debil");
-        this.tablaEfectividad.put("Roca","Fuerte");
-        this.tablaEfectividad.put("Veneno","Fuerte");
-        this.tablaEfectividad.put("Volador","Nula");
+        this.tablaEfectividad.put(TIPO_BICHO, RELACION_DEBIL);
+        this.tablaEfectividad.put(TIPO_ELECTRICO, RELACION_FUERTE);
+        this.tablaEfectividad.put(TIPO_FUEGO, RELACION_FUERTE);
+        this.tablaEfectividad.put(TIPO_PLANTA, RELACION_DEBIL);
+        this.tablaEfectividad.put(TIPO_ROCA, RELACION_FUERTE);
+        this.tablaEfectividad.put(TIPO_VENENO, RELACION_FUERTE);
+        this.tablaEfectividad.put(TIPO_VOLADOR, RELACION_NULA);
     }
 }
 

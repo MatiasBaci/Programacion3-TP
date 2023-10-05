@@ -1,8 +1,8 @@
 package org.fiuba.algoritmos3;
-import Opciones.*;
 import Item.Item;
 
 import java.util.*;
+import static org.fiuba.algoritmos3.Constantes.*;
 
 public class Controlador {
 
@@ -13,11 +13,11 @@ public class Controlador {
     public void inicializarOpciones(){
 
         opciones = new HashMap<>();
-        opciones.put("1", new Rendirse());
-        opciones.put("2", new VerCampoDeBatalla());
-        opciones.put("3", new IntercambiarPokemon());
-        opciones.put("4", new AplicarItem());
-        opciones.put("5", new Atacar());
+        opciones.put(OPCION_UNO, new Rendirse());
+        opciones.put(OPCION_DOS, new VerCampoDeBatalla());
+        opciones.put(OPCION_TRES, new IntercambiarPokemon());
+        opciones.put(OPCION_CUATRO, new AplicarItem());
+        opciones.put(OPCION_CINCO, new Atacar());
 
     }
     public void mensajeBienvenida() {

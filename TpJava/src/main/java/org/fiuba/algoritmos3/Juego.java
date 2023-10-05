@@ -1,6 +1,5 @@
 package org.fiuba.algoritmos3;
 
-import Opciones.Opciones;
 
 public class Juego {
 

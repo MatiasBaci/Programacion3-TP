@@ -1,11 +1,12 @@
 package org.fiuba.algoritmos3;
+import static org.fiuba.algoritmos3.Constantes.*;
 
 import java.util.Random;
 
 public class EstadoParalizado extends Estado{
 
-    public EstadoParalizado(String nombre) {
-        super(nombre);
+    public EstadoParalizado() {
+        this.nombre = ESTADO_PARALIZADO;
     }
 
     @Override

@@ -1,4 +1,5 @@
 package Tipo;
+import static org.fiuba.algoritmos3.Constantes.*;
 
 public class Volador extends Tipo {
 
@@ -9,11 +10,11 @@ public class Volador extends Tipo {
     
     @Override
     public void completarTablaEfectividad(){
-        this.tablaEfectividad.put("Bicho","Fuerte");
-        this.tablaEfectividad.put("Electrico","Debil");
-        this.tablaEfectividad.put("Lucha","Fuerte");
-        this.tablaEfectividad.put("Planta","Fuerte");
-        this.tablaEfectividad.put("Roca","Debil");
+        this.tablaEfectividad.put(TIPO_BICHO, RELACION_FUERTE);
+        this.tablaEfectividad.put(TIPO_ELECTRICO, RELACION_DEBIL);
+        this.tablaEfectividad.put(TIPO_LUCHA, RELACION_FUERTE);
+        this.tablaEfectividad.put(TIPO_PLANTA, RELACION_FUERTE);
+        this.tablaEfectividad.put(TIPO_ROCA, RELACION_DEBIL);
     }
 }
 

@@ -1,4 +1,5 @@
 package Tipo;
+import static org.fiuba.algoritmos3.Constantes.*;
 
 public class Roca extends Tipo {
 
@@ -9,12 +10,12 @@ public class Roca extends Tipo {
     
     @Override
     public void completarTablaEfectividad(){
-        this.tablaEfectividad.put("Bicho","Fuerte");
-        this.tablaEfectividad.put("Fuego","Fuerte");
-        this.tablaEfectividad.put("Hielo","Fuerte");
-        this.tablaEfectividad.put("Lucha","Debil");
-        this.tablaEfectividad.put("Tierra","Debil");
-        this.tablaEfectividad.put("Volador","Fuerte");
+        this.tablaEfectividad.put(TIPO_BICHO, RELACION_FUERTE);
+        this.tablaEfectividad.put(TIPO_FUEGO, RELACION_FUERTE);
+        this.tablaEfectividad.put(TIPO_HIELO, RELACION_FUERTE);
+        this.tablaEfectividad.put(TIPO_LUCHA, RELACION_DEBIL);
+        this.tablaEfectividad.put(TIPO_TIERRA, RELACION_DEBIL);
+        this.tablaEfectividad.put(TIPO_VOLADOR, RELACION_FUERTE);
     }
 }
 
