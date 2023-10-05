@@ -131,10 +131,12 @@ public class Jugador {
         return this.items.get(nombreItem);
     }
 
-    public void usarItem(String nombrePokemon, Item itemAplicable){
+    public boolean usarItem(String nombrePokemon, Item itemAplicable){
         if (itemAplicable.realizarCasosDeApliacion(misPokemones.get(nombrePokemon))){
             this.setAtacante(false);
+            return true;
         }
+        return false;
 
     }
 

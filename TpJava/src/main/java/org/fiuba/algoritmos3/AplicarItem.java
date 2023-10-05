@@ -15,6 +15,17 @@ public class AplicarItem implements Opciones{
         System.out.println("\n");
 
     }
+
+    private void mensajeAplicoItem(Jugador jugador, String nombreItem) {
+
+        System.out.println("\n");
+        System.out.println("╔═════════════════════════════╗");
+        System.out.println("║ Se acaba de aplicar un item ║");
+        System.out.println("╚═════════════════════════════╝");
+        System.out.println("\n");
+        System.out.println("El jugador " + jugador.getNombre() + " acaba de usar " + nombreItem + ".");
+        System.out.println("Oprima una tecla para seguir jugando.");
+    }
     @Override
     public void aplicarOpcion(Jugador jugador, Jugador jugadorAdversario){
 
@@ -46,7 +57,10 @@ public class AplicarItem implements Opciones{
             System.out.println("No se aplico el Item seleccionado");
             return;
         }
-        jugador.usarItem(nombrePokemon, itemAplicable);
+        if(jugador.usarItem(nombrePokemon, itemAplicable)) {
+            mensajeAplicoItem(jugador, itemAplicable.getNombre());
+            decision = scanner.next();
+        }
     }
 
 }

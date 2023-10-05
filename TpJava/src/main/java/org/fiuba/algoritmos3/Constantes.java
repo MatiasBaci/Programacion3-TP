@@ -30,10 +30,18 @@ public class Constantes {
     public static final String TIPO_TIERRA = "Tierra";
     public static final String TIPO_VENENO = "Veneno";
     public static final String TIPO_VOLADOR = "Volador";
+
     public static final String RELACION_FUERTE = "Fuerte";
     public static final String RELACION_NORMAL = "Normal";
+
     public static final String RELACION_DEBIL = "Debil";
     public static final String RELACION_NULA = "Nula";
+
+    public static void limpiarPantalla() {
+        for (int i = 0; i < 50; i++) {
+            System.out.println();
+        }
+    }
 
 
 
