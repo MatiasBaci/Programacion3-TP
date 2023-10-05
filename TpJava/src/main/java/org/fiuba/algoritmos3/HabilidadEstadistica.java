@@ -25,12 +25,14 @@ public class HabilidadEstadistica extends Habilidad{
         this.cantidadDeUsos -= 1;
         if(!this.modificacionPropia){
             this.unaModificacion.modificar(unPokemon.getEstadisticas(),this.etapas);
+            mostrarUso(pokemonOponente, unPokemon);
+
 
         } else {
             this.unaModificacion.modificar(pokemonOponente.getEstadisticas(),this.etapas);
+            mostrarUso(pokemonOponente, pokemonOponente);
         }
     }
-
 
     @Override
     public void mostrarHabilidad() {
@@ -41,5 +43,11 @@ public class HabilidadEstadistica extends Habilidad{
         System.out.println("\n");
     }
 
+    @Override
+    public void mostrarUso(Pokemon unPokemonEnemigo,Pokemon unPokemon) {
+        System.out.println("¡"+ unPokemonEnemigo.getNombre() + " uso " + this.nombre + "!");
+        System.out.println("Las estadisticas actuales de " + unPokemon.getNombre() + " son: " );
+        unPokemonEnemigo.getEstadisticas().mostrarEstadisticas();
 
+    }
 }

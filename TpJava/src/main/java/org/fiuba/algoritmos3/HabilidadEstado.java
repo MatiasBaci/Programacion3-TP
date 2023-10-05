@@ -18,6 +18,7 @@ public class HabilidadEstado extends Habilidad{
 
         if (Objects.equals(unPokemonEnemigo.suEstadoEs(), ESTADO_NORMAL)) {
             unPokemonEnemigo.cambiarseEstado(this.unEstado);
+            mostrarUso(unPokemonEnemigo, unPokemonPropio);
         } 
 
         else {
@@ -32,5 +33,10 @@ public class HabilidadEstado extends Habilidad{
         System.out.println("Cuantas Etapas: " + 5);
         System.out.println("Cantidad de usos: " + this.cantidadDeUsos);
         System.out.println("\n");
+    }
+
+    public void mostrarUso(Pokemon unPokemonEnemigo,Pokemon unPokemon){
+        System.out.println("¡"+ unPokemon.getNombre() + " uso " + this.nombre + "!");
+        System.out.println(unPokemonEnemigo.getNombre() + " esta " + unEstado.getNombre());
     }
 }

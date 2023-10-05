@@ -19,5 +19,5 @@ public abstract class Habilidad {
 
     public abstract void mostrarHabilidad();
 
-    public abstract void mostrarUso(Pokemon unPokemon);
+    public abstract void mostrarUso(Pokemon unPokemonEnemigo,Pokemon unPokemon);
 }
