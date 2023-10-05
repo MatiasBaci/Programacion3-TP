@@ -19,11 +19,11 @@ public class Revivir extends Item {
     @Override
     public boolean aplicarItem(Pokemon unPokemon) {
 
-        realizarUsadoItemsDeEstado(unPokemon.getEstadoActual());
+        this.realizarUsadoItemsDeEstado(unPokemon.getEstadoActual());
         if(!unPokemon.estaConciente()){
             unPokemon.cambiarseEstado(new EstadoNormal());
         }
-        unaModificacion.modificar(unPokemon.getEstadisticas(), (int) unPokemon.getVidaMaxima());
+        this.unaModificacion.modificar(unPokemon.getEstadisticas(), (int) unPokemon.getVidaMaxima());
 
         return itemUsado;
 

@@ -20,7 +20,7 @@ public class Pokemon {
     //Metodos:
     public Pokemon(String nombre, int nivel,String tipo, String historia,double vidaMax,int velocidad,int defensa,int ataque){
         this.nombre = nombre;
-        this.tipo = Tipo.getTipo(tipo);
+        this.tipo = Tipo.obtenerUnTipo(tipo);
         this.historia = historia;
         this.estadisticas = new Estadisticas(vidaMax,nivel,velocidad,defensa,ataque);
         this.estadoActual = new EstadoNormal();
@@ -28,22 +28,22 @@ public class Pokemon {
     }
 
 
-    public String getNombre() {return nombre;}
+    public String getNombre() {return this.nombre;}
 
-    public Tipo getTipo() {return tipo;}
+    public Tipo getTipo() {return this.tipo;}
     public Map<String, Habilidad> getMisHabilidades() {
-        return misHabilidades;
+        return this.misHabilidades;
     }
-    public Estadisticas getEstadisticas() {return estadisticas;}
-    public int getVelocidad() {return estadisticas.getVelocidad();}
+    public Estadisticas getEstadisticas() {return this.estadisticas;}
+    public int getVelocidad() {return this.estadisticas.getVelocidad();}
     public double getVidaMaxima() {return this.estadisticas.getVidaMaxima();}
     public double getVida() {return this.estadisticas.getVida();}
 
     public Estado getEstadoActual() {
-        return estadoActual;
+        return this.estadoActual;
     }
 
-    public String suEstadoEs() {return estadoActual.getNombre();}
+    public String suEstadoEs() {return this.estadoActual.getNombre();}
 
 
     public void añadirHabilidad(Habilidad unaHabilidad){
@@ -60,7 +60,7 @@ public class Pokemon {
     }
 
     public void aplicarEfectoPasivoPokemon(){
-        estadoActual.aplicarEfectoPasivoDeEstado(this);
+        this.estadoActual.aplicarEfectoPasivoDeEstado(this);
     }
 
     public void cambiarseEstado(Estado unEstado){
@@ -77,7 +77,7 @@ public class Pokemon {
     }
 
     public boolean puedeAtacar(){
-        return estadoActual.puedeAtacar(this);
+        return this.estadoActual.puedeAtacar(this);
     }
 
     public void atacar(Pokemon pokemonEnemigoActual, String nombreDeHabilidad) {

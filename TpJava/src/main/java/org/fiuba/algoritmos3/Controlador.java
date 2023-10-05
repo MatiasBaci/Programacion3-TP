@@ -133,7 +133,6 @@ public class Controlador {
 
         Scanner scanner = new Scanner(System.in);
         String decision;
-        boolean IntercambioPokemon = false;
 
         if(!jugador.verficarEstadoPokemonActual()){
             this.seleccionarPokemon(jugador);

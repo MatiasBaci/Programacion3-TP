@@ -15,7 +15,7 @@ public class PocionCuracionEstados extends Item {
     public boolean aplicarItem(Pokemon unPokemon) {
 
         if (!Objects.equals(unPokemon.suEstadoEs(), ESTADO_NORMAL) && unPokemon.estaConciente()) {
-            realizarUsadoItemsDeEstado(unPokemon.getEstadoActual());
+            this.realizarUsadoItemsDeEstado(unPokemon.getEstadoActual());
             unPokemon.cambiarseEstado(new EstadoNormal());
             return itemUsado;
         } else {

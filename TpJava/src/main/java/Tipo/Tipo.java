@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 public abstract class Tipo {
 
-    private static HashMap<String,Tipo> tipos = new HashMap<>();
+    private static HashMap<String,Tipo> clasesDeTipos = new HashMap<>();
     private String nombre;
     protected HashMap<String,String> tablaEfectividad;
 
@@ -17,38 +17,31 @@ public abstract class Tipo {
 
     // METODOS ESTATICOS------------------------------------------------------------------------------------------:
 
-    static {  // OJO: Esto funciona como un inicializador, Investigarlo mas a detalle para saber si esta correcto o no.
-        tipos.put(TIPO_FUEGO, new Fuego("Fuego"));
-        tipos.put(TIPO_AGUA, new Agua("Agua"));
-        tipos.put(TIPO_NORMAL, new Normal("Normal"));
-        tipos.put(TIPO_PLANTA, new Planta("Planta"));
-        tipos.put(TIPO_ELECTRICO, new Electrico("Electrico"));
-        tipos.put(TIPO_LUCHA, new Lucha("Lucha"));
-        tipos.put(TIPO_PSIQUICO, new Psiquico("Psiquico"));
-        tipos.put(TIPO_ROCA, new Roca("Roca"));
-        tipos.put(TIPO_HIELO, new Hielo("Hielo"));
-        tipos.put(TIPO_VENENO, new Veneno("Veneno"));
-        tipos.put(TIPO_TIERRA, new Tierra("Tierra"));
-        tipos.put(TIPO_FANTASMA, new Fantasma("Fantasma"));
-        tipos.put(TIPO_VOLADOR, new Volador("Volador"));
-        tipos.put(TIPO_BICHO, new Bicho("Bicho"));
-        tipos.put(TIPO_DRAGON, new Dragon("Dragon"));
-        // Aqui se pueden agregar mas instancias de otros tipos.
+    static {
+        clasesDeTipos.put(TIPO_FUEGO, new Fuego("Fuego"));
+        clasesDeTipos.put(TIPO_AGUA, new Agua("Agua"));
+        clasesDeTipos.put(TIPO_NORMAL, new Normal("Normal"));
+        clasesDeTipos.put(TIPO_PLANTA, new Planta("Planta"));
+        clasesDeTipos.put(TIPO_ELECTRICO, new Electrico("Electrico"));
+        clasesDeTipos.put(TIPO_LUCHA, new Lucha("Lucha"));
+        clasesDeTipos.put(TIPO_PSIQUICO, new Psiquico("Psiquico"));
+        clasesDeTipos.put(TIPO_ROCA, new Roca("Roca"));
+        clasesDeTipos.put(TIPO_HIELO, new Hielo("Hielo"));
+        clasesDeTipos.put(TIPO_VENENO, new Veneno("Veneno"));
+        clasesDeTipos.put(TIPO_TIERRA, new Tierra("Tierra"));
+        clasesDeTipos.put(TIPO_FANTASMA, new Fantasma("Fantasma"));
+        clasesDeTipos.put(TIPO_VOLADOR, new Volador("Volador"));
+        clasesDeTipos.put(TIPO_BICHO, new Bicho("Bicho"));
+        clasesDeTipos.put(TIPO_DRAGON, new Dragon("Dragon"));
     }
 
-    public static Tipo getTipo(String nombre){ //Posible cambio en el nombre del metodo para más claridad
-        return tipos.get(nombre);
+    public static Tipo obtenerUnTipo(String nombre){ //Posible cambio en el nombre del metodo para más claridad
+        return clasesDeTipos.get(nombre);
     }
 
     // METODOS DE INSTANCIA-----------------------------------------------------------------------------------------:
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+    public String getNombre() {return this.nombre;}
 
     private String compararseConTipo(Tipo unTipo){
         if(tablaEfectividad.containsKey(unTipo.getNombre())) {

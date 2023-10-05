@@ -100,7 +100,7 @@ public class Jugador {
             System.out.println("La habilidad no existe. ");
             return;
         }
-        pokemonActual.atacar(jugadorAdversario.getPokemonActual(), nombreHabilidad);
+        this.pokemonActual.atacar(jugadorAdversario.getPokemonActual(), nombreHabilidad);
         setAtacante(false);
     }
 
@@ -132,7 +132,7 @@ public class Jugador {
     }
 
     public boolean usarItem(String nombrePokemon, Item itemAplicable){
-        if (itemAplicable.realizarCasosDeApliacion(misPokemones.get(nombrePokemon))){
+        if (itemAplicable.realizarCasosDeApliacion(this.misPokemones.get(nombrePokemon))){
             this.setAtacante(false);
             return true;
         }
@@ -142,20 +142,20 @@ public class Jugador {
 
     public void mostrarPokemones() {
         System.out.println("-----------------------------------------------------------------");
-        misPokemones.forEach((k, v) -> v.mostrarPokemon());
+        this.misPokemones.forEach((k, v) -> v.mostrarPokemon());
         System.out.println("-----------------------------------------------------------------");
     }
 
     public void mostratHabilidadesPokemonActual() {
-        System.out.println("Las habilidades de " + pokemonActual.getNombre() + " actuales son: ");
-        pokemonActual.mostrarHabilidades();
+        System.out.println("Las habilidades de " + this.pokemonActual.getNombre() + " actuales son: ");
+        this.pokemonActual.mostrarHabilidades();
     }
 
     public void mostrarItems() {
 
         System.out.println("-----------------------------------------------------------------");
         System.out.println("Items de " + this.nombre);
-        items.forEach((k, v) -> v.mostrarItem());
+        this.items.forEach((k, v) -> v.mostrarItem());
         System.out.println("-----------------------------------------------------------------");
     }
 

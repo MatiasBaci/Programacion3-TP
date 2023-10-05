@@ -15,23 +15,23 @@ public abstract class Item {
     public Item(String nombre, int cantidad) {
         this.nombre = nombre;
         this.cantidad = cantidad;
-        itemUsado = false;
+        this.itemUsado = false;
     }
 
     public abstract boolean aplicarItem(Pokemon unPokemon);
 
     public boolean realizarCasosDeApliacion(Pokemon unPokemon){
 
-        if (cantidad == 0) {
+        if (this.cantidad == 0) {
             System.out.println("No tiene este tipo de items");
             return false;
         }
-        else if(itemUsado){
+        else if(this.itemUsado){
             System.out.println("Solo se puede usar una vez el item");
             return false;
         }
         else{
-            System.out.print("Acaba de seleccionar el siguiente Item: " + nombre);
+            System.out.print("Acaba de seleccionar el siguiente Item: " + this.nombre);
             System.out.println("\n");
             return aplicarItem(unPokemon);
         }
@@ -42,7 +42,6 @@ public abstract class Item {
             this.cantidad --;
             this.itemUsado = true;
         }
-
     }
 
     public void realizarUsadoItemsDeEstadisitcas(Estadisticas estadistica){
@@ -70,10 +69,8 @@ public abstract class Item {
     public abstract void mostrarItem();
 
     public String getNombre() {
-        return nombre;
+        return this.nombre;
     }
 
-    public int getCantidad() {
-        return cantidad;
-    }
+    public int getCantidad() {return this.cantidad;}
 }

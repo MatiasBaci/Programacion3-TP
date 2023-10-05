@@ -12,7 +12,7 @@ public class Pocion extends Item {
     @Override
     public boolean aplicarItem(Pokemon unPokemon){
 
-        realizarUsadoItemsDeCuracion(unPokemon.getEstadisticas());
+        this.realizarUsadoItemsDeCuracion(unPokemon.getEstadisticas());
         this.unaModificacion.modificar(unPokemon.getEstadisticas(), 25);
         return itemUsado;
 
@@ -20,6 +20,6 @@ public class Pocion extends Item {
 
     @Override
     public void mostrarItem() {
-        System.out.println(nombre + ": Restaura 25 de vida - Cantidad: " + cantidad);
+        System.out.println(this.nombre + ": Restaura 25 de vida - Cantidad: " + this.cantidad);
     }
 }

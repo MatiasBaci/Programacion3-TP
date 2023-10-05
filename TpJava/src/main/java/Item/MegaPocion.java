@@ -13,13 +13,13 @@ public class MegaPocion extends Item {
     @Override
     public boolean aplicarItem(Pokemon unPokemon) {
 
-        realizarUsadoItemsDeCuracion(unPokemon.getEstadisticas());
+        this.realizarUsadoItemsDeCuracion(unPokemon.getEstadisticas());
         this.unaModificacion.modificar(unPokemon.getEstadisticas(), 50);
         return itemUsado;
 
     }
     @Override
     public void mostrarItem() {
-        System.out.println(nombre + ": Restaura 50 de vida - Cantidad: " + cantidad);
+        System.out.println(this.nombre + ": Restaura 50 de vida - Cantidad: " + this.cantidad);
     }
 }

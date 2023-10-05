@@ -15,14 +15,14 @@ public class PocionAtaque extends Item {
     @Override
     public boolean aplicarItem(Pokemon unPokemon) {
 
-        realizarUsadoItemsDeEstadisitcas(unPokemon.getEstadisticas());
+        this.realizarUsadoItemsDeEstadisitcas(unPokemon.getEstadisticas());
         this.unaModificacion.modificar(unPokemon.getEstadisticas(), 1);
         return itemUsado;
     }
 
     @Override
     public void mostrarItem() {
-        System.out.println(nombre + ": Aumenta 10% el ataque - Cantidad: " + cantidad);
+        System.out.println(this.nombre + ": Aumenta 10% el ataque - Cantidad: " + this.cantidad);
     }
 }
 

@@ -15,13 +15,13 @@ public class HiperPocion extends Item {
     @Override
     public boolean aplicarItem(Pokemon unPokemon) {
 
-        realizarUsadoItemsDeCuracion(unPokemon.getEstadisticas());
+        this.realizarUsadoItemsDeCuracion(unPokemon.getEstadisticas());
         this.unaModificacion.modificar(unPokemon.getEstadisticas(), 100);
         return itemUsado;
     }
 
     public void mostrarItem() {
-        System.out.println(nombre + ": Restaura 100 de vida - Cantidad: " + cantidad);
+        System.out.println(this.nombre + ": Restaura 100 de vida - Cantidad: " + this.cantidad);
     }
 }
 

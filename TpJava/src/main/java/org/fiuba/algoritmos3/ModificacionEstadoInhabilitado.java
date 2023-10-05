@@ -15,6 +15,6 @@ public class ModificacionEstadoInhabilitado implements Modificacion{
 
     @Override
     public String obtenerNombreModificacion() {
-        return "Inhabilitado";
+        return "Estado";
     }
 }

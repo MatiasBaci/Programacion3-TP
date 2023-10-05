@@ -30,7 +30,7 @@ public class Estadisticas {
         this.nivel = nivel;
     }
 
-    public double getVidaMaxima() { return this.vidaMaxima ;} // es necesario retornar la vida? o que la estadistica se encargue de reducir la misma
+    public double getVidaMaxima() { return this.vidaMaxima ;}
 
     public int getVelocidad() {return this.velocidad;}
 
@@ -58,7 +58,7 @@ public class Estadisticas {
     }
 
     public void reduccionVida(double vida){
-        double vidaTotal = (vidaActual - vida);
+        double vidaTotal = (this.vidaActual - vida);
         if(vidaTotal < 0){
             this.vidaActual = 0;
         }
