@@ -69,9 +69,9 @@ public class Juego {
             }
         }
         if(this.jugador1.perdio()){
-            System.out.println("Gano " + this.jugador2.getNombre());
+            controlador.felicitar(this.jugador2);
         } else{
-            System.out.println("Gano " + this.jugador1.getNombre());
+            controlador.felicitar(this.jugador1);
         }
     }
 
@@ -80,8 +80,4 @@ public class Juego {
         this.controlador.inicializarOpciones();
         this.iteracionesJugadores();
     }
-
-
-
-
 }

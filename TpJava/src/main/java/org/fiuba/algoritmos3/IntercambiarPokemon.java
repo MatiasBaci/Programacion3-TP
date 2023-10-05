@@ -30,9 +30,10 @@ public class IntercambiarPokemon implements Opciones{
         if(validarPokemon(jugador)){
             Scanner scanner = new Scanner(System.in);
             System.out.println("Desea Realizar el cambio? Si - No");
+        
             String decision = scanner.next();
+
             jugador.intercambiarPokemon(decision, pokemonAuxliar);
-            System.out.println("Es el turno de " + jugadorAdversario.getNombre() + ". Oprima una tecla para seguir jugando.");
             decision = scanner.next();
         }
     }

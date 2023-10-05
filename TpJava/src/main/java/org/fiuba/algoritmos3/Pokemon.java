@@ -86,8 +86,6 @@ public class Pokemon {
 
         if (this.puedeAtacar()) {
             unaHabilidad.usarHabilidad(pokemonEnemigoActual, this);
-            System.out.println("La vida de " + pokemonEnemigoActual.getNombre() + " es = " + pokemonEnemigoActual.getVida());
-            pokemonEnemigoActual.getEstadisticas().mostrarEstadisticas();
         }
     }
 

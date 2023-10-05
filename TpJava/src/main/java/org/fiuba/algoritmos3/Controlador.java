@@ -55,17 +55,6 @@ public class Controlador {
         System.out.println("\n");
     }
 
-    private void mensajePokemonInicial() {
-        System.out.println("\n");
-        System.out.println("╔══════════════════════╗");
-        System.out.println("║ Seleccion de Pokemon ║");
-        System.out.println("╚══════════════════════╝");
-        System.out.println("\n");
-
-        System.out.println("╔════════════════════════════════════════════════════════════╗");
-        System.out.println("║ Tenga en cuenta que empieza el pokemon con mayor velocidad ║");
-        System.out.println("╚════════════════════════════════════════════════════════════╝");
-    }
 
     private void mensajeOpcionInvalida() {
         System.out.println("\n");
@@ -105,13 +94,8 @@ public class Controlador {
         }
     }
 
-   // public void ganar(Jugador jugador) {
-     //   this.felicitar(jugador);
-       // jugador.ganar();
-    //}
 
-
-    private void felicitar(Jugador jugador) {
+    public void felicitar(Jugador jugador) {
         System.out.println("¡¡Felicidades a " + jugador.getNombre() + "!! Ganaste el juego");
     }
 
@@ -133,7 +117,6 @@ public class Controlador {
 
         Scanner scanner = new Scanner(System.in);
         String decision;
-        boolean IntercambioPokemon = false;
 
         if(!jugador.verficarEstadoPokemonActual()){
             this.seleccionarPokemon(jugador);
@@ -150,10 +133,6 @@ public class Controlador {
             }else{
                 this.mensajeOpcionInvalida();
             }
-
-
         }
     }
-
-
 }

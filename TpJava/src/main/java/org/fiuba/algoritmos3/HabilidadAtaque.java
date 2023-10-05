@@ -59,6 +59,8 @@ public class HabilidadAtaque extends Habilidad {
         this.cantidadDeUsos -= 1;
         double danio = this.atacar(unPokemonPropio,unPokemonEnemigo);
         unPokemonEnemigo.recibirDanio(danio);
+        System.out.println("¡" + unPokemonPropio.getNombre() + " usó " + this.getNombre() + "!");
+        this.mostrarUso(unPokemonEnemigo);
         System.out.println("El daño infligido de la habiilidad: "+this.nombre +" es = " +danio );
     }
 
@@ -72,7 +74,10 @@ public class HabilidadAtaque extends Habilidad {
     }
 
 
-
+    @Override
+    public void mostrarUso(Pokemon unPokemon){
+        System.out.println("La vida de " + unPokemon.getNombre() + " es = " + unPokemon.getVida());
+    }
 
 
 }

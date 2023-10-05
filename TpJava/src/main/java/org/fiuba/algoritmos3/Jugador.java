@@ -17,6 +17,7 @@ public class Jugador {
 
     private Jugador adversario;
     private boolean atacante;
+    private boolean esPerdedor;
 
     // Metodos:
 
@@ -25,6 +26,7 @@ public class Jugador {
         this.misPokemones = misPokemones;
         this.items = items;
         this.atacante = false;
+        this.esPerdedor = false;
     }
 
     public Pokemon getPokemonActual() {
@@ -54,7 +56,12 @@ public class Jugador {
     }
 
     public boolean perdio() {
-        return !this.misPokemones.values().stream().anyMatch(Pokemon::estaConciente);
+        return (!this.misPokemones.values().stream().anyMatch(Pokemon::estaConciente)||
+        this.esPerdedor);
+    }
+
+    public void perder() {
+        this.esPerdedor = true;
     }
 
     private Pokemon seleccionarPokemon(String unPokemon) {
@@ -119,10 +126,11 @@ public class Jugador {
             //System.out.println("Se realizo el intercambio. ");
             mensajeIntercambioAlAdversario();
             this.setAtacante(false);
+            System.out.println("Es el turno del otro jugador. Oprima una tecla para continuar.");
 
         } else {
             this.setPokemonActual(pokemon);
-            System.out.println("No se realizo el intercambio. ");
+            System.out.println("No se realizo el intercambio. Oprima una tecla para continuar.");
 
         }
     }
