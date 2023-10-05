@@ -4,6 +4,8 @@ package org.fiuba.algoritmos3;
 
 public class HabilidadEstadistica extends Habilidad{
 
+    private String modificaEstadistica;
+
     private boolean modificacionPropia;
     private int etapas;
 
