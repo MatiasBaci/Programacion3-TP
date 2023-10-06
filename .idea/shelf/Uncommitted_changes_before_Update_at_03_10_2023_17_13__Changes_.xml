@@ -1,0 +1,19 @@
+<changelist name="Uncommitted_changes_before_Update_at_03_10_2023_17_13_[Changes]" date="1696363994670" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_10_2023_17_13_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 03/10/2023 17:13 [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="TpJava/target/classes/org/fiuba/algoritmos3/Jugador.class" />
+    <option name="AFTER_PATH" value="TpJava/target/classes/org/fiuba/algoritmos3/Jugador.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_10_2023_17_13_[Changes]/Jugador.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="TpJava/target/classes/org/fiuba/algoritmos3/Pokemon.class" />
+    <option name="AFTER_PATH" value="TpJava/target/classes/org/fiuba/algoritmos3/Pokemon.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_10_2023_17_13_[Changes]/Pokemon.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="TpJava/target/classes/org/fiuba/algoritmos3/Controlador.class" />
+    <option name="AFTER_PATH" value="TpJava/target/classes/org/fiuba/algoritmos3/Controlador.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_10_2023_17_13_[Changes]/Controlador.class" />
+  </binary>
+</changelist>

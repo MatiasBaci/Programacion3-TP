@@ -1,0 +1,16 @@
+Index: TpJava/src/main/java/org/fiuba/algoritmos3/HiperPorcion.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.fiuba.algoritmos3;\r\n\r\npublic class HiperPorcion extends Item{\r\n\r\n    private Modificacion unaModificacion;\r\n\r\n    public HiperPorcion(String nombre, int cantidad, Modificacion unaModificacion){\r\n        super(nombre, cantidad);\r\n        this.unaModificacion = unaModificacion;\r\n    }\r\n\r\n    @Override\r\n    public void aplicarItem(Pokemon unPokemon) {\r\n        unaModificacion.modificar(unPokemon.getEstadisticas(), 100);\r\n    }\r\n\r\n    public void mostrarItem() {\r\n        System.out.println(\"Hiper Pocion: Restaura 100 de vida - Cantidad: \" + cantidad);\r\n    }\r\n}\r\n\r\n
+===================================================================
+diff --git a/TpJava/src/main/java/org/fiuba/algoritmos3/HiperPorcion.java b/TpJava/src/main/java/org/fiuba/algoritmos3/HiperPorcion.java
+--- a/TpJava/src/main/java/org/fiuba/algoritmos3/HiperPorcion.java	
++++ b/TpJava/src/main/java/org/fiuba/algoritmos3/HiperPorcion.java	
+@@ -14,6 +14,7 @@
+         unaModificacion.modificar(unPokemon.getEstadisticas(), 100);
+     }
+ 
++    @Override
+     public void mostrarItem() {
+         System.out.println("Hiper Pocion: Restaura 100 de vida - Cantidad: " + cantidad);
+     }

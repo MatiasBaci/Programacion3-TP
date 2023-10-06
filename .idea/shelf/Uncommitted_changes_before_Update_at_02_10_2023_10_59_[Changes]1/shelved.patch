@@ -1,0 +1,216 @@
+Index: TpJava/src/main/java/org/fiuba/algoritmos3/EstadoDormido.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.fiuba.algoritmos3;\r\n\r\nimport java.util.Random;\r\n\r\npublic class EstadoDormido extends Estado{\r\n\r\n    private int turnosDormido;\r\n    private int duracionMaxima;\r\n\r\n    public EstadoDormido(String nombre){\r\n        super(nombre);\r\n        this.duracionMaxima = 4;\r\n        this.turnosDormido = 0;\r\n    }\r\n\r\n\r\n    public void dormirUnTurno(){\r\n        this.turnosDormido ++;\r\n    }\r\n\r\n    @Override\r\n    public boolean puedeAtacar(Pokemon unPokemon){\r\n\r\n        Random newRandom = new Random();\r\n        \r\n        //set a new random between 0.25 and turnosDormido * 0.25\r\n        double random = ((float)newRandom.nextFloat((float) 0.25)+this.turnosDormido*0.25);\r\n\r\n        \r\n        if (this.turnosDormido >= this.duracionMaxima || random >= 1)\r\n        {\r\n            System.out.println(\"El pokemon se despertó!\");\r\n            unPokemon.cambiarseEstado(new EstadoNormal(\"Normal\", 0));\r\n            return true;\r\n        }\r\n        else\r\n        {\r\n            this.turnosDormido ++;\r\n            System.out.println(\"El pokemon esta dormido.\");\r\n            return false;\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public void aplicarEfectoPasivoDeEstado(Pokemon unPokemon){\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/org/fiuba/algoritmos3/EstadoDormido.java b/TpJava/src/main/java/org/fiuba/algoritmos3/EstadoDormido.java
+--- a/TpJava/src/main/java/org/fiuba/algoritmos3/EstadoDormido.java	
++++ b/TpJava/src/main/java/org/fiuba/algoritmos3/EstadoDormido.java	
+@@ -2,7 +2,7 @@
+ 
+ import java.util.Random;
+ 
+-public class EstadoDormido extends Estado{
++public class  EstadoDormido extends Estado{
+ 
+     private int turnosDormido;
+     private int duracionMaxima;
+@@ -18,8 +18,8 @@
+         this.turnosDormido ++;
+     }
+ 
+-    @Override
+-    public boolean puedeAtacar(Pokemon unPokemon){
++
++    public void efectoActivo(Pokemon unPokemon){
+ 
+         Random newRandom = new Random();
+         
+@@ -31,18 +31,17 @@
+         {
+             System.out.println("El pokemon se despertó!");
+             unPokemon.cambiarseEstado(new EstadoNormal("Normal", 0));
+-            return true;
++
+         }
+         else
+         {
+             this.turnosDormido ++;
+             System.out.println("El pokemon esta dormido.");
+-            return false;
+         }
+     }
+ 
+-    @Override
+-    public void aplicarEfectoPasivoDeEstado(Pokemon unPokemon){
++    public void efectoPasivo(Pokemon unPokemon){
++
+     }
+ 
+ }
+Index: TpJava/src/main/java/org/fiuba/algoritmos3/Chirrido.java
+===================================================================
+diff --git a/TpJava/src/main/java/org/fiuba/algoritmos3/Chirrido.java b/TpJava/src/main/java/org/fiuba/algoritmos3/Chirrido.java
+deleted file mode 100644
+--- a/TpJava/src/main/java/org/fiuba/algoritmos3/Chirrido.java	
++++ /dev/null	
+@@ -1,20 +0,0 @@
+-package org.fiuba.algoritmos3;
+-
+-public class Chirrido extends Habilidad {
+-
+-    public Chirrido(String nombre,int cantidadUsos){
+-        super(nombre,cantidadUsos);
+-    }
+-
+-    @Override
+-    public void usarHabilidad(Pokemon unPokemonEnemigo, Pokemon unPokemonPropio) {
+-        this.cantidadDeUsos -= 1;
+-        unPokemonEnemigo.modificarEstadisticas("Defensa",2);
+-    }
+-
+-    @Override
+-    public void mostrarHabilidad(){
+-
+-    }
+-
+-}
+Index: TpJava/src/main/java/org/fiuba/algoritmos3/Pocion.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.fiuba.algoritmos3;\r\n\r\npublic class Pocion extends Item{\r\n\r\n    private Modificacion unaModificacion;\r\n\r\n    public Pocion(String nombre, int cantidad, Modificacion modificar){\r\n        super(nombre, cantidad);\r\n        this.unaModificacion = modificar;\r\n    }\r\n\r\n    public void aplicarItem(Pokemon unPokemon){\r\n        unaModificacion.modificar(unPokemon.getEstadisticas(), 25);\r\n\r\n    }\r\n\r\n    @Override\r\n    public void mostrarItem() {\r\n        System.out.println(\"Pocion: Restaura 25 de vida - Cantidad: \" + cantidad);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/org/fiuba/algoritmos3/Pocion.java b/TpJava/src/main/java/org/fiuba/algoritmos3/Pocion.java
+--- a/TpJava/src/main/java/org/fiuba/algoritmos3/Pocion.java	
++++ b/TpJava/src/main/java/org/fiuba/algoritmos3/Pocion.java	
+@@ -8,7 +8,7 @@
+         super(nombre, cantidad);
+         this.unaModificacion = modificar;
+     }
+-
++    @Override
+     public void aplicarItem(Pokemon unPokemon){
+         unaModificacion.modificar(unPokemon.getEstadisticas(), 25);
+ 
+Index: TpJava/src/main/java/org/fiuba/algoritmos3/PocionAtaque.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.fiuba.algoritmos3;\r\n\r\npublic class PocionAtaque extends Item{\r\n\r\n    private Modificacion unaModificacion;\r\n\r\n    public PocionAtaque(String nombre, int cantidad, Modificacion unaModificacion){\r\n        super(nombre, cantidad);\r\n        this.unaModificacion = unaModificacion;\r\n    }\r\n\r\n    @Override\r\n    public void aplicarItem(Pokemon unPokemon) {\r\n        this.unaModificacion.modificar(unPokemon.getEstadisticas(), 1);\r\n    }\r\n\r\n    public void mostrarItem() {\r\n        System.out.println(\"Pocion de Ataque: Aumenta 10% el ataque - Cantidad: \" + cantidad);\r\n    }\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/org/fiuba/algoritmos3/PocionAtaque.java b/TpJava/src/main/java/org/fiuba/algoritmos3/PocionAtaque.java
+--- a/TpJava/src/main/java/org/fiuba/algoritmos3/PocionAtaque.java	
++++ b/TpJava/src/main/java/org/fiuba/algoritmos3/PocionAtaque.java	
+@@ -13,7 +13,7 @@
+     public void aplicarItem(Pokemon unPokemon) {
+         this.unaModificacion.modificar(unPokemon.getEstadisticas(), 1);
+     }
+-
++    @Override
+     public void mostrarItem() {
+         System.out.println("Pocion de Ataque: Aumenta 10% el ataque - Cantidad: " + cantidad);
+     }
+Index: TpJava/src/main/java/org/fiuba/algoritmos3/Pokemon.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.fiuba.algoritmos3;\r\nimport java.util.HashMap;\r\nimport java.util.Map;\r\n\r\npublic class Pokemon {\r\n\r\n    //Atributos:\r\n    private String nombre;\r\n    private int nivel;\r\n    private Tipo tipo; //DEBE SER UNA REFERENCIA A LA CLASE AGUA, NO UNA INSTANCIA DE AGUA\r\n    private String historia;\r\n    private Estadisticas estadisticas;\r\n    private Map<String, Habilidad> misHabilidades;\r\n\r\n    private Estado estadoActual; //Probablemente sea una clase despues\r\n\r\n\r\n    //Metodos:\r\n\r\n    public Pokemon(String nombre, int nivel,String tipo, String historia,double vidaMax,int velocidad,int defensa,int ataque){\r\n        this.nombre = nombre;\r\n        this.nivel = nivel;             // ahora esta en estadisticas deberiamos sacarlo\r\n        this.tipo = Tipo.getTipo(tipo);\r\n        this.historia = historia;\r\n        this.estadisticas = new Estadisticas(vidaMax,nivel,velocidad,defensa,ataque);\r\n        this.estadoActual = new EstadoNormal(\"Normal\", 0);\r\n        this.misHabilidades = new HashMap<>();\r\n\r\n        //this.estadoActual = \"Normal\";\r\n\r\n    }\r\n    public String getNombre() {return nombre;}\r\n    public Tipo getTipo() {return tipo;}\r\n    public Estadisticas getEstadisticas() {return estadisticas;}\r\n    public int getVelocidad() {return estadisticas.getVelocidad();}\r\n    public double obtenerVidaMaxima() {return this.estadisticas.getVidaMaxima();}\r\n    public int getNivel() {return nivel;}\r\n    public String getHistoria() {return historia;}\r\n    public Estado getEstadoActual() {return this.estadoActual ;}\r\n\r\n\r\n    public void añadirHabilidad(Habilidad unaHabilidad){\r\n        this.misHabilidades.put(unaHabilidad.getNombre(), unaHabilidad);\r\n    }\r\n\r\n\r\n    public void recibirDanio(double damageEnemigo){\r\n        this.estadisticas.reduccionVida(damageEnemigo);\r\n    }\r\n\r\n\r\n    public void mostrarPokemon(){\r\n        System.out.println(\"Nombre: \" + this.nombre);\r\n        this.estadisticas.mostrarEstadisticas();\r\n        System.out.println(\" Estado: \" + this.estadoActual.getNombre());\r\n    }\r\n\r\n\r\n    public void mostrarHabilidades() {\r\n        this.misHabilidades.forEach((k, v) -> v.mostrarHabilidad());\r\n    }\r\n\r\n\r\n    public boolean validarHabilidar(String nombreHabilidad){\r\n\r\n       if(this.misHabilidades.get(nombreHabilidad) == null){\r\n           System.out.println(\"No existe la habilidad.\");\r\n           return false;\r\n       }\r\n       System.out.println(\"La habilidad elegida es: \" + nombreHabilidad);\r\n       return true;\r\n    }\r\n\r\n\r\n    public Habilidad seleccionarHabilidad(String unaHabilidad){\r\n        return misHabilidades.get(unaHabilidad);\r\n    }\r\n\r\n\r\n    public void aplicarEfectoPasivoPokemon(){\r\n        estadoActual.aplicarEfectoPasivoDeEstado(this);\r\n    }\r\n\r\n\r\n    public boolean puedeAtacar(){\r\n        return estadoActual.puedeAtacar(this);\r\n    }\r\n\r\n\r\n    public void atacar(Pokemon pokemonEnemigoActual, String nombreDeHabilidad) {\r\n\r\n        Habilidad unaHabilidad = this.seleccionarHabilidad(nombreDeHabilidad);//deberia ser un puntero a la habilidad, no una copia\r\n        \r\n        if (this.puedeAtacar()) {\r\n            unaHabilidad.usarHabilidad(pokemonEnemigoActual, this);\r\n            System.out.println(\"La vida de \" + pokemonEnemigoActual.getNombre() + \" es = \" + pokemonEnemigoActual.getEstadisticas().getVida()); // Esto esta mal debido aque es .get().get()\r\n            pokemonEnemigoActual.getEstadisticas().mostrarEstadisticas();\r\n        }\r\n\r\n        \r\n    }\r\n\r\n\r\n\r\n    //NO SE ESTA USANDO MAS QUE EN LAS CLASES DE CHIRRIDO Y LLAMADARA\r\n    public void modificarEstadisticas(String unaModificacion, int  etapa){\r\n        this.estadisticas.modificarEstadistica(unaModificacion,etapa);\r\n    }\r\n\r\n    //public void aplicarEfecto(){ //---------> debe ser private por ahora\r\n        //Por ejemplo esto es cuando ya tiene un efecto el pokemon: VENENO, tiene que aplicarse a su vida en cada turno\r\n        //hasta que se recupere con un item\r\n       // this.estadoActual.efecto(this);\r\n        // por ejemplo este metodo se puede llamar cada vez que sea el turno del pokemon, cuando intenta atacar se le resta vida\r\n        // pero cuando cambia de pokemon, no debe restarse.\r\n   // }\r\n\r\n    public void cambiarseEstado(Estado unEstado){\r\n        this.estadoActual = unEstado;\r\n    }\r\n\r\n\r\n    public String suEstadoEs(){\r\n        return estadoActual.getNombre();\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/org/fiuba/algoritmos3/Pokemon.java b/TpJava/src/main/java/org/fiuba/algoritmos3/Pokemon.java
+--- a/TpJava/src/main/java/org/fiuba/algoritmos3/Pokemon.java	
++++ b/TpJava/src/main/java/org/fiuba/algoritmos3/Pokemon.java	
+@@ -100,13 +100,6 @@
+         
+     }
+ 
+-
+-
+-    //NO SE ESTA USANDO MAS QUE EN LAS CLASES DE CHIRRIDO Y LLAMADARA
+-    public void modificarEstadisticas(String unaModificacion, int  etapa){
+-        this.estadisticas.modificarEstadistica(unaModificacion,etapa);
+-    }
+-
+     //public void aplicarEfecto(){ //---------> debe ser private por ahora
+         //Por ejemplo esto es cuando ya tiene un efecto el pokemon: VENENO, tiene que aplicarse a su vida en cada turno
+         //hasta que se recupere con un item
+Index: TpJava/src/main/java/org/fiuba/algoritmos3/PocionDefensa.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.fiuba.algoritmos3;\r\n\r\npublic class PocionDefensa extends Item{\r\n\r\n    private Modificacion unaModificacion;\r\n\r\n    public PocionDefensa(String nombre, int cantidad, Modificacion unaModificacion){\r\n        super(nombre, cantidad);\r\n        this.unaModificacion = unaModificacion;\r\n    }\r\n\r\n    @Override\r\n    public void aplicarItem(Pokemon unPokemon) {\r\n        this.unaModificacion.modificar(unPokemon.getEstadisticas(), 1);\r\n    }\r\n\r\n    public void mostrarItem() {\r\n        System.out.println(\"Pocion de Defensa: Aumenta 10% la defensa - Cantidad: \" + cantidad);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/org/fiuba/algoritmos3/PocionDefensa.java b/TpJava/src/main/java/org/fiuba/algoritmos3/PocionDefensa.java
+--- a/TpJava/src/main/java/org/fiuba/algoritmos3/PocionDefensa.java	
++++ b/TpJava/src/main/java/org/fiuba/algoritmos3/PocionDefensa.java	
+@@ -13,7 +13,7 @@
+     public void aplicarItem(Pokemon unPokemon) {
+         this.unaModificacion.modificar(unPokemon.getEstadisticas(), 1);
+     }
+-
++    @Override
+     public void mostrarItem() {
+         System.out.println("Pocion de Defensa: Aumenta 10% la defensa - Cantidad: " + cantidad);
+     }
+Index: TpJava/src/main/java/org/fiuba/algoritmos3/PocionCuracionEstados.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.fiuba.algoritmos3;\r\n\r\nimport java.util.Objects;\r\n\r\npublic class PocionCuracionEstados extends Item{\r\n\r\n    public PocionCuracionEstados(String nombre, int cantidad){\r\n        super(nombre, cantidad);\r\n    }\r\n    @Override\r\n    public void aplicarItem(Pokemon unPokemon) {\r\n        if (!Objects.equals(unPokemon.suEstadoEs(), \"Normal\") && !Objects.equals(unPokemon.suEstadoEs(), \"Inhabilitado\")) {\r\n            unPokemon.cambiarseEstado(new EstadoNormal(\"Normal\", 1));\r\n\r\n        } else {\r\n            System.out.println(\"No hay estado que curar.\");\r\n        }\r\n    }\r\n\r\n    public void mostrarItem() {\r\n        System.out.println(\"Curacion de Estado: Elimina los Estado del pokemon - Cantidad: \" + cantidad);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/org/fiuba/algoritmos3/PocionCuracionEstados.java b/TpJava/src/main/java/org/fiuba/algoritmos3/PocionCuracionEstados.java
+--- a/TpJava/src/main/java/org/fiuba/algoritmos3/PocionCuracionEstados.java	
++++ b/TpJava/src/main/java/org/fiuba/algoritmos3/PocionCuracionEstados.java	
+@@ -16,7 +16,7 @@
+             System.out.println("No hay estado que curar.");
+         }
+     }
+-
++    @Override
+     public void mostrarItem() {
+         System.out.println("Curacion de Estado: Elimina los Estado del pokemon - Cantidad: " + cantidad);
+     }
+Index: TpJava/src/main/java/org/fiuba/algoritmos3/MegaPocion.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.fiuba.algoritmos3;\r\n\r\npublic class MegaPocion extends Item{\r\n\r\n    private Modificacion unaModificacion;\r\n\r\n    public MegaPocion(String nombre, int cantidad, Modificacion unaModificacion){\r\n        super(nombre, cantidad);\r\n        this.unaModificacion = unaModificacion;\r\n    }\r\n\r\n    @Override\r\n    public void aplicarItem(Pokemon unPokemon) {\r\n        this.unaModificacion.modificar(unPokemon.getEstadisticas(), 50);\r\n    }\r\n\r\n    public void mostrarItem() {\r\n        System.out.println(\"Pocion: Restaura 50 de vida - Cantidad: \" + cantidad);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/org/fiuba/algoritmos3/MegaPocion.java b/TpJava/src/main/java/org/fiuba/algoritmos3/MegaPocion.java
+--- a/TpJava/src/main/java/org/fiuba/algoritmos3/MegaPocion.java	
++++ b/TpJava/src/main/java/org/fiuba/algoritmos3/MegaPocion.java	
+@@ -14,6 +14,7 @@
+         this.unaModificacion.modificar(unPokemon.getEstadisticas(), 50);
+     }
+ 
++    @Override
+     public void mostrarItem() {
+         System.out.println("Pocion: Restaura 50 de vida - Cantidad: " + cantidad);
+     }
+Index: TpJava/src/main/java/org/fiuba/algoritmos3/Revivir.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.fiuba.algoritmos3;\r\n\r\nimport java.util.Objects;\r\n\r\npublic class Revivir extends Item{\r\n\r\n    private Modificacion unaModificacion;\r\n\r\n    public Revivir(String nombre, int cantidad, Modificacion unaModificacion){\r\n        super(nombre, cantidad);\r\n        this.unaModificacion = unaModificacion;\r\n    }\r\n\r\n    @Override\r\n    public void aplicarItem(Pokemon unPokemon) {\r\n        if(Objects.equals(unPokemon.suEstadoEs(), \"Inhabilitado\")) {\r\n            double vidaMaxima = unPokemon.getEstadisticas().getVidaMaxima(); //Hay que cambiarlo\r\n            unaModificacion.modificar(unPokemon.getEstadisticas(), (int) vidaMaxima);\r\n            unPokemon.cambiarseEstado(new EstadoNormal(\"Normal\", 1));\r\n\r\n        }else{System.out.println(\"El Pokemon no se puede revivir ya que no esta Inhabilitado\");}\r\n\r\n    }\r\n\r\n    public void mostrarItem() {\r\n        System.out.println(\"Revivir: Revive al pokemon con toda su salud - Cantidad: \" + cantidad);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/org/fiuba/algoritmos3/Revivir.java b/TpJava/src/main/java/org/fiuba/algoritmos3/Revivir.java
+--- a/TpJava/src/main/java/org/fiuba/algoritmos3/Revivir.java	
++++ b/TpJava/src/main/java/org/fiuba/algoritmos3/Revivir.java	
+@@ -21,7 +21,7 @@
+         }else{System.out.println("El Pokemon no se puede revivir ya que no esta Inhabilitado");}
+ 
+     }
+-
++    @Override
+     public void mostrarItem() {
+         System.out.println("Revivir: Revive al pokemon con toda su salud - Cantidad: " + cantidad);
+     }

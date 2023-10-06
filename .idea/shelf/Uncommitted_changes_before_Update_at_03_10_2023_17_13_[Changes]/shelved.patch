@@ -1,0 +1,230 @@
+Index: TpJava/src/main/java/org/fiuba/algoritmos3/Jugador.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.fiuba.algoritmos3;\r\n// import java.util.ArrayList;\r\nimport java.util.Map;\r\nimport java.util.Objects;\r\n\r\npublic class Jugador {\r\n\r\n    //Atributos:\r\n    private String nombre;\r\n\r\n    private Map<String, Pokemon> misPokemones;\r\n    private Map<String, Item> items;\r\n\r\n    private Pokemon pokemonActual;\r\n\r\n    private Jugador adversario;\r\n    private boolean atacante;\r\n    private boolean ganoJuego;\r\n\r\n    // Metodos:\r\n\r\n    public Jugador(String nombre, Map<String, Pokemon> misPokemones, Map<String, Item> items) {\r\n        this.nombre = nombre;\r\n        this.misPokemones = misPokemones;\r\n        this.items = items;\r\n        this.atacante = false;\r\n    }\r\n\r\n    public Pokemon getPokemonActual() {\r\n        return pokemonActual;\r\n    }\r\n\r\n    public String getNombre() {\r\n        return nombre;\r\n    }\r\n\r\n    public Jugador getAdversario() { return adversario; }\r\n\r\n    public void setNombre(String nombre) {\r\n        this.nombre = nombre;\r\n    }\r\n\r\n    public void setAtacante(boolean atacante) {\r\n        this.atacante = atacante;\r\n    }\r\n\r\n    public void setPokemonActual(Pokemon pokemonActual) {\r\n        this.pokemonActual = pokemonActual;\r\n    }\r\n\r\n    public void setGanoJuego(boolean ganoJuego) {\r\n        this.ganoJuego = ganoJuego;\r\n    }\r\n\r\n    public boolean isAtacante() {\r\n        return atacante;\r\n    }\r\n\r\n    public boolean isGanoJuego() {\r\n        return ganoJuego;\r\n    }\r\n\r\n    private Pokemon seleccionarPokemon(String unPokemon) {\r\n        return this.misPokemones.get(unPokemon);\r\n    }\r\n\r\n    public void añadirAdversario(Jugador unEnemigo) {\r\n        this.adversario = unEnemigo;\r\n    }\r\n\r\n    public void ganar() {\r\n        ganoJuego = true;\r\n    }\r\n\r\n    public void aplicarEfectoPasivo() {\r\n        pokemonActual.aplicarEfectoPasivoPokemon();\r\n    }\r\n\r\n    public boolean elegirPokemon(String unPokemon) {\r\n        if (this.seleccionarPokemon(unPokemon) == null) {\r\n            System.out.println(\"ERROR: No se encontro el pokemon en tu mochila :C \");\r\n            return false;\r\n        }\r\n        else if (!this.seleccionarPokemon(unPokemon).estaConciente()) {\r\n            System.out.println(\"ERROR: El pokemon no tiene vida. :C \");\r\n            return false;\r\n        }\r\n        else if(this.pokemonActual != null){\r\n            if(Objects.equals(unPokemon, pokemonActual.getNombre())) {\r\n                System.out.println(\"Estas eligindo a tu Pokemon actual. :C \");\r\n                return false;\r\n            }\r\n        }\r\n        this.pokemonActual = this.seleccionarPokemon(unPokemon);\r\n        System.out.println(\"Seleccionaste el pokemon -> \" + this.pokemonActual.getNombre());\r\n        return true;\r\n    }\r\n\r\n\r\n\r\n    public void atacarJugador(Jugador jugadorAdversario, String nombreHabilidad){\r\n\r\n        if(validarHabilidadPokemon(nombreHabilidad)) {\r\n            pokemonActual.atacar(jugadorAdversario.getPokemonActual(), nombreHabilidad);\r\n            setAtacante(false);\r\n\r\n        }\r\n        else{System.out.println(\"La habilidad no existe. \");\r\n        }\r\n\r\n    }\r\n\r\n    public boolean intercambiarPokemon(String decision, Pokemon pokemon){\r\n\r\n        if (Objects.equals(decision, \"No\")) {\r\n            this.setPokemonActual(pokemon);\r\n            System.out.println(\"No se realizo el intercambio. \");\r\n            return false;\r\n\r\n        } else {\r\n            System.out.println(\"Se realizo el intercambio. \");\r\n            this.setAtacante(false);\r\n            return true;\r\n        }\r\n    }\r\n\r\n    public Item elegirItem(String nombreItem){\r\n        return this.items.get(nombreItem);\r\n    }\r\n\r\n    public void usarItem(String nombrePokemon, Item itemAplicable){\r\n        if (itemAplicable.realizarCasosDeApliacion(misPokemones.get(nombrePokemon))){\r\n            this.setAtacante(false);\r\n        }\r\n\r\n    }\r\n\r\n    public void mostrarPokemones() {\r\n        System.out.println(\"-----------------------------------------------------------------\");\r\n        misPokemones.forEach((k, v) -> v.mostrarPokemon());\r\n        System.out.println(\"-----------------------------------------------------------------\");\r\n    }\r\n\r\n    public void mostratHabilidadesPokemonActual() {\r\n        System.out.println(\"Las habilidades de \" + pokemonActual.getNombre() + \" actuales son: \");\r\n        pokemonActual.mostrarHabilidades();\r\n    }\r\n\r\n    public void mostrarItems() {\r\n\r\n        System.out.println(\"-----------------------------------------------------------------\");\r\n        System.out.println(\"Items de \" + this.nombre);\r\n        items.forEach((k, v) -> v.mostrarItem());\r\n        System.out.println(\"-----------------------------------------------------------------\");\r\n    }\r\n\r\n    public boolean validarHabilidadPokemon(String nombreHabilidad){\r\n        return pokemonActual.validarHabilidad(nombreHabilidad);\r\n    }\r\n\r\n    public boolean validadorClaveItems(String nombreItem){\r\n        return this.items.containsKey(nombreItem);\r\n    }\r\n\r\n\r\n    public boolean validadorClavePokemones(String nombrePokemon){\r\n        return this.misPokemones.containsKey(nombrePokemon);\r\n    }\r\n\r\n    public boolean validarPokemonActual(String nombrePokemon){\r\n        return (Objects.equals(nombrePokemon, pokemonActual.getNombre()));\r\n    }\r\n\r\n    public boolean verficarEstadoPokemonActual(){\r\n        return this.pokemonActual.estaConciente();\r\n    }\r\n\r\n}\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/org/fiuba/algoritmos3/Jugador.java b/TpJava/src/main/java/org/fiuba/algoritmos3/Jugador.java
+--- a/TpJava/src/main/java/org/fiuba/algoritmos3/Jugador.java	(revision 59f2b9b30c9b8348074388b54a161c44e2b53870)
++++ b/TpJava/src/main/java/org/fiuba/algoritmos3/Jugador.java	(date 1696360597004)
+@@ -100,14 +100,11 @@
+ 
+     public void atacarJugador(Jugador jugadorAdversario, String nombreHabilidad){
+ 
+-        if(validarHabilidadPokemon(nombreHabilidad)) {
+-            pokemonActual.atacar(jugadorAdversario.getPokemonActual(), nombreHabilidad);
+-            setAtacante(false);
+-
+-        }
+-        else{System.out.println("La habilidad no existe. ");
+-        }
+-
++        if(!this.validarHabilidadPokemon(nombreHabilidad)) {
++            System.out.println("La habilidad no existe. ");
++        }
++        pokemonActual.atacar(jugadorAdversario.getPokemonActual(), nombreHabilidad);
++        setAtacante(false);
+     }
+ 
+     public boolean intercambiarPokemon(String decision, Pokemon pokemon){
+@@ -155,22 +152,20 @@
+     }
+ 
+     public boolean validarHabilidadPokemon(String nombreHabilidad){
+-        return pokemonActual.validarHabilidad(nombreHabilidad);
++        Validacion validacion = new Validacion();
++        return validacion.estaContenidoHabilidad(nombreHabilidad,this.pokemonActual.getMisHabilidades());
+     }
+ 
+     public boolean validadorClaveItems(String nombreItem){
+-        return this.items.containsKey(nombreItem);
++        Validacion validacion = new Validacion();
++        return validacion.estaContenidoItem(nombreItem,this.items);
+     }
+ 
+ 
+     public boolean validadorClavePokemones(String nombrePokemon){
+-        return this.misPokemones.containsKey(nombrePokemon);
++        Validacion validacion = new Validacion();
++        return validacion.estaContenidoPokemon(nombrePokemon,this.misPokemones);
+     }
+-
+-    public boolean validarPokemonActual(String nombrePokemon){
+-        return (Objects.equals(nombrePokemon, pokemonActual.getNombre()));
+-    }
+-
+     public boolean verficarEstadoPokemonActual(){
+         return this.pokemonActual.estaConciente();
+     }
+Index: TpJava/src/main/java/org/fiuba/algoritmos3/Controlador.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.fiuba.algoritmos3;\r\n\r\n// import javax.naming.ldap.UnsolicitedNotification;\r\n// import java.util.HashMap;\r\nimport java.util.Objects;\r\nimport java.util.Scanner;\r\n\r\npublic class Controlador {\r\n\r\n\r\n    //[k,v] -> String input -> metodoQueSeUsa\r\n    //Metodos:\r\n\r\n\r\n    public void mensajeBienvenida() {\r\n        System.out.println(\"╔═══════════════════════╗\");\r\n        System.out.println(\"║ BIENVENIDO A POKEMON  ║\");\r\n        System.out.println(\"╚═══════════════════════╝\");\r\n    }\r\n\r\n    private void mensajeMenu() {\r\n        System.out.println(\" \");\r\n        System.out.println(\"╔═══════════════════════════╗\");\r\n        System.out.println(\"║           MENU            ║\");\r\n        System.out.println(\"║═══════════════════════════║\");\r\n        System.out.println(\"║                           ║\");\r\n        System.out.println(\"║ 1 => Rendirse             ║\");\r\n        System.out.println(\"║                           ║\");\r\n        System.out.println(\"║ 2 => Ver campo de batalla ║ \");\r\n        System.out.println(\"║                           ║\");\r\n        System.out.println(\"║ 3 => Intercambiar Pokemon ║\");\r\n        System.out.println(\"║                           ║\");\r\n        System.out.println(\"║ 4 => Aplicar item         ║\");\r\n        System.out.println(\"║                           ║\");\r\n        System.out.println(\"║ 5 => Atacar               ║\");\r\n        System.out.println(\"╚═══════════════════════════╝\");\r\n        System.out.println(\" \");\r\n        System.out.println(\"Seleccione una de las opciones: \");\r\n\r\n\r\n    }\r\n\r\n    private void mensajeCampoBatalla() {\r\n        System.out.println(\" \");\r\n        System.out.println(\"╔══════════════════╗\");\r\n        System.out.println(\"║ Campo de Batalla ║\");\r\n        System.out.println(\"╚══════════════════╝\");\r\n        System.out.println(\" \");\r\n    }\r\n\r\n\r\n    private void mensajeIntercambiarPokemon() {\r\n        System.out.println(\" \");\r\n        System.out.println(\"╔══════════════════════╗\");\r\n        System.out.println(\"║ Intercambiar Pokemon ║\");\r\n        System.out.println(\"╚══════════════════════╝\");\r\n        System.out.println(\" \");\r\n    }\r\n\r\n    private void mensajeAtacarPokemon() {\r\n        System.out.println(\" \");\r\n        System.out.println(\"╔════════════════╗\");\r\n        System.out.println(\"║ Atacar Pokemon ║\");\r\n        System.out.println(\"╚════════════════╝\");\r\n        System.out.println(\" \");\r\n    }\r\n\r\n\r\n    private void mensajeNombreJugador() {\r\n        System.out.println(\" \");\r\n        System.out.println(\"╔════════════════════╗\");\r\n        System.out.println(\"║ Eleccion de nombre ║ \");\r\n        System.out.println(\"╚════════════════════╝\");\r\n        System.out.println(\" \");\r\n    }\r\n\r\n    private void mensajePokemonInicial() {\r\n        System.out.println(\"╔══════════════════════╗\");\r\n        System.out.println(\"║ Seleccion de Pokemon ║\");\r\n        System.out.println(\"╚══════════════════════╝\");\r\n        System.out.println(\" \");\r\n\r\n        System.out.println(\"╔════════════════════════════════════════════════════════════╗\");\r\n        System.out.println(\"║ Tenga en cuenta que empieza el pokemon con mayor velocidad ║\");\r\n        System.out.println(\"╚════════════════════════════════════════════════════════════╝\");\r\n    }\r\n\r\n    private void mensajeOpcionInvalida() {\r\n        System.out.println(\" \");\r\n        System.out.println(\"╔═════════════════╗\");\r\n        System.out.println(\"║ Opcion Invalida ║\");\r\n        System.out.println(\"╚═════════════════╝\");\r\n        System.out.println(\" \");\r\n\r\n    }\r\n\r\n    private void mensajeOpcionAplicarItem() {\r\n        System.out.println(\" \");\r\n        System.out.println(\"╔══════════════╗\");\r\n        System.out.println(\"║ Aplicar Item ║\");\r\n        System.out.println(\"╚══════════════╝\");\r\n        System.out.println(\" \");\r\n\r\n    }\r\n\r\n    private void limpiarTerminal() {\r\n        for (int i = 0; i < 50; i++) {\r\n            System.out.println();\r\n        }\r\n    }\r\n\r\n    public void validarNombresJugador(Jugador jugador) {\r\n        Scanner scanner = new Scanner(System.in);\r\n        boolean nombreValido = false;\r\n\r\n        while (!nombreValido) {\r\n            mensajeNombreJugador();\r\n            System.out.println(\"Ingrese el nombre del jugador: \");\r\n            String nombreJugador = scanner.next();\r\n            \r\n            if (nombreJugador.length() < 50) {\r\n                mensajeNombreJugador();\r\n                jugador.setNombre(nombreJugador);\r\n                nombreValido = true;\r\n                System.out.println(\"Bienvenido al juego \" + nombreJugador);\r\n            } else {\r\n                mensajeNombreJugador();\r\n                System.out.println(\"╔═══════════════════════════════════════════════════════════╗\");\r\n                System.out.println(\"║ El nombre tiene mas de 50 caracteres, vuelva a intentarlo ║\");\r\n                System.out.println(\"╚═══════════════════════════════════════════════════════════╝\");\r\n            }\r\n        }\r\n    }\r\n\r\n    public void ganar(Jugador jugador) {\r\n        this.felicitar(jugador);\r\n        jugador.ganar();\r\n    }\r\n\r\n\r\n    private void felicitar(Jugador jugador) {\r\n        System.out.println(\"¡¡Felicidades a \" + jugador.getNombre() + \"!! Ganaste el juego\");\r\n    }\r\n\r\n\r\n    public void opcionRendirse(Jugador jugador, Jugador jugadorAdversario) {\r\n        System.out.println(\"╔═════════════════╗\");\r\n        System.out.println(\"║ Usted se rindio ║ \");\r\n        System.out.println(\"╚═════════════════╝\");\r\n\r\n        jugador.setAtacante(false);\r\n\r\n        this.ganar(jugadorAdversario);\r\n    }\r\n\r\n\r\n    public void opcionVerCampoBatalla(Jugador jugador, Jugador jugadorAdversario) {\r\n\r\n        mensajeCampoBatalla();\r\n        Scanner scanner = new Scanner(System.in);\r\n        System.out.println(\"-----------------------------------------------------------------\");\r\n        System.out.println(\"Pokemones de \" + jugador.getNombre() + \":\");\r\n        jugador.mostrarPokemones();\r\n        System.out.println(\"Pokemones de \" + jugadorAdversario.getNombre() + \":\");\r\n        jugadorAdversario.mostrarPokemones();\r\n        System.out.println(\"Oprima una tecla para dejar de ver el campo de batalla: \");\r\n        scanner.next();\r\n    }\r\n\r\n    public void seleccionarPokemon(Jugador jugador) {\r\n\r\n        Scanner scanner = new Scanner(System.in);\r\n        boolean pokemonValido = false;\r\n        while (!pokemonValido) {\r\n            System.out.println(\"Los pokemones disponibles de \" + jugador.getNombre() + \" son: \");\r\n            jugador.mostrarPokemones();\r\n            System.out.println(\"Ingrese el nombre del pokemon: \");\r\n            String nombrepokemon = scanner.next();\r\n            pokemonValido = jugador.elegirPokemon(nombrepokemon);\r\n        }\r\n    }\r\n    public boolean opcionInercambarPokemon(Jugador jugador) {\r\n\r\n        mensajeIntercambiarPokemon();\r\n        Pokemon pokemonAuxliar = jugador.getPokemonActual();\r\n        seleccionarPokemon(jugador);\r\n        System.out.println(\"Desea Realizar el cambio? Si - No\");\r\n        Scanner scanner = new Scanner(System.in);\r\n        String decision = scanner.next();\r\n        return jugador.intercambiarPokemon(decision, pokemonAuxliar);\r\n    }\r\n\r\n    private void mensajeIntercambioAlAdversario(boolean intercambioPokemon){\r\n\r\n        System.out.println(\" \");\r\n        System.out.println(\"╔══════════════════════════════════════╗\");\r\n        System.out.println(\"║ El Adversario Intercambio el Pokemon ║ \");\r\n        System.out.println(\"╚══════════════════════════════════════╝\");\r\n        System.out.println(\" \");\r\n\r\n    }\r\n\r\n    public void opcionAtacar(Jugador jugador, Jugador jugadorAdversario) {\r\n\r\n        mensajeAtacarPokemon();\r\n        jugador.mostratHabilidadesPokemonActual();\r\n        System.out.println(\"Elige una habilidad: \");\r\n        Scanner scanner = new Scanner(System.in);\r\n        String opcion;\r\n        opcion = scanner.next();\r\n\r\n        jugador.atacarJugador(jugadorAdversario, opcion);\r\n\r\n    }\r\n\r\n    public void opcionAplicarItem(Jugador jugador){\r\n\r\n        mensajeOpcionAplicarItem();\r\n        Scanner scanner = new Scanner(System.in);\r\n        jugador.mostrarItems();\r\n        System.out.println(\"Seleccione el item a aplicar: \");\r\n        String nombreItem = scanner.nextLine();\r\n        if(jugador.validadorClaveItems(nombreItem)){\r\n            Item itemAplicable = jugador.elegirItem(nombreItem);\r\n            jugador.mostrarPokemones();\r\n            System.out.println(\"Seleccione el Pokemon a aplicar el item: \");\r\n            String nombrePokemon = scanner.next();\r\n            if(jugador.validadorClavePokemones(nombrePokemon)){\r\n                System.out.println(\"Desea aplicar el item? Si - No:\");\r\n                String decision = scanner.next();\r\n                if(Objects.equals(decision, \"Si\")){\r\n                    jugador.usarItem(nombrePokemon, itemAplicable);\r\n                } else{\r\n                    System.out.println(\"No se aplico ningun Item\");\r\n                }\r\n            } else{\r\n                System.out.println(\"No se encontro el pokemon\");\r\n            }\r\n\r\n        } else{\r\n            System.out.println(\"No se encontro el item.\");\r\n        }\r\n\r\n    }\r\n    public void opcionesJugadores(Jugador jugador) {\r\n\r\n        Scanner scanner = new Scanner(System.in);\r\n        String decision;\r\n        boolean IntercambioPokemon = false;\r\n\r\n        if(!jugador.verficarEstadoPokemonActual()){\r\n            seleccionarPokemon(jugador);\r\n        }\r\n\r\n        while (jugador.isAtacante()) {\r\n            this.mensajeMenu();\r\n            System.out.println(\"El jugador actual es \" + jugador.getNombre());\r\n            System.out.println(\"Oprima una de las opciones: \");\r\n            decision = scanner.next();\r\n\r\n\r\n\r\n\r\n            if (Objects.equals(decision, \"1\")) {\r\n                opcionRendirse(jugador, jugador.getAdversario());\r\n            } else if (Objects.equals(decision, \"2\")) {\r\n                opcionVerCampoBatalla(jugador, jugador.getAdversario());\r\n            } else if (Objects.equals(decision, \"3\")) {\r\n                IntercambioPokemon = opcionInercambarPokemon(jugador);\r\n            } else if (Objects.equals(decision, \"4\")) {\r\n                opcionAplicarItem(jugador);\r\n            } else if (Objects.equals(decision, \"5\")) {\r\n                opcionAtacar(jugador, jugador.getAdversario());\r\n            } else {\r\n                this.mensajeOpcionInvalida();\r\n            }\r\n            if(IntercambioPokemon) {\r\n                mensajeIntercambioAlAdversario(IntercambioPokemon);\r\n            }\r\n        }\r\n    }\r\n\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/org/fiuba/algoritmos3/Controlador.java b/TpJava/src/main/java/org/fiuba/algoritmos3/Controlador.java
+--- a/TpJava/src/main/java/org/fiuba/algoritmos3/Controlador.java	(revision 59f2b9b30c9b8348074388b54a161c44e2b53870)
++++ b/TpJava/src/main/java/org/fiuba/algoritmos3/Controlador.java	(date 1696363333169)
+@@ -220,7 +220,33 @@
+         jugador.mostrarItems();
+         System.out.println("Seleccione el item a aplicar: ");
+         String nombreItem = scanner.nextLine();
+-        if(jugador.validadorClaveItems(nombreItem)){
++
++        if(!jugador.validadorClaveItems(nombreItem)){
++            System.out.println("No se encontro el item.");
++            return;
++        }
++
++        Item itemAplicable = jugador.elegirItem(nombreItem);
++        jugador.mostrarPokemones();
++        System.out.println("Seleccione el Pokemon a aplicar el item: ");
++        String nombrePokemon = scanner.next();
++
++        if(!jugador.validadorClavePokemones(nombrePokemon)){
++            System.out.println("No se encontro el pokemon");
++            return;
++        }
++
++        System.out.println("Desea aplicar el item? Si - No:");
++        String decision = scanner.next();
++
++        if(!decision.equals("Si")){
++            System.out.println("No se aplico el Item seleccionado");
++            return;
++        }
++        jugador.usarItem(nombrePokemon, itemAplicable);
++
++
++        /*if(jugador.validadorClaveItems(nombreItem)){
+             Item itemAplicable = jugador.elegirItem(nombreItem);
+             jugador.mostrarPokemones();
+             System.out.println("Seleccione el Pokemon a aplicar el item: ");
+@@ -239,7 +265,7 @@
+ 
+         } else{
+             System.out.println("No se encontro el item.");
+-        }
++        }*/
+ 
+     }
+     public void opcionesJugadores(Jugador jugador) {
+@@ -258,9 +284,6 @@
+             System.out.println("Oprima una de las opciones: ");
+             decision = scanner.next();
+ 
+-
+-
+-
+             if (Objects.equals(decision, "1")) {
+                 opcionRendirse(jugador, jugador.getAdversario());
+             } else if (Objects.equals(decision, "2")) {
+Index: TpJava/src/main/java/org/fiuba/algoritmos3/Pokemon.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.fiuba.algoritmos3;\r\nimport Tipo.Tipo;\r\n\r\nimport java.util.HashMap;\r\nimport java.util.Map;\r\n\r\npublic class Pokemon {\r\n\r\n    //Atributos:\r\n    private String nombre;\r\n    private Tipo tipo; //DEBE SER UNA REFERENCIA A LA CLASE AGUA, NO UNA INSTANCIA DE AGUA\r\n    private String historia;\r\n    private Estadisticas estadisticas;\r\n    private Map<String, Habilidad> misHabilidades;\r\n\r\n    private Estado estadoActual; \r\n\r\n    //Metodos:\r\n\r\n    public Pokemon(String nombre, int nivel,String tipo, String historia,double vidaMax,int velocidad,int defensa,int ataque){\r\n        this.nombre = nombre;\r\n        this.tipo = Tipo.getTipo(tipo);\r\n        this.historia = historia;\r\n        this.estadisticas = new Estadisticas(vidaMax,nivel,velocidad,defensa,ataque);\r\n        this.estadoActual = new EstadoNormal(\"Normal\");\r\n        this.misHabilidades = new HashMap<>();\r\n    }\r\n\r\n\r\n    public String getNombre() {return nombre;}\r\n    public Tipo getTipo() {return tipo;}\r\n    public Estadisticas getEstadisticas() {return estadisticas;}\r\n    public int getVelocidad() {return estadisticas.getVelocidad();}\r\n    public double getVidaMaxima() {return this.estadisticas.getVidaMaxima();}\r\n    public double getVida() {return this.estadisticas.getVida();}\r\n\r\n    public String suEstadoEs() {return estadoActual.getNombre();}\r\n\r\n\r\n    public void añadirHabilidad(Habilidad unaHabilidad){\r\n        this.misHabilidades.put(unaHabilidad.getNombre(), unaHabilidad);\r\n    }\r\n\r\n\r\n    public void recibirDanio(double damageEnemigo){\r\n        this.estadisticas.reduccionVida(damageEnemigo);\r\n    }\r\n\r\n    public Habilidad seleccionarHabilidad(String unaHabilidad){\r\n        return misHabilidades.get(unaHabilidad);\r\n    }\r\n\r\n    public void aplicarEfectoPasivoPokemon(){\r\n        estadoActual.aplicarEfectoPasivoDeEstado(this);\r\n    }\r\n\r\n    public void cambiarseEstado(Estado unEstado){\r\n        this.estadoActual = unEstado;\r\n    }\r\n\r\n\r\n    public boolean estaConciente() {\r\n\r\n        if(this.estadisticas.getVida() > 0){\r\n            return true;\r\n        }else{\r\n            this.cambiarseEstado(new EstadoInhabilitado(\"Inhabilitado\"));\r\n            return false;\r\n        }\r\n    }\r\n\r\n    public boolean puedeAtacar(){\r\n        return estadoActual.puedeAtacar(this);\r\n    }\r\n\r\n    public void atacar(Pokemon pokemonEnemigoActual, String nombreDeHabilidad) {\r\n\r\n        Habilidad unaHabilidad = this.seleccionarHabilidad(nombreDeHabilidad); //es un puntero? :V\r\n\r\n        if (this.puedeAtacar()) {\r\n            unaHabilidad.usarHabilidad(pokemonEnemigoActual, this);\r\n            System.out.println(\"La vida de \" + pokemonEnemigoActual.getNombre() + \" es = \" + pokemonEnemigoActual.getVida());\r\n            pokemonEnemigoActual.getEstadisticas().mostrarEstadisticas();\r\n        }\r\n    }\r\n\r\n    public void mostrarPokemon(){\r\n        System.out.println(\"Nombre: \" + this.nombre);\r\n        this.estadisticas.mostrarEstadisticas();\r\n        System.out.println(\" Historia: \" + this.historia);\r\n        System.out.println(\" Estado: \" + this.estadoActual.getNombre());\r\n    }\r\n\r\n\r\n    public void mostrarHabilidades() {\r\n        this.misHabilidades.forEach((k, v) -> v.mostrarHabilidad());\r\n    }\r\n\r\n\r\n    public boolean validarHabilidad(String nombreHabilidad){\r\n       return this.misHabilidades.containsKey(nombreHabilidad);\r\n    }\r\n\r\n    public Estado getEstadoActual() {\r\n        return estadoActual;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/org/fiuba/algoritmos3/Pokemon.java b/TpJava/src/main/java/org/fiuba/algoritmos3/Pokemon.java
+--- a/TpJava/src/main/java/org/fiuba/algoritmos3/Pokemon.java	(revision 59f2b9b30c9b8348074388b54a161c44e2b53870)
++++ b/TpJava/src/main/java/org/fiuba/algoritmos3/Pokemon.java	(date 1696358693207)
+@@ -11,12 +11,13 @@
+     private Tipo tipo; //DEBE SER UNA REFERENCIA A LA CLASE AGUA, NO UNA INSTANCIA DE AGUA
+     private String historia;
+     private Estadisticas estadisticas;
++
+     private Map<String, Habilidad> misHabilidades;
+ 
+-    private Estado estadoActual; 
++    private Estado estadoActual;
+ 
++
+     //Metodos:
+-
+     public Pokemon(String nombre, int nivel,String tipo, String historia,double vidaMax,int velocidad,int defensa,int ataque){
+         this.nombre = nombre;
+         this.tipo = Tipo.getTipo(tipo);
+@@ -28,12 +29,20 @@
+ 
+ 
+     public String getNombre() {return nombre;}
++
+     public Tipo getTipo() {return tipo;}
++    public Map<String, Habilidad> getMisHabilidades() {
++        return misHabilidades;
++    }
+     public Estadisticas getEstadisticas() {return estadisticas;}
+     public int getVelocidad() {return estadisticas.getVelocidad();}
+     public double getVidaMaxima() {return this.estadisticas.getVidaMaxima();}
+     public double getVida() {return this.estadisticas.getVida();}
+ 
++    public Estado getEstadoActual() {
++        return estadoActual;
++    }
++
+     public String suEstadoEs() {return estadoActual.getNombre();}
+ 
+ 
+@@ -60,13 +69,11 @@
+ 
+ 
+     public boolean estaConciente() {
+-
+-        if(this.estadisticas.getVida() > 0){
+-            return true;
+-        }else{
++        if(this.estadisticas.getVida() == 0){ //<=
+             this.cambiarseEstado(new EstadoInhabilitado("Inhabilitado"));
+             return false;
+         }
++        return true;
+     }
+ 
+     public boolean puedeAtacar(){
+@@ -91,17 +98,7 @@
+         System.out.println(" Estado: " + this.estadoActual.getNombre());
+     }
+ 
+-
+     public void mostrarHabilidades() {
+         this.misHabilidades.forEach((k, v) -> v.mostrarHabilidad());
+     }
+-
+-
+-    public boolean validarHabilidad(String nombreHabilidad){
+-       return this.misHabilidades.containsKey(nombreHabilidad);
+-    }
+-
+-    public Estado getEstadoActual() {
+-        return estadoActual;
+-    }
+ }
+Index: TpJava/src/main/java/org/fiuba/algoritmos3/Validacion.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/org/fiuba/algoritmos3/Validacion.java b/TpJava/src/main/java/org/fiuba/algoritmos3/Validacion.java
+new file mode 100644
+--- /dev/null	(date 1696359571864)
++++ b/TpJava/src/main/java/org/fiuba/algoritmos3/Validacion.java	(date 1696359571864)
+@@ -0,0 +1,16 @@
++package org.fiuba.algoritmos3;
++
++import java.util.Map;
++
++public class Validacion {
++
++    public boolean estaContenidoHabilidad(String nombreHabilidad, Map<String, Habilidad> habilidades){
++        return habilidades.containsKey(nombreHabilidad);
++    }
++    public boolean estaContenidoPokemon(String nombrePokemon,Map<String, Pokemon> misPokemones){
++        return misPokemones.containsKey(nombrePokemon);
++    }
++    public boolean estaContenidoItem(String nombreItem,Map<String, Item> misItems){
++        return misItems.containsKey(nombreItem);
++    }
++}

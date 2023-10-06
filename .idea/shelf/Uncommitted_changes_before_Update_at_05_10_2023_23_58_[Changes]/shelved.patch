@@ -1,0 +1,556 @@
+Index: TpJava/src/main/java/Item/PocionAtaque.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Item;\r\n\r\nimport Item.Item;\r\nimport org.fiuba.algoritmos3.Modificacion;\r\nimport org.fiuba.algoritmos3.Pokemon;\r\n\r\npublic class PocionAtaque extends Item {\r\n\r\n    public PocionAtaque(String nombre, int cantidad, Modificacion unaModificacion){\r\n        super(nombre, cantidad);\r\n        this.unaModificacion = unaModificacion;\r\n    }\r\n\r\n    @Override\r\n    public boolean aplicarItem(Pokemon unPokemon) {\r\n\r\n        boolean realizo = this.realizarUsadoItemsDeEstadisitcas(unPokemon.getEstadisticas());\r\n        this.unaModificacion.modificar(unPokemon.getEstadisticas(), 1);\r\n        return realizo;\r\n    }\r\n\r\n    @Override\r\n    public void mostrarItem() {\r\n        System.out.println(nombre + \": Aumenta 10% el ataque - Cantidad: \" + cantidad);\r\n    }\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/Item/PocionAtaque.java b/TpJava/src/main/java/Item/PocionAtaque.java
+--- a/TpJava/src/main/java/Item/PocionAtaque.java	(revision 369626156ea1de2f8033c83c48913cdca394c030)
++++ b/TpJava/src/main/java/Item/PocionAtaque.java	(date 1696557243142)
+@@ -4,7 +4,7 @@
+ import org.fiuba.algoritmos3.Modificacion;
+ import org.fiuba.algoritmos3.Pokemon;
+ 
+-public class PocionAtaque extends Item {
++public class PocionAtaque extends ItemsEstadistica {
+ 
+     public PocionAtaque(String nombre, int cantidad, Modificacion unaModificacion){
+         super(nombre, cantidad);
+Index: TpJava/src/main/java/Item/Item.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Item;\r\nimport static org.fiuba.algoritmos3.Constantes.*;\r\n\r\nimport org.fiuba.algoritmos3.*;\r\n\r\nimport java.util.Objects;\r\n\r\npublic abstract class Item {\r\n\r\n    protected String nombre;\r\n    protected int cantidad;\r\n    protected Modificacion unaModificacion;\r\n\r\n    public Item(String nombre, int cantidad) {\r\n        this.nombre = nombre;\r\n        this.cantidad = cantidad;\r\n    }\r\n\r\n    public abstract boolean aplicarItem(Pokemon unPokemon);\r\n\r\n    public boolean realizarCasosDeApliacion(Pokemon unPokemon){\r\n\r\n        if (this.cantidad == 0) {\r\n            System.out.println(\"No tiene este tipo de items\");\r\n            return false;\r\n        }\r\n        else{\r\n            System.out.print(\"Acaba de seleccionar el siguiente Item: \" + nombre);\r\n            System.out.println(\"\\n\");\r\n            return this.aplicarItem(unPokemon);\r\n        }\r\n    }\r\n\r\n    public boolean realizarUsadoItemsDeCuracion(Estadisticas estadistica){\r\n        if(estadistica.getVida() != 0 && estadistica.getVida() != estadistica.getVidaMaxima()){\r\n            this.cantidad --;\r\n            return true;\r\n        }\r\n        return false;\r\n    }\r\n\r\n    public boolean realizarUsadoItemsDeEstadisitcas(Estadisticas estadistica){\r\n        if(estadistica.getVida() != 0){\r\n            this.cantidad --;\r\n            return true;\r\n        }\r\n        return false;\r\n    }\r\n\r\n    public boolean realizarUsadoItemsDeEstado(Estado unEstado){\r\n        if(Objects.equals(unEstado.getNombre(), ESTADO_INHABILITADO)){\r\n            this.cantidad --;\r\n            return true;\r\n        }\r\n        else if(!Objects.equals(unEstado.getNombre(), ESTADO_NORMAL) && !Objects.equals(unEstado.getNombre(), ESTADO_INHABILITADO)){\r\n            this.cantidad --;\r\n            return true;\r\n        }\r\n        return false;\r\n    }\r\n\r\n    public String getNombre() {\r\n        return nombre;\r\n    }\r\n\r\n    public int getCantidad() {\r\n        return cantidad;\r\n    }\r\n\r\n    public abstract void mostrarItem();\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/Item/Item.java b/TpJava/src/main/java/Item/Item.java
+--- a/TpJava/src/main/java/Item/Item.java	(revision 369626156ea1de2f8033c83c48913cdca394c030)
++++ b/TpJava/src/main/java/Item/Item.java	(date 1696557243114)
+@@ -15,6 +15,13 @@
+         this.nombre = nombre;
+         this.cantidad = cantidad;
+     }
++    public int getCantidad() {
++        return cantidad;
++    }
++
++    public String getNombre() {
++        return nombre;
++    }
+ 
+     public abstract boolean aplicarItem(Pokemon unPokemon);
+ 
+@@ -31,41 +38,5 @@
+         }
+     }
+ 
+-    public boolean realizarUsadoItemsDeCuracion(Estadisticas estadistica){
+-        if(estadistica.getVida() != 0 && estadistica.getVida() != estadistica.getVidaMaxima()){
+-            this.cantidad --;
+-            return true;
+-        }
+-        return false;
+-    }
+-
+-    public boolean realizarUsadoItemsDeEstadisitcas(Estadisticas estadistica){
+-        if(estadistica.getVida() != 0){
+-            this.cantidad --;
+-            return true;
+-        }
+-        return false;
+-    }
+-
+-    public boolean realizarUsadoItemsDeEstado(Estado unEstado){
+-        if(Objects.equals(unEstado.getNombre(), ESTADO_INHABILITADO)){
+-            this.cantidad --;
+-            return true;
+-        }
+-        else if(!Objects.equals(unEstado.getNombre(), ESTADO_NORMAL) && !Objects.equals(unEstado.getNombre(), ESTADO_INHABILITADO)){
+-            this.cantidad --;
+-            return true;
+-        }
+-        return false;
+-    }
+-
+-    public String getNombre() {
+-        return nombre;
+-    }
+-
+-    public int getCantidad() {
+-        return cantidad;
+-    }
+-
+     public abstract void mostrarItem();
+ }
+Index: TpJava/src/main/java/Item/PocionCuracionEstados.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Item;\r\nimport static org.fiuba.algoritmos3.Constantes.*;\r\n\r\nimport Item.Item;\r\nimport org.fiuba.algoritmos3.EstadoNormal;\r\nimport org.fiuba.algoritmos3.Pokemon;\r\n\r\nimport java.util.Objects;\r\n\r\npublic class PocionCuracionEstados extends Item {\r\n    public PocionCuracionEstados(String nombre, int cantidad){\r\n        super(nombre, cantidad);\r\n    }\r\n    @Override\r\n    public boolean aplicarItem(Pokemon unPokemon) {\r\n        boolean realizo = false;\r\n        if (!Objects.equals(unPokemon.suEstadoEs(), ESTADO_NORMAL) && unPokemon.estaConciente()) {\r\n            realizo = this.realizarUsadoItemsDeEstado(unPokemon.getEstadoActual());\r\n            unPokemon.cambiarseEstado(new EstadoNormal());\r\n        } else {\r\n            System.out.println(\" \");\r\n            System.out.println(\"No se puede aplicar este item a un Pokemon Inhabilitado o Normal.\");\r\n        }\r\n        return realizo;\r\n    }\r\n    @Override\r\n    public void mostrarItem() {\r\n        System.out.println(nombre + \": Elimina los Estado del pokemon - Cantidad: \" + cantidad);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/Item/PocionCuracionEstados.java b/TpJava/src/main/java/Item/PocionCuracionEstados.java
+--- a/TpJava/src/main/java/Item/PocionCuracionEstados.java	(revision 369626156ea1de2f8033c83c48913cdca394c030)
++++ b/TpJava/src/main/java/Item/PocionCuracionEstados.java	(date 1696557961455)
+@@ -7,7 +7,7 @@
+ 
+ import java.util.Objects;
+ 
+-public class PocionCuracionEstados extends Item {
++public class PocionCuracionEstados extends ItemsEstado {
+     public PocionCuracionEstados(String nombre, int cantidad){
+         super(nombre, cantidad);
+     }
+@@ -15,7 +15,7 @@
+     public boolean aplicarItem(Pokemon unPokemon) {
+         boolean realizo = false;
+         if (!Objects.equals(unPokemon.suEstadoEs(), ESTADO_NORMAL) && unPokemon.estaConciente()) {
+-            realizo = this.realizarUsadoItemsDeEstado(unPokemon.getEstadoActual());
++            realizo = this.realizarUsadoCurarTodo(unPokemon.getEstadoActual());
+             unPokemon.cambiarseEstado(new EstadoNormal());
+         } else {
+             System.out.println(" ");
+Index: TpJava/src/main/java/Item/MegaPocion.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Item;\r\n\r\nimport org.fiuba.algoritmos3.Modificacion;\r\nimport org.fiuba.algoritmos3.Pokemon;\r\n\r\npublic class MegaPocion extends Item {\r\n\r\n    public MegaPocion(String nombre, int cantidad, Modificacion unaModificacion){\r\n        super(nombre, cantidad);\r\n        this.unaModificacion = unaModificacion;\r\n    }\r\n\r\n    @Override\r\n    public boolean aplicarItem(Pokemon unPokemon) {\r\n        boolean realizo = this.realizarUsadoItemsDeCuracion(unPokemon.getEstadisticas());\r\n        this.unaModificacion.modificar(unPokemon.getEstadisticas(), 50);\r\n        return realizo;\r\n    }\r\n    @Override\r\n    public void mostrarItem() {\r\n        System.out.println(nombre + \": Restaura 50 de vida - Cantidad: \" + cantidad);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/Item/MegaPocion.java b/TpJava/src/main/java/Item/MegaPocion.java
+--- a/TpJava/src/main/java/Item/MegaPocion.java	(revision 369626156ea1de2f8033c83c48913cdca394c030)
++++ b/TpJava/src/main/java/Item/MegaPocion.java	(date 1696554752253)
+@@ -3,7 +3,7 @@
+ import org.fiuba.algoritmos3.Modificacion;
+ import org.fiuba.algoritmos3.Pokemon;
+ 
+-public class MegaPocion extends Item {
++public class MegaPocion extends ItemsCuracion {
+ 
+     public MegaPocion(String nombre, int cantidad, Modificacion unaModificacion){
+         super(nombre, cantidad);
+Index: TpJava/src/main/java/Item/Pocion.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Item;\r\n\r\nimport org.fiuba.algoritmos3.Modificacion;\r\nimport org.fiuba.algoritmos3.Pokemon;\r\n\r\npublic class Pocion extends Item {\r\n\r\n    public Pocion(String nombre, int cantidad, Modificacion modificar){\r\n        super(nombre, cantidad);\r\n        this.unaModificacion = modificar;\r\n    }\r\n    @Override\r\n    public boolean aplicarItem(Pokemon unPokemon){\r\n\r\n        boolean realizo = realizarUsadoItemsDeCuracion(unPokemon.getEstadisticas());\r\n        this.unaModificacion.modificar(unPokemon.getEstadisticas(), 25);\r\n        return realizo;\r\n    }\r\n\r\n    @Override\r\n    public void mostrarItem() {\r\n        System.out.println(nombre + \": Restaura 25 de vida - Cantidad: \" + cantidad);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/Item/Pocion.java b/TpJava/src/main/java/Item/Pocion.java
+--- a/TpJava/src/main/java/Item/Pocion.java	(revision 369626156ea1de2f8033c83c48913cdca394c030)
++++ b/TpJava/src/main/java/Item/Pocion.java	(date 1696556285027)
+@@ -3,7 +3,7 @@
+ import org.fiuba.algoritmos3.Modificacion;
+ import org.fiuba.algoritmos3.Pokemon;
+ 
+-public class Pocion extends Item {
++public class Pocion extends ItemsCuracion {
+ 
+     public Pocion(String nombre, int cantidad, Modificacion modificar){
+         super(nombre, cantidad);
+Index: TpJava/src/main/java/org/fiuba/algoritmos3/AplicarItem.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.fiuba.algoritmos3;\r\n\r\nimport Item.Item;\r\nimport org.fiuba.algoritmos3.Jugador;\r\n\r\nimport java.util.Scanner;\r\n\r\npublic class AplicarItem implements Opciones{\r\n\r\n    private void mensajeOpcionAplicarItem() {\r\n        System.out.println(\"\\n\");\r\n        System.out.println(\"╔══════════════╗\");\r\n        System.out.println(\"║ Aplicar Item ║\");\r\n        System.out.println(\"╚══════════════╝\");\r\n        System.out.println(\"\\n\");\r\n\r\n    }\r\n\r\n    private void mensajeAplicoItem(Jugador jugador, String nombreItem) {\r\n\r\n        System.out.println(\"\\n\");\r\n        System.out.println(\"╔═════════════════════════════╗\");\r\n        System.out.println(\"║ Se acaba de aplicar un item ║\");\r\n        System.out.println(\"╚═════════════════════════════╝\");\r\n        System.out.println(\"\\n\");\r\n        System.out.println(\"El jugador \" + jugador.getNombre() + \" acaba de usar \" + nombreItem + \".\");\r\n        System.out.println(\"Oprima una tecla para seguir jugando.\");\r\n    }\r\n    @Override\r\n    public void aplicarOpcion(Jugador jugador, Jugador jugadorAdversario){\r\n\r\n        //this.mensajeOpcionAplicarItem();\r\n        Scanner scanner = new Scanner(System.in);\r\n        jugador.mostrarItems();\r\n        System.out.println(\"Seleccione el item a aplicar: \");\r\n        String nombreItem = scanner.nextLine();\r\n\r\n        if(!jugador.validadorClaveItems(nombreItem)){\r\n            System.out.println(\"No se encontro el item.\");\r\n            return;\r\n        }\r\n\r\n        Item itemAplicable = jugador.elegirItem(nombreItem);\r\n        jugador.mostrarPokemones();\r\n        System.out.println(\"Seleccione el Pokemon a aplicar el item: \");\r\n        String nombrePokemon = scanner.next();\r\n\r\n        if(!jugador.validadorClavePokemones(nombrePokemon)){\r\n            System.out.println(\"No se encontro el pokemon\");\r\n                return;\r\n        }\r\n\r\n        System.out.println(\"Desea aplicar el item? Si - No:\");\r\n        String decision = scanner.next();\r\n\r\n        if(!decision.equals(\"Si\")){\r\n            System.out.println(\"No se aplico el Item seleccionado\");\r\n            return;\r\n        }\r\n        if(jugador.usarItem(nombrePokemon, itemAplicable)) {\r\n            mensajeAplicoItem(jugador, itemAplicable.getNombre());\r\n            decision = scanner.next();\r\n        }\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/org/fiuba/algoritmos3/AplicarItem.java b/TpJava/src/main/java/org/fiuba/algoritmos3/AplicarItem.java
+--- a/TpJava/src/main/java/org/fiuba/algoritmos3/AplicarItem.java	(revision 369626156ea1de2f8033c83c48913cdca394c030)
++++ b/TpJava/src/main/java/org/fiuba/algoritmos3/AplicarItem.java	(date 1696560505502)
+@@ -1,6 +1,7 @@
+ package org.fiuba.algoritmos3;
+ 
+ import Item.Item;
++import Item.PocionAtaque;
+ import org.fiuba.algoritmos3.Jugador;
+ 
+ import java.util.Scanner;
+@@ -25,6 +26,22 @@
+         System.out.println("\n");
+         System.out.println("El jugador " + jugador.getNombre() + " acaba de usar " + nombreItem + ".");
+         System.out.println("Oprima una tecla para seguir jugando.");
++    }
++    private void decidirAplicarItem(Jugador jugador, String nombrePokemon, Item itemAplicable){
++
++        Scanner scanner = new Scanner(System.in);
++        System.out.println("Desea aplicar el item? Si - No:");
++        String decision = scanner.next();
++
++        if(!decision.equals("Si")){
++            System.out.println("No se aplico el Item seleccionado");
++            return;
++        }
++        if(jugador.usarItem(nombrePokemon, itemAplicable)) {
++            mensajeAplicoItem(jugador, itemAplicable.getNombre());
++            decision = scanner.next();
++        }
++
+     }
+     @Override
+     public void aplicarOpcion(Jugador jugador, Jugador jugadorAdversario){
+@@ -62,5 +79,10 @@
+             decision = scanner.next();
+         }
+     }
++    private void validarItemDeBatalla(Jugador unJugador,Item unItem){
++        if(unItem instanceof PocionAtaque){
+ 
++        }
++    }
+ }
++
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"81ad5f3d-e77a-4eab-8f82-726006efbf84\" name=\"Changes\" comment=\"\">\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/java/Item/HiperPocion.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/src/main/java/Item/HiperPocion.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/java/Item/Item.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/src/main/java/Item/Item.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/java/Item/MegaPocion.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/src/main/java/Item/MegaPocion.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/java/Item/Pocion.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/src/main/java/Item/Pocion.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/java/Item/PocionAtaque.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/src/main/java/Item/PocionAtaque.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/java/Item/PocionCuracionEstados.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/src/main/java/Item/PocionCuracionEstados.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/java/Item/PocionDefensa.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/src/main/java/Item/PocionDefensa.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/java/Item/Revivir.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/src/main/java/Item/Revivir.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/java/Tipo/Agua.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/src/main/java/Tipo/Agua.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/java/Tipo/Bicho.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/src/main/java/Tipo/Bicho.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/java/Tipo/Dragon.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/src/main/java/Tipo/Dragon.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/java/Tipo/Electrico.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/src/main/java/Tipo/Electrico.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/java/Tipo/Fantasma.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/src/main/java/Tipo/Fantasma.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/java/Tipo/Fuego.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/src/main/java/Tipo/Fuego.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/java/Tipo/Hielo.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/src/main/java/Tipo/Hielo.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/java/Tipo/Lucha.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/src/main/java/Tipo/Lucha.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/java/Tipo/Normal.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/src/main/java/Tipo/Normal.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/java/Tipo/Planta.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/src/main/java/Tipo/Planta.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/java/Tipo/Psiquico.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/src/main/java/Tipo/Psiquico.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/java/Tipo/Roca.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/src/main/java/Tipo/Roca.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/java/Tipo/Tierra.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/src/main/java/Tipo/Tierra.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/java/Tipo/Tipo.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/src/main/java/Tipo/Tipo.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/java/Tipo/Veneno.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/src/main/java/Tipo/Veneno.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/java/Tipo/Volador.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/src/main/java/Tipo/Volador.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Constantes.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Constantes.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Datos.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Datos.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Estadisticas.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Estadisticas.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/EstadoEnvenenado.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/EstadoEnvenenado.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/HabilidadAtaque.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/HabilidadAtaque.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/HabilidadEstadistica.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/HabilidadEstadistica.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/HabilidadEstado.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/HabilidadEstado.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Juego.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Juego.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Jugador.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Jugador.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Pokemon.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Pokemon.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Rendirse.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Rendirse.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/target/classes/Item/HiperPocion.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/target/classes/Item/HiperPocion.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/target/classes/Item/Item.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/target/classes/Item/Item.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/target/classes/Item/MegaPocion.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/target/classes/Item/MegaPocion.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/target/classes/Item/Pocion.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/target/classes/Item/Pocion.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/target/classes/Item/PocionAtaque.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/target/classes/Item/PocionAtaque.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/target/classes/Item/PocionCuracionEstados.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/target/classes/Item/PocionCuracionEstados.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/target/classes/Item/PocionDefensa.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/target/classes/Item/PocionDefensa.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/target/classes/Item/Revivir.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/target/classes/Item/Revivir.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/target/classes/Opciones/AplicarItem.class\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/target/classes/Opciones/Atacar.class\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/target/classes/Opciones/IntercambiarPokemon.class\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/target/classes/Opciones/Opciones.class\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/target/classes/Opciones/Rendirse.class\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/target/classes/Opciones/VerCampoDeBatalla.class\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/target/classes/Tipo/Agua.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/target/classes/Tipo/Agua.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/target/classes/Tipo/Bicho.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/target/classes/Tipo/Bicho.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/target/classes/Tipo/Dragon.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/target/classes/Tipo/Dragon.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/target/classes/Tipo/Electrico.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/target/classes/Tipo/Electrico.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/target/classes/Tipo/Fantasma.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/target/classes/Tipo/Fantasma.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/target/classes/Tipo/Fuego.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/target/classes/Tipo/Fuego.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/target/classes/Tipo/Hielo.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/target/classes/Tipo/Hielo.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/target/classes/Tipo/Lucha.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/target/classes/Tipo/Lucha.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/target/classes/Tipo/Normal.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/target/classes/Tipo/Normal.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/target/classes/Tipo/Planta.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/target/classes/Tipo/Planta.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/target/classes/Tipo/Psiquico.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/target/classes/Tipo/Psiquico.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/target/classes/Tipo/Roca.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/target/classes/Tipo/Roca.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/target/classes/Tipo/Tierra.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/target/classes/Tipo/Tierra.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/target/classes/Tipo/Tipo.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/target/classes/Tipo/Tipo.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/target/classes/Tipo/Veneno.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/target/classes/Tipo/Veneno.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/target/classes/Tipo/Volador.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/target/classes/Tipo/Volador.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Constantes.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Constantes.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Datos.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Datos.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Estadisticas.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Estadisticas.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/EstadoEnvenenado.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/EstadoEnvenenado.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/HabilidadAtaque.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/HabilidadAtaque.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/HabilidadEstadistica.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/HabilidadEstadistica.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/HabilidadEstado.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/HabilidadEstado.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Juego.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Juego.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Jugador.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Jugador.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Pokemon.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Pokemon.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Rendirse.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Rendirse.class\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Interface\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"Prueba\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProblemsViewState\">\r\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\r\n  </component>\r\n  <component name=\"ProjectCodeStyleSettingsMigration\">\r\n    <option name=\"version\" value=\"2\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 1\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2VZWDceRPeCVhqYCOKGBo7NpSdD\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"last_opened_file_path\": \"C:/Users/Dayru/OneDrive/Documents/Algoritmo y Programacion 3 -  CANO/TP1 - ALGO3/Tp1_local\",\r\n    \"project.structure.last.edited\": \"Project\",\r\n    \"project.structure.proportion\": \"0.0\",\r\n    \"project.structure.side.proportion\": \"0.0\",\r\n    \"settings.editor.selected.configurable\": \"preferences.editor\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyClassDialog.RECENTS_KEY\">\r\n      <recent name=\"Tipo\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"81ad5f3d-e77a-4eab-8f82-726006efbf84\" name=\"Changes\" comment=\"\" />\r\n      <created>1695043963160</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1695043963160</updated>\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State>\r\n              <option name=\"FILTERS\">\r\n                <map>\r\n                  <entry key=\"branch\">\r\n                    <value>\r\n                      <list>\r\n                        <option value=\"Funcional\" />\r\n                      </list>\r\n                    </value>\r\n                  </entry>\r\n                </map>\r\n              </option>\r\n            </State>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <breakpoint enabled=\"true\" type=\"java-exception\">\r\n          <properties class=\"java.lang.NullPointerException\" package=\"java.lang\" />\r\n          <option name=\"timeStamp\" value=\"1\" />\r\n        </breakpoint>\r\n      </breakpoints>\r\n    </breakpoint-manager>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 369626156ea1de2f8033c83c48913cdca394c030)
++++ b/.idea/workspace.xml	(date 1696559217498)
+@@ -5,6 +5,13 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="81ad5f3d-e77a-4eab-8f82-726006efbf84" name="Changes" comment="">
++      <change afterPath="$PROJECT_DIR$/TpJava/src/main/java/Item/ItemsCuracion.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/TpJava/src/main/java/Item/ItemsEstadistica.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/TpJava/src/main/java/Item/ItemsEstado.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/TpJava/src/main/java/Item/validarItemCuracion.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/TpJava/src/main/java/Item/validarItemEstadistica.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/TpJava/src/main/java/Item/validarItemEstado.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Item/HiperPocion.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Item/HiperPocion.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Item/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Item/Item.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Item/MegaPocion.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Item/MegaPocion.java" afterDir="false" />
+@@ -13,33 +20,7 @@
+       <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Item/PocionCuracionEstados.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Item/PocionCuracionEstados.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Item/PocionDefensa.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Item/PocionDefensa.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Item/Revivir.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Item/Revivir.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Agua.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Agua.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Bicho.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Bicho.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Dragon.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Dragon.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Electrico.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Electrico.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Fantasma.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Fantasma.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Fuego.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Fuego.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Hielo.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Hielo.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Lucha.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Lucha.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Normal.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Normal.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Planta.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Planta.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Psiquico.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Psiquico.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Roca.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Roca.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Tierra.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Tierra.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Tipo.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Tipo.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Veneno.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Veneno.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Volador.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Volador.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Constantes.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Constantes.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Datos.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Datos.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Estadisticas.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Estadisticas.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/EstadoEnvenenado.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/EstadoEnvenenado.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/HabilidadAtaque.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/HabilidadAtaque.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/HabilidadEstadistica.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/HabilidadEstadistica.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/HabilidadEstado.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/HabilidadEstado.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Juego.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Juego.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Jugador.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Jugador.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Pokemon.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Pokemon.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Rendirse.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Rendirse.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/AplicarItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/AplicarItem.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Item/HiperPocion.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Item/HiperPocion.class" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Item/Item.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Item/Item.class" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Item/MegaPocion.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Item/MegaPocion.class" afterDir="false" />
+@@ -48,39 +29,6 @@
+       <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Item/PocionCuracionEstados.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Item/PocionCuracionEstados.class" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Item/PocionDefensa.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Item/PocionDefensa.class" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Item/Revivir.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Item/Revivir.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Opciones/AplicarItem.class" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Opciones/Atacar.class" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Opciones/IntercambiarPokemon.class" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Opciones/Opciones.class" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Opciones/Rendirse.class" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Opciones/VerCampoDeBatalla.class" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Agua.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Agua.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Bicho.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Bicho.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Dragon.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Dragon.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Electrico.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Electrico.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Fantasma.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Fantasma.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Fuego.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Fuego.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Hielo.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Hielo.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Lucha.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Lucha.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Normal.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Normal.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Planta.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Planta.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Psiquico.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Psiquico.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Roca.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Roca.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Tierra.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Tierra.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Tipo.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Tipo.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Veneno.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Veneno.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Volador.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Volador.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Constantes.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Constantes.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Datos.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Datos.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Estadisticas.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Estadisticas.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/EstadoEnvenenado.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/EstadoEnvenenado.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/HabilidadAtaque.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/HabilidadAtaque.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/HabilidadEstadistica.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/HabilidadEstadistica.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/HabilidadEstado.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/HabilidadEstado.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Juego.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Juego.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Jugador.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Jugador.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Pokemon.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Pokemon.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Rendirse.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Rendirse.class" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -90,8 +38,8 @@
+   <component name="FileTemplateManagerImpl">
+     <option name="RECENT_TEMPLATES">
+       <list>
+-        <option value="Interface" />
+         <option value="Class" />
++        <option value="Interface" />
+       </list>
+     </option>
+   </component>
+@@ -129,7 +77,11 @@
+   }
+ }]]></component>
+   <component name="RecentsManager">
++    <key name="CreateClassDialog.RecentsKey">
++      <recent name="Item" />
++    </key>
+     <key name="CopyClassDialog.RECENTS_KEY">
++      <recent name="Item" />
+       <recent name="Tipo" />
+     </key>
+   </component>
+Index: TpJava/src/main/java/Item/ItemsCuracion.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/Item/ItemsCuracion.java b/TpJava/src/main/java/Item/ItemsCuracion.java
+new file mode 100644
+--- /dev/null	(date 1696557243160)
++++ b/TpJava/src/main/java/Item/ItemsCuracion.java	(date 1696557243160)
+@@ -0,0 +1,22 @@
++package Item;
++
++import org.fiuba.algoritmos3.Estadisticas;
++import org.fiuba.algoritmos3.Pokemon;
++
++public abstract class ItemsCuracion extends Item implements validarItemCuracion{
++
++    public ItemsCuracion(String unNombre,int cantidad){
++        super(unNombre,cantidad);
++    }
++
++    public abstract boolean aplicarItem(Pokemon unPokemon);
++
++    public abstract void mostrarItem();
++    public boolean realizarUsadoItemsDeCuracion(Estadisticas estadistica){
++        if(estadistica.getVida() != 0 && estadistica.getVida() != estadistica.getVidaMaxima()){
++            this.cantidad --;
++            return true;
++        }
++        return false;
++    }
++}
+Index: TpJava/src/main/java/Item/ItemsEstadistica.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/Item/ItemsEstadistica.java b/TpJava/src/main/java/Item/ItemsEstadistica.java
+new file mode 100644
+--- /dev/null	(date 1696556544293)
++++ b/TpJava/src/main/java/Item/ItemsEstadistica.java	(date 1696556544293)
+@@ -0,0 +1,22 @@
++package Item;
++
++import org.fiuba.algoritmos3.Estadisticas;
++import org.fiuba.algoritmos3.Pokemon;
++
++public abstract class ItemsEstadistica extends Item implements validarItemEstadistica{
++
++    public ItemsEstadistica(String unNombre, int cantidad){
++        super(unNombre,cantidad);
++    }
++
++    public boolean realizarUsadoItemsDeEstadisitcas(Estadisticas estadistica){
++        if(estadistica.getVida() != 0){
++            this.cantidad --;
++            return true;
++        }
++        return false;
++    }
++    public abstract boolean aplicarItem(Pokemon unPokemon);
++
++    public abstract void mostrarItem();
++}
+Index: TpJava/src/main/java/Item/PocionDefensa.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Item;\r\n\r\nimport Item.Item;\r\nimport org.fiuba.algoritmos3.Modificacion;\r\nimport org.fiuba.algoritmos3.Pokemon;\r\n\r\npublic class PocionDefensa extends Item {\r\n\r\n    private Modificacion unaModificacion;\r\n\r\n    public PocionDefensa(String nombre, int cantidad, Modificacion unaModificacion){\r\n        super(nombre, cantidad);\r\n        this.unaModificacion = unaModificacion;\r\n    }\r\n\r\n    @Override\r\n    public boolean aplicarItem(Pokemon unPokemon) {\r\n        boolean realizo = realizarUsadoItemsDeEstadisitcas(unPokemon.getEstadisticas());\r\n        this.unaModificacion.modificar(unPokemon.getEstadisticas(), 1);\r\n        return realizo;\r\n    }\r\n    @Override\r\n    public void mostrarItem() {\r\n        System.out.println(nombre + \": Aumenta 10% la defensa - Cantidad: \" + cantidad);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/Item/PocionDefensa.java b/TpJava/src/main/java/Item/PocionDefensa.java
+--- a/TpJava/src/main/java/Item/PocionDefensa.java	(revision 369626156ea1de2f8033c83c48913cdca394c030)
++++ b/TpJava/src/main/java/Item/PocionDefensa.java	(date 1696557243215)
+@@ -4,7 +4,7 @@
+ import org.fiuba.algoritmos3.Modificacion;
+ import org.fiuba.algoritmos3.Pokemon;
+ 
+-public class PocionDefensa extends Item {
++public class PocionDefensa extends ItemsEstadistica {
+ 
+     private Modificacion unaModificacion;
+ 
+Index: TpJava/src/main/java/Item/ItemsEstado.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/Item/ItemsEstado.java b/TpJava/src/main/java/Item/ItemsEstado.java
+new file mode 100644
+--- /dev/null	(date 1696557961463)
++++ b/TpJava/src/main/java/Item/ItemsEstado.java	(date 1696557961463)
+@@ -0,0 +1,36 @@
++package Item;
++
++import org.fiuba.algoritmos3.Estadisticas;
++import org.fiuba.algoritmos3.Estado;
++import org.fiuba.algoritmos3.Pokemon;
++
++import java.util.Objects;
++
++import static org.fiuba.algoritmos3.Constantes.ESTADO_INHABILITADO;
++import static org.fiuba.algoritmos3.Constantes.ESTADO_NORMAL;
++
++public abstract class ItemsEstado extends Item implements validarItemEstado {
++
++    public ItemsEstado(String unNombre, int cantidad){
++        super(unNombre,cantidad);
++    }
++
++    public abstract boolean aplicarItem(Pokemon unPokemon);
++
++    public abstract void mostrarItem();
++
++    public boolean realizarUsadoCurarTodo(Estado unEstado){
++        if(!Objects.equals(unEstado.getNombre(), ESTADO_NORMAL) && !Objects.equals(unEstado.getNombre(), ESTADO_INHABILITADO)){
++            this.cantidad --;
++            return true;
++        }
++        return false;
++    }
++    public boolean realizarUsadoRevivir(Estado unEstado){
++        if(Objects.equals(unEstado.getNombre(), ESTADO_INHABILITADO)){
++            this.cantidad --;
++            return true;
++        }
++        return false;
++    }
++}
+Index: TpJava/src/main/java/Item/validarItemEstado.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/Item/validarItemEstado.java b/TpJava/src/main/java/Item/validarItemEstado.java
+new file mode 100644
+--- /dev/null	(date 1696557979503)
++++ b/TpJava/src/main/java/Item/validarItemEstado.java	(date 1696557979503)
+@@ -0,0 +1,9 @@
++package Item;
++
++import org.fiuba.algoritmos3.Estadisticas;
++import org.fiuba.algoritmos3.Estado;
++
++public interface validarItemEstado{
++    public abstract boolean realizarUsadoRevivir(Estado unEstado);
++    public abstract boolean realizarUsadoCurarTodo(Estado unEstado);
++}
+Index: TpJava/src/main/java/Item/Revivir.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Item;\r\n\r\nimport Item.Item;\r\nimport org.fiuba.algoritmos3.EstadoNormal;\r\nimport org.fiuba.algoritmos3.Modificacion;\r\nimport org.fiuba.algoritmos3.Pokemon;\r\n\r\npublic class Revivir extends Item {\r\n\r\n    private Modificacion unaModificacion;\r\n\r\n\r\n    public Revivir(String nombre, int cantidad, Modificacion unaModificacion){\r\n        super(nombre, cantidad);\r\n        this.unaModificacion = unaModificacion;\r\n    }\r\n\r\n\r\n    @Override\r\n    public boolean aplicarItem(Pokemon unPokemon) {\r\n\r\n        boolean realizo = this.realizarUsadoItemsDeEstado(unPokemon.getEstadoActual());\r\n        if(!unPokemon.estaConciente()){\r\n            unPokemon.cambiarseEstado(new EstadoNormal());\r\n        }\r\n        this.unaModificacion.modificar(unPokemon.getEstadisticas(), (int) unPokemon.getVidaMaxima());\r\n        return realizo;\r\n    }\r\n    @Override\r\n    public void mostrarItem() {\r\n        System.out.println(nombre + \": Revive al pokemon con toda su salud - Cantidad: \" + cantidad);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/Item/Revivir.java b/TpJava/src/main/java/Item/Revivir.java
+--- a/TpJava/src/main/java/Item/Revivir.java	(revision 369626156ea1de2f8033c83c48913cdca394c030)
++++ b/TpJava/src/main/java/Item/Revivir.java	(date 1696557961446)
+@@ -5,7 +5,7 @@
+ import org.fiuba.algoritmos3.Modificacion;
+ import org.fiuba.algoritmos3.Pokemon;
+ 
+-public class Revivir extends Item {
++public class Revivir extends ItemsEstado {
+ 
+     private Modificacion unaModificacion;
+ 
+@@ -19,7 +19,7 @@
+     @Override
+     public boolean aplicarItem(Pokemon unPokemon) {
+ 
+-        boolean realizo = this.realizarUsadoItemsDeEstado(unPokemon.getEstadoActual());
++        boolean realizo = this.realizarUsadoRevivir(unPokemon.getEstadoActual());
+         if(!unPokemon.estaConciente()){
+             unPokemon.cambiarseEstado(new EstadoNormal());
+         }
+Index: TpJava/src/main/java/Item/HiperPocion.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Item;\r\n\r\nimport Item.Item;\r\nimport org.fiuba.algoritmos3.Modificacion;\r\nimport org.fiuba.algoritmos3.Pokemon;\r\n\r\npublic class HiperPocion extends Item {\r\n\r\n\r\n    public HiperPocion(String nombre, int cantidad, Modificacion unaModificacion){\r\n        super(nombre, cantidad);\r\n        this.unaModificacion = unaModificacion;\r\n    }\r\n\r\n    @Override\r\n    public boolean aplicarItem(Pokemon unPokemon) {\r\n\r\n        boolean realizo = realizarUsadoItemsDeCuracion(unPokemon.getEstadisticas());\r\n        this.unaModificacion.modificar(unPokemon.getEstadisticas(), 100);\r\n        return realizo;\r\n    }\r\n\r\n    public void mostrarItem() {\r\n        System.out.println(nombre + \": Restaura 100 de vida - Cantidad: \" + cantidad);\r\n    }\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/Item/HiperPocion.java b/TpJava/src/main/java/Item/HiperPocion.java
+--- a/TpJava/src/main/java/Item/HiperPocion.java	(revision 369626156ea1de2f8033c83c48913cdca394c030)
++++ b/TpJava/src/main/java/Item/HiperPocion.java	(date 1696557243167)
+@@ -1,10 +1,9 @@
+ package Item;
+ 
+-import Item.Item;
+ import org.fiuba.algoritmos3.Modificacion;
+ import org.fiuba.algoritmos3.Pokemon;
+ 
+-public class HiperPocion extends Item {
++public class HiperPocion extends ItemsCuracion {
+ 
+ 
+     public HiperPocion(String nombre, int cantidad, Modificacion unaModificacion){
+Index: TpJava/src/main/java/Item/validarItemEstadistica.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/Item/validarItemEstadistica.java b/TpJava/src/main/java/Item/validarItemEstadistica.java
+new file mode 100644
+--- /dev/null	(date 1696556285041)
++++ b/TpJava/src/main/java/Item/validarItemEstadistica.java	(date 1696556285041)
+@@ -0,0 +1,7 @@
++package Item;
++
++import org.fiuba.algoritmos3.Estadisticas;
++
++public interface validarItemEstadistica {
++    public abstract boolean realizarUsadoItemsDeEstadisitcas(Estadisticas estadistica);
++}
+Index: TpJava/src/main/java/Item/validarItemCuracion.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/Item/validarItemCuracion.java b/TpJava/src/main/java/Item/validarItemCuracion.java
+new file mode 100644
+--- /dev/null	(date 1696556106701)
++++ b/TpJava/src/main/java/Item/validarItemCuracion.java	(date 1696556106701)
+@@ -0,0 +1,7 @@
++package Item;
++
++import org.fiuba.algoritmos3.Estadisticas;
++
++public interface validarItemCuracion {
++    public abstract boolean realizarUsadoItemsDeCuracion(Estadisticas estadistica);
++}
