@@ -23,5 +23,4 @@ public class VerCampoDeBatalla implements Opciones{
         System.out.println("Oprima una tecla para dejar de ver el campo de batalla: ");
         scanner.next();
     }
-    }
 }

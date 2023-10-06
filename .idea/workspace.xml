@@ -4,60 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="81ad5f3d-e77a-4eab-8f82-726006efbf84" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TpJava/src/main/java/Item/ItemsCuracion.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TpJava/src/main/java/Item/ItemsEstadistica.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TpJava/src/main/java/Item/ItemsEstado.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TpJava/src/main/java/Item/validarItemCuracion.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TpJava/src/main/java/Item/validarItemEstadistica.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TpJava/src/main/java/Item/validarItemEstado.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Item/HiperPocion.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Item/HiperPocion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Item/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Item/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Item/MegaPocion.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Item/MegaPocion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Item/Pocion.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Item/Pocion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Item/PocionAtaque.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Item/AtaqueX.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Item/PocionCuracionEstados.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Item/PocionCuracionEstados.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Item/PocionDefensa.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Item/DefensaX.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Item/Revivir.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Item/Revivir.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Tipo.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Tipo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/AplicarItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/AplicarItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Controlador.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Controlador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Datos.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Datos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Estadisticas.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Estadisticas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/EstadoDormido.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/EstadoDormido.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Habilidad.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Habilidad.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/HabilidadAtaque.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/HabilidadAtaque.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/HabilidadEstadistica.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/HabilidadEstadistica.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/HabilidadEstado.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/HabilidadEstado.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Juego.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Juego.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Jugador.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Jugador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Pokemon.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Pokemon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Item/HiperPocion.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Item/HiperPocion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Item/Item.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Item/Item.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Item/MegaPocion.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Item/MegaPocion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Item/Pocion.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Item/Pocion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Item/PocionAtaque.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Item/PocionCuracionEstados.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Item/PocionCuracionEstados.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Item/PocionDefensa.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Item/Revivir.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Item/Revivir.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Tipo.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Tipo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/AplicarItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/AplicarItem.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Controlador.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Controlador.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Datos.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Datos.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Estadisticas.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Estadisticas.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/EstadoDormido.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/EstadoDormido.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Habilidad.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Habilidad.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/HabilidadAtaque.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/HabilidadAtaque.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/HabilidadEstadistica.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/HabilidadEstadistica.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/HabilidadEstado.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/HabilidadEstado.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Juego.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Juego.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Jugador.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Jugador.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Pokemon.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Pokemon.class" afterDir="false" />
-    </list>
+    <list default="true" id="81ad5f3d-e77a-4eab-8f82-726006efbf84" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

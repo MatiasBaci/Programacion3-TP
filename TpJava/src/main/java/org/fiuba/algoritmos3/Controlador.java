@@ -63,12 +63,6 @@ public class Controlador {
         System.out.println("\n");
 
     }
-    private void limpiarTerminal() {
-        for (int i = 0; i < 50; i++) {
-            System.out.println();
-        }
-    }
-
     public void validarNombresJugador(Jugador jugador) {
         Scanner scanner = new Scanner(System.in);
         boolean nombreValido = false;
