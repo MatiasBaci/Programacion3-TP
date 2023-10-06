@@ -85,7 +85,7 @@ public class Estadisticas {
     public void mostrarEstadisticas(){
         System.out.println(
                 " Nivel: " + this.nivel + " --" +
-                " HP: " + this.vidaActual + " --" +
+                " HP: " + (int)this.vidaActual + " --" +
                         " Velocidad: " + this.velocidad + " --" +
                         " Defensa: " + this.defensa + " --" +
                         " Ataque: " + this.ataque);
