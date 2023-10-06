@@ -7,8 +7,8 @@ import java.util.Random;
 import static org.fiuba.algoritmos3.Constantes.*;
 
 public class HabilidadAtaque extends Habilidad {
-    private Tipo tipo;
-    private int poder;
+    private final Tipo tipo;
+    private final int poder;
 
     public HabilidadAtaque(String nombre, Tipo tipo, int poder, int cantidad){
         super(nombre,cantidad);
@@ -16,13 +16,13 @@ public class HabilidadAtaque extends Habilidad {
         this.poder = poder;
     }
 
-    private double potenciaDeDaño(Tipo tipoPokemon){
+    private double potenciaDeDanio(Tipo tipoPokemon){
         return this.tipo.calcularMultiplicadorDeDanio(tipoPokemon);
     }
 
     private double calculoAtaqueSegunTipo(Tipo tipoDeUnPokemonPropio, Tipo unTipoPokemonEnemigo) {
 
-        double efectividadTipo = this.potenciaDeDaño(unTipoPokemonEnemigo);
+        double efectividadTipo = this.potenciaDeDanio(unTipoPokemonEnemigo);
         double mismoTipo = tipoDeUnPokemonPropio.calcularBonusDelMismoTipo(this.tipo);
 
         Random unRandom = new Random();

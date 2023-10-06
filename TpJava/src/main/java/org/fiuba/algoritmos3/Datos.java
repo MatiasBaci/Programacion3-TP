@@ -8,10 +8,10 @@ import java.util.Map;
 public class Datos {
 
     //Atributos:
-    private Map<String, Pokemon> mochilaJugador1;
-    private Map<String, Pokemon> mochilaJugador2;
-    private Map<String, Item> itemsJugador1;
-    private Map<String, Item> itemsJugador2;
+    private final Map<String, Pokemon> mochilaJugador1;
+    private final Map<String, Pokemon> mochilaJugador2;
+    private final Map<String, Item> itemsJugador1;
+    private final Map<String, Item> itemsJugador2;
 
     //Metodos:
 
@@ -47,84 +47,84 @@ public class Datos {
         Pokemon squirtle = new Pokemon("Squirtle", 50, "Agua", "El caparazón de Squirtle no sólo lo protege; su forma redondeada y sus hendiduras reducen su resistencia al agua y le permiten nadar más rápido.",
         119, 63, 85, 70);
         Habilidad chorroDeAgua = new HabilidadAtaque("ChorroDeAgua",Tipo.instanciarUnTipoDe("Agua"),40,25);
-        squirtle.añadirHabilidad(chorroDeAgua);
+        squirtle.aniadirHabilidad(chorroDeAgua);
         Habilidad cabezazo = new HabilidadAtaque("Cabezazo",Tipo.instanciarUnTipoDe("Normal"),130,10);
-        squirtle.añadirHabilidad(cabezazo);
+        squirtle.aniadirHabilidad(cabezazo);
         Habilidad defensaFerrea = new HabilidadEstadistica("DefensaFerrea", 15, true, 2, new ModificacionDefensa());
-        squirtle.añadirHabilidad(defensaFerrea);
+        squirtle.aniadirHabilidad(defensaFerrea);
         this.mochilaJugador1.put(squirtle.getNombre(), squirtle);
 
 
         Pokemon charizard = new Pokemon("Charizard", 50, "Fuego", "Se dice que el fuego de Charizard arde con más fuerza cuantas más duras batallas haya vivido.",
         153, 120, 105, 129);
         Habilidad tajoAereo = new HabilidadAtaque("TajoAereo",Tipo.instanciarUnTipoDe("Volador"),75,15);
-        charizard.añadirHabilidad(tajoAereo);
+        charizard.aniadirHabilidad(tajoAereo);
         Habilidad lanzallamas = new HabilidadAtaque("Lanzallamas",Tipo.instanciarUnTipoDe("Fuego"),90,15);
-        charizard.añadirHabilidad(lanzallamas);
+        charizard.aniadirHabilidad(lanzallamas);
         Habilidad garraDragon = new HabilidadAtaque("GarraDragon",Tipo.instanciarUnTipoDe("Dragon"),80,15);
-        charizard.añadirHabilidad(garraDragon);
+        charizard.aniadirHabilidad(garraDragon);
         Habilidad respiro = new HabilidadEstadistica("Respiro", 5, true, (int)(charizard.getVidaMaxima()/2), new ModificacionVida());
-        charizard.añadirHabilidad(respiro);
+        charizard.aniadirHabilidad(respiro);
         this.mochilaJugador1.put(charizard.getNombre(), charizard);
 
 
         Pokemon pikachu = new Pokemon("Pikachu", 50, "Electrico", "Las bolsas de las mejillas están llenas de electricidad, que libera cuando se siente amenazado.",
         110, 110, 70, 75);
         Habilidad trueno = new HabilidadAtaque("Trueno",Tipo.instanciarUnTipoDe("Electrico"),110,10);
-        pikachu.añadirHabilidad(trueno);
+        pikachu.aniadirHabilidad(trueno);
         Habilidad ondaTrueno = new HabilidadEstado("OndaTrueno", 20, new EstadoParalizado());
-        pikachu.añadirHabilidad(ondaTrueno);
+        pikachu.aniadirHabilidad(ondaTrueno);
         Habilidad colaFerrea = new HabilidadAtaque("ColaFerrea",Tipo.instanciarUnTipoDe("Normal"),100,15);
-        pikachu.añadirHabilidad(colaFerrea);
+        pikachu.aniadirHabilidad(colaFerrea);
         Habilidad agilidad = new HabilidadEstadistica("Agilidad", 30, true, 2, new ModificacionVelocidad());
-        pikachu.añadirHabilidad(agilidad);
+        pikachu.aniadirHabilidad(agilidad);
         this.mochilaJugador1.put(pikachu.getNombre(), pikachu);
 
 
         Pokemon lucario = new Pokemon("Lucario", 50, "Lucha", "Puede leer los pensamientos de su adversario a través de su aura.",
         100, 110, 90, 135);
         Habilidad esferaAural = new HabilidadAtaque("EsferaAural",Tipo.instanciarUnTipoDe("Lucha"),80,20);
-        lucario.añadirHabilidad(esferaAural);
+        lucario.aniadirHabilidad(esferaAural);
         Habilidad pulsoNoche = new HabilidadAtaque("PulsoNoche",Tipo.instanciarUnTipoDe("Normal"),80,15);
-        lucario.añadirHabilidad(pulsoNoche);
+        lucario.aniadirHabilidad(pulsoNoche);
         Habilidad ecoMetalico = new HabilidadEstadistica("EcoMetalico", 40, false, -2, new ModificacionDefensa());
-        lucario.añadirHabilidad(ecoMetalico);
+        lucario.aniadirHabilidad(ecoMetalico);
         Habilidad metalaser = new HabilidadAtaque("Metalaser",Tipo.instanciarUnTipoDe("Normal"),140,5);
-        lucario.añadirHabilidad(metalaser);
+        lucario.aniadirHabilidad(metalaser);
         this.mochilaJugador1.put(lucario.getNombre(), lucario);
 
 
         Pokemon dusknoir = new Pokemon("Dusknoir", 50, "Fantasma", "La antena de la cabeza captura ondas de radio lejanas que le permiten secuestrar a gente.",
         120, 65, 155	, 120);
         Habilidad bolaSombra = new HabilidadAtaque("BolaSombra",Tipo.instanciarUnTipoDe("Fantasma"),80,15);
-        dusknoir.añadirHabilidad(bolaSombra);
+        dusknoir.aniadirHabilidad(bolaSombra);
         Habilidad pazMental = new HabilidadEstadistica("PazMental", 20, true, 2, new ModificacionAtaque());
-        dusknoir.añadirHabilidad(pazMental);
+        dusknoir.aniadirHabilidad(pazMental);
         Habilidad pulsoUmbrio = new HabilidadAtaque("PulsoUmbrio",Tipo.instanciarUnTipoDe("Normal"),80,15);
-        dusknoir.añadirHabilidad(pulsoUmbrio);
+        dusknoir.aniadirHabilidad(pulsoUmbrio);
         Habilidad terratemblor = new HabilidadAtaque("Terratemblor",Tipo.instanciarUnTipoDe("Tierra"),60,20);
-        dusknoir.añadirHabilidad(terratemblor);
+        dusknoir.aniadirHabilidad(terratemblor);
         this.mochilaJugador1.put(dusknoir.getNombre(), dusknoir);
 
 
         Pokemon crobat = new Pokemon("Crobat", 50, "Veneno", "Sus cuatro alas le permiten volar más rápida y sigilosamente. Es un Pokémon nocturno.",
         160, 150, 100, 110);
         Habilidad venenoX = new HabilidadAtaque("VenenoX",Tipo.instanciarUnTipoDe("Veneno"),70,20);
-        crobat.añadirHabilidad(venenoX);
+        crobat.aniadirHabilidad(venenoX);
         Habilidad tijeraX = new HabilidadAtaque("TijeraX",Tipo.instanciarUnTipoDe("Bicho"),80,15);
-        crobat.añadirHabilidad(tijeraX);
+        crobat.aniadirHabilidad(tijeraX);
         Habilidad acrobata = new HabilidadAtaque("Acrobata",Tipo.instanciarUnTipoDe("Volador"),110,15);
-        crobat.añadirHabilidad(acrobata);
+        crobat.aniadirHabilidad(acrobata);
         Habilidad toxico = new HabilidadEstado("Toxico", 10, new EstadoEnvenenado());
-        crobat.añadirHabilidad(toxico);
+        crobat.aniadirHabilidad(toxico);
         this.mochilaJugador1.put(crobat.getNombre(), crobat);
 
 
         Item pocion = new Pocion("Pocion", 4, new ModificacionVida());
         Item megaPocion = new MegaPocion("Mega Pocion", 3, new ModificacionVida());
         Item hiperPocion = new HiperPocion("Hiper Pocion", 1, new ModificacionVida());
-        Item pocionDefensa = new PocionDefensa("Pocion de Defensa", 2, new ModificacionDefensa());
-        Item pocionAtaque = new PocionAtaque("Pocion de Ataque", 1, new ModificacionAtaque());
+        Item pocionDefensa = new DefensaX("Defensa X", 2, new ModificacionDefensa());
+        Item pocionAtaque = new AtaqueX("Ataque X", 1, new ModificacionAtaque());
         Item revivir = new Revivir("Revivir", 1, new ModificacionEstadoInhabilitado());
         Item curarTodo = new PocionCuracionEstados("Curar todo",1);
 
@@ -142,86 +142,86 @@ public class Datos {
         Pokemon alakazam = new Pokemon("Alakazam", 50, "Psiquico", "Se dice que tiene un coeficiente intelectual de unos 5.000.",
         100	, 140, 65, 155);
         Habilidad psiquico = new HabilidadAtaque("Psiquico",Tipo.instanciarUnTipoDe("Psiquico"),90,10);
-        alakazam.añadirHabilidad(psiquico);
+        alakazam.aniadirHabilidad(psiquico);
         Habilidad recuperacion = new HabilidadEstadistica("Recuperacion", 5, true, (int)(alakazam.getVidaMaxima()/2), new ModificacionVida());
-        alakazam.añadirHabilidad(recuperacion);
+        alakazam.aniadirHabilidad(recuperacion);
         Habilidad energibola = new HabilidadAtaque("Energibola",Tipo.instanciarUnTipoDe("Planta"),90,10);
-        alakazam.añadirHabilidad(energibola);
+        alakazam.aniadirHabilidad(energibola);
         Habilidad maquinacion = new HabilidadEstadistica("Maquinacion", 20, true, 2, new ModificacionAtaque());
-        alakazam.añadirHabilidad(maquinacion);
+        alakazam.aniadirHabilidad(maquinacion);
         this.mochilaJugador2.put(alakazam.getNombre(), alakazam);
 
 
         Pokemon trevenant = new Pokemon("Trevenant", 50, "Planta", "Se dice que los árboles donde vive Trevenant están poseídos por los espíritus de los muertos.",
         100, 76, 102, 130);
         Habilidad mazazo = new HabilidadAtaque("Mazazo",Tipo.instanciarUnTipoDe("Planta"),120,15);
-        trevenant.añadirHabilidad(mazazo);
+        trevenant.aniadirHabilidad(mazazo);
         Habilidad sombraVil = new HabilidadAtaque("SombraVil",Tipo.instanciarUnTipoDe("Fantasma"),80,15);
-        trevenant.añadirHabilidad(sombraVil);
+        trevenant.aniadirHabilidad(sombraVil);
         Habilidad hypnosis = new HabilidadEstado("Hypnosis", 5, new EstadoDormido());
-        trevenant.añadirHabilidad(hypnosis);
+        trevenant.aniadirHabilidad(hypnosis);
         Habilidad caraSusto = new HabilidadEstado("CaraSusto", 5, new EstadoParalizado());
-        trevenant.añadirHabilidad(caraSusto);
+        trevenant.aniadirHabilidad(caraSusto);
         this.mochilaJugador2.put(trevenant.getNombre(), trevenant);
 
 
         Pokemon golem = new Pokemon("Golem", 50, "Roca", "Es capaz de explotar a voluntad. Utiliza el impulso de la explosión para saltar de una montaña a otra.",
         100, 65, 150, 140);
         Habilidad terremoto = new HabilidadAtaque("Terremoto",Tipo.instanciarUnTipoDe("Tierra"),100,10);
-        golem.añadirHabilidad(terremoto);
+        golem.aniadirHabilidad(terremoto);
         Habilidad rocaAfilada = new HabilidadAtaque("RocaAfilada",Tipo.instanciarUnTipoDe("Roca"),100,5);
-        golem.añadirHabilidad(rocaAfilada);
+        golem.aniadirHabilidad(rocaAfilada);
         Habilidad punioTrueno = new HabilidadAtaque("PuñoTrueno",Tipo.instanciarUnTipoDe("Electrico"),75,15);
-        golem.añadirHabilidad(punioTrueno);
+        golem.aniadirHabilidad(punioTrueno);
         Habilidad defensaFerrea = new HabilidadEstadistica("DefensaFerrea", 15, true, 2, new ModificacionDefensa());
-        golem.añadirHabilidad(defensaFerrea);
+        golem.aniadirHabilidad(defensaFerrea);
         this.mochilaJugador2.put(golem.getNombre(), golem);
 
 
         Pokemon rayquaza = new Pokemon("Rayquaza", 50, "Dragon", "Se dice que vive en la capa de ozono. Los anillos que tiene en el cuerpo brillan de siete colores distintos.",
         100, 115, 90, 170);
         Habilidad ascensoDraco = new HabilidadAtaque("AscensoDraco",Tipo.instanciarUnTipoDe("Dragon"),120,5);
-        rayquaza.añadirHabilidad(ascensoDraco);
+        rayquaza.aniadirHabilidad(ascensoDraco);
         Habilidad poderPasado = new HabilidadAtaque("PoderPasado",Tipo.instanciarUnTipoDe("Roca"),60,5);
-        rayquaza.añadirHabilidad(poderPasado);
+        rayquaza.aniadirHabilidad(poderPasado);
         Habilidad triturar = new HabilidadAtaque("Triturar",Tipo.instanciarUnTipoDe("Normal"),80,15);
-        rayquaza.añadirHabilidad(triturar);
+        rayquaza.aniadirHabilidad(triturar);
         Habilidad danzaDragon = new HabilidadEstadistica("DanzaDragon", 20, true, 2, new ModificacionAtaque());
-        rayquaza.añadirHabilidad(danzaDragon);
+        rayquaza.aniadirHabilidad(danzaDragon);
         this.mochilaJugador2.put(rayquaza.getNombre(), rayquaza);
 
 
         Pokemon araquanid = new Pokemon("Araquanid", 50, "Bicho", "Araquanid es capaz de expulsar un hilo de agua a gran presión y velocidad gracias a la fuerza de sus patas traseras.",
         100, 62, 152, 90);
         Habilidad hidrobomba = new HabilidadAtaque("Hidrobomba",Tipo.instanciarUnTipoDe("Agua"),110,5);
-        araquanid.añadirHabilidad(hidrobomba);
+        araquanid.aniadirHabilidad(hidrobomba);
         Habilidad toxico = new HabilidadEstado("Toxico", 5, new EstadoEnvenenado());
-        araquanid.añadirHabilidad(toxico);
+        araquanid.aniadirHabilidad(toxico);
         Habilidad picadura = new HabilidadAtaque("Picadura",Tipo.instanciarUnTipoDe("Bicho"),70,20);
-        araquanid.añadirHabilidad(picadura);
+        araquanid.aniadirHabilidad(picadura);
         Habilidad ventisca = new HabilidadAtaque("Ventisca",Tipo.instanciarUnTipoDe("Hielo"),110,5);
-        araquanid.añadirHabilidad(ventisca);
+        araquanid.aniadirHabilidad(ventisca);
         this.mochilaJugador2.put(araquanid.getNombre(), araquanid);
 
 
         Pokemon bidoof = new Pokemon("Bidoof", 50, "Normal", "El Pokemon más fuerte de todos los tiempos.",
         100, 5, 60, 6);
                 Habilidad placaje = new HabilidadAtaque("Placaje",Tipo.instanciarUnTipoDe("Normal"),40,35);
-        bidoof.añadirHabilidad(placaje);
+        bidoof.aniadirHabilidad(placaje);
         Habilidad mordisco = new HabilidadAtaque("Mordisco",Tipo.instanciarUnTipoDe("Normal"),60,25);
-        bidoof.añadirHabilidad(mordisco);
+        bidoof.aniadirHabilidad(mordisco);
         Habilidad ronquido = new HabilidadEstado("Ronquido", 5, new EstadoDormido());
-        bidoof.añadirHabilidad(ronquido);
+        bidoof.aniadirHabilidad(ronquido);
         Habilidad ultimoRecurso = new HabilidadAtaque("UltimoRecurso",Tipo.instanciarUnTipoDe("Normal"),999,1);
-        bidoof.añadirHabilidad(ultimoRecurso);
+        bidoof.aniadirHabilidad(ultimoRecurso);
         this.mochilaJugador2.put(bidoof.getNombre(), bidoof);
 
 
         Item pocion = new Pocion("Pocion", 50, new ModificacionVida());
         Item megaPocion = new MegaPocion("Mega Pocion", 2, new ModificacionVida());
         Item hiperPocion = new HiperPocion("Hiper Pocion", 4, new ModificacionVida());
-        Item pocionDefensa = new PocionDefensa("Pocion de Defensa", 3, new ModificacionDefensa());
-        Item pocionAtaque = new PocionAtaque("Pocion de Ataque", 2, new ModificacionAtaque());
+        Item pocionDefensa = new DefensaX("Defensa X", 3, new ModificacionDefensa());
+        Item pocionAtaque = new AtaqueX("Ataque X", 2, new ModificacionAtaque());
         Item revivir = new Revivir("Revivir", 1, new ModificacionEstadoInhabilitado());
         Item curarTodo = new PocionCuracionEstados("Curar todo",1);
 

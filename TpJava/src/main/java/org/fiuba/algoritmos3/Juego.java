@@ -1,24 +1,21 @@
 package org.fiuba.algoritmos3;
-import static org.fiuba.algoritmos3.Constantes.*;
-
 
 public class Juego {
 
     //Atributos:
     private Jugador jugador1;
     private Jugador jugador2;
-    private Datos datos;
     private Controlador controlador;
 
     //Metodos:
 
     public Juego(){
-        this.datos = new Datos();
-        this.jugador1 = new Jugador("-",datos.getMochilaJugador1(),datos.getItemsJugador1());
-        this.jugador2 = new Jugador("-",datos.getMochilaJugador2(),datos.getItemsJugador2());
+        Datos datos = new Datos();
+        this.jugador1 = new Jugador("-", datos.getMochilaJugador1(), datos.getItemsJugador1());
+        this.jugador2 = new Jugador("-", datos.getMochilaJugador2(), datos.getItemsJugador2());
 
-        this.jugador1.añadirAdversario(jugador2);
-        this.jugador2.añadirAdversario(jugador1);
+        this.jugador1.setAdversario(jugador2);
+        this.jugador2.setAdversario(jugador1);
         this.controlador = new Controlador();
     }
 

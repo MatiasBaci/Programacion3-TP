@@ -6,7 +6,7 @@ import java.util.Random;
 public class EstadoDormido extends Estado{
 
     private int turnosDormido;
-    private int duracionMaxima;
+    private final int duracionMaxima;
 
     public EstadoDormido(){
         this.nombre = ESTADO_DORMIDO;

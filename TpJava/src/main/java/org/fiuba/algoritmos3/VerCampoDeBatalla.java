@@ -18,12 +18,10 @@ public class VerCampoDeBatalla implements Opciones{
 
         this.mensajeCampoBatalla();
         Scanner scanner = new Scanner(System.in);
-        System.out.println("-----------------------------------------------------------------");
-        System.out.println("Pokemones de " + jugador.getNombre() + ":");
-        jugador.mostrarPokemones();
-        System.out.println("Pokemones de " + jugadorAdversario.getNombre() + ":");
-        jugadorAdversario.mostrarPokemones();
+        jugador.mostrarPokemonActual();
+        jugadorAdversario.mostrarPokemonActual();
         System.out.println("Oprima una tecla para dejar de ver el campo de batalla: ");
         scanner.next();
+    }
     }
 }

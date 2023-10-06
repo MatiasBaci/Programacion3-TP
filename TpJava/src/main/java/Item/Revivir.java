@@ -1,11 +1,10 @@
 package Item;
 
-import Item.Item;
 import org.fiuba.algoritmos3.EstadoNormal;
 import org.fiuba.algoritmos3.Modificacion;
 import org.fiuba.algoritmos3.Pokemon;
 
-public class Revivir extends Item {
+public class Revivir extends ItemsEstado {
 
     private Modificacion unaModificacion;
 
@@ -19,7 +18,7 @@ public class Revivir extends Item {
     @Override
     public boolean aplicarItem(Pokemon unPokemon) {
 
-        boolean realizo = this.realizarUsadoItemsDeEstado(unPokemon.getEstadoActual());
+        boolean realizo = this.realizarUsadoRevivir(unPokemon.getEstadoActual());
         if(!unPokemon.estaConciente()){
             unPokemon.cambiarseEstado(new EstadoNormal());
         }

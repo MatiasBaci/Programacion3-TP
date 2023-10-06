@@ -46,7 +46,7 @@ public class Pokemon {
     public String suEstadoEs() {return estadoActual.getNombre();}
 
 
-    public void añadirHabilidad(Habilidad unaHabilidad){
+    public void aniadirHabilidad(Habilidad unaHabilidad){
         this.misHabilidades.put(unaHabilidad.getNombre(), unaHabilidad);
     }
 
@@ -82,7 +82,7 @@ public class Pokemon {
 
     public void atacar(Pokemon pokemonEnemigoActual, String nombreDeHabilidad) {
 
-        Habilidad unaHabilidad = this.seleccionarHabilidad(nombreDeHabilidad); //es un puntero? :V
+        Habilidad unaHabilidad = this.seleccionarHabilidad(nombreDeHabilidad);
 
         if (this.puedeAtacar()) {
             unaHabilidad.usarHabilidad(pokemonEnemigoActual, this);

@@ -1,13 +1,11 @@
 package Item;
 import static org.fiuba.algoritmos3.Constantes.*;
-
-import Item.Item;
 import org.fiuba.algoritmos3.EstadoNormal;
 import org.fiuba.algoritmos3.Pokemon;
 
 import java.util.Objects;
 
-public class PocionCuracionEstados extends Item {
+public class PocionCuracionEstados extends ItemsEstado {
     public PocionCuracionEstados(String nombre, int cantidad){
         super(nombre, cantidad);
     }
@@ -15,7 +13,7 @@ public class PocionCuracionEstados extends Item {
     public boolean aplicarItem(Pokemon unPokemon) {
         boolean realizo = false;
         if (!Objects.equals(unPokemon.suEstadoEs(), ESTADO_NORMAL) && unPokemon.estaConciente()) {
-            realizo = this.realizarUsadoItemsDeEstado(unPokemon.getEstadoActual());
+            realizo = this.realizarUsadoCurarTodo(unPokemon.getEstadoActual());
             unPokemon.cambiarseEstado(new EstadoNormal());
         } else {
             System.out.println(" ");

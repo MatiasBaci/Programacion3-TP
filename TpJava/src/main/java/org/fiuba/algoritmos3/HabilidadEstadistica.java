@@ -6,10 +6,10 @@ public class HabilidadEstadistica extends Habilidad{
 
     private String modificaEstadistica;
 
-    private boolean modificacionPropia;
-    private int etapas;
+    private final boolean modificacionPropia;
+    private final int etapas;
 
-    private Modificacion unaModificacion;
+    private final Modificacion unaModificacion;
 
 
     public HabilidadEstadistica(String nombre, int cantidadDeUsos, boolean propio,int etapas,Modificacion modificar){

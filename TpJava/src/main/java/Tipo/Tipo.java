@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 public abstract class Tipo {
 
-    private static HashMap<String,Tipo> tipos = new HashMap<>();
+    private static final HashMap<String,Tipo> tipos = new HashMap<>();
     protected String nombre;
     protected HashMap<String,String> tablaEfectividad;
 
@@ -34,7 +34,7 @@ public abstract class Tipo {
         tipos.put(TIPO_DRAGON, new Dragon());
     }
 
-    public static Tipo instanciarUnTipoDe(String nombre){ //Posible cambio en el nombre del metodo para más claridad
+    public static Tipo instanciarUnTipoDe(String nombre){
         return tipos.get(nombre);
     }
 
@@ -58,18 +58,12 @@ public abstract class Tipo {
     public double calcularMultiplicadorDeDanio(Tipo unTipo){
         double multiplicador;
         String efectividad = this.compararseConTipo(unTipo);
-        switch (efectividad){
-            case RELACION_FUERTE:
-                multiplicador = MULTIPLICADOR_FUERTE;
-                break;
-            case RELACION_DEBIL:
-                multiplicador = MULTIPLICADOR_DEBIL;
-                break;
-            case RELACION_NULA:
-                multiplicador = MULTIPLICADOR_NULA;
-                break;
-            default: multiplicador = MULTIPLICADOR_NEUTRAL;
-        }
+        multiplicador = switch (efectividad) {
+            case RELACION_FUERTE -> MULTIPLICADOR_FUERTE;
+            case RELACION_DEBIL -> MULTIPLICADOR_DEBIL;
+            case RELACION_NULA -> MULTIPLICADOR_NULA;
+            default -> MULTIPLICADOR_NEUTRAL;
+        };
         return multiplicador;
     }
 

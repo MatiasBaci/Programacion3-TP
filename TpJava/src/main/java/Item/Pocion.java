@@ -3,7 +3,7 @@ package Item;
 import org.fiuba.algoritmos3.Modificacion;
 import org.fiuba.algoritmos3.Pokemon;
 
-public class Pocion extends Item {
+public class Pocion extends ItemsCuracion {
 
     public Pocion(String nombre, int cantidad, Modificacion modificar){
         super(nombre, cantidad);

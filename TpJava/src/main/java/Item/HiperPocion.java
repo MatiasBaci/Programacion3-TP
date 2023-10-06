@@ -1,10 +1,9 @@
 package Item;
 
-import Item.Item;
 import org.fiuba.algoritmos3.Modificacion;
 import org.fiuba.algoritmos3.Pokemon;
 
-public class HiperPocion extends Item {
+public class HiperPocion extends ItemsCuracion {
 
 
     public HiperPocion(String nombre, int cantidad, Modificacion unaModificacion){

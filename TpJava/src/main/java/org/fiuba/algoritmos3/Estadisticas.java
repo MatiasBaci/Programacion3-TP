@@ -3,17 +3,17 @@ import static org.fiuba.algoritmos3.Constantes.*;
 public class Estadisticas {
 
     //Atributos:
-    private double vidaMaxima;
-    private int velocidadBase;
-    private int defensaBase;
-    private int ataqueBase;
+    private final double vidaMaxima;
+    private final int velocidadBase;
+    private final int defensaBase;
+    private final int ataqueBase;
 
     private double vidaActual;
     private int velocidad;
     private int defensa;
     private int ataque;
 
-    private int nivel;
+    private final int nivel;
 
     //Metodos:
 

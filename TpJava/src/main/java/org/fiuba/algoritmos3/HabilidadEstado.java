@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class HabilidadEstado extends Habilidad{
 
-    private Estado unEstado;
+    private final Estado unEstado;
     public HabilidadEstado(String nombre, int cantidad,Estado unEstado) {
         super(nombre, cantidad);
         this.unEstado = unEstado;

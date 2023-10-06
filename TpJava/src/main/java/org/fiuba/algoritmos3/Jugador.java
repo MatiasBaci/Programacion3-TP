@@ -37,6 +37,10 @@ public class Jugador {
 
     public Jugador getAdversario() { return adversario; }
 
+    public String getNombrePokemonActual(){
+        return this.pokemonActual.getNombre();
+    }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -47,12 +51,12 @@ public class Jugador {
 
     public void setPokemonActual(Pokemon pokemonActual) {this.pokemonActual = pokemonActual;}
 
-    public boolean verficarEstadoPokemonActual(){
-        return this.pokemonActual.estaConciente();
+    public void setAdversario(Jugador unEnemigo) {
+        this.adversario = unEnemigo;
     }
 
-    public String getNombrePokemonActual(){
-        return this.pokemonActual.getNombre();
+    public boolean verficarEstadoPokemonActual(){
+        return this.pokemonActual.estaConciente();
     }
 
     public boolean isAtacante() {
@@ -70,10 +74,6 @@ public class Jugador {
 
     private Pokemon seleccionarPokemon(String unPokemon) {
         return this.misPokemones.get(unPokemon);
-    }
-
-    public void añadirAdversario(Jugador unEnemigo) {
-        this.adversario = unEnemigo;
     }
 
     public void aplicarEfectoPasivo() {
@@ -107,7 +107,6 @@ public class Jugador {
         return true;
     }
 
-
     public void atacarJugador(Jugador jugadorAdversario, String nombreHabilidad){
 
         if(!this.validarHabilidadPokemon(nombreHabilidad)) {
@@ -116,15 +115,6 @@ public class Jugador {
         }
         pokemonActual.atacar(jugadorAdversario.getPokemonActual(), nombreHabilidad);
         setAtacante(false);
-    }
-
-    private void mensajeIntercambioAlAdversario(){
-
-        System.out.println("╔══════════════════════════════════════╗");
-        System.out.println("║ El Adversario Intercambio el Pokemon ║ ");
-        System.out.println("╚══════════════════════════════════════╝");
-        System.out.println("\n");
-
     }
 
     public void intercambiarPokemon(String decision, Pokemon pokemon){
@@ -149,9 +139,24 @@ public class Jugador {
         return false;
     }
 
+    private void mensajeIntercambioAlAdversario(){
+
+        System.out.println("╔══════════════════════════════════════╗");
+        System.out.println("║ El Adversario Intercambio el Pokemon ║ ");
+        System.out.println("╚══════════════════════════════════════╝");
+        System.out.println("\n");
+
+    }
+
     public void mostrarPokemones() {
         System.out.println("-----------------------------------------------------------------");
         misPokemones.forEach((k, v) -> v.mostrarPokemon());
+        System.out.println("-----------------------------------------------------------------");
+    }
+    public void mostrarPokemonActual(){
+        System.out.println("-----------------------------------------------------------------");
+        System.out.println("Pokemon de " + this.nombre);
+        pokemonActual.mostrarPokemon();
         System.out.println("-----------------------------------------------------------------");
     }
 

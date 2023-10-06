@@ -2,7 +2,7 @@ package org.fiuba.algoritmos3;
 
 public abstract class Habilidad {
 
-    protected String nombre;
+    protected final String nombre;
 
     protected int cantidadDeUsos;
 
@@ -11,7 +11,7 @@ public abstract class Habilidad {
         this.cantidadDeUsos = cantidad;
     }
 
-    public String getNombre() { //Porque no lo toma la hija
+    public String getNombre() {
         return this.nombre;
     }
 

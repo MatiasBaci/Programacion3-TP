@@ -1,0 +1,44 @@
+<changelist name="Uncommitted_changes_before_Update_at_05_10_2023_23_58_[Changes]" date="1696561123829" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_10_2023_23_58_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 05/10/2023 23:58 [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="TpJava/target/classes/Item/PocionAtaque.class" />
+    <option name="AFTER_PATH" value="TpJava/target/classes/Item/PocionAtaque.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_10_2023_23_58_[Changes]/PocionAtaque.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="TpJava/target/classes/Item/Pocion.class" />
+    <option name="AFTER_PATH" value="TpJava/target/classes/Item/Pocion.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_10_2023_23_58_[Changes]/Pocion.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="TpJava/target/classes/Item/Revivir.class" />
+    <option name="AFTER_PATH" value="TpJava/target/classes/Item/Revivir.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_10_2023_23_58_[Changes]/Revivir.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="TpJava/target/classes/Item/PocionDefensa.class" />
+    <option name="AFTER_PATH" value="TpJava/target/classes/Item/PocionDefensa.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_10_2023_23_58_[Changes]/PocionDefensa.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="TpJava/target/classes/Item/MegaPocion.class" />
+    <option name="AFTER_PATH" value="TpJava/target/classes/Item/MegaPocion.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_10_2023_23_58_[Changes]/MegaPocion.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="TpJava/target/classes/Item/HiperPocion.class" />
+    <option name="AFTER_PATH" value="TpJava/target/classes/Item/HiperPocion.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_10_2023_23_58_[Changes]/HiperPocion.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="TpJava/target/classes/Item/Item.class" />
+    <option name="AFTER_PATH" value="TpJava/target/classes/Item/Item.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_10_2023_23_58_[Changes]/Item.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="TpJava/target/classes/Item/PocionCuracionEstados.class" />
+    <option name="AFTER_PATH" value="TpJava/target/classes/Item/PocionCuracionEstados.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_10_2023_23_58_[Changes]/PocionCuracionEstados.class" />
+  </binary>
+</changelist>
