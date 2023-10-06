@@ -10,7 +10,6 @@ public class Juego {
     private Datos datos;
     private Controlador controlador;
 
-    private Opciones opciones;
     //Metodos:
 
     public Juego(){
@@ -28,33 +27,30 @@ public class Juego {
     }
     
     private void decidirTurnoInicial() {
-        if (this.pokemonJugador1EsRapido(jugador1.getPokemonActual(), jugador2.getPokemonActual())) {
-            jugador1.setAtacante(true);
-            System.out.println("COMIENZA ATACANDO " + jugador1.getNombre());
+        if (this.pokemonJugador1EsRapido(this.jugador1.getPokemonActual(), this.jugador2.getPokemonActual())) {
+            this.jugador1.setAtacante(true);
+            System.out.println("COMIENZA ATACANDO " + this.jugador1.getNombre());
         } else {
-            jugador2.setAtacante(true);
-            System.out.println("COMIENZA ATACANDO " + jugador2.getNombre());
+            this.jugador2.setAtacante(true);
+            System.out.println("COMIENZA ATACANDO " + this.jugador2.getNombre());
         }
     }
 
 
     public void menuSeleccion() {
 
-        controlador.mensajeBienvenida();
-        controlador.validarNombresJugador(this.jugador1);
-        controlador.validarNombresJugador(this.jugador2);
-        controlador.seleccionarPokemon(this.jugador1);
-        controlador.seleccionarPokemon(this.jugador2);
+        this.controlador.mensajeBienvenida();
+        this.controlador.validarNombresJugador(this.jugador1);
+        this.controlador.validarNombresJugador(this.jugador2);
+        this.controlador.seleccionarPokemon(this.jugador1);
+        this.controlador.seleccionarPokemon(this.jugador2);
         this.decidirTurnoInicial();
     }
-
 
     public void aplicarIteracion(Jugador jugador, Jugador jugadorAversario){
 
         jugador.aplicarEfectoPasivo();
-
-        controlador.opcionesJugadores(jugador);
-
+        this.controlador.opcionesJugadores(jugador);
         jugadorAversario.setAtacante(true);
     }
 
@@ -69,9 +65,9 @@ public class Juego {
             }
         }
         if(this.jugador1.perdio()){
-            controlador.felicitar(this.jugador2);
+            this.controlador.felicitar(this.jugador2);
         } else{
-            controlador.felicitar(this.jugador1);
+            this.controlador.felicitar(this.jugador1);
         }
     }
 

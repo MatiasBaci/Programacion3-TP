@@ -25,19 +25,17 @@ public class HabilidadEstadistica extends Habilidad{
         this.cantidadDeUsos -= 1;
         if(!this.modificacionPropia){
             this.unaModificacion.modificar(unPokemon.getEstadisticas(),this.etapas);
-            mostrarUso(pokemonOponente, unPokemon);
-
-
+            this.mostrarUso(pokemonOponente, unPokemon);
         } else {
             this.unaModificacion.modificar(pokemonOponente.getEstadisticas(),this.etapas);
-            mostrarUso(pokemonOponente, pokemonOponente);
+            this.mostrarUso(pokemonOponente, pokemonOponente);
         }
     }
 
     @Override
     public void mostrarHabilidad() {
         System.out.println("Nombre: " + this.nombre);
-        System.out.println("Modifica: " + this.unaModificacion.obtenerNombreModificacion()); //Problema en el nombre
+        System.out.println("Modifica: " + this.unaModificacion.obtenerNombreModificacion());
         System.out.println("Cuantas Etapas: " + this.etapas);
         System.out.println("Cantidad de usos: " + this.cantidadDeUsos);
         System.out.println("\n");

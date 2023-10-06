@@ -3,8 +3,9 @@ import static org.fiuba.algoritmos3.Constantes.*;
 
 public class Volador extends Tipo {
 
-    public Volador(String nombre){
-        super(nombre);
+    public Volador(){
+        super();
+        this.nombre = "Volador";
         this.completarTablaEfectividad();
     }
     

@@ -3,7 +3,6 @@ import static org.fiuba.algoritmos3.Constantes.*;
 public class Estadisticas {
 
     //Atributos:
-    //Los atributos Base no deben poder cambiar, deben ser constantes o estaticos
     private double vidaMaxima;
     private int velocidadBase;
     private int defensaBase;
@@ -30,7 +29,7 @@ public class Estadisticas {
         this.nivel = nivel;
     }
 
-    public double getVidaMaxima() { return this.vidaMaxima ;} // es necesario retornar la vida? o que la estadistica se encargue de reducir la misma
+    public double getVidaMaxima() { return this.vidaMaxima ;}
 
     public int getVelocidad() {return this.velocidad;}
 
@@ -58,28 +57,24 @@ public class Estadisticas {
     }
 
     public void reduccionVida(double vida){
-        double vidaTotal = (vidaActual - vida);
+        double vidaTotal = (this.vidaActual - vida);
         if(vidaTotal < 0){
             this.vidaActual = 0;
         }
         else{ this.vidaActual -= vida;}
     }
 
-
     public void modificarVelocidad(int etapas){
         this.velocidad += this.velocidad * etapas * PORCENTAJE;
     }
-
 
     public void modificarDefensa(int etapas){
         this.defensa += this.defensa * etapas * PORCENTAJE;
     }
 
-
     public void modificarAtaque(int etapas){
         this.ataque += this.ataque * etapas * PORCENTAJE;
     }
-
 
     public void resetearEstadisticas(){
         this.velocidad = this.velocidadBase;

@@ -3,9 +3,10 @@ import static org.fiuba.algoritmos3.Constantes.*;
 
 public class Electrico extends Tipo {
 
-    public Electrico(String nombre){
+    public Electrico(){
 
-        super(nombre);
+        super();
+        this.nombre = "Electrico";
         this.completarTablaEfectividad();
     }
 

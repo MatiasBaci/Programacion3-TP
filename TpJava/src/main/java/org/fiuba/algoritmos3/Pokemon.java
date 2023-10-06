@@ -20,7 +20,7 @@ public class Pokemon {
     //Metodos:
     public Pokemon(String nombre, int nivel,String tipo, String historia,double vidaMax,int velocidad,int defensa,int ataque){
         this.nombre = nombre;
-        this.tipo = Tipo.getTipo(tipo);
+        this.tipo = Tipo.instanciarUnTipoDe(tipo);
         this.historia = historia;
         this.estadisticas = new Estadisticas(vidaMax,nivel,velocidad,defensa,ataque);
         this.estadoActual = new EstadoNormal();

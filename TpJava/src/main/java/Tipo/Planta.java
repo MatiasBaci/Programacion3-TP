@@ -3,8 +3,9 @@ import static org.fiuba.algoritmos3.Constantes.*;
 
 public class Planta extends Tipo {
 
-    public Planta(String nombre){
-        super(nombre);
+    public Planta(){
+        super();
+        this.nombre = "Planta";
         this.completarTablaEfectividad();
     }
     

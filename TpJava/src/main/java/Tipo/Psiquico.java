@@ -3,8 +3,9 @@ import static org.fiuba.algoritmos3.Constantes.*;
 
 public class Psiquico extends Tipo {
 
-    public Psiquico(String nombre){
-        super(nombre);
+    public Psiquico(){
+        super();
+        this.nombre = "Psiquico";
         this.completarTablaEfectividad();
     }
     

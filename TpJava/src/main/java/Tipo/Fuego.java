@@ -3,9 +3,10 @@ import static org.fiuba.algoritmos3.Constantes.*;
 
 public class Fuego extends Tipo {
 
-    public Fuego(String nombre){
+    public Fuego(){
 
-        super(nombre);
+        super();
+        this.nombre = "Fuego";
         this.completarTablaEfectividad();
     }
 

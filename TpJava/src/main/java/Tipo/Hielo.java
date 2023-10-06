@@ -3,9 +3,10 @@ import static org.fiuba.algoritmos3.Constantes.*;
 
 public class Hielo extends Tipo {
 
-    public Hielo(String nombre){
+    public Hielo(){
 
-        super(nombre);
+        super();
+        this.nombre = "Hielo";
         this.completarTablaEfectividad();
     }
 

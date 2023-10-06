@@ -12,11 +12,9 @@ public class MegaPocion extends Item {
 
     @Override
     public boolean aplicarItem(Pokemon unPokemon) {
-
-        realizarUsadoItemsDeCuracion(unPokemon.getEstadisticas());
+        boolean realizo = this.realizarUsadoItemsDeCuracion(unPokemon.getEstadisticas());
         this.unaModificacion.modificar(unPokemon.getEstadisticas(), 50);
-        return itemUsado;
-
+        return realizo;
     }
     @Override
     public void mostrarItem() {

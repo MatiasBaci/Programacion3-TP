@@ -15,9 +15,9 @@ public class HiperPocion extends Item {
     @Override
     public boolean aplicarItem(Pokemon unPokemon) {
 
-        realizarUsadoItemsDeCuracion(unPokemon.getEstadisticas());
+        boolean realizo = realizarUsadoItemsDeCuracion(unPokemon.getEstadisticas());
         this.unaModificacion.modificar(unPokemon.getEstadisticas(), 100);
-        return itemUsado;
+        return realizo;
     }
 
     public void mostrarItem() {

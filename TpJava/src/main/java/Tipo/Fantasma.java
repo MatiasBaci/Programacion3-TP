@@ -3,9 +3,10 @@ import static org.fiuba.algoritmos3.Constantes.*;
 
 public class Fantasma extends Tipo {
 
-    public Fantasma(String nombre){
+    public Fantasma(){
 
-        super(nombre);
+        super();
+        this.nombre = "Fantasma";
         this.completarTablaEfectividad();
     }
 

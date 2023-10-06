@@ -1,0 +1,29 @@
+<changelist name="Uncommitted_changes_before_Update_at_04_10_2023_16_49_[Changes]" date="1696448984604" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_10_2023_16_49_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 04/10/2023 16:49 [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="TpJava/target/classes/Opciones/VerCampoDeBatalla.class" />
+    <option name="AFTER_PATH" value="TpJava/target/classes/Opciones/VerCampoDeBatalla.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_10_2023_16_49_[Changes]/VerCampoDeBatalla.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="TpJava/target/classes/Opciones/Rendirse.class" />
+    <option name="AFTER_PATH" value="TpJava/target/classes/Opciones/Rendirse.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_10_2023_16_49_[Changes]/Rendirse.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="TpJava/target/classes/Opciones/IntercambiarPokemon.class" />
+    <option name="AFTER_PATH" value="TpJava/target/classes/Opciones/IntercambiarPokemon.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_10_2023_16_49_[Changes]/IntercambiarPokemon.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="TpJava/target/classes/Opciones/Atacar.class" />
+    <option name="AFTER_PATH" value="TpJava/target/classes/Opciones/Atacar.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_10_2023_16_49_[Changes]/Atacar.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="TpJava/target/classes/org/fiuba/algoritmos3/Controlador.class" />
+    <option name="AFTER_PATH" value="TpJava/target/classes/org/fiuba/algoritmos3/Controlador.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_10_2023_16_49_[Changes]/Controlador.class" />
+  </binary>
+</changelist>

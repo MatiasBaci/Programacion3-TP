@@ -4,24 +4,26 @@ import Tipo.Tipo;
 
 import java.util.Random;
 
+import static org.fiuba.algoritmos3.Constantes.*;
+
 public class HabilidadAtaque extends Habilidad {
     private Tipo tipo;
     private int poder;
 
     public HabilidadAtaque(String nombre, Tipo tipo, int poder, int cantidad){
-        super(nombre,cantidad); //Habilidad(String nombre, int cantidadDeUsos
+        super(nombre,cantidad);
         this.tipo = tipo;
         this.poder = poder;
     }
 
-    public double potenciaDeDaño(Tipo tipoPokemon){
+    private double potenciaDeDaño(Tipo tipoPokemon){
         return this.tipo.calcularMultiplicadorDeDanio(tipoPokemon);
     }
 
     private double calculoAtaqueSegunTipo(Tipo tipoDeUnPokemonPropio, Tipo unTipoPokemonEnemigo) {
 
         double efectividadTipo = this.potenciaDeDaño(unTipoPokemonEnemigo);
-        double mismoTipo = tipoDeUnPokemonPropio.calcularSTAB(this.tipo);
+        double mismoTipo = tipoDeUnPokemonPropio.calcularBonusDelMismoTipo(this.tipo);
 
         Random unRandom = new Random();
         double random = ((double)unRandom.nextInt(38)+217 ) / 255.0;
@@ -32,10 +34,10 @@ public class HabilidadAtaque extends Habilidad {
     private double calculoCritico() {
         Random unRandom = new Random();
         int resultado = unRandom.nextInt(100);
-        if (resultado < 90) {
-            return 1.0;
+        if (resultado < PROBABILIDAD_CRITICO) {
+            return NO_CRITICO;
         }
-        return 2.0;
+        return CRITICO;
     }
 
     private double calculoAtaqueSegunEstadisticas(Estadisticas estadisticasPropio, Estadisticas estadisticasEnemigo) {
@@ -71,7 +73,6 @@ public class HabilidadAtaque extends Habilidad {
         System.out.println("Cantidad de usos: " + this.cantidadDeUsos);
         System.out.println("\n");
     }
-
 
     @Override
     public void mostrarUso(Pokemon unPokemonEnemigo,Pokemon unPokemon){

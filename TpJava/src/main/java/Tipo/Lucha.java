@@ -3,9 +3,9 @@ import static org.fiuba.algoritmos3.Constantes.*;
 
 public class Lucha extends Tipo {
 
-    public Lucha(String nombre){
-
-        super(nombre);
+    public Lucha(){
+        super();
+        this.nombre = "Lucha";
         this.completarTablaEfectividad();
     }
 

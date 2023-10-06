@@ -3,8 +3,9 @@ import static org.fiuba.algoritmos3.Constantes.*;
 
 public class Roca extends Tipo {
 
-    public Roca(String nombre){
-        super(nombre);
+    public Roca(){
+        super();
+        this.nombre = "Roca";
         this.completarTablaEfectividad();
     }
     

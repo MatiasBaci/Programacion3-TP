@@ -4,9 +4,9 @@ import static org.fiuba.algoritmos3.Constantes.*;
 
 public class Agua extends Tipo {
 
-    public Agua(String nombre){
-
-        super(nombre);
+    public Agua(){
+        super();
+        this.nombre = "Agua";
         this.completarTablaEfectividad();
     }
 

@@ -15,12 +15,9 @@ public class PocionDefensa extends Item {
 
     @Override
     public boolean aplicarItem(Pokemon unPokemon) {
-
-        realizarUsadoItemsDeEstadisitcas(unPokemon.getEstadisticas());
+        boolean realizo = realizarUsadoItemsDeEstadisitcas(unPokemon.getEstadisticas());
         this.unaModificacion.modificar(unPokemon.getEstadisticas(), 1);
-        return itemUsado;
-
-
+        return realizo;
     }
     @Override
     public void mostrarItem() {

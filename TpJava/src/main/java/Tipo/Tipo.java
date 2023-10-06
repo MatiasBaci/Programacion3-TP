@@ -7,36 +7,34 @@ import java.util.HashMap;
 public abstract class Tipo {
 
     private static HashMap<String,Tipo> tipos = new HashMap<>();
-    private String nombre;
+    protected String nombre;
     protected HashMap<String,String> tablaEfectividad;
 
-    public Tipo(String nombre){
-        this.nombre = nombre;
+    public Tipo(){
         this.tablaEfectividad = new HashMap<>();
     }
 
     // METODOS ESTATICOS------------------------------------------------------------------------------------------:
 
-    static {  // OJO: Esto funciona como un inicializador, Investigarlo mas a detalle para saber si esta correcto o no.
-        tipos.put(TIPO_FUEGO, new Fuego("Fuego"));
-        tipos.put(TIPO_AGUA, new Agua("Agua"));
-        tipos.put(TIPO_NORMAL, new Normal("Normal"));
-        tipos.put(TIPO_PLANTA, new Planta("Planta"));
-        tipos.put(TIPO_ELECTRICO, new Electrico("Electrico"));
-        tipos.put(TIPO_LUCHA, new Lucha("Lucha"));
-        tipos.put(TIPO_PSIQUICO, new Psiquico("Psiquico"));
-        tipos.put(TIPO_ROCA, new Roca("Roca"));
-        tipos.put(TIPO_HIELO, new Hielo("Hielo"));
-        tipos.put(TIPO_VENENO, new Veneno("Veneno"));
-        tipos.put(TIPO_TIERRA, new Tierra("Tierra"));
-        tipos.put(TIPO_FANTASMA, new Fantasma("Fantasma"));
-        tipos.put(TIPO_VOLADOR, new Volador("Volador"));
-        tipos.put(TIPO_BICHO, new Bicho("Bicho"));
-        tipos.put(TIPO_DRAGON, new Dragon("Dragon"));
-        // Aqui se pueden agregar mas instancias de otros tipos.
+    static {
+        tipos.put(TIPO_FUEGO, new Fuego());
+        tipos.put(TIPO_AGUA, new Agua());
+        tipos.put(TIPO_NORMAL, new Normal());
+        tipos.put(TIPO_PLANTA, new Planta());
+        tipos.put(TIPO_ELECTRICO, new Electrico());
+        tipos.put(TIPO_LUCHA, new Lucha());
+        tipos.put(TIPO_PSIQUICO, new Psiquico());
+        tipos.put(TIPO_ROCA, new Roca());
+        tipos.put(TIPO_HIELO, new Hielo());
+        tipos.put(TIPO_VENENO, new Veneno());
+        tipos.put(TIPO_TIERRA, new Tierra());
+        tipos.put(TIPO_FANTASMA, new Fantasma());
+        tipos.put(TIPO_VOLADOR, new Volador());
+        tipos.put(TIPO_BICHO, new Bicho());
+        tipos.put(TIPO_DRAGON, new Dragon());
     }
 
-    public static Tipo getTipo(String nombre){ //Posible cambio en el nombre del metodo para más claridad
+    public static Tipo instanciarUnTipoDe(String nombre){ //Posible cambio en el nombre del metodo para más claridad
         return tipos.get(nombre);
     }
 
@@ -62,25 +60,21 @@ public abstract class Tipo {
         String efectividad = this.compararseConTipo(unTipo);
         switch (efectividad){
             case RELACION_FUERTE:
-                multiplicador = 2;
+                multiplicador = MULTIPLICADOR_FUERTE;
                 break;
             case RELACION_DEBIL:
-                multiplicador = 0.5;
+                multiplicador = MULTIPLICADOR_DEBIL;
                 break;
             case RELACION_NULA:
-                multiplicador = 0;
+                multiplicador = MULTIPLICADOR_NULA;
                 break;
-            default: multiplicador = 1;
+            default: multiplicador = MULTIPLICADOR_NEUTRAL;
         }
         return multiplicador;
     }
 
-    public double calcularSTAB(Tipo unTipo){
-        double STAB = 1.0;
-        if(this.getNombre().equals(unTipo.getNombre())){
-            STAB = 1.5;
-        }
-        return STAB;
+    public double calcularBonusDelMismoTipo(Tipo unTipo) {
+        return this.getNombre().equals(unTipo.getNombre()) ? BONUS_MISMO_TIPO : BONUS_NEUTRAL;
     }
 
     public abstract void completarTablaEfectividad();

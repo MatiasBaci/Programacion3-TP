@@ -1,0 +1,56 @@
+Index: TpJava/src/main/java/Opciones/Rendirse.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Opciones;\r\n\r\nimport org.fiuba.algoritmos3.Jugador;\r\n\r\npublic class Rendirse implements Opciones{\r\n\r\n    public void aplicarOpcion(Jugador jugador, Jugador jugadorAdversario) {\r\n        System.out.println(\"╔═════════════════╗\");\r\n        System.out.println(\"║ Usted se rindio ║ \");\r\n        System.out.println(\"╚═════════════════╝\");\r\n\r\n       // jugador.setAtacante(false);\r\n\r\n        //this.ganar(jugadorAdversario);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/Opciones/Rendirse.java b/TpJava/src/main/java/Opciones/Rendirse.java
+--- a/TpJava/src/main/java/Opciones/Rendirse.java	(revision 0219ccf5166d35feffad2f2eacb978ceca645913)
++++ b/TpJava/src/main/java/Opciones/Rendirse.java	(date 1696434901978)
+@@ -12,5 +12,8 @@
+        // jugador.setAtacante(false);
+ 
+         //this.ganar(jugadorAdversario);
++    }
++    private void ganar(Jugador unJugador){
++
+     }
+ }
+Index: TpJava/src/main/java/org/fiuba/algoritmos3/Juego.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.fiuba.algoritmos3;\r\n/* import java.util.ArrayList;\r\nimport java.util.List; */\r\npublic class Juego {\r\n\r\n    //Atributos:\r\n    private Jugador jugador1;\r\n    private Jugador jugador2;\r\n    private Datos datos;\r\n    private Controlador controlador;\r\n\r\n    //Metodos:\r\n\r\n    public Juego(){\r\n        this.datos = new Datos();\r\n        this.jugador1 = new Jugador(\"-\",datos.getMochilaJugador1(),datos.getItemsJugador1());\r\n        this.jugador2 = new Jugador(\"-\",datos.getMochilaJugador2(),datos.getItemsJugador2());\r\n\r\n        this.jugador1.añadirAdversario(jugador2);\r\n        this.jugador2.añadirAdversario(jugador1);\r\n        this.controlador = new Controlador();\r\n    }\r\n\r\n    private boolean pokemonJugador1EsRapido(Pokemon pokemonJugador1, Pokemon pokemonJugador2){\r\n        return pokemonJugador1.getVelocidad() >= pokemonJugador2.getVelocidad();\r\n    }\r\n    \r\n    private void decidirTurnoInicial() {\r\n        if (this.pokemonJugador1EsRapido(jugador1.getPokemonActual(), jugador2.getPokemonActual())) {\r\n            jugador1.setAtacante(true);\r\n            System.out.println(\"COMIENZA ATACANDO \" + jugador1.getNombre());\r\n        } else {\r\n            jugador2.setAtacante(true);\r\n            System.out.println(\"COMIENZA ATACANDO \" + jugador2.getNombre());\r\n        }\r\n    }\r\n\r\n\r\n    public void menuSeleccion() {\r\n\r\n        controlador.mensajeBienvenida();\r\n        controlador.validarNombresJugador(this.jugador1);\r\n        controlador.validarNombresJugador(this.jugador2);\r\n        controlador.seleccionarPokemon(this.jugador1);\r\n        controlador.seleccionarPokemon(this.jugador2);\r\n        this.decidirTurnoInicial();\r\n    }\r\n\r\n\r\n    public void aplicarIteracion(Jugador jugador, Jugador jugadorAversario){\r\n\r\n        jugador.aplicarEfectoPasivo();\r\n\r\n        controlador.opcionesJugadores(jugador);\r\n\r\n        jugadorAversario.setAtacante(true);\r\n    }\r\n\r\n\r\n    public void iteracionesJugadores() {\r\n\r\n        while (!this.jugador1.perdio() && !this.jugador2.perdio()){\r\n            if(this.jugador1.isAtacante()){\r\n                this.aplicarIteracion(this.jugador1, this.jugador2);\r\n            } else{\r\n                this.aplicarIteracion(this.jugador2, this.jugador1);\r\n            }\r\n        }\r\n        if(this.jugador1.perdio()){\r\n            System.out.println(\"Gano \" + this.jugador2.getNombre());\r\n        } else{\r\n            System.out.println(\"Gano \" + this.jugador1.getNombre());\r\n        }\r\n    }\r\n\r\n    public void DesarrollarJuego(){\r\n        this.menuSeleccion();\r\n        controlador.inicializarOpciones();\r\n        this.iteracionesJugadores();\r\n    }\r\n\r\n\r\n\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/org/fiuba/algoritmos3/Juego.java b/TpJava/src/main/java/org/fiuba/algoritmos3/Juego.java
+--- a/TpJava/src/main/java/org/fiuba/algoritmos3/Juego.java	(revision 0219ccf5166d35feffad2f2eacb978ceca645913)
++++ b/TpJava/src/main/java/org/fiuba/algoritmos3/Juego.java	(date 1696440390446)
+@@ -1,6 +1,7 @@
+ package org.fiuba.algoritmos3;
+-/* import java.util.ArrayList;
+-import java.util.List; */
++
++import Opciones.Opciones;
++
+ public class Juego {
+ 
+     //Atributos:
+@@ -9,6 +10,7 @@
+     private Datos datos;
+     private Controlador controlador;
+ 
++    private Opciones opciones;
+     //Metodos:
+ 
+     public Juego(){
+@@ -75,7 +77,7 @@
+ 
+     public void DesarrollarJuego(){
+         this.menuSeleccion();
+-        controlador.inicializarOpciones();
++        this.controlador.inicializarOpciones();
+         this.iteracionesJugadores();
+     }
+ 

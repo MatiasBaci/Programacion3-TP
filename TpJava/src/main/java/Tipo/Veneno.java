@@ -3,8 +3,9 @@ import static org.fiuba.algoritmos3.Constantes.*;
 
 public class Veneno extends Tipo {
 
-    public Veneno(String nombre){
-        super(nombre);
+    public Veneno(){
+        super();
+        this.nombre = "Veneno";
         this.completarTablaEfectividad();
     }
     

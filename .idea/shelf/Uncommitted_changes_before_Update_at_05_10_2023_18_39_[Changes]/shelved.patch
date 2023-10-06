@@ -1,0 +1,57 @@
+Index: TpJava/src/main/java/org/fiuba/algoritmos3/HabilidadEstado.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.fiuba.algoritmos3;\r\nimport static org.fiuba.algoritmos3.Constantes.*;\r\n\r\nimport java.util.Objects;\r\n\r\npublic class HabilidadEstado extends Habilidad{\r\n\r\n    private Estado unEstado; //Hay que cambiarle el nombre\r\n    public HabilidadEstado(String nombre, int cantidad,Estado unEstado) {\r\n        super(nombre, cantidad);\r\n        this.unEstado = unEstado;\r\n    }\r\n\r\n    @Override\r\n    public void usarHabilidad(Pokemon unPokemonEnemigo, Pokemon unPokemonPropio) {\r\n        // se encarga de que haga el efecto y como tambien que cambie el estado del pokemon enemigo\r\n        this.cantidadDeUsos --;\r\n\r\n        if (Objects.equals(unPokemonEnemigo.suEstadoEs(), ESTADO_NORMAL)) {\r\n            unPokemonEnemigo.cambiarseEstado(this.unEstado);\r\n        } \r\n\r\n        else {\r\n            System.out.println(this.nombre + \" no tuvo efecto porque el pokemon enemigo ya se encuentra \" + unPokemonEnemigo.suEstadoEs() + \".\");\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public void mostrarHabilidad() {\r\n        System.out.println(\"Nombre: \" + this.nombre);\r\n        System.out.println(\"Estado: \" + this.unEstado.getNombre());\r\n        System.out.println(\"Cuantas Etapas: \" + 5);\r\n        System.out.println(\"Cantidad de usos: \" + this.cantidadDeUsos);\r\n        System.out.println(\"\\n\");\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/org/fiuba/algoritmos3/HabilidadEstado.java b/TpJava/src/main/java/org/fiuba/algoritmos3/HabilidadEstado.java
+--- a/TpJava/src/main/java/org/fiuba/algoritmos3/HabilidadEstado.java	(revision a945972e2cc48dfffc5de06fc87f085ce325bafe)
++++ b/TpJava/src/main/java/org/fiuba/algoritmos3/HabilidadEstado.java	(date 1696540909409)
+@@ -18,8 +18,7 @@
+ 
+         if (Objects.equals(unPokemonEnemigo.suEstadoEs(), ESTADO_NORMAL)) {
+             unPokemonEnemigo.cambiarseEstado(this.unEstado);
+-        } 
+-
++        }
+         else {
+             System.out.println(this.nombre + " no tuvo efecto porque el pokemon enemigo ya se encuentra " + unPokemonEnemigo.suEstadoEs() + ".");
+         }
+Index: TpJava/src/main/java/Tipo/Tipo.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Tipo;\r\nimport static org.fiuba.algoritmos3.Constantes.*;\r\n\r\n\r\nimport java.util.HashMap;\r\n\r\npublic abstract class Tipo {\r\n\r\n    private static HashMap<String,Tipo> tipos = new HashMap<>();\r\n    private String nombre;\r\n    protected HashMap<String,String> tablaEfectividad;\r\n\r\n    public Tipo(String nombre){\r\n        this.nombre = nombre;\r\n        this.tablaEfectividad = new HashMap<>();\r\n    }\r\n\r\n    // METODOS ESTATICOS------------------------------------------------------------------------------------------:\r\n\r\n    static {  // OJO: Esto funciona como un inicializador, Investigarlo mas a detalle para saber si esta correcto o no.\r\n        tipos.put(TIPO_FUEGO, new Fuego(\"Fuego\"));\r\n        tipos.put(TIPO_AGUA, new Agua(\"Agua\"));\r\n        tipos.put(TIPO_NORMAL, new Normal(\"Normal\"));\r\n        tipos.put(TIPO_PLANTA, new Planta(\"Planta\"));\r\n        tipos.put(TIPO_ELECTRICO, new Electrico(\"Electrico\"));\r\n        tipos.put(TIPO_LUCHA, new Lucha(\"Lucha\"));\r\n        tipos.put(TIPO_PSIQUICO, new Psiquico(\"Psiquico\"));\r\n        tipos.put(TIPO_ROCA, new Roca(\"Roca\"));\r\n        tipos.put(TIPO_HIELO, new Hielo(\"Hielo\"));\r\n        tipos.put(TIPO_VENENO, new Veneno(\"Veneno\"));\r\n        tipos.put(TIPO_TIERRA, new Tierra(\"Tierra\"));\r\n        tipos.put(TIPO_FANTASMA, new Fantasma(\"Fantasma\"));\r\n        tipos.put(TIPO_VOLADOR, new Volador(\"Volador\"));\r\n        tipos.put(TIPO_BICHO, new Bicho(\"Bicho\"));\r\n        tipos.put(TIPO_DRAGON, new Dragon(\"Dragon\"));\r\n        // Aqui se pueden agregar mas instancias de otros tipos.\r\n    }\r\n\r\n    public static Tipo getTipo(String nombre){ //Posible cambio en el nombre del metodo para más claridad\r\n        return tipos.get(nombre);\r\n    }\r\n\r\n    // METODOS DE INSTANCIA-----------------------------------------------------------------------------------------:\r\n\r\n    public String getNombre() {\r\n        return nombre;\r\n    }\r\n\r\n    public void setNombre(String nombre) {\r\n        this.nombre = nombre;\r\n    }\r\n\r\n    private String compararseConTipo(Tipo unTipo){\r\n        if(tablaEfectividad.containsKey(unTipo.getNombre())) {\r\n            return this.tablaEfectividad.get(unTipo.getNombre());\r\n        }\r\n        return RELACION_NORMAL;\r\n    }\r\n\r\n    public double calcularMultiplicadorDeDanio(Tipo unTipo){\r\n        double multiplicador;\r\n        String efectividad = this.compararseConTipo(unTipo);\r\n        switch (efectividad){\r\n            case RELACION_FUERTE:\r\n                multiplicador = 2;\r\n                break;\r\n            case RELACION_DEBIL:\r\n                multiplicador = 0.5;\r\n                break;\r\n            case RELACION_NULA:\r\n                multiplicador = 0;\r\n                break;\r\n            default: multiplicador = 1;\r\n        }\r\n        return multiplicador;\r\n    }\r\n\r\n    public double calcularSTAB(Tipo unTipo){\r\n        double STAB = 1.0;\r\n        if(this.getNombre().equals(unTipo.getNombre())){\r\n            STAB = 1.5;\r\n        }\r\n        return STAB;\r\n    }\r\n\r\n    public abstract void completarTablaEfectividad();\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/Tipo/Tipo.java b/TpJava/src/main/java/Tipo/Tipo.java
+--- a/TpJava/src/main/java/Tipo/Tipo.java	(revision a945972e2cc48dfffc5de06fc87f085ce325bafe)
++++ b/TpJava/src/main/java/Tipo/Tipo.java	(date 1696540676902)
+@@ -11,7 +11,6 @@
+     protected HashMap<String,String> tablaEfectividad;
+ 
+     public Tipo(String nombre){
+-        this.nombre = nombre;
+         this.tablaEfectividad = new HashMap<>();
+     }
+ 
+Index: TpJava/src/main/java/org/fiuba/algoritmos3/HabilidadEstadistica.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.fiuba.algoritmos3;\r\n\r\n// import javax.swing.plaf.PanelUI;\r\n\r\npublic class HabilidadEstadistica extends Habilidad{\r\n\r\n    private String modificaEstadistica;\r\n\r\n    private boolean modificacionPropia;\r\n    private int etapas;\r\n\r\n    private Modificacion unaModificacion;\r\n\r\n\r\n    public HabilidadEstadistica(String nombre, int cantidadDeUsos, boolean propio,int etapas,Modificacion modificar){\r\n        super(nombre,cantidadDeUsos);\r\n        this.modificacionPropia = propio;\r\n        this.unaModificacion = modificar;\r\n        this.etapas = etapas;\r\n    }\r\n\r\n\r\n    @Override\r\n    public void usarHabilidad(Pokemon unPokemon, Pokemon pokemonOponente){\r\n        this.cantidadDeUsos -= 1;\r\n        if(!this.modificacionPropia){\r\n            this.unaModificacion.modificar(unPokemon.getEstadisticas(),this.etapas);\r\n\r\n        } else {\r\n            this.unaModificacion.modificar(pokemonOponente.getEstadisticas(),this.etapas);\r\n        }\r\n    }\r\n\r\n\r\n    @Override\r\n    public void mostrarHabilidad() {\r\n        System.out.println(\"Nombre: \" + this.nombre);\r\n        System.out.println(\"Modifica: \" + this.unaModificacion.obtenerNombreModificacion()); //Problema en el nombre\r\n        System.out.println(\"Cuantas Etapas: \" + this.etapas);\r\n        System.out.println(\"Cantidad de usos: \" + this.cantidadDeUsos);\r\n        System.out.println(\"\\n\");\r\n    }\r\n\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/org/fiuba/algoritmos3/HabilidadEstadistica.java b/TpJava/src/main/java/org/fiuba/algoritmos3/HabilidadEstadistica.java
+--- a/TpJava/src/main/java/org/fiuba/algoritmos3/HabilidadEstadistica.java	(revision a945972e2cc48dfffc5de06fc87f085ce325bafe)
++++ b/TpJava/src/main/java/org/fiuba/algoritmos3/HabilidadEstadistica.java	(date 1696541590366)
+@@ -35,7 +35,7 @@
+     @Override
+     public void mostrarHabilidad() {
+         System.out.println("Nombre: " + this.nombre);
+-        System.out.println("Modifica: " + this.unaModificacion.obtenerNombreModificacion()); //Problema en el nombre
++        System.out.println("Modifica: " + this.unaModificacion.obtenerNombreModificacion());
+         System.out.println("Cuantas Etapas: " + this.etapas);
+         System.out.println("Cantidad de usos: " + this.cantidadDeUsos);
+         System.out.println("\n");

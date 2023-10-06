@@ -10,14 +10,13 @@ public class PocionAtaque extends Item {
         super(nombre, cantidad);
         this.unaModificacion = unaModificacion;
     }
-    
 
     @Override
     public boolean aplicarItem(Pokemon unPokemon) {
 
-        realizarUsadoItemsDeEstadisitcas(unPokemon.getEstadisticas());
+        boolean realizo = this.realizarUsadoItemsDeEstadisitcas(unPokemon.getEstadisticas());
         this.unaModificacion.modificar(unPokemon.getEstadisticas(), 1);
-        return itemUsado;
+        return realizo;
     }
 
     @Override

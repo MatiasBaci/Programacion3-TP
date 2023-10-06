@@ -10,6 +10,5 @@ public class Rendirse implements Opciones{
 
         jugador.setAtacante(false);
         jugador.perder();
-        //this.ganar(jugadorAdversario);
     }
 }

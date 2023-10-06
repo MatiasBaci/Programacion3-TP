@@ -1,0 +1,40 @@
+Index: TpJava/src/main/java/Item/Item.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Item;\r\nimport static org.fiuba.algoritmos3.Constantes.*;\r\n\r\nimport org.fiuba.algoritmos3.*;\r\n\r\nimport java.util.Objects;\r\n\r\npublic abstract class Item {\r\n\r\n    protected String nombre;\r\n    protected int cantidad;\r\n    protected Modificacion unaModificacion;\r\n    protected boolean itemUsado;\r\n\r\n    public Item(String nombre, int cantidad) {\r\n        this.nombre = nombre;\r\n        this.cantidad = cantidad;\r\n        this.itemUsado = false;\r\n    }\r\n\r\n    public abstract boolean aplicarItem(Pokemon unPokemon);\r\n\r\n    public boolean realizarCasosDeApliacion(Pokemon unPokemon){\r\n\r\n        if (this.cantidad == 0) {\r\n            System.out.println(\"No tiene este tipo de items\");\r\n            return false;\r\n        }\r\n        else if(this.itemUsado){\r\n            System.out.println(\"Solo se puede usar una vez el item\");\r\n            return false;\r\n        }\r\n        else{\r\n            System.out.print(\"Acaba de seleccionar el siguiente Item: \" + this.nombre);\r\n            System.out.println(\"\\n\");\r\n            return aplicarItem(unPokemon);\r\n        }\r\n    }\r\n\r\n    public void realizarUsadoItemsDeCuracion(Estadisticas estadistica){\r\n        if(estadistica.getVida() != 0 && estadistica.getVida() != estadistica.getVidaMaxima()){\r\n            this.cantidad --;\r\n            this.itemUsado = true;\r\n        }\r\n    }\r\n\r\n    public void realizarUsadoItemsDeEstadisitcas(Estadisticas estadistica){\r\n        if(estadistica.getVida() != 0){\r\n            this.cantidad --;\r\n            this.itemUsado = true;\r\n        }\r\n\r\n\r\n    }\r\n\r\n    public void realizarUsadoItemsDeEstado(Estado unEstado){\r\n        if(Objects.equals(unEstado.getNombre(), ESTADO_INHABILITADO)){\r\n            this.cantidad --;\r\n            this.itemUsado = true;\r\n        }\r\n        else if(!Objects.equals(unEstado.getNombre(), ESTADO_NORMAL) && !Objects.equals(unEstado.getNombre(), ESTADO_INHABILITADO)){\r\n            this.cantidad --;\r\n            this.itemUsado = true;\r\n        }\r\n\r\n\r\n    }\r\n\r\n    public abstract void mostrarItem();\r\n\r\n    public String getNombre() {\r\n        return this.nombre;\r\n    }\r\n\r\n    public int getCantidad() {return this.cantidad;}\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/Item/Item.java b/TpJava/src/main/java/Item/Item.java
+--- a/TpJava/src/main/java/Item/Item.java	(revision 7b0a6472b48d903b6f1960311c1620cdc5a142ae)
++++ b/TpJava/src/main/java/Item/Item.java	(date 1696525580415)
+@@ -18,8 +18,16 @@
+         this.itemUsado = false;
+     }
+ 
++    public String getNombre() {
++        return this.nombre;
++    }
++
++    public int getCantidad() {return this.cantidad;}
++
+     public abstract boolean aplicarItem(Pokemon unPokemon);
+ 
++    public abstract void mostrarItem();
++
+     public boolean realizarCasosDeApliacion(Pokemon unPokemon){
+ 
+         if (this.cantidad == 0) {
+@@ -65,12 +73,4 @@
+ 
+ 
+     }
+-
+-    public abstract void mostrarItem();
+-
+-    public String getNombre() {
+-        return this.nombre;
+-    }
+-
+-    public int getCantidad() {return this.cantidad;}
+ }

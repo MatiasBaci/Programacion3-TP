@@ -3,8 +3,9 @@ import static org.fiuba.algoritmos3.Constantes.*;
 
 public class Tierra extends Tipo {
 
-    public Tierra(String nombre){
-        super(nombre);
+    public Tierra(){
+        super();
+        this.nombre = "Tierra";
         this.completarTablaEfectividad();
     }
     

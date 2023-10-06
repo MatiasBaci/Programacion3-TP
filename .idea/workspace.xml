@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="81ad5f3d-e77a-4eab-8f82-726006efbf84" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Item/HiperPocion.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Item/HiperPocion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Item/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Item/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Item/MegaPocion.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Item/MegaPocion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Item/Pocion.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Item/Pocion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Item/PocionAtaque.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Item/PocionAtaque.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Item/PocionCuracionEstados.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Item/PocionCuracionEstados.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Item/PocionDefensa.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Item/PocionDefensa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Item/Revivir.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Item/Revivir.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Agua.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Agua.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Bicho.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Bicho.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Dragon.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Dragon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Electrico.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Electrico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Fantasma.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Fantasma.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Fuego.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Fuego.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Hielo.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Hielo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Lucha.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Lucha.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Normal.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Normal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Planta.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Planta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Psiquico.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Psiquico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Roca.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Roca.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Tierra.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Tierra.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Tipo.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Tipo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Veneno.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Veneno.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Volador.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/Tipo/Volador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Constantes.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Constantes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Datos.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Datos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Estadisticas.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Estadisticas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/EstadoEnvenenado.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/EstadoEnvenenado.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/HabilidadAtaque.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/HabilidadAtaque.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/HabilidadEstadistica.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/HabilidadEstadistica.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/HabilidadEstado.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/HabilidadEstado.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Juego.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Juego.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Jugador.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Jugador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Pokemon.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Pokemon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Rendirse.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Rendirse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Item/HiperPocion.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Item/HiperPocion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Item/Item.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Item/Item.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Item/MegaPocion.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Item/MegaPocion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Item/Pocion.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Item/Pocion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Item/PocionAtaque.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Item/PocionAtaque.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Item/PocionCuracionEstados.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Item/PocionCuracionEstados.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Item/PocionDefensa.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Item/PocionDefensa.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Item/Revivir.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Item/Revivir.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Opciones/AplicarItem.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Opciones/Atacar.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Opciones/IntercambiarPokemon.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Opciones/Opciones.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Opciones/Rendirse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Opciones/VerCampoDeBatalla.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Agua.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Agua.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Bicho.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Bicho.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Dragon.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Dragon.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Electrico.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Electrico.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Fantasma.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Fantasma.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Fuego.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Fuego.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Hielo.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Hielo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Lucha.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Lucha.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Normal.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Normal.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Planta.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Planta.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Psiquico.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Psiquico.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Roca.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Roca.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Tierra.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Tierra.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Tipo.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Tipo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Veneno.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Veneno.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Volador.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/Tipo/Volador.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Constantes.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Constantes.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Datos.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Datos.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Estadisticas.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Estadisticas.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/EstadoEnvenenado.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/EstadoEnvenenado.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/HabilidadAtaque.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/HabilidadAtaque.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/HabilidadEstadistica.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/HabilidadEstadistica.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/HabilidadEstado.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/HabilidadEstado.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Juego.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Juego.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Jugador.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Jugador.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Pokemon.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Pokemon.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Rendirse.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Rendirse.class" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="Prueba" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2VZWDceRPeCVhqYCOKGBo7NpSdD" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/Dayru/OneDrive/Documents/Algoritmo y Programacion 3 -  CANO/TP1 - ALGO3/Tp1_local",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.editor"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="Tipo" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="81ad5f3d-e77a-4eab-8f82-726006efbf84" name="Changes" comment="" />
+      <created>1695043963160</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1695043963160</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="Funcional" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

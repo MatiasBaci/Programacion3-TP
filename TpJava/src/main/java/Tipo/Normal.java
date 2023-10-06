@@ -4,8 +4,9 @@ import static org.fiuba.algoritmos3.Constantes.*;
 
 public class Normal extends Tipo {
 
-    public Normal(String nombre){
-        super(nombre);
+    public Normal(){
+        super();
+        this.nombre = "Normal";
         this.completarTablaEfectividad();
     }
     

@@ -1,0 +1,73 @@
+Index: TpJava/src/main/java/org/fiuba/algoritmos3/Jugador.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.fiuba.algoritmos3;\r\n// import java.util.ArrayList;\r\nimport java.util.List;\r\nimport java.util.Map;\r\n\r\npublic class Jugador{\r\n\r\n    //Atributos:\r\n    private String nombre;\r\n\r\n    private Map<String,Pokemon> misPokemones;\r\n    private List<Items> items;\r\n\r\n    private Pokemon pokemonActual;\r\n\r\n    private Jugador adversario;\r\n    private boolean atacante; //Si es atacante es su turno.\r\n    private boolean ganoJuego;  //True si gano el juego\r\n\r\n    // Metodos:\r\n\r\n    public Jugador(String nombre, Map<String,Pokemon> misPokemones, List<Items> items) {\r\n        this.nombre = nombre;\r\n        this.misPokemones = misPokemones;\r\n        this.items = items;\r\n        this.atacante = false;\r\n    }\r\n    public List<Items> getItems() {return items;}\r\n\r\n\r\n    public Pokemon getPokemonActual() {return pokemonActual;}\r\n\r\n    private Pokemon seleccionarPokemon(String unPokemon){\r\n        return this.misPokemones.get(unPokemon);\r\n    }\r\n    public boolean elegirPokemon(String unPokemon){\r\n        if(this.seleccionarPokemon(unPokemon)== null){\r\n            System.out.println(\"ERROR: No se encontro el pokemon en tu mochila :C \");\r\n            return false;\r\n        }\r\n        else if(this.seleccionarPokemon(unPokemon).getEstadisticas().getVidaMaxima() == 0){ //Hay get().get()\r\n            System.out.println(\"ERROR: El pokemon no tiene vida. :C \");\r\n            return false;\r\n        }\r\n        this.pokemonActual = this.seleccionarPokemon(unPokemon);\r\n        System.out.println(\"Seleccionaste el pokemon -> \"+ this.pokemonActual.getNombre());\r\n        return true;\r\n    }\r\n\r\n    public void elegirItem(){\r\n\r\n    }\r\n\r\n    public void añadirAdversario(Jugador unEnemigo){\r\n        this.adversario = unEnemigo;\r\n    }\r\n\r\n    public void atacarAdversario(){ // puede recibir la opcion de la habilidada elegida y usarala para buscarla en pokemon\r\n        if(this.pokemonActual == null){\r\n            System.out.println(\"ERROR: Primero elige tu pokemon >:V \");\r\n        }\r\n\r\n        HabilidadAtaque unaHabilidadAtaque = this.pokemonActual.seleccionarHabilidad(\"ChorroDeAgua\"); //Aqui no es flexible por ende deberia estar como parametro en el metodo\r\n        this.pokemonActual.atacar(this.adversario.getPokemonActual(), unaHabilidadAtaque); // es flexible, puede ser otra habilidad que no sea ataque\r\n    }\r\n\r\n    public void setNombre(String nombre) {\r\n        this.nombre = nombre;\r\n    }\r\n\r\n    public String getNombre() {\r\n        return nombre;\r\n    }\r\n\r\n    public Map<String, Pokemon> getMisPokemones() {\r\n        return misPokemones;\r\n    }\r\n\r\n    public void setAtacante(boolean atacante) {\r\n        this.atacante = atacante;\r\n    }\r\n\r\n    public boolean isAtacante() {\r\n        return atacante;\r\n    }\r\n\r\n    public void setGanoJuego(boolean ganoJuego) {\r\n        this.ganoJuego = ganoJuego;\r\n    }\r\n\r\n    public boolean isGanoJuego() {\r\n        return ganoJuego;\r\n    }\r\n\r\n    public Jugador getAdversario() {\r\n        return adversario;\r\n    }\r\n\r\n    public void setPokemonActual(Pokemon pokemonActual) {\r\n        this.pokemonActual = pokemonActual;\r\n\r\n    }\r\n\r\n    public void mostrarPokemones(){\r\n\r\n        misPokemones.forEach((k, v) -> v.mostrarPokemon());\r\n    }\r\n\r\n\r\n}\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/org/fiuba/algoritmos3/Jugador.java b/TpJava/src/main/java/org/fiuba/algoritmos3/Jugador.java
+--- a/TpJava/src/main/java/org/fiuba/algoritmos3/Jugador.java	(revision a5c33d55e07ffafcb7269e56a77189be17889e9d)
++++ b/TpJava/src/main/java/org/fiuba/algoritmos3/Jugador.java	(date 1695504642663)
+@@ -102,7 +102,6 @@
+     }
+ 
+     public void mostrarPokemones(){
+-
+         misPokemones.forEach((k, v) -> v.mostrarPokemon());
+     }
+ 
+Index: TpJava/src/main/java/org/fiuba/algoritmos3/Pokemon.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.fiuba.algoritmos3;\r\nimport java.util.HashMap;\r\n// import java.util.List;\r\nimport java.util.Map;\r\n\r\npublic class Pokemon {\r\n\r\n    //Atributos:\r\n    private String nombre;\r\n    private int nivel;\r\n    private Tipo tipo; //DEBE SER UNA REFERENCIA A LA CLASE AGUA, NO UNA INSTANCIA DE AGUA\r\n    private String historia;\r\n    private Estadisticas estadisticas;\r\n    private Map<String, HabilidadAtaque> misHabilidades;\r\n\r\n    private String estadoActual; //Probablemente sea una clase despues\r\n\r\n\r\n    //Metodos:\r\n\r\n    public Pokemon(String nombre, int nivel,String tipo, String historia,double vidaMax,int velocidad,int defensa,int ataque){\r\n        this.nombre = nombre;\r\n        this.nivel = nivel;\r\n        this.tipo = Tipo.getTipo(tipo); //Aqui se le pasa el nombre del tipo (Fuego,Agua,etc\r\n        this.historia = historia;\r\n        this.estadisticas = new Estadisticas(vidaMax,velocidad,defensa,ataque);\r\n\r\n        this.misHabilidades = new HashMap<>();\r\n        this.estadoActual = \"Normal\";\r\n\r\n    }\r\n    public String getNombre() {return nombre;}\r\n    public int getNivel() {return nivel;}\r\n    public Tipo getTipo() {return tipo;}\r\n    public String getHistoria() {return historia;}\r\n    public Estadisticas getEstadisticas() { return estadisticas;}\r\n\r\n    public HabilidadAtaque seleccionarHabilidad(String unaHabilidad){\r\n        return misHabilidades.get(unaHabilidad);\r\n    }\r\n\r\n    public void añadirHabilidad(String nombre,Tipo unTipo,int poder,int cantidad){\r\n        this.misHabilidades.put(nombre,new HabilidadAtaque(nombre,unTipo,poder,cantidad));\r\n    }\r\n\r\n    public void recibirDaño(double damageEnemigo){\r\n        this.estadisticas.reduccionVida(damageEnemigo);\r\n    }\r\n\r\n    public void atacar(Pokemon pokemonEnemigoActual, HabilidadAtaque unaHabilidadAtaque) {\r\n        CalculoAtaque unCalculo = new CalculoAtaque(this.estadisticas,pokemonEnemigoActual.getEstadisticas());\r\n        double damage = unCalculo.calculoAtaqueTotal(pokemonEnemigoActual.getTipo(),this.getTipo(), unaHabilidadAtaque,this.getNivel());\r\n        double daño = unaHabilidadAtaque.potenciaDeDaño(pokemonEnemigoActual.getTipo()); //Aqui se calcula la efectividad, se borrara\r\n\r\n        pokemonEnemigoActual.recibirDaño(damage);\r\n\r\n        System.out.println(\"La efectividad del ATAQUE \"+ unaHabilidadAtaque.getNombre() +\" con el Pokemon \"+ pokemonEnemigoActual.getNombre()\r\n                + \" es: \"+ daño);\r\n        System.out.println(\"El daño total es = \" + damage);\r\n        System.out.println(\"La vida del enemigo es = \" + pokemonEnemigoActual.getEstadisticas().getVidaMaxima()); // Esto esta mal debido aque es .get().get()\r\n\r\n    }\r\n\r\n    public String getEstadoActual() {\r\n        return estadoActual;\r\n    }\r\n\r\n    public void mostrarPokemon(){\r\n\r\n        System.out.println(\" \");\r\n        System.out.println(\"Nombre: \" + this.nombre);\r\n        this.estadisticas.mostrarEstadisticas();\r\n        System.out.println(\"Estado: \" + this.estadoActual);\r\n        System.out.println(\" \");;\r\n\r\n    }\r\n\r\n    public int getVelocidad(){\r\n        return estadisticas.getVelocidad();\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/org/fiuba/algoritmos3/Pokemon.java b/TpJava/src/main/java/org/fiuba/algoritmos3/Pokemon.java
+--- a/TpJava/src/main/java/org/fiuba/algoritmos3/Pokemon.java	(revision a5c33d55e07ffafcb7269e56a77189be17889e9d)
++++ b/TpJava/src/main/java/org/fiuba/algoritmos3/Pokemon.java	(date 1695504642670)
+@@ -66,15 +66,12 @@
+     }
+ 
+     public void mostrarPokemon(){
+-
+         System.out.println(" ");
+         System.out.println("Nombre: " + this.nombre);
+         this.estadisticas.mostrarEstadisticas();
+         System.out.println("Estado: " + this.estadoActual);
+-        System.out.println(" ");;
+-
++        System.out.println(" ");
+     }
+-
+     public int getVelocidad(){
+         return estadisticas.getVelocidad();
+     }
+Index: TpJava/src/main/java/org/fiuba/algoritmos3/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.fiuba.algoritmos3;\r\n/* import java.util.ArrayList;\r\nimport java.util.HashMap;\r\nimport java.util.List;\r\nimport java.util.Map; */\r\n\r\npublic class Main {\r\n\r\npublic static void main(String[] args) {\r\n\r\n        Pokemon charmander = new Pokemon(\"Charmander\", 5, \"Fuego\", \"historia de charmander\", 100.0, 100, 100, 100);\r\n        Pokemon squirtle = new Pokemon(\"Squirtle\", 5, \"Agua\", \"historia de squirtle\", 100.0, 100, 100, 100);\r\n\r\n        charmander.añadirHabilidad(\"Lanzallamas\", Tipo.getTipo(\"Fuego\"),15,10);\r\n        squirtle.añadirHabilidad(\"Chorro de agua\", Tipo.getTipo(\"Agua\"),10,10);\r\n\r\n        charmander.atacar(squirtle, charmander.seleccionarHabilidad(\"Lanzallamas\"));\r\n        squirtle.atacar(charmander, squirtle.seleccionarHabilidad(\"Chorro de agua\"));\r\n\r\n        Juego juego = new Juego();\r\n        juego.inicializarJuego();\r\n        juego.DesarrollarJuego();\r\n\r\n    }\r\n\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/org/fiuba/algoritmos3/Main.java b/TpJava/src/main/java/org/fiuba/algoritmos3/Main.java
+--- a/TpJava/src/main/java/org/fiuba/algoritmos3/Main.java	(revision a5c33d55e07ffafcb7269e56a77189be17889e9d)
++++ b/TpJava/src/main/java/org/fiuba/algoritmos3/Main.java	(date 1695560795310)
+@@ -12,14 +12,14 @@
+         Pokemon squirtle = new Pokemon("Squirtle", 5, "Agua", "historia de squirtle", 100.0, 100, 100, 100);
+ 
+         charmander.añadirHabilidad("Lanzallamas", Tipo.getTipo("Fuego"),15,10);
+-        squirtle.añadirHabilidad("Chorro de agua", Tipo.getTipo("Agua"),10,10);
++        squirtle.añadirHabilidad("Chorro de agua", Tipo.getTipo("Agua"),100,10);
+ 
+         charmander.atacar(squirtle, charmander.seleccionarHabilidad("Lanzallamas"));
+         squirtle.atacar(charmander, squirtle.seleccionarHabilidad("Chorro de agua"));
+ 
+-        Juego juego = new Juego();
++        /*Juego juego = new Juego();
+         juego.inicializarJuego();
+-        juego.DesarrollarJuego();
++        juego.DesarrollarJuego();*/
+ 
+     }
+ 

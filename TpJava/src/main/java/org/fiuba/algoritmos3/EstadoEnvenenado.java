@@ -16,6 +16,6 @@ public class EstadoEnvenenado extends Estado{
 
     @Override
     public void aplicarEfectoPasivoDeEstado(Pokemon unPokemon) {
-        unPokemon.recibirDanio(unPokemon.getVidaMaxima()*0.5);
+        unPokemon.recibirDanio(unPokemon.getVidaMaxima() * PORCENTAJE_VENENO);
     }
 }

@@ -33,9 +33,7 @@ public class Jugador {
         return pokemonActual;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
+    public String getNombre() {return nombre;}
 
     public Jugador getAdversario() { return adversario; }
 
@@ -47,8 +45,14 @@ public class Jugador {
         this.atacante = atacante;
     }
 
-    public void setPokemonActual(Pokemon pokemonActual) {
-        this.pokemonActual = pokemonActual;
+    public void setPokemonActual(Pokemon pokemonActual) {this.pokemonActual = pokemonActual;}
+
+    public boolean verficarEstadoPokemonActual(){
+        return this.pokemonActual.estaConciente();
+    }
+
+    public String getNombrePokemonActual(){
+        return this.pokemonActual.getNombre();
     }
 
     public boolean isAtacante() {
@@ -76,6 +80,10 @@ public class Jugador {
         pokemonActual.aplicarEfectoPasivoPokemon();
     }
 
+    public Item elegirItem(String nombreItem){
+        return this.items.get(nombreItem);
+    }
+
     public boolean elegirPokemon(String unPokemon) {
         if (this.seleccionarPokemon(unPokemon) == null) {
             System.out.println("ERROR: NO SE ENCONTRO EL POKEMON EN LA MOCHILA.");
@@ -100,7 +108,6 @@ public class Jugador {
     }
 
 
-
     public void atacarJugador(Jugador jugadorAdversario, String nombreHabilidad){
 
         if(!this.validarHabilidadPokemon(nombreHabilidad)) {
@@ -123,7 +130,6 @@ public class Jugador {
     public void intercambiarPokemon(String decision, Pokemon pokemon){
 
         if (Objects.equals(decision, "Si")) {
-            //System.out.println("Se realizo el intercambio. ");
             mensajeIntercambioAlAdversario();
             this.setAtacante(false);
             System.out.println("Es el turno del otro jugador. Oprima una tecla para continuar.");
@@ -135,17 +141,12 @@ public class Jugador {
         }
     }
 
-    public Item elegirItem(String nombreItem){
-        return this.items.get(nombreItem);
-    }
-
     public boolean usarItem(String nombrePokemon, Item itemAplicable){
         if (itemAplicable.realizarCasosDeApliacion(misPokemones.get(nombrePokemon))){
             this.setAtacante(false);
             return true;
         }
         return false;
-
     }
 
     public void mostrarPokemones() {
@@ -177,17 +178,9 @@ public class Jugador {
         return validacion.estaContenidoItem(nombreItem,this.items);
     }
 
-
     public boolean validadorClavePokemones(String nombrePokemon){
         Validacion validacion = new Validacion();
         return validacion.estaContenidoPokemon(nombrePokemon,this.misPokemones);
-    }
-    public boolean verficarEstadoPokemonActual(){
-        return this.pokemonActual.estaConciente();
-    }
-
-    public String getNombrePokemonActual(){
-       return this.pokemonActual.getNombre();
     }
 }
 

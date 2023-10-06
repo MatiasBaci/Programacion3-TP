@@ -3,9 +3,10 @@ import static org.fiuba.algoritmos3.Constantes.*;
 
 public class Bicho extends Tipo {
 
-    public Bicho(String nombre){
+    public Bicho(){
 
-        super(nombre);
+        super();
+        this.nombre = "Bicho";
         this.completarTablaEfectividad();
     }
 
