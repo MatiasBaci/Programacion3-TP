@@ -7,6 +7,7 @@ public class Bicho extends Tipo {
 
         super();
         this.nombre = "Bicho";
+        this.color = ANSI_VERDEOSCURO;
         this.completarTablaEfectividad();
     }
 

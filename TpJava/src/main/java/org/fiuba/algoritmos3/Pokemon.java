@@ -91,10 +91,10 @@ public class Pokemon {
 
     public void mostrarPokemon(){
         System.out.println(" Nombre: " + this.nombre);
-        System.out.println(" Tipo: " + this.tipo.getNombre());
+        System.out.println(" Tipo: " + this.tipo.getNombreConColor());
         this.estadisticas.mostrarEstadisticas();
         System.out.println(" Historia: " + this.historia);
-        System.out.println(" Estado: " + this.estadoActual.getNombre() + "\n");
+        System.out.println(" Estado: " + this.estadoActual.getNombreConColor() + "\n");
     }
 
     public void mostrarHabilidades() {

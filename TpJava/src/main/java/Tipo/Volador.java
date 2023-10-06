@@ -6,6 +6,7 @@ public class Volador extends Tipo {
     public Volador(){
         super();
         this.nombre = "Volador";
+        this.color = ANSI_CELESTECLARO;
         this.completarTablaEfectividad();
     }
     

@@ -5,6 +5,7 @@ public class EstadoEnvenenado extends Estado{
 
     public EstadoEnvenenado(){
         this.nombre = ESTADO_ENVENENADO;
+        this.color = ANSI_FONDO_VIOLETA + ANSI_BLANCO;
     }
     
 

@@ -68,7 +68,7 @@ public class HabilidadAtaque extends Habilidad {
     @Override
     public void mostrarHabilidad(){
         System.out.println("Nombre: " + this.nombre);
-        System.out.println("Tipo: " + this.tipo.getNombre());
+        System.out.println("Tipo: " + this.tipo.getNombreConColor());
         System.out.println("Poder: " + this.poder);
         System.out.println("Cantidad de usos: " + this.cantidadDeUsos);
         System.out.println("\n");

@@ -7,6 +7,7 @@ public class Electrico extends Tipo {
 
         super();
         this.nombre = "Electrico";
+        this.color = ANSI_AMARILLO;
         this.completarTablaEfectividad();
     }
 

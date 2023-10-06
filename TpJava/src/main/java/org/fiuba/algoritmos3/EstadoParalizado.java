@@ -7,6 +7,7 @@ public class EstadoParalizado extends Estado{
 
     public EstadoParalizado() {
         this.nombre = ESTADO_PARALIZADO;
+        this.color = ANSI_FONDO_AMARILLO + ANSI_NEGRO;
     }
 
     @Override

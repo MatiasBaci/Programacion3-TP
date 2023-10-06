@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+Main-Class: target/classes/org/fiuba/algoritmos3/Main
+Class-Path: target/classes/Item target/classes/Tipo target/classes/org/fiuba/algoritmos3

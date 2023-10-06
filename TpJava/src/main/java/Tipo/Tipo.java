@@ -7,6 +7,7 @@ import java.util.HashMap;
 public abstract class Tipo {
 
     private static final HashMap<String,Tipo> tipos = new HashMap<>();
+    protected String color = null;
     protected String nombre;
     protected HashMap<String,String> tablaEfectividad;
 
@@ -42,6 +43,10 @@ public abstract class Tipo {
 
     public String getNombre() {
         return nombre;
+    }
+
+    public String getNombreConColor(){
+        return this.color + this.getNombre() + ANSI_RESET;    
     }
 
     public void setNombre(String nombre) {

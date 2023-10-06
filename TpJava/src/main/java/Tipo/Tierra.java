@@ -6,6 +6,7 @@ public class Tierra extends Tipo {
     public Tierra(){
         super();
         this.nombre = "Tierra";
+        this.color = ANSI_MARRON;
         this.completarTablaEfectividad();
     }
     

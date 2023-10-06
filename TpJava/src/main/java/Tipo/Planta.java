@@ -6,6 +6,7 @@ public class Planta extends Tipo {
     public Planta(){
         super();
         this.nombre = "Planta";
+        this.color = ANSI_VERDECLARO;
         this.completarTablaEfectividad();
     }
     

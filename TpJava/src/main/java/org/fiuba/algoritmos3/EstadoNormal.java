@@ -5,6 +5,7 @@ public class EstadoNormal extends Estado{
 
     public EstadoNormal(){
         this.nombre = ESTADO_NORMAL;
+        this.color = ANSI_BLANCO;
     }
 
     @Override

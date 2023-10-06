@@ -7,6 +7,7 @@ public class Fantasma extends Tipo {
 
         super();
         this.nombre = "Fantasma";
+        this.color = ANSI_VIOLETA;
         this.completarTablaEfectividad();
     }
 

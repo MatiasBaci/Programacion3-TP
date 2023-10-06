@@ -26,7 +26,7 @@ public class HabilidadEstado extends Habilidad{
     @Override
     public void mostrarHabilidad() {
         System.out.println("Nombre: " + this.nombre);
-        System.out.println("Estado: " + this.unEstado.getNombre());
+        System.out.println("Estado: " + this.unEstado.getNombreConColor());
         System.out.println("Cantidad de usos: " + this.cantidadDeUsos);
         System.out.println("\n");
     }

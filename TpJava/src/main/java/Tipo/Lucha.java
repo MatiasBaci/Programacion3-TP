@@ -6,6 +6,7 @@ public class Lucha extends Tipo {
     public Lucha(){
         super();
         this.nombre = "Lucha";
+        this.color = ANSI_NARANJA;
         this.completarTablaEfectividad();
     }
 

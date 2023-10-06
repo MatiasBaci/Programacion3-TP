@@ -49,6 +49,49 @@ public class Constantes {
     public static final double CRITICO = 2.0;
     public static final double NO_CRITICO = 1.0;
 
+    public static final String ANSI_NEGRO = "\u001B[30m";
+    public static final String ANSI_ROJO = "\u001B[31m";
+    public static final String ANSI_VERDE = "\u001B[32m";
+    public static final String ANSI_AMARILLO = "\u001B[33m";
+    public static final String ANSI_CELESTE = "\u001B[34m";
+    public static final String ANSI_PURPURA = "\u001B[35m";
+    public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_BLANCO = "\u001B[37m";
+    public static final String ANSI_MAGENTA = "\\u001B[45m";
+    
+    public static final String ANSI_LILA = "\u001b[38;5;99m";
+    public static final String ANSI_VERDEOSCURO = "\u001b[38;5;34m";
+    public static final String ANSI_VERDECLARO = "\u001b[38;5;47m";
+    public static final String ANSI_CELESTECLARO = "\u001b[38;5;195m";
+    public static final String ANSI_MARRON = "\u001b[38;5;94m";
+    public static final String ANSI_MARRONOSCURO = "\u001b[38;5;88m";
+    public static final String ANSI_ROSACLARO = "\u001b[38;5;213m";
+    public static final String ANSI_GRISCLARO = "\u001b[38;5;7m";
+    public static final String ANSI_GRISOSCURO = "\u001b[38;5;8m";
+    public static final String ANSI_NARANJA = "\u001b[38;5;203m";
+    public static final String ANSI_AZUL = "\u001b[38;5;21m";
+    public static final String ANSI_AZULFUERTE = "\u001b[38;5;12m";
+    public static final String ANSI_VIOLETA = "\u001b[38;5;134m";
+    public static final String ANSI_VIOLETAOSCURO = "\u001b[38;5;5m";
+
+    public static final String ANSI_FONDO_NEGRO = "\u001B[40m";
+    public static final String ANSI_FONDO_ROJO = "\u001B[41m";
+    public static final String ANSI_FONDO_VERDE = "\u001B[42m";
+    public static final String ANSI_FONDO_AMARILLO = "\u001B[43m";
+    public static final String ANSI_FONDO_AZUL = "\u001B[44m";
+    public static final String ANSI_FONDO_PURPURA = "\u001B[45m";
+    public static final String ANSI_FONDO_CYAN = "\u001B[46m";
+    public static final String ANSI_FONDO_BLANCO = "\u001B[47m";
+    public static final String ANSI_FONDO_VIOLETA = "\u001b[48;5;93m";
+    
+    public static final String ANSI_RESET = "\u001B[0m";
+    
+    public static final String ANSI_BOLD = "\u001B[1m";
+    public static final String ANSI_UNDERLINE = "\u001B[4m";
+
+
+
+
 
 
 

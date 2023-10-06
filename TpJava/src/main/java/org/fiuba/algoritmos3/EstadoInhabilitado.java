@@ -5,6 +5,7 @@ public class EstadoInhabilitado extends Estado{
 
     public EstadoInhabilitado(){
         this.nombre = ESTADO_INHABILITADO;
+        this.color = ANSI_FONDO_ROJO + ANSI_BLANCO;
     }
     @Override
     public boolean puedeAtacar(Pokemon unPokemon){

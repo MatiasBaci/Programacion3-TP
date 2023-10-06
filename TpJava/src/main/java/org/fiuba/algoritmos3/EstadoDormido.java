@@ -12,6 +12,7 @@ public class EstadoDormido extends Estado{
         this.nombre = ESTADO_DORMIDO;
         this.duracionMaxima = 4;
         this.turnosDormido = 0;
+        this.color = ANSI_FONDO_BLANCO + ANSI_NEGRO;
     }
 
     
