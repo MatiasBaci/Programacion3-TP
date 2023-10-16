@@ -15,9 +15,7 @@ public abstract class Habilidad {
         return this.nombre;
     }
 
-    public abstract void usarHabilidad(Pokemon unPokemonEnemigo,Pokemon unPokemonPropio);
+    public abstract void usarHabilidad(Cualidades cualidadesPokemonEnemigo,Cualidades cualidadesPokemonPropio);
 
     public abstract void mostrarHabilidad();
-
-    public abstract void mostrarUso(Pokemon unPokemonEnemigo,Pokemon unPokemon);
 }

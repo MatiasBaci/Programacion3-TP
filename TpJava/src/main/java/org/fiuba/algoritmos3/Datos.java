@@ -126,7 +126,7 @@ public class Datos {
         Item pocionDefensa = new DefensaX("Defensa X", 2, new ModificacionDefensa());
         Item pocionAtaque = new AtaqueX("Ataque X", 1, new ModificacionAtaque());
         Item revivir = new Revivir("Revivir", 1, new ModificacionEstadoInhabilitado());
-        Item curarTodo = new PocionCuracionEstados("Curar todo",1);
+        Item curarTodo = new PocionCuracionEstados("Curar todo",1, new ModificacionEstado());
 
         this.itemsJugador1.put(pocion.getNombre(), pocion);
         this.itemsJugador1.put(megaPocion.getNombre(), megaPocion);
@@ -223,7 +223,7 @@ public class Datos {
         Item pocionDefensa = new DefensaX("Defensa X", 3, new ModificacionDefensa());
         Item pocionAtaque = new AtaqueX("Ataque X", 2, new ModificacionAtaque());
         Item revivir = new Revivir("Revivir", 1, new ModificacionEstadoInhabilitado());
-        Item curarTodo = new PocionCuracionEstados("Curar todo",1);
+        Item curarTodo = new PocionCuracionEstados("Curar todo",1, new ModificacionEstado());
 
         this.itemsJugador2.put(pocion.getNombre(), pocion);
         this.itemsJugador2.put(megaPocion.getNombre(), megaPocion);

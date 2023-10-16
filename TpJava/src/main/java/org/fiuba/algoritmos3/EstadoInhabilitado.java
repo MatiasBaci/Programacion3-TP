@@ -8,11 +8,11 @@ public class EstadoInhabilitado extends Estado{
         this.color = ANSI_FONDO_ROJO + ANSI_BLANCO;
     }
     @Override
-    public boolean puedeAtacar(Pokemon unPokemon){
+    public boolean puedeAtacar(Cualidades cualidades){
         return false;
     }
     @Override
-    public void aplicarEfectoPasivoDeEstado(Pokemon unPokemon){
+    public void aplicarEfectoPasivoDeEstado(Cualidades cualidades){
         System.out.println("El pokemon actual esta inhabilitado.");
     }
 }

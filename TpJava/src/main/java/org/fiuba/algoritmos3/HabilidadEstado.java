@@ -12,14 +12,13 @@ public class HabilidadEstado extends Habilidad{
     }
 
     @Override
-    public void usarHabilidad(Pokemon unPokemonEnemigo, Pokemon unPokemonPropio) {
+    public void usarHabilidad(Cualidades cualidadesPokemonEnemigo,Cualidades cualidadesPokemonPropio) {
         this.cantidadDeUsos --;
-        if (Objects.equals(unPokemonEnemigo.suEstadoEs(), ESTADO_NORMAL)) {
-            unPokemonEnemigo.cambiarseEstado(this.unEstado);
-            this.mostrarUso(unPokemonEnemigo, unPokemonPropio);
+        if (Objects.equals(cualidadesPokemonEnemigo.suEstadoEs(), ESTADO_NORMAL)) {
+            cualidadesPokemonEnemigo.cambiarseEstado(this.unEstado);
         }
         else {
-            System.out.println(this.nombre + " no tuvo efecto porque el pokemon enemigo ya se encuentra " + unPokemonEnemigo.suEstadoEs() + ".");
+            System.out.println(this.nombre + " no tuvo efecto porque el pokemon enemigo ya se encuentra " + cualidadesPokemonEnemigo.suEstadoEs() + ".");
         }
     }
 
@@ -31,9 +30,4 @@ public class HabilidadEstado extends Habilidad{
         System.out.println("\n");
     }
 
-    @Override
-    public void mostrarUso(Pokemon unPokemonEnemigo,Pokemon unPokemon){
-        System.out.println("¡"+ unPokemon.getNombre() + " uso " + this.nombre + "!");
-        System.out.println(unPokemonEnemigo.getNombre() + " esta " + unEstado.getNombre());
-    }
 }

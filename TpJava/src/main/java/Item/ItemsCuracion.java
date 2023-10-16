@@ -1,22 +1,20 @@
 package Item;
 
-import org.fiuba.algoritmos3.Estadisticas;
+import org.fiuba.algoritmos3.Cualidades;
 import org.fiuba.algoritmos3.Modificacion;
-import org.fiuba.algoritmos3.Pokemon;
 
 public abstract class ItemsCuracion extends Item implements validarItemCuracion{
-    protected Modificacion unaModificacion;
 
     public ItemsCuracion(String unNombre,int cantidad){
         super(unNombre,cantidad);
     }
 
-    public abstract boolean aplicarItem(Pokemon unPokemon);
+    public abstract boolean aplicarItem(Cualidades cualidades);
 
     public abstract void mostrarItem();
     @Override
-    public boolean realizarUsadoItemsDeCuracion(Estadisticas estadistica){
-        if(estadistica.getVida() != 0 && estadistica.getVida() != estadistica.getVidaMaxima()){
+    public boolean realizarUsadoItemsDeCuracion(Cualidades cualidades){
+        if(cualidades.getVida() != 0 && cualidades.getVida() != cualidades.getVidaMaxima()){
             this.cantidad --;
             return true;
         }

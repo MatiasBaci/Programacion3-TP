@@ -1,24 +1,21 @@
 package Item;
 import static org.fiuba.algoritmos3.Constantes.*;
-import org.fiuba.algoritmos3.EstadoNormal;
-import org.fiuba.algoritmos3.Pokemon;
+import org.fiuba.algoritmos3.Modificacion;
+import org.fiuba.algoritmos3.Cualidades;
 
 import java.util.Objects;
 
 public class PocionCuracionEstados extends ItemsEstado {
-    public PocionCuracionEstados(String nombre, int cantidad){
+    public PocionCuracionEstados(String nombre, int cantidad, Modificacion unaModificacion){
+
         super(nombre, cantidad);
+        this.unaModificacion = unaModificacion;
     }
     @Override
-    public boolean aplicarItem(Pokemon unPokemon) {
-        boolean realizo = false;
-        if (!Objects.equals(unPokemon.suEstadoEs(), ESTADO_NORMAL) && unPokemon.estaConciente()) {
-            realizo = this.realizarUsadoCurarTodo(unPokemon.getEstadoActual());
-            unPokemon.cambiarseEstado(new EstadoNormal());
-        } else {
-            System.out.println(" ");
-            System.out.println("No se puede aplicar este item a un Pokemon Inhabilitado o Normal.");
-        }
+    public boolean aplicarItem(Cualidades cualidades) {
+
+        boolean realizo = realizarUsadoCurarTodo(cualidades.getEstadoActual());
+        this.unaModificacion.modificar(cualidades, 1);
         return realizo;
     }
     @Override

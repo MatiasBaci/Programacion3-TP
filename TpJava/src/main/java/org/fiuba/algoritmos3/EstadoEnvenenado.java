@@ -10,13 +10,13 @@ public class EstadoEnvenenado extends Estado{
     
 
     @Override
-    public boolean puedeAtacar(Pokemon unPokemon){
+    public boolean puedeAtacar(Cualidades cualidades){
         return true;
     }
 
 
     @Override
-    public void aplicarEfectoPasivoDeEstado(Pokemon unPokemon) {
-        unPokemon.recibirDanio(unPokemon.getVidaMaxima() * PORCENTAJE_VENENO);
+    public void aplicarEfectoPasivoDeEstado(Cualidades cualidades) {
+        cualidades.recibirDanio(cualidades.getVidaMaxima() * PORCENTAJE_VENENO);
     }
 }

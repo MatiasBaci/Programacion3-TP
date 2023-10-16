@@ -2,7 +2,7 @@ package Item;
 
 import org.fiuba.algoritmos3.EstadoNormal;
 import org.fiuba.algoritmos3.Modificacion;
-import org.fiuba.algoritmos3.Pokemon;
+import org.fiuba.algoritmos3.Cualidades;
 
 public class Revivir extends ItemsEstado {
 
@@ -16,13 +16,13 @@ public class Revivir extends ItemsEstado {
 
 
     @Override
-    public boolean aplicarItem(Pokemon unPokemon) {
+    public boolean aplicarItem(Cualidades cualidades) {
 
-        boolean realizo = this.realizarUsadoRevivir(unPokemon.getEstadoActual());
-        if(!unPokemon.estaConciente()){
-            unPokemon.cambiarseEstado(new EstadoNormal());
+        boolean realizo = this.realizarUsadoRevivir(cualidades.getEstadoActual());
+        if(!cualidades.estaConciente()){
+            cualidades.cambiarseEstado(new EstadoNormal());
         }
-        this.unaModificacion.modificar(unPokemon.getEstadisticas(), (int) unPokemon.getVidaMaxima());
+        this.unaModificacion.modificar(cualidades, (int) cualidades.getVidaMaxima());
         return realizo;
     }
     @Override

@@ -1,7 +1,7 @@
 package Item;
 
 import org.fiuba.algoritmos3.Modificacion;
-import org.fiuba.algoritmos3.Pokemon;
+import org.fiuba.algoritmos3.Cualidades;
 
 public class AtaqueX extends ItemsEstadistica {
 
@@ -11,10 +11,10 @@ public class AtaqueX extends ItemsEstadistica {
     }
 
     @Override
-    public boolean aplicarItem(Pokemon unPokemon) {
+    public boolean aplicarItem(Cualidades cualidades) {
 
-        boolean realizo = this.realizarUsadoItemsDeEstadisitcas(unPokemon.getEstadisticas());
-        this.unaModificacion.modificar(unPokemon.getEstadisticas(), 1);
+        boolean realizo = this.realizarUsadoItemsDeEstadisitcas(cualidades);
+        this.unaModificacion.modificar(cualidades, 1);
         return realizo;
     }
 

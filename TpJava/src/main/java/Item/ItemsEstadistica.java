@@ -1,7 +1,6 @@
 package Item;
 
-import org.fiuba.algoritmos3.Estadisticas;
-import org.fiuba.algoritmos3.Pokemon;
+import org.fiuba.algoritmos3.Cualidades;
 
 public abstract class ItemsEstadistica extends Item implements validarItemEstadistica{
 
@@ -9,12 +8,12 @@ public abstract class ItemsEstadistica extends Item implements validarItemEstadi
         super(unNombre,cantidad);
     }
 
-    public abstract boolean aplicarItem(Pokemon unPokemon);
+    public abstract boolean aplicarItem(Cualidades cualidades);
 
     public abstract void mostrarItem();
     @Override
-    public boolean realizarUsadoItemsDeEstadisitcas(Estadisticas estadistica){
-        if(estadistica.getVida() != 0){
+    public boolean realizarUsadoItemsDeEstadisitcas(Cualidades cualidades){
+        if(cualidades.getVida() != 0){
             this.cantidad --;
             return true;
         }

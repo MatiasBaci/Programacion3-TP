@@ -16,7 +16,7 @@ public abstract class Estado {
     }
 
 
-    public abstract boolean puedeAtacar(Pokemon unPokemon);
+    public abstract boolean puedeAtacar(Cualidades cualidades);
 
-    public abstract void aplicarEfectoPasivoDeEstado(Pokemon unPokemon);
+    public abstract void aplicarEfectoPasivoDeEstado(Cualidades cualidades);
 }

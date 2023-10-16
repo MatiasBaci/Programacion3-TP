@@ -8,76 +8,46 @@ public class Pokemon {
 
     //Atributos:
     private String nombre;
-    private Tipo tipo;
     private String historia;
-    private Estadisticas estadisticas;
+    private Cualidades cualidades;
 
     private Map<String, Habilidad> misHabilidades;
-
-    private Estado estadoActual;
-
 
     //Metodos:
     public Pokemon(String nombre, int nivel,String tipo, String historia,double vidaMax,int velocidad,int defensa,int ataque){
         this.nombre = nombre;
-        this.tipo = Tipo.instanciarUnTipoDe(tipo);
         this.historia = historia;
-        this.estadisticas = new Estadisticas(vidaMax,nivel,velocidad,defensa,ataque);
-        this.estadoActual = new EstadoNormal();
+        this.cualidades = new Cualidades(vidaMax,nivel,velocidad,defensa,ataque, tipo);
         this.misHabilidades = new HashMap<>();
     }
 
-
+    public void aplicarEfectoPasivoPokemon(){
+        this.getCualidades().getEstadoActual().aplicarEfectoPasivoDeEstado(this.cualidades); //Cambiar
+    }
     public String getNombre() {return nombre;}
 
-    public Tipo getTipo() {return tipo;}
     public Map<String, Habilidad> getMisHabilidades() {
         return misHabilidades;
     }
-    public Estadisticas getEstadisticas() {return estadisticas;}
-    public int getVelocidad() {return estadisticas.getVelocidad();}
-    public double getVidaMaxima() {return this.estadisticas.getVidaMaxima();}
-    public double getVida() {return this.estadisticas.getVida();}
-
-    public Estado getEstadoActual() {
-        return estadoActual;
-    }
-
-    public String suEstadoEs() {return estadoActual.getNombre();}
-
+    public Cualidades getCualidades() {return cualidades;}
+    public int getVelocidad() {return cualidades.getVelocidad();}
+    public double getVidaMaxima() {return this.cualidades.getVidaMaxima();}
+    public double getVida() {return this.cualidades.getVida();}
 
     public void aniadirHabilidad(Habilidad unaHabilidad){
         this.misHabilidades.put(unaHabilidad.getNombre(), unaHabilidad);
     }
 
 
-    public void recibirDanio(double damageEnemigo){
-        this.estadisticas.reduccionVida(damageEnemigo);
-    }
-
     public Habilidad seleccionarHabilidad(String unaHabilidad){
         return misHabilidades.get(unaHabilidad);
     }
-
-    public void aplicarEfectoPasivoPokemon(){
-        estadoActual.aplicarEfectoPasivoDeEstado(this);
-    }
-
-    public void cambiarseEstado(Estado unEstado){
-        this.estadoActual = unEstado;
-    }
-
-
     public boolean estaConciente() {
-        if(this.estadisticas.getVida() == 0){ //<=
-            this.cambiarseEstado(new EstadoInhabilitado());
-            return false;
-        }
-        return true;
+        return this.cualidades.estaConciente();
     }
 
     public boolean puedeAtacar(){
-        return estadoActual.puedeAtacar(this);
+        return this.cualidades.getEstadoActual().puedeAtacar(this.cualidades);
     }
 
     public void atacar(Pokemon pokemonEnemigoActual, String nombreDeHabilidad) {
@@ -85,17 +55,19 @@ public class Pokemon {
         Habilidad unaHabilidad = this.seleccionarHabilidad(nombreDeHabilidad);
 
         if (this.puedeAtacar()) {
-            unaHabilidad.usarHabilidad(pokemonEnemigoActual, this);
+            System.out.println("¡"+ pokemonEnemigoActual.getNombre() + " uso " + this.nombre + "!");
+            unaHabilidad.usarHabilidad(pokemonEnemigoActual.getCualidades(), this.cualidades);
+
         }
     }
 
     public void mostrarPokemon(){
         System.out.println(" Nombre: " + this.nombre);
-        System.out.println(" Tipo: " + this.tipo.getNombreConColor());
-        this.estadisticas.mostrarEstadisticas();
+        this.cualidades.mostrarCualidades();
         System.out.println(" Historia: " + this.historia);
-        System.out.println(" Estado: " + this.estadoActual.getNombreConColor() + "\n");
     }
+
+    public Tipo getTipo() {return this.cualidades.getTipo(); }
 
     public void mostrarHabilidades() {
         this.misHabilidades.forEach((k, v) -> v.mostrarHabilidad());

@@ -56,7 +56,7 @@ public class Jugador {
     }
 
     public boolean verficarEstadoPokemonActual(){
-        return this.pokemonActual.estaConciente();
+        return this.pokemonActual.getCualidades().estaConciente();
     }
 
     public boolean isAtacante() {
@@ -132,7 +132,7 @@ public class Jugador {
     }
 
     public boolean usarItem(String nombrePokemon, Item itemAplicable){
-        if (itemAplicable.realizarCasosDeApliacion(misPokemones.get(nombrePokemon))){
+        if (itemAplicable.realizarCasosDeApliacion(misPokemones.get(nombrePokemon).getCualidades())){
             this.setAtacante(false);
             return true;
         }

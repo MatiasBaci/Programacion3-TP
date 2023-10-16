@@ -17,10 +17,10 @@ public abstract class Item {
 
     public abstract void mostrarItem();
 
-    public abstract boolean aplicarItem(Pokemon unPokemon);
+    public abstract boolean aplicarItem(Cualidades cualidades);
 
     public abstract boolean esUnItemDeSoloCampoDeBatalla();
-    public boolean realizarCasosDeApliacion(Pokemon unPokemon){
+    public boolean realizarCasosDeApliacion(Cualidades cualidades){
         if (this.cantidad == 0) {
             System.out.println("No tiene este tipo de items");
             return false;
@@ -28,7 +28,7 @@ public abstract class Item {
         else{
             System.out.print("Acaba de seleccionar el siguiente Item: " + nombre);
             System.out.println("\n");
-            return this.aplicarItem(unPokemon);
+            return this.aplicarItem(cualidades);
         }
     }
 }

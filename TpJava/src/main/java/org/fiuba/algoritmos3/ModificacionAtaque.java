@@ -4,10 +4,10 @@ public class ModificacionAtaque implements Modificacion { //implementsModificabl
 
 
     @Override
-    public void modificar(Estadisticas unaEstadistica, int etapas) {
-        if (unaEstadistica.getVida() != 0) {
-            unaEstadistica.modificarAtaque(etapas);
-        } else if (unaEstadistica.getVida() == 0) {
+    public void modificar(Cualidades unaCualidad, int etapas) {
+        if (unaCualidad.getVida() != 0) {
+            unaCualidad.modificarAtaque(etapas);
+        } else if (unaCualidad.getVida() == 0) {
             System.out.println(" ");
             System.out.println("El Pokemon esta Inhabilitado, no se puede modificar su ataque.");
         }

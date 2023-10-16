@@ -40,28 +40,27 @@ public class HabilidadAtaque extends Habilidad {
         return CRITICO;
     }
 
-    private double calculoAtaqueSegunEstadisticas(Estadisticas estadisticasPropio, Estadisticas estadisticasEnemigo) {
-        double ataque = (double)estadisticasPropio.getAtaque();
-        double defensa = (double)estadisticasEnemigo.getDefensa();
+    private double calculoAtaqueSegunEstadisticas(Cualidades cualidadesPropio, Cualidades cualidadesEnemigo) {
+        double ataque = (double)cualidadesPropio.getAtaque();
+        double defensa = (double)cualidadesEnemigo.getDefensa();
         double poderHabilidad = (double) this.poder;
         double critico = this.calculoCritico();
-        double nivel = (double)estadisticasPropio.getNivel();
+        double nivel = (double)cualidadesPropio.getNivel();
 
         return (2.0*nivel*poderHabilidad*ataque*critico/(defensa*5.0)+2.0)/50.0;
     }
 
-    private double atacar(Pokemon unPokemonPropio, Pokemon unPokemonEnemigo){
-        double danioEstadisticas = this.calculoAtaqueSegunEstadisticas(unPokemonPropio.getEstadisticas(),unPokemonEnemigo.getEstadisticas());
-        double danioTipo = this.calculoAtaqueSegunTipo(unPokemonPropio.getTipo(),unPokemonEnemigo.getTipo());
+        private double atacar(Cualidades cualidadesPokemonPropio, Cualidades cualidadesPokemonEnemigo){
+        double danioEstadisticas = this.calculoAtaqueSegunEstadisticas(cualidadesPokemonPropio,cualidadesPokemonEnemigo);
+        double danioTipo = this.calculoAtaqueSegunTipo(cualidadesPokemonPropio.getTipo(),cualidadesPokemonEnemigo.getTipo());
         return danioEstadisticas * danioTipo;
     }
 
     @Override
-    public void usarHabilidad(Pokemon unPokemonEnemigo,Pokemon unPokemonPropio){
+    public void usarHabilidad(Cualidades cualidadesPokemonEnemigo,Cualidades cualidadesPokemonPropio){
         this.cantidadDeUsos -= 1;
-        double danio = Math.round(this.atacar(unPokemonPropio,unPokemonEnemigo));
-        unPokemonEnemigo.recibirDanio(danio);
-        this.mostrarUso(unPokemonEnemigo, unPokemonPropio);
+        double danio = Math.round(this.atacar(cualidadesPokemonPropio,cualidadesPokemonEnemigo));
+        cualidadesPokemonEnemigo.recibirDanio(danio);
         System.out.println("El daño infligido de la habiilidad: "+this.nombre +" es = " +danio );
     }
 
@@ -72,12 +71,6 @@ public class HabilidadAtaque extends Habilidad {
         System.out.println("Poder: " + this.poder);
         System.out.println("Cantidad de usos: " + this.cantidadDeUsos);
         System.out.println("\n");
-    }
-
-    @Override
-    public void mostrarUso(Pokemon unPokemonEnemigo,Pokemon unPokemon){
-        System.out.println("¡" + unPokemon.getNombre() + " usó " + this.getNombre() + "!");
-        System.out.println("La vida de " + unPokemonEnemigo.getNombre() + " es = " + unPokemonEnemigo.getVida());
     }
 
 

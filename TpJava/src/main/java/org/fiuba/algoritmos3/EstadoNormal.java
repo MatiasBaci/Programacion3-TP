@@ -9,11 +9,11 @@ public class EstadoNormal extends Estado{
     }
 
     @Override
-    public boolean puedeAtacar(Pokemon unPokemon){
+    public boolean puedeAtacar(Cualidades cualidades){
         return true;
     }
 
     @Override
-    public void aplicarEfectoPasivoDeEstado(Pokemon unPokemon){
+    public void aplicarEfectoPasivoDeEstado(Cualidades cualidades){
     }
 }

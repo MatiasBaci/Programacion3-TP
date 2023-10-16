@@ -1,7 +1,7 @@
 package Item;
 
 import org.fiuba.algoritmos3.Modificacion;
-import org.fiuba.algoritmos3.Pokemon;
+import org.fiuba.algoritmos3.Cualidades;
 
 public class HiperPocion extends ItemsCuracion {
 
@@ -12,10 +12,10 @@ public class HiperPocion extends ItemsCuracion {
     }
 
     @Override
-    public boolean aplicarItem(Pokemon unPokemon) {
+    public boolean aplicarItem(Cualidades cualidades) {
 
-        boolean realizo = realizarUsadoItemsDeCuracion(unPokemon.getEstadisticas());
-        this.unaModificacion.modificar(unPokemon.getEstadisticas(), 100);
+        boolean realizo = realizarUsadoItemsDeCuracion(cualidades);
+        this.unaModificacion.modificar(cualidades, 100);
         return realizo;
     }
 

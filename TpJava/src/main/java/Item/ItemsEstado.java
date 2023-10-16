@@ -1,7 +1,7 @@
 package Item;
 
 import org.fiuba.algoritmos3.Estado;
-import org.fiuba.algoritmos3.Pokemon;
+import org.fiuba.algoritmos3.Cualidades;
 
 import java.util.Objects;
 
@@ -14,7 +14,7 @@ public abstract class ItemsEstado extends Item implements validarItemEstado {
         super(unNombre,cantidad);
     }
 
-    public abstract boolean aplicarItem(Pokemon unPokemon);
+    public abstract boolean aplicarItem(Cualidades cualidades);
 
     public abstract void mostrarItem();
     @Override
