@@ -90,7 +90,7 @@ public class Jugador {
             System.out.println("\n");
             return false;
         }
-        else if (!this.seleccionarPokemon(unPokemon).estaConciente()) {
+        else if (!this.seleccionarPokemon(unPokemon).getCualidades().estaConciente()) {
             System.out.println("ERROR: EL POKEMON NO TIENE VIDA ");
             System.out.println("\n");
             return false;

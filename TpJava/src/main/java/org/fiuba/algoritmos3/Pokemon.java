@@ -32,7 +32,6 @@ public class Pokemon {
     public Cualidades getCualidades() {return cualidades;}
     public int getVelocidad() {return cualidades.getVelocidad();}
     public double getVidaMaxima() {return this.cualidades.getVidaMaxima();}
-    public double getVida() {return this.cualidades.getVida();}
 
     public void aniadirHabilidad(Habilidad unaHabilidad){
         this.misHabilidades.put(unaHabilidad.getNombre(), unaHabilidad);
@@ -42,6 +41,7 @@ public class Pokemon {
     public Habilidad seleccionarHabilidad(String unaHabilidad){
         return misHabilidades.get(unaHabilidad);
     }
+
     public boolean estaConciente() {
         return this.cualidades.estaConciente();
     }
@@ -55,7 +55,7 @@ public class Pokemon {
         Habilidad unaHabilidad = this.seleccionarHabilidad(nombreDeHabilidad);
 
         if (this.puedeAtacar()) {
-            System.out.println("¡"+ pokemonEnemigoActual.getNombre() + " uso " + this.nombre + "!");
+            System.out.println("¡"+ this.nombre + " uso " + nombreDeHabilidad + "!");
             unaHabilidad.usarHabilidad(pokemonEnemigoActual.getCualidades(), this.cualidades);
 
         }

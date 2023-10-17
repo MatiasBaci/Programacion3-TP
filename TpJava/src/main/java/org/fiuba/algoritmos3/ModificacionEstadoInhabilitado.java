@@ -4,6 +4,9 @@ public class ModificacionEstadoInhabilitado implements Modificacion{
 
     @Override
     public void modificar(Cualidades unaCualidad, int etapas) {
+        if(!unaCualidad.estaConciente()){
+            unaCualidad.cambiarseEstado(new EstadoNormal());
+        }
         if(unaCualidad.getVida() == 0) {
             unaCualidad.aumentarVida(etapas);
         }else{

@@ -3,7 +3,6 @@ package org.fiuba.algoritmos3;
 
 public abstract class Estado {
 
-
     protected String color;
     protected String nombre;
 

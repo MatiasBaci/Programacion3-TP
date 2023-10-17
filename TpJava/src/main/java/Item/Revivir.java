@@ -19,9 +19,6 @@ public class Revivir extends ItemsEstado {
     public boolean aplicarItem(Cualidades cualidades) {
 
         boolean realizo = this.realizarUsadoRevivir(cualidades.getEstadoActual());
-        if(!cualidades.estaConciente()){
-            cualidades.cambiarseEstado(new EstadoNormal());
-        }
         this.unaModificacion.modificar(cualidades, (int) cualidades.getVidaMaxima());
         return realizo;
     }

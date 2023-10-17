@@ -12,11 +12,11 @@ public class Controlador {
     public void inicializarOpciones(){
 
         opciones = new HashMap<>();
-        opciones.put(OPCION_UNO, new Rendirse());
-        opciones.put(OPCION_DOS, new VerCampoDeBatalla());
-        opciones.put(OPCION_TRES, new IntercambiarPokemon());
-        opciones.put(OPCION_CUATRO, new AplicarItem());
-        opciones.put(OPCION_CINCO, new Atacar());
+        opciones.put(OPCION_UNO, new OpcionRendirse());
+        opciones.put(OPCION_DOS, new OpcionVerCampoDeBatalla());
+        opciones.put(OPCION_TRES, new OpcionIntercambiarPokemon());
+        opciones.put(OPCION_CUATRO, new OpcionAplicarItem());
+        opciones.put(OPCION_CINCO, new OpcionAtacar());
 
     }
     public void mensajeBienvenida() {
@@ -122,7 +122,7 @@ public class Controlador {
             System.out.println("SELECCIONE UNA OPCION: ");
             decision = scanner.next();
             if(opciones.containsKey(decision)){
-                opciones.get(decision).aplicarOpcion(jugador, jugador.getAdversario());
+                opciones.get(decision).aplicarOpcion(jugador);
             }else{
                 this.mensajeOpcionInvalida();
             }
