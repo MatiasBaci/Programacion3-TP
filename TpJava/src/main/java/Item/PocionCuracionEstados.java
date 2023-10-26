@@ -18,8 +18,5 @@ public class PocionCuracionEstados extends ItemsEstado {
         this.unaModificacion.modificar(cualidades, 1);
         return realizo;
     }
-    @Override
-    public void mostrarItem() {
-        System.out.println(nombre + ": Elimina los Estado del pokemon - Cantidad: " + cantidad);
-    }
+
 }

@@ -18,8 +18,4 @@ public class DefensaX extends ItemsEstadistica {
         this.unaModificacion.modificar(cualidades, 1);
         return realizo;
     }
-    @Override
-    public void mostrarItem() {
-        System.out.println(nombre + ": Aumenta 10% la defensa - Cantidad: " + cantidad);
-    }
 }

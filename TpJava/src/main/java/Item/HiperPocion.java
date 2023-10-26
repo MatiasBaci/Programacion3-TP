@@ -19,8 +19,5 @@ public class HiperPocion extends ItemsCuracion {
         return realizo;
     }
 
-    public void mostrarItem() {
-        System.out.println(nombre + ": Restaura 100 de vida - Cantidad: " + cantidad);
-    }
 }
 

@@ -1,5 +1,6 @@
 package org.fiuba.algoritmos3;
 import Tipo.Tipo;
+import view.CualidadesView;
 
 import static org.fiuba.algoritmos3.Constantes.*;
 public class Cualidades {
@@ -20,6 +21,7 @@ public class Cualidades {
     private Tipo tipo;
 
     private Estado estadoActual;
+
 
     //Metodos:
 
@@ -53,6 +55,7 @@ public class Cualidades {
     public double getVida() {
         return this.vidaActual;
     }
+
 
     public Estado getEstadoActual() {
         return estadoActual;
@@ -115,18 +118,6 @@ public class Cualidades {
         this.defensa = this.defensaBase;
         this.ataque = this.ataqueBase;
     }
-
-    public void mostrarCualidades(){
-        System.out.println(" Tipo: " + this.tipo.getNombreConColor());
-        System.out.println(
-                " Nivel: " + this.nivel + " --" +
-                " HP: " + (int)this.vidaActual + " --" +
-                        " Velocidad: " + this.velocidad + " --" +
-                        " Defensa: " + this.defensa + " --" +
-                        " Ataque: " + this.ataque);
-        System.out.println(" Estado: " + this.estadoActual.getNombreConColor() + "\n");
-    }
-
 
 
 }

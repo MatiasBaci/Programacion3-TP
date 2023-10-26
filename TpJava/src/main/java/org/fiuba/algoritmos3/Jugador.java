@@ -1,6 +1,7 @@
 package org.fiuba.algoritmos3;
 // import java.util.ArrayList;
 import Item.Item;
+import view.*;
 
 import java.util.Map;
 import java.util.Objects;
@@ -19,6 +20,8 @@ public class Jugador {
     private boolean atacante;
     private boolean esPerdedor;
 
+    private JugadorView vistaJugador;
+
     // Metodos:
 
     public Jugador(String nombre, Map<String, Pokemon> misPokemones, Map<String, Item> items) {
@@ -27,6 +30,8 @@ public class Jugador {
         this.items = items;
         this.atacante = false;
         this.esPerdedor = false;
+        this.vistaJugador = new JugadorView(this.nombre, this.misPokemones, this.items);
+
     }
 
     public Pokemon getPokemonActual() {
@@ -36,6 +41,10 @@ public class Jugador {
     public String getNombre() {return nombre;}
 
     public Jugador getAdversario() { return adversario; }
+
+    public Map<String, Item> getItem(){
+        return items;
+    }
 
     public String getNombrePokemonActual(){
         return this.pokemonActual.getNombre();
@@ -103,6 +112,7 @@ public class Jugador {
             }
         }
         this.pokemonActual = this.seleccionarPokemon(unPokemon);
+        this.vistaJugador.setPokemonActualView(this.seleccionarPokemon(unPokemon));
         System.out.println("Seleccionaste el pokemon -> " + this.pokemonActual.getNombre());
         return true;
     }
@@ -149,28 +159,22 @@ public class Jugador {
     }
 
     public void mostrarPokemones() {
-        System.out.println("-----------------------------------------------------------------");
-        misPokemones.forEach((k, v) -> v.mostrarPokemon());
-        System.out.println("-----------------------------------------------------------------");
+
+        vistaJugador.mostrarPokemones();
     }
     public void mostrarPokemonActual(){
-        System.out.println("-----------------------------------------------------------------");
-        System.out.println("Pokemon de " + this.nombre);
-        pokemonActual.mostrarPokemon();
-        System.out.println("-----------------------------------------------------------------");
+
+        vistaJugador.mostrarPokemonActual();
     }
 
     public void mostratHabilidadesPokemonActual() {
-        System.out.println("Las habilidades de " + pokemonActual.getNombre() + " actuales son: ");
-        pokemonActual.mostrarHabilidades();
+
+        vistaJugador. mostratHabilidadesPokemonActual();
     }
 
     public void mostrarItems() {
 
-        System.out.println("-----------------------------------------------------------------");
-        System.out.println("Items de " + this.nombre);
-        items.forEach((k, v) -> v.mostrarItem());
-        System.out.println("-----------------------------------------------------------------");
+        vistaJugador.mostratItems();
     }
 
     public boolean validarHabilidadPokemon(String nombreHabilidad){

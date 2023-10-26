@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class OpcionVerCampoDeBatalla implements Opciones{
 
-
     private void mensajeCampoBatalla() {
         System.out.println("\n");
         System.out.println("╔══════════════════╗");

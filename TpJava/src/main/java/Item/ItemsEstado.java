@@ -16,7 +16,6 @@ public abstract class ItemsEstado extends Item implements validarItemEstado {
 
     public abstract boolean aplicarItem(Cualidades cualidades);
 
-    public abstract void mostrarItem();
     @Override
     public boolean realizarUsadoCurarTodo(Estado unEstado){
         if(!Objects.equals(unEstado.getNombre(), ESTADO_NORMAL) && !Objects.equals(unEstado.getNombre(), ESTADO_INHABILITADO)){

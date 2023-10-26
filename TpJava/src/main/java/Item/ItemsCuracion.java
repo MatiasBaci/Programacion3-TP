@@ -11,7 +11,6 @@ public abstract class ItemsCuracion extends Item implements validarItemCuracion{
 
     public abstract boolean aplicarItem(Cualidades cualidades);
 
-    public abstract void mostrarItem();
     @Override
     public boolean realizarUsadoItemsDeCuracion(Cualidades cualidades){
         if(cualidades.getVida() != 0 && cualidades.getVida() != cualidades.getVidaMaxima()){

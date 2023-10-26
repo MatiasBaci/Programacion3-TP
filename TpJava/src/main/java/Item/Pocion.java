@@ -17,8 +17,5 @@ public class Pocion extends ItemsCuracion {
         return realizo;
     }
 
-    @Override
-    public void mostrarItem() {
-        System.out.println(nombre + ": Restaura 25 de vida - Cantidad: " + cantidad);
-    }
+
 }

@@ -1,5 +1,6 @@
 package org.fiuba.algoritmos3;
 import Tipo.Tipo;
+import view.PokemonView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,6 +13,8 @@ public class Pokemon {
     private Cualidades cualidades;
 
     private Map<String, Habilidad> misHabilidades;
+
+    private PokemonView pokemonMostrar;
 
     //Metodos:
     public Pokemon(String nombre, int nivel,String tipo, String historia,double vidaMax,int velocidad,int defensa,int ataque){
@@ -32,6 +35,10 @@ public class Pokemon {
     public Cualidades getCualidades() {return cualidades;}
     public int getVelocidad() {return cualidades.getVelocidad();}
     public double getVidaMaxima() {return this.cualidades.getVidaMaxima();}
+
+    public String getHistoria() {
+        return historia;
+    }
 
     public void aniadirHabilidad(Habilidad unaHabilidad){
         this.misHabilidades.put(unaHabilidad.getNombre(), unaHabilidad);
@@ -61,15 +68,6 @@ public class Pokemon {
         }
     }
 
-    public void mostrarPokemon(){
-        System.out.println(" Nombre: " + this.nombre);
-        this.cualidades.mostrarCualidades();
-        System.out.println(" Historia: " + this.historia);
-    }
-
     public Tipo getTipo() {return this.cualidades.getTipo(); }
 
-    public void mostrarHabilidades() {
-        this.misHabilidades.forEach((k, v) -> v.mostrarHabilidad());
-    }
 }

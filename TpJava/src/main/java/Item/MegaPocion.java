@@ -16,8 +16,5 @@ public class MegaPocion extends ItemsCuracion {
         this.unaModificacion.modificar(cualidades, 50);
         return realizo;
     }
-    @Override
-    public void mostrarItem() {
-        System.out.println(nombre + ": Restaura 50 de vida - Cantidad: " + cantidad);
-    }
+
 }

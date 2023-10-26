@@ -19,6 +19,13 @@ public class HabilidadEstadistica extends Habilidad{
         this.etapas = etapas;
     }
 
+    public String obtenerNombreModificacion(){
+            return this.unaModificacion.obtenerNombreModificacion();
+    }
+
+    public int getEtapas() {
+        return etapas;
+    }
 
     @Override
     public void usarHabilidad(Cualidades cualidadesPokemonEnemigo,Cualidades cualidadesPokemonPropio){
@@ -28,15 +35,6 @@ public class HabilidadEstadistica extends Habilidad{
         } else {
             this.unaModificacion.modificar(cualidadesPokemonEnemigo,this.etapas);
         }
-    }
-
-    @Override
-    public void mostrarHabilidad() {
-        System.out.println("Nombre: " + this.nombre);
-        System.out.println("Modifica: " + this.unaModificacion.obtenerNombreModificacion());
-        System.out.println("Cuantas Etapas: " + this.etapas);
-        System.out.println("Cantidad de usos: " + this.cantidadDeUsos);
-        System.out.println("\n");
     }
 
 }

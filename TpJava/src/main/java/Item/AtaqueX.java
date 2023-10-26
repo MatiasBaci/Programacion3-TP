@@ -18,9 +18,5 @@ public class AtaqueX extends ItemsEstadistica {
         return realizo;
     }
 
-    @Override
-    public void mostrarItem() {
-        System.out.println(nombre + ": Aumenta 10% el ataque - Cantidad: " + cantidad);
-    }
 }
 

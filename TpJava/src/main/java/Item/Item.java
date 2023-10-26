@@ -15,8 +15,6 @@ public abstract class Item {
 
     public String getNombre() {return nombre;}
 
-    public abstract void mostrarItem();
-
     public abstract boolean aplicarItem(Cualidades cualidades);
 
     public abstract boolean esUnItemDeSoloCampoDeBatalla();

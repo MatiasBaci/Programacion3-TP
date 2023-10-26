@@ -10,7 +10,6 @@ public abstract class ItemsEstadistica extends Item implements validarItemEstadi
 
     public abstract boolean aplicarItem(Cualidades cualidades);
 
-    public abstract void mostrarItem();
     @Override
     public boolean realizarUsadoItemsDeEstadisitcas(Cualidades cualidades){
         if(cualidades.getVida() != 0){

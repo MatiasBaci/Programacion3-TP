@@ -16,6 +16,14 @@ public class HabilidadAtaque extends Habilidad {
         this.poder = poder;
     }
 
+    public Tipo getTipo() {
+        return tipo;
+    }
+
+    public int getPoder() {
+        return poder;
+    }
+
     private double potenciaDeDanio(Tipo tipoPokemon){
         return this.tipo.calcularMultiplicadorDeDanio(tipoPokemon);
     }
@@ -64,14 +72,6 @@ public class HabilidadAtaque extends Habilidad {
         System.out.println("El daño infligido de la habiilidad: "+this.nombre +" es = " +danio );
     }
 
-    @Override
-    public void mostrarHabilidad(){
-        System.out.println("Nombre: " + this.nombre);
-        System.out.println("Tipo: " + this.tipo.getNombreConColor());
-        System.out.println("Poder: " + this.poder);
-        System.out.println("Cantidad de usos: " + this.cantidadDeUsos);
-        System.out.println("\n");
-    }
 
 
 }

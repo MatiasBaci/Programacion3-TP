@@ -22,8 +22,5 @@ public class Revivir extends ItemsEstado {
         this.unaModificacion.modificar(cualidades, (int) cualidades.getVidaMaxima());
         return realizo;
     }
-    @Override
-    public void mostrarItem() {
-        System.out.println(nombre + ": Revive al pokemon con toda su salud - Cantidad: " + cantidad);
-    }
+
 }

@@ -17,5 +17,7 @@ public abstract class Habilidad {
 
     public abstract void usarHabilidad(Cualidades cualidadesPokemonEnemigo,Cualidades cualidadesPokemonPropio);
 
-    public abstract void mostrarHabilidad();
+    public int getCantidadDeUsos() {
+        return cantidadDeUsos;
+    }
 }
