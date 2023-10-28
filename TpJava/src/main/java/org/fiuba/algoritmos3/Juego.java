@@ -1,5 +1,6 @@
 package org.fiuba.algoritmos3;
 
+import view.GeneralView;
 import view.JugadorView;
 
 public class Juego {
@@ -8,6 +9,8 @@ public class Juego {
     private Jugador jugador1;
     private Jugador jugador2;
     private Controlador controlador;
+
+    private GeneralView generalView;
 
     //Metodos:
 
@@ -19,12 +22,13 @@ public class Juego {
         this.jugador1.setAdversario(jugador2);
         this.jugador2.setAdversario(jugador1);
         this.controlador = new Controlador();
+        this.generalView = new GeneralView(jugador1);
     }
 
     private boolean pokemonJugador1EsRapido(Pokemon pokemonJugador1, Pokemon pokemonJugador2){
         return pokemonJugador1.getVelocidad() >= pokemonJugador2.getVelocidad();
     }
-    
+
     private void decidirTurnoInicial() {
         if (this.pokemonJugador1EsRapido(this.jugador1.getPokemonActual(), this.jugador2.getPokemonActual())) {
             this.jugador1.setAtacante(true);
@@ -38,25 +42,24 @@ public class Juego {
 
     public void menuSeleccion() {
 
-        this.controlador.mensajeBienvenida();
+        this.generalView.mostrarMensajeBienvenida();
         this.controlador.validarNombresJugador(this.jugador1);
         this.controlador.validarNombresJugador(this.jugador2);
-        this.controlador.seleccionarPokemon(this.jugador1);
-        this.controlador.seleccionarPokemon(this.jugador2);
+        this.generalView = new GeneralView(jugador1);
+        this.generalView.getJugadorView().setJugadorAdversarioView(jugador2);
+        this.controlador.seleccionarPokemon(this.jugador1, this.generalView.getJugadorView());
+        this.controlador.seleccionarPokemon(this.jugador2, this.generalView.getJugadorAdversarioView());
         this.decidirTurnoInicial();
     }
 
     public void aplicarIteracion(Jugador jugador, Jugador jugadorAversario){
 
         jugador.aplicarEfectoPasivo();
-        JugadorView jugadorView = new JugadorView(jugador.getNombre(), jugador.getMisPokemones(), jugador.getItems());
-        jugador.setVistaJugador(jugadorView);
-        jugador.getVistaJugador().setPokemonActualView(jugador.getPokemonActual());
-        JugadorView jugadorView2 = new JugadorView(jugadorAversario.getNombre(), jugadorAversario.getMisPokemones(), jugadorAversario.getItems());
-        jugadorAversario.setVistaJugador(jugadorView2);
-        jugadorAversario.getVistaJugador().setPokemonActualView(jugadorAversario.getPokemonActual());
-
-        this.controlador.opcionesJugadores(jugador);
+        this.generalView.setJugadorView(jugador);
+        this.generalView.getJugadorView().setJugadorAdversarioView(jugadorAversario);
+        this.generalView.getJugadorView().setPokemonActualView(jugador.getPokemonActual());
+        this.generalView.getJugadorAdversarioView().setPokemonActualView(jugadorAversario.getPokemonActual());
+        this.controlador.opcionesJugadores(jugador, this.generalView);
         jugadorAversario.setAtacante(true);
     }
 
@@ -71,9 +74,9 @@ public class Juego {
             }
         }
         if(this.jugador1.perdio()){
-            this.controlador.felicitar(this.jugador2);
+            this.generalView.felicitar(this.jugador2);
         } else{
-            this.controlador.felicitar(this.jugador1);
+            this.generalView.felicitar(this.jugador1);
         }
     }
 

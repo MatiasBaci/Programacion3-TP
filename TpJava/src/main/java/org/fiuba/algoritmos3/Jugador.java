@@ -20,8 +20,6 @@ public class Jugador {
     private boolean atacante;
     private boolean esPerdedor;
 
-    private JugadorView vistaJugador;
-
     // Metodos:
 
     public Jugador(String nombre, Map<String, Pokemon> misPokemones, Map<String, Item> items) {
@@ -30,16 +28,7 @@ public class Jugador {
         this.items = items;
         this.atacante = false;
         this.esPerdedor = false;
-        this.vistaJugador = new JugadorView(this.nombre, this.misPokemones, this.items);
 
-    }
-
-    public JugadorView getVistaJugador() {
-        return vistaJugador;
-    }
-
-    public void setVistaJugador(JugadorView vistaJugador) {
-        this.vistaJugador = vistaJugador;
     }
 
     public Map<String, Pokemon> getMisPokemones() {
@@ -128,7 +117,6 @@ public class Jugador {
             }
         }
         this.pokemonActual = this.seleccionarPokemon(unPokemon);
-        this.vistaJugador.setPokemonActualView(this.seleccionarPokemon(unPokemon));
         System.out.println("Seleccionaste el pokemon -> " + this.pokemonActual.getNombre());
         return true;
     }
@@ -143,54 +131,12 @@ public class Jugador {
         setAtacante(false);
     }
 
-    public void intercambiarPokemon(String decision, Pokemon pokemon){
-
-        if (Objects.equals(decision, "Si")) {
-            mensajeIntercambioAlAdversario();
-            this.setAtacante(false);
-            System.out.println("Es el turno del otro jugador. Oprima una tecla para continuar.");
-
-        } else {
-            this.setPokemonActual(pokemon);
-            System.out.println("No se realizo el intercambio. Oprima una tecla para continuar.");
-
-        }
-    }
-
     public boolean usarItem(String nombrePokemon, Item itemAplicable){
         if (itemAplicable.realizarCasosDeApliacion(misPokemones.get(nombrePokemon).getCualidades())){
             this.setAtacante(false);
             return true;
         }
         return false;
-    }
-
-    private void mensajeIntercambioAlAdversario(){
-
-        System.out.println("╔══════════════════════════════════════╗");
-        System.out.println("║ El Adversario Intercambio el Pokemon ║ ");
-        System.out.println("╚══════════════════════════════════════╝");
-        System.out.println("\n");
-
-    }
-
-    public void mostrarPokemones() {
-
-        vistaJugador.mostrarPokemones();
-    }
-    public void mostrarPokemonActual(){
-
-        vistaJugador.mostrarPokemonActual();
-    }
-
-    public void mostratHabilidadesPokemonActual() {
-
-        vistaJugador. mostratHabilidadesPokemonActual();
-    }
-
-    public void mostrarItems() {
-
-        vistaJugador.mostratItems();
     }
 
     public boolean validarHabilidadPokemon(String nombreHabilidad){

@@ -1,31 +1,14 @@
 package org.fiuba.algoritmos3;
 
 import Item.Item;
+import view.GeneralView;
+import view.JugadorView;
 
 import java.util.Scanner;
 
 public class OpcionAplicarItem implements Opciones{
 
-    private void mensajeOpcionAplicarItem() {
-        System.out.println("\n");
-        System.out.println("╔══════════════╗");
-        System.out.println("║ Aplicar Item ║");
-        System.out.println("╚══════════════╝");
-        System.out.println("\n");
-
-    }
-
-    private void mensajeAplicoItem(Jugador jugador, String nombreItem) {
-
-        System.out.println("\n");
-        System.out.println("╔═════════════════════════════╗");
-        System.out.println("║ Se acaba de aplicar un item ║");
-        System.out.println("╚═════════════════════════════╝");
-        System.out.println("\n");
-        System.out.println("El jugador " + jugador.getNombre() + " acaba de usar " + nombreItem + ".");
-        System.out.println("Oprima una tecla para seguir jugando.");
-    }
-    private void decidirAplicarItem(Jugador jugador, String nombrePokemon, Item itemAplicable){
+    private void decidirAplicarItem(Jugador jugador, String nombrePokemon, Item itemAplicable, GeneralView generalView){
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Desea aplicar el item? Si - No:");
@@ -36,16 +19,15 @@ public class OpcionAplicarItem implements Opciones{
             return;
         }
         if(jugador.usarItem(nombrePokemon, itemAplicable)) {
-            mensajeAplicoItem(jugador, itemAplicable.getNombre());
+            generalView.mostrarMensajeAplicoItem(jugador, itemAplicable.getNombre());
             decision = scanner.next();
         }
     }
     @Override
-    public void aplicarOpcion(Jugador jugador){
+    public void aplicarOpcion(Jugador jugador, GeneralView generalView){
 
+        generalView.mostrarMensajeOpcionAplicarItem();
         Scanner scanner = new Scanner(System.in);
-        jugador.mostrarItems();
-        System.out.println("Seleccione el item a aplicar: ");
         String nombreItem = scanner.nextLine();
 
         if(!jugador.validadorClaveItems(nombreItem)){
@@ -56,17 +38,17 @@ public class OpcionAplicarItem implements Opciones{
         Item itemAplicable = jugador.elegirItem(nombreItem);
 
         if(!itemAplicable.esUnItemDeSoloCampoDeBatalla()){
-            this.decidirAplicarItem(jugador, jugador.getNombrePokemonActual(), itemAplicable);
+            this.decidirAplicarItem(jugador, jugador.getNombrePokemonActual(), itemAplicable, generalView);
             return;
         }
-        jugador.mostrarPokemones();
+        generalView.getJugadorView().mostrarPokemones();
         System.out.println("Seleccione el Pokemon a aplicar el item: ");
         String nombrePokemon = scanner.next();
         if(!jugador.validadorClavePokemones(nombrePokemon)){
             System.out.println("No se encontro el pokemon");
             return;
         }
-        this.decidirAplicarItem(jugador,nombrePokemon,itemAplicable);
+        this.decidirAplicarItem(jugador,nombrePokemon,itemAplicable, generalView);
     }
 }
 

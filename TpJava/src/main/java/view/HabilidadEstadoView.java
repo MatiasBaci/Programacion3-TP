@@ -2,7 +2,7 @@ package view;
 import org.fiuba.algoritmos3.Habilidad;
 import org.fiuba.algoritmos3.HabilidadEstado;
 
-public class HabilidadEstadoView extends HabilidadView{
+public class   HabilidadEstadoView extends HabilidadView{
 
     private HabilidadEstado habilidadEstado;
 

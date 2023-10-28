@@ -21,19 +21,35 @@ public class JugadorView {
 
     private PokemonFactory pokemonFactory;
 
-    public JugadorView(String nombre, Map<String, Pokemon> misPokemones, Map<String, Item> items){
-        this.nombre = nombre;
+    private JugadorFactory jugadorFactory;
+    private JugadorView jugadorAdversarioView;
+
+    public JugadorView(Jugador jugador){
+        this.pokemonFactory = new PokemonFactory();
+        this.jugadorFactory = new JugadorFactory();
+        this.nombre = jugador.getNombre();
         this.itemsView = new HashMap<String, ItemView>();
         itemFactory = new ItemViewFactory();
-        items.forEach((k, v) -> itemsView.put(k, itemFactory.createItemView(v)));
+        jugador.getItems().forEach((k, v) -> itemsView.put(k, itemFactory.createItemView(v)));
         this.misPokemonesView = new HashMap<String, PokemonView>();
         pokemonFactory = new PokemonFactory();
-        misPokemones.forEach((k, v) -> misPokemonesView.put(k, pokemonFactory.createPokemonView(v)));
-
+        jugador.getMisPokemones().forEach((k, v) -> misPokemonesView.put(k, pokemonFactory.createPokemonView(v)));
     }
 
     public void setPokemonActualView(Pokemon pokemon) {
         this.pokemonActualView = this.pokemonFactory.createPokemonView(pokemon);
+    }
+
+    public void setJugadorAdversarioView(Jugador jugadorAversario){
+        this.jugadorAdversarioView = this.jugadorFactory.createJugadorView(jugadorAversario);
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public JugadorView getJugadorAdversarioView() {
+        return jugadorAdversarioView;
     }
 
     public void mostrarPokemones() {
