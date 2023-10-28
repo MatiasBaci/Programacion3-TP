@@ -17,6 +17,7 @@ public class Constantes {
     public static final String ESTADO_PARALIZADO = "Paralizado";
     public static final String ESTADO_DORMIDO = "Dormido";
     public static final String ESTADO_ENVENENADO = "Envenenado";
+    public static final String ESTADO_CONFUSO = "Confundido";
 
     public static final String TIPO_AGUA = "Agua";
     public static final String TIPO_BICHO = "Bicho";
@@ -46,6 +47,10 @@ public class Constantes {
     public static final double BONUS_MISMO_TIPO = 1.5;
     public static final double BONUS_NEUTRAL = 1;
     public static final int PROBABILIDAD_CRITICO = 90;
+
+    public static final double PROBABILIDAD_DE_HERIRSE = 0.33;
+
+    public static final double PORCENTAJE_DANIO_CONFUSO = 0.15;
     public static final double CRITICO = 2.0;
     public static final double NO_CRITICO = 1.0;
 

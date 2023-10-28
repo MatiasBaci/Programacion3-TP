@@ -149,6 +149,8 @@ public class Datos {
         alakazam.aniadirHabilidad(energibola);
         Habilidad maquinacion = new HabilidadEstadistica("Maquinacion", 20, true, 2, new ModificacionAtaque());
         alakazam.aniadirHabilidad(maquinacion);
+        Habilidad confundir = new HabilidadEstado("Confuso",5,new EstadoConfuso());
+        alakazam.aniadirHabilidad(confundir);
         this.mochilaJugador2.put(alakazam.getNombre(), alakazam);
 
 

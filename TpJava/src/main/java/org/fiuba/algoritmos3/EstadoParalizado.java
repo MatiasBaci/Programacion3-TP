@@ -19,7 +19,7 @@ public class EstadoParalizado extends Estado{
         
         if (random <= 50)
         {
-            System.out.println("El pokemon está paralizado y no pudo atacar.");
+            System.out.println("El pokemon está paralizado y no pudo atacar."); //sacarlo
             return false;
         }
         return true;
