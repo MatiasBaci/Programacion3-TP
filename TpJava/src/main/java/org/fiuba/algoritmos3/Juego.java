@@ -1,5 +1,7 @@
 package org.fiuba.algoritmos3;
 
+import view.JugadorView;
+
 public class Juego {
 
     //Atributos:
@@ -47,6 +49,13 @@ public class Juego {
     public void aplicarIteracion(Jugador jugador, Jugador jugadorAversario){
 
         jugador.aplicarEfectoPasivo();
+        JugadorView jugadorView = new JugadorView(jugador.getNombre(), jugador.getMisPokemones(), jugador.getItems());
+        jugador.setVistaJugador(jugadorView);
+        jugador.getVistaJugador().setPokemonActualView(jugador.getPokemonActual());
+        JugadorView jugadorView2 = new JugadorView(jugadorAversario.getNombre(), jugadorAversario.getMisPokemones(), jugadorAversario.getItems());
+        jugadorAversario.setVistaJugador(jugadorView2);
+        jugadorAversario.getVistaJugador().setPokemonActualView(jugadorAversario.getPokemonActual());
+
         this.controlador.opcionesJugadores(jugador);
         jugadorAversario.setAtacante(true);
     }

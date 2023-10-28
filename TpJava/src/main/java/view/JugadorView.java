@@ -22,6 +22,7 @@ public class JugadorView {
     private PokemonFactory pokemonFactory;
 
     public JugadorView(String nombre, Map<String, Pokemon> misPokemones, Map<String, Item> items){
+        this.nombre = nombre;
         this.itemsView = new HashMap<String, ItemView>();
         itemFactory = new ItemViewFactory();
         items.forEach((k, v) -> itemsView.put(k, itemFactory.createItemView(v)));

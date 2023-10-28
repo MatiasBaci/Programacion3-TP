@@ -25,7 +25,7 @@ public class CualidadesView {
         this.ataque = cualidades.getAtaque();
         this.nivel = cualidades.getNivel();
         this.tipo = cualidades.getTipo();
-        this.estadoActual = new EstadoNormal();
+        this.estadoActual = cualidades.getEstadoActual();
     }
 
     public void mostrar(){

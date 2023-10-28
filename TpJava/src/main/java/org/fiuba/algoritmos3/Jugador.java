@@ -34,6 +34,22 @@ public class Jugador {
 
     }
 
+    public JugadorView getVistaJugador() {
+        return vistaJugador;
+    }
+
+    public void setVistaJugador(JugadorView vistaJugador) {
+        this.vistaJugador = vistaJugador;
+    }
+
+    public Map<String, Pokemon> getMisPokemones() {
+        return misPokemones;
+    }
+
+    public Map<String, Item> getItems() {
+        return items;
+    }
+
     public Pokemon getPokemonActual() {
         return pokemonActual;
     }
