@@ -109,7 +109,7 @@ public class Datos {
 
         Pokemon crobat = new Pokemon("Crobat", 50, "Veneno", "Sus cuatro alas le permiten volar más rápida y sigilosamente. Es un Pokémon nocturno.",
         160, 150, 100, 110);
-        Habilidad venenoX = new HabilidadAtaque("VenenoX",Tipo.instanciarUnTipoDe("Veneno"),70,20);
+        Habilidad venenoX = new HabilidadEstado("VenenoX",10,new EstadoEnvenenado());
         crobat.aniadirHabilidad(venenoX);
         Habilidad tijeraX = new HabilidadAtaque("TijeraX",Tipo.instanciarUnTipoDe("Bicho"),80,15);
         crobat.aniadirHabilidad(tijeraX);

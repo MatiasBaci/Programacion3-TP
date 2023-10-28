@@ -102,7 +102,7 @@ public class Jugador {
     }
 
     public void aplicarEfectoPasivo() {
-        pokemonActual.aplicarEfectoPasivoPokemon();
+        this.pokemonActual.aplicarEfectoPasivoPokemon();
     }
 
     public Item elegirItem(String nombreItem){

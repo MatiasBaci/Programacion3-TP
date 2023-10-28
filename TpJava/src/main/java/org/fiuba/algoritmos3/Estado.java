@@ -5,6 +5,7 @@ public abstract class Estado {
 
     protected String color;
     protected String nombre;
+    protected Cualidades cualidades;
 
     public String getNombre() {
         return nombre;
@@ -14,8 +15,9 @@ public abstract class Estado {
         return this.color + this.getNombre() + "\u001B[0m"; //no me toma el ANSI_RESET
     }
 
+    public void setCualidades(Cualidades cualidades){this.cualidades = cualidades;}
 
-    public abstract boolean puedeAtacar(Cualidades cualidades);
+    public abstract boolean puedeAtacar();
 
-    public abstract void aplicarEfectoPasivoDeEstado(Cualidades cualidades);
+    public abstract void aplicarEfectoPasivoDeEstado();
 }

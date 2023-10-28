@@ -11,7 +11,7 @@ public class EstadoParalizado extends Estado{
     }
 
     @Override
-    public boolean puedeAtacar(Cualidades cualidades) {
+    public boolean puedeAtacar() {
         
         Random newRandom = new Random();
         //set a new random between 1 and 100
@@ -27,6 +27,6 @@ public class EstadoParalizado extends Estado{
 
 
     @Override
-    public void aplicarEfectoPasivoDeEstado(Cualidades cualidades) {
+    public void aplicarEfectoPasivoDeEstado() {
     }
 }

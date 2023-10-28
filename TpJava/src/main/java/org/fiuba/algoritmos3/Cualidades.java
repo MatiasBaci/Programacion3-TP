@@ -37,6 +37,7 @@ public class Cualidades {
         this.nivel = nivel;
         this.tipo = Tipo.instanciarUnTipoDe(tipo);
         this.estadoActual = new EstadoNormal();
+        this.estadoActual.setCualidades(this);
 
     }
 
@@ -66,8 +67,11 @@ public class Cualidades {
 
     public void cambiarseEstado(Estado unEstado){
         this.estadoActual = unEstado;
+        this.estadoActual.setCualidades(this);
     }
 
+    public boolean atacarConEstadoActual(){ return this.estadoActual.puedeAtacar(); }
+    public void aplicarEfectoPasivoDeEstadoActual(){ this.estadoActual.aplicarEfectoPasivoDeEstado();}
     public Tipo getTipo() {return tipo;}
 
     public void aumentarVida(double vida){

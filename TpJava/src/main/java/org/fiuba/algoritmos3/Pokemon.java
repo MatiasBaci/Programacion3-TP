@@ -25,7 +25,7 @@ public class Pokemon {
     }
 
     public void aplicarEfectoPasivoPokemon(){
-        this.getCualidades().getEstadoActual().aplicarEfectoPasivoDeEstado(this.cualidades); //Cambiar
+        this.cualidades.aplicarEfectoPasivoDeEstadoActual(); //SOLUCIONADO
     }
     public String getNombre() {return nombre;}
 
@@ -53,18 +53,13 @@ public class Pokemon {
         return this.cualidades.estaConciente();
     }
 
-    public boolean puedeAtacar(){
-        return this.cualidades.getEstadoActual().puedeAtacar(this.cualidades);
-    }
-
     public void atacar(Pokemon pokemonEnemigoActual, String nombreDeHabilidad) {
 
         Habilidad unaHabilidad = this.seleccionarHabilidad(nombreDeHabilidad);
 
-        if (this.puedeAtacar()) {
+        if (this.cualidades.atacarConEstadoActual()) {
             System.out.println("¡"+ this.nombre + " uso " + nombreDeHabilidad + "!");
             unaHabilidad.usarHabilidad(pokemonEnemigoActual.getCualidades(), this.cualidades);
-
         }
     }
 
