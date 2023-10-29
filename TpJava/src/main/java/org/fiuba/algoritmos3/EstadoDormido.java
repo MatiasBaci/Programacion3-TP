@@ -28,7 +28,8 @@ public class EstadoDormido extends Estado{
         if (this.turnosDormido >= this.duracionMaxima || random >= 1)
         {
             System.out.println("El pokemon se despertó!"); //sacarlo
-            this.cualidades.cambiarseEstado(new EstadoNormal());
+            //this.cualidades.cambiarseEstado(new EstadoNormal()); --> Version de un solo estado
+            this.cualidades.eliminarEstado(this);
             return true;
         }
         else
@@ -41,5 +42,6 @@ public class EstadoDormido extends Estado{
 
     @Override
     public void aplicarEfectoPasivoDeEstado(){
+
     }
 }

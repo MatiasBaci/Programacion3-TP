@@ -1,7 +1,6 @@
 package org.fiuba.algoritmos3;
 // import java.util.ArrayList;
 import Item.Item;
-import view.*;
 
 import java.util.Map;
 import java.util.Objects;
@@ -70,7 +69,7 @@ public class Jugador {
     }
 
     public boolean verficarEstadoPokemonActual(){
-        return this.pokemonActual.getCualidades().estaConciente();
+        return this.pokemonActual.getCualidades().estaConsciente();
     }
 
     public boolean isAtacante() {
@@ -104,7 +103,7 @@ public class Jugador {
             System.out.println("\n");
             return false;
         }
-        else if (!this.seleccionarPokemon(unPokemon).getCualidades().estaConciente()) {
+        else if (!this.seleccionarPokemon(unPokemon).getCualidades().estaConsciente()) {
             System.out.println("ERROR: EL POKEMON NO TIENE VIDA ");
             System.out.println("\n");
             return false;

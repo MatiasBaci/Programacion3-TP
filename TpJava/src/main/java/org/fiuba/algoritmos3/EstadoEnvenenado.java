@@ -18,5 +18,6 @@ public class EstadoEnvenenado extends Estado{
     @Override
     public void aplicarEfectoPasivoDeEstado() {
         this.cualidades.recibirDanio(this.cualidades.getVidaMaxima() * PORCENTAJE_VENENO);
+        //this.cualidades.actualizarEstados(); // para que todos los estados sepan que se actualizaron
     }
 }

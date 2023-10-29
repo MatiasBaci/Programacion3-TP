@@ -1,6 +1,9 @@
 package org.fiuba.algoritmos3;
 import Tipo.Tipo;
-import view.CualidadesView;
+
+
+import java.util.HashSet;
+import java.util.Set;
 
 import static org.fiuba.algoritmos3.Constantes.*;
 public class Cualidades {
@@ -22,6 +25,8 @@ public class Cualidades {
 
     private Estado estadoActual;
 
+    private Set<Estado> estados = new HashSet<>();
+
 
     //Metodos:
 
@@ -36,8 +41,9 @@ public class Cualidades {
         this.ataque = ataque;
         this.nivel = nivel;
         this.tipo = Tipo.instanciarUnTipoDe(tipo);
-        this.estadoActual = new EstadoNormal();
+        this.estadoActual = new EstadoNormal(); //------------------> se tiene que ir
         this.estadoActual.setCualidades(this);
+        this.estados.add(estadoActual);
 
     }
 
@@ -64,14 +70,41 @@ public class Cualidades {
 
     public String suEstadoEs() {return estadoActual.getNombre();}
 
-
-    public void cambiarseEstado(Estado unEstado){
+    //---------------------------------------------------------------------------------------------------------------------------
+    public void cambiarseEstado(Estado unEstado){ // cuando es un estado
         this.estadoActual = unEstado;
         this.estadoActual.setCualidades(this);
     }
 
-    public boolean atacarConEstadoActual(){ return this.estadoActual.puedeAtacar(); }
-    public void aplicarEfectoPasivoDeEstadoActual(){ this.estadoActual.aplicarEfectoPasivoDeEstado();}
+    public void aplicarEfectoPasivoDeEstadoActual(){ this.estadoActual.aplicarEfectoPasivoDeEstado();} // cuando es un estado
+
+    public boolean atacarConEstadoActual(){ return this.estadoActual.puedeAtacar(); } // cuando es un estado
+
+    // ---------------------------------------------------------------------------------------------------------------------------
+    public  void agregarEstado(Estado unEstado){ //throws EstadoDuplicadoException {
+        /*if (estados.contains(unEstado)) {
+            throw new EstadoDuplicadoException("El estado ya está presente en el conjunto.");
+        }*/
+        unEstado.setCualidades(this);
+        this.estados.add(unEstado); // Al ser un Set no se va añadir ademas hay una verificacion arriba para el mensaje.
+    }
+    public void eliminarEstado(Estado unEstado) {
+        this.estados.remove(unEstado);
+    }
+
+    public boolean atacarConEstadosActuales(){
+        boolean puedeAtacarConSusEstados = this.estados.stream().allMatch(estado -> estado.puedeAtacar());
+        return puedeAtacarConSusEstados;
+    }
+
+    public void aplicarEfectoPasivoDeEstadosActuales(){ // Esto solo func para todsos pero los que realizan algo es Estado Confuso y estado ENVENADO
+        this.estados.forEach(estado -> estado.aplicarEfectoPasivoDeEstado());
+    }
+
+    public void actualizarEstados() { // Posiblemente no se use porque estan pasados por referencia
+        this.estados.forEach(estado -> estado.setCualidades(this));
+    }
+
     public Tipo getTipo() {return tipo;}
 
     public void aumentarVida(double vida){
@@ -85,7 +118,7 @@ public class Cualidades {
         }
     }
 
-    public void reduccionVida(double vida){
+    private void reduccionVida(double vida){
         double vidaTotal = (this.vidaActual - vida);
         if(vidaTotal < 0){
             this.vidaActual = 0;
@@ -97,9 +130,16 @@ public class Cualidades {
         this.reduccionVida(damageEnemigo);
     }
 
-    public boolean estaConciente() {
+    public void cambiarLosEstadosA(Estado unEstado) {
+        this.estados.clear(); // elimina todos los estados
+        this.agregarEstado(unEstado);
+    }
+
+    public boolean estaConsciente() {
         if(this.getVida() == 0){ //<=
-            this.cambiarseEstado(new EstadoInhabilitado());
+            //this.cambiarseEstado(new EstadoInhabilitado()); // Cambiarlo osea Estados this. this.estados.clear()
+            //estadaoInhabilidatado
+            this.cambiarLosEstadosA(new EstadoInhabilitado());
             return false;
         }
         return true;
@@ -116,12 +156,4 @@ public class Cualidades {
     public void modificarAtaque(int etapas){
         this.ataque += this.ataque * etapas * PORCENTAJE;
     }
-
-    public void resetearEstadisticas(){
-        this.velocidad = this.velocidadBase;
-        this.defensa = this.defensaBase;
-        this.ataque = this.ataqueBase;
-    }
-
-
 }

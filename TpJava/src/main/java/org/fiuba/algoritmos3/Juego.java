@@ -54,7 +54,7 @@ public class Juego {
 
     public void aplicarIteracion(Jugador jugador, Jugador jugadorAversario){
 
-        jugador.aplicarEfectoPasivo();
+        jugador.aplicarEfectoPasivo(); //-> Solo funciona para estado en veneno
         this.generalView.setJugadorView(jugador);
         this.generalView.getJugadorView().setJugadorAdversarioView(jugadorAversario);
         this.generalView.getJugadorView().setPokemonActualView(jugador.getPokemonActual());
