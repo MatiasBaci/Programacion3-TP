@@ -122,7 +122,8 @@ public class Datos {
 
         Item pocion = new Pocion("Pocion", 4, new ModificacionVida());
         Item megaPocion = new MegaPocion("Mega Pocion", 3, new ModificacionVida());
-        Item hiperPocion = new HiperPocion("Hiper Pocion", 1, new ModificacionVida());
+        Item hiperPocion = new HiperPocion("Hiper Pocion", 1, new ModificacionVida());//-->contemplado que solo tenga 1
+        Item molestaAlumnos =  new PocionMolestaAlumnos("Molesta Alumnos",4,new ModificacionVida());
         Item pocionDefensa = new DefensaX("Defensa X", 2, new ModificacionDefensa());
         Item pocionAtaque = new AtaqueX("Ataque X", 1, new ModificacionAtaque());
         Item revivir = new Revivir("Revivir", 1, new ModificacionEstadoInhabilitado());
@@ -135,6 +136,7 @@ public class Datos {
         this.itemsJugador1.put(pocionDefensa.getNombre(), pocionDefensa);
         this.itemsJugador1.put(pocionAtaque.getNombre(), pocionAtaque);
         this.itemsJugador1.put(curarTodo.getNombre(), curarTodo);
+        this.itemsJugador1.put(molestaAlumnos.getNombre(), molestaAlumnos); //--->
     }
 
     private void InicialzarPokemonesJugador2(){
@@ -221,7 +223,8 @@ public class Datos {
 
         Item pocion = new Pocion("Pocion", 50, new ModificacionVida());
         Item megaPocion = new MegaPocion("Mega Pocion", 2, new ModificacionVida());
-        Item hiperPocion = new HiperPocion("Hiper Pocion", 4, new ModificacionVida());
+        Item hiperPocion = new HiperPocion("Hiper Pocion", 1, new ModificacionVida()); //-->contemplado que solo tenga 1
+        Item molestaAlumnos =  new PocionMolestaAlumnos("Molesta Alumnos",4,new ModificacionVida());
         Item pocionDefensa = new DefensaX("Defensa X", 3, new ModificacionDefensa());
         Item pocionAtaque = new AtaqueX("Ataque X", 2, new ModificacionAtaque());
         Item revivir = new Revivir("Revivir", 1, new ModificacionEstadoInhabilitado());
@@ -234,6 +237,7 @@ public class Datos {
         this.itemsJugador2.put(pocionDefensa.getNombre(), pocionDefensa);
         this.itemsJugador2.put(pocionAtaque.getNombre(), pocionAtaque);
         this.itemsJugador1.put(curarTodo.getNombre(), curarTodo);
+        this.itemsJugador1.put(molestaAlumnos.getNombre(), molestaAlumnos); //--->
     }
 
 }
