@@ -49,6 +49,8 @@ public class OpcionAplicarItem implements Opciones{
             return;
         }
         this.decidirAplicarItem(jugador,nombrePokemon,itemAplicable, generalView);
+        Pokemon pokemnAux = jugador.getMisPokemones().get(nombrePokemon);
+        generalView.mostrarCasoModicicacion(itemAplicable.getUnaModificacion(), pokemnAux);
     }
 }
 

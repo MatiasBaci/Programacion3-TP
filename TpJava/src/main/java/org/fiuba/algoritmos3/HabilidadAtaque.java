@@ -10,10 +10,13 @@ public class HabilidadAtaque extends Habilidad {
     private final Tipo tipo;
     private final int poder;
 
+    private double danioRealizado;
+
     public HabilidadAtaque(String nombre, Tipo tipo, int poder, int cantidad){
         super(nombre,cantidad);
         this.tipo = tipo;
         this.poder = poder;
+        this.danioRealizado = 0;
     }
 
     public Tipo getTipo() {
@@ -22,6 +25,10 @@ public class HabilidadAtaque extends Habilidad {
 
     public int getPoder() {
         return poder;
+    }
+
+    public double getDanioRealizado() {
+        return danioRealizado;
     }
 
     private double potenciaDeDanio(Tipo tipoPokemon){
@@ -68,8 +75,9 @@ public class HabilidadAtaque extends Habilidad {
     public void usarHabilidad(Cualidades cualidadesPokemonEnemigo,Cualidades cualidadesPokemonPropio){
         this.cantidadDeUsos -= 1;
         double danio = Math.round(this.atacar(cualidadesPokemonPropio,cualidadesPokemonEnemigo));
+        this.danioRealizado = danio;
         cualidadesPokemonEnemigo.recibirDanio(danio);
-        System.out.println("El daño infligido de la habiilidad: "+this.nombre +" es = " +danio );
+
     }
 
 

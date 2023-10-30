@@ -44,4 +44,18 @@ public class PokemonView {
         this.habilidadesView.forEach((k, v) -> v.mostrar());
     }
 
+    public static void mostrarUsoDeHabilidad(String nombrePokemon, String nombreHabilidad){
+        System.out.println("¡"+ nombrePokemon + " uso " + nombreHabilidad + "!");
+        System.out.println("\n");
+    }
+
+    public void mostrarCasoSePuedeAtacar(Pokemon pokemon, Pokemon pokemonEnemigo, Habilidad habilidad){
+
+        HabilidadView habilidadViewAux = this.habilidadFactory.createHabilidadView(habilidad);
+
+        if (pokemon.getCualidades().atacarConEstadosActuales()) {
+            PokemonView.mostrarUsoDeHabilidad(pokemon.getNombre(), habilidad.getNombre());
+            habilidadViewAux.mostrarUsarHabilidad(pokemonEnemigo.getCualidades(), pokemon.getCualidades());
+        }
+    }
 }

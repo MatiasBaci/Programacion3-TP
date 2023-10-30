@@ -1,4 +1,5 @@
 package view;
+import org.fiuba.algoritmos3.Cualidades;
 import org.fiuba.algoritmos3.Habilidad;
 
 public abstract class HabilidadView {
@@ -13,4 +14,5 @@ public abstract class HabilidadView {
     public abstract void mostrar();
 
 
+    public abstract void mostrarUsarHabilidad(Cualidades cualiadesPokemonActual, Cualidades cualidadesPokemonEnemigo);
 }

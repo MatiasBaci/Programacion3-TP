@@ -100,35 +100,22 @@ public class Jugador {
 
     public boolean elegirPokemon(String unPokemon) {
         if (this.seleccionarPokemon(unPokemon) == null) {
-            //JugadorView jugador = new JugadorView();
-            //jugador.mostrarPokemonNoEncontrado;
-            System.out.println("ERROR: NO SE ENCONTRO EL POKEMON EN LA MOCHILA.");
-            System.out.println("\n");
             return false;
         }
         else if (!this.seleccionarPokemon(unPokemon).getCualidades().estaConsciente()) {
-            System.out.println("ERROR: EL POKEMON NO TIENE VIDA ");
-            System.out.println("\n");
             return false;
         }
         else if(this.pokemonActual != null){
             if(Objects.equals(unPokemon, pokemonActual.getNombre())) {
-                System.out.println("ESTAS ELIGIENDO A TU POKEMON ACTUAL ");
-                System.out.println("\n");
                 return false;
             }
         }
         this.pokemonActual = this.seleccionarPokemon(unPokemon);
-        System.out.println("Seleccionaste el pokemon -> " + this.pokemonActual.getNombre());
         return true;
     }
 
     public void atacarJugador(Jugador jugadorAdversario, String nombreHabilidad){
 
-        if(!this.validarHabilidadPokemon(nombreHabilidad)) {
-            System.out.println("La habilidad no existe. ");
-            return;
-        }
         pokemonActual.atacar(jugadorAdversario.getPokemonActual(), nombreHabilidad);
         setAtacante(false);
     }
@@ -155,6 +142,7 @@ public class Jugador {
         Validacion validacion = new Validacion();
         return validacion.estaContenidoPokemon(nombrePokemon,this.misPokemones);
     }
+
 }
 
 

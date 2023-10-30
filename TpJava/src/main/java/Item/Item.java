@@ -15,6 +15,10 @@ public abstract class Item {
 
     public String getNombre() {return nombre;}
 
+    public Modificacion getUnaModificacion() {
+        return unaModificacion;
+    }
+
     public abstract boolean aplicarItem(Cualidades cualidades);
 
     public abstract boolean esUnItemDeSoloCampoDeBatalla();

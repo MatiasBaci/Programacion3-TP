@@ -59,11 +59,13 @@ public class Controlador {
         Scanner scanner = new Scanner(System.in);
         boolean pokemonValido = false;
         while (!pokemonValido) {
-            System.out.println("Los pokemones disponibles de " + jugador.getNombre() + " son: ");
             jugadorView.mostrarPokemones();
+            System.out.println("Los pokemones disponibles de " + jugador.getNombre() + " son: ");
             System.out.println("Ingrese el nombre del pokemon: ");
-            String nombrepokemon = scanner.next();
-            pokemonValido = jugador.elegirPokemon(nombrepokemon);
+            String nombrePokemon = scanner.next();
+            jugadorView.mostrarCasosDeEleccion(nombrePokemon, jugador.getPokemonActual(), jugador.getMisPokemones());
+            pokemonValido = jugador.elegirPokemon(nombrePokemon);
+
         }
         jugadorView.setPokemonActualView(jugador.getPokemonActual());
     }
@@ -79,9 +81,6 @@ public class Controlador {
 
         while (jugador.isAtacante()) {
             generalView.mostrarMensajeMenu();
-            System.out.println("TURNO: " + jugador.getNombre());
-            System.out.println("POKEMON: " + jugador.getNombrePokemonActual());
-            System.out.println("SELECCIONE UNA OPCION: ");
             decision = scanner.next();
             if(opciones.containsKey(decision)){
                 opciones.get(decision).aplicarOpcion(jugador, generalView);

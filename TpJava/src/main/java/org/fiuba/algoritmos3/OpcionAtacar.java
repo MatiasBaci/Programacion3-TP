@@ -12,10 +12,16 @@ public class OpcionAtacar implements Opciones{
 
         generalView.mostrarMensajeAtacarPokemon();
         Scanner scanner = new Scanner(System.in);
-        String opcion;
-        opcion = scanner.next();
+        String nombreHabilidad;
+        nombreHabilidad = scanner.next();
 
-        jugador.atacarJugador(jugador.getAdversario(), opcion);
+
+        if(!jugador.validarHabilidadPokemon(nombreHabilidad)) {
+            JugadorView.mostrarHabilidadNoExiste();
+            return;
+        }
+        jugador.atacarJugador(jugador.getAdversario(), nombreHabilidad);
+        generalView.mostrarCasoAtques(jugador.getPokemonActual(), jugador.getAdversario(), nombreHabilidad);
 
 
     }

@@ -1,6 +1,6 @@
 package view;
 
-import org.fiuba.algoritmos3.Jugador;
+import org.fiuba.algoritmos3.*;
 
 public class GeneralView {
 
@@ -8,8 +8,12 @@ public class GeneralView {
 
     private JugadorFactory jugadorFactory;
 
+    private ModificacionFactory modificacionFactory;
+    private ModificacionView modificacionView;
+
     public GeneralView(Jugador jugador){
-        jugadorFactory = new JugadorFactory();
+        this.jugadorFactory = new JugadorFactory();
+        this.modificacionFactory = new ModificacionFactory();
         this.jugadorView = jugadorFactory.createJugadorView(jugador);
 
     }
@@ -126,7 +130,10 @@ public class GeneralView {
         System.out.println("║                           ║");
         System.out.println("║ 5 => Atacar               ║");
         System.out.println("╚═══════════════════════════╝");
-        System.out.println("\n");
+
+        System.out.println("TURNO: " + this.jugadorView.getNombre());
+        System.out.println("POKEMON: " + this.jugadorView.getNombrePokemonActual());
+        System.out.println("SELECCIONE UNA OPCION: ");
 
 
     }
@@ -143,5 +150,17 @@ public class GeneralView {
 
     public void felicitar(Jugador jugador) {
         System.out.println("¡¡Felicidades a " + jugador.getNombre() + "!! Ganaste el juego");
+    }
+
+    public void mostrarCasoModicicacion(Modificacion unaModificacion, Pokemon pokemon) {
+        this.modificacionView = this.modificacionFactory.createModificacionView(unaModificacion);
+        modificacionView.mostrar(pokemon.getCualidades());
+
+    }
+
+    public void mostrarCasoAtques(Pokemon pokemon, Jugador jugadorAversario, String nombreHabilidad) {
+        Habilidad habilidadAux = pokemon.getMisHabilidades().get(nombreHabilidad);
+        this.jugadorView.getPokemonActualView().mostrarCasoSePuedeAtacar(pokemon, jugadorAversario.getPokemonActual(), habilidadAux);
+
     }
 }

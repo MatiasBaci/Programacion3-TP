@@ -8,12 +8,13 @@ import java.util.Scanner;
 
 public class OpcionIntercambiarPokemon implements Opciones{
 
-    private boolean validarPokemon(Jugador jugador){
+    private boolean validarPokemon(Jugador jugador, JugadorView jugadorView){
 
         Scanner scanner = new Scanner(System.in);
 
-        String nombrepokemon = scanner.next();
-        return jugador.elegirPokemon(nombrepokemon);
+        String nombrePokemon = scanner.next();
+        jugadorView.mostrarCasosDeEleccion(nombrePokemon, jugador.getPokemonActual(), jugador.getMisPokemones());
+        return jugador.elegirPokemon(nombrePokemon);
     }
 
     @Override
@@ -21,7 +22,7 @@ public class OpcionIntercambiarPokemon implements Opciones{
 
         generalView.mostrarMensajeIntercambiarPokemon();
         Pokemon pokemonAuxliar = jugador.getPokemonActual();
-        if(validarPokemon(jugador)){
+        if(validarPokemon(jugador, generalView.getJugadorView())){
             Scanner scanner = new Scanner(System.in);
             System.out.println("Desea Realizar el cambio? Si - No");
 

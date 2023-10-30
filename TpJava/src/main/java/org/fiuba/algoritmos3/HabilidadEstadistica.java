@@ -27,6 +27,10 @@ public class HabilidadEstadistica extends Habilidad{
         return etapas;
     }
 
+    public boolean isModificacionPropia() {
+        return modificacionPropia;
+    }
+
     @Override
     public void usarHabilidad(Cualidades cualidadesPokemonEnemigo,Cualidades cualidadesPokemonPropio){
         this.cantidadDeUsos -= 1;
@@ -36,5 +40,6 @@ public class HabilidadEstadistica extends Habilidad{
             this.unaModificacion.modificar(cualidadesPokemonEnemigo,this.etapas);
         }
     }
+
 
 }

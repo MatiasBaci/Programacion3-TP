@@ -10,9 +10,6 @@ public class ModificacionEstadoInhabilitado implements Modificacion{
         }
         if(unaCualidad.getVida() == 0) {
             unaCualidad.aumentarVida(etapas);
-        }else{
-            System.out.println(" ");
-            System.out.println("El Pokemon no se puede revivir ya que no esta Inhabilitado");
         }
 
     }
