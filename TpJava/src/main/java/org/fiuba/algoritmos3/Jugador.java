@@ -1,6 +1,7 @@
 package org.fiuba.algoritmos3;
 // import java.util.ArrayList;
 import Item.Item;
+import view.JugadorView;
 
 import java.util.Map;
 import java.util.Objects;
@@ -99,6 +100,8 @@ public class Jugador {
 
     public boolean elegirPokemon(String unPokemon) {
         if (this.seleccionarPokemon(unPokemon) == null) {
+            //JugadorView jugador = new JugadorView();
+            //jugador.mostrarPokemonNoEncontrado;
             System.out.println("ERROR: NO SE ENCONTRO EL POKEMON EN LA MOCHILA.");
             System.out.println("\n");
             return false;

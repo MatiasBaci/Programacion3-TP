@@ -5,6 +5,8 @@ import org.fiuba.algoritmos3.Cualidades;
 import org.fiuba.algoritmos3.Estado;
 import org.fiuba.algoritmos3.EstadoNormal;
 
+import java.util.Set;
+
 public class CualidadesView {
 
     private double vidaActual;
@@ -16,7 +18,7 @@ public class CualidadesView {
 
     private Tipo tipo;
 
-    private Estado estadoActual;
+    private Set<Estado> estadosActuales;
 
     public CualidadesView(Cualidades cualidades){
         this.vidaActual = cualidades.getVida();
@@ -25,7 +27,7 @@ public class CualidadesView {
         this.ataque = cualidades.getAtaque();
         this.nivel = cualidades.getNivel();
         this.tipo = cualidades.getTipo();
-        this.estadoActual = cualidades.getEstadoActual();
+        this.estadosActuales = cualidades.getEstadosActuales();
     }
 
     public void mostrar(){
@@ -36,6 +38,9 @@ public class CualidadesView {
                         " Velocidad: " + this.velocidad + " --" +
                         " Defensa: " + this.defensa + " --" +
                         " Ataque: " + this.ataque);
-        System.out.println(" Estado: " + this.estadoActual.getNombreConColor() + "\n");
+        //System.out.println(" Estado: " + this.estadoActual.getNombreConColor() + "\n");
+        this.estadosActuales.forEach(estado -> {
+            System.out.println("Estado: "+ estado.getNombreConColor() + "\n");
+        });
     }
 }

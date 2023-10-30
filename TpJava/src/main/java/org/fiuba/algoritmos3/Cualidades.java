@@ -23,8 +23,6 @@ public class Cualidades {
 
     private Tipo tipo;
 
-    private Estado estadoActual;
-
     private Set<Estado> estados = new HashSet<>();
 
 
@@ -41,9 +39,9 @@ public class Cualidades {
         this.ataque = ataque;
         this.nivel = nivel;
         this.tipo = Tipo.instanciarUnTipoDe(tipo);
-        this.estadoActual = new EstadoNormal(); //------------------> se tiene que ir
-        this.estadoActual.setCualidades(this);
-        this.estados.add(estadoActual);
+        Estado unEstado = new EstadoNormal();
+        unEstado.setCualidades(this);
+        this.estados.add(unEstado);
 
     }
 
@@ -63,24 +61,9 @@ public class Cualidades {
         return this.vidaActual;
     }
 
-
-    public Estado getEstadoActual() {
-        return estadoActual;
+    public Set<Estado> getEstadosActuales() {
+        return this.estados;
     }
-
-    public String suEstadoEs() {return estadoActual.getNombre();}
-
-    //---------------------------------------------------------------------------------------------------------------------------
-    public void cambiarseEstado(Estado unEstado){ // cuando es un estado
-        this.estadoActual = unEstado;
-        this.estadoActual.setCualidades(this);
-    }
-
-    public void aplicarEfectoPasivoDeEstadoActual(){ this.estadoActual.aplicarEfectoPasivoDeEstado();} // cuando es un estado
-
-    public boolean atacarConEstadoActual(){ return this.estadoActual.puedeAtacar(); } // cuando es un estado
-
-    // ---------------------------------------------------------------------------------------------------------------------------
     public  void agregarEstado(Estado unEstado){ //throws EstadoDuplicadoException {
         /*if (estados.contains(unEstado)) {
             throw new EstadoDuplicadoException("El estado ya está presente en el conjunto.");
@@ -88,6 +71,7 @@ public class Cualidades {
         unEstado.setCualidades(this);
         this.estados.add(unEstado); // Al ser un Set no se va añadir ademas hay una verificacion arriba para el mensaje.
     }
+
     public void eliminarEstado(Estado unEstado) {
         this.estados.remove(unEstado);
     }

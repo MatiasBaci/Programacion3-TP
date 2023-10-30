@@ -18,7 +18,7 @@ public class Revivir extends ItemsEstado {
     @Override
     public boolean aplicarItem(Cualidades cualidades) {
 
-        boolean realizo = this.realizarUsadoRevivir(cualidades.getEstadoActual());
+        boolean realizo = this.realizarUsadoRevivir(cualidades.getEstadosActuales());
         this.unaModificacion.modificar(cualidades, (int) cualidades.getVidaMaxima());
         return realizo;
     }

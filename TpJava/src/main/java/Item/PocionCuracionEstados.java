@@ -14,7 +14,7 @@ public class PocionCuracionEstados extends ItemsEstado {
     @Override
     public boolean aplicarItem(Cualidades cualidades) {
 
-        boolean realizo = realizarUsadoCurarTodo(cualidades.getEstadoActual());
+        boolean realizo = this.realizarUsadoCurarTodo(cualidades.getEstadosActuales());
         this.unaModificacion.modificar(cualidades, 1);
         return realizo;
     }
