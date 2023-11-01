@@ -1,6 +1,6 @@
 package org.fiuba.algoritmos3;
 import Tipo.Tipo;
-import view.PokemonView;
+import view.PokemonesView.*;
 
 import java.util.HashMap;
 import java.util.Map;

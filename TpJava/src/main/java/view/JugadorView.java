@@ -1,7 +1,8 @@
 package view;
 import org.fiuba.algoritmos3.Jugador;
-import Item.*;
 import org.fiuba.algoritmos3.Pokemon;
+import view.ItemsView.*;
+import view.PokemonesView.*;
 
 import java.util.HashMap;
 import java.util.List;

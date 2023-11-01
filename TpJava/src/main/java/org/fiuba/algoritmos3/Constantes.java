@@ -41,6 +41,22 @@ public class Constantes {
     public static final String RELACION_DEBIL = "Debil";
     public static final String RELACION_NULA = "Nula";
 
+    public static final String CLIMA_SOLEADO = "Soleado";
+
+    public static final String CLIMA_LLUVIA = "Lluvia";
+
+    public static final String CLIMA_TORMENTA_DE_ARENA= "TormentaDeArena";
+
+    public static final String CLIMA_NIEBLA = "Niebla";
+
+    public static final String CLIMA_NEVADO = "Nevado";
+
+    public static final String CLIMA_TORMENTA_DE_RAYOS = "TormentaDeRayos";
+
+    public static final String CLIMA_HURACAN = "Huracan";
+
+    public static final String CLIMA_NORMAL= "Normal";
+
     public static final String MODIFICACION_VIDA = "Vida";
 
     public static final String MODIFICACION_ATAQUE = "Ataque";

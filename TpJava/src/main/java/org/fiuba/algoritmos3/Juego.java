@@ -17,6 +17,8 @@ public class Juego {
 
     private GeneralView generalView;
 
+    private SistemaDeClima sistemaDeClima;
+
     //Metodos:
 
     public Juego(){
@@ -27,6 +29,9 @@ public class Juego {
         this.jugador1.setAdversario(jugador2);
         this.jugador2.setAdversario(jugador1);
         this.controlador = new Controlador();
+        this.sistemaDeClima = new SistemaDeClima();
+
+        this.sistemaDeClima.inicializarClimaActual();
         this.generalView = new GeneralView(jugador1);
     }
 
@@ -45,7 +50,7 @@ public class Juego {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("\n");
-        System.out.println(ANSI_VERDEOSCURO + "Oprima una tecla para continuar: " + ANSI_RESET);
+        System.out.println(ANSI_VERDEOSCURO + "Oprima una tecla para salir: " + ANSI_RESET);
         String decision = scanner.nextLine();
         System.out.println("\n");
     }
@@ -66,6 +71,7 @@ public class Juego {
     public void aplicarIteracion(Jugador jugador, Jugador jugadorAversario){
 
         jugador.aplicarEfectoPasivo(); //-> Solo funciona para estado en veneno
+        this.sistemaDeClima.getClimaActual().aplicarEfectoClima(jugador.getPokemonActual());
         this.generalView.setJugadorView(jugador);
         this.generalView.getJugadorView().setJugadorAdversarioView(jugadorAversario);
         this.generalView.getJugadorView().setPokemonActualView(jugador.getPokemonActual());
@@ -79,6 +85,7 @@ public class Juego {
     public void iteracionesJugadores() {
 
         while (!this.jugador1.perdio() && !this.jugador2.perdio()){
+
             if(this.jugador1.isAtacante()){
                 this.aplicarIteracion(this.jugador1, this.jugador2);
             } else{

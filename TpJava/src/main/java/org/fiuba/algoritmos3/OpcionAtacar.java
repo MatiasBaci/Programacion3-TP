@@ -30,7 +30,7 @@ public class OpcionAtacar implements Opciones{
             }else{
                 System.out.println(ANSI_ROJO + "No se realizo el ataque." + ANSI_RESET);
             }
-            System.out.println(ANSI_VERDEOSCURO + "Oprima una tecla para seguir: " + ANSI_RESET);
+            generalView.mensajeVolverAlMenu();
             scanner.next();
         }
 

@@ -17,7 +17,7 @@ public class OpcionAplicarItem implements Opciones{
         String decision = scanner.next();
 
         if(!decision.toLowerCase().equals("si")){
-            System.out.println(ANSI_VERDE + "No se aplico el Item seleccionado." + ANSI_RESET);
+            System.out.println(ANSI_ROJO + "No se aplico el Item seleccionado." + ANSI_RESET);
             return;
         }
         if(jugador.usarItem(nombrePokemon, itemAplicable)) {

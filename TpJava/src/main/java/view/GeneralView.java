@@ -1,8 +1,10 @@
 package view;
 
 import org.fiuba.algoritmos3.*;
+import view.PokemonesView.*;
 
 import static org.fiuba.algoritmos3.Constantes.*;
+import view.ModificacionesView.*;
 
 public class GeneralView {
 
@@ -32,6 +34,10 @@ public class GeneralView {
         this.jugadorView = this.jugadorFactory.createJugadorView(jugador);
     }
 
+
+    public void mensajeVolverAlMenu(){
+        System.out.println(ANSI_VERDE + "Oprima una tecla para volver al menu: " + ANSI_RESET);
+    }
     public void mostrarMensajeAtacarPokemon() {
 
         System.out.println("\n");
@@ -69,7 +75,7 @@ public class GeneralView {
         this.jugadorView.getJugadorAdversarioView().mostrarPokemonActual();
         System.out.println(ANSI_VERDE + "----------------------------------------------------------------------------------------------------" + ANSI_RESET);
         System.out.println("\n");
-        System.out.println(ANSI_VERDEOSCURO + "Oprima una tecla para dejar de ver el campo de batalla: " + ANSI_RESET);
+        this.mensajeVolverAlMenu();
     }
 
     public void mostrarMensajeRendirse(){
@@ -101,7 +107,7 @@ public class GeneralView {
         System.out.println("\n");
         System.out.println("El jugador " + jugador.getNombre() + " acaba de usar " + nombreItem + ".");
 
-        System.out.println(ANSI_VERDEOSCURO + "Oprima una tecla para seguir jugando." + ANSI_RESET);
+        this.mensajeVolverAlMenu();
     }
 
     public void mostrarMensajeIntercambioAlAdversario(){
@@ -118,7 +124,9 @@ public class GeneralView {
     }
 
     public void mostrarMensajeNoSeRealizoIntercambio(){
-        System.out.println(ANSI_VERDEOSCURO + "No se realizo el intercambio. Oprima una tecla para continuar." + ANSI_RESET);
+        System.out.println(ANSI_VERDEOSCURO + "No se realizo el intercambio. " + ANSI_RESET);
+        System.out.println("\n");
+        this.mensajeVolverAlMenu();
     }
 
     public void mostrarMensajeBienvenida() {
