@@ -22,6 +22,9 @@ public class ItemViewFactory {
         if (item.getClass() == PocionCuracionEstados.class) {
             return new PocionCuracionEstadosView(item);
         }
-        return new RevivirView(item);
+        if (item.getClass() == Revivir.class) {
+            return new RevivirView(item);
+        }
+        return new PocionMolestaAlumnoView(item);
     }
 }

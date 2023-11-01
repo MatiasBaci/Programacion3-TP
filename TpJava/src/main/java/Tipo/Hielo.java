@@ -6,7 +6,7 @@ public class Hielo extends Tipo {
     public Hielo(){
 
         super();
-        this.nombre = "Hielo";
+        this.nombre = TIPO_HIELO;
         this.color = ANSI_CELESTE;
         this.completarTablaEfectividad();
     }

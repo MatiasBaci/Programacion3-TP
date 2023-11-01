@@ -23,33 +23,33 @@ public class Controlador {
     }
 
     private void mensajeNombreJugador() {
+
         System.out.println("\n");
-        System.out.println("╔════════════════════╗");
-        System.out.println("║ Eleccion de nombre ║ ");
-        System.out.println("╚════════════════════╝");
+        System.out.println(ANSI_VERDE + "╔════════════════════╗");
+                     System.out.println("║ Eleccion de nombre ║ ");
+                     System.out.println("╚════════════════════╝" + ANSI_RESET);
         System.out.println("\n");
     }
 
     public void validarNombresJugador(Jugador jugador) {
+
         Scanner scanner = new Scanner(System.in);
         boolean nombreValido = false;
 
         while (!nombreValido) {
             mensajeNombreJugador();
-            System.out.println("Ingrese el nombre del jugador: ");
+            System.out.println(ANSI_VERDEOSCURO + "Ingrese el nombre del jugador: " + ANSI_RESET);
             String nombreJugador = scanner.next();
 
-            if (nombreJugador.length() < 50) {
+            if (nombreJugador.length() < LIMITE_CARACTERES) {
                 mensajeNombreJugador();
                 jugador.setNombre(nombreJugador);
                 nombreValido = true;
-                System.out.println("Bienvenido al juego " + nombreJugador);
+                System.out.println(ANSI_VERDE + "BIENVENIDO AL JUEGO " + nombreJugador.toUpperCase() + ANSI_RESET);
             } else {
                 mensajeNombreJugador();
                 System.out.println("\n");
-                System.out.println("╔═══════════════════════════════════════════════════════════╗");
-                System.out.println("║ El nombre tiene mas de 50 caracteres, vuelva a intentarlo ║");
-                System.out.println("╚═══════════════════════════════════════════════════════════╝");
+                System.out.println(ANSI_ROJO + "ERROR: EL NOMBRE TIENE MAS DE 50 CARACTERES. " + ANSI_RESET);
             }
         }
     }
@@ -59,9 +59,9 @@ public class Controlador {
         Scanner scanner = new Scanner(System.in);
         boolean pokemonValido = false;
         while (!pokemonValido) {
+
             jugadorView.mostrarPokemones();
-            System.out.println("Los pokemones disponibles de " + jugador.getNombre() + " son: ");
-            System.out.println("Ingrese el nombre del pokemon: ");
+            System.out.println(ANSI_VERDEOSCURO + "Seleccione a un Pokemon: " + ANSI_RESET);
             String nombrePokemon = scanner.next();
             jugadorView.mostrarCasosDeEleccion(nombrePokemon, jugador.getPokemonActual(), jugador.getMisPokemones());
             pokemonValido = jugador.elegirPokemon(nombrePokemon);

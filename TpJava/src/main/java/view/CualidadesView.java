@@ -5,42 +5,47 @@ import org.fiuba.algoritmos3.Cualidades;
 import org.fiuba.algoritmos3.Estado;
 import org.fiuba.algoritmos3.EstadoNormal;
 
+import java.util.HashSet;
 import java.util.Set;
+
+import static org.fiuba.algoritmos3.Constantes.*;
 
 public class CualidadesView {
 
-    private double vidaActual;
-    private int velocidad;
-    private int defensa;
-    private int ataque;
+    private Cualidades cualidades;
 
-    private double nivel;
+    private Set<EstadoView> estadosActualesView;
 
-    private Tipo tipo;
-
-    private Set<Estado> estadosActuales;
+    private EstadoFacory estadoFacory;
 
     public CualidadesView(Cualidades cualidades){
-        this.vidaActual = cualidades.getVida();
-        this.velocidad = cualidades.getVelocidad();
-        this.defensa = cualidades.getDefensa();
-        this.ataque = cualidades.getAtaque();
-        this.nivel = cualidades.getNivel();
-        this.tipo = cualidades.getTipo();
-        this.estadosActuales = cualidades.getEstadosActuales();
+        this.cualidades = cualidades;
+        this.estadosActualesView = new HashSet<>();
+        this.estadoFacory = new EstadoFacory();
+        this.cualidades.getEstadosActuales().forEach(estado -> estadosActualesView.add(estadoFacory.createEstadoView(estado)));
     }
 
     public void mostrar(){
-        System.out.println(" Tipo: " + this.tipo.getNombreConColor());
+        System.out.println(" Tipo: " + this.cualidades.getTipo().getNombreConColor()); //Eliminar
         System.out.println(
-                " Nivel: " + this.nivel + " --" +
-                        " HP: " + (int)this.vidaActual + " --" +
-                        " Velocidad: " + this.velocidad + " --" +
-                        " Defensa: " + this.defensa + " --" +
-                        " Ataque: " + this.ataque);
-        //System.out.println(" Estado: " + this.estadoActual.getNombreConColor() + "\n");
-        this.estadosActuales.forEach(estado -> {
-            System.out.println("Estado: "+ estado.getNombreConColor() + "\n");
+                " Nivel: " + this.cualidades.getNivel() + " --" +
+                        " HP: " + ANSI_ROJO + (int)this.cualidades.getVida() + ANSI_RESET + " --" +
+                        " Velocidad: " + ANSI_AMARILLO + this.cualidades.getVelocidad() + ANSI_RESET + " --" +
+                        " Defensa: " + ANSI_AZUL + this.cualidades.getDefensa() + ANSI_RESET + " --"  +
+                        " Ataque: " + ANSI_MARRON + this.cualidades.getAtaque() + ANSI_RESET);
+        System.out.println(" Estado: ");
+        this.cualidades.getEstadosActuales().forEach(estado -> {
+            System.out.println(" " + estado.getNombreConColor());
         });
     }
+
+    public boolean atacarConEstadosActuales(){
+        boolean puedeAtacarConSusEstados = this.estadosActualesView.stream().allMatch(estado -> estado.mostrar());
+        return puedeAtacarConSusEstados;
+    }
+
+    public Set<EstadoView> getEstadosActualesView(){
+        return estadosActualesView;
+    }
+
 }

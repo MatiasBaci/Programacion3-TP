@@ -1,6 +1,9 @@
 package view;
 import Item.*;
 
+import static org.fiuba.algoritmos3.Constantes.ANSI_GRISCLARO;
+import static org.fiuba.algoritmos3.Constantes.ANSI_RESET;
+
 public class RevivirView extends ItemView{
 
     public RevivirView(Item item){
@@ -8,6 +11,6 @@ public class RevivirView extends ItemView{
     }
 
     public void mostrar() {
-        System.out.println(this.item.getNombre() + ": Revive al pokemon con toda su salud - Cantidad: " + this.item.getCantidad());
+        System.out.println(ANSI_GRISCLARO + this.item.getNombre() + ANSI_RESET + ": Revive al pokemon con toda su salud - Cantidad: " + ANSI_GRISCLARO + this.item.getCantidad() + ANSI_RESET);
     }
 }

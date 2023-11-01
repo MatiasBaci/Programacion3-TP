@@ -15,6 +15,10 @@ public abstract class Estado {
         return this.color + this.getNombre() + "\u001B[0m"; //no me toma el ANSI_RESET
     }
 
+    public Cualidades getCualidades() {
+        return cualidades;
+    }
+
     public void setCualidades(Cualidades cualidades){this.cualidades = cualidades;}
 
     public abstract boolean puedeAtacar();

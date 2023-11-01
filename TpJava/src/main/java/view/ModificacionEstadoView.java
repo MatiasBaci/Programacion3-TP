@@ -3,6 +3,8 @@ package view;
 import org.fiuba.algoritmos3.Cualidades;
 import org.fiuba.algoritmos3.Modificacion;
 
+import static org.fiuba.algoritmos3.Constantes.*;
+
 public class ModificacionEstadoView extends ModificacionView{
 
     public ModificacionEstadoView(Modificacion unaModificacion){
@@ -13,7 +15,7 @@ public class ModificacionEstadoView extends ModificacionView{
 
         if(!unaCualidad.estaConsciente()) {
             System.out.println(" ");
-            System.out.println("No se puede aplicar este item a un Pokemon Inhabilitado o Normal.");
+            System.out.println(ANSI_ROJO + "No se puede aplicar este item a un Pokemon Inhabilitado o Normal." + ANSI_RESET);
         }
     }
 

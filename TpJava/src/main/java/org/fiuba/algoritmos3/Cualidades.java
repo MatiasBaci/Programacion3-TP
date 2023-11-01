@@ -68,6 +68,7 @@ public class Cualidades {
         /*if (estados.contains(unEstado)) {
             throw new EstadoDuplicadoException("El estado ya está presente en el conjunto.");
         }*/
+
         unEstado.setCualidades(this);
         this.estados.add(unEstado); // Al ser un Set no se va añadir ademas hay una verificacion arriba para el mensaje.
     }

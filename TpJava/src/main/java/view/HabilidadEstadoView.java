@@ -21,7 +21,7 @@ public class   HabilidadEstadoView extends HabilidadView{
 
     public void mostrarUsarHabilidad(Cualidades cualiadesPokemonActual, Cualidades cualidadesPokemonEnemigo){
 
-        System.out.println("Es una habilida de Estado");
+        System.out.println("La habilidad usa el estado " +  habilidadEstado.getUnEstado().getNombreConColor());
 
     }
 }

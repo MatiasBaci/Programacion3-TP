@@ -1,6 +1,9 @@
 package view;
 import Item.*;
 
+import static org.fiuba.algoritmos3.Constantes.ANSI_GRISCLARO;
+import static org.fiuba.algoritmos3.Constantes.ANSI_RESET;
+
 public class AtaqueXView extends ItemView{
 
     public AtaqueXView(Item item) {
@@ -9,7 +12,7 @@ public class AtaqueXView extends ItemView{
 
     public void mostrar(){
 
-        System.out.println(item.getNombre() + ": Aumenta 10% el ataque - Cantidad: " + item.getCantidad());
+        System.out.println(ANSI_GRISCLARO + item.getNombre() + ANSI_RESET + ": Aumenta 10% el ataque - Cantidad: " + ANSI_GRISCLARO + item.getCantidad() + ANSI_RESET);
 
     }
 }

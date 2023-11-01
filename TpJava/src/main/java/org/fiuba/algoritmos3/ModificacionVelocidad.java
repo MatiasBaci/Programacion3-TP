@@ -1,5 +1,7 @@
 package org.fiuba.algoritmos3;
 
+import static org.fiuba.algoritmos3.Constantes.MODIFICACION_VELOCIDAD;
+
 public class ModificacionVelocidad implements Modificacion{
     @Override
     public void modificar(Cualidades unaCualidad, int etapas) {
@@ -8,6 +10,6 @@ public class ModificacionVelocidad implements Modificacion{
         }
     }
     public String obtenerNombreModificacion(){
-        return "Velocidad";
+        return MODIFICACION_VELOCIDAD;
     }
 }

@@ -5,7 +5,7 @@ public class Veneno extends Tipo {
 
     public Veneno(){
         super();
-        this.nombre = "Veneno";
+        this.nombre = TIPO_VENENO;
         this.color = ANSI_PURPURA;
         this.completarTablaEfectividad();
     }

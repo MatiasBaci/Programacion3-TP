@@ -40,6 +40,19 @@ public class Constantes {
 
     public static final String RELACION_DEBIL = "Debil";
     public static final String RELACION_NULA = "Nula";
+
+    public static final String MODIFICACION_VIDA = "Vida";
+
+    public static final String MODIFICACION_ATAQUE = "Ataque";
+
+    public static final String MODIFICACION_DEFENSA = "Defensa";
+
+    public static final String MODIFICACION_VELOCIDAD = "Velocidad";
+
+    public static final String MODIFICACION_ESTADO = "Estado";
+
+    public static final String MODIFICACION_INHABILITADO = "Inhabilitado";
+
     public static final double MULTIPLICADOR_FUERTE = 2;
     public static final double MULTIPLICADOR_DEBIL = 0.5;
     public static final double MULTIPLICADOR_NULA = 0;

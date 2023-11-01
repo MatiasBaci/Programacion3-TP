@@ -6,7 +6,7 @@ public class Dragon extends Tipo {
     public Dragon(){
 
         super();
-        this.nombre = "Dragon";
+        this.nombre = TIPO_DRAGON;
         this.color = ANSI_VIOLETAOSCURO;
         this.completarTablaEfectividad();
     }

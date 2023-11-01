@@ -1,5 +1,7 @@
 package org.fiuba.algoritmos3;
 
+import static org.fiuba.algoritmos3.Constantes.MODIFICACION_INHABILITADO;
+
 public class ModificacionEstadoInhabilitado implements Modificacion{
 
     @Override
@@ -16,6 +18,6 @@ public class ModificacionEstadoInhabilitado implements Modificacion{
 
     @Override
     public String obtenerNombreModificacion() {
-        return "Inhabilitado";
+        return MODIFICACION_INHABILITADO;
     }
 }

@@ -5,9 +5,14 @@ import java.util.Random;
 
 public class EstadoParalizado extends Estado{
 
+    private int numeroRandom;
     public EstadoParalizado() {
         this.nombre = ESTADO_PARALIZADO;
         this.color = ANSI_FONDO_AMARILLO + ANSI_NEGRO;
+    }
+
+    public int getNumeroRandom() {
+        return numeroRandom;
     }
 
     @Override
@@ -15,11 +20,9 @@ public class EstadoParalizado extends Estado{
         
         Random newRandom = new Random();
         //set a new random between 1 and 100
-        int random = newRandom.nextInt(100)+1;
+        this.numeroRandom = newRandom.nextInt(100)+1;
         
-        if (random <= 50)
-        {
-            System.out.println("El pokemon está paralizado y no pudo atacar."); //sacarlo
+        if(this.numeroRandom <= 50) {
             return false;
         }
         return true;

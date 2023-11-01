@@ -8,6 +8,8 @@ public class EstadoDormido extends Estado{
     private int turnosDormido;
     private final int duracionMaxima;
 
+    private double numeroRandom;
+
     public EstadoDormido(){
         this.nombre = ESTADO_DORMIDO;
         this.duracionMaxima = 4;
@@ -15,7 +17,18 @@ public class EstadoDormido extends Estado{
         this.color = ANSI_FONDO_BLANCO + ANSI_NEGRO;
     }
 
-    
+    public int getTurnosDormido() {
+        return turnosDormido;
+    }
+
+    public int getDuracionMaxima() {
+        return duracionMaxima;
+    }
+
+    public double getNumeroRandom() {
+        return numeroRandom;
+    }
+
     @Override
     public boolean puedeAtacar(){
 
@@ -23,11 +36,11 @@ public class EstadoDormido extends Estado{
         
         //set a new random between 0.25 and turnosDormido * 0.25
         double random = ((float)newRandom.nextFloat((float) 0.25)+this.turnosDormido*0.25);
+        this.numeroRandom = random;
 
         
         if (this.turnosDormido >= this.duracionMaxima || random >= 1)
         {
-            System.out.println("El pokemon se despertó!"); //sacarlo
             //this.cualidades.cambiarseEstado(new EstadoNormal()); --> Version de un solo estado
             this.cualidades.eliminarEstado(this);
             return true;
@@ -35,7 +48,6 @@ public class EstadoDormido extends Estado{
         else
         {
             this.turnosDormido ++;
-            System.out.println("El pokemon esta dormido.");
             return false;
         }
     }

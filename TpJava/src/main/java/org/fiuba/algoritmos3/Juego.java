@@ -3,6 +3,11 @@ package org.fiuba.algoritmos3;
 import view.GeneralView;
 import view.JugadorView;
 
+import java.util.Scanner;
+
+import static org.fiuba.algoritmos3.Constantes.ANSI_RESET;
+import static org.fiuba.algoritmos3.Constantes.ANSI_VERDEOSCURO;
+
 public class Juego {
 
     //Atributos:
@@ -32,11 +37,17 @@ public class Juego {
     private void decidirTurnoInicial() {
         if (this.pokemonJugador1EsRapido(this.jugador1.getPokemonActual(), this.jugador2.getPokemonActual())) {
             this.jugador1.setAtacante(true);
-            System.out.println("COMIENZA ATACANDO " + this.jugador1.getNombre());
+            System.out.println(ANSI_VERDEOSCURO+ "COMIENZA ATACANDO " + this.jugador1.getNombre().toUpperCase() + ANSI_RESET);
         } else {
             this.jugador2.setAtacante(true);
-            System.out.println("COMIENZA ATACANDO " + this.jugador2.getNombre());
+            System.out.println(ANSI_VERDEOSCURO + "COMIENZA ATACANDO " + this.jugador2.getNombre().toUpperCase() + ANSI_RESET);
         }
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("\n");
+        System.out.println(ANSI_VERDEOSCURO + "Oprima una tecla para continuar: " + ANSI_RESET);
+        String decision = scanner.nextLine();
+        System.out.println("\n");
     }
 
 
@@ -59,6 +70,7 @@ public class Juego {
         this.generalView.getJugadorView().setJugadorAdversarioView(jugadorAversario);
         this.generalView.getJugadorView().setPokemonActualView(jugador.getPokemonActual());
         this.generalView.getJugadorAdversarioView().setPokemonActualView(jugadorAversario.getPokemonActual());
+        this.generalView.mostrarEfectoPasivo();
         this.controlador.opcionesJugadores(jugador, this.generalView);
         jugadorAversario.setAtacante(true);
     }

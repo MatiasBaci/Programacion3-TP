@@ -6,7 +6,7 @@ public class Fuego extends Tipo {
     public Fuego(){
 
         super();
-        this.nombre = "Fuego";
+        this.nombre = TIPO_FUEGO;
         this.color = ANSI_ROJO;
         this.completarTablaEfectividad();
     }

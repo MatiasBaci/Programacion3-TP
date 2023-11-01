@@ -5,7 +5,7 @@ public class Roca extends Tipo {
 
     public Roca(){
         super();
-        this.nombre = "Roca";
+        this.nombre = TIPO_ROCA;
         this.color = ANSI_MARRONOSCURO;
         this.completarTablaEfectividad();
     }

@@ -1,5 +1,7 @@
 package org.fiuba.algoritmos3;
 
+import static org.fiuba.algoritmos3.Constantes.MODIFICACION_DEFENSA;
+
 public class ModificacionDefensa implements Modificacion{
     @Override
     public void modificar(Cualidades unaCualidad, int etapas) {
@@ -8,6 +10,6 @@ public class ModificacionDefensa implements Modificacion{
         }
     }
     public String obtenerNombreModificacion(){
-        return "Defensa";
+        return MODIFICACION_DEFENSA;
     }
 }

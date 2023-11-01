@@ -1,8 +1,6 @@
 package view;
 
-import org.fiuba.algoritmos3.Modificacion;
-import org.fiuba.algoritmos3.ModificacionEstado;
-import org.fiuba.algoritmos3.ModificacionEstadoInhabilitado;
+import org.fiuba.algoritmos3.*;
 
 public class ModificacionFactory {
 
@@ -13,6 +11,13 @@ public class ModificacionFactory {
         if(modificacion.getClass() == ModificacionEstadoInhabilitado.class){
             return new ModificacionEstadoInhabilitadoView(modificacion);
         }
+        if(modificacion.getClass() == ModificacionAtaque.class){
+            return new ModificacionAtaqueView(modificacion);
+        }
+        if(modificacion.getClass() == ModificacionDefensa.class){
+            return new ModificacionDefensaView(modificacion);
+        }
+
         return new ModificacionVidaView(modificacion);
     }
 }

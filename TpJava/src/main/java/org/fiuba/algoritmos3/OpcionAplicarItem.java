@@ -6,22 +6,31 @@ import view.JugadorView;
 
 import java.util.Scanner;
 
+import static org.fiuba.algoritmos3.Constantes.*;
+
 public class OpcionAplicarItem implements Opciones{
 
     private void decidirAplicarItem(Jugador jugador, String nombrePokemon, Item itemAplicable, GeneralView generalView){
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Desea aplicar el item? Si - No:");
+        System.out.println(ANSI_VERDEOSCURO + "Desea aplicar el item? Si - No:" + ANSI_RESET);
         String decision = scanner.next();
 
-        if(!decision.equals("Si")){
-            System.out.println("No se aplico el Item seleccionado");
+        if(!decision.toLowerCase().equals("si")){
+            System.out.println(ANSI_VERDE + "No se aplico el Item seleccionado." + ANSI_RESET);
             return;
         }
         if(jugador.usarItem(nombrePokemon, itemAplicable)) {
             generalView.mostrarMensajeAplicoItem(jugador, itemAplicable.getNombre());
+
+
+
             decision = scanner.next();
         }
+
+
+        Pokemon pokemnAux = jugador.getMisPokemones().get(nombrePokemon);
+        generalView.mostrarCasoModicicacion(itemAplicable.getUnaModificacion(), pokemnAux);
     }
     @Override
     public void aplicarOpcion(Jugador jugador, GeneralView generalView){
@@ -31,7 +40,7 @@ public class OpcionAplicarItem implements Opciones{
         String nombreItem = scanner.nextLine();
 
         if(!jugador.validadorClaveItems(nombreItem)){
-            System.out.println("No se encontro el item.");
+            System.out.println(ANSI_ROJO + "ERROR: NO SE ENCONTRO EL ITEM." + ANSI_RESET);
             return;
         }
 
@@ -42,15 +51,14 @@ public class OpcionAplicarItem implements Opciones{
             return;
         }
         generalView.getJugadorView().mostrarPokemones();
-        System.out.println("Seleccione el Pokemon a aplicar el item: ");
+        System.out.println(ANSI_VERDEOSCURO + "Seleccione el Pokemon a aplicar el item: " + ANSI_RESET);
         String nombrePokemon = scanner.next();
         if(!jugador.validadorClavePokemones(nombrePokemon)){
-            System.out.println("No se encontro el pokemon");
+            System.out.println(ANSI_ROJO + "ERROR: NO SE ENCONTRO EL POKEMON" + ANSI_RESET);
             return;
         }
         this.decidirAplicarItem(jugador,nombrePokemon,itemAplicable, generalView);
-        Pokemon pokemnAux = jugador.getMisPokemones().get(nombrePokemon);
-        generalView.mostrarCasoModicicacion(itemAplicable.getUnaModificacion(), pokemnAux);
+
     }
 }
 

@@ -5,7 +5,7 @@ public class Psiquico extends Tipo {
 
     public Psiquico(){
         super();
-        this.nombre = "Psiquico";
+        this.nombre = TIPO_PSIQUICO;
         this.color = ANSI_ROSACLARO;
         this.completarTablaEfectividad();
     }

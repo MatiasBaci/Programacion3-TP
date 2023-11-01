@@ -1,5 +1,7 @@
 package org.fiuba.algoritmos3;
 
+import static org.fiuba.algoritmos3.Constantes.MODIFICACION_ATAQUE;
+
 public class ModificacionAtaque implements Modificacion { //implementsModificable
 
 
@@ -10,7 +12,7 @@ public class ModificacionAtaque implements Modificacion { //implementsModificabl
         }
     }
     public String obtenerNombreModificacion(){
-        return "Ataque";
+        return MODIFICACION_ATAQUE;
     }
 
 }

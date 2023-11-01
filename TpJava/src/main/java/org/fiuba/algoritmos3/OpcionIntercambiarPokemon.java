@@ -24,18 +24,18 @@ public class OpcionIntercambiarPokemon implements Opciones{
         Pokemon pokemonAuxliar = jugador.getPokemonActual();
         if(validarPokemon(jugador, generalView.getJugadorView())){
             Scanner scanner = new Scanner(System.in);
-            System.out.println("Desea Realizar el cambio? Si - No");
+            generalView.mostrarMensajeRealizarIntercambio();
+
 
             String decision = scanner.next();
 
-            if (Objects.equals(decision, "Si")) {
+            if (Objects.equals(decision.toLowerCase(), "si")) {
                 generalView.mostrarMensajeIntercambioAlAdversario();
                 jugador.setAtacante(false);
-                System.out.println("Es el turno del otro jugador. Oprima una tecla para continuar.");
 
             } else {
                 jugador.setPokemonActual(pokemonAuxliar);
-                System.out.println("No se realizo el intercambio. Oprima una tecla para continuar.");
+                generalView.mostrarMensajeNoSeRealizoIntercambio();
 
             }
             decision = scanner.next();

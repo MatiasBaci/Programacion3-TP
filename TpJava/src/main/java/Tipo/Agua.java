@@ -6,7 +6,7 @@ public class Agua extends Tipo {
 
     public Agua(){
         super();
-        this.nombre = "Agua";
+        this.nombre = TIPO_AGUA;
         this.color = ANSI_AZULFUERTE;
         this.completarTablaEfectividad();
     }

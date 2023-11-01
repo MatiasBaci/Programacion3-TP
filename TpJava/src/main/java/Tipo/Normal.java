@@ -6,7 +6,7 @@ public class Normal extends Tipo {
 
     public Normal(){
         super();
-        this.nombre = "Normal";
+        this.nombre = TIPO_NORMAL;
         this.color = ANSI_GRISCLARO;
         this.completarTablaEfectividad();
     }

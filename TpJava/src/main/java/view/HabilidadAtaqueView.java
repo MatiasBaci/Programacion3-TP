@@ -26,7 +26,7 @@ public class HabilidadAtaqueView extends HabilidadView{
 
     public void mostrarUsarHabilidad(Cualidades cualiadesPokemonActual, Cualidades cualidadesPokemonEnemigo){
         double danio = this.habilidadAtaque.getDanioRealizado();
-        System.out.println("El daño infligido de la habiilidad: "+this.habilidadAtaque.getNombre() +" es = " +danio );
+        System.out.println("El daño infligido de la habiilidad: "+this.habilidadAtaque.getNombre() +" es = " + danio );
 
     }
 }

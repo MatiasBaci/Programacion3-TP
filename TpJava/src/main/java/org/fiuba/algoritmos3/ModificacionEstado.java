@@ -1,5 +1,7 @@
 package org.fiuba.algoritmos3;
 
+import static org.fiuba.algoritmos3.Constantes.MODIFICACION_ESTADO;
+
 public class ModificacionEstado implements  Modificacion{
 
     public void modificar(Cualidades cualidades,int etapas){
@@ -10,6 +12,6 @@ public class ModificacionEstado implements  Modificacion{
     }
 
     public  String obtenerNombreModificacion(){
-        return "Estado";
+        return MODIFICACION_ESTADO;
     }
 }

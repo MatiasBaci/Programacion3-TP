@@ -34,6 +34,7 @@ public class PokemonView {
         System.out.println(" Nombre: " + this.pokemon.getNombre());
         this.cualidadesView.mostrar();
         System.out.println(" Historia: " + this.pokemon.getHistoria());
+        System.out.println("\n");
     }
 
     public String getNombre(){
@@ -44,7 +45,7 @@ public class PokemonView {
         this.habilidadesView.forEach((k, v) -> v.mostrar());
     }
 
-    public static void mostrarUsoDeHabilidad(String nombrePokemon, String nombreHabilidad){
+    private void mostrarUsoDeHabilidad(String nombrePokemon, String nombreHabilidad){
         System.out.println("¡"+ nombrePokemon + " uso " + nombreHabilidad + "!");
         System.out.println("\n");
     }
@@ -53,9 +54,13 @@ public class PokemonView {
 
         HabilidadView habilidadViewAux = this.habilidadFactory.createHabilidadView(habilidad);
 
-        if (pokemon.getCualidades().atacarConEstadosActuales()) {
-            PokemonView.mostrarUsoDeHabilidad(pokemon.getNombre(), habilidad.getNombre());
+        if (this.cualidadesView.atacarConEstadosActuales()){
+            this.mostrarUsoDeHabilidad(pokemon.getNombre(), habilidad.getNombre());
             habilidadViewAux.mostrarUsarHabilidad(pokemonEnemigo.getCualidades(), pokemon.getCualidades());
         }
+    }
+
+    public void mostrarEfectoPasivo(){
+        this.cualidadesView.getEstadosActualesView().forEach(estadoView -> estadoView.mostrarEfectoPasivoDeEstado());
     }
 }
