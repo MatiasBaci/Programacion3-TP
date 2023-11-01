@@ -8,13 +8,20 @@ public class Fantasma extends Tipo {
         super();
         this.nombre = TIPO_FANTASMA;
         this.color = ANSI_VIOLETA;
-        this.completarTablaEfectividad();
+        this.completarTablaEfectividadTipo();
+        this.completarTablaEfectividadClima();
     }
 
     @Override
-    public void completarTablaEfectividad(){
-        this.tablaEfectividad.put(TIPO_FANTASMA, RELACION_FUERTE);
-        this.tablaEfectividad.put(TIPO_NORMAL, RELACION_NULA);
-        this.tablaEfectividad.put(TIPO_PSIQUICO, RELACION_NULA);
+    public void completarTablaEfectividadTipo(){
+        this.tablaEfectividadTipo.put(TIPO_FANTASMA, RELACION_FUERTE);
+        this.tablaEfectividadTipo.put(TIPO_NORMAL, RELACION_NULA);
+        this.tablaEfectividadTipo.put(TIPO_PSIQUICO, RELACION_NULA);
+    }
+
+    public void completarTablaEfectividadClima(){
+        this.tablaEfectividadClima.put(CLIMA_NIEBLA, RELACION_FUERTE);
+        this.tablaEfectividadClima.put(CLIMA_NORMAL, RELACION_NORMAL);
+
     }
 }

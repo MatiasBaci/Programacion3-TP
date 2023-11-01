@@ -5,18 +5,25 @@ public class Volador extends Tipo {
 
     public Volador(){
         super();
-        this.nombre = "Volador";
+        this.nombre = TIPO_VOLADOR;
         this.color = ANSI_CELESTECLARO;
-        this.completarTablaEfectividad();
+        this.completarTablaEfectividadTipo();
+        this.completarTablaEfectividadClima();
     }
     
     @Override
-    public void completarTablaEfectividad(){
-        this.tablaEfectividad.put(TIPO_BICHO, RELACION_FUERTE);
-        this.tablaEfectividad.put(TIPO_ELECTRICO, RELACION_DEBIL);
-        this.tablaEfectividad.put(TIPO_LUCHA, RELACION_FUERTE);
-        this.tablaEfectividad.put(TIPO_PLANTA, RELACION_FUERTE);
-        this.tablaEfectividad.put(TIPO_ROCA, RELACION_DEBIL);
+    public void completarTablaEfectividadTipo(){
+        this.tablaEfectividadTipo.put(TIPO_BICHO, RELACION_FUERTE);
+        this.tablaEfectividadTipo.put(TIPO_ELECTRICO, RELACION_DEBIL);
+        this.tablaEfectividadTipo.put(TIPO_LUCHA, RELACION_FUERTE);
+        this.tablaEfectividadTipo.put(TIPO_PLANTA, RELACION_FUERTE);
+        this.tablaEfectividadTipo.put(TIPO_ROCA, RELACION_DEBIL);
+    }
+
+    @Override
+    public void completarTablaEfectividadClima() {
+        this.tablaEfectividadClima.put(CLIMA_HURACAN, RELACION_FUERTE);
+        this.tablaEfectividadClima.put(CLIMA_NORMAL, RELACION_NORMAL);
     }
 }
 

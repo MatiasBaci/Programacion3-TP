@@ -7,18 +7,24 @@ public class Lucha extends Tipo {
         super();
         this.nombre = TIPO_LUCHA;
         this.color = ANSI_NARANJA;
-        this.completarTablaEfectividad();
+        this.completarTablaEfectividadTipo();
+        this.completarTablaEfectividadClima();
     }
 
     @Override
-    public void completarTablaEfectividad(){
-        this.tablaEfectividad.put(TIPO_BICHO, RELACION_DEBIL);
-        this.tablaEfectividad.put(TIPO_FANTASMA, RELACION_NULA);
-        this.tablaEfectividad.put(TIPO_HIELO, RELACION_FUERTE);
-        this.tablaEfectividad.put(TIPO_NORMAL, RELACION_FUERTE);
-        this.tablaEfectividad.put(TIPO_PSIQUICO, RELACION_DEBIL);
-        this.tablaEfectividad.put(TIPO_ROCA, RELACION_FUERTE);
-        this.tablaEfectividad.put(TIPO_VENENO, RELACION_DEBIL);
-        this.tablaEfectividad.put(TIPO_VOLADOR, RELACION_DEBIL);
+    public void completarTablaEfectividadTipo(){
+        this.tablaEfectividadTipo.put(TIPO_BICHO, RELACION_DEBIL);
+        this.tablaEfectividadTipo.put(TIPO_FANTASMA, RELACION_NULA);
+        this.tablaEfectividadTipo.put(TIPO_HIELO, RELACION_FUERTE);
+        this.tablaEfectividadTipo.put(TIPO_NORMAL, RELACION_FUERTE);
+        this.tablaEfectividadTipo.put(TIPO_PSIQUICO, RELACION_DEBIL);
+        this.tablaEfectividadTipo.put(TIPO_ROCA, RELACION_FUERTE);
+        this.tablaEfectividadTipo.put(TIPO_VENENO, RELACION_DEBIL);
+        this.tablaEfectividadTipo.put(TIPO_VOLADOR, RELACION_DEBIL);
+    }
+
+    @Override
+    public void completarTablaEfectividadClima() {
+        this.tablaEfectividadClima.put(CLIMA_NORMAL, RELACION_NORMAL);
     }
 }

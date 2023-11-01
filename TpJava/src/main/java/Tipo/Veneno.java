@@ -7,17 +7,23 @@ public class Veneno extends Tipo {
         super();
         this.nombre = TIPO_VENENO;
         this.color = ANSI_PURPURA;
-        this.completarTablaEfectividad();
+        this.completarTablaEfectividadTipo();
+        this.completarTablaEfectividadClima();
     }
     
     @Override
-    public void completarTablaEfectividad(){
-        this.tablaEfectividad.put(TIPO_BICHO, RELACION_FUERTE);
-        this.tablaEfectividad.put(TIPO_FANTASMA, RELACION_DEBIL);
-        this.tablaEfectividad.put(TIPO_PLANTA, RELACION_FUERTE);
-        this.tablaEfectividad.put(TIPO_ROCA, RELACION_DEBIL);
-        this.tablaEfectividad.put(TIPO_TIERRA, RELACION_DEBIL);
-        this.tablaEfectividad.put(TIPO_VENENO, RELACION_DEBIL);
+    public void completarTablaEfectividadTipo(){
+        this.tablaEfectividadTipo.put(TIPO_BICHO, RELACION_FUERTE);
+        this.tablaEfectividadTipo.put(TIPO_FANTASMA, RELACION_DEBIL);
+        this.tablaEfectividadTipo.put(TIPO_PLANTA, RELACION_FUERTE);
+        this.tablaEfectividadTipo.put(TIPO_ROCA, RELACION_DEBIL);
+        this.tablaEfectividadTipo.put(TIPO_TIERRA, RELACION_DEBIL);
+        this.tablaEfectividadTipo.put(TIPO_VENENO, RELACION_DEBIL);
+    }
+
+    @Override
+    public void completarTablaEfectividadClima() {
+        this.tablaEfectividadClima.put(CLIMA_NORMAL, RELACION_NORMAL);
     }
 }
 

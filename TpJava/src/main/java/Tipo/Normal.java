@@ -8,13 +8,19 @@ public class Normal extends Tipo {
         super();
         this.nombre = TIPO_NORMAL;
         this.color = ANSI_GRISCLARO;
-        this.completarTablaEfectividad();
+        this.completarTablaEfectividadTipo();
+        this.completarTablaEfectividadClima();
     }
     
     @Override
-    public void completarTablaEfectividad(){
-        this.tablaEfectividad.put(TIPO_FANTASMA, RELACION_NULA);
-        this.tablaEfectividad.put(TIPO_ROCA, RELACION_DEBIL);
+    public void completarTablaEfectividadTipo(){
+        this.tablaEfectividadTipo.put(TIPO_FANTASMA, RELACION_NULA);
+        this.tablaEfectividadTipo.put(TIPO_ROCA, RELACION_DEBIL);
+    }
+
+    @Override
+    public void completarTablaEfectividadClima() {
+        this.tablaEfectividadClima.put(CLIMA_NORMAL, RELACION_NORMAL);
     }
 }
 
