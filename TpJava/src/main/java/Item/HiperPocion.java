@@ -1,7 +1,7 @@
 package Item;
 
-import org.fiuba.algoritmos3.Modificacion;
-import org.fiuba.algoritmos3.Cualidades;
+import Modificaciones.Modificacion;
+import Pokemones.Cualidades;
 
 public class HiperPocion extends ItemsCuracion {
 

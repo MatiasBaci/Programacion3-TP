@@ -1,6 +1,7 @@
 package Item;
 
-import org.fiuba.algoritmos3.*;
+import Modificaciones.Modificacion;
+import Pokemones.Cualidades;
 public abstract class Item {
 
     protected final String nombre;

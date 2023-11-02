@@ -1,15 +1,11 @@
 package Item;
 
-import org.fiuba.algoritmos3.Estado;
-import org.fiuba.algoritmos3.Cualidades;
-import org.fiuba.algoritmos3.EstadoInhabilitado;
-import org.fiuba.algoritmos3.EstadoNormal;
+import Estados.*;
+import Pokemones.Cualidades;
 
-import java.util.Objects;
 import java.util.Set;
 
 import static org.fiuba.algoritmos3.Constantes.ESTADO_INHABILITADO;
-import static org.fiuba.algoritmos3.Constantes.ESTADO_NORMAL;
 
 public abstract class ItemsEstado extends Item implements validarItemEstado {
 

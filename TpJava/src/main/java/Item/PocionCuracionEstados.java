@@ -1,7 +1,7 @@
 package Item;
-import static org.fiuba.algoritmos3.Constantes.*;
-import org.fiuba.algoritmos3.Modificacion;
-import org.fiuba.algoritmos3.Cualidades;
+
+import Modificaciones.Modificacion;
+import Pokemones.Cualidades;
 
 import java.util.Objects;
 

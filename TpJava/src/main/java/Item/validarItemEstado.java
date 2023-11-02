@@ -1,6 +1,6 @@
 package Item;
 
-import org.fiuba.algoritmos3.Estado;
+import Estados.Estado;
 
 import java.util.Set;
 

@@ -1,7 +1,6 @@
 package Item;
 
-import org.fiuba.algoritmos3.Cualidades;
-import org.fiuba.algoritmos3.Modificacion;
+import Pokemones.Cualidades;
 
 public abstract class ItemsCuracion extends Item implements validarItemCuracion{
 

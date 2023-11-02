@@ -1,7 +1,7 @@
 package Item;
 
-import org.fiuba.algoritmos3.Cualidades;
-import org.fiuba.algoritmos3.Modificacion;
+import Pokemones.Cualidades;
+import Modificaciones.Modificacion;
 
 public class PocionMolestaAlumnos extends ItemsCuracion{
     public PocionMolestaAlumnos(String unNombre, int cantidad, Modificacion unModificacion) {
