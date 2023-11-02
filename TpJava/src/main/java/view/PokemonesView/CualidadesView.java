@@ -1,7 +1,6 @@
 package view.PokemonesView;
 
-import org.fiuba.algoritmos3.Cualidades;
-import org.fiuba.algoritmos3.Estado;
+import Pokemones.Cualidades;
 import view.EstadosView.*;
 
 import java.util.HashSet;

@@ -1,8 +1,5 @@
 package view.PokemonesView;
-import org.fiuba.algoritmos3.Habilidad;
-import org.fiuba.algoritmos3.HabilidadAtaque;
-import org.fiuba.algoritmos3.HabilidadEstadistica;
-import org.fiuba.algoritmos3.HabilidadEstado;
+import Pokemones.*;
 
 
 public class HabilidadFactory {

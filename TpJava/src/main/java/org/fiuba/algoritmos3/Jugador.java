@@ -1,7 +1,6 @@
 package org.fiuba.algoritmos3;
-// import java.util.ArrayList;
+import Pokemones.Pokemon;
 import Item.Item;
-import view.JugadorView;
 
 import java.util.Map;
 import java.util.Objects;

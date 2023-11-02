@@ -1,9 +1,11 @@
 package org.fiuba.algoritmos3;
+import Modificaciones.*;
 import Item.*;
 import Tipo.Tipo;
-
+import Estados.*;
 import java.util.HashMap;
 import java.util.Map;
+import Pokemones.*;
 
 public class Datos {
 

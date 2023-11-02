@@ -1,7 +1,11 @@
 package view;
 
+import Climas.*;
+import Modificaciones.Modificacion;
+import Pokemones.Habilidad;
+import Pokemones.Pokemon;
 import org.fiuba.algoritmos3.*;
-import view.PokemonesView.*;
+import view.ClimasView.*;
 
 import static org.fiuba.algoritmos3.Constantes.*;
 import view.ModificacionesView.*;
@@ -15,10 +19,13 @@ public class GeneralView {
     private ModificacionFactory modificacionFactory;
     private ModificacionView modificacionView;
 
-    public GeneralView(Jugador jugador){
+    private SistemaDeClimaView sistemaDeClimaView;
+
+    public GeneralView(Jugador jugador, Clima climaActual){
         this.jugadorFactory = new JugadorFactory();
         this.modificacionFactory = new ModificacionFactory();
         this.jugadorView = jugadorFactory.createJugadorView(jugador);
+        this.sistemaDeClimaView = new SistemaDeClimaView(climaActual);
 
     }
 
@@ -34,106 +41,34 @@ public class GeneralView {
         this.jugadorView = this.jugadorFactory.createJugadorView(jugador);
     }
 
-
-    public void mensajeVolverAlMenu(){
-        System.out.println(ANSI_VERDE + "Oprima una tecla para volver al menu: " + ANSI_RESET);
-    }
-    public void mostrarMensajeAtacarPokemon() {
-
-        System.out.println("\n");
-        System.out.println(ANSI_VERDE + "╔════════════════╗");
-                     System.out.println("║ Atacar Pokemon ║");
-                     System.out.println("╚════════════════╝" + ANSI_RESET);
-        System.out.println("\n");
-
-        this.jugadorView.mostratHabilidadesPokemonActual();
-        System.out.println(ANSI_VERDEOSCURO + "Elige una habilidad: " + ANSI_RESET);
+    public void modificarClimaActualView(Clima climaActual){
+        this.sistemaDeClimaView.setClimaActualView(climaActual);
     }
 
-    public void mostrarMensajeIntercambiarPokemon() {
-
-        System.out.println("\n");
-        System.out.println(ANSI_VERDE + "╔══════════════════════╗");
-                     System.out.println("║ Intercambiar Pokemon ║");
-                     System.out.println("╚══════════════════════╝" + ANSI_RESET);
-        System.out.println("\n");
-
-        this.jugadorView.mostrarPokemones();
-        System.out.println(ANSI_VERDEOSCURO + "Ingrese el nombre del pokemon que desea intercambiar: " + ANSI_RESET);
-    }
-
-    public void mostrarMensajeCampoBatalla() {
-
-        System.out.println("\n");
-        System.out.println(ANSI_VERDEOSCURO + "╔══════════════════╗");
-                           System.out.println("║ Campo de Batalla ║");
-                           System.out.println("╚══════════════════╝" + ANSI_RESET);
-        System.out.println("\n");
-        System.out.println(ANSI_VERDE + "----------------------------------------------------------------------------------------------------" + ANSI_RESET);
-        this.jugadorView.mostrarPokemonActual();
-        System.out.println(ANSI_VERDE + "----------------------------------------------------------------------------------------------------" + ANSI_RESET);
-        this.jugadorView.getJugadorAdversarioView().mostrarPokemonActual();
-        System.out.println(ANSI_VERDE + "----------------------------------------------------------------------------------------------------" + ANSI_RESET);
-        System.out.println("\n");
-        this.mensajeVolverAlMenu();
-    }
-
-    public void mostrarMensajeRendirse(){
-
-        System.out.println(ANSI_VERDE + "╔═════════════════╗");
-                           System.out.println("║ Usted se rindio ║ ");
-                           System.out.println("╚═════════════════╝" + ANSI_RESET);
-    }
-
-    public void mostrarMensajeOpcionAplicarItem() {
-
-        System.out.println("\n");
-        System.out.println(ANSI_VERDE + "╔══════════════╗");
-                     System.out.println("║ Aplicar Item ║");
-                     System.out.println("╚══════════════╝" + ANSI_RESET);
-        System.out.println("\n");
-
-        this.jugadorView.mostratItems();
-        System.out.println(ANSI_VERDEOSCURO + "Seleccione el item a aplicar: " + ANSI_RESET);
-
-    }
-
-    public void mostrarMensajeAplicoItem(Jugador jugador, String nombreItem) {
-
-        System.out.println("\n");
-        System.out.println(ANSI_VERDE + "╔═════════════════════════════╗");
-                     System.out.println("║ Se acaba de aplicar un item ║");
-                     System.out.println("╚═════════════════════════════╝" + ANSI_RESET);
-        System.out.println("\n");
-        System.out.println("El jugador " + jugador.getNombre() + " acaba de usar " + nombreItem + ".");
-
-        this.mensajeVolverAlMenu();
-    }
-
-    public void mostrarMensajeIntercambioAlAdversario(){
-
-        System.out.println(ANSI_VERDE + "╔══════════════════════════════════════╗");
-                           System.out.println("║ El Adversario Intercambio el Pokemon ║ ");
-                           System.out.println("╚══════════════════════════════════════╝");
-                           System.out.println("\n");
-                           System.out.println(ANSI_VERDEOSCURO + "Es el turno del otro jugador. Oprima una tecla para continuar." + ANSI_RESET);
-    }
-
-    public void mostrarMensajeRealizarIntercambio(){
-        System.out.println(ANSI_VERDEOSCURO + "Desea Realizar el cambio? Si - No:" + ANSI_RESET);
-    }
-
-    public void mostrarMensajeNoSeRealizoIntercambio(){
-        System.out.println(ANSI_VERDEOSCURO + "No se realizo el intercambio. " + ANSI_RESET);
-        System.out.println("\n");
-        this.mensajeVolverAlMenu();
-    }
+    //Mensajes genericos.
 
     public void mostrarMensajeBienvenida() {
 
         System.out.println(ANSI_VERDE + "╔═══════════════════════╗");
-                     System.out.println("║ BIENVENIDO A POKEMON  ║");
-                     System.out.println("╚═══════════════════════╝" + ANSI_RESET   );
+        System.out.println("║ BIENVENIDO A POKEMON  ║");
+        System.out.println("╚═══════════════════════╝\n" + ANSI_RESET   );
+    }
+    public void mensajeVolverAlMenu(){
+        System.out.println(ANSI_VERDEOSCURO + "Oprima una tecla para volver al menu: " + ANSI_RESET);
+    }
+
+    public void felicitar(Jugador jugador) {
+        System.out.println("¡¡Felicidades a " + jugador.getNombre() + "!! Ganaste el juego");
+    }
+
+    public void mostrarMensajeOpcionInvalida() {
+
+        System.out.println(ANSI_ROJO + "\nERROR: NO ES UNA OPCION VALIDAD.\n" + ANSI_RESET);
+
+    }
+
+    public void mostrarEfectoPasivo(){
+        this.jugadorView.getPokemonActualView().mostrarEfectoPasivo();
     }
 
     public void mostrarMensajeMenu() {
@@ -158,21 +93,96 @@ public class GeneralView {
         System.out.println(ANSI_GRISCLARO);
         System.out.println("TURNO: " + this.jugadorView.getNombre());
         System.out.println("POKEMON: " + this.jugadorView.getNombrePokemonActual());
-        System.out.println("SELECCIONE UNA OPCION: ");
+        this.sistemaDeClimaView.mostrarEfectosClima(jugadorView.getPokemonActualView());
+        System.out.println("\nSELECCIONE UNA OPCION: ");
         System.out.println(ANSI_RESET);
     }
 
-    public void mostrarMensajeOpcionInvalida() {
 
-        System.out.println("\n");
-        System.out.println(ANSI_ROJO + "ERROR: NO ES UNA OPCION VALIDAD." + ANSI_RESET);
-        System.out.println("\n");
+    //Mensajes de aplicar item.
+    public void mostrarMensajeOpcionAplicarItem(){
+
+        System.out.println(ANSI_VERDE + "\n╔══════════════╗");
+        System.out.println("║ Aplicar Item ║");
+        System.out.println("╚══════════════╝\n" + ANSI_RESET);
+
+        jugadorView.mostratItems();
+        System.out.println(ANSI_VERDEOSCURO + "Seleccione el item a aplicar: " + ANSI_RESET);
+
 
     }
 
-    public void felicitar(Jugador jugador) {
-        System.out.println("¡¡Felicidades a " + jugador.getNombre() + "!! Ganaste el juego");
+    public void mostrarMensajeAplicoItem(Jugador jugador, String nombreItem) {
+
+        System.out.println(ANSI_VERDE + "\n╔═════════════════════════════╗");
+        System.out.println("║ Se acaba de aplicar un item ║");
+        System.out.println("╚═════════════════════════════╝\n" + ANSI_RESET);
+        System.out.println("El jugador " + jugador.getNombre() + " acaba de usar " + nombreItem + ".");
+        System.out.println(ANSI_VERDE + "ES EL TURNO DE " + this.jugadorView.getNombreJugadorAdversarioView().toUpperCase() + "\n" + ANSI_RESET);
+
+        this.mensajeVolverAlMenu();
     }
+
+    //Mensajes de atacar Pokemon.
+    public void mostrarMensajeAtacarPokemon() {
+
+        System.out.println(ANSI_VERDE + "\n╔════════════════╗");
+                       System.out.println("║ Atacar Pokemon ║");
+                       System.out.println("╚════════════════╝\n" + ANSI_RESET);
+
+        this.jugadorView.mostratHabilidadesPokemonActual();
+        System.out.println(ANSI_VERDEOSCURO + "Elige una habilidad: " + ANSI_RESET);
+    }
+
+    //Mensajes de intercambiar Pokemon.
+    public void mostrarMensajeIntercambiarPokemon() {
+
+        System.out.println(ANSI_VERDE + "\n╔══════════════════════╗");
+                       System.out.println("║ Intercambiar Pokemon ║");
+                       System.out.println("╚══════════════════════╝\n" + ANSI_RESET);
+
+        this.jugadorView.mostrarPokemones();
+        System.out.println(ANSI_VERDEOSCURO + "Ingrese el nombre del pokemon que desea intercambiar: " + ANSI_RESET);
+    }
+
+    public void mostrarMensajeNoSeRealizoIntercambio(){
+        System.out.println(ANSI_ROJO + "No se realizo el intercambio. \n" + ANSI_RESET);
+        this.mensajeVolverAlMenu();
+    }
+
+    public void mostrarMensajeIntercambioAlAdversario(){
+
+        System.out.println(ANSI_VERDE + "╔══════════════════════════════════════╗");
+        System.out.println("║ El Adversario Intercambio el Pokemon ║ ");
+        System.out.println("╚══════════════════════════════════════╝\n");
+        System.out.println(ANSI_VERDE + "ES EL TURNO DE " + this.jugadorView.getNombreJugadorAdversarioView().toUpperCase() + "\n" + ANSI_RESET);
+        this.mensajeVolverAlMenu();
+    }
+
+    //Mensajes de ver el campo de batalla.
+    public void mostrarMensajeCampoBatalla() {
+
+        System.out.println(ANSI_VERDEOSCURO + "\n╔══════════════════╗");
+                             System.out.println("║ Campo de Batalla ║");
+                             System.out.println("╚══════════════════╝\n" + ANSI_RESET);
+        System.out.println(ANSI_VERDE + "----------------------------------------------------------------------------------------------------" + ANSI_RESET);
+        this.jugadorView.mostrarPokemonActual();
+        System.out.println(ANSI_VERDE + "----------------------------------------------------------------------------------------------------" + ANSI_RESET);
+        this.jugadorView.getJugadorAdversarioView().mostrarPokemonActual();
+        System.out.println(ANSI_VERDE + "----------------------------------------------------------------------------------------------------" + ANSI_RESET);
+        System.out.println("\n");
+        this.mensajeVolverAlMenu();
+    }
+
+    //Mensjes de rendirse,
+    public void mostrarMensajeRendirse(){
+
+              System.out.println(ANSI_VERDE + "╔═════════════════╗");
+                           System.out.println("║ Usted se rindio ║ ");
+                           System.out.println("╚═════════════════╝" + ANSI_RESET);
+    }
+
+
 
     public void mostrarCasoModicicacion(Modificacion unaModificacion, Pokemon pokemon) {
         this.modificacionView = this.modificacionFactory.createModificacionView(unaModificacion);
@@ -186,8 +196,6 @@ public class GeneralView {
 
     }
 
-    public void mostrarEfectoPasivo(){
-        this.jugadorView.getPokemonActualView().mostrarEfectoPasivo();
-    }
+
 
 }

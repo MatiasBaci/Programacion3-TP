@@ -1,7 +1,6 @@
 package view.PokemonesView;
 
-import Item.Item;
-import org.fiuba.algoritmos3.Cualidades;
+import Pokemones.Cualidades;
 
 public class CualidadesFactory {
 

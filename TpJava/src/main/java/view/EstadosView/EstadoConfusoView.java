@@ -1,7 +1,6 @@
 package view.EstadosView;
 
-import org.fiuba.algoritmos3.Estado;
-import org.fiuba.algoritmos3.EstadoConfuso;
+import Estados.EstadoConfuso;
 
 public class EstadoConfusoView extends EstadoView{
 

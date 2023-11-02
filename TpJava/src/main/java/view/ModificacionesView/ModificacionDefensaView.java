@@ -1,8 +1,7 @@
 package view.ModificacionesView;
 
-import org.fiuba.algoritmos3.Cualidades;
-import org.fiuba.algoritmos3.Modificacion;
-import org.fiuba.algoritmos3.ModificacionDefensa;
+import Pokemones.Cualidades;
+import Modificaciones.Modificacion;
 
 public class ModificacionDefensaView extends ModificacionView{
 

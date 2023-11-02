@@ -25,6 +25,7 @@ public class Hielo extends Tipo {
     @Override
     public void completarTablaEfectividadClima() {
         this.tablaEfectividadClima.put(CLIMA_NEVADO, RELACION_FUERTE);
+        this.tablaEfectividadClima.put(CLIMA_TORMENTA_DE_NIEVE, RELACION_FUERTE);
         this.tablaEfectividadClima.put(CLIMA_NORMAL, RELACION_NORMAL);
 
     }

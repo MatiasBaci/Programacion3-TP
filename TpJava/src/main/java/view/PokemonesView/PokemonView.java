@@ -1,10 +1,8 @@
 package view.PokemonesView;
 
-import org.fiuba.algoritmos3.Cualidades;
-import org.fiuba.algoritmos3.Habilidad;
-import org.fiuba.algoritmos3.HabilidadAtaque;
-import org.fiuba.algoritmos3.Pokemon;
-
+import Tipo.Tipo;
+import Pokemones.Habilidad;
+import Pokemones.Pokemon;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,6 +33,10 @@ public class PokemonView {
         this.cualidadesView.mostrar();
         System.out.println(" Historia: " + this.pokemon.getHistoria());
         System.out.println("\n");
+    }
+
+    public Tipo getTipoPokemon(){
+        return this.pokemon.getTipo();
     }
 
     public String getNombre(){

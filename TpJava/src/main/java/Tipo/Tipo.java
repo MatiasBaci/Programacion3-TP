@@ -1,5 +1,4 @@
 package Tipo;
-import org.fiuba.algoritmos3.Clima;
 
 import static org.fiuba.algoritmos3.Constantes.*;
 
@@ -70,12 +69,17 @@ public abstract class Tipo {
     }
 
 
-    private String compararClima(String nombreClima){
+    public String compararClima(String nombreClima){
         if(tablaEfectividadClima.containsKey(nombreClima)) {
             return this.tablaEfectividadClima.get(nombreClima);
         }
         return RELACION_NORMAL;
     }
+
+     public boolean verSiEsAbrasivo(String nombreClima){
+         return Objects.equals(compararClima(nombreClima), RELACION_NORMAL);
+
+     }
 
     public double calcularMultiplicadorDeDanio(Tipo unTipo){
         double multiplicadorTipo = this.calcularMultiplicadorTipo(unTipo);
@@ -103,10 +107,10 @@ public abstract class Tipo {
         double multiplicadorClima;
         String efectividad = this.compararClima(nombreClima);
         if(Objects.equals(efectividad, RELACION_FUERTE)){
-            this.multiplicadorClima = 1.1;
+            this.multiplicadorClima = MULTIPLICADOR_CLIMA_FUERTE;
         }
         else{
-            this.multiplicadorClima = 1.0;
+            this.multiplicadorClima = MULTIPLICADOR_NEUTRAL;
         }
     }
 

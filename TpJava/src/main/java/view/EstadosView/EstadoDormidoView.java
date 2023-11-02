@@ -1,9 +1,6 @@
 package view.EstadosView;
 
-import org.fiuba.algoritmos3.Estado;
-import org.fiuba.algoritmos3.EstadoDormido;
-
-import java.util.Random;
+import Estados.EstadoDormido;
 
 public class EstadoDormidoView extends EstadoView{
 
@@ -17,8 +14,7 @@ public class EstadoDormidoView extends EstadoView{
     public boolean mostrar(){
 
 
-        if (this.estadoDormido.getTurnosDormido() >= this.estadoDormido.getDuracionMaxima() || this.estadoDormido.getNumeroRandom() <=  this.estadoDormido.getProbabilidadDeDespertar())
-        {
+        if (this.estadoDormido.getTurnosDormido() >= this.estadoDormido.getDuracionMaxima() || this.estadoDormido.getNumeroRandom() <=  this.estadoDormido.getProbabilidadDeDespertar()){
             System.out.println("El pokemon se despertó!");
             return true;
         } else {

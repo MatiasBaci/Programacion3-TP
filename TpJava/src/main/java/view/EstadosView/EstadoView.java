@@ -1,5 +1,5 @@
 package view.EstadosView;
-import org.fiuba.algoritmos3.Estado;
+import Estados.Estado;
 
 public abstract class EstadoView {
 

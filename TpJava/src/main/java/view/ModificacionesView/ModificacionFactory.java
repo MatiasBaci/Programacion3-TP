@@ -1,6 +1,6 @@
 package view.ModificacionesView;
 
-import org.fiuba.algoritmos3.*;
+import Modificaciones.*;
 
 public class ModificacionFactory {
 

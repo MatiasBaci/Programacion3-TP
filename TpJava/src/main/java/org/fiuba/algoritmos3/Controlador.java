@@ -2,6 +2,7 @@ package org.fiuba.algoritmos3;
 
 import view.GeneralView;
 import view.JugadorView;
+import Opciones.*;
 
 import java.util.*;
 import static org.fiuba.algoritmos3.Constantes.*;

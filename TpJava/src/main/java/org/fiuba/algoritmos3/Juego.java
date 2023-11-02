@@ -1,7 +1,8 @@
 package org.fiuba.algoritmos3;
 
 import view.GeneralView;
-import view.JugadorView;
+import Climas.*;
+import Pokemones.Pokemon;
 
 import java.util.Scanner;
 
@@ -32,7 +33,7 @@ public class Juego {
         this.sistemaDeClima = new SistemaDeClima();
 
         this.sistemaDeClima.inicializarClimaActual();
-        this.generalView = new GeneralView(jugador1);
+        this.generalView = new GeneralView(jugador1, sistemaDeClima.getClimaActual());
     }
 
     private boolean pokemonJugador1EsRapido(Pokemon pokemonJugador1, Pokemon pokemonJugador2){
@@ -61,7 +62,7 @@ public class Juego {
         this.generalView.mostrarMensajeBienvenida();
         this.controlador.validarNombresJugador(this.jugador1);
         this.controlador.validarNombresJugador(this.jugador2);
-        this.generalView = new GeneralView(jugador1);
+        this.generalView = new GeneralView(jugador1, sistemaDeClima.getClimaActual());
         this.generalView.getJugadorView().setJugadorAdversarioView(jugador2);
         this.controlador.seleccionarPokemon(this.jugador1, this.generalView.getJugadorView());
         this.controlador.seleccionarPokemon(this.jugador2, this.generalView.getJugadorAdversarioView());
@@ -71,7 +72,8 @@ public class Juego {
     public void aplicarIteracion(Jugador jugador, Jugador jugadorAversario){
 
         jugador.aplicarEfectoPasivo(); //-> Solo funciona para estado en veneno // EN LA ITERACION SIGUIENTE SE MORIRA
-        this.sistemaDeClima.getClimaActual().aplicarEfectoClima(jugador.getPokemonActual());
+        this.sistemaDeClima.aplicarClimaActual(jugador.getPokemonActual());
+        this.generalView.modificarClimaActualView(sistemaDeClima.getClimaActual());
         this.generalView.setJugadorView(jugador);
         this.generalView.getJugadorView().setJugadorAdversarioView(jugadorAversario);
         this.generalView.getJugadorView().setPokemonActualView(jugador.getPokemonActual());

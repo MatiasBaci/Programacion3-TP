@@ -1,7 +1,6 @@
 package view.PokemonesView;
 
-import Item.Item;
-import org.fiuba.algoritmos3.Pokemon;
+import Pokemones.Pokemon;
 
 public class PokemonFactory {
 

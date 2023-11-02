@@ -36,6 +36,7 @@ public class Constantes {
     public static final String TIPO_VOLADOR = "Volador";
 
     public static final String RELACION_FUERTE = "Fuerte";
+
     public static final String RELACION_NORMAL = "Normal";
 
     public static final String RELACION_DEBIL = "Debil";
@@ -45,13 +46,15 @@ public class Constantes {
 
     public static final String CLIMA_LLUVIA = "Lluvia";
 
-    public static final String CLIMA_TORMENTA_DE_ARENA= "TormentaDeArena";
+    public static final String CLIMA_TORMENTA_DE_ARENA= "Tormenta de Arena";
 
     public static final String CLIMA_NIEBLA = "Niebla";
 
     public static final String CLIMA_NEVADO = "Nevado";
 
-    public static final String CLIMA_TORMENTA_DE_RAYOS = "TormentaDeRayos";
+    public static final String CLIMA_TORMENTA_DE_RAYOS = "Tormenta Electrica";
+
+    public static final String CLIMA_TORMENTA_DE_NIEVE= "Tormenta de Nieve";
 
     public static final String CLIMA_HURACAN = "Huracan";
 
@@ -73,6 +76,8 @@ public class Constantes {
     public static final double MULTIPLICADOR_DEBIL = 0.5;
     public static final double MULTIPLICADOR_NULA = 0;
     public static final double MULTIPLICADOR_NEUTRAL = 1;
+
+    public static final double MULTIPLICADOR_CLIMA_FUERTE = 1;
     public static final double BONUS_MISMO_TIPO = 1.5;
     public static final double BONUS_NEUTRAL = 1;
     public static final int PROBABILIDAD_CRITICO = 90;
@@ -122,10 +127,6 @@ public class Constantes {
     
     public static final String ANSI_BOLD = "\u001B[1m";
     public static final String ANSI_UNDERLINE = "\u001B[4m";
-
-
-
-
 
 
 

@@ -1,7 +1,6 @@
 package view.EstadosView;
 
-import org.fiuba.algoritmos3.Estado;
-import org.fiuba.algoritmos3.EstadoInhabilitado;
+import Estados.EstadoInhabilitado;
 
 public class EstadoInhabilitadoView extends EstadoView{
 

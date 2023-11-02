@@ -1,7 +1,6 @@
 package view.PokemonesView;
-import org.fiuba.algoritmos3.Cualidades;
-import org.fiuba.algoritmos3.Habilidad;
-import org.fiuba.algoritmos3.HabilidadEstado;
+import Pokemones.Cualidades;
+import Pokemones.HabilidadEstado;
 
 public class   HabilidadEstadoView extends HabilidadView{
 
