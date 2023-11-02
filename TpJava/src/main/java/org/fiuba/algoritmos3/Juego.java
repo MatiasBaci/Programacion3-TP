@@ -70,13 +70,13 @@ public class Juego {
 
     public void aplicarIteracion(Jugador jugador, Jugador jugadorAversario){
 
-        jugador.aplicarEfectoPasivo(); //-> Solo funciona para estado en veneno
+        jugador.aplicarEfectoPasivo(); //-> Solo funciona para estado en veneno // EN LA ITERACION SIGUIENTE SE MORIRA
         this.sistemaDeClima.getClimaActual().aplicarEfectoClima(jugador.getPokemonActual());
         this.generalView.setJugadorView(jugador);
         this.generalView.getJugadorView().setJugadorAdversarioView(jugadorAversario);
         this.generalView.getJugadorView().setPokemonActualView(jugador.getPokemonActual());
         this.generalView.getJugadorAdversarioView().setPokemonActualView(jugadorAversario.getPokemonActual());
-        this.generalView.mostrarEfectoPasivo();
+        this.generalView.mostrarEfectoPasivo(); //--->Deberia ir a otro lado
         this.controlador.opcionesJugadores(jugador, this.generalView);
         jugadorAversario.setAtacante(true);
     }

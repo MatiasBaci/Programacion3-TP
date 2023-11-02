@@ -49,14 +49,11 @@ public class Pokemon {
         return misHabilidades.get(unaHabilidad);
     }
 
-    public boolean estaConciente() {
-        return this.cualidades.estaConsciente();
-    }
+    public boolean estaConciente() {return this.cualidades.estaConsciente();}
 
     public void atacar(Pokemon pokemonEnemigoActual, String nombreDeHabilidad) {
 
         Habilidad unaHabilidad = this.seleccionarHabilidad(nombreDeHabilidad);
-
 
         if (this.cualidades.atacarConEstadosActuales()) { //this.cualidades.atacarConEstadoActual() --> version uno solo
             unaHabilidad.usarHabilidad(pokemonEnemigoActual.getCualidades(), this.cualidades);

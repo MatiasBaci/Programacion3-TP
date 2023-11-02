@@ -1,6 +1,7 @@
 package view.PokemonesView;
 
 import org.fiuba.algoritmos3.Cualidades;
+import org.fiuba.algoritmos3.Estado;
 import view.EstadosView.*;
 
 import java.util.HashSet;
@@ -39,6 +40,7 @@ public class CualidadesView {
 
     public boolean atacarConEstadosActuales(){
         boolean puedeAtacarConSusEstados = this.estadosActualesView.stream().allMatch(estado -> estado.mostrar());
+        //this.estadosActualesView.removeIf(Estado::debeSerEliminado); --> no funciona aqui
         return puedeAtacarConSusEstados;
     }
 

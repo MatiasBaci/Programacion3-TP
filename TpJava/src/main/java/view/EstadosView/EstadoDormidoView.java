@@ -17,7 +17,7 @@ public class EstadoDormidoView extends EstadoView{
     public boolean mostrar(){
 
 
-        if (this.estadoDormido.getTurnosDormido() >= this.estadoDormido.getDuracionMaxima() || this.estadoDormido.getNumeroRandom() >= 1)
+        if (this.estadoDormido.getTurnosDormido() >= this.estadoDormido.getDuracionMaxima() || this.estadoDormido.getNumeroRandom() <=  this.estadoDormido.getProbabilidadDeDespertar())
         {
             System.out.println("El pokemon se despertó!");
             return true;

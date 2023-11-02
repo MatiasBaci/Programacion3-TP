@@ -34,10 +34,5 @@ public class OpcionAtacar implements Opciones{
             scanner.next();
         }
 
-
-
-
-
-
     }
 }

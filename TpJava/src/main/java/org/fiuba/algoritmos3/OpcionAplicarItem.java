@@ -22,14 +22,11 @@ public class OpcionAplicarItem implements Opciones{
         }
         if(jugador.usarItem(nombrePokemon, itemAplicable)) {
             generalView.mostrarMensajeAplicoItem(jugador, itemAplicable.getNombre());
-
-
-
             decision = scanner.next();
         }
 
 
-        Pokemon pokemnAux = jugador.getMisPokemones().get(nombrePokemon);
+        Pokemon pokemnAux = jugador.getMisPokemones().get(nombrePokemon); //--------->Problema con los prints en Estado ->
         generalView.mostrarCasoModicicacion(itemAplicable.getUnaModificacion(), pokemnAux);
     }
     @Override

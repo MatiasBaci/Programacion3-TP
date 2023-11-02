@@ -44,7 +44,8 @@ public class EstadoConfuso extends Estado{
 
         if(this.turnosConfuso >= this.duracionMaxima){
             //this.cualidades.cambiarseEstado(new EstadoNormal()); // cambiarlo------------>
-            this.cualidades.eliminarEstado(this);
+            //this.cualidades.eliminarEstado(this);
+            this.eliminarse = true;
             return true;
         }
         if(confundido){

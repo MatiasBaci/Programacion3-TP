@@ -10,6 +10,8 @@ public class EstadoNormal extends Estado{
 
     @Override
     public boolean puedeAtacar(){
+        //this.eliminarse =true; --> esto es par que se elimine luego de saber ya tiene un efecto pero que pasa si no lo tiene
+        // entonces deberia haber un this.cualidades.GetEstados.Size > 1 -> es ahi que debe eliminarse pero bueno veremos
         return true;
     }
 

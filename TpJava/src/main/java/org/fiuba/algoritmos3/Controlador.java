@@ -76,6 +76,7 @@ public class Controlador {
         String decision;
 
         if(!jugador.verficarEstadoPokemonActual()){
+
             this.seleccionarPokemon(jugador, generalView.getJugadorView());
         }
 

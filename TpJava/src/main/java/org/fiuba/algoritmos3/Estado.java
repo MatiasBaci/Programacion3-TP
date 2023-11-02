@@ -6,6 +6,8 @@ public abstract class Estado {
     protected String color;
     protected String nombre;
     protected Cualidades cualidades;
+    protected boolean eliminarse =  false; //--> esto esta mas que nada para agregarse en una Lista<Eliimnados>
+                                             //--> asi evitamos el error .ConcurrentModificationException
 
     public String getNombre() {
         return nombre;
@@ -21,7 +23,11 @@ public abstract class Estado {
 
     public void setCualidades(Cualidades cualidades){this.cualidades = cualidades;}
 
+    public boolean debeSerEliminado(){ return this.eliminarse;}
+
     public abstract boolean puedeAtacar();
 
     public abstract void aplicarEfectoPasivoDeEstado();
+
+
 }

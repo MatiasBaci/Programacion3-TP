@@ -6,7 +6,7 @@ public class EstadoFacory {
 
     public EstadoView createEstadoView(Estado estado){
         if(estado.getClass() == EstadoDormido.class){
-            return new EstadoDormidoView((EstadoDormido) estado);
+            return new  EstadoDormidoView((EstadoDormido) estado);
         }
         if(estado.getClass() == EstadoParalizado.class){
             return new EstadoParalizadoView((EstadoParalizado) estado);

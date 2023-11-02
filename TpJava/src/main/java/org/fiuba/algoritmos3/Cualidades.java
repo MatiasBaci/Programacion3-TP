@@ -68,7 +68,6 @@ public class Cualidades {
         /*if (estados.contains(unEstado)) {
             throw new EstadoDuplicadoException("El estado ya está presente en el conjunto.");
         }*/
-
         unEstado.setCualidades(this);
         this.estados.add(unEstado); // Al ser un Set no se va añadir ademas hay una verificacion arriba para el mensaje.
     }
@@ -79,6 +78,7 @@ public class Cualidades {
 
     public boolean atacarConEstadosActuales(){
         boolean puedeAtacarConSusEstados = this.estados.stream().allMatch(estado -> estado.puedeAtacar());
+        this.estados.removeIf(Estado::debeSerEliminado);
         return puedeAtacarConSusEstados;
     }
 
@@ -119,6 +119,7 @@ public class Cualidades {
         this.estados.clear(); // elimina todos los estados
         this.agregarEstado(unEstado);
     }
+
 
     public boolean estaConsciente() {
         if(this.getVida() == 0){ //<=
