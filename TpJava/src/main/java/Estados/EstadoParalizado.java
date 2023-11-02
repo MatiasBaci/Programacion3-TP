@@ -1,4 +1,6 @@
 package Estados;
+import org.fiuba.algoritmos3.ServicioDeRandoms;
+
 import static org.fiuba.algoritmos3.Constantes.*;
 
 import java.util.Random;
@@ -17,17 +19,9 @@ public class EstadoParalizado extends Estado{
 
     @Override
     public boolean puedeAtacar() {
-        
-        Random newRandom = new Random();
-        //set a new random between 1 and 100
-        this.numeroRandom = newRandom.nextInt(100)+1;
-        
-        if(this.numeroRandom <= 50) {
-            return false;
-        }
-        return true;
+        this.numeroRandom = (int) (ServicioDeRandoms.obtenerRandomParaEstadoPuedeAtacar() +1);
+        return this.numeroRandom > 50;
     }
-
 
     @Override
     public void aplicarEfectoPasivoDeEstado() {

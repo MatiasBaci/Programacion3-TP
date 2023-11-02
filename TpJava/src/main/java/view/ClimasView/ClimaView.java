@@ -19,7 +19,7 @@ public abstract class ClimaView {
     protected void mostrarAplicarEfecto(PokemonView pokemonView){
 
         if(Objects.equals(pokemonView.getTipoPokemon().compararClima(this.clima.getNombre()), RELACION_FUERTE)){
-            System.out.println("EL PODER DE ATAQUE TOTAL ESTA AUMENTADO UN 10%.");
+            System.out.println("EL CLIMA FAVORECE A TU POKEMON!! Sus ataques son 10% más fuertes.");
         }
     }
 }

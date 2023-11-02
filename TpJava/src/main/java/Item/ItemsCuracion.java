@@ -18,6 +18,7 @@ public abstract class ItemsCuracion extends Item implements validarItemCuracion{
         }
         return false;
     }
+
     @Override
     public boolean esUnItemDeSoloCampoDeBatalla(){return true;}
 }

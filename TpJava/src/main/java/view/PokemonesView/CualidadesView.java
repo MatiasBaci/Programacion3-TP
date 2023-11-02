@@ -29,7 +29,7 @@ public class CualidadesView {
                 " Nivel: " + this.cualidades.getNivel() + " --" +
                         " HP: " + ANSI_ROJO + (int)this.cualidades.getVida() + ANSI_RESET + " --" +
                         " Velocidad: " + ANSI_AMARILLO + this.cualidades.getVelocidad() + ANSI_RESET + " --" +
-                        " Defensa: " + ANSI_AZUL + this.cualidades.getDefensa() + ANSI_RESET + " --"  +
+                        " Defensa: " + ANSI_CELESTE + this.cualidades.getDefensa() + ANSI_RESET + " --"  +
                         " Ataque: " + ANSI_MARRON + this.cualidades.getAtaque() + ANSI_RESET);
         System.out.println(" Estado: ");
         this.cualidades.getEstadosActuales().forEach(estado -> {

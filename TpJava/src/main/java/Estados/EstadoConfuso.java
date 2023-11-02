@@ -1,5 +1,7 @@
 package Estados;
 
+import org.fiuba.algoritmos3.ServicioDeRandoms;
+
 import java.util.Random;
 
 import static org.fiuba.algoritmos3.Constantes.*;
@@ -9,7 +11,6 @@ public class EstadoConfuso extends Estado{
     private int turnosConfuso;
     private final int duracionMaxima;
     private boolean confundido;
-
     private double danioPorConfusion;
 
 
@@ -38,9 +39,6 @@ public class EstadoConfuso extends Estado{
 
     @Override
     public boolean puedeAtacar(){
-        Random newRandom = new Random();
-        double probabilidad = newRandom.nextDouble(); //Numero random de 0(incluyendo) a 1(excluyendo)
-        this.confundido = probabilidad <= PROBABILIDAD_DE_HERIRSE; // quiero que se guarde para luego usarlo en aplicar EfectoPasivoEstado
 
         if(this.turnosConfuso >= this.duracionMaxima){
             //this.cualidades.cambiarseEstado(new EstadoNormal()); // cambiarlo------------>
@@ -48,14 +46,17 @@ public class EstadoConfuso extends Estado{
             this.eliminarse = true;
             return true;
         }
+        this.turnosConfuso++;
+
+        double probabilidad = ServicioDeRandoms.obtenerRandomParaEstadoPuedeAtacar(); //Numero random de 0(incluyendo) a 1(excluyendo)
+        this.confundido = probabilidad <= PROBABILIDAD_DE_HERIRSE; // quiero que se guarde para luego usarlo en aplicar EfectoPasivoEstado
+
         if(confundido){
             this.danioPorConfusion = PORCENTAJE_DANIO_CONFUSO * this.cualidades.getVidaMaxima();
             this.cualidades.recibirDanio(danioPorConfusion);
             //this.cualidades.actualizarEstados(); // para que todos los estados sepan que se actualizaron
-        }
-        this.turnosConfuso++;
-        return false;
-
+            return false;
+        } else return true;
     }
 
     @Override

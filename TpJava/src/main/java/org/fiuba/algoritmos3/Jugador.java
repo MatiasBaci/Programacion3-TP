@@ -77,7 +77,7 @@ public class Jugador {
     }
 
     public boolean perdio() {
-        return (!this.misPokemones.values().stream().anyMatch(Pokemon::estaConciente)||
+        return (!this.misPokemones.values().stream().anyMatch(Pokemon::estaConsciente)||
         this.esPerdedor);
     }
 
@@ -101,7 +101,7 @@ public class Jugador {
         if (this.seleccionarPokemon(unPokemon) == null) {
             return false;
         }
-        else if (!this.seleccionarPokemon(unPokemon).getCualidades().estaConsciente()) {
+        else if (!this.seleccionarPokemon(unPokemon).estaConsciente()) {
             return false;
         }
         else if(this.pokemonActual != null){
@@ -141,7 +141,6 @@ public class Jugador {
         Validacion validacion = new Validacion();
         return validacion.estaContenidoPokemon(nombrePokemon,this.misPokemones);
     }
-
 }
 
 

@@ -18,6 +18,7 @@ public abstract class ItemsEstadistica extends Item implements validarItemEstadi
         }
         return false;
     }
+
     @Override
     public boolean esUnItemDeSoloCampoDeBatalla(){
         return false;

@@ -6,7 +6,7 @@ public abstract class Item {
 
     protected final String nombre;
     protected int cantidad;
-    protected Modificacion unaModificacion;
+    public Modificacion unaModificacion;
 
     public Item(String nombre, int cantidad) {
         this.nombre = nombre;

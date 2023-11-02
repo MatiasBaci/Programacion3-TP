@@ -12,11 +12,9 @@ public class AtaqueX extends ItemsEstadistica {
 
     @Override
     public boolean aplicarItem(Cualidades cualidades) {
-
         boolean realizo = this.realizarUsadoItemsDeEstadisitcas(cualidades);
         this.unaModificacion.modificar(cualidades, 1);
         return realizo;
     }
-
 }
 

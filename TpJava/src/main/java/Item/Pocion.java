@@ -9,6 +9,7 @@ public class Pocion extends ItemsCuracion {
         super(nombre, cantidad);
         this.unaModificacion = modificar;
     }
+
     @Override
     public boolean aplicarItem(Cualidades cualidades){
 
@@ -16,6 +17,4 @@ public class Pocion extends ItemsCuracion {
         this.unaModificacion.modificar(cualidades, 25);
         return realizo;
     }
-
-
 }

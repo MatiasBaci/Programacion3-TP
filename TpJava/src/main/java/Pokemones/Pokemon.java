@@ -27,14 +27,12 @@ public class Pokemon {
         this.cualidades.aplicarEfectoPasivoDeEstadosActuales(); // cambiarlo a aplicarEfectoPasivoEstadosActuales
     }
     public String getNombre() {return nombre;}
-
     public Map<String, Habilidad> getMisHabilidades() {
         return misHabilidades;
     }
     public Cualidades getCualidades() {return cualidades;}
     public int getVelocidad() {return cualidades.getVelocidad();}
     public double getVidaMaxima() {return this.cualidades.getVidaMaxima();}
-
     public String getHistoria() {
         return historia;
     }
@@ -43,12 +41,11 @@ public class Pokemon {
         this.misHabilidades.put(unaHabilidad.getNombre(), unaHabilidad);
     }
 
-
     public Habilidad seleccionarHabilidad(String unaHabilidad){
         return misHabilidades.get(unaHabilidad);
     }
 
-    public boolean estaConciente() {return this.cualidades.estaConsciente();}
+    public boolean estaConsciente() {return this.cualidades.estaConsciente();}
 
     public void atacar(Pokemon pokemonEnemigoActual, String nombreDeHabilidad) {
 

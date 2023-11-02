@@ -5,7 +5,6 @@ import Pokemones.Cualidades;
 
 public class DefensaX extends ItemsEstadistica {
 
-
     public DefensaX(String nombre, int cantidad, Modificacion unaModificacion){
         super(nombre, cantidad);
         this.unaModificacion = unaModificacion;

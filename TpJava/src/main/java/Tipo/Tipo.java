@@ -2,7 +2,6 @@ package Tipo;
 
 import static org.fiuba.algoritmos3.Constantes.*;
 
-
 import java.util.HashMap;
 import java.util.Objects;
 

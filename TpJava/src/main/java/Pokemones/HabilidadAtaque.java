@@ -1,8 +1,7 @@
 package Pokemones;
 
 import Tipo.Tipo;
-
-import java.util.Random;
+import org.fiuba.algoritmos3.ServicioDeRandoms;
 
 import static org.fiuba.algoritmos3.Constantes.*;
 
@@ -40,15 +39,13 @@ public class HabilidadAtaque extends Habilidad {
         double efectividadTipo = this.potenciaDeDanio(unTipoPokemonEnemigo);
         double mismoTipo = tipoDeUnPokemonPropio.calcularBonusDelMismoTipo(this.tipo);
 
-        Random unRandom = new Random();
-        double random = ((double)unRandom.nextInt(38)+217 ) / 255.0;
+        double random = ServicioDeRandoms.obtenerRandomParaHabilidadAtaqueCalculoAtaqueSegunTipo();
 
-        return efectividadTipo*mismoTipo*random;
+        return efectividadTipo*mismoTipo * random;
     }
 
     private double calculoCritico() {
-        Random unRandom = new Random();
-        int resultado = unRandom.nextInt(100);
+        int resultado = ServicioDeRandoms.obtenerRandomParaHabilidadAtaqueCalculoCritico();
         if (resultado < PROBABILIDAD_CRITICO) {
             return NO_CRITICO;
         }
@@ -79,7 +76,4 @@ public class HabilidadAtaque extends Habilidad {
         cualidadesPokemonEnemigo.recibirDanio(danio);
 
     }
-
-
-
 }

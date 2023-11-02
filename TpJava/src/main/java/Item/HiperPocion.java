@@ -5,7 +5,6 @@ import Pokemones.Cualidades;
 
 public class HiperPocion extends ItemsCuracion {
 
-
     public HiperPocion(String nombre, int cantidad, Modificacion unaModificacion){
         super(nombre, cantidad);
         this.unaModificacion = unaModificacion;
@@ -18,6 +17,5 @@ public class HiperPocion extends ItemsCuracion {
         this.unaModificacion.modificar(cualidades, 100);
         return realizo;
     }
-
 }
 
