@@ -2,8 +2,6 @@ package view.EstadosView;
 
 import Estados.EstadoParalizado;
 
-import java.util.Random;
-
 public class EstadoParalizadoView extends EstadoView{
 
     private EstadoParalizado estadoParalizado;

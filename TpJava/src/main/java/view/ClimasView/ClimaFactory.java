@@ -6,7 +6,7 @@ public class ClimaFactory {
 
     public ClimaView createClimaView(Clima clima){
 
-        if(clima.getClass() == ClimaHuracan.class){
+        if(clima.getClass() == ClimaTormentaHuracan.class){
             return new ClimaHuracanView(clima);
         }
         if(clima.getClass() == ClimaLLuvia.class){
@@ -28,7 +28,7 @@ public class ClimaFactory {
         if (clima.getClass() == ClimaTormentaNevada.class){
             return new ClimaTormentaNevadaView(clima);
         }
-        if (clima.getClass() == ClimaTormentaDeRayos.class){
+        if (clima.getClass() == ClimaTormentaElectrica.class){
             return new ClimaTormentaDeRayosView(clima);
         }
 

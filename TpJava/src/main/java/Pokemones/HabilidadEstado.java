@@ -1,6 +1,6 @@
 package Pokemones;
 
-import Estados.*;
+import Estados.Estado;
 
 public class HabilidadEstado extends Habilidad{
 

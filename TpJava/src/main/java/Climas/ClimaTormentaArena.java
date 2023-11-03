@@ -1,8 +1,9 @@
 package Climas;
 
-import Pokemones.Pokemon;
+import Pokemones.Cualidades;
 
 import static org.fiuba.algoritmos3.Constantes.CLIMA_TORMENTA_DE_ARENA;
+import static org.fiuba.algoritmos3.Constantes.PORCENTAJE_DANIO_CLIMA_ABRASIVO;
 
 public class ClimaTormentaArena extends Clima{
 
@@ -11,11 +12,11 @@ public class ClimaTormentaArena extends Clima{
     }
 
     @Override
-    public void aplicarEfectoClima(Pokemon pokemon) {
+    public void aplicarEfectoClima(Cualidades cualidades) {
 
-        pokemon.getTipo().calcularMultiplicadorClima(this.nombre);
-        if(pokemon.getTipo().verSiEsAbrasivo(this.nombre)){
-            pokemon.getCualidades().recibirDanio(pokemon.getCualidades().getVidaMaxima() * 0.03);
+        cualidades.getTipo().calcularMultiplicadorClima(this.nombre);
+        if(cualidades.getTipo().verSiEsAbrasivo(this.nombre)){
+            cualidades.recibirDanio(cualidades.getVidaMaxima() * PORCENTAJE_DANIO_CLIMA_ABRASIVO);
             System.out.println("Se bajo la vida");
         }
     }

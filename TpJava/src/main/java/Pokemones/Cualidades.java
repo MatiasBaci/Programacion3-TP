@@ -1,14 +1,14 @@
 package Pokemones;
+
 import Estados.Estado;
 import Estados.EstadoInhabilitado;
 import Estados.EstadoNormal;
 import Tipo.Tipo;
 
-
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.fiuba.algoritmos3.Constantes.*;
+import static org.fiuba.algoritmos3.Constantes.PORCENTAJE;
 public class Cualidades {
 
     //Atributos:
@@ -45,7 +45,6 @@ public class Cualidades {
         Estado unEstado = new EstadoNormal();
         unEstado.setCualidades(this);
         this.estados.add(unEstado);
-
     }
 
     public double getVidaMaxima() { return this.vidaMaxima ;}

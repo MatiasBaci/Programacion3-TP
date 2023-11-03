@@ -1,6 +1,7 @@
 package Opciones;
-import org.fiuba.algoritmos3.Jugador;
+
 import Pokemones.Pokemon;
+import org.fiuba.algoritmos3.Jugador;
 import view.GeneralView;
 import view.JugadorView;
 

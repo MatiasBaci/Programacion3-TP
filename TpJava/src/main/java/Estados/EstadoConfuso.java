@@ -2,8 +2,6 @@ package Estados;
 
 import org.fiuba.algoritmos3.ServicioDeRandoms;
 
-import java.util.Random;
-
 import static org.fiuba.algoritmos3.Constantes.*;
 
 public class EstadoConfuso extends Estado{

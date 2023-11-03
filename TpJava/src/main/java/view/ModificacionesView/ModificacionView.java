@@ -1,7 +1,7 @@
 package view.ModificacionesView;
 
-import Pokemones.Cualidades;
 import Modificaciones.Modificacion;
+import Pokemones.Cualidades;
 
 public abstract class ModificacionView{
 

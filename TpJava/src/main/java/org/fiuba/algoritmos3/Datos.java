@@ -1,11 +1,16 @@
 package org.fiuba.algoritmos3;
-import Modificaciones.*;
+
+import Estados.EstadoConfuso;
+import Estados.EstadoDormido;
+import Estados.EstadoEnvenenado;
+import Estados.EstadoParalizado;
 import Item.*;
+import Modificaciones.*;
+import Pokemones.*;
 import Tipo.Tipo;
-import Estados.*;
+
 import java.util.HashMap;
 import java.util.Map;
-import Pokemones.*;
 
 public class Datos {
 
@@ -54,6 +59,8 @@ public class Datos {
         squirtle.aniadirHabilidad(cabezazo);
         Habilidad defensaFerrea = new HabilidadEstadistica("DefensaFerrea", 15, true, 2, new ModificacionDefensa());
         squirtle.aniadirHabilidad(defensaFerrea);
+        Habilidad danzaDeLluvia = new HabilidadClima("DanzaDeLluvia", "Lluvia", 5);
+        squirtle.aniadirHabilidad(danzaDeLluvia);
         this.mochilaJugador1.put(squirtle.getNombre(), squirtle);
 
 

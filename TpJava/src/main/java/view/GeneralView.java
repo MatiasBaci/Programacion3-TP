@@ -1,14 +1,15 @@
 package view;
 
-import Climas.*;
+import Climas.Clima;
 import Modificaciones.Modificacion;
 import Pokemones.Habilidad;
 import Pokemones.Pokemon;
-import org.fiuba.algoritmos3.*;
-import view.ClimasView.*;
+import org.fiuba.algoritmos3.Jugador;
+import view.ClimasView.SistemaDeClimaView;
+import view.ModificacionesView.ModificacionFactory;
+import view.ModificacionesView.ModificacionView;
 
 import static org.fiuba.algoritmos3.Constantes.*;
-import view.ModificacionesView.*;
 
 public class GeneralView {
 

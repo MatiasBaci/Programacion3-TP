@@ -12,7 +12,7 @@ public class ModificacionVelocidadTest {
     public void testModificacionVelocidadModificaVelocidad() {
         //Arrange
         Cualidades cualidades = mock(Cualidades.class);
-        when(cualidades.getVida()).thenReturn(10.0);
+        when(cualidades.estaConsciente()).thenReturn(true);
         when(cualidades.getVelocidad()).thenReturn(10);
         ModificacionVelocidad modificacion = new ModificacionVelocidad();
         //Act
@@ -22,10 +22,10 @@ public class ModificacionVelocidadTest {
     }
 
     @Test
-    public void testModificacionVelocidadNoModificaVelocidadSiLaVidaEs0() {
+    public void testModificacionVelocidadNoModificaVelocidadSiEstaInconsciente() {
         //Arrange
         Cualidades cualidades = mock(Cualidades.class);
-        when(cualidades.getVida()).thenReturn(0.0);
+        when(cualidades.estaConsciente()).thenReturn(false);
         when(cualidades.getVelocidad()).thenReturn(10);
         ModificacionVelocidad modificacion = new ModificacionVelocidad();
         //Act

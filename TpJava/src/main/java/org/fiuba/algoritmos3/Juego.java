@@ -1,8 +1,8 @@
 package org.fiuba.algoritmos3;
 
-import view.GeneralView;
-import Climas.*;
+import Climas.SistemaDeClima;
 import Pokemones.Pokemon;
+import view.GeneralView;
 
 import java.util.Scanner;
 
@@ -18,7 +18,7 @@ public class Juego {
 
     private GeneralView generalView;
 
-    private SistemaDeClima sistemaDeClima;
+    //private SistemaDeClima sistemaDeClima;
 
     //Metodos:
 
@@ -30,10 +30,10 @@ public class Juego {
         this.jugador1.setAdversario(jugador2);
         this.jugador2.setAdversario(jugador1);
         this.controlador = new Controlador();
-        this.sistemaDeClima = new SistemaDeClima();
 
-        this.sistemaDeClima.inicializarClimaActual();
-        this.generalView = new GeneralView(jugador1, sistemaDeClima.getClimaActual());
+        SistemaDeClima.iniciarSistemaDeClima();
+        SistemaDeClima.inicializarClimaActual();
+        this.generalView = new GeneralView(jugador1, SistemaDeClima.getClimaActual());
     }
 
     private boolean pokemonJugador1EsRapido(Pokemon pokemonJugador1, Pokemon pokemonJugador2){
@@ -62,7 +62,7 @@ public class Juego {
         this.generalView.mostrarMensajeBienvenida();
         this.controlador.validarNombresJugador(this.jugador1);
         this.controlador.validarNombresJugador(this.jugador2);
-        this.generalView = new GeneralView(jugador1, sistemaDeClima.getClimaActual());
+        this.generalView = new GeneralView(jugador1, SistemaDeClima.getClimaActual());
         this.generalView.getJugadorView().setJugadorAdversarioView(jugador2);
         this.controlador.seleccionarPokemon(this.jugador1, this.generalView.getJugadorView());
         this.controlador.seleccionarPokemon(this.jugador2, this.generalView.getJugadorAdversarioView());
@@ -72,8 +72,8 @@ public class Juego {
     public void aplicarIteracion(Jugador jugador, Jugador jugadorAversario){
 
         jugador.aplicarEfectoPasivo(); //-> Solo funciona para estado en veneno // EN LA ITERACION SIGUIENTE SE MORIRA
-        this.sistemaDeClima.aplicarClimaActual(jugador.getPokemonActual());
-        this.generalView.modificarClimaActualView(sistemaDeClima.getClimaActual());
+        SistemaDeClima.aplicarClimaActual(jugador.getPokemonActual());
+        this.generalView.modificarClimaActualView(SistemaDeClima.getClimaActual());
         this.generalView.setJugadorView(jugador);
         this.generalView.getJugadorView().setJugadorAdversarioView(jugadorAversario);
         this.generalView.getJugadorView().setPokemonActualView(jugador.getPokemonActual());

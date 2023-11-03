@@ -1,6 +1,6 @@
 package Item;
 
-import Estados.*;
+import Estados.Estado;
 import Pokemones.Cualidades;
 
 import java.util.Set;

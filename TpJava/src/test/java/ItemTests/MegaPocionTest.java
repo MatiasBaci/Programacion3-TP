@@ -1,7 +1,6 @@
 package ItemTests;
 
 import Item.MegaPocion;
-import Item.Pocion;
 import Pokemones.Cualidades;
 import Modificaciones.ModificacionVida;
 import org.junit.jupiter.api.Test;

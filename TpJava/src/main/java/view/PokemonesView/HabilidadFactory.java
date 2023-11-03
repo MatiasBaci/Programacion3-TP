@@ -1,4 +1,5 @@
 package view.PokemonesView;
+
 import Pokemones.*;
 
 
@@ -10,9 +11,10 @@ public class HabilidadFactory {
         }
         if(habilidad.getClass() == HabilidadEstadistica.class){
             return new HabilidadEstadisticaView((HabilidadEstadistica) habilidad);
-
+        }
+        if (habilidad.getClass() == HabilidadClima.class){
+            return new HabilidadClimaView((HabilidadClima) habilidad);
         }
         return new HabilidadEstadoView((HabilidadEstado) habilidad);
-
     }
 }

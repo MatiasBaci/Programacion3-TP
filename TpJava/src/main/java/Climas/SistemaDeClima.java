@@ -1,61 +1,56 @@
 package Climas;
 
 import Pokemones.Pokemon;
+import org.fiuba.algoritmos3.ServicioDeRandoms;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static org.fiuba.algoritmos3.Constantes.*;
 
 public class SistemaDeClima {
 
-    private Map<String, Clima> climas;
+    private static final Map<String, Clima> climas = new HashMap<>();
 
-    private Clima ClimaActual;
-
-    public SistemaDeClima(){
-        this.climas = new HashMap<>();
-        this.climas.put(CLIMA_SOLEADO, new ClimaSoleado());
-        this.climas.put(CLIMA_LLUVIA, new ClimaLLuvia());
-        this.climas.put(CLIMA_NEVADO, new ClimaNevado());
-        this.climas.put(CLIMA_TORMENTA_DE_ARENA, new ClimaTormentaArena());
-        this.climas.put(CLIMA_HURACAN, new ClimaHuracan());
-        this.climas.put(CLIMA_TORMENTA_DE_RAYOS, new ClimaTormentaDeRayos());
-        this.climas.put(CLIMA_NIEBLA, new ClimaNiebla());
-        this.climas.put(CLIMA_TORMENTA_DE_NIEVE, new ClimaTormentaNevada());
-        this.climaActual = null;
+    public static void iniciarSistemaDeClima(){
+        climas.put(CLIMA_SOLEADO, new ClimaSoleado());
+        climas.put(CLIMA_LLUVIA, new ClimaLLuvia());
+        climas.put(CLIMA_NEVADO, new ClimaNevado());
+        climas.put(CLIMA_TORMENTA_DE_ARENA, new ClimaTormentaArena());
+        climas.put(CLIMA_TORMENTA_DE_RAYOS, new ClimaTormentaElectrica());
+        climas.put(CLIMA_NIEBLA, new ClimaNiebla());
+        climas.put(CLIMA_TORMENTA_DE_NIEVE, new ClimaTormentaNevada());
+        climaActual = null;
     }
 
-    private Clima climaActual;
+    public static Clima climaActual;
 
-    public Clima getClimaActual() {
+    public static Clima getClimaActual() {
         return climaActual;
     }
 
-    public void setClimaActual(Clima climaActual) {
-        this.climaActual = climaActual;
+    public static void setClimaActual(String clima) {
+        climaActual = climas.get(clima);
     }
 
-    public void inicializarClimaActual(){
+    public static void inicializarClimaActual(){
         List<String> claves = new ArrayList<>(climas.keySet());
-        Random random = new Random();
-        int indiceRandom = random.nextInt(climas.size());
+        int indiceRandom = ServicioDeRandoms.obtenerRandomParaSistemaDeClimas(climas.size());
 
-        this.climaActual = climas.get(claves.get(indiceRandom));
-
+        climaActual = climas.get(claves.get(indiceRandom));
     }
 
-    public void aumentarClimaActual(){
-
-        this.climaActual.aumentarDuracion();
-        if(this.climaActual.getDuracionActual() == this.climaActual.getDuracionMaxima() + 1){
-            this.climaActual = new ClimaNormal();
+    public static void aumentarClimaActual(){
+        climaActual.aumentarDuracion();
+        if(climaActual.getDuracionActual() >= DURACION_MAXIMA_DE_CLIMA + 1){
+            climaActual = new ClimaNormal();
         }
     }
 
-    public void aplicarClimaActual(Pokemon pokemon){
-        this.climaActual.aplicarEfectoClima(pokemon);
-        this.aumentarClimaActual();
+    public static void aplicarClimaActual(Pokemon pokemon){
+        climaActual.aplicarEfectoClima(pokemon.getCualidades());
+        aumentarClimaActual();
     }
-
-
 }

@@ -1,10 +1,13 @@
 package org.fiuba.algoritmos3;
 
+import Opciones.*;
 import view.GeneralView;
 import view.JugadorView;
-import Opciones.*;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
 import static org.fiuba.algoritmos3.Constantes.*;
 
 public class Controlador {

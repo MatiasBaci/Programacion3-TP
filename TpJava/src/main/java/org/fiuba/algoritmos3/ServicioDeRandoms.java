@@ -18,4 +18,9 @@ public class ServicioDeRandoms {
             Random unRandom = new Random();
             return Math.round(unRandom.nextDouble() * 100 / 100.0);
         }
+
+        static public int obtenerRandomParaSistemaDeClimas(int tamanio) {
+            Random unRandom = new Random();
+            return unRandom.nextInt(tamanio);
+        }
 }

@@ -1,6 +1,6 @@
 package Pokemones;
+
 import Tipo.Tipo;
-import view.PokemonesView.*;
 
 import java.util.HashMap;
 import java.util.Map;

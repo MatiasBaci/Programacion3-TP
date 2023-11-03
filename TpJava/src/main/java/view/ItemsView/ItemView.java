@@ -1,5 +1,6 @@
 package view.ItemsView;
-import Item.*;
+
+import Item.Item;
 
 public abstract class ItemView {
 

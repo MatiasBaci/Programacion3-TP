@@ -1,7 +1,7 @@
 package Item;
 
-import Pokemones.Cualidades;
 import Modificaciones.Modificacion;
+import Pokemones.Cualidades;
 
 public class PocionMolestaAlumnos extends ItemsCuracion{
     public PocionMolestaAlumnos(String unNombre, int cantidad, Modificacion unModificacion) {

@@ -1,8 +1,9 @@
 package view.PokemonesView;
 
-import Tipo.Tipo;
 import Pokemones.Habilidad;
 import Pokemones.Pokemon;
+import Tipo.Tipo;
+
 import java.util.HashMap;
 import java.util.Map;
 

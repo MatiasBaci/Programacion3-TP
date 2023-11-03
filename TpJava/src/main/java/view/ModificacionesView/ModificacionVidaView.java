@@ -1,9 +1,10 @@
 package view.ModificacionesView;
 
-import Pokemones.Cualidades;
 import Modificaciones.Modificacion;
+import Pokemones.Cualidades;
 
-import static org.fiuba.algoritmos3.Constantes.*;
+import static org.fiuba.algoritmos3.Constantes.ANSI_RESET;
+import static org.fiuba.algoritmos3.Constantes.ANSI_ROJO;
 
 public class ModificacionVidaView extends ModificacionView {
 

@@ -8,6 +8,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TipoTest {
 
+    // TESTS DE INTEGRACION
+
     @Test
     public void testCalcularBonusDelMismoTipoConTiposIguales() {
         //Arrange

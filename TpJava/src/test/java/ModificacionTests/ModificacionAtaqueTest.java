@@ -12,7 +12,7 @@ public class ModificacionAtaqueTest {
     public void testModificacionAtaqueModificaAtaque() {
         //Arrange
         Cualidades cualidades = mock(Cualidades.class);
-        when(cualidades.getVida()).thenReturn(10.0);
+        when(cualidades.estaConsciente()).thenReturn(true);
         when(cualidades.getAtaque()).thenReturn(10);
         ModificacionAtaque modificacion = new ModificacionAtaque();
         //Act
@@ -22,10 +22,10 @@ public class ModificacionAtaqueTest {
     }
 
     @Test
-    public void testModificacionAtaqueNoModificaAtaqueSiLaVidaEs0() {
+    public void testModificacionAtaqueNoModificaAtaqueSiEstaInconsciente() {
         //Arrange
         Cualidades cualidades = mock(Cualidades.class);
-        when(cualidades.getVida()).thenReturn(0.0);
+        when(cualidades.estaConsciente()).thenReturn(false);
         when(cualidades.getAtaque()).thenReturn(10);
         ModificacionAtaque modificacion = new ModificacionAtaque();
         //Act

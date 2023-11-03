@@ -3,8 +3,6 @@ package Item;
 import Modificaciones.Modificacion;
 import Pokemones.Cualidades;
 
-import java.util.Objects;
-
 public class PocionCuracionEstados extends ItemsEstado {
     public PocionCuracionEstados(String nombre, int cantidad, Modificacion unaModificacion){
 

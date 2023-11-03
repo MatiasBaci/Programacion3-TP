@@ -9,7 +9,7 @@ public class ModificacionAtaque implements Modificacion { //implementsModificabl
 
     @Override
     public void modificar(Cualidades unaCualidad, int etapas) {
-        if (unaCualidad.getVida() != 0) {
+        if (unaCualidad.estaConsciente()) {
             unaCualidad.modificarAtaque(etapas);
         }
     }

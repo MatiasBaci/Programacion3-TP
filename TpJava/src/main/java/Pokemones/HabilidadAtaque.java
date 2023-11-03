@@ -41,7 +41,7 @@ public class HabilidadAtaque extends Habilidad {
 
         double random = ServicioDeRandoms.obtenerRandomParaHabilidadAtaqueCalculoAtaqueSegunTipo();
 
-        return efectividadTipo*mismoTipo * random;
+        return efectividadTipo * mismoTipo * random;
     }
 
     private double calculoCritico() {

@@ -1,5 +1,7 @@
 package Estados;
-import static org.fiuba.algoritmos3.Constantes.*;
+
+import static org.fiuba.algoritmos3.Constantes.ANSI_BLANCO;
+import static org.fiuba.algoritmos3.Constantes.ESTADO_NORMAL;
 
 public class EstadoNormal extends Estado{
 

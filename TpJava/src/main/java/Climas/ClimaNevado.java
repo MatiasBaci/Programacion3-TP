@@ -1,6 +1,6 @@
 package Climas;
 
-import Pokemones.Pokemon;
+import Pokemones.Cualidades;
 
 import static org.fiuba.algoritmos3.Constantes.CLIMA_NEVADO;
 
@@ -11,9 +11,9 @@ public class ClimaNevado extends Clima{
     }
 
     @Override
-    public void aplicarEfectoClima(Pokemon pokemon) {
+    public void aplicarEfectoClima(Cualidades cualidades) {
 
-        pokemon.getTipo().calcularMultiplicadorClima(this.nombre);
+        cualidades.getTipo().calcularMultiplicadorClima(this.nombre);
 
     }
 }

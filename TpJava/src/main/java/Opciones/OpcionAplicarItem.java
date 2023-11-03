@@ -1,8 +1,8 @@
 package Opciones;
 
 import Item.Item;
-import org.fiuba.algoritmos3.Jugador;
 import Pokemones.Pokemon;
+import org.fiuba.algoritmos3.Jugador;
 import view.GeneralView;
 
 import java.util.Scanner;

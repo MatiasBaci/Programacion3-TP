@@ -52,6 +52,10 @@ public class Constantes {
     public static final String CLIMA_HURACAN = "Huracan";
     public static final String CLIMA_NORMAL= "Normal";
 
+    public static final int DURACION_MAXIMA_DE_CLIMA = 10;
+
+    public static final double PORCENTAJE_DANIO_CLIMA_ABRASIVO = 0.03;
+
     public static final String MODIFICACION_VIDA = "Vida";
     public static final String MODIFICACION_ATAQUE = "Ataque";
     public static final String MODIFICACION_DEFENSA = "Defensa";
@@ -64,7 +68,8 @@ public class Constantes {
     public static final double MULTIPLICADOR_NULA = 0;
     public static final double MULTIPLICADOR_NEUTRAL = 1;
 
-    public static final double MULTIPLICADOR_CLIMA_FUERTE = 1;
+    public static final double MULTIPLICADOR_CLIMA_FUERTE = 1.1;
+    public static final double MULTIPLICADOR_CLIMA_NEUTRAL = 1;
 
     public static final double BONUS_MISMO_TIPO = 1.5;
     public static final double BONUS_NEUTRAL = 1;

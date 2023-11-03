@@ -1,5 +1,6 @@
 package view.ItemsView;
-import Item.*;
+
+import Item.Item;
 
 import static org.fiuba.algoritmos3.Constantes.ANSI_GRISCLARO;
 import static org.fiuba.algoritmos3.Constantes.ANSI_RESET;

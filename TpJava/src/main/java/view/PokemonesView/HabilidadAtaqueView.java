@@ -6,11 +6,9 @@ public class HabilidadAtaqueView extends HabilidadView{
 
     HabilidadAtaque habilidadAtaque;
 
-    public HabilidadAtaqueView(HabilidadAtaque habilidadAtaqaue){
-        super(habilidadAtaqaue);
-        this.habilidadAtaque = habilidadAtaqaue;
-
-
+    public HabilidadAtaqueView(HabilidadAtaque habilidadAtaque){
+        super(habilidadAtaque);
+        this.habilidadAtaque = habilidadAtaque;
     }
 
     @Override

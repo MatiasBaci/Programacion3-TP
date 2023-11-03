@@ -1,7 +1,8 @@
 package view.PokemonesView;
 
 import Pokemones.Cualidades;
-import view.EstadosView.*;
+import view.EstadosView.EstadoFacory;
+import view.EstadosView.EstadoView;
 
 import java.util.HashSet;
 import java.util.Set;

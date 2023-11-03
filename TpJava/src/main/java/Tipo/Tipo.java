@@ -1,9 +1,9 @@
 package Tipo;
 
-import static org.fiuba.algoritmos3.Constantes.*;
-
 import java.util.HashMap;
 import java.util.Objects;
+
+import static org.fiuba.algoritmos3.Constantes.*;
 
 public abstract class Tipo {
 
@@ -82,7 +82,7 @@ public abstract class Tipo {
 
     public double calcularMultiplicadorDeDanio(Tipo unTipo){
         double multiplicadorTipo = this.calcularMultiplicadorTipo(unTipo);
-        return multiplicadorTipo * multiplicadorClima;
+        return multiplicadorTipo * getMultiplicadorClima();
 
     }
 
@@ -103,13 +103,12 @@ public abstract class Tipo {
     }
 
     public void calcularMultiplicadorClima(String nombreClima){
-        double multiplicadorClima;
         String efectividad = this.compararClima(nombreClima);
         if(Objects.equals(efectividad, RELACION_FUERTE)){
             this.multiplicadorClima = MULTIPLICADOR_CLIMA_FUERTE;
         }
         else{
-            this.multiplicadorClima = MULTIPLICADOR_NEUTRAL;
+            this.multiplicadorClima = MULTIPLICADOR_CLIMA_NEUTRAL;
         }
     }
 

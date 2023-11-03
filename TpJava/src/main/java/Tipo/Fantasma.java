@@ -16,7 +16,7 @@ public class Fantasma extends Tipo {
     public void completarTablaEfectividadTipo(){
         this.tablaEfectividadTipo.put(TIPO_FANTASMA, RELACION_FUERTE);
         this.tablaEfectividadTipo.put(TIPO_NORMAL, RELACION_NULA);
-        this.tablaEfectividadTipo.put(TIPO_PSIQUICO, RELACION_NULA);
+        this.tablaEfectividadTipo.put(TIPO_PSIQUICO, RELACION_FUERTE);
     }
 
     public void completarTablaEfectividadClima(){

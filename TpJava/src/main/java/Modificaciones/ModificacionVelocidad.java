@@ -7,7 +7,7 @@ import static org.fiuba.algoritmos3.Constantes.MODIFICACION_VELOCIDAD;
 public class ModificacionVelocidad implements Modificacion{
     @Override
     public void modificar(Cualidades unaCualidad, int etapas) {
-        if (unaCualidad.getVida() != 0) {
+        if (unaCualidad.estaConsciente()) {
             unaCualidad.modificarVelocidad(etapas);
         }
     }

@@ -1,18 +1,17 @@
 package Climas;
 
-import Pokemones.Pokemon;
+import Pokemones.Cualidades;
 
 public abstract class Clima {
 
     protected String nombre;
 
-    protected int duracionMaxima;
+    protected int DURACION_MAXIMA_DE_CLIMA;
 
     protected int duracionActual;
 
 
     public Clima(){
-        this.duracionMaxima = 10;
         this.duracionActual = 0;
     }
 
@@ -21,7 +20,7 @@ public abstract class Clima {
     }
 
     public int getDuracionMaxima() {
-        return duracionMaxima;
+        return DURACION_MAXIMA_DE_CLIMA;
     }
 
     public int getDuracionActual() {
@@ -36,6 +35,6 @@ public abstract class Clima {
         duracionActual ++;
     }
 
-    public abstract void aplicarEfectoClima(Pokemon pokemon);
+    public abstract void aplicarEfectoClima(Cualidades cualidades);
 
 }

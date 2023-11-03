@@ -1,9 +1,8 @@
 package Estados;
+
 import org.fiuba.algoritmos3.ServicioDeRandoms;
 
 import static org.fiuba.algoritmos3.Constantes.*;
-
-import java.util.Random;
 
 public class EstadoParalizado extends Estado{
 
