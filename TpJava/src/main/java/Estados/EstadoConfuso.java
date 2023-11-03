@@ -16,7 +16,7 @@ public class EstadoConfuso extends Estado{
         this.nombre = ESTADO_CONFUSO;
         this.duracionMaxima = 3;
         this.turnosConfuso = 0;
-        this.color = ANSI_FONDO_ROJO + ANSI_BLANCO;
+        this.color = ANSI_FONDO_ROJO + ANSI_NEGRO;
     }
 
     public int getTurnosConfuso() {

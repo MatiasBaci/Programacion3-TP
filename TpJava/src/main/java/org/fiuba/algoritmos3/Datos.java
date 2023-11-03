@@ -158,8 +158,6 @@ public class Datos {
         alakazam.aniadirHabilidad(psiquico);
         Habilidad recuperacion = new HabilidadEstadistica("Recuperacion", 5, true, (int)(alakazam.getVidaMaxima()/2), new ModificacionVida());
         alakazam.aniadirHabilidad(recuperacion);
-        Habilidad energibola = new HabilidadAtaque("Energibola",Tipo.instanciarUnTipoDe("Planta"),90,10);
-        alakazam.aniadirHabilidad(energibola);
         Habilidad maquinacion = new HabilidadEstadistica("Maquinacion", 20, true, 2, new ModificacionAtaque());
         alakazam.aniadirHabilidad(maquinacion);
         Habilidad confundir = new HabilidadEstado("Confuso",5,new EstadoConfuso());
@@ -234,7 +232,7 @@ public class Datos {
 
         Item pocion = new Pocion("Pocion", 50, new ModificacionVida());
         Item megaPocion = new MegaPocion("Mega Pocion", 2, new ModificacionVida());
-        Item hiperPocion = new HiperPocion("Hiper Pocion", 1, new ModificacionVida()); //-->contemplado que solo tenga 1
+        Item hiperPocion = new HiperPocion("Hiper Pocion", 6, new ModificacionVida()); //-->contemplado que solo tenga 1
         Item molestaAlumnos =  new PocionMolestaAlumnos("Molesta Alumnos",4,new ModificacionVida());
         Item pocionDefensa = new DefensaX("Defensa X", 3, new ModificacionDefensa());
         Item pocionAtaque = new AtaqueX("Ataque X", 2, new ModificacionAtaque());
