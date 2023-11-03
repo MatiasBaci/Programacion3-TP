@@ -123,9 +123,7 @@ public class Cualidades {
     }
 
     public boolean estaConsciente() {
-        if(this.getVida() == 0){ //<=
-            //this.cambiarseEstado(new EstadoInhabilitado()); // Cambiarlo osea Estados this. this.estados.clear()
-            //estadaoInhabilidatado
+        if(this.getVida() == 0){
             this.cambiarLosEstadosA(new EstadoInhabilitado());
             return false;
         }

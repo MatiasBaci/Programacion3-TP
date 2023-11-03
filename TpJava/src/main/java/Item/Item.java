@@ -25,12 +25,9 @@ public abstract class Item {
     public abstract boolean esUnItemDeSoloCampoDeBatalla();
     public boolean realizarCasosDeApliacion(Cualidades cualidades){
         if (this.cantidad == 0) {
-            System.out.println("No tiene este tipo de items");
             return false;
         }
         else{
-            System.out.print("Acaba de seleccionar el siguiente Item: " + nombre);
-            System.out.println("\n");
             return this.aplicarItem(cualidades);
         }
     }

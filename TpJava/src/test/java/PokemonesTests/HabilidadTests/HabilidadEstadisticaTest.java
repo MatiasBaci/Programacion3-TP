@@ -1,4 +1,4 @@
-package HabilidadTests;
+package PokemonesTests.HabilidadTests;
 
 import Modificaciones.Modificacion;
 import Pokemones.Cualidades;

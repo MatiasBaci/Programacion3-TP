@@ -12,6 +12,9 @@ import Tipo.Tipo;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.fiuba.algoritmos3.Constantes.CLIMA_LLUVIA;
+import static org.fiuba.algoritmos3.Constantes.CLIMA_TORMENTA_DE_ARENA;
+
 public class Datos {
 
     //Atributos:
@@ -59,7 +62,7 @@ public class Datos {
         squirtle.aniadirHabilidad(cabezazo);
         Habilidad defensaFerrea = new HabilidadEstadistica("DefensaFerrea", 15, true, 2, new ModificacionDefensa());
         squirtle.aniadirHabilidad(defensaFerrea);
-        Habilidad danzaDeLluvia = new HabilidadClima("DanzaDeLluvia", "Lluvia", 5);
+        Habilidad danzaDeLluvia = new HabilidadClima("DanzaDeLluvia", CLIMA_LLUVIA, 5);
         squirtle.aniadirHabilidad(danzaDeLluvia);
         this.mochilaJugador1.put(squirtle.getNombre(), squirtle);
 
@@ -184,8 +187,8 @@ public class Datos {
         golem.aniadirHabilidad(terremoto);
         Habilidad rocaAfilada = new HabilidadAtaque("RocaAfilada",Tipo.instanciarUnTipoDe("Roca"),100,5);
         golem.aniadirHabilidad(rocaAfilada);
-        Habilidad punioTrueno = new HabilidadAtaque("PuñoTrueno",Tipo.instanciarUnTipoDe("Electrico"),75,15);
-        golem.aniadirHabilidad(punioTrueno);
+        Habilidad tormentaDeArena = new HabilidadClima("Tormenta de Arena", CLIMA_TORMENTA_DE_ARENA, 5);
+        golem.aniadirHabilidad(tormentaDeArena);
         Habilidad defensaFerrea = new HabilidadEstadistica("DefensaFerrea", 15, true, 2, new ModificacionDefensa());
         golem.aniadirHabilidad(defensaFerrea);
         this.mochilaJugador2.put(golem.getNombre(), golem);

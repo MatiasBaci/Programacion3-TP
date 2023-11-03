@@ -1,4 +1,4 @@
-package orgFiubaAlgoritmos3Tests;
+package PokemonesTests;
 
 import Estados.Estado;
 import Pokemones.Cualidades;

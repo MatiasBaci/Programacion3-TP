@@ -17,10 +17,11 @@ public class OpcionAplicarItem implements Opciones{
         System.out.println(ANSI_VERDEOSCURO + "Desea aplicar el item? Si - No:" + ANSI_RESET);
         String decision = scanner.next();
 
-        if(!decision.toLowerCase().equals("si")){
+        if(!decision.equalsIgnoreCase("si")){
             System.out.println(ANSI_ROJO + "No se aplico el Item seleccionado." + ANSI_RESET);
             return;
         }
+        generalView.getJugadorView().mostrarCasosDeApliacionItem(itemAplicable);
         if(jugador.usarItem(nombrePokemon, itemAplicable)) {
             generalView.mostrarMensajeAplicoItem(jugador, itemAplicable.getNombre());
 

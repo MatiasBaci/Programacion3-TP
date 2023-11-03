@@ -1,4 +1,4 @@
-package HabilidadTests;
+package PokemonesTests.HabilidadTests;
 
 import Climas.Clima;
 import Climas.SistemaDeClima;

@@ -39,9 +39,7 @@ public class CualidadesView {
     }
 
     public boolean atacarConEstadosActuales(){
-        boolean puedeAtacarConSusEstados = this.estadosActualesView.stream().allMatch(estado -> estado.mostrar());
-        //this.estadosActualesView.removeIf(Estado::debeSerEliminado); --> no funciona aqui
-        return puedeAtacarConSusEstados;
+        return this.estadosActualesView.stream().allMatch(EstadoView::mostrar);
     }
 
     public Set<EstadoView> getEstadosActualesView(){

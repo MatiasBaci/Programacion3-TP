@@ -17,7 +17,6 @@ public class ClimaTormentaArena extends Clima{
         cualidades.getTipo().calcularMultiplicadorClima(this.nombre);
         if(cualidades.getTipo().verSiEsAbrasivo(this.nombre)){
             cualidades.recibirDanio(cualidades.getVidaMaxima() * PORCENTAJE_DANIO_CLIMA_ABRASIVO);
-            System.out.println("Se bajo la vida");
         }
     }
 }

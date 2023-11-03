@@ -77,16 +77,14 @@ public abstract class Tipo {
 
      public boolean verSiEsAbrasivo(String nombreClima){
          return Objects.equals(compararClima(nombreClima), RELACION_NORMAL);
-
      }
 
     public double calcularMultiplicadorDeDanio(Tipo unTipo){
         double multiplicadorTipo = this.calcularMultiplicadorTipo(unTipo);
         return multiplicadorTipo * getMultiplicadorClima();
-
     }
 
-    public double calcularMultiplicadorTipo(Tipo unTipo){
+    private double calcularMultiplicadorTipo(Tipo unTipo){
         double multiplicadorTipo;
         String efectividad = this.compararseConTipo(unTipo);
         multiplicadorTipo = switch (efectividad) {

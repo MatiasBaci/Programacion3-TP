@@ -1,10 +1,16 @@
 package orgFiubaAlgoritmos3Tests;
 
+import Estados.EstadoEnvenenado;
+import Estados.EstadoParalizado;
+import Modificaciones.ModificacionEstado;
 import Pokemones.Pokemon;
 import org.fiuba.algoritmos3.Jugador;
 import Item.Item;
+import Item.PocionCuracionEstados;
 import org.junit.jupiter.api.Test;
 
+import static org.fiuba.algoritmos3.Constantes.ESTADO_ENVENENADO;
+import static org.fiuba.algoritmos3.Constantes.ESTADO_PARALIZADO;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -151,6 +157,26 @@ public class JugadorTest {
         assertTrue(jugador.usarItem("Pocion", pocion));
     }*/
 
+    // TESTS DE INTEGRACION
 
+    @Test
+    public void testSeUsaCuraTodoEnLucarioParaCurarleElVenenoYParalisis() {
+        //Arrange
+        Pokemon lucario = new Pokemon("Lucario", 50, "Lucha", "Puede leer los pensamientos de su adversario a través de su aura.",
+                100, 110, 90, 135);
+        lucario.getCualidades().agregarEstado(new EstadoEnvenenado());
+        lucario.getCualidades().agregarEstado(new EstadoParalizado());
+        Map<String, Pokemon> pokemones = Map.of("Lucario", lucario);
+
+        PocionCuracionEstados curaTodo = new PocionCuracionEstados("Cura Todo", 1, new ModificacionEstado());
+        Map<String, Item> items = Map.of("Cura Todo", curaTodo);
+
+        Jugador jugador = new Jugador("Cynthia", pokemones, items);
+        //Act
+        jugador.usarItem("Lucario", curaTodo);
+        //Assert
+        assertFalse(lucario.getCualidades().getEstadosActuales().stream().anyMatch(unEstado -> unEstado.getNombre().equals(ESTADO_ENVENENADO)));
+        assertFalse(lucario.getCualidades().getEstadosActuales().stream().anyMatch(unEstado -> unEstado.getNombre().equals(ESTADO_PARALIZADO)));
+    }
 
 }

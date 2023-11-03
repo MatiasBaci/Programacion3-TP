@@ -1,6 +1,8 @@
 package view;
 
+import Pokemones.Cualidades;
 import Pokemones.Pokemon;
+import Item.Item;
 import org.fiuba.algoritmos3.Jugador;
 import view.ItemsView.ItemView;
 import view.ItemsView.ItemViewFactory;
@@ -121,5 +123,14 @@ public class JugadorView {
 
     public String getNombrePokemonActual() {
         return this.pokemonActualView.getNombre();
+    }
+
+    public void mostrarCasosDeApliacionItem(Item item){
+        if (item.getCantidad() == 0) {
+            System.out.println("No tiene este tipo de items" + "\n");
+        }
+        else{
+            System.out.print("Acaba de seleccionar el siguiente Item: " + item.getNombre() + "\n");
+        }
     }
 }

@@ -18,6 +18,5 @@ public class ModificacionEstadoInhabilitadoView extends ModificacionView{
             System.out.println(" ");
             System.out.println(ANSI_ROJO + "El Pokemon no se puede revivir ya que no esta Inhabilitado" + ANSI_RESET);
         }
-
     }
 }
