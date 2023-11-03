@@ -160,7 +160,7 @@ public class JugadorTest {
     // TESTS DE INTEGRACION
 
     @Test
-    public void testSeUsaCuraTodoEnLucarioParaCurarleElVenenoYParalisis() {
+    public void testJugadorUsaCuraTodoEnLucarioParaCurarleVenenoYParalisis() {
         //Arrange
         Pokemon lucario = new Pokemon("Lucario", 50, "Lucha", "Puede leer los pensamientos de su adversario a través de su aura.",
                 100, 110, 90, 135);

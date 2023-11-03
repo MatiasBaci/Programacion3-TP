@@ -10,12 +10,9 @@ public class Jugador {
 
     //Atributos:
     private String nombre;
-
     private Map<String, Pokemon> misPokemones;
     private Map<String, Item> items;
-
     private Pokemon pokemonActual;
-
     private Jugador adversario;
     private boolean atacante;
     private boolean esPerdedor;
@@ -28,7 +25,6 @@ public class Jugador {
         this.items = items;
         this.atacante = false;
         this.esPerdedor = false;
-
     }
 
     public Map<String, Pokemon> getMisPokemones() {

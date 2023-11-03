@@ -2,11 +2,13 @@ package Climas;
 
 import Pokemones.Cualidades;
 
+import static org.fiuba.algoritmos3.Constantes.DURACION_MAXIMA_DE_CLIMA;
+
 public abstract class Clima {
 
     protected String nombre;
 
-    protected int DURACION_MAXIMA_DE_CLIMA;
+    //protected int DURACION_MAXIMA_DE_CLIMA;
 
     protected int duracionActual;
 

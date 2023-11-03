@@ -2,6 +2,7 @@ package Opciones;
 
 import Pokemones.Pokemon;
 import org.fiuba.algoritmos3.Jugador;
+import org.fiuba.algoritmos3.ServicioDeUserInput;
 import view.GeneralView;
 import view.JugadorView;
 
@@ -16,9 +17,10 @@ public class OpcionIntercambiarPokemon implements Opciones{
 
     private boolean validarPokemon(Jugador jugador, JugadorView jugadorView){
 
-        Scanner scanner = new Scanner(System.in);
+        //Scanner scanner = new Scanner(System.in);
 
-        String nombrePokemon = scanner.next();
+        //String nombrePokemon = scanner.nextLine();
+        String nombrePokemon = ServicioDeUserInput.input();
         jugadorView.mostrarCasosDeEleccion(nombrePokemon, jugador.getPokemonActual(), jugador.getMisPokemones());
         return jugador.elegirPokemon(nombrePokemon);
     }
@@ -29,11 +31,12 @@ public class OpcionIntercambiarPokemon implements Opciones{
         generalView.mostrarMensajeIntercambiarPokemon();
         Pokemon pokemonAuxliar = jugador.getPokemonActual();
         if(validarPokemon(jugador, generalView.getJugadorView())){
-            Scanner scanner = new Scanner(System.in);
+            //Scanner scanner = new Scanner(System.in);
             System.out.println(ANSI_VERDEOSCURO + "Desea Realizar el cambio? Si - No:" + ANSI_RESET);
 
 
-            String decision = scanner.next();
+            //String decision = scanner.nextLine();
+            String decision = ServicioDeUserInput.input();
 
             if (Objects.equals(decision.toLowerCase(), "si")) {
                 generalView.mostrarMensajeIntercambioAlAdversario();
@@ -44,7 +47,8 @@ public class OpcionIntercambiarPokemon implements Opciones{
                 generalView.mostrarMensajeNoSeRealizoIntercambio();
 
             }
-            decision = scanner.next();
+            //decision = scanner.nextLine();
+            decision = ServicioDeUserInput.input();
         }
     }
 }

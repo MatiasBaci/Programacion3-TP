@@ -4,6 +4,7 @@ import Climas.SistemaDeClima;
 import Pokemones.Pokemon;
 import view.GeneralView;
 
+import java.io.InputStream;
 import java.util.Scanner;
 
 import static org.fiuba.algoritmos3.Constantes.ANSI_RESET;
@@ -15,14 +16,15 @@ public class Juego {
     private Jugador jugador1;
     private Jugador jugador2;
     private Controlador controlador;
-
     private GeneralView generalView;
-
     //private SistemaDeClima sistemaDeClima;
 
     //Metodos:
 
     public Juego(){
+
+        ServicioDeUserInput.inicializarScanner();
+
         Datos datos = new Datos();
         this.jugador1 = new Jugador("-", datos.getMochilaJugador1(), datos.getItemsJugador1());
         this.jugador2 = new Jugador("-", datos.getMochilaJugador2(), datos.getItemsJugador2());
@@ -34,6 +36,30 @@ public class Juego {
         SistemaDeClima.iniciarSistemaDeClima();
         SistemaDeClima.inicializarClimaActual();
         this.generalView = new GeneralView(jugador1, SistemaDeClima.getClimaActual());
+    }
+
+    public Juego(Scanner scanner){
+
+        ServicioDeUserInput.setScanner(scanner);
+
+        Datos datos = new Datos();
+        this.jugador1 = new Jugador("-", datos.getMochilaJugador1(), datos.getItemsJugador1());
+        this.jugador2 = new Jugador("-", datos.getMochilaJugador2(), datos.getItemsJugador2());
+
+        this.jugador1.setAdversario(jugador2);
+        this.jugador2.setAdversario(jugador1);
+        this.controlador = new Controlador();
+
+        SistemaDeClima.iniciarSistemaDeClima();
+        SistemaDeClima.inicializarClimaActual();
+        this.generalView = new GeneralView(jugador1, SistemaDeClima.getClimaActual());
+    }
+
+    public Juego(Jugador jugador1, Jugador jugador2, Controlador controlador, GeneralView generalView){
+        this.jugador1 = jugador1;
+        this.jugador2 = jugador2;
+        this.controlador = controlador;
+        this.generalView = generalView;
     }
 
     private boolean pokemonJugador1EsRapido(Pokemon pokemonJugador1, Pokemon pokemonJugador2){
@@ -48,11 +74,12 @@ public class Juego {
             this.jugador2.setAtacante(true);
             System.out.println(ANSI_VERDEOSCURO + "COMIENZA ATACANDO " + this.jugador2.getNombre().toUpperCase() + ANSI_RESET);
         }
-        Scanner scanner = new Scanner(System.in);
+        //Scanner scanner = new Scanner(System.in);
 
         System.out.println("\n");
         System.out.println(ANSI_VERDEOSCURO + "Oprima una tecla para salir: " + ANSI_RESET);
-        String decision = scanner.nextLine();
+        //String decision = scanner.nextLine();
+        String decision = ServicioDeUserInput.input();
         System.out.println("\n");
     }
 
@@ -103,7 +130,7 @@ public class Juego {
 
     public void DesarrollarJuego(){
         this.menuSeleccion();
-        this.controlador.inicializarOpciones();
+        //this.controlador.inicializarOpciones();
         this.iteracionesJugadores();
     }
 }

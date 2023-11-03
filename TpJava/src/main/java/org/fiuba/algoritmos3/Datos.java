@@ -12,8 +12,7 @@ import Tipo.Tipo;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.fiuba.algoritmos3.Constantes.CLIMA_LLUVIA;
-import static org.fiuba.algoritmos3.Constantes.CLIMA_TORMENTA_DE_ARENA;
+import static org.fiuba.algoritmos3.Constantes.*;
 
 public class Datos {
 
@@ -86,8 +85,8 @@ public class Datos {
         pikachu.aniadirHabilidad(trueno);
         Habilidad ondaTrueno = new HabilidadEstado("OndaTrueno", 20, new EstadoParalizado());
         pikachu.aniadirHabilidad(ondaTrueno);
-        Habilidad colaFerrea = new HabilidadAtaque("ColaFerrea",Tipo.instanciarUnTipoDe("Normal"),100,15);
-        pikachu.aniadirHabilidad(colaFerrea);
+        Habilidad tormentaElectrica = new HabilidadClima("TormentaElectrica", CLIMA_TORMENTA_DE_RAYOS, 5);
+        pikachu.aniadirHabilidad(tormentaElectrica);
         Habilidad agilidad = new HabilidadEstadistica("Agilidad", 30, true, 2, new ModificacionVelocidad());
         pikachu.aniadirHabilidad(agilidad);
         this.mochilaJugador1.put(pikachu.getNombre(), pikachu);
@@ -121,7 +120,7 @@ public class Datos {
 
         Pokemon crobat = new Pokemon("Crobat", 50, "Veneno", "Sus cuatro alas le permiten volar más rápida y sigilosamente. Es un Pokémon nocturno.",
         160, 150, 100, 110);
-        Habilidad venenoX = new HabilidadEstado("VenenoX",10,new EstadoEnvenenado());
+        Habilidad venenoX = new HabilidadAtaque("VenenoX",Tipo.instanciarUnTipoDe("Veneno"),80,15);
         crobat.aniadirHabilidad(venenoX);
         Habilidad tijeraX = new HabilidadAtaque("TijeraX",Tipo.instanciarUnTipoDe("Bicho"),80,15);
         crobat.aniadirHabilidad(tijeraX);
@@ -139,7 +138,7 @@ public class Datos {
         Item pocionDefensa = new DefensaX("Defensa X", 2, new ModificacionDefensa());
         Item pocionAtaque = new AtaqueX("Ataque X", 1, new ModificacionAtaque());
         Item revivir = new Revivir("Revivir", 1, new ModificacionEstadoInhabilitado());
-        Item curarTodo = new PocionCuracionEstados("Curar todo",1, new ModificacionEstado());
+        Item curarTodo = new PocionCuracionEstados("CuraTodo",1, new ModificacionEstado());
 
         this.itemsJugador1.put(pocion.getNombre(), pocion);
         this.itemsJugador1.put(megaPocion.getNombre(), megaPocion);
@@ -187,7 +186,7 @@ public class Datos {
         golem.aniadirHabilidad(terremoto);
         Habilidad rocaAfilada = new HabilidadAtaque("RocaAfilada",Tipo.instanciarUnTipoDe("Roca"),100,5);
         golem.aniadirHabilidad(rocaAfilada);
-        Habilidad tormentaDeArena = new HabilidadClima("Tormenta de Arena", CLIMA_TORMENTA_DE_ARENA, 5);
+        Habilidad tormentaDeArena = new HabilidadClima("TormentaDeArena", CLIMA_TORMENTA_DE_ARENA, 5);
         golem.aniadirHabilidad(tormentaDeArena);
         Habilidad defensaFerrea = new HabilidadEstadistica("DefensaFerrea", 15, true, 2, new ModificacionDefensa());
         golem.aniadirHabilidad(defensaFerrea);
@@ -240,7 +239,7 @@ public class Datos {
         Item pocionDefensa = new DefensaX("Defensa X", 3, new ModificacionDefensa());
         Item pocionAtaque = new AtaqueX("Ataque X", 2, new ModificacionAtaque());
         Item revivir = new Revivir("Revivir", 1, new ModificacionEstadoInhabilitado());
-        Item curarTodo = new PocionCuracionEstados("Curar todo",1, new ModificacionEstado());
+        Item curarTodo = new PocionCuracionEstados("CuraTodo",1, new ModificacionEstado());
 
         this.itemsJugador2.put(pocion.getNombre(), pocion);
         this.itemsJugador2.put(megaPocion.getNombre(), megaPocion);
@@ -248,8 +247,8 @@ public class Datos {
         this.itemsJugador2.put(revivir.getNombre(), revivir);
         this.itemsJugador2.put(pocionDefensa.getNombre(), pocionDefensa);
         this.itemsJugador2.put(pocionAtaque.getNombre(), pocionAtaque);
-        this.itemsJugador1.put(curarTodo.getNombre(), curarTodo);
-        this.itemsJugador1.put(molestaAlumnos.getNombre(), molestaAlumnos); //--->
+        this.itemsJugador2.put(curarTodo.getNombre(), curarTodo);
+        this.itemsJugador2.put(molestaAlumnos.getNombre(), molestaAlumnos); //--->
     }
 
 }
