@@ -20,12 +20,12 @@ public class HiperPocionTest {
         when(cualidades.getVidaMaxima()).thenReturn(100.0);
         ModificacionVida modificacion = mock(ModificacionVida.class);
 
-        HiperPocion hiperPocion = new HiperPocion("HiperPocion", 10, modificacion);
+        HiperPocion hiperPocion = new HiperPocion("HiperPocion", 1, modificacion);
         //Act
         boolean itemAplicado = hiperPocion.aplicarItem(cualidades);
         //Assert
         assertFalse(itemAplicado);
-        assertEquals(10, hiperPocion.getCantidad());
+        assertEquals(1, hiperPocion.getCantidad());
     }
 
     @Test
@@ -36,12 +36,12 @@ public class HiperPocionTest {
         when(cualidades.getVidaMaxima()).thenReturn(100.0);
         ModificacionVida modificacion = mock(ModificacionVida.class);
 
-        HiperPocion hiperPocion = new HiperPocion("HiperPocion", 10, modificacion);
+        HiperPocion hiperPocion = new HiperPocion("HiperPocion", 1, modificacion);
         //Act
         boolean itemAplicado = hiperPocion.aplicarItem(cualidades);
         //Assert
         assertFalse(itemAplicado);
-        assertEquals(10, hiperPocion.getCantidad());
+        assertEquals(1, hiperPocion.getCantidad());
     }
 
     @Test
@@ -52,11 +52,11 @@ public class HiperPocionTest {
         when(cualidades.getVidaMaxima()).thenReturn(100.0);
         ModificacionVida modificacion = mock(ModificacionVida.class);
 
-        HiperPocion hiperPocion = new HiperPocion("HiperPocion", 10, modificacion);
+        HiperPocion hiperPocion = new HiperPocion("HiperPocion", 1, modificacion);
         //Act
         boolean itemAplicado = hiperPocion.aplicarItem(cualidades);
         //Assert
         assert(itemAplicado);
-        assertEquals(9, hiperPocion.getCantidad());
+        assertEquals(0, hiperPocion.getCantidad());
     }
 }

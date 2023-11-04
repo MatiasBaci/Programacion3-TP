@@ -11,6 +11,9 @@ public class ModificacionEstadoInhabilitado implements Modificacion{
     public void modificar(Cualidades unaCualidad, int etapas) {
         if(!unaCualidad.estaConsciente()){
             unaCualidad.cambiarLosEstadosA(new EstadoNormal());
+            //unaCualidad.aumentarVida(etapas);
+        }
+        if (unaCualidad.getVida() == 0) {
             unaCualidad.aumentarVida(etapas);
         }
     }
