@@ -1,7 +1,5 @@
 Versión de Java: 20.0.2
 
-Para correr el juego desde la consola usando el JAR file incluido en la entrega usar el comando:
+Para correr el juego abrir una consola en la carpeta \Programacion3-TP y ejecutar el comando:
 
-java -jar --enable-preview Programacion3-TP.jar
-
-para crear un JAR file hacerlo a partir del archivo Main.class del directorio Programacion3-TP\target\classes\org\fiuba\algoritmos3.
+java -jar --enable-preview out\artifacts\TpJava_jar\TpJava.jar
