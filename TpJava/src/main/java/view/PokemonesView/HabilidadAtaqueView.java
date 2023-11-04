@@ -2,6 +2,9 @@ package view.PokemonesView;
 import Pokemones.Cualidades;
 import Pokemones.HabilidadAtaque;
 
+import static org.fiuba.algoritmos3.Constantes.ANSI_GRISCLARO;
+import static org.fiuba.algoritmos3.Constantes.ANSI_RESET;
+
 public class HabilidadAtaqueView extends HabilidadView{
 
     HabilidadAtaque habilidadAtaque;
@@ -13,16 +16,16 @@ public class HabilidadAtaqueView extends HabilidadView{
 
     @Override
     public void mostrar() {
-        System.out.println("Nombre: " + this.habilidadAtaque.getNombre());
+        System.out.println("Nombre: " + ANSI_GRISCLARO + this.habilidadAtaque.getNombre() + ANSI_RESET);
         System.out.println("Tipo: " + this.habilidadAtaque.getTipo().getNombreConColor());
-        System.out.println("Poder: " + this.habilidadAtaque.getPoder());
-        System.out.println("Cantidad de usos: " + this.habilidadAtaque.getCantidadDeUsos());
+        System.out.println("Poder: " + ANSI_GRISCLARO +  this.habilidadAtaque.getPoder() + ANSI_RESET);
+        System.out.println("Cantidad de usos: " +  ANSI_GRISCLARO +  this.habilidadAtaque.getCantidadDeUsos() + ANSI_RESET);
         System.out.println("\n");
     }
 
     public void mostrarUsarHabilidad(Cualidades cualiadesPokemonActual, Cualidades cualidadesPokemonEnemigo){
         double danio = this.habilidadAtaque.getDanioRealizado();
-        System.out.println("El daño infligido de la habiilidad: "+this.habilidadAtaque.getNombre() +" es = " + danio );
+        System.out.println(ANSI_GRISCLARO + "El daño infligido de la habiilidad: "+this.habilidadAtaque.getNombre() +" es = " + danio + ANSI_RESET);
 
     }
 }

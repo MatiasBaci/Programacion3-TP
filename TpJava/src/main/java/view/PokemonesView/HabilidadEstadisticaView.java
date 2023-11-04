@@ -2,7 +2,7 @@ package view.PokemonesView;
 import Pokemones.Cualidades;
 import Pokemones.HabilidadEstadistica;
 
-import static org.fiuba.algoritmos3.Constantes.PORCENTAJE;
+import static org.fiuba.algoritmos3.Constantes.*;
 
 public class HabilidadEstadisticaView extends HabilidadView{
 
@@ -15,22 +15,22 @@ public class HabilidadEstadisticaView extends HabilidadView{
     }
 
     public void mostrar(){
-        System.out.println("Nombre: " + this.habilidadEstadistica.getNombre());
-        System.out.println("Modifica: " + this.habilidadEstadistica.obtenerNombreModificacion());
-        System.out.println("Cuantas Etapas: " + this.habilidadEstadistica.getEtapas());
-        System.out.println("Cantidad de usos: "  + this.habilidadEstadistica.getCantidadDeUsos());
+        System.out.println("Nombre: " + ANSI_GRISCLARO + this.habilidadEstadistica.getNombre() + ANSI_RESET);
+        System.out.println("Modifica: " + ANSI_GRISCLARO + this.habilidadEstadistica.obtenerNombreModificacion() + ANSI_RESET);
+        System.out.println("Cuantas Etapas: " + ANSI_GRISCLARO +this.habilidadEstadistica.getEtapas() + ANSI_RESET);
+        System.out.println("Cantidad de usos: "  + ANSI_GRISCLARO + this.habilidadEstadistica.getCantidadDeUsos() + ANSI_RESET);
         System.out.println("\n");
     }
 
     public void mostrarUsarHabilidad(Cualidades cualiadesPokemonActual, Cualidades cualidadesPokemonEnemigo){
 
         if(!this.habilidadEstadistica.isModificacionPropia()){
-            System.out.println("Se redujo la " + this.habilidadEstadistica.obtenerNombreModificacion() + " rival en " +
-                    this.habilidadEstadistica.getEtapas() * PORCENTAJE * 100 + "%");
+            System.out.println(ANSI_GRISCLARO + "Se redujo la " + this.habilidadEstadistica.obtenerNombreModificacion() + " rival en " +
+                    this.habilidadEstadistica.getEtapas() * PORCENTAJE * 100 + "%" + ANSI_RESET);
         } else {
             //this.unaModificacion.modificar(cualidadesPokemonEnemigo,this.etapas);
-            System.out.println("Se aumento la " + this.habilidadEstadistica.obtenerNombreModificacion() + " propia en " +
-                    this.habilidadEstadistica.getEtapas() * PORCENTAJE * 100 + "%");
+            System.out.println(ANSI_GRISCLARO + "Se aumento la " + this.habilidadEstadistica.obtenerNombreModificacion() + " propia en " +
+                    this.habilidadEstadistica.getEtapas() * PORCENTAJE * 100 + "%" + ANSI_RESET);
 
         }
 

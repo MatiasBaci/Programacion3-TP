@@ -13,9 +13,6 @@ public class Cualidades {
 
     //Atributos:
     private final double vidaMaxima;
-    private final int velocidadBase;
-    private final int defensaBase;
-    private final int ataqueBase;
 
     private double vidaActual;
     private int velocidad;
@@ -34,11 +31,8 @@ public class Cualidades {
     public Cualidades(double vida,int nivel ,int velocidad, int defensa, int ataque, String tipo){
         this.vidaMaxima = vida;
         this.vidaActual = vida;
-        this.velocidadBase = velocidad;
         this.velocidad = velocidad;
-        this.defensaBase = defensa;
         this.defensa = defensa;
-        this.ataqueBase = ataque;
         this.ataque = ataque;
         this.nivel = nivel;
         this.tipo = Tipo.instanciarUnTipoDe(tipo);
@@ -66,12 +60,9 @@ public class Cualidades {
     public Set<Estado> getEstadosActuales() {
         return this.estados;
     }
-    public  void agregarEstado(Estado unEstado){ //throws EstadoDuplicadoException {
-        /*if (estados.contains(unEstado)) {
-            throw new EstadoDuplicadoException("El estado ya está presente en el conjunto.");
-        }*/
+    public  void agregarEstado(Estado unEstado){
         unEstado.setCualidades(this);
-        this.estados.add(unEstado); // Al ser un Set no se va añadir ademas hay una verificacion arriba para el mensaje.
+        this.estados.add(unEstado);
     }
 
     public void eliminarEstado(Estado unEstado) {
@@ -84,12 +75,8 @@ public class Cualidades {
         return puedeAtacarConSusEstados;
     }
 
-    public void aplicarEfectoPasivoDeEstadosActuales(){ // Esto solo func para todsos pero los que realizan algo es Estado Confuso y estado ENVENADO
+    public void aplicarEfectoPasivoDeEstadosActuales(){
         this.estados.forEach(estado -> estado.aplicarEfectoPasivoDeEstado());
-    }
-
-    public void actualizarEstados() { // Posiblemente no se use porque estan pasados por referencia
-        this.estados.forEach(estado -> estado.setCualidades(this));
     }
 
     public Tipo getTipo() {return tipo;}
@@ -118,7 +105,7 @@ public class Cualidades {
     }
 
     public void cambiarLosEstadosA(Estado unEstado) {
-        this.estados.clear(); // elimina todos los estados
+        this.estados.clear();
         this.agregarEstado(unEstado);
     }
 

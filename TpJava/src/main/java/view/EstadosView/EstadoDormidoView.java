@@ -2,6 +2,9 @@ package view.EstadosView;
 
 import Estados.EstadoDormido;
 
+import static org.fiuba.algoritmos3.Constantes.ANSI_RESET;
+import static org.fiuba.algoritmos3.Constantes.ANSI_VERDE;
+
 public class EstadoDormidoView extends EstadoView{
 
     private EstadoDormido estadoDormido;
@@ -15,10 +18,10 @@ public class EstadoDormidoView extends EstadoView{
 
 
         if (this.estadoDormido.getTurnosDormido() >= this.estadoDormido.getDuracionMaxima() || this.estadoDormido.getProbabilidadDeDormir() <=  this.estadoDormido.getProbabilidadDeDespertar()){
-            System.out.println("El pokemon se despertó!");
+            System.out.println(ANSI_VERDE + "El pokemon se despertó!" + ANSI_RESET);
             return true;
         } else {
-            System.out.println("El pokemon esta dormido por " + (this.estadoDormido.getDuracionMaxima() - this.estadoDormido.getTurnosDormido()) + " turnos.");
+            System.out.println(ANSI_VERDE + "El pokemon esta dormido por " + (this.estadoDormido.getDuracionMaxima() - this.estadoDormido.getTurnosDormido()) + " turnos." + ANSI_RESET);
             return false;
         }
 

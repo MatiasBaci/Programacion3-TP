@@ -232,7 +232,7 @@ public class Datos {
 
         Item pocion = new Pocion("Pocion", 50, new ModificacionVida());
         Item megaPocion = new MegaPocion("Mega Pocion", 2, new ModificacionVida());
-        Item hiperPocion = new HiperPocion("Hiper Pocion", 6, new ModificacionVida()); //-->contemplado que solo tenga 1
+        Item hiperPocion = new HiperPocion("Hiper Pocion", 1, new ModificacionVida()); //-->contemplado que solo tenga 1
         Item molestaAlumnos =  new PocionMolestaAlumnos("Molesta Alumnos",4,new ModificacionVida());
         Item pocionDefensa = new DefensaX("Defensa X", 3, new ModificacionDefensa());
         Item pocionAtaque = new AtaqueX("Ataque X", 2, new ModificacionAtaque());

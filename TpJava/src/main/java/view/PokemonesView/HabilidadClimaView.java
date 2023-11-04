@@ -3,6 +3,9 @@ package view.PokemonesView;
 import Pokemones.Cualidades;
 import Pokemones.HabilidadClima;
 
+import static org.fiuba.algoritmos3.Constantes.ANSI_GRISCLARO;
+import static org.fiuba.algoritmos3.Constantes.ANSI_RESET;
+
 public class HabilidadClimaView extends HabilidadView{
 
     HabilidadClima habilidadClima;
@@ -14,14 +17,14 @@ public class HabilidadClimaView extends HabilidadView{
 
     @Override
     public void mostrar() {
-        System.out.println("Nombre: " + this.habilidadClima.getNombre());
-        System.out.println("Clima: " + this.habilidadClima.getClima());
-        System.out.println("Cantidad de usos: " + this.habilidadClima.getCantidadDeUsos());
+        System.out.println("Nombre: " + ANSI_GRISCLARO + this.habilidadClima.getNombre() + ANSI_RESET);
+        System.out.println("Clima: " +  ANSI_GRISCLARO + this.habilidadClima.getClima() + ANSI_RESET);
+        System.out.println("Cantidad de usos: " + ANSI_GRISCLARO + this.habilidadClima.getCantidadDeUsos() + ANSI_RESET);
         System.out.println("\n");
     }
 
     @Override
     public void mostrarUsarHabilidad(Cualidades cualiadesPokemonActual, Cualidades cualidadesPokemonEnemigo) {
-        System.out.println("El clima actual es: " + this.habilidadClima.getClima());
+        System.out.println( ANSI_GRISCLARO + "El clima actual es: " + this.habilidadClima.getClima() + ANSI_RESET);
     }
 }

@@ -92,13 +92,13 @@ public class JugadorView {
     }
 
     public void mostratHabilidadesPokemonActual() {
-        System.out.println("Las habilidades de " + pokemonActualView.getNombre() + " actuales son: ");
+        System.out.println(ANSI_VERDE+ "Las habilidades de " + pokemonActualView.getNombre() + " actuales son: " + ANSI_RESET);
         pokemonActualView.mostrarHabilidades();
     }
 
 
     public void mostrarSeSeleccionoUnPokemon(String nombrePokemon){
-        System.out.println("Seleccionaste el pokemon -> " + nombrePokemon + "\n");
+        System.out.println(ANSI_VERDE + "Seleccionaste el pokemon -> " + nombrePokemon + "\n" + ANSI_RESET);
     }
 
     public void mostrarCasosDeEleccion(String nombrePokemon, Pokemon pokemonActual, Map<String, Pokemon> misPokemones){
@@ -125,12 +125,15 @@ public class JugadorView {
         return this.pokemonActualView.getNombre();
     }
 
-    public void mostrarCasosDeApliacionItem(Item item){
+    public boolean mostrarCasosDeApliacionItem(Item item){
         if (item.getCantidad() == 0) {
-            System.out.println("No tiene este tipo de items" + "\n");
+            System.out.println(ANSI_ROJO + "No tiene este tipo de items" + "\n" + ANSI_RESET);
+            return false;
         }
         else{
-            System.out.print("Acaba de seleccionar el siguiente Item: " + item.getNombre() + "\n");
+            System.out.print(ANSI_VERDE + "Acaba de seleccionar el siguiente Item: " + item.getNombre() + "\n" + ANSI_RESET);
         }
+
+        return true;
     }
 }

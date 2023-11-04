@@ -69,16 +69,14 @@ public class Juego {
     private void decidirTurnoInicial() {
         if (this.pokemonJugador1EsRapido(this.jugador1.getPokemonActual(), this.jugador2.getPokemonActual())) {
             this.jugador1.setAtacante(true);
-            System.out.println(ANSI_VERDEOSCURO+ "COMIENZA ATACANDO " + this.jugador1.getNombre().toUpperCase() + ANSI_RESET);
+            System.out.println(ANSI_VERDEOSCURO + "COMIENZA ATACANDO " + this.jugador1.getNombre().toUpperCase() + ANSI_RESET);
         } else {
             this.jugador2.setAtacante(true);
             System.out.println(ANSI_VERDEOSCURO + "COMIENZA ATACANDO " + this.jugador2.getNombre().toUpperCase() + ANSI_RESET);
         }
-        //Scanner scanner = new Scanner(System.in);
 
         System.out.println("\n");
         System.out.println(ANSI_VERDEOSCURO + "Oprima una tecla para salir: " + ANSI_RESET);
-        //String decision = scanner.nextLine();
         String decision = ServicioDeUserInput.input();
         System.out.println("\n");
     }
@@ -98,14 +96,14 @@ public class Juego {
 
     public void aplicarIteracion(Jugador jugador, Jugador jugadorAversario){
 
-        jugador.aplicarEfectoPasivo(); //-> Solo funciona para estado en veneno // EN LA ITERACION SIGUIENTE SE MORIRA
+        jugador.aplicarEfectoPasivo();
         SistemaDeClima.aplicarClimaActual(jugador.getPokemonActual());
         this.generalView.modificarClimaActualView(SistemaDeClima.getClimaActual());
         this.generalView.setJugadorView(jugador);
         this.generalView.getJugadorView().setJugadorAdversarioView(jugadorAversario);
         this.generalView.getJugadorView().setPokemonActualView(jugador.getPokemonActual());
         this.generalView.getJugadorAdversarioView().setPokemonActualView(jugadorAversario.getPokemonActual());
-        this.generalView.mostrarEfectoPasivo(); //--->Deberia ir a otro lado
+        this.generalView.mostrarEfectoPasivo();
         this.controlador.opcionesJugadores(jugador, this.generalView);
         jugadorAversario.setAtacante(true);
     }
@@ -130,7 +128,6 @@ public class Juego {
 
     public void DesarrollarJuego(){
         this.menuSeleccion();
-        //this.controlador.inicializarOpciones();
         this.iteracionesJugadores();
     }
 }

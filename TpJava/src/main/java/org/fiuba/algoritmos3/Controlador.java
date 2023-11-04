@@ -45,13 +45,11 @@ public class Controlador {
 
     public void validarNombresJugador(Jugador jugador) {
 
-        //Scanner scanner = new Scanner(System.in);
         boolean nombreValido = false;
 
         while (!nombreValido) {
             mensajeNombreJugador();
             System.out.println(ANSI_VERDEOSCURO + "Ingrese el nombre del jugador: " + ANSI_RESET);
-            //String nombreJugador = scanner.nextLine();
             String nombreJugador = ServicioDeUserInput.input();
 
             if (nombreJugador.length() < LIMITE_CARACTERES) {
@@ -69,13 +67,11 @@ public class Controlador {
 
     public void seleccionarPokemon(Jugador jugador, JugadorView jugadorView) {
 
-        //Scanner scanner = new Scanner(System.in);
         boolean pokemonValido = false;
         while (!pokemonValido) {
 
             jugadorView.mostrarPokemones();
             System.out.println(ANSI_VERDEOSCURO + "Seleccione a un Pokemon: " + ANSI_RESET);
-            //String nombrePokemon = scanner.nextLine();
             String nombrePokemon = ServicioDeUserInput.input();
             jugadorView.mostrarCasosDeEleccion(nombrePokemon, jugador.getPokemonActual(), jugador.getMisPokemones());
             pokemonValido = jugador.elegirPokemon(nombrePokemon);
@@ -86,7 +82,6 @@ public class Controlador {
 
     public void opcionesJugadores(Jugador jugador, GeneralView generalView) {
 
-        //Scanner scanner = new Scanner(System.in);
         String decision;
 
         if(!jugador.verficarEstadoPokemonActual()){
@@ -96,7 +91,6 @@ public class Controlador {
 
         while (jugador.isAtacante()) {
             generalView.mostrarMensajeMenu();
-            //decision = scanner.nextLine();
             decision = ServicioDeUserInput.input();
             if(opciones.containsKey(decision)){
                 opciones.get(decision).aplicarOpcion(jugador, generalView);

@@ -16,17 +16,17 @@ public class OpcionAtacar implements Opciones{
     public void aplicarOpcion(Jugador jugador, GeneralView generalView){
 
         generalView.mostrarMensajeAtacarPokemon();
-        //Scanner scanner = new Scanner(System.in);
+
         String nombreHabilidad;
-        //nombreHabilidad = scanner.nextLine();
+
         nombreHabilidad = ServicioDeUserInput.input();
 
         if(!jugador.validarHabilidadPokemon(nombreHabilidad)) {
             System.out.println(ANSI_ROJO +"ERROR: LA HABILIDAD NO EXISTE.\n " + ANSI_RESET);
-            return;
+
         }else{
             System.out.println(ANSI_VERDEOSCURO + "Desa realizar el ataque? Si - No." + ANSI_RESET);
-            //String decision = scanner.nextLine();
+
             String decision = ServicioDeUserInput.input();
             if(Objects.equals(decision.toLowerCase(), "si")){
                 jugador.atacarJugador(jugador.getAdversario(), nombreHabilidad);
@@ -35,7 +35,7 @@ public class OpcionAtacar implements Opciones{
                 System.out.println(ANSI_ROJO + "No se realizo el ataque." + ANSI_RESET);
             }
             generalView.mensajeVolverAlMenu();
-            //scanner.nextLine();
+
             ServicioDeUserInput.input();
         }
 

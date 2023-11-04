@@ -2,6 +2,9 @@ package view.EstadosView;
 
 import Estados.EstadoConfuso;
 
+import static org.fiuba.algoritmos3.Constantes.ANSI_RESET;
+import static org.fiuba.algoritmos3.Constantes.ANSI_VERDE;
+
 public class EstadoConfusoView extends EstadoView{
 
     private EstadoConfuso estadoConfuso;
@@ -14,12 +17,12 @@ public class EstadoConfusoView extends EstadoView{
     public boolean mostrar(){
 
         if(this.estadoConfuso.getTurnosConfuso() >= this.estadoConfuso.getDuracionMaxima()){
-            System.out.println("El pokemon ya no esta confuso");
+            System.out.println(ANSI_VERDE + "El pokemon ya no esta confuso" + ANSI_RESET);
             return true;
         }
         if(this.estadoConfuso.isConfundido()){
-            System.out.println("El pokemon se hizo daño asi mismo!!! ");
-            System.out.println("El daño es de " + this.estadoConfuso.getDanioPorConfusion());
+            System.out.println(ANSI_VERDE + "El pokemon se hizo daño asi mismo!!! " + ANSI_RESET);
+            System.out.println(ANSI_VERDE +"El daño es de " + this.estadoConfuso.getDanioPorConfusion() + ANSI_RESET);
         }
         return false;
 

@@ -12,8 +12,6 @@ public class OpcionVerCampoDeBatalla implements Opciones{
     public void aplicarOpcion(Jugador jugador, GeneralView generalView){
 
         generalView.mostrarMensajeCampoBatalla();
-        //Scanner scanner = new Scanner(System.in);
-        //scanner.nextLine();
         ServicioDeUserInput.input();
     }
 }

@@ -14,33 +14,34 @@ public class OpcionAplicarItem implements Opciones{
 
     private void decidirAplicarItem(Jugador jugador, String nombrePokemon, Item itemAplicable, GeneralView generalView){
 
-        //Scanner scanner = new Scanner(System.in);
+
         System.out.println(ANSI_VERDEOSCURO + "Desea aplicar el item? Si - No:" + ANSI_RESET);
-        //String decision = scanner.nextLine();
+
         String decision = ServicioDeUserInput.input();
 
         if(!decision.equalsIgnoreCase("si")){
             System.out.println(ANSI_ROJO + "No se aplico el Item seleccionado." + ANSI_RESET);
             return;
         }
-        generalView.getJugadorView().mostrarCasosDeApliacionItem(itemAplicable);
+        if(!generalView.getJugadorView().mostrarCasosDeApliacionItem(itemAplicable)){
+            return;
+        }
+        Pokemon pokemnAux = jugador.getMisPokemones().get(nombrePokemon);
+        generalView.mostrarCasoModicicacion(itemAplicable.getUnaModificacion(), pokemnAux);
         if(jugador.usarItem(nombrePokemon, itemAplicable)) {
             generalView.mostrarMensajeAplicoItem(jugador, itemAplicable.getNombre());
 
-            //decision = scanner.nextLine();
+
             decision = ServicioDeUserInput.input();
         }
 
 
-        Pokemon pokemnAux = jugador.getMisPokemones().get(nombrePokemon);
-        generalView.mostrarCasoModicicacion(itemAplicable.getUnaModificacion(), pokemnAux);
+
     }
     @Override
     public void aplicarOpcion(Jugador jugador, GeneralView generalView){
 
         generalView.mostrarMensajeOpcionAplicarItem();
-        //Scanner scanner = new Scanner(System.in);
-        //String nombreItem = scanner.nextLine();
         String nombreItem = ServicioDeUserInput.input();
 
         if(!jugador.validadorClaveItems(nombreItem)){
@@ -56,7 +57,6 @@ public class OpcionAplicarItem implements Opciones{
         }
         generalView.getJugadorView().mostrarPokemones();
         System.out.println(ANSI_VERDEOSCURO + "Seleccione el Pokemon a aplicar el item: " + ANSI_RESET);
-        //String nombrePokemon = scanner.nextLine();
         String nombrePokemon = ServicioDeUserInput.input();
         if(!jugador.validadorClavePokemones(nombrePokemon)){
             System.out.println(ANSI_ROJO + "ERROR: NO SE ENCONTRO EL POKEMON" + ANSI_RESET);

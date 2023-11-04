@@ -7,6 +7,9 @@ import Tipo.Tipo;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.fiuba.algoritmos3.Constantes.ANSI_GRISCLARO;
+import static org.fiuba.algoritmos3.Constantes.ANSI_RESET;
+
 public class PokemonView {
 
     private Pokemon pokemon;
@@ -30,7 +33,7 @@ public class PokemonView {
     }
 
     public void mostrar(){
-        System.out.println(" Nombre: " + this.pokemon.getNombre());
+        System.out.println(" Nombre: " + ANSI_GRISCLARO + this.pokemon.getNombre() + ANSI_RESET);
         this.cualidadesView.mostrar();
         System.out.println(" Historia: " + this.pokemon.getHistoria());
         System.out.println("\n");
@@ -49,8 +52,7 @@ public class PokemonView {
     }
 
     private void mostrarUsoDeHabilidad(String nombrePokemon, String nombreHabilidad){
-        System.out.println("¡"+ nombrePokemon + " uso " + nombreHabilidad + "!");
-        System.out.println("\n");
+        System.out.println(ANSI_GRISCLARO + "¡"+ nombrePokemon + " uso " + nombreHabilidad + "!" + ANSI_RESET +"\n");
     }
 
     public void mostrarCasoSePuedeAtacar(Pokemon pokemon, Pokemon pokemonEnemigo, Habilidad habilidad){

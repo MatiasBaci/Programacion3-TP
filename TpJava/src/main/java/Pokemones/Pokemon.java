@@ -52,7 +52,7 @@ public class Pokemon {
         Habilidad unaHabilidad = this.seleccionarHabilidad(nombreDeHabilidad);
 
 
-        if (this.cualidades.atacarConEstadosActuales()) { //this.cualidades.atacarConEstadoActual() --> version uno solo
+        if (this.cualidades.atacarConEstadosActuales()) {
             unaHabilidad.usarHabilidad(pokemonEnemigoActual.getCualidades(), this.cualidades);
         }
     }

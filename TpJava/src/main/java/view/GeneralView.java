@@ -59,7 +59,7 @@ public class GeneralView {
     }
 
     public void felicitar(Jugador jugador) {
-        System.out.println("¡¡Felicidades a " + jugador.getNombre() + "!! Ganaste el juego");
+        System.out.println(ANSI_VERDE + "¡¡Felicidades a " + jugador.getNombre() + "!! Ganaste el juego" + ANSI_RESET);
     }
 
     public void mostrarMensajeOpcionInvalida() {
@@ -113,6 +113,12 @@ public class GeneralView {
 
     }
 
+    public void mostrarCasoModicicacion(Modificacion unaModificacion, Pokemon pokemon) {
+        this.modificacionView = this.modificacionFactory.createModificacionView(unaModificacion);
+        modificacionView.mostrar(pokemon.getCualidades());
+
+    }
+
     public void mostrarMensajeAplicoItem(Jugador jugador, String nombreItem) {
 
         System.out.println(ANSI_VERDE + "\n╔═════════════════════════════╗");
@@ -133,6 +139,12 @@ public class GeneralView {
 
         this.jugadorView.mostratHabilidadesPokemonActual();
         System.out.println(ANSI_VERDEOSCURO + "Elige una habilidad: " + ANSI_RESET);
+    }
+
+    public void mostrarCasoAtques(Pokemon pokemon, Jugador jugadorAversario, String nombreHabilidad) {
+        Habilidad habilidadAux = pokemon.getMisHabilidades().get(nombreHabilidad);
+        this.jugadorView.getPokemonActualView().mostrarCasoSePuedeAtacar(pokemon, jugadorAversario.getPokemonActual(), habilidadAux);
+
     }
 
     //Mensajes de intercambiar Pokemon.
@@ -182,21 +194,6 @@ public class GeneralView {
                            System.out.println("║ Usted se rindio ║ ");
                            System.out.println("╚═════════════════╝" + ANSI_RESET);
     }
-
-
-
-    public void mostrarCasoModicicacion(Modificacion unaModificacion, Pokemon pokemon) {
-        this.modificacionView = this.modificacionFactory.createModificacionView(unaModificacion);
-        modificacionView.mostrar(pokemon.getCualidades());
-
-    }
-
-    public void mostrarCasoAtques(Pokemon pokemon, Jugador jugadorAversario, String nombreHabilidad) {
-        Habilidad habilidadAux = pokemon.getMisHabilidades().get(nombreHabilidad);
-        this.jugadorView.getPokemonActualView().mostrarCasoSePuedeAtacar(pokemon, jugadorAversario.getPokemonActual(), habilidadAux);
-
-    }
-
 
 
 }

@@ -17,6 +17,6 @@ public class HabilidadEstado extends Habilidad{
     @Override
     public void usarHabilidad(Cualidades cualidadesPokemonEnemigo,Cualidades cualidadesPokemonPropio) {
         this.cantidadDeUsos --;
-        cualidadesPokemonEnemigo.agregarEstado(this.unEstado); //-------> nueva modificacion
+        cualidadesPokemonEnemigo.agregarEstado(this.unEstado);
     }
 }

@@ -1,10 +1,12 @@
 package view.PokemonesView;
 
+import Estados.Estado;
 import Pokemones.Cualidades;
 import view.EstadosView.EstadoFacory;
 import view.EstadosView.EstadoView;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import static org.fiuba.algoritmos3.Constantes.*;
@@ -34,7 +36,15 @@ public class CualidadesView {
                         " Ataque: " + ANSI_MARRON + this.cualidades.getAtaque() + ANSI_RESET);
         System.out.println(" Estado: ");
         this.cualidades.getEstadosActuales().forEach(estado -> {
-            System.out.println(" " + estado.getNombreConColor());
+            if(estado.getNombre() == "Inhabilitado" && this.cualidades.getEstadosActuales().size() == 1){
+                System.out.println(" " + estado.getNombreConColor());
+            }
+            if(estado.getNombre() != "Normal" && this.cualidades.getEstadosActuales().size() > 1){
+                System.out.println(" " + estado.getNombreConColor());
+            }
+            if(estado.getNombre() == "Normal" && this.cualidades.getEstadosActuales().size() == 1){
+                System.out.println(" " + estado.getNombreConColor());
+            }
         });
     }
 
