@@ -8,8 +8,6 @@ public abstract class Clima {
 
     protected String nombre;
 
-    //protected int DURACION_MAXIMA_DE_CLIMA;
-
     protected int duracionActual;
 
 
@@ -21,17 +19,10 @@ public abstract class Clima {
         return nombre;
     }
 
-    public int getDuracionMaxima() {
-        return DURACION_MAXIMA_DE_CLIMA;
-    }
-
     public int getDuracionActual() {
         return duracionActual;
     }
 
-    public void setDuracionActual(int duracionActual) {
-        this.duracionActual = duracionActual;
-    }
 
     public void aumentarDuracion(){
         duracionActual ++;

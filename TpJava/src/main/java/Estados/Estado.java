@@ -1,5 +1,4 @@
 package Estados;
-//import org.fiuba.algoritmos3.Constantes.*;
 
 import Pokemones.Cualidades;
 
@@ -8,15 +7,14 @@ public abstract class Estado {
     protected String color;
     protected String nombre;
     protected Cualidades cualidades;
-    protected boolean eliminarse =  false; //--> esto esta mas que nada para agregarse en una Lista<Eliimnados>
-    //--> asi evitamos el error .ConcurrentModificationException
+    protected boolean eliminarse =  false;
 
     public String getNombre() {
         return nombre;
     }
 
-    public String getNombreConColor() { //podría ser una interfaz porque Tipo tambien tiene este metodo
-        return this.color + this.getNombre() + "\u001B[0m"; //no me toma el ANSI_RESET
+    public String getNombreConColor() {
+        return this.color + this.getNombre() + "\u001B[0m";
     }
 
     public Cualidades getCualidades() {

@@ -31,14 +31,13 @@ public class EstadoDormido extends Estado{
 
     @Override
     public boolean puedeAtacar(){
-        //set a new random between 0.25 and turnosDormido * 0.25
+
         this.probabilidadDeDespertar = Math.round((0.25 + this.turnosDormido * 0.25) * 100.0) / 100.0; //--> para que genere una numero de dos cirfas signficativas
         this.probabilidadDeDormir = ServicioDeRandoms.obtenerRandomParaEstadoPuedeAtacar();
 
 
         if (this.turnosDormido >= this.duracionMaxima || this.probabilidadDeDormir <= this.probabilidadDeDespertar){
-            //this.cualidades.cambiarseEstado(new EstadoNormal()); --> Version de un solo estado
-            //this.cualidades.eliminarEstado(this);
+
             this.eliminarse = true;
             return true;
         } else {

@@ -26,6 +26,5 @@ public class EstadoEnvenenado extends Estado{
         this.danioVeneno = this.cualidades.getVidaMaxima() * PORCENTAJE_VENENO;
         this.cualidades.recibirDanio(this.danioVeneno);
 
-        //this.cualidades.actualizarEstados(); // para que todos los estados sepan que se actualizaron
     }
 }

@@ -22,6 +22,7 @@ public class SistemaDeClima {
         climas.put(CLIMA_TORMENTA_DE_RAYOS, new ClimaTormentaElectrica());
         climas.put(CLIMA_NIEBLA, new ClimaNiebla());
         climas.put(CLIMA_TORMENTA_DE_NIEVE, new ClimaTormentaNevada());
+        climas.put(CLIMA_HURACAN, new ClimaTormentaHuracan());
         climaActual = null;
     }
 
