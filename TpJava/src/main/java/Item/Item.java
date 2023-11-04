@@ -1,11 +1,12 @@
 package Item;
 
-import org.fiuba.algoritmos3.*;
+import Modificaciones.Modificacion;
+import Pokemones.Cualidades;
 public abstract class Item {
 
     protected final String nombre;
     protected int cantidad;
-    protected Modificacion unaModificacion;
+    public Modificacion unaModificacion;
 
     public Item(String nombre, int cantidad) {
         this.nombre = nombre;
@@ -15,20 +16,19 @@ public abstract class Item {
 
     public String getNombre() {return nombre;}
 
-    public abstract void mostrarItem();
+    public Modificacion getUnaModificacion() {
+        return unaModificacion;
+    }
 
-    public abstract boolean aplicarItem(Pokemon unPokemon);
+    public abstract boolean aplicarItem(Cualidades cualidades);
 
     public abstract boolean esUnItemDeSoloCampoDeBatalla();
-    public boolean realizarCasosDeApliacion(Pokemon unPokemon){
+    public boolean realizarCasosDeApliacion(Cualidades cualidades){
         if (this.cantidad == 0) {
-            System.out.println("No tiene este tipo de items");
             return false;
         }
         else{
-            System.out.print("Acaba de seleccionar el siguiente Item: " + nombre);
-            System.out.println("\n");
-            return this.aplicarItem(unPokemon);
+            return this.aplicarItem(cualidades);
         }
     }
 }

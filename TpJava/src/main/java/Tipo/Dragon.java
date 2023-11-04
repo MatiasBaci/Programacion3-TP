@@ -6,13 +6,21 @@ public class Dragon extends Tipo {
     public Dragon(){
 
         super();
-        this.nombre = "Dragon";
+        this.nombre = TIPO_DRAGON;
         this.color = ANSI_VIOLETAOSCURO;
-        this.completarTablaEfectividad();
+        this.completarTablaEfectividadTipo();
+        this.completarTablaEfectividadClima();
     }
 
     @Override
-    public void completarTablaEfectividad(){
-        this.tablaEfectividad.put(TIPO_DRAGON,RELACION_FUERTE);
+    public void completarTablaEfectividadTipo(){
+        this.tablaEfectividadTipo.put(TIPO_DRAGON,RELACION_FUERTE);
     }
+
+    public void completarTablaEfectividadClima(){
+        this.tablaEfectividadClima.put(CLIMA_NORMAL, RELACION_NORMAL);
+
+    }
+
+
 }

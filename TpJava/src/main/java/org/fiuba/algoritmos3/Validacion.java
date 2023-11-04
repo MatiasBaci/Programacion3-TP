@@ -1,6 +1,8 @@
 package org.fiuba.algoritmos3;
 
 import Item.Item;
+import Pokemones.Habilidad;
+import Pokemones.Pokemon;
 
 import java.util.Map;
 

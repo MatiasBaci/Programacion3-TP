@@ -1,12 +1,11 @@
 package Item;
 
-import org.fiuba.algoritmos3.Estado;
-import org.fiuba.algoritmos3.Pokemon;
+import Estados.Estado;
+import Pokemones.Cualidades;
 
-import java.util.Objects;
+import java.util.Set;
 
 import static org.fiuba.algoritmos3.Constantes.ESTADO_INHABILITADO;
-import static org.fiuba.algoritmos3.Constantes.ESTADO_NORMAL;
 
 public abstract class ItemsEstado extends Item implements validarItemEstado {
 
@@ -14,20 +13,19 @@ public abstract class ItemsEstado extends Item implements validarItemEstado {
         super(unNombre,cantidad);
     }
 
-    public abstract boolean aplicarItem(Pokemon unPokemon);
+    public abstract boolean aplicarItem(Cualidades cualidades);
 
-    public abstract void mostrarItem();
     @Override
-    public boolean realizarUsadoCurarTodo(Estado unEstado){
-        if(!Objects.equals(unEstado.getNombre(), ESTADO_NORMAL) && !Objects.equals(unEstado.getNombre(), ESTADO_INHABILITADO)){
+    public boolean realizarUsadoCurarTodo(Set<Estado> estadosActuales){
+        if(estadosActuales.stream().noneMatch(unEstado ->  unEstado.getNombre().equals(ESTADO_INHABILITADO))){
             this.cantidad --;
             return true;
         }
         return false;
     }
     @Override
-    public boolean realizarUsadoRevivir(Estado unEstado){
-        if(Objects.equals(unEstado.getNombre(), ESTADO_INHABILITADO)){
+    public boolean realizarUsadoRevivir(Set<Estado> estadosActuales){
+        if(estadosActuales.stream().anyMatch(unEstado -> unEstado.getNombre().equals(ESTADO_INHABILITADO))){
             this.cantidad --;
             return true;
         }

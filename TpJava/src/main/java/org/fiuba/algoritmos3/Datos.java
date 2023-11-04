@@ -1,9 +1,18 @@
 package org.fiuba.algoritmos3;
+
+import Estados.EstadoConfuso;
+import Estados.EstadoDormido;
+import Estados.EstadoEnvenenado;
+import Estados.EstadoParalizado;
 import Item.*;
+import Modificaciones.*;
+import Pokemones.*;
 import Tipo.Tipo;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static org.fiuba.algoritmos3.Constantes.*;
 
 public class Datos {
 
@@ -52,6 +61,8 @@ public class Datos {
         squirtle.aniadirHabilidad(cabezazo);
         Habilidad defensaFerrea = new HabilidadEstadistica("DefensaFerrea", 15, true, 2, new ModificacionDefensa());
         squirtle.aniadirHabilidad(defensaFerrea);
+        Habilidad danzaDeLluvia = new HabilidadClima("DanzaDeLluvia", CLIMA_LLUVIA, 5);
+        squirtle.aniadirHabilidad(danzaDeLluvia);
         this.mochilaJugador1.put(squirtle.getNombre(), squirtle);
 
 
@@ -74,8 +85,8 @@ public class Datos {
         pikachu.aniadirHabilidad(trueno);
         Habilidad ondaTrueno = new HabilidadEstado("OndaTrueno", 20, new EstadoParalizado());
         pikachu.aniadirHabilidad(ondaTrueno);
-        Habilidad colaFerrea = new HabilidadAtaque("ColaFerrea",Tipo.instanciarUnTipoDe("Normal"),100,15);
-        pikachu.aniadirHabilidad(colaFerrea);
+        Habilidad tormentaElectrica = new HabilidadClima("TormentaElectrica", CLIMA_TORMENTA_DE_RAYOS, 5);
+        pikachu.aniadirHabilidad(tormentaElectrica);
         Habilidad agilidad = new HabilidadEstadistica("Agilidad", 30, true, 2, new ModificacionVelocidad());
         pikachu.aniadirHabilidad(agilidad);
         this.mochilaJugador1.put(pikachu.getNombre(), pikachu);
@@ -109,7 +120,7 @@ public class Datos {
 
         Pokemon crobat = new Pokemon("Crobat", 50, "Veneno", "Sus cuatro alas le permiten volar más rápida y sigilosamente. Es un Pokémon nocturno.",
         160, 150, 100, 110);
-        Habilidad venenoX = new HabilidadAtaque("VenenoX",Tipo.instanciarUnTipoDe("Veneno"),70,20);
+        Habilidad venenoX = new HabilidadAtaque("VenenoX",Tipo.instanciarUnTipoDe("Veneno"),80,15);
         crobat.aniadirHabilidad(venenoX);
         Habilidad tijeraX = new HabilidadAtaque("TijeraX",Tipo.instanciarUnTipoDe("Bicho"),80,15);
         crobat.aniadirHabilidad(tijeraX);
@@ -122,11 +133,12 @@ public class Datos {
 
         Item pocion = new Pocion("Pocion", 4, new ModificacionVida());
         Item megaPocion = new MegaPocion("Mega Pocion", 3, new ModificacionVida());
-        Item hiperPocion = new HiperPocion("Hiper Pocion", 1, new ModificacionVida());
+        Item hiperPocion = new HiperPocion("Hiper Pocion", 1, new ModificacionVida());//-->contemplado que solo tenga 1
+        Item molestaAlumnos =  new PocionMolestaAlumnos("Molesta Alumnos",4,new ModificacionVida());
         Item pocionDefensa = new DefensaX("Defensa X", 2, new ModificacionDefensa());
         Item pocionAtaque = new AtaqueX("Ataque X", 1, new ModificacionAtaque());
         Item revivir = new Revivir("Revivir", 1, new ModificacionEstadoInhabilitado());
-        Item curarTodo = new PocionCuracionEstados("Curar todo",1);
+        Item curarTodo = new PocionCuracionEstados("CuraTodo",1, new ModificacionEstado());
 
         this.itemsJugador1.put(pocion.getNombre(), pocion);
         this.itemsJugador1.put(megaPocion.getNombre(), megaPocion);
@@ -135,6 +147,7 @@ public class Datos {
         this.itemsJugador1.put(pocionDefensa.getNombre(), pocionDefensa);
         this.itemsJugador1.put(pocionAtaque.getNombre(), pocionAtaque);
         this.itemsJugador1.put(curarTodo.getNombre(), curarTodo);
+        this.itemsJugador1.put(molestaAlumnos.getNombre(), molestaAlumnos); //--->
     }
 
     private void InicialzarPokemonesJugador2(){
@@ -145,10 +158,10 @@ public class Datos {
         alakazam.aniadirHabilidad(psiquico);
         Habilidad recuperacion = new HabilidadEstadistica("Recuperacion", 5, true, (int)(alakazam.getVidaMaxima()/2), new ModificacionVida());
         alakazam.aniadirHabilidad(recuperacion);
-        Habilidad energibola = new HabilidadAtaque("Energibola",Tipo.instanciarUnTipoDe("Planta"),90,10);
-        alakazam.aniadirHabilidad(energibola);
         Habilidad maquinacion = new HabilidadEstadistica("Maquinacion", 20, true, 2, new ModificacionAtaque());
         alakazam.aniadirHabilidad(maquinacion);
+        Habilidad confundir = new HabilidadEstado("Confuso",5,new EstadoConfuso());
+        alakazam.aniadirHabilidad(confundir);
         this.mochilaJugador2.put(alakazam.getNombre(), alakazam);
 
 
@@ -171,8 +184,8 @@ public class Datos {
         golem.aniadirHabilidad(terremoto);
         Habilidad rocaAfilada = new HabilidadAtaque("RocaAfilada",Tipo.instanciarUnTipoDe("Roca"),100,5);
         golem.aniadirHabilidad(rocaAfilada);
-        Habilidad punioTrueno = new HabilidadAtaque("PuñoTrueno",Tipo.instanciarUnTipoDe("Electrico"),75,15);
-        golem.aniadirHabilidad(punioTrueno);
+        Habilidad tormentaDeArena = new HabilidadClima("TormentaDeArena", CLIMA_TORMENTA_DE_ARENA, 5);
+        golem.aniadirHabilidad(tormentaDeArena);
         Habilidad defensaFerrea = new HabilidadEstadistica("DefensaFerrea", 15, true, 2, new ModificacionDefensa());
         golem.aniadirHabilidad(defensaFerrea);
         this.mochilaJugador2.put(golem.getNombre(), golem);
@@ -219,11 +232,12 @@ public class Datos {
 
         Item pocion = new Pocion("Pocion", 50, new ModificacionVida());
         Item megaPocion = new MegaPocion("Mega Pocion", 2, new ModificacionVida());
-        Item hiperPocion = new HiperPocion("Hiper Pocion", 4, new ModificacionVida());
+        Item hiperPocion = new HiperPocion("Hiper Pocion", 1, new ModificacionVida()); //-->contemplado que solo tenga 1
+        Item molestaAlumnos =  new PocionMolestaAlumnos("Molesta Alumnos",4,new ModificacionVida());
         Item pocionDefensa = new DefensaX("Defensa X", 3, new ModificacionDefensa());
         Item pocionAtaque = new AtaqueX("Ataque X", 2, new ModificacionAtaque());
         Item revivir = new Revivir("Revivir", 1, new ModificacionEstadoInhabilitado());
-        Item curarTodo = new PocionCuracionEstados("Curar todo",1);
+        Item curarTodo = new PocionCuracionEstados("CuraTodo",1, new ModificacionEstado());
 
         this.itemsJugador2.put(pocion.getNombre(), pocion);
         this.itemsJugador2.put(megaPocion.getNombre(), megaPocion);
@@ -231,7 +245,8 @@ public class Datos {
         this.itemsJugador2.put(revivir.getNombre(), revivir);
         this.itemsJugador2.put(pocionDefensa.getNombre(), pocionDefensa);
         this.itemsJugador2.put(pocionAtaque.getNombre(), pocionAtaque);
-        this.itemsJugador1.put(curarTodo.getNombre(), curarTodo);
+        this.itemsJugador2.put(curarTodo.getNombre(), curarTodo);
+        this.itemsJugador2.put(molestaAlumnos.getNombre(), molestaAlumnos); //--->
     }
 
 }
