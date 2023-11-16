@@ -4,7 +4,6 @@ import Climas.SistemaDeClima;
 import Pokemones.Pokemon;
 import view.GeneralView;
 
-import java.io.InputStream;
 import java.util.Scanner;
 
 import static org.fiuba.algoritmos3.Constantes.ANSI_RESET;
@@ -63,7 +62,7 @@ public class Juego {
     }
 
     private boolean pokemonJugador1EsRapido(Pokemon pokemonJugador1, Pokemon pokemonJugador2){
-        return pokemonJugador1.getVelocidad() >= pokemonJugador2.getVelocidad();
+        return pokemonJugador1.obtenerVelocidad() >= pokemonJugador2.obtenerVelocidad();
     }
 
     private void decidirTurnoInicial() {

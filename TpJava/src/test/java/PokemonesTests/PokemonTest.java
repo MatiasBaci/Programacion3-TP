@@ -2,19 +2,11 @@ package PokemonesTests;
 
 import Climas.SistemaDeClima;
 import Estados.EstadoEnvenenado;
-import Estados.EstadoParalizado;
-import Item.Item;
-import Item.ItemsEstado;
-import Item.PocionCuracionEstados;
 import Modificaciones.ModificacionDefensa;
-import Modificaciones.ModificacionEstado;
 import Modificaciones.ModificacionVida;
 import Pokemones.*;
 import Tipo.Tipo;
-import org.fiuba.algoritmos3.Jugador;
 import org.junit.jupiter.api.Test;
-
-import java.util.Map;
 
 import static org.fiuba.algoritmos3.Constantes.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -74,7 +66,7 @@ public class PokemonTest {
         //Act
         crobat.atacar(charizard, "Toxico");
         //Assert
-        assert(charizard.getCualidades().getEstadosActuales().stream().anyMatch(unEstado -> unEstado.getNombre().equals(ESTADO_ENVENENADO)));
+        assert(charizard.getCualidades().obtenerEstadosActuales().stream().anyMatch(unEstado -> unEstado.getNombre().equals(ESTADO_ENVENENADO)));
     }
 
     @Test
@@ -100,7 +92,7 @@ public class PokemonTest {
                 100, 110, 90, 135);
         Pokemon lucario = new Pokemon("Lucario", 50, "Lucha", "Puede leer los pensamientos de su adversario a través de su aura.",
                 100, 110, 90, 135);
-        Habilidad recuperacion = new HabilidadEstadistica("Recuperacion",5, true, (int)(alakazam.getVidaMaxima()/2), new ModificacionVida());
+        Habilidad recuperacion = new HabilidadEstadistica("Recuperacion",5, true, (int)(alakazam.obtenerVidaMaxima()/2), new ModificacionVida());
         alakazam.aniadirHabilidad(recuperacion);
         //Act
         alakazam.getCualidades().recibirDanio(60);

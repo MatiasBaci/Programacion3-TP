@@ -4,6 +4,8 @@ import Estados.Estado;
 import Estados.EstadoInhabilitado;
 import Estados.EstadoNormal;
 import Tipo.Tipo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -12,22 +14,26 @@ import static org.fiuba.algoritmos3.Constantes.PORCENTAJE;
 public class Cualidades {
 
     //Atributos:
-    private final double vidaMaxima;
+    private double vidaMaxima;
 
     private double vidaActual;
     private int velocidad;
     private int defensa;
     private int ataque;
 
-    private final int nivel;
+    private int nivel;
 
     private Tipo tipo;
-
+    @JsonManagedReference
+    @JsonIgnore
     private Set<Estado> estados = new HashSet<>();
 
 
     //Metodos:
 
+    public Cualidades(){
+
+    }
     public Cualidades(double vida,int nivel ,int velocidad, int defensa, int ataque, String tipo){
         this.vidaMaxima = vida;
         this.vidaActual = vida;
@@ -57,7 +63,7 @@ public class Cualidades {
         return this.vidaActual;
     }
 
-    public Set<Estado> getEstadosActuales() {
+    public Set<Estado> obtenerEstadosActuales() {
         return this.estados;
     }
     public  void agregarEstado(Estado unEstado){

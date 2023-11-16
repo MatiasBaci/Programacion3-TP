@@ -1,10 +1,11 @@
 package Pokemones;
 
 import Tipo.Tipo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.HashMap;
 import java.util.Map;
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Pokemon {
 
     //Atributos:
@@ -14,7 +15,9 @@ public class Pokemon {
 
     private Map<String, Habilidad> misHabilidades;
 
+    public Pokemon(){
 
+    }
     //Metodos:
     public Pokemon(String nombre, int nivel,String tipo, String historia,double vidaMax,int velocidad,int defensa,int ataque){
         this.nombre = nombre;
@@ -31,8 +34,8 @@ public class Pokemon {
         return misHabilidades;
     }
     public Cualidades getCualidades() {return cualidades;}
-    public int getVelocidad() {return cualidades.getVelocidad();}
-    public double getVidaMaxima() {return this.cualidades.getVidaMaxima();}
+    public int obtenerVelocidad() {return cualidades.getVelocidad();}
+    public double obtenerVidaMaxima() {return this.cualidades.getVidaMaxima();}
     public String getHistoria() {
         return historia;
     }
@@ -57,6 +60,6 @@ public class Pokemon {
         }
     }
 
-    public Tipo getTipo() {return this.cualidades.getTipo(); }
+    public Tipo obtenerTipo() {return this.cualidades.getTipo(); }
 
 }

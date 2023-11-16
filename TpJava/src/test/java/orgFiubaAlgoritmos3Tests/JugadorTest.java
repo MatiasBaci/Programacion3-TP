@@ -175,8 +175,8 @@ public class JugadorTest {
         //Act
         jugador.usarItem("Lucario", curaTodo);
         //Assert
-        assertFalse(lucario.getCualidades().getEstadosActuales().stream().anyMatch(unEstado -> unEstado.getNombre().equals(ESTADO_ENVENENADO)));
-        assertFalse(lucario.getCualidades().getEstadosActuales().stream().anyMatch(unEstado -> unEstado.getNombre().equals(ESTADO_PARALIZADO)));
+        assertFalse(lucario.getCualidades().obtenerEstadosActuales().stream().anyMatch(unEstado -> unEstado.getNombre().equals(ESTADO_ENVENENADO)));
+        assertFalse(lucario.getCualidades().obtenerEstadosActuales().stream().anyMatch(unEstado -> unEstado.getNombre().equals(ESTADO_PARALIZADO)));
     }
 
 }

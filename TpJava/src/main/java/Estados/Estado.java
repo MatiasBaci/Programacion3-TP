@@ -1,14 +1,28 @@
 package Estados;
 
 import Pokemones.Cualidades;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import static org.fiuba.algoritmos3.Constantes.*;
 
 public abstract class Estado {
 
     protected String color;
     protected String nombre;
+    @JsonBackReference
     protected Cualidades cualidades;
     protected boolean eliminarse =  false;
 
+    public static Estado instaciarUnEstadoDe(String unEstado){
+        if(unEstado.equals(ESTADO_DORMIDO)){
+            return new EstadoDormido();
+        } else if (unEstado.equals(ESTADO_PARALIZADO)) {
+            return new EstadoParalizado();
+        } else if (unEstado.equals(ESTADO_CONFUSO)) {
+            return new EstadoConfuso();
+        }
+        return new EstadoEnvenenado();
+    }
     public String getNombre() {
         return nombre;
     }

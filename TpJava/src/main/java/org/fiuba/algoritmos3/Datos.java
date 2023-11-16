@@ -74,7 +74,7 @@ public class Datos {
         charizard.aniadirHabilidad(lanzallamas);
         Habilidad garraDragon = new HabilidadAtaque("GarraDragon",Tipo.instanciarUnTipoDe("Dragon"),80,15);
         charizard.aniadirHabilidad(garraDragon);
-        Habilidad respiro = new HabilidadEstadistica("Respiro", 5, true, (int)(charizard.getVidaMaxima()/2), new ModificacionVida());
+        Habilidad respiro = new HabilidadEstadistica("Respiro", 5, true, (int)(charizard.obtenerVidaMaxima()/2), new ModificacionVida());
         charizard.aniadirHabilidad(respiro);
         this.mochilaJugador1.put(charizard.getNombre(), charizard);
 
@@ -156,7 +156,7 @@ public class Datos {
         100	, 140, 65, 155);
         Habilidad psiquico = new HabilidadAtaque("Psiquico",Tipo.instanciarUnTipoDe("Psiquico"),90,10);
         alakazam.aniadirHabilidad(psiquico);
-        Habilidad recuperacion = new HabilidadEstadistica("Recuperacion", 5, true, (int)(alakazam.getVidaMaxima()/2), new ModificacionVida());
+        Habilidad recuperacion = new HabilidadEstadistica("Recuperacion", 5, true, (int)(alakazam.obtenerVidaMaxima()/2), new ModificacionVida());
         alakazam.aniadirHabilidad(recuperacion);
         Habilidad maquinacion = new HabilidadEstadistica("Maquinacion", 20, true, 2, new ModificacionAtaque());
         alakazam.aniadirHabilidad(maquinacion);

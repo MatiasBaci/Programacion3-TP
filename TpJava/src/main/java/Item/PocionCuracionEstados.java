@@ -12,7 +12,7 @@ public class PocionCuracionEstados extends ItemsEstado {
     @Override
     public boolean aplicarItem(Cualidades cualidades) {
 
-        boolean realizo = this.realizarUsadoCurarTodo(cualidades.getEstadosActuales());
+        boolean realizo = this.realizarUsadoCurarTodo(cualidades.obtenerEstadosActuales());
         this.unaModificacion.modificar(cualidades, 1);
         return realizo;
     }

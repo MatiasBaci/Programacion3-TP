@@ -21,7 +21,7 @@ class ModificacionEstadoTest {
         //Act
         modificacionEstado.modificar(cualidades, (int) cualidades.getVidaMaxima());
         //Assert
-        assert(cualidades.getEstadosActuales().stream().allMatch(unEstado -> unEstado.getNombre().equals(ESTADO_NORMAL)));
+        assert(cualidades.obtenerEstadosActuales().stream().allMatch(unEstado -> unEstado.getNombre().equals(ESTADO_NORMAL)));
     }
 
     @Test
@@ -36,6 +36,6 @@ class ModificacionEstadoTest {
         //Act
         modificacionEstado.modificar(cualidades, (int) cualidades.getVidaMaxima());
         //Assert
-        assert(cualidades.getEstadosActuales().stream().allMatch(unEstado -> unEstado.getNombre().equals(ESTADO_INHABILITADO)));
+        assert(cualidades.obtenerEstadosActuales().stream().allMatch(unEstado -> unEstado.getNombre().equals(ESTADO_INHABILITADO)));
     }
 }

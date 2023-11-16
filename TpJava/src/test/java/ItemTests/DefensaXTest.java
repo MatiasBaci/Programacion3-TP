@@ -41,7 +41,7 @@ public class DefensaXTest {
             Estado unEstado = mock(Estado.class);
             when(unEstado.getNombre()).thenReturn(ESTADO_INHABILITADO);
             estadosActuales.add(unEstado);
-            when(cualidades.getEstadosActuales()).thenReturn(estadosActuales);
+            when(cualidades.obtenerEstadosActuales()).thenReturn(estadosActuales);
             ModificacionEstado modificacion = mock(ModificacionEstado.class);
             Revivir revivir = new Revivir("Revive", 1, modificacion);
 
@@ -60,7 +60,7 @@ public class DefensaXTest {
             Estado unEstado = mock(Estado.class);
             when(unEstado.getNombre()).thenReturn("Otro");
             estadosActuales.add(unEstado);
-            when(cualidades.getEstadosActuales()).thenReturn(estadosActuales);
+            when(cualidades.obtenerEstadosActuales()).thenReturn(estadosActuales);
             ModificacionEstado modificacion = mock(ModificacionEstado.class);
             Revivir revivir = new Revivir("Revive", 1, modificacion);
 

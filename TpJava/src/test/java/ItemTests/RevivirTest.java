@@ -1,7 +1,6 @@
 package ItemTests;
 
 import Estados.Estado;
-import Item.PocionCuracionEstados;
 import Item.Revivir;
 import Modificaciones.ModificacionEstado;
 import Pokemones.Cualidades;
@@ -25,7 +24,7 @@ class RevivirTest {
         Estado unEstado = mock(Estado.class);
         when(unEstado.getNombre()).thenReturn(ESTADO_INHABILITADO);
         estadosActuales.add(unEstado);
-        when(cualidades.getEstadosActuales()).thenReturn(estadosActuales);
+        when(cualidades.obtenerEstadosActuales()).thenReturn(estadosActuales);
         ModificacionEstado modificacion = mock(ModificacionEstado.class);
         Revivir revive = new Revivir("Cura Todo", 1, modificacion);
 
@@ -44,7 +43,7 @@ class RevivirTest {
         Estado unEstado = mock(Estado.class);
         when(unEstado.getNombre()).thenReturn("Otro");
         estadosActuales.add(unEstado);
-        when(cualidades.getEstadosActuales()).thenReturn(estadosActuales);
+        when(cualidades.obtenerEstadosActuales()).thenReturn(estadosActuales);
         ModificacionEstado modificacion = mock(ModificacionEstado.class);
         Revivir revive = new Revivir("Cura Todo", 1, modificacion);
 

@@ -151,7 +151,7 @@ public class CualidadesTest {
         //Act
         cualidades.agregarEstado(estadoParalizado);
         //Assert
-        assert(cualidades.getEstadosActuales().contains(estadoParalizado));
+        assert(cualidades.obtenerEstadosActuales().contains(estadoParalizado));
     }
 
     @Test

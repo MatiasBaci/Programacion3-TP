@@ -40,7 +40,7 @@ public class PokemonView {
     }
 
     public Tipo getTipoPokemon(){
-        return this.pokemon.getTipo();
+        return this.pokemon.obtenerTipo();
     }
 
     public String getNombre(){
