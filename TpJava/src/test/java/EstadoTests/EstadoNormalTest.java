@@ -1,6 +1,6 @@
 package EstadoTests;
 
-import Estados.EstadoNormal;
+import orgFiuba.Model.Estados.EstadoNormal;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

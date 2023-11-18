@@ -1,14 +1,14 @@
 package PokemonesTests;
 
-import Climas.SistemaDeClima;
-import Estados.EstadoEnvenenado;
-import Modificaciones.ModificacionDefensa;
-import Modificaciones.ModificacionVida;
-import Pokemones.*;
-import Tipo.Tipo;
+import orgFiuba.Model.Climas.SistemaDeClima;
+import orgFiuba.Model.Estados.EstadoEnvenenado;
+import orgFiuba.Model.Modificaciones.ModificacionDefensa;
+import orgFiuba.Model.Modificaciones.ModificacionVida;
+import orgFiuba.Model.Pokemones.*;
+import orgFiuba.Model.Tipos.Tipo;
 import org.junit.jupiter.api.Test;
 
-import static org.fiuba.algoritmos3.Constantes.*;
+import static orgFiuba.Constantes.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.mockito.Mockito.mock;

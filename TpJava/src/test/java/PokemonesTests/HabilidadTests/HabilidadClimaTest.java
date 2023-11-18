@@ -1,13 +1,13 @@
 package PokemonesTests.HabilidadTests;
 
-import Climas.Clima;
-import Climas.SistemaDeClima;
-import Pokemones.Cualidades;
-import Pokemones.HabilidadClima;
+import orgFiuba.Model.Climas.Clima;
+import orgFiuba.Model.Climas.SistemaDeClima;
+import orgFiuba.Model.Pokemones.Cualidades;
+import orgFiuba.Model.Pokemones.HabilidadClima;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 
-import static org.fiuba.algoritmos3.Constantes.CLIMA_TORMENTA_DE_ARENA;
+import static orgFiuba.Constantes.CLIMA_TORMENTA_DE_ARENA;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 

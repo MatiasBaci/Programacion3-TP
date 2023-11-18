@@ -1,16 +1,16 @@
 package orgFiubaAlgoritmos3Tests;
 
-import Estados.EstadoEnvenenado;
-import Estados.EstadoParalizado;
-import Modificaciones.ModificacionEstado;
-import Pokemones.Pokemon;
-import org.fiuba.algoritmos3.Jugador;
-import Item.Item;
-import Item.PocionCuracionEstados;
+import orgFiuba.Model.Estados.EstadoEnvenenado;
+import orgFiuba.Model.Estados.EstadoParalizado;
+import orgFiuba.Model.Modificaciones.ModificacionEstado;
+import orgFiuba.Model.Pokemones.Pokemon;
+import orgFiuba.Model.Jugador;
+import orgFiuba.Model.Items.Item;
+import orgFiuba.Model.Items.PocionCuracionEstados;
 import org.junit.jupiter.api.Test;
 
-import static org.fiuba.algoritmos3.Constantes.ESTADO_ENVENENADO;
-import static org.fiuba.algoritmos3.Constantes.ESTADO_PARALIZADO;
+import static orgFiuba.Constantes.ESTADO_ENVENENADO;
+import static orgFiuba.Constantes.ESTADO_PARALIZADO;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;

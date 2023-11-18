@@ -1,7 +1,7 @@
 package EstadoTests;
 
-import Estados.EstadoDormido;
-import org.fiuba.algoritmos3.ServicioDeRandoms;
+import orgFiuba.Model.Estados.EstadoDormido;
+import orgFiuba.Model.ServicioDeRandoms;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 

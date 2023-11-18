@@ -1,9 +1,9 @@
 package orgFiubaAlgoritmos3Tests;
 
-import Item.Item;
-import Pokemones.Habilidad;
-import Pokemones.Pokemon;
-import org.fiuba.algoritmos3.Validacion;
+import orgFiuba.Model.Items.Item;
+import orgFiuba.Model.Pokemones.Habilidad;
+import orgFiuba.Model.Pokemones.Pokemon;
+import orgFiuba.Model.Validacion;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;

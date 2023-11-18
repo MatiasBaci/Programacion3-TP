@@ -1,9 +1,8 @@
 package orgFiubaAlgoritmos3Tests;
 
-import Climas.SistemaDeClima;
-import org.fiuba.algoritmos3.*;
+import orgFiuba.Model.*;
 import org.junit.jupiter.api.Test;
-import view.GeneralView;
+import orgFiuba.View.GeneralView;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;

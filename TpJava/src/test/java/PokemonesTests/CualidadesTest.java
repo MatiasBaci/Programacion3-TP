@@ -1,7 +1,7 @@
 package PokemonesTests;
 
-import Estados.Estado;
-import Pokemones.Cualidades;
+import orgFiuba.Model.Estados.Estado;
+import orgFiuba.Model.Pokemones.Cualidades;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

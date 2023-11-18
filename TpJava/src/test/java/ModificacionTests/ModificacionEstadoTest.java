@@ -1,11 +1,11 @@
 package ModificacionTests;
 
-import Estados.EstadoParalizado;
-import Modificaciones.ModificacionEstado;
-import Pokemones.Cualidades;
+import orgFiuba.Model.Estados.EstadoParalizado;
+import orgFiuba.Model.Modificaciones.ModificacionEstado;
+import orgFiuba.Model.Pokemones.Cualidades;
 import org.junit.jupiter.api.Test;
 
-import static org.fiuba.algoritmos3.Constantes.*;
+import static orgFiuba.Constantes.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ModificacionEstadoTest {
