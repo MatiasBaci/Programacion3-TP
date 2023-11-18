@@ -2,20 +2,25 @@ package SerializacionDeserealizacion;
 
 
 import Estados.Estado;
+import Modificaciones.*;
 import Pokemones.Habilidad;
 import Pokemones.HabilidadAtaque;
 import Pokemones.HabilidadEstadistica;
 import Pokemones.HabilidadEstado;
 import Tipo.Tipo;
 import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.ObjectCodec;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-public class HabilidadDeserializer extends StdDeserializer<Habilidad> {
+public class HabilidadDeserializer extends StdDeserializer<List<HabilidadIdsCustom>> {
 
     public HabilidadDeserializer() {
         this(null);
@@ -26,37 +31,62 @@ public class HabilidadDeserializer extends StdDeserializer<Habilidad> {
     }
 
     @Override
-    public Habilidad deserialize(JsonParser parser, DeserializationContext deserializer) throws IOException {
+    public List<HabilidadIdsCustom>  deserialize(JsonParser parser, DeserializationContext deserializer) throws IOException {
 
         ObjectCodec codec = parser.getCodec();
         JsonNode node = codec.readTree(parser);
 
-        String nombre = node.get("nombre").asText();
-        int  id = node.get("id").asInt();
-        String tipoDeHabilidad = node.get("tipoDeHabilidad").asText();
-        int cantidad= node.get("cantidad").asInt();
+        List<HabilidadIdsCustom> habilidadesMap = new ArrayList<>();
 
-        switch (tipoDeHabilidad.toLowerCase()) {
-            case "ataque":
-                int poder= node.get("poder").asInt();
-                String tipo= node.get("tipo").asText();
-                return new HabilidadAtaque(nombre, Tipo.instanciarUnTipoDe(tipo),poder,cantidad);
-            case "estado":
-                String estado = node.get("estado").asText();
-                return new HabilidadEstado(nombre,cantidad, Estado.instaciarUnEstadoDe(estado));
-            case "estadistica":
-                boolean propio = node.get("beneficio").asBoolean();
-                String modificacion = node.get("modificacion").asText();
-                int etapas = node.get("etapas").asInt();
-                return null;//new HabilidadEstadistica(nombre,cantidad,propio,etapas,);
-            case "clima":
-                return null;
-            default:
-                throw new IllegalArgumentException("Tipo de habilidad no reconocido: " + tipoDeHabilidad);
+        for(JsonNode habilidadesNode: node){
+            String nombre = habilidadesNode.get("nombre").asText();
+            int  id = habilidadesNode.get("id").asInt();
+            String tipoDeHabilidad = habilidadesNode.get("tipoDeHabilidad").asText();
+            int cantidad= habilidadesNode.get("cantidad").asInt();
+            Habilidad unaHabilidad = null;
+
+            switch (tipoDeHabilidad.toLowerCase()) {
+                case "ataque":
+                    int poder= habilidadesNode.get("poder").asInt();
+                    String tipo= habilidadesNode.get("tipo").asText();
+                    unaHabilidad = new HabilidadAtaque(nombre, Tipo.instanciarUnTipoDe(tipo),poder,cantidad);
+                    break;
+                case "estado":
+                    String estado = habilidadesNode.get("estado").asText();
+                    unaHabilidad = new HabilidadEstado(nombre,cantidad, Estado.instaciarUnEstadoDe(estado));
+                    break;
+                case "estadistica":
+                    boolean propio = habilidadesNode.get("beneficio").asBoolean();
+                    //Modificacion modificacion = codec.treeToValue(habilidadesNode.get("tipoDeModificacion"), Modificacion.class);
+                    String  tipoDeModificacion = habilidadesNode.get("tipoDeModificacion").asText();
+
+                    // Usa el método para obtener la instancia de Modificacion
+                    Modificacion modificacion = obtenerModificacion(tipoDeModificacion);
+                    int etapas = habilidadesNode.get("etapas").asInt();
+                    unaHabilidad = new HabilidadEstadistica(nombre,cantidad,propio,etapas,modificacion);
+                    break;
+                case "clima":
+                    break;
+                default:
+                    throw new IllegalArgumentException("Tipo de habilidad no reconocido: " + tipoDeHabilidad);
+            }
+            habilidadesMap.add(new HabilidadIdsCustom(id,unaHabilidad));
         }
 
-        //Habilidad Habilidad = new Habilidad();
-
-        //return Habilidad;
+        return habilidadesMap;
+    }
+    private Modificacion obtenerModificacion(String tipo) {
+        switch (tipo) {
+            case "velocidad":
+                return new ModificacionVelocidad();
+            case "ataque":
+                return new ModificacionAtaque();
+            case "defensa":
+                return new ModificacionDefensa();
+            case "vida":
+                return new ModificacionVida();
+            default:
+                throw new IllegalArgumentException("Tipo de modificación desconocido: " + tipo);
+        }
     }
 }

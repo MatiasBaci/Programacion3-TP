@@ -1,7 +1,7 @@
 [
   {
     "nombre" : "Lanzallamas",
-    "tipoDeHabilidad": "Ataque",
+    "tipoDeHabilidad": "ataque",
     "id" : 56,
     "cantidad": 5,
     "tipo": "Fuego",
@@ -9,18 +9,18 @@
   } ,
   {
     "nombre" : "Toxico",
-    "tipoDeHabilidad": "Estado",
+    "tipoDeHabilidad": "estado",
     "id" : 30,
     "cantidad": 5,
     "estado": "Envenenado"
   } ,
   {
     "nombre" : "Agilidad",
-    "tipoDeHabilidad": "Estadistica",
+    "tipoDeHabilidad": "estadistica",
     "id" : 45,
     "cantidad": 5,
     "beneficio": true,
-    "modificacion": "Velocidad",
+    "tipoDeModificacion": "velocidad",
     "etapas": 10
   }
 ]

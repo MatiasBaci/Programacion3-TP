@@ -1,5 +1,15 @@
 package Pokemones;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "tipoDeHabilidad")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = HabilidadAtaque.class, name = "ataque"),
+        @JsonSubTypes.Type(value = HabilidadEstado.class, name = "estado"),
+        @JsonSubTypes.Type(value = HabilidadEstadistica.class, name = "estadistica"),
+        @JsonSubTypes.Type(value = HabilidadEstadistica.class, name = "clima")
+})
 public abstract class Habilidad {
 
     protected final String nombre;

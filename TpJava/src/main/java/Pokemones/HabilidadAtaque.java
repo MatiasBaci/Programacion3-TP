@@ -1,17 +1,26 @@
 package Pokemones;
 
 import Tipo.Tipo;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.fiuba.algoritmos3.ServicioDeRandoms;
 
 import static org.fiuba.algoritmos3.Constantes.*;
-
+@JsonTypeName("ataque")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class HabilidadAtaque extends Habilidad {
     private final Tipo tipo;
     private final int poder;
 
     private double danioRealizado;
-
-    public HabilidadAtaque(String nombre, Tipo tipo, int poder, int cantidad){
+    @JsonCreator
+    public HabilidadAtaque(
+            @JsonProperty("nombre") String nombre,
+            @JsonProperty("tipo") Tipo tipo,
+            @JsonProperty("poder") int poder,
+            @JsonProperty("cantidad") int cantidad){
         super(nombre,cantidad);
         this.tipo = tipo;
         this.poder = poder;

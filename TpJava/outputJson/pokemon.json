@@ -16,10 +16,11 @@
   },
   "misHabilidades" : {
     "Respiro" : {
+      "tipoDeHabilidad" : "estadistica",
       "nombre" : "Respiro",
       "cantidadDeUsos" : 5,
-      "modificacionPropia" : true,
-      "etapas" : 76
+      "etapas" : 76,
+      "modificacionPropia" : true
     }
   }
 }

@@ -1,14 +1,20 @@
 package SerializacionDeserealizacion;
 
 
+import Pokemones.Habilidad;
 import Pokemones.Pokemon;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.ObjectCodec;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.Map;
 
 public class PokemonDeserializer extends StdDeserializer<Pokemon> {
 
@@ -39,6 +45,27 @@ public class PokemonDeserializer extends StdDeserializer<Pokemon> {
 
         Pokemon Pokemon = new Pokemon(nombre,nivel,tipo,historia,vida ,velocidad,defensa,ataque);
 
-        return Pokemon;
+        /*try {
+            File habilidadesFile = new File(habilidadesJsonPath);
+            ObjectMapper objectMapper = new ObjectMapper();
+            HabilidadDeserializer habilidadDeserializer = new HabilidadDeserializer();
+
+            SimpleModule simpleModule = new SimpleModule();
+            simpleModule.addDeserializer(Habilidad.class, habilidadDeserializer);
+
+            objectMapper.registerModule(simpleModule);
+
+            // Lee el HashMap directamente
+            Map<Integer, Habilidad> habilidadesMap = objectMapper.readValue(habilidadesFile, new TypeReference<Map<Integer, Habilidad>>() {});
+
+            // Crea el objeto Pokemon con el HashMap de habilidades
+            //Pokemon pokemon = new Pokemon(nombre, nivel, tipo, historia, vida, velocidad, defensa, ataque, habilidadesMap);
+
+            //return pokemon;
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Manejar la excepción adecuadamente
+        }*/
+        return null;
     }
 }

@@ -1,17 +1,25 @@
 package Pokemones;
 
 import Modificaciones.Modificacion;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+@JsonTypeName("estadistica")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class HabilidadEstadistica extends Habilidad{
-
-    private String modificaEstadistica;
 
     private final boolean modificacionPropia;
     private final int etapas;
 
     private final Modificacion unaModificacion;
-
-
-    public HabilidadEstadistica(String nombre, int cantidadDeUsos, boolean propio,int etapas,Modificacion modificar){
+    @JsonCreator
+    public HabilidadEstadistica(
+            @JsonProperty("nombre") String nombre,
+            @JsonProperty("cantidadDeUsos") int cantidadDeUsos,
+            @JsonProperty("propio") boolean propio,
+            @JsonProperty("etapas") int etapas,
+            @JsonProperty("modificacion") Modificacion modificar){
         super(nombre,cantidadDeUsos);
         this.modificacionPropia = propio;
         this.unaModificacion = modificar;

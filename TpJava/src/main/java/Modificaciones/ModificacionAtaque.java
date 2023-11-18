@@ -1,9 +1,11 @@
 package Modificaciones;
 
 import Pokemones.Cualidades;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 import static org.fiuba.algoritmos3.Constantes.MODIFICACION_ATAQUE;
 
+@JsonTypeName("ataque")
 public class ModificacionAtaque implements Modificacion {
 
 

@@ -1,7 +1,9 @@
 package Pokemones;
 
 import Climas.SistemaDeClima;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
+@JsonTypeName("clima")
 public class HabilidadClima extends Habilidad {
     private final String clima;
 

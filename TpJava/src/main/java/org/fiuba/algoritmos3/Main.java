@@ -4,12 +4,19 @@ import Modificaciones.ModificacionVida;
 import Pokemones.Habilidad;
 import Pokemones.HabilidadEstadistica;
 import Pokemones.Pokemon;
+import SerializacionDeserealizacion.HabilidadDeserializer;
+import SerializacionDeserealizacion.HabilidadIdsCustom;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature; //--> para los tabs
+import com.fasterxml.jackson.databind.module.SimpleModule;
+import com.fasterxml.jackson.databind.type.TypeFactory;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 public class Main {
 
@@ -41,5 +48,22 @@ public static void main(String[] args) throws IOException {
     } catch (IOException e) {
         e.printStackTrace();
     }*/
+
+    //----------------------------------------------------------------------------------------------------------------------------
+    String habilidadesJsonPath = "TpJava/outputJson/habilidades.json";
+    try {
+        File habilidadesFile = new File(habilidadesJsonPath);
+        ObjectMapper objectMapper2 = new ObjectMapper();
+        SimpleModule module = new SimpleModule();
+        module.addDeserializer(List.class, new HabilidadDeserializer());
+        objectMapper2.registerModule(module);
+
+        List<HabilidadIdsCustom> habilidades = objectMapper2.readValue(habilidadesFile, new TypeReference<List<HabilidadIdsCustom>>() {});
+        System.out.println(habilidades);
+
+    } catch (IOException e) {
+        e.printStackTrace();
+        // Manejar la excepción adecuadamente
+    }
     }
 }
