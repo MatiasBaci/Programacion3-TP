@@ -14,6 +14,7 @@ import com.fasterxml.jackson.databind.SerializationFeature; //--> para los tabs
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import orgFiuba.Model.SerializacionDeserealizacion.PokemonDeserializer;
+import orgFiuba.Model.SerializacionDeserealizacion.PokemonIdsCustom;
 
 import java.io.File;
 import java.io.IOException;
@@ -44,10 +45,10 @@ public static void main(String[] args) throws IOException {
         File pokemonFile = new File(pokemonJsonPath);
         ObjectMapper objectMapperPokemon = new ObjectMapper();
         SimpleModule module = new SimpleModule();
-        module.addDeserializer(Pokemon.class, new PokemonDeserializer());
+        module.addDeserializer(PokemonIdsCustom.class, new PokemonDeserializer()); ///-> PokemonIds
         objectMapperPokemon.registerModule(module);
 
-        List<Pokemon> listaPokemon = objectMapperPokemon.readValue(pokemonFile,new TypeReference<List<Pokemon>>() {});
+        List<PokemonIdsCustom> listaPokemon = objectMapperPokemon.readValue(pokemonFile,new TypeReference<List<PokemonIdsCustom>>() {});
         System.out.println(listaPokemon);
 
     } catch (IOException e) {

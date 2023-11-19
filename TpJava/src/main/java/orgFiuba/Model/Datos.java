@@ -10,6 +10,7 @@ import orgFiuba.Model.Pokemones.*;
 import orgFiuba.Model.SerializacionDeserealizacion.HabilidadDeserializer;
 import orgFiuba.Model.SerializacionDeserealizacion.HabilidadIdsCustom;
 import orgFiuba.Model.SerializacionDeserealizacion.PokemonDeserializer;
+import orgFiuba.Model.SerializacionDeserealizacion.PokemonIdsCustom;
 import orgFiuba.Model.Tipos.Tipo;
 
 import java.io.File;
@@ -61,15 +62,15 @@ public class Datos {
 
     private List<Pokemon> lecturaPokemonsJson(){
 
-        String pokemonJsonPath = "TpJava/outputJson/pokemonPrueba.json"; //--> Ruta Relativa
+        String pokemonJsonPath = "TpJava/outputJson/pokemons.json"; //--> Ruta Relativa
         try {
             File pokemonFile = new File(pokemonJsonPath);
             ObjectMapper objectMapperPokemon = new ObjectMapper();
             SimpleModule module = new SimpleModule();
-            module.addDeserializer(Pokemon.class, new PokemonDeserializer());
+            module.addDeserializer(PokemonIdsCustom.class, new PokemonDeserializer()); //---> PokemonIDS
             objectMapperPokemon.registerModule(module);
 
-            List<Pokemon> listaPokemon = objectMapperPokemon.readValue(pokemonFile,new TypeReference<List<Pokemon>>() {});
+            List<PokemonIdsCustom> listaPokemon = objectMapperPokemon.readValue(pokemonFile,new TypeReference<List<PokemonIdsCustom>>() {});
             System.out.println(listaPokemon);
 
         } catch (IOException e) {
@@ -245,7 +246,7 @@ public class Datos {
 
         Pokemon bidoof = new Pokemon("Bidoof", 50, "Normal", "El Pokemon más fuerte de todos los tiempos.",
         100, 5, 60, 6);
-                Habilidad placaje = new HabilidadAtaque("Placaje",Tipo.instanciarUnTipoDe("Normal"),40,35);
+        Habilidad placaje = new HabilidadAtaque("Placaje",Tipo.instanciarUnTipoDe("Normal"),40,35);
         bidoof.aniadirHabilidad(placaje);
         Habilidad mordisco = new HabilidadAtaque("Mordisco",Tipo.instanciarUnTipoDe("Normal"),60,25);
         bidoof.aniadirHabilidad(mordisco);

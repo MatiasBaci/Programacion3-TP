@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 
 import static orgFiuba.Constantes.RUTA_HABILIDADES_JSON;
 
-public class PokemonDeserializer extends StdDeserializer<Pokemon> {
+public class PokemonDeserializer extends StdDeserializer<PokemonIdsCustom> {
 
     private static Map<Integer, Habilidad> habilidades = ServicioDeLecturasJson.lecturaHabilidadesJson(RUTA_HABILIDADES_JSON);
 
@@ -36,13 +36,14 @@ public class PokemonDeserializer extends StdDeserializer<Pokemon> {
     }
 
     @Override
-    public Pokemon deserialize(JsonParser parser, DeserializationContext deserializer) throws IOException {
+    public PokemonIdsCustom deserialize(JsonParser parser, DeserializationContext deserializer) throws IOException {
 
         ObjectCodec codec = parser.getCodec();
         JsonNode node = codec.readTree(parser);
 
         String nombre = node.get("nombre").asText();
         String historia = node.get("historia").asText();
+        int id = node.get("id").asInt();
         int nivel = node.get("nivel").asInt();
         String tipo = node.get("tipo").asText();
         double vida = node.get("vidaMaxima").asDouble();
@@ -58,7 +59,7 @@ public class PokemonDeserializer extends StdDeserializer<Pokemon> {
             System.err.println("Error al añadir habilidades al Pokemon: " + e.getMessage());
         }
 
-        return pokemon;
+        return new PokemonIdsCustom(id,pokemon);
     }
     private List<Integer> deserializeHabilidades(JsonNode habilidadesNode) {
         List<Integer> habilidades = new ArrayList<>();
