@@ -1,0 +1,11 @@
+{"nombre" : "Bulbasaur",
+  "historia" : "Esta es una historia",
+  "id": 10 ,
+  "nivel": 5 ,
+  "tipo" : "planta" ,
+  "vidaMaxima" : 100 ,
+  "velocidad" : 20 ,
+  "defensa" : 3 ,
+  "ataque" : 10 ,
+  "habilidades": [ 56 , 78 , 2 ]
+}

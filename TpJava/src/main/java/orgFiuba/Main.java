@@ -13,17 +13,20 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature; //--> para los tabs
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.type.TypeFactory;
+import orgFiuba.Model.SerializacionDeserealizacion.PokemonDeserializer;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+import static orgFiuba.Constantes.RUTA_POKEMONS_JSON;
+
 public class Main {
 
 public static void main(String[] args) throws IOException {
-    Juego juego = new Juego();
-    juego.DesarrollarJuego();
+    //Juego juego = new Juego();
+    //juego.DesarrollarJuego();
     //-----------------------------------------------------------------------------------------------------------
    // String path = "TpJava/outputJson/pokemon.json"; //--> Ruta Relativa
    // Pokemon unPokemon = new Pokemon("Charizard", 50, "Fuego", "Se dice que el fuego de Charizard arde con más fuerza cuantas más duras batallas haya vivido.",
@@ -36,35 +39,36 @@ public static void main(String[] args) throws IOException {
   //  objectMapper.writeValue(new File(path),unPokemon); //-----------> Serializacion
     //------------------------------------------------------------------------------------------------------------
 
-    /*String path2 = "TpJava/outputJson/pokemonPrueba.json"; //--> Ruta Relativa
-    ObjectMapper objectMapper2 = new ObjectMapper();
-
+    String pokemonJsonPath = RUTA_POKEMONS_JSON; //--> Ruta Relativa
     try {
-        List<Pokemon> pokemones = objectMapper2.readValue(new File(path2), objectMapper.getTypeFactory().constructCollectionType(List.class, Pokemon.class));
+        File pokemonFile = new File(pokemonJsonPath);
+        ObjectMapper objectMapperPokemon = new ObjectMapper();
+        SimpleModule module = new SimpleModule();
+        module.addDeserializer(Pokemon.class, new PokemonDeserializer());
+        objectMapperPokemon.registerModule(module);
 
-        // Ahora, 'pokemones' es una lista de objetos Pokemon
-        for (Pokemon pokemon : pokemones) {
-            System.out.println(pokemon.getCualidades().getVidaMaxima());
-        }
+        List<Pokemon> listaPokemon = objectMapperPokemon.readValue(pokemonFile,new TypeReference<List<Pokemon>>() {});
+        System.out.println(listaPokemon);
+
     } catch (IOException e) {
         e.printStackTrace();
-    }*/
-
-    //----------------------------------------------------------------------------------------------------------------------------
-   // String habilidadesJsonPath = "TpJava/outputJson/habilidades.json";
-   // try {
-   //     File habilidadesFile = new File(habilidadesJsonPath);
-   //     ObjectMapper objectMapper2 = new ObjectMapper();
-   //     SimpleModule module = new SimpleModule();
- //       module.addDeserializer(List.class, new HabilidadDeserializer());
-  //      objectMapper2.registerModule(module);
-
-   //     List<HabilidadIdsCustom> habilidades = objectMapper2.readValue(habilidadesFile, new TypeReference<List<HabilidadIdsCustom>>() {});
-   //     System.out.println(habilidades);
-
-   // } catch (IOException e) {
-  //      e.printStackTrace();
-        // Manejar la excepción adecuadamente
-  //  }
     }
+
+    /*----------------------------------------------------------------------------------------------------------------------------
+    String habilidadesJsonPath = "TpJava/outputJson/habilidades.json";
+    try {
+        File habilidadesFile = new File(habilidadesJsonPath);
+        ObjectMapper objectMapper2 = new ObjectMapper();
+        SimpleModule module = new SimpleModule();
+        module.addDeserializer(List.class, new HabilidadDeserializer());
+        objectMapper2.registerModule(module);
+
+        List<HabilidadIdsCustom> habilidades = objectMapper2.readValue(habilidadesFile, new TypeReference<List<HabilidadIdsCustom>>() {});
+        System.out.println(habilidades);
+
+    } catch (IOException e) {
+        e.printStackTrace();
+        // Manejar la excepción adecuadamente
+    }*/
+ }
 }

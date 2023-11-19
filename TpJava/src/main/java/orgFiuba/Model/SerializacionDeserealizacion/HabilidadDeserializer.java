@@ -3,10 +3,7 @@ package orgFiuba.Model.SerializacionDeserealizacion;
 
 import orgFiuba.Model.Estados.Estado;
 import orgFiuba.Model.Modificaciones.*;
-import orgFiuba.Model.Pokemones.Habilidad;
-import orgFiuba.Model.Pokemones.HabilidadAtaque;
-import orgFiuba.Model.Pokemones.HabilidadEstadistica;
-import orgFiuba.Model.Pokemones.HabilidadEstado;
+import orgFiuba.Model.Pokemones.*;
 import orgFiuba.Model.Tipos.Tipo;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -66,6 +63,8 @@ public class HabilidadDeserializer extends StdDeserializer<List<HabilidadIdsCust
                     unaHabilidad = new HabilidadEstadistica(nombre,cantidad,propio,etapas,modificacion);
                     break;
                 case "clima":
+                    String clima = habilidadesNode.get("tipoDeClima").asText();
+                    unaHabilidad = new HabilidadClima(nombre,clima,cantidad);
                     break;
                 default:
                     throw new IllegalArgumentException("Tipo de habilidad no reconocido: " + tipoDeHabilidad);

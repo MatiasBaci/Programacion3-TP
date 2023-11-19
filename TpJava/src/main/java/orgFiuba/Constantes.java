@@ -81,6 +81,8 @@ public class Constantes {
     public static final double PROBABILIDAD_DE_HERIRSE = 0.33;
     public static final double PORCENTAJE_DANIO_CONFUSO = 0.15;
 
+    public static final String RUTA_HABILIDADES_JSON = "TpJava/outputJson/habilidades.json";
+    public static final String RUTA_POKEMONS_JSON = "TpJava/outputJson/pokemonPrueba.json";
     public static final String ANSI_NEGRO = "\u001B[30m";
     public static final String ANSI_ROJO = "\u001B[31m";
     public static final String ANSI_VERDE = "\u001B[32m";

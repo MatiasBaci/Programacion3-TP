@@ -5,8 +5,7 @@ import orgFiuba.Model.Pokemones.Habilidad;
 public class HabilidadIdsCustom {
     private int id;
     private Habilidad unaHabilidad;
-    public HabilidadIdsCustom() {
-    }
+
     public HabilidadIdsCustom(int id, Habilidad unaHabilida) {
         this.id = id;
         this.unaHabilidad = unaHabilida;

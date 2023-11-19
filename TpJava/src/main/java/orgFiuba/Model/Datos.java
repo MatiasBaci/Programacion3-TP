@@ -1,13 +1,23 @@
 package orgFiuba.Model;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 import orgFiuba.Model.Estados.*;
 import orgFiuba.Model.Items.*;
 import orgFiuba.Model.Modificaciones.*;
 import orgFiuba.Model.Pokemones.*;
+import orgFiuba.Model.SerializacionDeserealizacion.HabilidadDeserializer;
+import orgFiuba.Model.SerializacionDeserealizacion.HabilidadIdsCustom;
+import orgFiuba.Model.SerializacionDeserealizacion.PokemonDeserializer;
 import orgFiuba.Model.Tipos.Tipo;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import static orgFiuba.Constantes.*;
 
@@ -48,6 +58,25 @@ public class Datos {
         return this.mochilaJugador2;
     }
 
+
+    private List<Pokemon> lecturaPokemonsJson(){
+
+        String pokemonJsonPath = "TpJava/outputJson/pokemonPrueba.json"; //--> Ruta Relativa
+        try {
+            File pokemonFile = new File(pokemonJsonPath);
+            ObjectMapper objectMapperPokemon = new ObjectMapper();
+            SimpleModule module = new SimpleModule();
+            module.addDeserializer(Pokemon.class, new PokemonDeserializer());
+            objectMapperPokemon.registerModule(module);
+
+            List<Pokemon> listaPokemon = objectMapperPokemon.readValue(pokemonFile,new TypeReference<List<Pokemon>>() {});
+            System.out.println(listaPokemon);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
     private void InicialzarPokemonesJugador1(){
 
         Pokemon squirtle = new Pokemon("Squirtle", 50, "Agua", "El caparazón de Squirtle no sólo lo protege; su forma redondeada y sus hendiduras reducen su resistencia al agua y le permiten nadar más rápido.",

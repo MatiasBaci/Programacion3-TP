@@ -1,23 +1,23 @@
-[{"nombre" : "Bulbasaur",
-  "historia" : "Esta es una historia",
+[{"nombre" : "Squirtle",
+  "historia" : "El caparazón de Squirtle no sólo lo protege; su forma redondeada y sus hendiduras reducen su resistencia al agua y le permiten nadar más rápido.",
   "id": 10 ,
-  "nivel": 5 ,
-  "tipo" : "planta" ,
-  "vidaMaxima" : 100 ,
-  "velocidad" : 20 ,
-  "defensa" : 3 ,
-  "ataque" : 10 ,
-  "habilidades": [ 56 , 78 , 2 ]
-}, {"nombre" : "Charmander",
+  "nivel": 50 ,
+  "tipo" : "Agua" ,
+  "vidaMaxima" : 119 ,
+  "velocidad" : 63 ,
+  "defensa" : 85 ,
+  "ataque" : 70 ,
+  "habilidades": [ 37 , 12 , 85, 24 ]
+}, {"nombre" : "Charizar",
   "id": 7,
-  "nivel": 6 ,
-  "tipo" : "fuego" ,
-  "historia" : "Esta es una historia",
-  "vidaMaxima" : 85 ,
-  "velocidad" : 15 ,
-  "defensa" : 5 ,
-  "ataque" : 15 ,
-  "habilidades": [ 3 , 98 , 24 ]
+  "nivel": 50 ,
+  "tipo" : "Fuego" ,
+  "historia" : "Se dice que el fuego de Charizard arde con más fuerza cuantas más duras batallas haya vivido.",
+  "vidaMaxima" : 153 ,
+  "velocidad" : 120 ,
+  "defensa" : 105 ,
+  "ataque" : 129 ,
+  "habilidades": [ 68 , 51 , 19, 73]
 }
 ]
 

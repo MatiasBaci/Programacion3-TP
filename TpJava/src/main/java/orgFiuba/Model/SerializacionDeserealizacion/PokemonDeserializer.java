@@ -1,6 +1,7 @@
 package orgFiuba.Model.SerializacionDeserealizacion;
 
 
+import orgFiuba.Model.Exceptions.HabilidadNoEncontradaException;
 import orgFiuba.Model.Pokemones.Habilidad;
 import orgFiuba.Model.Pokemones.Pokemon;
 import com.fasterxml.jackson.core.JsonParser;
@@ -11,12 +12,20 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import com.fasterxml.jackson.databind.module.SimpleModule;
+import orgFiuba.Model.ServicioDeLecturasJson;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+
+import static orgFiuba.Constantes.RUTA_HABILIDADES_JSON;
 
 public class PokemonDeserializer extends StdDeserializer<Pokemon> {
+
+    private static Map<Integer, Habilidad> habilidades = ServicioDeLecturasJson.lecturaHabilidadesJson(RUTA_HABILIDADES_JSON);
 
     public PokemonDeserializer() {
         this(null);
@@ -40,32 +49,35 @@ public class PokemonDeserializer extends StdDeserializer<Pokemon> {
         int velocidad = node.get("velocidad").asInt();
         int defensa = node.get("defensa").asInt();
         int ataque = node.get("ataque").asInt();
+        List<Integer> habilidadesID = deserializeHabilidades(node.get("habilidades"));
+        Pokemon pokemon = new Pokemon(nombre,nivel,tipo,historia,vida ,velocidad,defensa,ataque);
+        try {
+            this.compararYAnadirHabilidades(pokemon, habilidadesID, PokemonDeserializer.habilidades);
+        } catch (HabilidadNoEncontradaException e) {
+            // Manejar la excepción según tus necesidades
+            System.err.println("Error al añadir habilidades al Pokemon: " + e.getMessage());
+        }
 
-        String habilidadesJsonPath = "ruta/a/habilidades.json";
-
-        Pokemon Pokemon = new Pokemon(nombre,nivel,tipo,historia,vida ,velocidad,defensa,ataque);
-
-        /*try {
-            File habilidadesFile = new File(habilidadesJsonPath);
-            ObjectMapper objectMapper = new ObjectMapper();
-            HabilidadDeserializer habilidadDeserializer = new HabilidadDeserializer();
-
-            SimpleModule simpleModule = new SimpleModule();
-            simpleModule.addDeserializer(Habilidad.class, habilidadDeserializer);
-
-            objectMapper.registerModule(simpleModule);
-
-            // Lee el HashMap directamente
-            Map<Integer, Habilidad> habilidadesMap = objectMapper.readValue(habilidadesFile, new TypeReference<Map<Integer, Habilidad>>() {});
-
-            // Crea el objeto Pokemon con el HashMap de habilidades
-            //Pokemon pokemon = new Pokemon(nombre, nivel, tipo, historia, vida, velocidad, defensa, ataque, habilidadesMap);
-
-            //return pokemon;
-        } catch (IOException e) {
-            e.printStackTrace();
-            // Manejar la excepción adecuadamente
-        }*/
-        return null;
+        return pokemon;
+    }
+    private List<Integer> deserializeHabilidades(JsonNode habilidadesNode) {
+        List<Integer> habilidades = new ArrayList<>();
+        if (habilidadesNode != null && habilidadesNode.isArray()) {
+            for (JsonNode habilidadNode : habilidadesNode) {
+                habilidades.add(habilidadNode.asInt());
+            }
+        }
+        return habilidades;
+    }
+    private void compararYAnadirHabilidades(Pokemon pokemon, List<Integer> habilidadesID, Map<Integer, Habilidad> habilidadesMap)
+            throws HabilidadNoEncontradaException {
+        for (Integer id : habilidadesID) {
+            if (habilidadesMap.containsKey(id)) {
+                Habilidad habilidad = habilidadesMap.get(id);
+                pokemon.aniadirHabilidad(habilidad);
+            } else {
+                throw new HabilidadNoEncontradaException("Habilidad no encontrada para el ID: " + id);
+            }
+        }
     }
 }
