@@ -1,25 +1,26 @@
 package orgFiuba;
 
+import orgFiuba.Model.Items.HiperPocion;
+import orgFiuba.Model.Items.Item;
 import orgFiuba.Model.Juego;
+import orgFiuba.Model.Jugador;
 import orgFiuba.Model.Modificaciones.ModificacionVida;
 import orgFiuba.Model.Pokemones.Habilidad;
 import orgFiuba.Model.Pokemones.HabilidadEstadistica;
 import orgFiuba.Model.Pokemones.Pokemon;
-import orgFiuba.Model.SerializacionDeserealizacion.HabilidadDeserializer;
-import orgFiuba.Model.SerializacionDeserealizacion.HabilidadIdsCustom;
+import orgFiuba.Model.SerializacionDeserealizacion.*;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature; //--> para los tabs
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.type.TypeFactory;
-import orgFiuba.Model.SerializacionDeserealizacion.PokemonDeserializer;
-import orgFiuba.Model.SerializacionDeserealizacion.PokemonIdsCustom;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import static orgFiuba.Constantes.RUTA_POKEMONS_JSON;
 
@@ -40,36 +41,31 @@ public static void main(String[] args) throws IOException {
   //  objectMapper.writeValue(new File(path),unPokemon); //-----------> Serializacion
     //------------------------------------------------------------------------------------------------------------
 
-    String pokemonJsonPath = RUTA_POKEMONS_JSON; //--> Ruta Relativa
+
+    /*String pathItems = "TpJava/outputJson/itemPrueba.json";
+    Item unItem = new HiperPocion("Hiper Pocion",5,new ModificacionVida());
+    ObjectMapper objectMapperItems = new ObjectMapper();
+    objectMapperItems.enable(SerializationFeature.INDENT_OUTPUT);
+    objectMapperItems.writeValue(new File(pathItems),unItem); //-----------> Serializacion*/
+
+    String pathPartida="TpJava/outputJson/partida.json";
     try {
-        File pokemonFile = new File(pokemonJsonPath);
+        File partidaFile = new File(pathPartida);
         ObjectMapper objectMapperPokemon = new ObjectMapper();
         SimpleModule module = new SimpleModule();
-        module.addDeserializer(PokemonIdsCustom.class, new PokemonDeserializer()); ///-> PokemonIds
+        module.addDeserializer(Jugador.class, new PartidaDeserializer()); ///-> PokemonIds
         objectMapperPokemon.registerModule(module);
 
-        List<PokemonIdsCustom> listaPokemon = objectMapperPokemon.readValue(pokemonFile,new TypeReference<List<PokemonIdsCustom>>() {});
-        System.out.println(listaPokemon);
+        List<Jugador> listaDeJugadores = objectMapperPokemon.readValue(partidaFile,new TypeReference<List<Jugador>>() {});
+        System.out.println(listaDeJugadores);
+
+        //Map<Integer, Pokemon> pokemonID = listaPokemon.stream()
+                //.collect(Collectors.toMap(PokemonIdsCustom::getId, PokemonIdsCustom::getUnaHabilida));
+        //return pokemonID;
 
     } catch (IOException e) {
         e.printStackTrace();
+        //return null;
     }
-
-    /*----------------------------------------------------------------------------------------------------------------------------
-    String habilidadesJsonPath = "TpJava/outputJson/habilidades.json";
-    try {
-        File habilidadesFile = new File(habilidadesJsonPath);
-        ObjectMapper objectMapper2 = new ObjectMapper();
-        SimpleModule module = new SimpleModule();
-        module.addDeserializer(List.class, new HabilidadDeserializer());
-        objectMapper2.registerModule(module);
-
-        List<HabilidadIdsCustom> habilidades = objectMapper2.readValue(habilidadesFile, new TypeReference<List<HabilidadIdsCustom>>() {});
-        System.out.println(habilidades);
-
-    } catch (IOException e) {
-        e.printStackTrace();
-        // Manejar la excepción adecuadamente
-    }*/
  }
 }

@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
         @JsonSubTypes.Type(value = ModificacionVelocidad.class, name = "velocidad"),
         @JsonSubTypes.Type(value = ModificacionAtaque.class, name = "ataque"),
         @JsonSubTypes.Type(value = ModificacionDefensa.class, name = "defensa"),
+        @JsonSubTypes.Type(value = ModificacionEstado.class, name = "estado"),
 })
 public interface Modificacion {
 

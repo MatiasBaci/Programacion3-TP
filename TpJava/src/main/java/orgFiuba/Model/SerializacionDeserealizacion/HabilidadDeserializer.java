@@ -4,6 +4,7 @@ package orgFiuba.Model.SerializacionDeserealizacion;
 import orgFiuba.Model.Estados.Estado;
 import orgFiuba.Model.Modificaciones.*;
 import orgFiuba.Model.Pokemones.*;
+import orgFiuba.Model.ServicioDeLecturasJson;
 import orgFiuba.Model.Tipos.Tipo;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -58,7 +59,7 @@ public class HabilidadDeserializer extends StdDeserializer<List<HabilidadIdsCust
                     String  tipoDeModificacion = habilidadesNode.get("tipoDeModificacion").asText();
 
                     // Usa el método para obtener la instancia de Modificacion
-                    Modificacion modificacion = obtenerModificacion(tipoDeModificacion);
+                    Modificacion modificacion = ServicioDeLecturasJson.obtenerModificacion(tipoDeModificacion);
                     int etapas = habilidadesNode.get("etapas").asInt();
                     unaHabilidad = new HabilidadEstadistica(nombre,cantidad,propio,etapas,modificacion);
                     break;
@@ -73,19 +74,5 @@ public class HabilidadDeserializer extends StdDeserializer<List<HabilidadIdsCust
         }
 
         return habilidadesMap;
-    }
-    private Modificacion obtenerModificacion(String tipo) {
-        switch (tipo) {
-            case "velocidad":
-                return new ModificacionVelocidad();
-            case "ataque":
-                return new ModificacionAtaque();
-            case "defensa":
-                return new ModificacionDefensa();
-            case "vida":
-                return new ModificacionVida();
-            default:
-                throw new IllegalArgumentException("Tipo de modificación desconocido: " + tipo);
-        }
     }
 }

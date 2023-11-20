@@ -83,6 +83,7 @@ public class Constantes {
 
     public static final String RUTA_HABILIDADES_JSON = "TpJava/outputJson/habilidades.json";
     public static final String RUTA_POKEMONS_JSON = "TpJava/outputJson/pokemons.json";
+    public static final String RUTA_ITEMS_JSON = "TpJava/outputJson/items.json";
     public static final String ANSI_NEGRO = "\u001B[30m";
     public static final String ANSI_ROJO = "\u001B[31m";
     public static final String ANSI_VERDE = "\u001B[32m";

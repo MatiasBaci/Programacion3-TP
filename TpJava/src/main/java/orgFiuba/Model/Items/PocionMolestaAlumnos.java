@@ -1,8 +1,9 @@
 package orgFiuba.Model.Items;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import orgFiuba.Model.Modificaciones.Modificacion;
 import orgFiuba.Model.Pokemones.Cualidades;
-
+@JsonTypeName("Pocion MolestaAlumnos")
 public class PocionMolestaAlumnos extends ItemsCuracion{
     public PocionMolestaAlumnos(String unNombre, int cantidad, Modificacion unModificacion) {
         super(unNombre, cantidad);

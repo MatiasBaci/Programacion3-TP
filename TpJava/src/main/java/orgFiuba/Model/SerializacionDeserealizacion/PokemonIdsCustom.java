@@ -16,6 +16,6 @@ public class PokemonIdsCustom {
     public Pokemon getUnaHabilida() {return this.unPokemon;}
     public void setId(int id) {this.id = id;}
 
-    public void setUnaHabilidad(Pokemon unPokemon) {this.unPokemon = unPokemon;}
+    public void setUnPokemon(Pokemon unPokemon) {this.unPokemon = unPokemon;}
 
 }

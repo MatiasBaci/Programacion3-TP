@@ -1,5 +1,6 @@
 package orgFiuba.Model.Items;
 
+
 import orgFiuba.Model.Pokemones.Cualidades;
 
 public abstract class ItemsEstadistica extends Item implements validarItemEstadistica{

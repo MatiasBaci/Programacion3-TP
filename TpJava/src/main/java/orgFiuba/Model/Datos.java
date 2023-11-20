@@ -158,7 +158,7 @@ public class Datos {
         this.mochilaJugador1.put(crobat.getNombre(), crobat);
 
 
-        Item pocion = new Pocion("Pocion", 4, new ModificacionVida());
+        Item pocion = new  Pocion("Pocion", 4, new ModificacionVida());
         Item megaPocion = new MegaPocion("Mega Pocion", 3, new ModificacionVida());
         Item hiperPocion = new HiperPocion("Hiper Pocion", 1, new ModificacionVida());//-->contemplado que solo tenga 1
         Item molestaAlumnos =  new PocionMolestaAlumnos("Molesta Alumnos",4,new ModificacionVida());
