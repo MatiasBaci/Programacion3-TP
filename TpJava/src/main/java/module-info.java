@@ -9,4 +9,6 @@ module orgFiuba.tpjava {
 
     opens orgFiuba.tpjava to javafx.fxml;
     exports orgFiuba.tpjava;
+    exports orgFiuba.tpjava.Controller;
+    opens orgFiuba.tpjava.Controller to javafx.fxml;
 }

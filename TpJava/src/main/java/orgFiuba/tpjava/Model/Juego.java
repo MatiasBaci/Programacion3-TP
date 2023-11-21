@@ -14,10 +14,23 @@ public class Juego {
     //Atributos:
     private Jugador jugador1;
     private Jugador jugador2;
+    private Jugador jugadorActual;
     private Controlador controlador;
     private GeneralView generalView;
 
     //Metodos:
+
+    public Jugador getJugador1() {
+        return jugador1;
+    }
+
+    public Jugador getJugador2() {
+        return jugador2;
+    }
+
+    public Jugador getJugadorActual() {
+        return jugadorActual;
+    }
 
     public Juego(){
 
@@ -67,9 +80,11 @@ public class Juego {
     private void decidirTurnoInicial() {
         if (this.pokemonJugador1EsRapido(this.jugador1.getPokemonActual(), this.jugador2.getPokemonActual())) {
             this.jugador1.setAtacante(true);
+            this.jugadorActual = this.jugador1;
             System.out.println(ANSI_VERDEOSCURO + "COMIENZA ATACANDO " + this.jugador1.getNombre().toUpperCase() + ANSI_RESET);
         } else {
             this.jugador2.setAtacante(true);
+            this.jugadorActual = this.jugador2;
             System.out.println(ANSI_VERDEOSCURO + "COMIENZA ATACANDO " + this.jugador2.getNombre().toUpperCase() + ANSI_RESET);
         }
 
@@ -103,7 +118,9 @@ public class Juego {
         this.generalView.getJugadorAdversarioView().setPokemonActualView(jugadorAversario.getPokemonActual());
         this.generalView.mostrarEfectoPasivo();
         this.controlador.opcionesJugadores(jugador, this.generalView);
-        jugadorAversario.setAtacante(true);
+        //jugadorAversario.setAtacante(true);
+        //this.jugadorActual = jugadorAversario;
+        this.cambiarTurno();
     }
 
 
@@ -127,5 +144,17 @@ public class Juego {
     public void DesarrollarJuego(){
         this.menuSeleccion();
         this.iteracionesJugadores();
+    }
+
+    public void cambiarTurno() {
+        if (this.jugadorActual == this.jugador1) {
+            jugador1.setAtacante(false);
+            jugador2.setAtacante(true);
+            this.jugadorActual = this.jugador2;
+        } else {
+            jugador2.setAtacante(false);
+            jugador1.setAtacante(true);
+            this.jugadorActual = this.jugador1;
+        }
     }
 }
