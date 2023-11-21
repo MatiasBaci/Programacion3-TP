@@ -1,0 +1,43 @@
+[
+  {
+    "nombre" : "Hiper Pocion",
+    "id": 0 ,
+    "tipoDeModificacion": "vida"
+  },
+  {
+    "nombre" : "Pocion",
+    "id": 15,
+    "tipoDeModificacion": "vida"
+  },
+  {
+    "nombre" : "Mega Pocion",
+    "id": 32,
+    "tipoDeModificacion": "vida"
+  },
+  {
+    "nombre" : "Pocion MolestaAlumnos",
+    "id": 46,
+    "tipoDeModificacion": "vida"
+  },
+  {
+    "nombre" : "AtaqueX",
+    "id": 57,
+    "tipoDeModificacion": "ataque"
+  },
+  {
+    "nombre" : "DefensaX",
+    "id": 63,
+    "tipoDeModificacion": "defensa"
+  },
+  {
+    "nombre" : "Revivir",
+    "id": 71,
+    "tipoDeModificacion": "estado"
+  },
+  {
+    "nombre" : "Cura Todo",
+    "id": 88,
+    "tipoDeModificacion": "estado"
+  }
+]
+

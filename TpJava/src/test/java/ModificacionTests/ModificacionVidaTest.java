@@ -1,7 +1,7 @@
 package ModificacionTests;
 
-import orgFiuba.Model.Pokemones.Cualidades;
-import orgFiuba.Model.Modificaciones.ModificacionVida;
+import orgFiuba.tpjava.Model.Pokemones.Cualidades;
+import orgFiuba.tpjava.Model.Modificaciones.ModificacionVida;
 import org.junit.jupiter.api.Test;
 
 import static org.mockito.ArgumentMatchers.anyInt;

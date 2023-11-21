@@ -1,8 +1,8 @@
 package ItemTests;
 
-import orgFiuba.Model.Items.AtaqueX;
-import orgFiuba.Model.Modificaciones.ModificacionAtaque;
-import orgFiuba.Model.Pokemones.Cualidades;
+import orgFiuba.tpjava.Model.Items.AtaqueX;
+import orgFiuba.tpjava.Model.Modificaciones.ModificacionAtaque;
+import orgFiuba.tpjava.Model.Pokemones.Cualidades;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;

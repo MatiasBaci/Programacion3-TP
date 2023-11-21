@@ -1,8 +1,8 @@
 package ItemTests;
 
-import orgFiuba.Model.Items.PocionMolestaAlumnos;
-import orgFiuba.Model.Modificaciones.ModificacionVida;
-import orgFiuba.Model.Pokemones.Cualidades;
+import orgFiuba.tpjava.Model.Items.PocionMolestaAlumnos;
+import orgFiuba.tpjava.Model.Modificaciones.ModificacionVida;
+import orgFiuba.tpjava.Model.Pokemones.Cualidades;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

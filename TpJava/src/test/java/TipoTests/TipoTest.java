@@ -1,9 +1,9 @@
 package TipoTests;
 
-import orgFiuba.Model.Tipos.*;
+import orgFiuba.tpjava.Model.Tipos.*;
 import org.junit.jupiter.api.Test;
 
-import static orgFiuba.Constantes.*;
+import static orgFiuba.tpjava.Constantes.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TipoTest {

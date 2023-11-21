@@ -1,8 +1,8 @@
 package ItemTests;
 
-import orgFiuba.Model.Items.Revivir;
-import orgFiuba.Model.Modificaciones.ModificacionEstado;
-import orgFiuba.Model.Modificaciones.ModificacionEstadoInhabilitado;
+import orgFiuba.tpjava.Model.Items.Revivir;
+import orgFiuba.tpjava.Model.Modificaciones.ModificacionEstado;
+import orgFiuba.tpjava.Model.Modificaciones.ModificacionEstadoInhabilitado;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

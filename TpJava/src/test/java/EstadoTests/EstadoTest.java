@@ -1,7 +1,7 @@
 package EstadoTests;
 
-import orgFiuba.Model.Estados.Estado;
-import orgFiuba.Model.Estados.EstadoConfuso;
+import orgFiuba.tpjava.Model.Estados.Estado;
+import orgFiuba.tpjava.Model.Estados.EstadoConfuso;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

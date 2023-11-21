@@ -1,15 +1,15 @@
 package ItemTests;
 
-import orgFiuba.Model.Estados.Estado;
-import orgFiuba.Model.Items.Revivir;
-import orgFiuba.Model.Modificaciones.ModificacionEstado;
-import orgFiuba.Model.Pokemones.Cualidades;
+import orgFiuba.tpjava.Model.Estados.Estado;
+import orgFiuba.tpjava.Model.Items.Revivir;
+import orgFiuba.tpjava.Model.Modificaciones.ModificacionEstado;
+import orgFiuba.tpjava.Model.Pokemones.Cualidades;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import static orgFiuba.Constantes.ESTADO_INHABILITADO;
+import static orgFiuba.tpjava.Constantes.ESTADO_INHABILITADO;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;

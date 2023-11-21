@@ -1,7 +1,7 @@
 package EstadoTests;
 
-import orgFiuba.Model.Estados.EstadoEnvenenado;
-import orgFiuba.Model.Pokemones.Cualidades;
+import orgFiuba.tpjava.Model.Estados.EstadoEnvenenado;
+import orgFiuba.tpjava.Model.Pokemones.Cualidades;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

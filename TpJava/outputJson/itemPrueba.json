@@ -1,0 +1,7 @@
+{
+  "nombre" : "Hiper Pocion",
+  "cantidad" : 1,
+  "unaModificacion" : {
+    "tipoDeModificacion" : "vida"
+  }
+}
