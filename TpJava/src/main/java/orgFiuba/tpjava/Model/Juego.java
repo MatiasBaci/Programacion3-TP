@@ -77,7 +77,8 @@ public class Juego {
         return pokemonJugador1.obtenerVelocidad() >= pokemonJugador2.obtenerVelocidad();
     }
 
-    private void decidirTurnoInicial() {
+
+    public void logicaDeTurnoSegunVelocidad() {
         if (this.pokemonJugador1EsRapido(this.jugador1.getPokemonActual(), this.jugador2.getPokemonActual())) {
             this.jugador1.setAtacante(true);
             this.jugadorActual = this.jugador1;
@@ -87,7 +88,10 @@ public class Juego {
             this.jugadorActual = this.jugador2;
             System.out.println(ANSI_VERDEOSCURO + "COMIENZA ATACANDO " + this.jugador2.getNombre().toUpperCase() + ANSI_RESET);
         }
+    }
 
+    private void decidirTurnoInicial() {
+        this.logicaDeTurnoSegunVelocidad();
         System.out.println("\n");
         System.out.println(ANSI_VERDEOSCURO + "Oprima una tecla para salir: " + ANSI_RESET);
         String decision = ServicioDeUserInput.input();

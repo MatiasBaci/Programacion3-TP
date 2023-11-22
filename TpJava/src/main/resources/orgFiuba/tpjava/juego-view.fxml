@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Rectangle?>
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="Infinity" minWidth="Infinity" xmlns="http://javafx.com/javafx/21"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="orgFiuba.tpjava.Controller.JuegoController1">
-    <children>
-        <VBox alignment="TOP_CENTER" prefHeight="200" prefWidth="200">
-            <Label fx:id="jugador1" prefHeight="17.0" prefWidth="119.0" />
-            <Rectangle fx:id="jugador1_color" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="17.0" stroke="BLACK" strokeType="INSIDE" width="17.0" />
-        </VBox>
-        <fx:include fx:id="batalla" source="batalla-view.fxml" />
-    </children>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.text.Text?>
+<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="orgFiuba.tpjava.Controller.JuegoController">
+  <Text fx:id="jugadorActualNombre" textAlignment="LEFT"/>
+  <padding>
+    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+  </padding>
+  <TextField fx:id="nameField" promptText="Your name" onAction="#onHelloButtonClick"/>
+
+
+  <Label fx:id="welcomeText"/>
+  <Button text="Hello!" onAction="#onHelloButtonClick"/>
 </VBox>
+

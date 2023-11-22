@@ -39,6 +39,10 @@ public class Jugador {
         return pokemonActual;
     }
 
+    public Pokemon getPokemon(String nombrePokemon) {
+        return misPokemones.get(nombrePokemon);
+    }
+
     public String getNombre() {return nombre;}
 
     public Jugador getAdversario() { return adversario; }

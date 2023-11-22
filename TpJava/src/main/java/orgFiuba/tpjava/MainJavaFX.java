@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import orgFiuba.tpjava.Controller.JuegoController;
 import orgFiuba.tpjava.Model.Juego;
 
 import java.io.IOException;
@@ -17,10 +18,12 @@ public class MainJavaFX extends Application {
         Juego juego = new Juego();
         //juego.DesarrollarJuego();
 
-        FXMLLoader fxmlLoader = new FXMLLoader(MainJavaFX.class.getResource("hello-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainJavaFX.class.getResource("juego-view.fxml"));
         VBox root = fxmlLoader.load();
         //JuegoController1 juegoController = fxmlLoader.getController();
-        //juegoController.setJuego(juego);
+        JuegoController juegoController = fxmlLoader.getController();
+        juegoController.setJuego(juego);
+
         Scene scene = new Scene(root, 1280, 768);
         stage.setTitle("Batalla Pokémon");
 
