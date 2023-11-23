@@ -27,9 +27,6 @@ public class MainJavaFX extends Application {
 
         stage.setScene(scene);
         stage.show();
-
-
-
     }
 
 

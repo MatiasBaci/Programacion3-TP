@@ -10,7 +10,7 @@
    </padding>
    <children>
       <Label text="Ingrese el nombre del jugador" />
-      <TextField fx:id="nombreJugador" promptText="Ingrese el nombre del jugador" text="Nombre Jugador" />
+      <TextField fx:id="nombreJugador" promptText="Ingrese el nombre del jugador" />
       <Button mnemonicParsing="false" onAction="#siguienteVentana" text="Siguiente" />
       <Label fx:id="label" />
    </children>

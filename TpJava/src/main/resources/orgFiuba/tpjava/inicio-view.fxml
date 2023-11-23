@@ -10,5 +10,5 @@
   </padding>
    <Label text="BIENVENIDO A POKEMON" />
     <Label fx:id="welcomeText" />
-    <Button onAction="#onHelloButtonClick" text="Boton" />
+    <Button onAction="#onHelloButtonClick" text="Boton"  />
 </VBox>

@@ -6,6 +6,7 @@ module orgFiuba.tpjava {
     requires com.dlsc.formsfx;
     requires com.fasterxml.jackson.core;
     requires com.fasterxml.jackson.databind;
+    requires javafx.media;
 
     opens orgFiuba.tpjava to javafx.fxml;
     exports orgFiuba.tpjava;

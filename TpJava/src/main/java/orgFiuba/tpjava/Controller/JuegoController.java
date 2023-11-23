@@ -8,6 +8,11 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import orgFiuba.tpjava.Model.Juego;
+import javafx.scene.media.*;
+
+import java.io.File;
+
+import static orgFiuba.tpjava.Constantes.RUTA_SOUNDTRACK_INICIO;
 
 public class JuegoController {
     @FXML
@@ -36,11 +41,15 @@ public class JuegoController {
     private ImageView pokemonJ1ImageView;
     @FXML
     private ImageView pokemonJ2ImageView;
+    @FXML
+    private MediaPlayer mediaPlayer;
 
     @FXML
     protected void onHelloButtonClick()
     {
         welcomeText.setText("Welcome to JavaFX Application!");
+        this.mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        this.mediaPlayer.play();
         this.juego.cambiarTurno();
     }
 
@@ -51,6 +60,16 @@ public class JuegoController {
     }
 
     public void setJuego(Juego juego) {
+
+        Media media = new Media(new File(RUTA_SOUNDTRACK_INICIO).toURI().toString());
+        this.mediaPlayer = new MediaPlayer(media);
+
+        //this.mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        //this.mediaPlayer.play();
+
+        //by setting this property to true, the audio will be played
+        //mediaPlayer.setAutoPlay(true);
+
         this.juego = juego;
         this.jugadorActualNombre = new Text();
         this.juego.getJugador1().elegirPokemon("Pikachu");
@@ -59,13 +78,13 @@ public class JuegoController {
 
         this.jugadorActualNombre.setText("Jugador Actual: " + juego.getJugadorActual().getNombre());
 
-        PokemonImageFactory pokemonImageFactory = new PokemonImageFactory();
+        PokemonResourceFactory pokemonResourceFactory = new PokemonResourceFactory();
 
-        ImageView pokemonJugador1ImageView = pokemonImageFactory.createPokemonImageView(this.juego.getJugador1().getPokemon("Pikachu"), "Frente");
+        ImageView pokemonJugador1ImageView = pokemonResourceFactory.createPokemonImageView(this.juego.getJugador1().getPokemon("Pikachu"), "Frente");
         this.pokemonJugador1 = new ImageView();
         this.pokemonJugador1.setImage(pokemonJugador1ImageView.getImage());
 
-        ImageView pokemonJugador2ImageView = pokemonImageFactory.createPokemonImageView(this.juego.getJugador2().getPokemon("Bidoof"), "Espalda");
+        ImageView pokemonJugador2ImageView = pokemonResourceFactory.createPokemonImageView(this.juego.getJugador2().getPokemon("Bidoof"), "Espalda");
         this.pokemonJugador2 = new ImageView();
         this.pokemonJugador2.setImage(pokemonJugador2ImageView.getImage());
 
