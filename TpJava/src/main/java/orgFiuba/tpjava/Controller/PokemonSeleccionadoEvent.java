@@ -5,11 +5,12 @@ import javafx.event.EventType;
 import orgFiuba.tpjava.Model.Jugador;
 
 public class PokemonSeleccionadoEvent extends Event {
-    public PokemonSeleccionadoEvent(EventType<? extends Event> eventType) {
-        super(eventType);
-    }
 
-    public Jugador getJugador() {
-        return null;
-    }
+    public static EventType<PokemonSeleccionadoEvent> POKEMON_SELECCIONADO_EVENT = new EventType<>("Pokemon seleccionado Event");
+
+   public PokemonSeleccionadoEvent(){
+       super(POKEMON_SELECCIONADO_EVENT);
+   }
+
+
 }
