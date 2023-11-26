@@ -37,8 +37,8 @@ public class Juego {
         ServicioDeUserInput.inicializarScanner();
 
         Datos datos = new Datos();
-        this.jugador1 = new Jugador("-", datos.getMochilaJugador1(), datos.getItemsJugador1());
-        this.jugador2 = new Jugador("-", datos.getMochilaJugador2(), datos.getItemsJugador2());
+        this.jugador1 = new Jugador("", datos.getMochilaJugador1(), datos.getItemsJugador1());
+        this.jugador2 = new Jugador("", datos.getMochilaJugador2(), datos.getItemsJugador2());
 
         this.jugador1.setAdversario(jugador2);
         this.jugador2.setAdversario(jugador1);

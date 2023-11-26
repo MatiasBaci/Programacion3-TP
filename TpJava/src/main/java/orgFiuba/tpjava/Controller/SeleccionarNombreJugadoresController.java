@@ -41,7 +41,7 @@ public class SeleccionarNombreJugadoresController {
         }
         else{
             this.jugador.setNombre(nombre);
-            this.juegoController.handle(new JugadorNombradoEvent(this.jugador));
+            this.juegoController.handle(new JugadorNombradoEvent());
         }
     }
 }

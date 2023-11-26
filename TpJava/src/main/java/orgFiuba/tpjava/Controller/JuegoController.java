@@ -1,5 +1,6 @@
 package orgFiuba.tpjava.Controller;
 
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,7 +26,7 @@ import java.util.Map;
 
 import static orgFiuba.tpjava.Constantes.RUTA_SOUNDTRACK_INICIO;
 
-public class JuegoController extends Parent implements EventHandler<JugadorNombradoEvent> {
+public class JuegoController extends Parent implements EventHandler<Event> {
     @FXML
     private Label welcomeText;
 
@@ -46,7 +47,6 @@ public class JuegoController extends Parent implements EventHandler<JugadorNombr
         this.mediaPlayer.setVolume(0.2);
         this.mediaPlayer.play();
 
-
         this.stage.show();
 
         this.inicializarEscenas();
@@ -65,10 +65,17 @@ public class JuegoController extends Parent implements EventHandler<JugadorNombr
     }
 
     @Override
+    public void handle(Event event) {
+        if (event instanceof JugadorNombradoEvent) {
+            this.handle((JugadorNombradoEvent) event);
+        } else if (event instanceof PokemonSeleccionadoEvent) {
+            this.handle((PokemonSeleccionadoEvent) event);
+        }
+    }
+
     public void handle(JugadorNombradoEvent jugadorNombradoEvent) {
-        System.out.println("Event occurred! Handling the event...");
-        Jugador jugador = jugadorNombradoEvent.getJugador();
-        if (jugador == this.juego.getJugador1()) {
+
+        if (this.juego.getJugador2().getNombre().isBlank()) {
             try {
                 System.out.println("Jugador 2");
                 this.crearVentanaSeleccionNombre(juego.getJugador2(), 2);
@@ -77,17 +84,35 @@ public class JuegoController extends Parent implements EventHandler<JugadorNombr
             }
         } else {
             try {
-                this.crearVentanaSeleccionarPokemonInicial(jugador);
+                this.crearVentanaSeleccionarPokemonInicial(this.juego.getJugador2());
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
     }
 
+    public void handle(PokemonSeleccionadoEvent pokemonSeleccionadoEvent) {
+
+        Jugador jugador = pokemonSeleccionadoEvent.getJugador();
+        if (jugador == this.juego.getJugador1()) {
+            try {
+                System.out.println("Jugador 2");
+                this.crearVentanaSeleccionarPokemonInicial(juego.getJugador2());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            this.crearVentanaJuego();
+        }
+    }
+
+    private void crearVentanaJuego() {
+    }
+
     public void crearVentanaSeleccionNombre(Jugador jugador, int numero) throws IOException {
 
         this.stage.setScene(this.escenas.get("sceneSeleccionNombreJugador" + numero));
-        this.stage.setTitle("Seleccionar Nombre Jugador " + numero);
+        this.stage.setTitle("Escriba el Nombre del Jugador " + numero);
         this.stage.show();
     }
 
@@ -119,5 +144,6 @@ public class JuegoController extends Parent implements EventHandler<JugadorNombr
         // Mostrar la Stage
         primaryStage.show();
     }
+
 
 }
