@@ -9,7 +9,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="vbox" alignment="CENTER" prefHeight="344.0" prefWidth="533.0" spacing="20.0" styleClass="bodyMenu" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="orgFiuba.tpjava.Controller.JuegoController">
+<VBox fx:id="vbox" alignment="CENTER" prefHeight="344.0" prefWidth="533.0" spacing="20.0" styleClass="bodyMenu" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="orgFiuba.tpjava.Controller.JuegoController">
   <padding>
     <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
   </padding>
