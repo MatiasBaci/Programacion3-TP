@@ -43,7 +43,9 @@ public class JuegoController extends Parent implements EventHandler<JugadorNombr
         Media media = new Media(new File(RUTA_SOUNDTRACK_INICIO).toURI().toString());
         this.mediaPlayer = new MediaPlayer(media);
         this.mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        this.mediaPlayer.setVolume(0.2);
         this.mediaPlayer.play();
+
 
         this.stage.show();
 

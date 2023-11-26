@@ -1,14 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" prefHeight="366.0" prefWidth="418.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="orgFiuba.tpjava.Controller.JuegoController">
+<VBox fx:id="vbox" alignment="CENTER" prefHeight="344.0" prefWidth="533.0" spacing="20.0" styleClass="bodyMenu" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="orgFiuba.tpjava.Controller.JuegoController">
   <padding>
     <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
   </padding>
-   <Label text="BIENVENIDO A POKEMON" />
     <Label fx:id="welcomeText" />
-    <Button onAction="#onHelloButtonClick" text="Boton"  />
+    <Button alignment="CENTER" onAction="#onHelloButtonClick" text="APACHURRALE START" />
+   <ImageView fitHeight="80.0" fitWidth="179.0">
+      <image>
+         <Image url="@StyleCss/titlee.gif" />
+      </image>
+      <viewport>
+         <Rectangle2D />
+      </viewport>
+   </ImageView>
+   <stylesheets>
+      <URL value="@StyleCss/menu.css" />
+      <URL value="@StyleCss/titlee.css" />
+   </stylesheets>
 </VBox>
