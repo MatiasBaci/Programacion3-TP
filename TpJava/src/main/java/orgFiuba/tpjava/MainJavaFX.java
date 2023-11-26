@@ -3,12 +3,15 @@ package orgFiuba.tpjava;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import orgFiuba.tpjava.Controller.InicioController;
+import orgFiuba.tpjava.Controller.JuegoController;
 import orgFiuba.tpjava.Model.Juego;
 
 import java.io.IOException;
+
+import static orgFiuba.tpjava.Constantes.RUTA_ICONO;
 
 public class MainJavaFX extends Application {
 
@@ -19,14 +22,17 @@ public class MainJavaFX extends Application {
 
         FXMLLoader fxmlLoader = new FXMLLoader(MainJavaFX.class.getResource("inicio-view.fxml"));
         VBox root = fxmlLoader.load();
-        InicioController inicioController = fxmlLoader.getController();
-        inicioController.setStageInicio(stage);
-        inicioController.setJuego(juego);
-        Scene scene = new Scene(root, 1280, 768);
-        stage.setTitle("Batalla Pokémon");
 
-        stage.setScene(scene);
-        stage.show();
+        stage.getIcons().add(new Image(MainJavaFX.class.getResourceAsStream(RUTA_ICONO)));
+
+        JuegoController juegoController = fxmlLoader.getController();
+
+        Scene sceneInicio = new Scene(root, 1280, 768);
+        stage.setTitle("Batalla Pokémon");
+        stage.setScene(sceneInicio);
+
+        juegoController.inicializar(stage, juego);
+        //stage.show();
     }
 
 

@@ -1,94 +1,121 @@
 package orgFiuba.tpjava.Controller;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
+import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.stage.Stage;
+import orgFiuba.tpjava.MainJavaFX;
 import orgFiuba.tpjava.Model.Juego;
-import javafx.scene.media.*;
+import orgFiuba.tpjava.Model.Jugador;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import static orgFiuba.tpjava.Constantes.RUTA_SOUNDTRACK_INICIO;
 
-public class JuegoController {
+public class JuegoController extends Parent implements EventHandler<JugadorNombradoEvent> {
     @FXML
     private Label welcomeText;
-    @FXML
-    public Rectangle jugador1View;
-    @FXML
-    public Rectangle jugador2View;
 
+    @FXML
+    private Stage stage;
     private Juego juego;
-
-    @FXML
-    private Label jugador1Nombre;
-    @FXML
-    private Label jugador2Nombre;
-    @FXML
-    private Text jugadorActualNombre;
-    @FXML
-    private ImageView pokemonJugador1;
-    @FXML
-    private ImageView pokemonJugador2;
-
-    private StackPane[][] posiciones = null;
-
-    @FXML
-    private ImageView pokemonJ1ImageView;
-    @FXML
-    private ImageView pokemonJ2ImageView;
     @FXML
     private MediaPlayer mediaPlayer;
+    private Map<String, Scene> escenas;
 
-    @FXML
-    protected void onHelloButtonClick()
-    {
-        welcomeText.setText("Welcome to JavaFX Application!");
-        this.mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-        this.mediaPlayer.play();
-        this.juego.cambiarTurno();
-    }
-
-    @FXML
-    protected void handleMouseClicked(MouseEvent mouseEvent) {
-        ImageView imageView = (ImageView) mouseEvent.getSource();
-
-    }
-
-    public void setJuego(Juego juego) {
+    public void inicializar(Stage stage, Juego juego) throws IOException {
+        this.stage = stage;
+        this.juego = juego;
 
         Media media = new Media(new File(RUTA_SOUNDTRACK_INICIO).toURI().toString());
         this.mediaPlayer = new MediaPlayer(media);
+        this.mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        this.mediaPlayer.play();
 
-        //this.mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-        //this.mediaPlayer.play();
+        this.stage.show();
 
-        //by setting this property to true, the audio will be played
-        //mediaPlayer.setAutoPlay(true);
-
-        this.juego = juego;
-        this.jugadorActualNombre = new Text();
-        this.juego.getJugador1().elegirPokemon("Pikachu");
-        this.juego.getJugador2().elegirPokemon("Bidoof");
-        this.juego.logicaDeTurnoSegunVelocidad();
-
-        this.jugadorActualNombre.setText("Jugador Actual: " + juego.getJugadorActual().getNombre());
-
-        PokemonResourceFactory pokemonResourceFactory = new PokemonResourceFactory();
-
-        ImageView pokemonJugador1ImageView = pokemonResourceFactory.createPokemonImageView(this.juego.getJugador1().getPokemon("Pikachu"), "Frente");
-        this.pokemonJugador1 = new ImageView();
-        this.pokemonJugador1.setImage(pokemonJugador1ImageView.getImage());
-
-        ImageView pokemonJugador2ImageView = pokemonResourceFactory.createPokemonImageView(this.juego.getJugador2().getPokemon("Bidoof"), "Espalda");
-        this.pokemonJugador2 = new ImageView();
-        this.pokemonJugador2.setImage(pokemonJugador2ImageView.getImage());
-
-        this.pokemonJ1ImageView.setImage(pokemonJugador1.getImage());
-        this.pokemonJ2ImageView.setImage(pokemonJugador2.getImage());
+        this.inicializarEscenas();
     }
+
+    private void inicializarEscenas() throws IOException {
+
+        SceneFactory sceneFactory = new SceneFactory();
+        this.escenas = sceneFactory.createScenes(this.juego, this);
+    }
+
+    @FXML
+    protected void onHelloButtonClick() throws IOException {
+        welcomeText.setText("");
+        this.crearVentanaSeleccionNombre(juego.getJugador1(), 1);
+    }
+
+    @Override
+    public void handle(JugadorNombradoEvent jugadorNombradoEvent) {
+        System.out.println("Event occurred! Handling the event...");
+        Jugador jugador = jugadorNombradoEvent.getJugador();
+        if (jugador == this.juego.getJugador1()) {
+            try {
+                System.out.println("Jugador 2");
+                this.crearVentanaSeleccionNombre(juego.getJugador2(), 2);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            try {
+                this.crearVentanaSeleccionarPokemonInicial(jugador);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    public void crearVentanaSeleccionNombre(Jugador jugador, int numero) throws IOException {
+
+        this.stage.setScene(this.escenas.get("sceneSeleccionNombreJugador" + numero));
+        this.stage.setTitle("Seleccionar Nombre Jugador " + numero);
+        this.stage.show();
+    }
+
+    public void crearVentanaSeleccionarPokemonInicial(Jugador jugador) throws IOException {
+
+    }
+
+    public void start2(Stage primaryStage) {
+        // Escena 1
+        StackPane layout1 = new StackPane();
+        Scene scene1 = new Scene(layout1, 300, 200);
+        Button button1 = new Button("Ir a Escena 2");
+        StackPane layout2 = new StackPane();
+
+        Scene scene2 = new Scene(layout2, 300, 200);
+
+        button1.setOnAction(e -> primaryStage.setScene(scene2));
+        layout1.getChildren().add(button1);
+
+        // Escena 2
+        Button button2 = new Button("Ir a Escena 1");
+        button2.setOnAction(e -> primaryStage.setScene(scene1));
+        layout2.getChildren().add(button2);
+
+        // Configurar la Stage
+        primaryStage.setTitle("App con Múltiples Escenas");
+        primaryStage.setScene(scene1);
+
+        // Mostrar la Stage
+        primaryStage.show();
+    }
+
 }

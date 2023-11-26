@@ -127,4 +127,6 @@ public class Constantes {
     public static final String RUTA_SOUNDTRACK_INICIO = "TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Musica/Pokemon Uranium - Vs. Gym Leader (Last Pokemon).mp3";
     public static final String RUTA_SOUNDTRACK_BATALLA = "TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Musica/Pokémon Uranium - Battle! Vs. Wild Nuclear Pokémon.mp3";
 
+    public static final String RUTA_ICONO = "/orgFiuba/tpjava/Imagenes/Iconos/Team_Galactic_Logo.png";
+
 }

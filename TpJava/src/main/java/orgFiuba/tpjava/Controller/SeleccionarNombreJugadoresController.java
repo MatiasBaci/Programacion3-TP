@@ -2,15 +2,9 @@ package orgFiuba.tpjava.Controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import orgFiuba.tpjava.MainJavaFX;
-import orgFiuba.tpjava.Model.Juego;
 import orgFiuba.tpjava.Model.Jugador;
 
 import java.io.IOException;
@@ -18,16 +12,13 @@ import java.io.IOException;
 public class SeleccionarNombreJugadoresController {
 
     public TextField nombreJugador;
-    @FXML
-    private Stage stageNombreJugador;
-
+    private JuegoController juegoController;
 
     private Jugador jugador;
 
-
-    public void inicializador(Jugador jugador, Stage stageNombreJugador1){
+    public void inicializador(Jugador jugador, JuegoController juegoController){
         this.jugador = jugador;
-        this.stageNombreJugador = stageNombreJugador1;
+        this.juegoController = juegoController;
     }
 
     public void siguienteVentana(ActionEvent event) throws IOException {
@@ -50,9 +41,7 @@ public class SeleccionarNombreJugadoresController {
         }
         else{
             this.jugador.setNombre(nombre);
-            this.stageNombreJugador.close();
+            this.juegoController.handle(new JugadorNombradoEvent(this.jugador));
         }
-
-
     }
 }
