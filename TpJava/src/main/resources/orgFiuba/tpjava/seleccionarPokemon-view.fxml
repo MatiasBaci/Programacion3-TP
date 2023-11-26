@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="orgFiuba.tpjava.Controller.SeleccionarPokemonController"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<VBox fx:id="vbox" alignment="CENTER" prefHeight="344.0" prefWidth="533.0" spacing="20.0" styleClass="bodyMenu" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="orgFiuba.tpjava.Controller.SeleccionarPokemonController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+   <children>
+      <Label prefHeight="17.0" prefWidth="135.0" text="Seleccion de Pokemon" />
+      <Button mnemonicParsing="false" text="Apretar Boton" />
+      <ChoiceBox prefWidth="150.0" />
+      <ColorPicker />
+      <DatePicker />
+      <ColorPicker />
+   </children>
+</VBox>
