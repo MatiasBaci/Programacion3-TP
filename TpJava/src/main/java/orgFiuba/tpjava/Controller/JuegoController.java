@@ -34,18 +34,18 @@ public class JuegoController extends Parent implements EventHandler<Event> {
     private Stage stage;
     private Juego juego;
     @FXML
-    //private MediaPlayer mediaPlayer;
+    private MediaPlayer mediaPlayer;
     private Map<String, Scene> escenas;
 
     public void inicializar(Stage stage, Juego juego) throws IOException {
         this.stage = stage;
         this.juego = juego;
 
-       // Media media = new Media(new File(RUTA_SOUNDTRACK_INICIO).toURI().toString());
-       // this.mediaPlayer = new MediaPlayer(media);
-        //this.mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-        //this.mediaPlayer.setVolume(0.2);
-       // this.mediaPlayer.play();
+        Media media = new Media(new File(RUTA_SOUNDTRACK_INICIO).toURI().toString());
+        this.mediaPlayer = new MediaPlayer(media);
+        this.mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        this.mediaPlayer.setVolume(0.2);
+        this.mediaPlayer.play();
 
         this.stage.show();
 
@@ -84,7 +84,6 @@ public class JuegoController extends Parent implements EventHandler<Event> {
             }
         } else {
             try {
-                System.out.println("osdamndasdsadpasdasod");
                 this.crearVentanaSeleccionarPokemonInicial(this.juego.getJugador1(), 1);
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -94,18 +93,21 @@ public class JuegoController extends Parent implements EventHandler<Event> {
 
     public void handle(PokemonSeleccionadoEvent pokemonSeleccionadoEvent) {
 
-        if (this.juego.getJugador2().getNombrePokemonActual().isBlank()){
-            try{
-                System.out.println(juego.getJugador2().getNombre());
-                System.out.println("DFSDFSFD");
+        if (this.juego.getJugador2().getPokemonActual() == null) {
+            try {
+                System.out.println("Jugador 2");
                 this.crearVentanaSeleccionarPokemonInicial(juego.getJugador2(), 2);
-            } catch (IOException e){
+            } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }else{
             //this.crearVentanaMenu(this.juego.getJugador1(), 1);
             System.out.println("Se metio");
+            this.crearVentanaJuego();
         }
+    }
+
+    private void crearVentanaJuego() {
     }
 
     public void crearVentanaSeleccionNombre(Jugador jugador, int numero) throws IOException {
