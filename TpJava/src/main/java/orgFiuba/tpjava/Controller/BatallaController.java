@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -60,34 +59,37 @@ public class BatallaController {
     Button itemButton;
     @FXML
     Button rendirseButton;
+    private JuegoController juegoController;
 
 
     public void inicializar(Juego juego, JuegoController juegoController) {
 
+        this.juegoController = juegoController;
+        this.juegoController.setBatallaController(this);
+        this.crearVentanaBatalla(juego);
+    }
+
+    public void crearVentanaBatalla(Juego juego) {
+
         PokemonResourceFactory pokemonResourceFactory = new PokemonResourceFactory();
 
-        //this.pokemonJ1View = pokemonResourceFactory.createPokemonBattleView(juego.getJugador1().getPokemonActual(), "Espalda");
-        //this.pokemonJ2View = pokemonResourceFactory.createPokemonBattleView(juego.getJugador2().getPokemonActual(), "Frente");
-
-        this.pokemonJ1StatsText.setText(juego.getJugador1().getPokemonActual()
+        this.pokemonJ1StatsText.setText(juego.getJugadorActual().getPokemonActual()
                 .getNombre() + "\n" +
-                "Lv " + juego.getJugador1().getPokemonActual().getCualidades().getNivel());
-        this.pokemonJ1HP.setProgress(juego.getJugador1().getPokemonActual().getCualidades().getPorcentajeVida());
-        this.pokemonJ2StatsText.setText(juego.getJugador2().getPokemonActual()
+                "Lv " + juego.getJugadorActual().getPokemonActual().getCualidades().getNivel());
+        this.pokemonJ1HP.setProgress(juego.getJugadorActual().getPokemonActual().getCualidades().getPorcentajeVida());
+        this.pokemonJ2StatsText.setText(juego.getJugadorActual().getAdversario().getPokemonActual()
                 .getNombre() + "\n" +
-                "Lv " + juego.getJugador2().getPokemonActual().getCualidades().getNivel());
-        this.pokemonJ2HP.setProgress(juego.getJugador2().getPokemonActual().getCualidades().getPorcentajeVida());
+                "Lv " + juego.getJugadorActual().getAdversario().getPokemonActual().getCualidades().getNivel());
+        this.pokemonJ2HP.setProgress(juego.getJugadorActual().getAdversario().getPokemonActual().getCualidades().getPorcentajeVida());
 
-        this.pokemonJ1View.setImage(pokemonResourceFactory.createPokemonBattleView(juego.getJugador1().getPokemonActual(), "Espalda").getImage());
+        this.pokemonJ1View.setImage(pokemonResourceFactory.createPokemonBattleView(juego.getJugadorActual().getPokemonActual(), "Espalda").getImage());
         this.pokemonJ1View.setFitHeight(this.pokemonJ1View.getImage().getHeight()*3);
         this.pokemonJ1View.setFitWidth(this.pokemonJ1View.getImage().getWidth()*3);
-        this.pokemonJ2View.setImage(pokemonResourceFactory.createPokemonBattleView(juego.getJugador2().getPokemonActual(), "Frente").getImage());
+        this.pokemonJ2View.setImage(pokemonResourceFactory.createPokemonBattleView(juego.getJugadorActual().getAdversario().getPokemonActual(), "Frente").getImage());
         this.pokemonJ2View.setFitHeight(this.pokemonJ2View.getImage().getHeight()*3);
         this.pokemonJ2View.setFitWidth(this.pokemonJ2View.getImage().getWidth()*3);
 
-        this.atacarButton.setOnAction(event -> {
-            crearMenuAtaques(juego.getJugador1().getPokemonActual());
-        });
+        this.atacarButton.setOnAction(event -> crearMenuAtaques(juego.getJugadorActual().getPokemonActual()));
     }
 
     public void crearMenuAtaques(Pokemon pokemon) {
@@ -98,18 +100,20 @@ public class BatallaController {
         int index = 0;
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < 2; j++) {
-                Button ataque = new Button(habilidades.get(index).getNombre());
+                Habilidad habilidad = habilidades.get(index);
+                Button ataque = new Button(habilidad.getNombre());
                 ataque.setPrefHeight(50);
                 ataque.setPrefWidth(100);
-                ataque.setOnAction(event -> {
-                    //pokemon.atacar(habilidades.get(index), pokemon);
-
-                });
+                ataque.setOnAction(event -> this.juegoController.handle(new AtaqueSeleccionadoEvent(habilidad, pokemon)));
                 ataques.add(ataque, j, i);
                 index++;
             }
         }
-
         this.dialogoBox.getChildren().add(ataques);
+    }
+
+    public void actualizarVista(Juego juego) {
+        this.dialogoBox.getChildren().clear();
+        this.crearVentanaBatalla(juego);
     }
 }

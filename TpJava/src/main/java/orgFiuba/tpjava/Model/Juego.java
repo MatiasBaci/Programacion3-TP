@@ -12,10 +12,10 @@ import static orgFiuba.tpjava.Constantes.ANSI_VERDEOSCURO;
 public class Juego {
 
     //Atributos:
-    private Jugador jugador1;
-    private Jugador jugador2;
+    private final Jugador jugador1;
+    private final Jugador jugador2;
     private Jugador jugadorActual;
-    private Controlador controlador;
+    private final Controlador controlador;
     private GeneralView generalView;
 
     //Metodos:
@@ -94,7 +94,7 @@ public class Juego {
         this.logicaDeTurnoSegunVelocidad();
         System.out.println("\n");
         System.out.println(ANSI_VERDEOSCURO + "Oprima una tecla para salir: " + ANSI_RESET);
-        String decision = ServicioDeUserInput.input();
+        //String decision = ServicioDeUserInput.input();
         System.out.println("\n");
     }
 
@@ -160,5 +160,9 @@ public class Juego {
             jugador1.setAtacante(true);
             this.jugadorActual = this.jugador1;
         }
+    }
+
+    public void setJugadorActual(Jugador jugador) {
+        this.jugadorActual = jugador;
     }
 }

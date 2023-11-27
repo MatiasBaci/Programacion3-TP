@@ -5,9 +5,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
@@ -32,6 +30,7 @@ public class JuegoController extends Parent implements EventHandler<Event> {
     @FXML
     private MediaPlayer soundEffectPlayer;
     private Map<String, Scene> escenas;
+    private BatallaController batallaController;
 
     public void inicializar(Stage stage, Juego juego) throws IOException {
         this.stage = stage;
@@ -95,8 +94,27 @@ public class JuegoController extends Parent implements EventHandler<Event> {
             }
         } else {
             System.out.println("Continúa a la ventana de Juego");
+            this.elegirJugadorInicial();
             this.crearVentanaBatalla();
         }
+    }
+
+    private void elegirJugadorInicial() {
+        if (this.juego.getJugador1().getPokemonActual().getCualidades().getVelocidad() > this.juego.getJugador2().getPokemonActual().getCualidades().getVelocidad()) {
+            this.juego.getJugador1().setAtacante(true);
+            this.juego.getJugador2().setAtacante(false);
+            this.juego.setJugadorActual(this.juego.getJugador1());
+        } else {
+            this.juego.getJugador1().setAtacante(false);
+            this.juego.getJugador2().setAtacante(true);
+            this.juego.setJugadorActual(this.juego.getJugador2());
+        }
+    }
+
+    public void handle(AtaqueSeleccionadoEvent ataqueSeleccionadoEvent) {
+        this.juego.getJugadorActual().atacarJugador(this.juego.getJugadorActual().getAdversario(), ataqueSeleccionadoEvent.getHabilidad().getNombre());
+        this.juego.cambiarTurno();
+        this.batallaController.actualizarVista(this.juego);
     }
 
     private void crearVentanaBatalla() {
@@ -152,30 +170,7 @@ public class JuegoController extends Parent implements EventHandler<Event> {
         this.soundEffectPlayer.play();
     }
 
-    public void start2(Stage primaryStage) {
-        // Escena 1
-        StackPane layout1 = new StackPane();
-        Scene scene1 = new Scene(layout1, 300, 200);
-        Button button1 = new Button("Ir a Escena 2");
-        StackPane layout2 = new StackPane();
-
-        Scene scene2 = new Scene(layout2, 300, 200);
-
-        button1.setOnAction(e -> primaryStage.setScene(scene2));
-        layout1.getChildren().add(button1);
-
-        // Escena 2
-        Button button2 = new Button("Ir a Escena 1");
-        button2.setOnAction(e -> primaryStage.setScene(scene1));
-        layout2.getChildren().add(button2);
-
-        // Configurar la Stage
-        primaryStage.setTitle("App con Múltiples Escenas");
-        primaryStage.setScene(scene1);
-
-        // Mostrar la Stage
-        primaryStage.show();
+    public void setBatallaController(BatallaController batallaController) {
+        this.batallaController = batallaController;
     }
-
-
 }
