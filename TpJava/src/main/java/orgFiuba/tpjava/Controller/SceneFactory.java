@@ -38,6 +38,13 @@ public class SceneFactory {
         Scene sceneSeleccionPokemonJugador = new Scene(seleccionarPokemonLoaderJugador, 1024, 768);
         escenas.put("sceneSeleccionPokemon", sceneSeleccionPokemonJugador);
 
+        FXMLLoader fxmlLoaderItemP1 = new FXMLLoader(MainJavaFX.class.getResource("aplicarItem-view.fxml"));
+        GridPane aplicarItemLoaderJugador1 = fxmlLoaderItemP1.load();
+        AplicarItemController aplicarItemControllerJugador1 = fxmlLoaderItemP1.getController();
+        aplicarItemControllerJugador1.inicializar(juego.getJugador1(), juegoController);
+        Scene sceneAplicarItemJugador1 = new Scene(aplicarItemLoaderJugador1, 1024, 768);
+        escenas.put("sceneAplicarItemJugador1", sceneAplicarItemJugador1);
+
         return escenas;
     }
 

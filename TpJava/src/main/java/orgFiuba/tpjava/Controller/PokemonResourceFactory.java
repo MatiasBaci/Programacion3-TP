@@ -49,6 +49,8 @@ public class PokemonResourceFactory {
         Text pokemonName = new Text(pokemon.getNombre());
         pokemonName.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
         pokemonName.setFill(Color.BLACK);
+        //pokemonName.setTranslateX(20);
+        //pokemonName.setTranslateY(20);
         if (!pokemon.estaConsciente()) {
             pokemonName.setStrikethrough(true);
         }
@@ -69,6 +71,8 @@ public class PokemonResourceFactory {
                 "Nivel: " + (int)pokemon.getCualidades().getNivel());
         pokemonStats.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
         pokemonStats.setFill(Color.BLACK);
+        //pokemonStats.setTranslateX(40);
+        //pokemonStats.setTranslateX(50);
         return pokemonStats;
     }
 
