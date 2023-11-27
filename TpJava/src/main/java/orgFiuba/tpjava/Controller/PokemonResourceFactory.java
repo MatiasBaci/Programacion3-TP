@@ -1,6 +1,7 @@
 package orgFiuba.tpjava.Controller;
 
 import javafx.scene.Node;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
@@ -41,7 +42,16 @@ public class PokemonResourceFactory {
         pokemonImageView.setImage(pokemonImage);
         pokemonImageView.setFitHeight(pokemonImage.getHeight()*3);
         pokemonImageView.setFitWidth(pokemonImage.getWidth()*3);
-        if (!pokemonEstaVivo) {pokemonImageView.setRotate(180);}
+
+        pokemonImageView.setTranslateX(30);
+        pokemonImageView.setTranslateY(30);
+
+        if (!pokemonEstaVivo) {
+            //pokemonImageView.setRotate(180);
+            ColorAdjust colorAdjust = new ColorAdjust();
+            colorAdjust.setSaturation(-1); // Set saturation to -1 for grayscale
+            pokemonImageView.setEffect(colorAdjust);
+        }
         return pokemonImageView;
     }
 
@@ -49,8 +59,8 @@ public class PokemonResourceFactory {
         Text pokemonName = new Text(pokemon.getNombre());
         pokemonName.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
         pokemonName.setFill(Color.BLACK);
-        //pokemonName.setTranslateX(20);
-        //pokemonName.setTranslateY(20);
+        pokemonName.setTranslateX(30);
+        pokemonName.setTranslateY(30);
         if (!pokemon.estaConsciente()) {
             pokemonName.setStrikethrough(true);
         }
@@ -71,8 +81,8 @@ public class PokemonResourceFactory {
                 "Nivel: " + (int)pokemon.getCualidades().getNivel());
         pokemonStats.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
         pokemonStats.setFill(Color.BLACK);
-        //pokemonStats.setTranslateX(40);
-        //pokemonStats.setTranslateX(50);
+        pokemonStats.setTranslateX(80);
+        pokemonStats.setTranslateY(30);
         return pokemonStats;
     }
 

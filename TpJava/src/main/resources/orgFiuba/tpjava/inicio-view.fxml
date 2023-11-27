@@ -13,7 +13,7 @@
     <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
   </padding>
     <Label fx:id="welcomeText" />
-   <VBox alignment="BOTTOM_CENTER" prefHeight="317.0" prefWidth="490.0">
+   <VBox alignment="BOTTOM_CENTER" onMouseClicked="#onHelloButtonClick" onMousePressed="#onHelloButtonClick" prefHeight="317.0" prefWidth="490.0">
       <children>
          <ImageView fitHeight="72.0" fitWidth="222.0" onMouseClicked="#onHelloButtonClick" onMousePressed="#onHelloButtonClick">
             <image>

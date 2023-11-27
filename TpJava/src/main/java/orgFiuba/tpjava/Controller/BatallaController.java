@@ -9,9 +9,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import orgFiuba.tpjava.Model.Juego;
+import orgFiuba.tpjava.Model.Jugador;
 import orgFiuba.tpjava.Model.Pokemones.Habilidad;
 import orgFiuba.tpjava.Model.Pokemones.Pokemon;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -90,7 +92,20 @@ public class BatallaController {
         this.pokemonJ2View.setFitWidth(this.pokemonJ2View.getImage().getWidth()*3);
 
         this.atacarButton.setOnAction(event -> crearMenuAtaques(juego.getJugadorActual().getPokemonActual()));
+        this.itemButton.setOnAction(event -> {
+            try {
+                crearMenuItem(juego.getJugadorActual());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
+
+    private void crearMenuItem(Jugador jugadorActual) throws IOException {
+        // Call a function from your object
+        juegoController.handle(new MenuItemEvent(jugadorActual)); // Replace yourFunction with the actual function name
+    }
+
 
     public void crearMenuAtaques(Pokemon pokemon) {
         GridPane ataques = new GridPane();

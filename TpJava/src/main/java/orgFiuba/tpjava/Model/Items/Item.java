@@ -23,6 +23,11 @@ public abstract class Item {
 
     protected final String nombre;
     protected int cantidad;
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
     protected String descripcion;
     public Modificacion unaModificacion;
 

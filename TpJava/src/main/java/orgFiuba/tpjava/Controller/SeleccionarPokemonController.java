@@ -69,9 +69,11 @@ public class SeleccionarPokemonController {
                 pokemonView.getChildren().add(pokemonIconoYNombre);
                 pokemonView.getChildren().add(pokemonStats);
 
-                pokemonView.setOnMouseClicked(createImageViewClickHandler(pokemonView, this.juegoController, this.jugador, pokemones.get(index)));
+                if(pokemones.get(index).estaConsciente()){
+                    pokemonView.setOnMouseClicked(createImageViewClickHandler(pokemonView, this.juegoController, this.jugador, pokemones.get(index)));
+                }
 
-                gridPanePokemones.add(pokemonView, col, row);
+                this.gridPanePokemones.add(pokemonView, col, row);
 
                 index++;
             }

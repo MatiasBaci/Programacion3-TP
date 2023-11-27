@@ -5,23 +5,15 @@ import javafx.event.EventType;
 import orgFiuba.tpjava.Model.Items.Item;
 import orgFiuba.tpjava.Model.Jugador;
 
-public class AplicarItemeEvent extends Event{
+public class MenuItemEvent extends Event{
 
     private Jugador jugador;
 
-    private Item item;
+    public static EventType<MenuItemEvent> APLICAR_ITEM_EVENT = new EventType<>("Aplicar Item Event");
 
-    public static EventType<AplicarItemeEvent> APLICAR_ITEM_EVENT = new EventType<>("Aplicar Item Event");
-
-    public AplicarItemeEvent(Jugador jugador, Item item){
+    public MenuItemEvent(Jugador jugador){
         super(APLICAR_ITEM_EVENT);
         this.jugador = jugador;
-        this.item = item;
-
-    }
-
-    public Item getItem() {
-        return item;
     }
 
     public Jugador getJugador() {

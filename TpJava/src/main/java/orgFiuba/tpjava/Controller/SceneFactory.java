@@ -32,18 +32,18 @@ public class SceneFactory {
         escenas.put("sceneSeleccionNombreJugador2", sceneSeleccionNombreJugador2);
 
         FXMLLoader fxmlLoaderP = new FXMLLoader(MainJavaFX.class.getResource("seleccionarPokemon-view.fxml"));
-        GridPane seleccionarPokemonLoaderJugador = fxmlLoaderP.load();
-        SeleccionarPokemonController seleccionarPokemonControllerJugador = fxmlLoaderP.getController();
-        seleccionarPokemonControllerJugador.inicializar(juego.getJugadorActual(), juegoController);
-        Scene sceneSeleccionPokemonJugador = new Scene(seleccionarPokemonLoaderJugador, 1024, 768);
+        GridPane seleccionarPokemonLoader = fxmlLoaderP.load();
+        SeleccionarPokemonController seleccionarPokemonController = fxmlLoaderP.getController();
+        seleccionarPokemonController.inicializar(juego.getJugadorActual(), juegoController);
+        Scene sceneSeleccionPokemonJugador = new Scene(seleccionarPokemonLoader, 1024, 768);
         escenas.put("sceneSeleccionPokemon", sceneSeleccionPokemonJugador);
 
-        FXMLLoader fxmlLoaderItemP1 = new FXMLLoader(MainJavaFX.class.getResource("aplicarItem-view.fxml"));
-        GridPane aplicarItemLoaderJugador1 = fxmlLoaderItemP1.load();
-        AplicarItemController aplicarItemControllerJugador1 = fxmlLoaderItemP1.getController();
-        aplicarItemControllerJugador1.inicializar(juego.getJugador1(), juegoController);
-        Scene sceneAplicarItemJugador1 = new Scene(aplicarItemLoaderJugador1, 1024, 768);
-        escenas.put("sceneAplicarItemJugador1", sceneAplicarItemJugador1);
+        FXMLLoader fxmlLoaderItem = new FXMLLoader(MainJavaFX.class.getResource("aplicarItem-view.fxml"));
+        VBox aplicarItemLoader = fxmlLoaderItem.load();
+        SeleccionarItemController seleccionarItemController = fxmlLoaderItem.getController();
+        seleccionarItemController.inicializar(juego.getJugadorActual(), juegoController);
+        Scene sceneAplicarItem = new Scene(aplicarItemLoader, 1024, 768);
+        escenas.put("sceneAplicarItem", sceneAplicarItem);
 
         return escenas;
     }

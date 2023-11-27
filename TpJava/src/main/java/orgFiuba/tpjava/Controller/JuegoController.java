@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -32,6 +33,7 @@ public class JuegoController extends Parent implements EventHandler<Event> {
     private Map<String, Scene> escenas;
     private BatallaController batallaController;
     private SeleccionarPokemonController seleccionarPokemonController;
+    private SeleccionarItemController seleccionarItemController;
 
     public void inicializar(Stage stage, Juego juego) throws IOException {
         this.stage = stage;
@@ -75,7 +77,7 @@ public class JuegoController extends Parent implements EventHandler<Event> {
         } else {
             try {
                 this.juego.setJugadorActual(this.juego.getJugador1());
-                this.crearVentanaSeleccionarPokemon(this.juego.getJugadorActual(), 1);
+                this.crearVentanaSeleccionarPokemon(this.juego.getJugadorActual());
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -92,7 +94,7 @@ public class JuegoController extends Parent implements EventHandler<Event> {
         if (this.juego.getJugador2().getPokemonActual() == null) {
             try {
                 this.juego.setJugadorActual(this.juego.getJugador2());
-                this.crearVentanaSeleccionarPokemon(juego.getJugador2(), 2);
+                this.crearVentanaSeleccionarPokemon(juego.getJugador2());
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -116,6 +118,24 @@ public class JuegoController extends Parent implements EventHandler<Event> {
         this.batallaController.actualizarVista(this.juego);
     }
 
+    /*public void handle(MenuItemEvent menuItemEvent){
+
+        if (menuItemEvent.getItem().getCantidad() == 0){
+            Alert alert  = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("Informacion");
+            alert.setContentText("No tiene mas items de este tipo.");
+            alert.showAndWait();
+        }else{
+            menuItemEvent.getJugador().elegirItem(menuItemEvent.getItem().getNombre());
+        }
+    }*/
+
+    public void handle(MenuItemEvent menuItemEvent) throws IOException {
+
+        this.crearVentanaSeleccionarItem(menuItemEvent.getJugador());
+        //menuItemEvent.getJugador().elegirItem(menuItemEvent.getItem().getNombre());
+    }
     public void cicloDeTurnos() {
         if (!this.juego.getJugadorActual().perdio() && !this.juego.getJugadorActual().getAdversario().perdio()){
 
@@ -184,7 +204,18 @@ public class JuegoController extends Parent implements EventHandler<Event> {
         this.stage.show();
     }
 
-    public void crearVentanaSeleccionarPokemon(Jugador jugador, int numero) throws IOException {
+    public void crearVentanaSeleccionarItem(Jugador jugador) throws IOException {
+
+        try {
+            this.seleccionarItemController.actualizarVista(jugador);
+            this.stage.setScene(this.escenas.get("sceneAplicarItem"));
+        } catch (NullPointerException e) {
+            System.out.println("NullPointerException");
+        }
+        this.stage.setTitle("Aplicar item jugador " + jugador.getNombre());
+        this.stage.show();
+    }
+    public void crearVentanaSeleccionarPokemon(Jugador jugador) throws IOException {
 
         try {
             //this.stage.setScene(this.escenas.get("sceneSeleccionPokemonInicialJugador" + numero));
@@ -193,7 +224,7 @@ public class JuegoController extends Parent implements EventHandler<Event> {
         } catch (NullPointerException e) {
             System.out.println("NullPointerException");
         }
-        this.stage.setTitle("Seleccion de Pokemon Jugador " + numero);
+        this.stage.setTitle("Seleccion de Pokemon Jugador " + jugador.getNombre());
         this.stage.show();
     }
 
@@ -222,5 +253,9 @@ public class JuegoController extends Parent implements EventHandler<Event> {
     }
     public void setSeleccionarPokemonController(SeleccionarPokemonController seleccionarPokemonController) {
         this.seleccionarPokemonController = seleccionarPokemonController;
+    }
+
+    public void setSeleccionarItemController(SeleccionarItemController seleccionarItemController) {
+        this.seleccionarItemController = seleccionarItemController;
     }
 }

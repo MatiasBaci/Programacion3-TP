@@ -15,10 +15,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class AplicarItemController {
+public class SeleccionarItemController {
 
     @FXML
     public HashMap<String, ImageView> itemsViews;
+
+    @FXML
+    public VBox vboxMenuItems;
 
     public List<Item> items;
     private Jugador jugador;
@@ -27,8 +30,15 @@ public class AplicarItemController {
     public GridPane gridPaneItems;
 
     public void inicializar(Jugador jugador, JuegoController juegoController) throws IOException {
-        this.jugador = jugador;
+        juegoController.setSeleccionarItemController(this);
         this.juegoController = juegoController;
+        this.crearVentanaMenuItem(jugador);
+
+    }
+
+    public void crearVentanaMenuItem(Jugador jugador){
+
+        this.jugador = jugador;
         this.itemsViews = new HashMap<>();
         this.items = new ArrayList<>();
         ItemsResourceFactory itemsResourceFactory = new ItemsResourceFactory();
@@ -36,20 +46,24 @@ public class AplicarItemController {
         this.jugador.getItems().forEach((k, v) -> items.add(v));
 
         HBox itemsView;
-        VBox itemIconoYNombre;
+        HBox itemIconoYNombre;
         int index = 0;
 
         for (int row = 0; row < 8; row++) {
 
             itemsView = new HBox();
-            itemIconoYNombre = new VBox();
+            itemIconoYNombre = new HBox();
 
             itemIconoYNombre.getChildren().add(itemsResourceFactory.createItemMenuView(items.get(index)));
-            itemIconoYNombre.getChildren().add(itemsResourceFactory.createItemName(items.get(index)));
+            itemIconoYNombre.getChildren().add(itemsResourceFactory.createItemData(items.get(index)));
+            itemIconoYNombre.setTranslateX(70);
+
 
             itemsView.getChildren().add(itemIconoYNombre);
 
             itemsView.setOnMouseClicked(createImageViewClickHandler(itemsView, this.juegoController, this.jugador, items.get(index)));
+
+            //itemsView.setOnMouseEntered(itemsView, this.juegoController, this.jugador, items.get(index)););
 
             gridPaneItems.add(itemsView, 0, row);
 
@@ -64,10 +78,22 @@ public class AplicarItemController {
             System.out.println("ItemView clicked! " + imageView.getId());
 
             // Call a function from your object
-            juegoController.handle(new AplicarItemeEvent(jugador, item)); // Replace yourFunction with the actual function name
+            try {
+                juegoController.handle(new MenuItemEvent(jugador)); // Replace yourFunction with the actual function name
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
 
             // Add your additional event handling code here
         };
+    }
+
+    public void actualizarVista(Jugador jugador) {
+        try {
+            gridPaneItems.getChildren().clear();
+        } catch (Exception ignored) {}
+
+        this.crearVentanaMenuItem(jugador);
     }
 }
 

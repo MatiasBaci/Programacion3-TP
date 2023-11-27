@@ -61,7 +61,7 @@
                </padding>
                <children>
                   <Button fx:id="atacarButton" mnemonicParsing="false" prefHeight="56.0" prefWidth="96.0" text="ATACAR" />
-                  <Button fx:id="itemButton" mnemonicParsing="false" prefHeight="56.0" prefWidth="96.0" text="ITEM" GridPane.rowIndex="1" />
+                  <Button fx:id="itemButton" mnemonicParsing="false" prefHeight="56.0" prefWidth="96.0" text="ITEM" GridPane.rowIndex="1"  />
                   <Button fx:id="pokemonButton" mnemonicParsing="false" prefHeight="56.0" prefWidth="96.0" text="POKEMON" GridPane.columnIndex="1" />
                   <Button fx:id="rendirseButton" mnemonicParsing="false" prefHeight="56.0" prefWidth="96.0" text="RENDIRSE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
