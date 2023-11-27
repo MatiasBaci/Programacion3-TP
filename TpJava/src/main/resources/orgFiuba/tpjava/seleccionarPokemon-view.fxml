@@ -2,7 +2,7 @@
 
 <?import javafx.scene.layout.*?>
 
-<GridPane fx:id="gridPanePokemones" alignment="CENTER" maxHeight="600" maxWidth="600" minHeight="600" minWidth="600" prefHeight="600.0" prefWidth="600.0" styleClass="bodyFondoSeleccionPokemon" stylesheets="@StyleCss/fondo_seleccion_pokemon.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="orgFiuba.tpjava.Controller.SeleccionarPokemonController">
+<GridPane fx:id="gridPanePokemones" alignment="CENTER" gridLinesVisible="true" maxHeight="600" maxWidth="600" minHeight="600" minWidth="600" prefHeight="600.0" prefWidth="600.0" styleClass="bodyFondoSeleccionPokemon" stylesheets="@StyleCss/fondo_seleccion_pokemon.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="orgFiuba.tpjava.Controller.SeleccionarPokemonController">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
