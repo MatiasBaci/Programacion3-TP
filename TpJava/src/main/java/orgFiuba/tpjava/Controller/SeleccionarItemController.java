@@ -2,6 +2,7 @@ package orgFiuba.tpjava.Controller;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -60,7 +61,8 @@ public class SeleccionarItemController {
 
             itemIconoYNombre.getChildren().add(itemsResourceFactory.createItemMenuView(item));
             itemIconoYNombre.getChildren().add(itemsResourceFactory.createItemData(item));
-            itemIconoYNombre.setTranslateX(70);
+            itemIconoYNombre.setTranslateX(40);
+            itemIconoYNombre.setTranslateY(20);
 
 
             itemsView.getChildren().add(itemIconoYNombre);
@@ -73,6 +75,7 @@ public class SeleccionarItemController {
 
             itemsView.setOnMouseExited(event -> {
                 descripcionItem.setText("");
+                descripcionItem.setTranslateY(100);
             });
 
             gridPaneItems.add(itemsView, 0, row);
@@ -85,15 +88,19 @@ public class SeleccionarItemController {
     private EventHandler<MouseEvent> createImageViewClickHandler(HBox imageView, JuegoController juegoController, Jugador jugador, Item item) {
         return event -> {
             System.out.println("ItemView clicked! " + imageView.getId());
-
-            // Call a function from your object
-            try {
-                juegoController.handle(new MenuItemEvent(jugador)); // Replace yourFunction with the actual function name
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+            if(item.getCantidad() == 0){
+                Alert alert  = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText(null);
+                alert.setTitle("Informacion");
+                alert.setContentText("No hay Items.");
+                alert.showAndWait();
+            }else{
+                try {
+                    juegoController.handle(new ItemSeleccionadoEvent(jugador, item)); // Replace yourFunction with the actual function name
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
-
-            // Add your additional event handling code here
         };
     }
 
@@ -104,6 +111,8 @@ public class SeleccionarItemController {
 
         this.crearVentanaMenuItem(jugador);
     }
+
+
 }
 
 

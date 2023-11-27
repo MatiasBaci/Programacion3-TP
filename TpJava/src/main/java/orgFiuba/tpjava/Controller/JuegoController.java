@@ -5,11 +5,11 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import orgFiuba.tpjava.Model.Items.Item;
 import orgFiuba.tpjava.Model.Juego;
 import orgFiuba.tpjava.Model.Jugador;
 
@@ -136,6 +136,17 @@ public class JuegoController extends Parent implements EventHandler<Event> {
         this.crearVentanaSeleccionarItem(menuItemEvent.getJugador());
         //menuItemEvent.getJugador().elegirItem(menuItemEvent.getItem().getNombre());
     }
+
+    public void handle(ItemSeleccionadoEvent itemSeleccionadoEvent) throws  IOException{
+        this.crearVentanaSeleccionarPokemonItem(itemSeleccionadoEvent.getJugador(), itemSeleccionadoEvent.getItem());
+    }
+
+    public void handle(ItemAplicadoEvent itemAplicadoEvent) throws IOException{
+        this.juego.getJugadorActual().setPokemonActual(itemAplicadoEvent.getPokemon());
+        this.mostrarVentanaBatalla();
+    }
+
+
     public void cicloDeTurnos() {
         if (!this.juego.getJugadorActual().perdio() && !this.juego.getJugadorActual().getAdversario().perdio()){
 
@@ -227,6 +238,20 @@ public class JuegoController extends Parent implements EventHandler<Event> {
         this.stage.setTitle("Seleccion de Pokemon Jugador " + jugador.getNombre());
         this.stage.show();
     }
+
+    private void crearVentanaSeleccionarPokemonItem(Jugador jugador, Item itemAplicar) throws IOException{
+
+        try{
+            this.seleccionarPokemonController.actualizarVistaAplicarItem(jugador, itemAplicar);
+            this.stage.setScene(this.escenas.get("sceneSeleccionPokemon"));
+        } catch (NullPointerException e) {
+        System.out.println("NullPointerException");
+    }
+        this.stage.setTitle("Seleccion de Pokemon Jugador " + jugador.getNombre());
+        this.stage.show();
+
+    }
+
 
     public void reproducirMusica(String ruta) {
         try {

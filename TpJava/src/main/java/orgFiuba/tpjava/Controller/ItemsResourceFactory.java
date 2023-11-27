@@ -13,9 +13,7 @@ public class ItemsResourceFactory {
 
     public ImageView createItemMenuView(Item item) {
 
-        System.out.println(item.getNombre());
         String extension = ".png";
-        String carpeta;
         String path = "Imagenes/Items/"   + item.getNombre() + extension;
         Image itemImage = new Image(getClass().getResource("/orgFiuba/tpjava/" + path).toString());
         ImageView itemImageView = new ImageView();
@@ -27,12 +25,11 @@ public class ItemsResourceFactory {
     }
 
     public Text createItemData(Item item) {
-        //Text itemData = new Text(item.getNombre() +" | " + " X " + item.getCantidad()+" | " + " Descripcion: " + item.getDescripcion()+ ".");
         Text itemData = new Text(item.getNombre() +" | " + " X " + item.getCantidad());
         itemData.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
         itemData.setFill(Color.BLACK);
         itemData.setTranslateX(50);
-        itemData.setTranslateY(40);
+        itemData.setTranslateY(50);
         return itemData;
     }
 
