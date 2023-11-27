@@ -3,17 +3,16 @@ package orgFiuba.tpjava.Controller;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.media.Media;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import orgFiuba.tpjava.Model.Pokemones.Habilidad;
 import orgFiuba.tpjava.Model.Pokemones.Pokemon;
 
 import java.io.File;
 
-import static orgFiuba.tpjava.Constantes.RUTA_CRIES;
-import static orgFiuba.tpjava.Constantes.RUTA_MENU_SPRITES;
+import static orgFiuba.tpjava.Constantes.*;
 
 public class PokemonResourceFactory {
 
@@ -23,10 +22,6 @@ public class PokemonResourceFactory {
         ImageView pokemonImageView = new ImageView();
         pokemonImageView.setImage(pokemonImage);
 
-        double altura = pokemonImage.getHeight() * 3;
-        double ancho = pokemonImage.getWidth() * 30;
-        pokemonImageView.setFitHeight(altura);
-        pokemonImageView.setFitWidth(ancho);
         return pokemonImageView;
     }
 
@@ -44,8 +39,9 @@ public class PokemonResourceFactory {
         Image pokemonImage = new Image(new File(path).toURI().toString());
         ImageView pokemonImageView = new ImageView();
         pokemonImageView.setImage(pokemonImage);
-        pokemonImageView.setFitHeight(100);
-        pokemonImageView.setFitWidth(100);
+        pokemonImageView.setFitHeight(pokemonImage.getHeight()*3);
+        pokemonImageView.setFitWidth(pokemonImage.getWidth()*3);
+        if (!pokemonEstaVivo) {pokemonImageView.setRotate(180);}
         return pokemonImageView;
     }
 
@@ -53,29 +49,30 @@ public class PokemonResourceFactory {
         Text pokemonName = new Text(pokemon.getNombre());
         pokemonName.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
         pokemonName.setFill(Color.BLACK);
+        if (!pokemon.estaConsciente()) {
+            pokemonName.setStrikethrough(true);
+        }
         return pokemonName;
     }
 
-    public Media createPokemonCry(Pokemon pokemon) {
-        String path = RUTA_CRIES + pokemon.getNombre() + ".mp3";
-        Media pokemonCry = new Media(getClass().getResource("/orgFiuba/tpjava/" + path).toString());
-        return pokemonCry;
-    }
-
-    public String createPokemonCryPath(Pokemon pokemon) {
-        String path = RUTA_CRIES + pokemon.getNombre() + ".mp3";
-        return path;
+    public String createCrySFXPath(Pokemon pokemon) {
+        return RUTA_SFX_CRIES + pokemon.getNombre() + ".mp3";
     }
 
     public Node createPokemonStats(Pokemon pokemon) {
-        Text pokemonStats = new Text("HP: " + pokemon.getCualidades().getVida() + "\n" +
+
+        Text pokemonStats = new Text("HP: " + (int)pokemon.getCualidades().getVida() + "\n" +
                 "Ataque: " + pokemon.getCualidades().getAtaque() + "\n" +
                 "Defensa: " + pokemon.getCualidades().getDefensa() + "\n" +
                 "Velocidad: " + pokemon.getCualidades().getVelocidad() + "\n" +
                 "Tipo: " + pokemon.getCualidades().getTipo().getNombre() + "\n" +
-                "Nivel: " + pokemon.getCualidades().getNivel());
+                "Nivel: " + (int)pokemon.getCualidades().getNivel());
         pokemonStats.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
         pokemonStats.setFill(Color.BLACK);
         return pokemonStats;
+    }
+
+    public String createHabilidadSFXPath(Habilidad habilidad) {
+        return RUTA_SFX_HABILIDADES + habilidad.getNombre() + ".mp3";
     }
 }

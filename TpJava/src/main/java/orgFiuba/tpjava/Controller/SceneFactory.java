@@ -2,7 +2,6 @@ package orgFiuba.tpjava.Controller;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import orgFiuba.tpjava.MainJavaFX;
@@ -32,19 +31,12 @@ public class SceneFactory {
         Scene sceneSeleccionNombreJugador2 = new Scene(seleccionarNombresLoaderJugador2, 1024, 768);
         escenas.put("sceneSeleccionNombreJugador2", sceneSeleccionNombreJugador2);
 
-        FXMLLoader fxmlLoaderP1 = new FXMLLoader(MainJavaFX.class.getResource("seleccionarPokemon-view.fxml"));
-        GridPane seleccionarPokemonLoaderJugador1 = fxmlLoaderP1.load();
-        SeleccionarPokemonController seleccionarPokemonControllerJugador1 = fxmlLoaderP1.getController();
-        seleccionarPokemonControllerJugador1.inicializar(juego.getJugador1(), juegoController);
-        Scene sceneSeleccionPokemonJugador1 = new Scene(seleccionarPokemonLoaderJugador1, 1024, 768);
-        escenas.put("sceneSeleccionPokemonInicialJugador1", sceneSeleccionPokemonJugador1);
-
-        FXMLLoader fxmlLoaderP2 = new FXMLLoader(MainJavaFX.class.getResource("seleccionarPokemon-view.fxml"));
-        GridPane seleccionarPokemonLoaderJugador2 = fxmlLoaderP2.load();
-        SeleccionarPokemonController seleccionarPokemonControllerJugador2 = fxmlLoaderP2.getController();
-        seleccionarPokemonControllerJugador2.inicializar(juego.getJugador2(), juegoController);
-        Scene sceneSeleccionPokemonJugador2 = new Scene(seleccionarPokemonLoaderJugador2, 1024, 768);
-        escenas.put("sceneSeleccionPokemonInicialJugador2", sceneSeleccionPokemonJugador2);
+        FXMLLoader fxmlLoaderP = new FXMLLoader(MainJavaFX.class.getResource("seleccionarPokemon-view.fxml"));
+        GridPane seleccionarPokemonLoaderJugador = fxmlLoaderP.load();
+        SeleccionarPokemonController seleccionarPokemonControllerJugador = fxmlLoaderP.getController();
+        seleccionarPokemonControllerJugador.inicializar(juego.getJugadorActual(), juegoController);
+        Scene sceneSeleccionPokemonJugador = new Scene(seleccionarPokemonLoaderJugador, 1024, 768);
+        escenas.put("sceneSeleccionPokemon", sceneSeleccionPokemonJugador);
 
         return escenas;
     }
@@ -54,7 +46,6 @@ public class SceneFactory {
         VBox batallaLoader = fxmlLoaderBatalla.load();
         BatallaController batallaController = fxmlLoaderBatalla.getController();
         batallaController.inicializar(juego, juegoController);
-        Scene sceneBatalla = new Scene(batallaLoader, 1024, 768);
-        return sceneBatalla;
+        return new Scene(batallaLoader, 1024, 768);
     }
 }

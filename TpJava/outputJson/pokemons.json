@@ -8,7 +8,7 @@
   "defensa" : 85 ,
   "ataque" : 70 ,
   "habilidades": [ 37 , 12 , 85, 24 ]
-}, {"nombre" : "Charizar",
+}, {"nombre" : "Charizard",
   "id": 15,
   "nivel": 50 ,
   "tipo" : "Fuego" ,

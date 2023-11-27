@@ -10,7 +10,6 @@ import javafx.scene.layout.VBox;
 import orgFiuba.tpjava.Model.Jugador;
 import orgFiuba.tpjava.Model.Pokemones.Pokemon;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,9 +25,25 @@ public class SeleccionarPokemonController {
     @FXML
     public GridPane gridPanePokemones;
 
-    public void inicializar(Jugador jugador, JuegoController juegoController) throws IOException {
-        this.jugador = jugador;
+    public void inicializar(Jugador jugador, JuegoController juegoController) {
+
+        juegoController.setSeleccionarPokemonController(this);
         this.juegoController = juegoController;
+        this.crearVentanaSeleccionarPokemon(jugador);
+    }
+
+    public void actualizarVista(Jugador jugador) {
+
+        try {
+            gridPanePokemones.getChildren().clear();
+        } catch (Exception ignored) {}
+
+        this.crearVentanaSeleccionarPokemon(jugador);
+    }
+
+    public void crearVentanaSeleccionarPokemon(Jugador jugador) {
+
+        this.jugador = jugador;
         this.pokemonMenuViews = new HashMap<>();
         this.pokemones = new ArrayList<>();
         PokemonResourceFactory pokemonResourceFactory = new PokemonResourceFactory();
