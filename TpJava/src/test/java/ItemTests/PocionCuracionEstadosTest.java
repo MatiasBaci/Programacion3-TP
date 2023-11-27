@@ -26,7 +26,7 @@ class PocionCuracionEstadosTest {
         estadosActuales.add(unEstado);
         when(cualidades.obtenerEstadosActuales()).thenReturn(estadosActuales);
         ModificacionEstado modificacion = mock(ModificacionEstado.class);
-        PocionCuracionEstados curaTodo = new PocionCuracionEstados("Cura Todo", 1, modificacion);
+        PocionCuracionEstados curaTodo = new PocionCuracionEstados("Cura Todo", 1, modificacion,"");
 
         //Act
         boolean realizo = curaTodo.aplicarItem(cualidades);
@@ -45,7 +45,7 @@ class PocionCuracionEstadosTest {
         estadosActuales.add(unEstado);
         when(cualidades.obtenerEstadosActuales()).thenReturn(estadosActuales);
         ModificacionEstado modificacion = mock(ModificacionEstado.class);
-        PocionCuracionEstados curaTodo = new PocionCuracionEstados("Cura Todo", 1, modificacion);
+        PocionCuracionEstados curaTodo = new PocionCuracionEstados("Cura Todo", 1, modificacion,"");
 
         //Act
         boolean realizo = curaTodo.aplicarItem(cualidades);

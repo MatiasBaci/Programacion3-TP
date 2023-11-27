@@ -9,8 +9,8 @@ import static orgFiuba.tpjava.Constantes.ESTADO_INHABILITADO;
 
 public abstract class ItemsEstado extends Item implements validarItemEstado {
 
-    public ItemsEstado(String unNombre, int cantidad){
-        super(unNombre,cantidad);
+    public ItemsEstado(String unNombre, int cantidad,String descripcion){
+        super(unNombre,cantidad,descripcion);
     }
 
     public abstract boolean aplicarItem(Cualidades cualidades);

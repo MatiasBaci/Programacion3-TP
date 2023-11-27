@@ -19,7 +19,7 @@ public class ItemsEstadisticaTest {
         Cualidades cualidades = mock(Cualidades.class);
         when(cualidades.getVida()).thenReturn(100.0);
         Modificacion modificacion = mock(Modificacion.class);
-        ItemsEstadistica itemsEstadistica = new AtaqueX("Ataque X", 5, modificacion);
+        ItemsEstadistica itemsEstadistica = new AtaqueX("Ataque X", 5, modificacion,"");
         // Act
         boolean resultado = itemsEstadistica.realizarUsadoItemsDeEstadisitcas(cualidades);
         // Assert
@@ -33,7 +33,7 @@ public class ItemsEstadisticaTest {
         Cualidades cualidades = mock(Cualidades.class);
         when(cualidades.getVida()).thenReturn(0.0);
         Modificacion modificacion = mock(Modificacion.class);
-        ItemsEstadistica itemsEstadistica = new AtaqueX("Ataque X", 5, modificacion);
+        ItemsEstadistica itemsEstadistica = new AtaqueX("Ataque X", 5, modificacion,"");
         // Act
         boolean resultado = itemsEstadistica.realizarUsadoItemsDeEstadisitcas(cualidades);
         // Assert

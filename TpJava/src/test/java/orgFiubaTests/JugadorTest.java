@@ -168,7 +168,7 @@ public class JugadorTest {
         lucario.getCualidades().agregarEstado(new EstadoParalizado());
         Map<String, Pokemon> pokemones = Map.of("Lucario", lucario);
 
-        PocionCuracionEstados curaTodo = new PocionCuracionEstados("Cura Todo", 1, new ModificacionEstado());
+        PocionCuracionEstados curaTodo = new PocionCuracionEstados("Cura Todo", 1, new ModificacionEstado(),"");
         Map<String, Item> items = Map.of("Cura Todo", curaTodo);
 
         Jugador jugador = new Jugador("Cynthia", pokemones, items);

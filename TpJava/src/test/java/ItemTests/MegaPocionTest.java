@@ -20,7 +20,7 @@ public class MegaPocionTest {
         when(cualidades.getVidaMaxima()).thenReturn(100.0);
         ModificacionVida modificacion = mock(ModificacionVida.class);
 
-        MegaPocion megaPocion = new MegaPocion("Mega Pocion", 10, modificacion);
+        MegaPocion megaPocion = new MegaPocion("Mega Pocion", 10, modificacion,"");
         //Act
         boolean itemAplicado = megaPocion.aplicarItem(cualidades);
         //Assert
@@ -36,7 +36,7 @@ public class MegaPocionTest {
         when(cualidades.getVidaMaxima()).thenReturn(100.0);
         ModificacionVida modificacion = mock(ModificacionVida.class);
 
-        MegaPocion megaPocion = new MegaPocion("Mega Pocion", 10, modificacion);
+        MegaPocion megaPocion = new MegaPocion("Mega Pocion", 10, modificacion,"");
         //Act
         boolean itemAplicado = megaPocion.aplicarItem(cualidades);
         //Assert
@@ -52,7 +52,7 @@ public class MegaPocionTest {
         when(cualidades.getVidaMaxima()).thenReturn(100.0);
         ModificacionVida modificacion = mock(ModificacionVida.class);
 
-        MegaPocion megaPocion = new MegaPocion("Mega Pocion", 10, modificacion);
+        MegaPocion megaPocion = new MegaPocion("Mega Pocion", 10, modificacion,"");
         //Act
         boolean itemAplicado = megaPocion.aplicarItem(cualidades);
         //Assert

@@ -20,7 +20,7 @@ public class ItemsCuracionTest {
         when(cualidades.getVidaMaxima()).thenReturn(100.0);
         ModificacionVida modificacion = new ModificacionVida();
 
-        ItemsCuracion item = new Pocion("Pocion", 10, modificacion);
+        ItemsCuracion item = new Pocion("Pocion", 10, modificacion,"");
         //Act
         boolean usado = item.realizarUsadoItemsDeCuracion(cualidades);
         //Assert
@@ -36,7 +36,7 @@ public class ItemsCuracionTest {
         when(cualidades.getVidaMaxima()).thenReturn(100.0);
         ModificacionVida modificacion = new ModificacionVida();
 
-        ItemsCuracion item = new Pocion("Pocion", 10, modificacion);
+        ItemsCuracion item = new Pocion("Pocion", 10, modificacion,"");
         //Act
         boolean usado = item.realizarUsadoItemsDeCuracion(cualidades);
         //Assert
@@ -52,7 +52,7 @@ public class ItemsCuracionTest {
         when(cualidades.getVidaMaxima()).thenReturn(100.0);
         ModificacionVida modificacion = new ModificacionVida();
 
-        ItemsCuracion item = new Pocion("Pocion", 10, modificacion);
+        ItemsCuracion item = new Pocion("Pocion", 10, modificacion,"");
         //Act
         boolean usado = item.realizarUsadoItemsDeCuracion(cualidades);
         //Assert

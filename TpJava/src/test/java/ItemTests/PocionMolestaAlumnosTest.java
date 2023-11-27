@@ -20,7 +20,7 @@ public class PocionMolestaAlumnosTest {
         when(cualidades.getVidaMaxima()).thenReturn(100.0);
         ModificacionVida modificacion = mock(ModificacionVida.class);
 
-        PocionMolestaAlumnos pocionMolestaAlumnos = new PocionMolestaAlumnos("Pocion Molesta Alumnos", 10, modificacion);
+        PocionMolestaAlumnos pocionMolestaAlumnos = new PocionMolestaAlumnos("Pocion Molesta Alumnos", 10, modificacion,"");
         //Act
         boolean itemAplicado = pocionMolestaAlumnos.aplicarItem(cualidades);
         //Assert
@@ -36,7 +36,7 @@ public class PocionMolestaAlumnosTest {
         when(cualidades.getVidaMaxima()).thenReturn(100.0);
         ModificacionVida modificacion = mock(ModificacionVida.class);
 
-        PocionMolestaAlumnos pocionMolestaAlumnos = new PocionMolestaAlumnos("Pocion Molesta Alumnos", 10, modificacion);
+        PocionMolestaAlumnos pocionMolestaAlumnos = new PocionMolestaAlumnos("Pocion Molesta Alumnos", 10, modificacion,"");
         //Act
         boolean itemAplicado = pocionMolestaAlumnos.aplicarItem(cualidades);
         //Assert
@@ -52,7 +52,7 @@ public class PocionMolestaAlumnosTest {
         when(cualidades.getVidaMaxima()).thenReturn(100.0);
         ModificacionVida modificacion = mock(ModificacionVida.class);
 
-        PocionMolestaAlumnos pocionMolestaAlumnos = new PocionMolestaAlumnos("Pocion Molesta Alumnos", 10, modificacion);
+        PocionMolestaAlumnos pocionMolestaAlumnos = new PocionMolestaAlumnos("Pocion Molesta Alumnos", 10, modificacion,"");
         //Act
         boolean itemAplicado = pocionMolestaAlumnos.aplicarItem(cualidades);
         //Assert

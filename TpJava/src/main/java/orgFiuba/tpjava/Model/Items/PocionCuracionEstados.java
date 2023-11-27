@@ -5,9 +5,9 @@ import orgFiuba.tpjava.Model.Modificaciones.Modificacion;
 import orgFiuba.tpjava.Model.Pokemones.Cualidades;
 @JsonTypeName("Curar Todo")
 public class PocionCuracionEstados extends ItemsEstado {
-    public PocionCuracionEstados(String nombre, int cantidad, Modificacion unaModificacion){
+    public PocionCuracionEstados(String nombre, int cantidad, Modificacion unaModificacion,String descripcion){
 
-        super(nombre, cantidad);
+        super(nombre, cantidad,descripcion);
         this.unaModificacion = unaModificacion;
     }
     @Override

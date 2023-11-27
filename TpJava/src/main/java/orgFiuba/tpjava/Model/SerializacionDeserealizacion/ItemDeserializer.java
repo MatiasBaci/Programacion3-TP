@@ -39,31 +39,32 @@ public class ItemDeserializer extends StdDeserializer<ItemsIdsCustom> {
         JsonNode node = codec.readTree(parser);
 
         String nombre = node.get("nombre").asText();
+        String descripcion = node.get("descripcion").asText();
         int id = node.get("id").asInt();
         Modificacion modificacion = ServicioDeLecturasJson.obtenerModificacion(node.get("tipoDeModificacion").asText());
 
-        Item unItem = this.creandoItemsSegunElNomnbre(nombre,0,modificacion);
+        Item unItem = this.creandoItemsSegunElNomnbre(nombre,0,modificacion,descripcion);
 
         return new ItemsIdsCustom(id,unItem);
     }
-    private Item creandoItemsSegunElNomnbre(String nombre,int cantidad,Modificacion unaModificacion){
+    private Item creandoItemsSegunElNomnbre(String nombre,int cantidad,Modificacion unaModificacion,String descripcion){
         switch (nombre) {
             case "Hiper Pocion":
-                return new HiperPocion(nombre, cantidad,unaModificacion);
+                return new HiperPocion(nombre, cantidad,unaModificacion,descripcion);
             case "Pocion":
-                return new Pocion(nombre, cantidad,unaModificacion);
+                return new Pocion(nombre, cantidad,unaModificacion,descripcion);
             case "Mega Pocion":
-                return new MegaPocion(nombre, cantidad,unaModificacion);
+                return new MegaPocion(nombre, cantidad,unaModificacion,descripcion);
             case "Pocion MolestaAlumnos":
-                return new PocionMolestaAlumnos(nombre,cantidad,unaModificacion);
+                return new PocionMolestaAlumnos(nombre,cantidad,unaModificacion,descripcion);
             case "AtaqueX":
-                return new AtaqueX(nombre,cantidad,unaModificacion);
+                return new AtaqueX(nombre,cantidad,unaModificacion,descripcion);
             case "DefensaX":
-                return new DefensaX(nombre,cantidad,unaModificacion);
+                return new DefensaX(nombre,cantidad,unaModificacion,descripcion);
             case "Revivir":
-                return new Revivir(nombre,cantidad,unaModificacion);
+                return new Revivir(nombre,cantidad,unaModificacion,descripcion);
             case "Cura Todo":
-                return new PocionCuracionEstados(nombre,cantidad,unaModificacion);
+                return new PocionCuracionEstados(nombre,cantidad,unaModificacion,descripcion);
             default:
                 // Puedes lanzar una excepción si el nombre no coincide con ninguna clase conocida
                 throw new IllegalArgumentException("Nombre de Item desconocido: " + nombre);

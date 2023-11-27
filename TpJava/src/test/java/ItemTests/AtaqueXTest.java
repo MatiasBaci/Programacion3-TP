@@ -16,7 +16,7 @@ public class AtaqueXTest {
         Cualidades cualidades = mock(Cualidades.class);
         when(cualidades.getVida()).thenReturn(10.0);
         ModificacionAtaque modificacion = mock(ModificacionAtaque.class);
-        AtaqueX ataqueX = new AtaqueX("Ataque X", 5, modificacion);
+        AtaqueX ataqueX = new AtaqueX("Ataque X", 5, modificacion,"");
         //Act
         boolean realizo = ataqueX.aplicarItem(cualidades);
         //Assert

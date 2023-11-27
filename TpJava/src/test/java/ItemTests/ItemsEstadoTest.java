@@ -13,7 +13,7 @@ class ItemsEstadoTest {
     public void testEsUnItemDeSoloCampoDeBatalla() {
         //Arrange
         ModificacionEstadoInhabilitado modificacion = new ModificacionEstadoInhabilitado();
-        Revivir revivir = new Revivir("Revivir", 1, modificacion);
+        Revivir revivir = new Revivir("Revivir", 1, modificacion,"");
         //Act
         //Assert
         assertTrue(revivir.esUnItemDeSoloCampoDeBatalla());

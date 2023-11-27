@@ -5,8 +5,8 @@ import orgFiuba.tpjava.Model.Pokemones.Cualidades;
 
 public abstract class ItemsEstadistica extends Item implements validarItemEstadistica{
 
-    public ItemsEstadistica(String unNombre, int cantidad){
-        super(unNombre,cantidad);
+    public ItemsEstadistica(String unNombre, int cantidad,String descripcion){
+        super(unNombre,cantidad,descripcion);
     }
 
     public abstract boolean aplicarItem(Cualidades cualidades);

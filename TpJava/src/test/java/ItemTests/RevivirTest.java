@@ -26,7 +26,7 @@ class RevivirTest {
         estadosActuales.add(unEstado);
         when(cualidades.obtenerEstadosActuales()).thenReturn(estadosActuales);
         ModificacionEstado modificacion = mock(ModificacionEstado.class);
-        Revivir revive = new Revivir("Cura Todo", 1, modificacion);
+        Revivir revive = new Revivir("Cura Todo", 1, modificacion,"");
 
         //Act
         boolean realizo = revive.aplicarItem(cualidades);
@@ -45,7 +45,7 @@ class RevivirTest {
         estadosActuales.add(unEstado);
         when(cualidades.obtenerEstadosActuales()).thenReturn(estadosActuales);
         ModificacionEstado modificacion = mock(ModificacionEstado.class);
-        Revivir revive = new Revivir("Cura Todo", 1, modificacion);
+        Revivir revive = new Revivir("Cura Todo", 1, modificacion,"");
 
         //Act
         boolean realizo = revive.aplicarItem(cualidades);

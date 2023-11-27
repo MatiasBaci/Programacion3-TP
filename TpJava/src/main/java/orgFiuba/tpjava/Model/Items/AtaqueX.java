@@ -6,8 +6,8 @@ import orgFiuba.tpjava.Model.Pokemones.Cualidades;
 @JsonTypeName("AtaqueX")
 public class AtaqueX extends ItemsEstadistica {
 
-    public AtaqueX(String nombre, int cantidad, Modificacion unaModificacion){
-        super(nombre, cantidad);
+    public AtaqueX(String nombre, int cantidad, Modificacion unaModificacion,String descripcion){
+        super(nombre, cantidad,descripcion);
         this.unaModificacion = unaModificacion;
     }
 

@@ -23,11 +23,13 @@ public abstract class Item {
 
     protected final String nombre;
     protected int cantidad;
+    protected String descripcion;
     public Modificacion unaModificacion;
 
-    public Item(String nombre, int cantidad) {
+    public Item(String nombre, int cantidad,String descripcion) {
         this.nombre = nombre;
         this.cantidad = cantidad;
+        this.descripcion = descripcion;
     }
     public int getCantidad() {return cantidad;}
 

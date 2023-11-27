@@ -5,8 +5,8 @@ import orgFiuba.tpjava.Model.Modificaciones.Modificacion;
 import orgFiuba.tpjava.Model.Pokemones.Cualidades;
 @JsonTypeName("Pocion MolestaAlumnos")
 public class PocionMolestaAlumnos extends ItemsCuracion{
-    public PocionMolestaAlumnos(String unNombre, int cantidad, Modificacion unModificacion) {
-        super(unNombre, cantidad);
+    public PocionMolestaAlumnos(String unNombre, int cantidad, Modificacion unModificacion,String descripcion) {
+        super(unNombre, cantidad,descripcion);
         this.unaModificacion = unModificacion;
     }
 

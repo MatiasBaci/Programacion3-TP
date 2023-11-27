@@ -6,8 +6,8 @@ import orgFiuba.tpjava.Model.Pokemones.Cualidades;
 @JsonTypeName("Revivir")
 public class Revivir extends ItemsEstado {
 
-    public Revivir(String nombre, int cantidad, Modificacion unaModificacion){
-        super(nombre, cantidad);
+    public Revivir(String nombre, int cantidad, Modificacion unaModificacion,String descripcion){
+        super(nombre, cantidad,descripcion);
         this.unaModificacion = unaModificacion;
     }
 

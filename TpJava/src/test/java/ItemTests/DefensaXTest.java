@@ -24,7 +24,7 @@ public class DefensaXTest {
         Cualidades cualidades = mock(Cualidades.class);
         when(cualidades.getVida()).thenReturn(10.0);
         ModificacionDefensa modificacion = mock(ModificacionDefensa.class);
-        DefensaX defensaX = new DefensaX("Defensa X", 5, modificacion);
+        DefensaX defensaX = new DefensaX("Defensa X", 5, modificacion,"");
         //Act
         boolean realizo = defensaX.aplicarItem(cualidades);
         //Assert
@@ -43,7 +43,7 @@ public class DefensaXTest {
             estadosActuales.add(unEstado);
             when(cualidades.obtenerEstadosActuales()).thenReturn(estadosActuales);
             ModificacionEstado modificacion = mock(ModificacionEstado.class);
-            Revivir revivir = new Revivir("Revive", 1, modificacion);
+            Revivir revivir = new Revivir("Revive", 1, modificacion,"");
 
             //Act
             boolean realizo = revivir.aplicarItem(cualidades);
@@ -62,7 +62,7 @@ public class DefensaXTest {
             estadosActuales.add(unEstado);
             when(cualidades.obtenerEstadosActuales()).thenReturn(estadosActuales);
             ModificacionEstado modificacion = mock(ModificacionEstado.class);
-            Revivir revivir = new Revivir("Revive", 1, modificacion);
+            Revivir revivir = new Revivir("Revive", 1, modificacion,"");
 
             //Act
             boolean realizo = revivir.aplicarItem(cualidades);

@@ -27,8 +27,8 @@ import static orgFiuba.tpjava.Constantes.RUTA_POKEMONS_JSON;
 public class Main {
 
 public static void main(String[] args) throws IOException {
-    //Juego juego = new Juego();
-    //juego.DesarrollarJuego();
+    Juego juego = new Juego();
+    juego.DesarrollarJuego();
     //-----------------------------------------------------------------------------------------------------------
    // String path = "TpJava/outputJson/pokemon.json"; //--> Ruta Relativa
    // Pokemon unPokemon = new Pokemon("Charizard", 50, "Fuego", "Se dice que el fuego de Charizard arde con más fuerza cuantas más duras batallas haya vivido.",
@@ -48,7 +48,7 @@ public static void main(String[] args) throws IOException {
     objectMapperItems.enable(SerializationFeature.INDENT_OUTPUT);
     objectMapperItems.writeValue(new File(pathItems),unItem); //-----------> Serializacion*/
 
-    String pathPartida="TpJava/outputJson/partida.json";
+    /*String pathPartida="TpJava/outputJson/partida.json";
     try {
         File partidaFile = new File(pathPartida);
         ObjectMapper objectMapperPokemon = new ObjectMapper();
@@ -66,6 +66,6 @@ public static void main(String[] args) throws IOException {
     } catch (IOException e) {
         e.printStackTrace();
         //return null;
-    }
+    }*/
  }
 }

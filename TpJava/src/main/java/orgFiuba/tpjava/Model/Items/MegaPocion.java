@@ -6,8 +6,8 @@ import orgFiuba.tpjava.Model.Pokemones.Cualidades;
 @JsonTypeName("Mega Pocion")
 public class MegaPocion extends ItemsCuracion {
 
-    public MegaPocion(String nombre, int cantidad, Modificacion unaModificacion){
-        super(nombre, cantidad);
+    public MegaPocion(String nombre, int cantidad, Modificacion unaModificacion,String descripcion){
+        super(nombre, cantidad,descripcion);
         this.unaModificacion = unaModificacion;
     }
 
