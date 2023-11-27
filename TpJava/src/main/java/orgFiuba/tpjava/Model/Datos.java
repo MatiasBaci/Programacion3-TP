@@ -22,10 +22,10 @@ import static orgFiuba.tpjava.Constantes.*;
 public class Datos {
 
     //Atributos:
-    private final Map<String, Pokemon> mochilaJugador1;
-    private final Map<String, Pokemon> mochilaJugador2;
-    private final Map<String, Item> itemsJugador1;
-    private final Map<String, Item> itemsJugador2;
+    private  Map<String, Pokemon> mochilaJugador1;
+    private  Map<String, Pokemon> mochilaJugador2;
+    private  Map<String, Item> itemsJugador1;
+    private  Map<String, Item> itemsJugador2;
 
     private List<Jugador> listaJugadores;
 
@@ -40,8 +40,8 @@ public class Datos {
         this.listaJugadores = new ArrayList<>();
 
         this.listaJugadores = this.lecturaJugadoresJson();
-        this.InicializarJugador(mochilaJugador1,itemsJugador1,0);
-        this.InicializarJugador(mochilaJugador2,itemsJugador2,0);
+        this.InicializarJugador1();
+        this.InicializarJugador2();
     }
 
     public Map<String, Item> getItemsJugador1() {
@@ -80,9 +80,13 @@ public class Datos {
         }
         return null;
     }
-    private void InicializarJugador(Map<String, Pokemon> mochila, Map<String, Item> item,int jugadorID){
-        mochila = this.listaJugadores.get(jugadorID).getMisPokemones();
-        item = this.listaJugadores.get(jugadorID).getItems();
+    private void InicializarJugador1(){
+        this.mochilaJugador1 = this.listaJugadores.get(0).getMisPokemones();
+        this.itemsJugador1 = this.listaJugadores.get(0).getItems();
+    }
+    private void InicializarJugador2(){
+        this.mochilaJugador2 = this.listaJugadores.get(1).getMisPokemones();
+        this.itemsJugador2 = this.listaJugadores.get(1).getItems();
     }
 
 }
