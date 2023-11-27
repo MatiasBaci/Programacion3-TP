@@ -7,6 +7,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import orgFiuba.tpjava.Model.Items.Item;
 import orgFiuba.tpjava.Model.Jugador;
 
@@ -28,6 +29,8 @@ public class SeleccionarItemController {
     private JuegoController juegoController;
     @FXML
     public GridPane gridPaneItems;
+    @FXML
+    public Text descripcionItem;
 
     public void inicializar(Jugador jugador, JuegoController juegoController) throws IOException {
         juegoController.setSeleccionarItemController(this);
@@ -51,24 +54,30 @@ public class SeleccionarItemController {
 
         for (int row = 0; row < 8; row++) {
 
+            Item item = items.get(index);
             itemsView = new HBox();
             itemIconoYNombre = new HBox();
 
-            itemIconoYNombre.getChildren().add(itemsResourceFactory.createItemMenuView(items.get(index)));
-            itemIconoYNombre.getChildren().add(itemsResourceFactory.createItemData(items.get(index)));
+            itemIconoYNombre.getChildren().add(itemsResourceFactory.createItemMenuView(item));
+            itemIconoYNombre.getChildren().add(itemsResourceFactory.createItemData(item));
             itemIconoYNombre.setTranslateX(70);
 
 
             itemsView.getChildren().add(itemIconoYNombre);
 
-            itemsView.setOnMouseClicked(createImageViewClickHandler(itemsView, this.juegoController, this.jugador, items.get(index)));
+            itemsView.setOnMouseClicked(createImageViewClickHandler(itemsView, this.juegoController, this.jugador, item));
 
-            //itemsView.setOnMouseEntered(itemsView, this.juegoController, this.jugador, items.get(index)););
+            itemsView.setOnMouseEntered(event -> {
+                descripcionItem.setText(item.getDescripcion());
+            });
+
+            itemsView.setOnMouseExited(event -> {
+                descripcionItem.setText("");
+            });
 
             gridPaneItems.add(itemsView, 0, row);
 
             index++;
-
         }
     }
 

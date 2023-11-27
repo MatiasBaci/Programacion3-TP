@@ -27,12 +27,13 @@ public class ItemsResourceFactory {
     }
 
     public Text createItemData(Item item) {
-        Text itemName = new Text(item.getNombre() +" | " + " X " + item.getCantidad()+" | " + " Descripcion: " + item.getDescripcion()+ ".");
-        itemName.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
-        itemName.setFill(Color.BLACK);
-        itemName.setTranslateX(50);
-        itemName.setTranslateY(40);
-        return itemName;
+        //Text itemData = new Text(item.getNombre() +" | " + " X " + item.getCantidad()+" | " + " Descripcion: " + item.getDescripcion()+ ".");
+        Text itemData = new Text(item.getNombre() +" | " + " X " + item.getCantidad());
+        itemData.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
+        itemData.setFill(Color.BLACK);
+        itemData.setTranslateX(50);
+        itemData.setTranslateY(40);
+        return itemData;
     }
 
 
