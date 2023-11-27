@@ -16,7 +16,6 @@ import orgFiuba.tpjava.Model.Jugador;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
 import static orgFiuba.tpjava.Constantes.RUTA_SOUNDTRACK_INICIO;
@@ -48,7 +47,7 @@ public class JuegoController extends Parent implements EventHandler<Event> {
     private void inicializarEscenas() throws IOException {
 
         SceneFactory sceneFactory = new SceneFactory();
-        this.escenas = sceneFactory.createScenes(this.juego, this);
+        this.escenas = sceneFactory.createScenesIniciales(this.juego, this);
     }
 
     @FXML
@@ -101,6 +100,16 @@ public class JuegoController extends Parent implements EventHandler<Event> {
     }
 
     private void crearVentanaJuego() {
+
+            SceneFactory sceneFactory = new SceneFactory();
+            try {
+                this.escenas.put("sceneBatalla", sceneFactory.crearEscenaBatalla(this.juego, this));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            this.stage.setScene(this.escenas.get("sceneBatalla"));
+            this.stage.setTitle("Batalla Pokemon");
+            this.stage.show();
     }
 
     public void crearVentanaSeleccionNombre(Jugador jugador, int numero) throws IOException {

@@ -21,9 +21,7 @@ public class SeleccionarPokemonController {
     public HashMap<String, ImageView> pokemonMenuViews;
 
     public List<Pokemon> pokemones;
-
     private Jugador jugador;
-
     private JuegoController juegoController;
     @FXML
     public GridPane gridPanePokemones;

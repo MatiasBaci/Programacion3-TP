@@ -2,6 +2,7 @@ package orgFiuba.tpjava.Controller;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import orgFiuba.tpjava.MainJavaFX;
@@ -13,7 +14,7 @@ import java.util.Map;
 
 public class SceneFactory {
 
-    public Map<String, Scene> createScenes(Juego juego, JuegoController juegoController) throws IOException {
+    public Map<String, Scene> createScenesIniciales(Juego juego, JuegoController juegoController) throws IOException {
 
         Map escenas = new HashMap<>();
 
@@ -46,5 +47,14 @@ public class SceneFactory {
         escenas.put("sceneSeleccionPokemonInicialJugador2", sceneSeleccionPokemonJugador2);
 
         return escenas;
+    }
+
+    public Scene crearEscenaBatalla(Juego juego, JuegoController juegoController) throws IOException {
+        FXMLLoader fxmlLoaderBatalla = new FXMLLoader(MainJavaFX.class.getResource("batalla-view.fxml"));
+        AnchorPane batallaLoader = fxmlLoaderBatalla.load();
+        BatallaController batallaController = fxmlLoaderBatalla.getController();
+        batallaController.inicializar(juego, juegoController);
+        Scene sceneBatalla = new Scene(batallaLoader, 1024, 768);
+        return sceneBatalla;
     }
 }
