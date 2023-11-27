@@ -17,6 +17,11 @@ public class PokemonResourceFactory {
         Image pokemonImage = new Image(getClass().getResource("/orgFiuba/tpjava/" + path).toString());
         ImageView pokemonImageView = new ImageView();
         pokemonImageView.setImage(pokemonImage);
+
+        double altura = pokemonImage.getHeight() * 3;
+        double ancho = pokemonImage.getWidth() * 30;
+        pokemonImageView.setFitHeight(altura);
+        pokemonImageView.setFitWidth(ancho);
         return pokemonImageView;
     }
 

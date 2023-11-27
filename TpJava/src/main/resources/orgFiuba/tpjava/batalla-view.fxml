@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="pantalla" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="orgFiuba.tpjava.Controller.BatallaController">
+<VBox fx:id="pantalla" alignment="BOTTOM_CENTER" prefHeight="400.0" prefWidth="600.0" styleClass="bodyFondoSeleccionPokemon" stylesheets="@StyleCss/fondo_batalla.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="orgFiuba.tpjava.Controller.BatallaController">
    <children>
-      <HBox fx:id="pokemones" alignment="TOP_CENTER" prefHeight="269.0" prefWidth="600.0" styleClass="bodyFondoSeleccionPokemon" stylesheets="@StyleCss/fondo_batalla.css">
+      <HBox fx:id="pokemones" alignment="TOP_CENTER" prefHeight="269.0" prefWidth="600.0">
          <children>
-            <VBox fx:id="pokemonJ1Box">
+            <VBox fx:id="pokemonJ1Box" alignment="CENTER_LEFT">
                <children>
-                  <HBox fx:id="pokemonJ1Stats" prefHeight="166.0" prefWidth="300.0" />
+                  <HBox fx:id="pokemonJ1Stats" prefHeight="166.0" prefWidth="300.0">
+                     <children>
+                        <ProgressBar fx:id="pokemonJ1HP" prefWidth="200.0" progress="0.0" style="-fx-background-color: Green;" />
+                        <Text fx:id="pokemonJ1StatsText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                     </children></HBox>
+                  <VBox prefHeight="200.0" prefWidth="150.0" />
                   <HBox fx:id="pokemonJ1ViewBox" prefHeight="270.0" prefWidth="300.0">
                      <children>
                         <ImageView fx:id="pokemonJ1View" fitHeight="196.0" fitWidth="301.0" layoutX="-Infinity" pickOnBounds="true" preserveRatio="true">
@@ -18,18 +26,25 @@
                   </HBox>
                </children>
             </VBox>
-            <VBox fx:id="pokemonJ2Box">
+            <VBox fx:id="pokemonJ2Box" alignment="CENTER_RIGHT">
                <children>
                   <HBox fx:id="pokemonJ2ViewBox" prefHeight="270.0" prefWidth="300.0">
                      <children>
                         <ImageView fx:id="pokemonJ2View" fitHeight="196.0" fitWidth="301.0" layoutX="-Infinity" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </HBox>
-                  <HBox fx:id="pokemonJ2Stats" prefHeight="166.0" prefWidth="300.0" />
+                  <HBox fx:id="pokemonJ2Stats" prefHeight="166.0" prefWidth="300.0">
+                     <children>
+                        <ProgressBar fx:id="pokemonJ2HP" prefWidth="200.0" progress="0.0" />
+                        <Text fx:id="pokemonJ2StatsText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                     </children></HBox>
                </children>
             </VBox>
          </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
       </HBox>
-      <HBox fx:id="dialogoYMenuBox" layoutY="275.0" prefHeight="125.0" prefWidth="600.0" />
+      <HBox fx:id="dialogoYMenuBox" alignment="BASELINE_CENTER" fillHeight="false" layoutY="275.0" prefHeight="125.0" prefWidth="600.0" styleClass="bodyFondoSeleccionPokemon" stylesheets="@StyleCss/fondo_text_box.css" />
    </children>
-</AnchorPane>
+</VBox>

@@ -51,7 +51,7 @@ public class SceneFactory {
 
     public Scene crearEscenaBatalla(Juego juego, JuegoController juegoController) throws IOException {
         FXMLLoader fxmlLoaderBatalla = new FXMLLoader(MainJavaFX.class.getResource("batalla-view.fxml"));
-        AnchorPane batallaLoader = fxmlLoaderBatalla.load();
+        VBox batallaLoader = fxmlLoaderBatalla.load();
         BatallaController batallaController = fxmlLoaderBatalla.getController();
         batallaController.inicializar(juego, juegoController);
         Scene sceneBatalla = new Scene(batallaLoader, 1024, 768);

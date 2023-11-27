@@ -1,22 +1,28 @@
 package orgFiuba.tpjava.Controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import orgFiuba.tpjava.Model.Juego;
 
 public class BatallaController {
 
     @FXML
-    AnchorPane pantalla;
+    VBox pantalla;
     @FXML
     HBox pokemones;
     @FXML
     VBox pokemonJ1Box;
     @FXML
     HBox pokemonJ1Stats;
+    @FXML
+    ProgressBar pokemonJ1HP;
+    @FXML
+    Text pokemonJ1StatsText;
     @FXML
     HBox pokemonJ1ViewBox;
     @FXML
@@ -30,6 +36,10 @@ public class BatallaController {
     @FXML
     HBox pokemonJ2Stats;
     @FXML
+    ProgressBar pokemonJ2HP;
+    @FXML
+    Text pokemonJ2StatsText;
+    @FXML
     HBox dialogoYMenuBox;
 
 
@@ -40,9 +50,20 @@ public class BatallaController {
         //this.pokemonJ1View = pokemonResourceFactory.createPokemonBattleView(juego.getJugador1().getPokemonActual(), "Espalda");
         //this.pokemonJ2View = pokemonResourceFactory.createPokemonBattleView(juego.getJugador2().getPokemonActual(), "Frente");
 
-
+        this.pokemonJ1StatsText.setText(juego.getJugador1().getPokemonActual()
+                .getNombre() + "\n" +
+                "Lv " + juego.getJugador1().getPokemonActual().getCualidades().getNivel());
+        this.pokemonJ1HP.setProgress(juego.getJugador1().getPokemonActual().getCualidades().getPorcentajeVida());
+        this.pokemonJ2StatsText.setText(juego.getJugador2().getPokemonActual()
+                .getNombre() + "\n" +
+                "Lv " + juego.getJugador2().getPokemonActual().getCualidades().getNivel());
+        this.pokemonJ2HP.setProgress(juego.getJugador2().getPokemonActual().getCualidades().getPorcentajeVida());
 
         this.pokemonJ1View.setImage(pokemonResourceFactory.createPokemonBattleView(juego.getJugador1().getPokemonActual(), "Espalda").getImage());
+        this.pokemonJ1View.setFitHeight(this.pokemonJ1View.getImage().getHeight()*3);
+        this.pokemonJ1View.setFitWidth(this.pokemonJ1View.getImage().getWidth()*3);
         this.pokemonJ2View.setImage(pokemonResourceFactory.createPokemonBattleView(juego.getJugador2().getPokemonActual(), "Frente").getImage());
+        this.pokemonJ2View.setFitHeight(this.pokemonJ2View.getImage().getHeight()*3);
+        this.pokemonJ2View.setFitWidth(this.pokemonJ2View.getImage().getWidth()*3);
     }
 }

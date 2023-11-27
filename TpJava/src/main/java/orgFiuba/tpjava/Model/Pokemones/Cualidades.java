@@ -134,4 +134,8 @@ public class Cualidades {
     public void modificarAtaque(int etapas){
         this.ataque += this.ataque * etapas * PORCENTAJE;
     }
+
+    public double getPorcentajeVida() {
+        return this.vidaActual / this.vidaMaxima;
+    }
 }
