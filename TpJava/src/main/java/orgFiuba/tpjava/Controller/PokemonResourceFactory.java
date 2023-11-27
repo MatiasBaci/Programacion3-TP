@@ -10,6 +10,11 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import orgFiuba.tpjava.Model.Pokemones.Pokemon;
 
+import java.io.File;
+
+import static orgFiuba.tpjava.Constantes.RUTA_CRIES;
+import static orgFiuba.tpjava.Constantes.RUTA_MENU_SPRITES;
+
 public class PokemonResourceFactory {
 
     public ImageView createPokemonBattleView(Pokemon pokemon, String cara) { //cara puede ser "Frente" o "Espalda"
@@ -35,8 +40,8 @@ public class PokemonResourceFactory {
             extension = ".png";
             carpeta = "Estaticas";
         }
-        String path = "Imagenes/Pokemon/Menu Sprites/" + carpeta + "/" + pokemon.getNombre() + extension;
-        Image pokemonImage = new Image(getClass().getResource("/orgFiuba/tpjava/" + path).toString());
+        String path = RUTA_MENU_SPRITES + carpeta + "/" + pokemon.getNombre() + extension;
+        Image pokemonImage = new Image(new File(path).toURI().toString());
         ImageView pokemonImageView = new ImageView();
         pokemonImageView.setImage(pokemonImage);
         pokemonImageView.setFitHeight(100);
@@ -52,9 +57,14 @@ public class PokemonResourceFactory {
     }
 
     public Media createPokemonCry(Pokemon pokemon) {
-        String path = "Sonidos/Sonido/Cries/" + pokemon.getNombre() + ".mp3";
+        String path = RUTA_CRIES + pokemon.getNombre() + ".mp3";
         Media pokemonCry = new Media(getClass().getResource("/orgFiuba/tpjava/" + path).toString());
         return pokemonCry;
+    }
+
+    public String createPokemonCryPath(Pokemon pokemon) {
+        String path = RUTA_CRIES + pokemon.getNombre() + ".mp3";
+        return path;
     }
 
     public Node createPokemonStats(Pokemon pokemon) {

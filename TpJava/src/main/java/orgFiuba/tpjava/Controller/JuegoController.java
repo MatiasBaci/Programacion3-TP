@@ -18,6 +18,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 
+import static orgFiuba.tpjava.Constantes.RUTA_SOUNDTRACK_BATALLA;
 import static orgFiuba.tpjava.Constantes.RUTA_SOUNDTRACK_INICIO;
 
 public class JuegoController extends Parent implements EventHandler<Event> {
@@ -27,25 +28,21 @@ public class JuegoController extends Parent implements EventHandler<Event> {
     private Stage stage;
     private Juego juego;
     @FXML
-    private MediaPlayer mediaPlayer;
+    private MediaPlayer musicPlayer;
+    @FXML
+    private MediaPlayer soundEffectPlayer;
     private Map<String, Scene> escenas;
 
     public void inicializar(Stage stage, Juego juego) throws IOException {
         this.stage = stage;
         this.juego = juego;
         this.inicializarEscenas();
-
-        Media media = new Media(new File(RUTA_SOUNDTRACK_INICIO).toURI().toString());
-        this.mediaPlayer = new MediaPlayer(media);
-        this.mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-        this.mediaPlayer.setVolume(0.2);
-        this.mediaPlayer.play();
-
+        this.reproducirMusica(RUTA_SOUNDTRACK_INICIO);
         this.stage.show();
     }
 
-    private void inicializarEscenas() throws IOException {
 
+    private void inicializarEscenas() throws IOException {
         SceneFactory sceneFactory = new SceneFactory();
         this.escenas = sceneFactory.createScenesIniciales(this.juego, this);
     }
@@ -87,6 +84,9 @@ public class JuegoController extends Parent implements EventHandler<Event> {
 
         pokemonSeleccionadoEvent.getJugador().setPokemonActual(pokemonSeleccionadoEvent.getPokemon());
 
+        PokemonResourceFactory pokemonResourceFactory = new PokemonResourceFactory();
+        reproducirSoundEffect(pokemonResourceFactory.createPokemonCryPath(pokemonSeleccionadoEvent.getPokemon()));
+
         if (this.juego.getJugador2().getPokemonActual() == null) {
             try {
                 this.crearVentanaSeleccionarPokemonInicial(juego.getJugador2(), 2);
@@ -95,11 +95,13 @@ public class JuegoController extends Parent implements EventHandler<Event> {
             }
         } else {
             System.out.println("Continúa a la ventana de Juego");
-            this.crearVentanaJuego();
+            this.crearVentanaBatalla();
         }
     }
 
-    private void crearVentanaJuego() {
+    private void crearVentanaBatalla() {
+
+            this.reproducirMusica(RUTA_SOUNDTRACK_BATALLA);
 
             SceneFactory sceneFactory = new SceneFactory();
             try {
@@ -128,6 +130,26 @@ public class JuegoController extends Parent implements EventHandler<Event> {
         }
         this.stage.setTitle("Seleccion de Pokemon Inicial Jugador " + numero);
         this.stage.show();
+    }
+
+    public void reproducirMusica(String ruta) {
+        try {
+            this.musicPlayer.stop();
+        } catch (Exception e) {}
+        this.musicPlayer = new MediaPlayer(new Media(new File(ruta).toURI().toString()));
+        this.musicPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        this.musicPlayer.setVolume(0.2);
+        this.musicPlayer.play();
+    }
+
+    public void reproducirSoundEffect(String ruta) {
+        try {
+            this.soundEffectPlayer.stop();
+        } catch (Exception e) {}
+        this.soundEffectPlayer = new MediaPlayer(new Media(new File(ruta).toURI().toString()));
+        this.soundEffectPlayer.setCycleCount(1);
+        this.soundEffectPlayer.setVolume(0.2);
+        this.soundEffectPlayer.play();
     }
 
     public void start2(Stage primaryStage) {
