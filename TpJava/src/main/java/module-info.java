@@ -12,4 +12,6 @@ module orgFiuba.tpjava {
     exports orgFiuba.tpjava;
     exports orgFiuba.tpjava.Controller;
     opens orgFiuba.tpjava.Controller to javafx.fxml;
+    exports orgFiuba.tpjava.Controller.Eventos;
+    opens orgFiuba.tpjava.Controller.Eventos to javafx.fxml;
 }

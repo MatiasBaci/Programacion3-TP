@@ -69,9 +69,7 @@ public class SeleccionarItemController {
 
             itemsView.setOnMouseClicked(createImageViewClickHandler(itemsView, this.juegoController, this.jugador, item));
 
-            itemsView.setOnMouseEntered(event -> {
-                descripcionItem.setText(item.getDescripcion());
-            });
+            itemsView.setOnMouseEntered(event -> descripcionItem.setText(item.getDescripcion()));
 
             itemsView.setOnMouseExited(event -> {
                 descripcionItem.setText("");

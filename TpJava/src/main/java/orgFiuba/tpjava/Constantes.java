@@ -42,9 +42,10 @@ public class Constantes {
     public static final String RELACION_DEBIL = "Debil";
     public static final String RELACION_NULA = "Nula";
 
+    public static final String RUTA_CLIMAS = "TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/Climas/";
     public static final String CLIMA_SOLEADO = "Soleado";
     public static final String CLIMA_LLUVIA = "Lluvia";
-    public static final String CLIMA_TORMENTA_DE_ARENA= "TormentaDeArena";
+    public static final String CLIMA_TORMENTA_DE_ARENA= "Tormenta De Arena";
     public static final String CLIMA_NIEBLA = "Niebla";
     public static final String CLIMA_NEVADO = "Nevado";
     public static final String CLIMA_TORMENTA_DE_RAYOS = "Tormenta Electrica";
@@ -125,7 +126,8 @@ public class Constantes {
 
 
     public static final String RUTA_SOUNDTRACK_INICIO = "TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Musica/Pokemon Uranium - Vs. Gym Leader (Last Pokemon).mp3";
-    public static final String RUTA_SOUNDTRACK_BATALLA = "TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Musica/Pokemon Uranium - Battle Vs. Wild Nuclear Pokemon.mp3";
+    public static final String RUTA_SOUNDTRACK_BATALLA = "TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Musica/Pokemon Uranium OST - Trainer Battle.mp3";
+    public static final String RUTA_SOUNDTRACK_VICTORIA = "TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Musica/Victory! Trainer Theme - Pokémon Black & White.mp3";
     public static final String RUTA_SFX_CRIES = "TpJava/src/main/resources/orgFiuba/tpjava/Sonido/SFX/Cries/";
     public static final String RUTA_SFX_HABILIDADES = "TpJava/src/main/resources/orgFiuba/tpjava/Sonido/SFX/Habilidades/";
     public static final String RUTA_MENU_SPRITES = "TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/Pokemon/Menu Sprites/";

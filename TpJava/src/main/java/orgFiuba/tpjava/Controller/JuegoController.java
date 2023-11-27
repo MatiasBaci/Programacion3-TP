@@ -5,10 +5,12 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import orgFiuba.tpjava.Controller.Eventos.*;
 import orgFiuba.tpjava.Model.Items.Item;
 import orgFiuba.tpjava.Model.Juego;
 import orgFiuba.tpjava.Model.Jugador;
@@ -17,8 +19,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 
-import static orgFiuba.tpjava.Constantes.RUTA_SOUNDTRACK_BATALLA;
-import static orgFiuba.tpjava.Constantes.RUTA_SOUNDTRACK_INICIO;
+import static orgFiuba.tpjava.Constantes.*;
 
 public class JuegoController extends Parent implements EventHandler<Event> {
     @FXML
@@ -34,6 +35,7 @@ public class JuegoController extends Parent implements EventHandler<Event> {
     private BatallaController batallaController;
     private SeleccionarPokemonController seleccionarPokemonController;
     private SeleccionarItemController seleccionarItemController;
+    private boolean esPrimerTurno;
 
     public void inicializar(Stage stage, Juego juego) throws IOException {
         this.stage = stage;
@@ -56,96 +58,6 @@ public class JuegoController extends Parent implements EventHandler<Event> {
         this.crearVentanaSeleccionNombre(1);
     }
 
-    @Override
-    public void handle(Event event) {
-        if (event instanceof JugadorNombradoEvent) {
-            this.handle((JugadorNombradoEvent) event);
-        } else if (event instanceof PokemonSeleccionadoEvent) {
-            this.handle((PokemonSeleccionadoEvent) event);
-        }
-    }
-
-    public void handle(JugadorNombradoEvent jugadorNombradoEvent) {
-        //if (jugadorNombradoEvent.getJugador() == this.juego.getJugador1()) {
-        if (this.juego.getJugador2().getNombre().isBlank()) {
-            try {
-                System.out.println("Jugador 2");
-                this.crearVentanaSeleccionNombre(2);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        } else {
-            try {
-                this.juego.setJugadorActual(this.juego.getJugador1());
-                this.crearVentanaSeleccionarPokemon(this.juego.getJugadorActual());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-    }
-
-    public void handle(PokemonSeleccionadoEvent pokemonSeleccionadoEvent) {
-
-        pokemonSeleccionadoEvent.getJugador().setPokemonActual(pokemonSeleccionadoEvent.getPokemon());
-
-        PokemonResourceFactory pokemonResourceFactory = new PokemonResourceFactory();
-        reproducirSoundEffect(pokemonResourceFactory.createCrySFXPath(pokemonSeleccionadoEvent.getPokemon()));
-
-        if (this.juego.getJugador2().getPokemonActual() == null) {
-            try {
-                this.juego.setJugadorActual(this.juego.getJugador2());
-                this.crearVentanaSeleccionarPokemon(juego.getJugador2());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        } else {
-            System.out.println("Continúa a la ventana de Juego");
-            this.elegirJugadorInicial();
-            this.cicloDeTurnos();
-            //this.crearVentanaBatalla();
-        }
-    }
-
-    public void handle(AtaqueSeleccionadoEvent ataqueSeleccionadoEvent) {
-        PokemonResourceFactory pokemonResourceFactory = new PokemonResourceFactory();
-        try {
-            this.reproducirSoundEffect(pokemonResourceFactory.createHabilidadSFXPath(ataqueSeleccionadoEvent.getHabilidad()));
-        } catch (Exception ignored) {}
-
-        this.juego.getJugadorActual().atacarJugador(this.juego.getJugadorActual().getAdversario(), ataqueSeleccionadoEvent.getHabilidad().getNombre());
-        this.juego.cambiarTurno();
-        this.cicloDeTurnos();
-        this.batallaController.actualizarVista(this.juego);
-    }
-
-    /*public void handle(MenuItemEvent menuItemEvent){
-
-        if (menuItemEvent.getItem().getCantidad() == 0){
-            Alert alert  = new Alert(Alert.AlertType.INFORMATION);
-            alert.setHeaderText(null);
-            alert.setTitle("Informacion");
-            alert.setContentText("No tiene mas items de este tipo.");
-            alert.showAndWait();
-        }else{
-            menuItemEvent.getJugador().elegirItem(menuItemEvent.getItem().getNombre());
-        }
-    }*/
-
-    public void handle(MenuItemEvent menuItemEvent) throws IOException {
-
-        this.crearVentanaSeleccionarItem(menuItemEvent.getJugador());
-        //menuItemEvent.getJugador().elegirItem(menuItemEvent.getItem().getNombre());
-    }
-
-    public void handle(ItemSeleccionadoEvent itemSeleccionadoEvent) throws  IOException{
-        this.crearVentanaSeleccionarPokemonItem(itemSeleccionadoEvent.getJugador(), itemSeleccionadoEvent.getItem());
-    }
-
-    public void handle(ItemAplicadoEvent itemAplicadoEvent) throws IOException{
-        this.juego.getJugadorActual().setPokemonActual(itemAplicadoEvent.getPokemon());
-        this.mostrarVentanaBatalla();
-    }
-
 
     public void cicloDeTurnos() {
         if (!this.juego.getJugadorActual().perdio() && !this.juego.getJugadorActual().getAdversario().perdio()){
@@ -153,12 +65,22 @@ public class JuegoController extends Parent implements EventHandler<Event> {
             this.turno(this.juego.getJugadorActual());
         }
         else if(this.juego.getJugadorActual().perdio()){
-            System.out.println("Ganó el jugador " + this.juego.getJugadorActual().getAdversario().getNombre());
+            mostrarPantallaFinDeJuego(this.juego.getJugadorActual().getAdversario());
             this.stage.close();
         } else {
-            System.out.println("Ganó el jugador " + this.juego.getJugadorActual().getNombre());
+            mostrarPantallaFinDeJuego(this.juego.getJugadorActual());
             this.stage.close();
         }
+    }
+
+    private void mostrarPantallaFinDeJuego(Jugador jugadorActual) {
+
+        this.reproducirMusica(RUTA_SOUNDTRACK_VICTORIA);
+        Alert alert  = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText(null);
+        alert.setTitle("FIN DEL JUEGO");
+        alert.setContentText(jugadorActual.getNombre() + " es el ganador!!!");
+        alert.showAndWait();
     }
 
     public void turno(Jugador jugador) {
@@ -176,14 +98,18 @@ public class JuegoController extends Parent implements EventHandler<Event> {
     }
 
     private void elegirJugadorInicial() {
-        if (this.juego.getJugador1().getPokemonActual().getCualidades().getVelocidad() > this.juego.getJugador2().getPokemonActual().getCualidades().getVelocidad()) {
-            this.juego.getJugador1().setAtacante(true);
-            this.juego.getJugador2().setAtacante(false);
-            this.juego.setJugadorActual(this.juego.getJugador1());
-        } else {
-            this.juego.getJugador1().setAtacante(false);
-            this.juego.getJugador2().setAtacante(true);
-            this.juego.setJugadorActual(this.juego.getJugador2());
+
+        if (this.esPrimerTurno) {
+            if (this.juego.getJugador1().getPokemonActual().getCualidades().getVelocidad() > this.juego.getJugador2().getPokemonActual().getCualidades().getVelocidad()) {
+                this.juego.getJugador1().setAtacante(true);
+                this.juego.getJugador2().setAtacante(false);
+                this.juego.setJugadorActual(this.juego.getJugador1());
+            } else {
+                this.juego.getJugador1().setAtacante(false);
+                this.juego.getJugador2().setAtacante(true);
+                this.juego.setJugadorActual(this.juego.getJugador2());
+            }
+            this.esPrimerTurno = false;
         }
     }
 
@@ -226,8 +152,8 @@ public class JuegoController extends Parent implements EventHandler<Event> {
         this.stage.setTitle("Aplicar item jugador " + jugador.getNombre());
         this.stage.show();
     }
-    public void crearVentanaSeleccionarPokemon(Jugador jugador) throws IOException {
 
+    public void crearVentanaSeleccionarPokemon(Jugador jugador) throws IOException {
         try {
             //this.stage.setScene(this.escenas.get("sceneSeleccionPokemonInicialJugador" + numero));
             this.seleccionarPokemonController.actualizarVista(jugador);
@@ -239,7 +165,7 @@ public class JuegoController extends Parent implements EventHandler<Event> {
         this.stage.show();
     }
 
-    private void crearVentanaSeleccionarPokemonItem(Jugador jugador, Item itemAplicar) throws IOException{
+    private void crearVentanaSeleccionarPokemonItem(Jugador jugador, Item itemAplicar) {
 
         try{
             this.seleccionarPokemonController.actualizarVistaAplicarItem(jugador, itemAplicar);
@@ -283,4 +209,103 @@ public class JuegoController extends Parent implements EventHandler<Event> {
     public void setSeleccionarItemController(SeleccionarItemController seleccionarItemController) {
         this.seleccionarItemController = seleccionarItemController;
     }
+
+    // HANDLE ________________________________________________________________
+
+    @Override
+    public void handle(Event event) {
+        if (event instanceof JugadorNombradoEvent) {
+            this.handle((JugadorNombradoEvent) event);
+        } else if (event instanceof PokemonSeleccionadoEvent) {
+            this.handle((PokemonSeleccionadoEvent) event);
+        }
+    }
+
+    public void handle(JugadorNombradoEvent jugadorNombradoEvent) {
+        //if (jugadorNombradoEvent.getJugador() == this.juego.getJugador1()) {
+        if (this.juego.getJugador2().getNombre().isBlank()) {
+            try {
+                System.out.println("Jugador 2");
+                this.crearVentanaSeleccionNombre(2);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            try {
+                this.juego.setJugadorActual(this.juego.getJugador1());
+                this.crearVentanaSeleccionarPokemon(this.juego.getJugadorActual());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    public void handle(MenuCambiarPokemonEvent menuCambiarPokemonEvent) {
+        try {
+            this.crearVentanaSeleccionarPokemon(menuCambiarPokemonEvent.getJugador());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public void handle(PokemonSeleccionadoEvent pokemonSeleccionadoEvent) {
+
+        pokemonSeleccionadoEvent.getJugador().setPokemonActual(pokemonSeleccionadoEvent.getPokemon());
+
+        PokemonResourceFactory pokemonResourceFactory = new PokemonResourceFactory();
+        reproducirSoundEffect(pokemonResourceFactory.createCrySFXPath(pokemonSeleccionadoEvent.getPokemon()));
+
+        if (this.juego.getJugador2().getPokemonActual() == null) {
+            try {
+                this.juego.setJugadorActual(this.juego.getJugador2());
+                this.crearVentanaSeleccionarPokemon(juego.getJugador2());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            System.out.println("Continúa a la ventana de Juego");
+            if (this.esPrimerTurno) {this.elegirJugadorInicial();}
+            else {this.juego.cambiarTurno();}
+            this.cicloDeTurnos();
+            //this.crearVentanaBatalla();
+        }
+    }
+
+    public void handle(AtaqueSeleccionadoEvent ataqueSeleccionadoEvent) {
+        PokemonResourceFactory pokemonResourceFactory = new PokemonResourceFactory();
+        try {
+            this.reproducirSoundEffect(pokemonResourceFactory.createHabilidadSFXPath(ataqueSeleccionadoEvent.getHabilidad()));
+        } catch (Exception ignored) {}
+
+        this.juego.getJugadorActual().atacarJugador(this.juego.getJugadorActual().getAdversario(), ataqueSeleccionadoEvent.getHabilidad().getNombre());
+        this.juego.cambiarTurno();
+        this.cicloDeTurnos();
+        this.batallaController.actualizarVista(this.juego);
+    }
+
+    public void handle(MenuItemEvent menuItemEvent) throws IOException {
+
+        this.crearVentanaSeleccionarItem(menuItemEvent.getJugador());
+        //menuItemEvent.getJugador().elegirItem(menuItemEvent.getItem().getNombre());
+    }
+
+    public void handle(RendirseEvent rendirseEvent) {
+        rendirseEvent.getJugador().perder();
+        this.cicloDeTurnos();
+    }
+
+    public void handle(MostrarMensajeEvent mostrarMensajeEvent) {
+        this.batallaController.mostrarMensaje(mostrarMensajeEvent.getMensaje());
+    }
+
+    public void handle(ItemSeleccionadoEvent itemSeleccionadoEvent) throws  IOException{
+        this.crearVentanaSeleccionarPokemonItem(itemSeleccionadoEvent.getJugador(), itemSeleccionadoEvent.getItem());
+    }
+
+    public void handle(ItemAplicadoEvent itemAplicadoEvent) throws IOException{
+        this.juego.getJugadorActual().setPokemonActual(itemAplicadoEvent.getPokemon());
+        this.mostrarVentanaBatalla();
+    }
+
 }

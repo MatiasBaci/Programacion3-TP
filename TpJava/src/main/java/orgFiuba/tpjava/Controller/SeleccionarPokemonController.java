@@ -8,8 +8,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import orgFiuba.tpjava.Controller.Eventos.PokemonSeleccionadoEvent;
 import orgFiuba.tpjava.Model.Items.Item;
-import orgFiuba.tpjava.Model.Items.ItemsCuracion;
 import orgFiuba.tpjava.Model.Jugador;
 import orgFiuba.tpjava.Model.Modificaciones.ModificacionVida;
 import orgFiuba.tpjava.Model.Pokemones.Pokemon;
@@ -94,7 +94,6 @@ public class SeleccionarPokemonController {
                     pokemonView.setOnMouseClicked(createImageViewClickHandlerItemAplicar(pokemonView, this.juegoController, this.jugador, pokemones.get(index), this.itemAplicar));
                 }
 
-
                 this.gridPanePokemones.add(pokemonView, col, row);
 
                 index++;
@@ -155,7 +154,6 @@ public class SeleccionarPokemonController {
             }else{
                 juegoController.handle(new PokemonSeleccionadoEvent(jugador, pokemon));
             }
-
         };
     }
 }

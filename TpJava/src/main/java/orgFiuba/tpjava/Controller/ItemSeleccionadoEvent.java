@@ -2,13 +2,14 @@ package orgFiuba.tpjava.Controller;
 
 import javafx.event.Event;
 import javafx.event.EventType;
+import orgFiuba.tpjava.Controller.Eventos.CambioDeTurnoEvent;
 import orgFiuba.tpjava.Model.Items.Item;
 import orgFiuba.tpjava.Model.Jugador;
 
 public class ItemSeleccionadoEvent extends Event {
 
-    private Jugador jugador;
-    private Item item;
+    private final Jugador jugador;
+    private final Item item;
     public static EventType<CambioDeTurnoEvent> ITEM_SELECCIONADO_EVENT = new EventType<>("Item Seleccionado Event");
 
     public ItemSeleccionadoEvent(Jugador jugador, Item item) {

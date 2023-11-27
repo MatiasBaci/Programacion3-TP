@@ -2,15 +2,16 @@ package orgFiuba.tpjava.Controller;
 
 import javafx.event.Event;
 import javafx.event.EventType;
+import orgFiuba.tpjava.Controller.Eventos.CambioDeTurnoEvent;
 import orgFiuba.tpjava.Model.Items.Item;
 import orgFiuba.tpjava.Model.Jugador;
 import orgFiuba.tpjava.Model.Pokemones.Pokemon;
 
 public class ItemAplicadoEvent extends Event {
-    private Jugador jugador;
-    private Item item;
+    private final Jugador jugador;
+    private final Item item;
 
-    private Pokemon pokemon;
+    private final Pokemon pokemon;
     public static EventType<CambioDeTurnoEvent> ITEM_APLICADO_EVENT = new EventType<>("Item Aplicado Event");
 
     public ItemAplicadoEvent(Jugador jugador, Item item, Pokemon pokemon) {

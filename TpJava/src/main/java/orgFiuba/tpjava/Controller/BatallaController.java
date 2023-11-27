@@ -3,11 +3,17 @@ package orgFiuba.tpjava.Controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import orgFiuba.tpjava.Controller.Eventos.AtaqueSeleccionadoEvent;
+import orgFiuba.tpjava.Controller.Eventos.MenuCambiarPokemonEvent;
+import orgFiuba.tpjava.Controller.Eventos.MenuItemEvent;
+import orgFiuba.tpjava.Controller.Eventos.RendirseEvent;
 import orgFiuba.tpjava.Model.Juego;
 import orgFiuba.tpjava.Model.Jugador;
 import orgFiuba.tpjava.Model.Pokemones.Habilidad;
@@ -21,6 +27,8 @@ public class BatallaController {
 
     @FXML
     VBox pantalla;
+    @FXML
+    VBox climaOverlay;
     @FXML
     HBox pokemones;
     @FXML
@@ -52,6 +60,8 @@ public class BatallaController {
     @FXML
     VBox dialogoBox;
     @FXML
+    TextArea dialogo;
+    @FXML
     GridPane menuGrid;
     @FXML
     Button atacarButton;
@@ -74,6 +84,14 @@ public class BatallaController {
     public void crearVentanaBatalla(Juego juego) {
 
         PokemonResourceFactory pokemonResourceFactory = new PokemonResourceFactory();
+
+        String clima = juego.getClimaActual().getNombre();
+        try {
+            Background background = pokemonResourceFactory.createClimaOverlay(clima, this.climaOverlay.getHeight(), this.climaOverlay.getWidth());
+            this.climaOverlay.setBackground(background);
+        } catch (Exception e) {
+            this.climaOverlay.setBackground(null);
+        }
 
         this.pokemonJ1StatsText.setText(juego.getJugadorActual().getPokemonActual()
                 .getNombre() + "\n" +
@@ -99,6 +117,8 @@ public class BatallaController {
                 throw new RuntimeException(e);
             }
         });
+        this.pokemonButton.setOnAction(event -> this.juegoController.handle(new MenuCambiarPokemonEvent(juego.getJugadorActual())));
+        this.rendirseButton.setOnAction(event -> this.juegoController.handle(new RendirseEvent(juego.getJugadorActual())));
     }
 
     private void crearMenuItem(Jugador jugadorActual) throws IOException {
@@ -130,5 +150,9 @@ public class BatallaController {
     public void actualizarVista(Juego juego) {
         this.dialogoBox.getChildren().clear();
         this.crearVentanaBatalla(juego);
+    }
+
+    public void mostrarMensaje(String mensaje) {
+        this.dialogo.setText(mensaje);
     }
 }

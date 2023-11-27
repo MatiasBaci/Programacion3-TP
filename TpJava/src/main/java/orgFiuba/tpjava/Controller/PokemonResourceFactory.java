@@ -4,6 +4,7 @@ import javafx.scene.Node;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -12,6 +13,7 @@ import orgFiuba.tpjava.Model.Pokemones.Habilidad;
 import orgFiuba.tpjava.Model.Pokemones.Pokemon;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 
 import static orgFiuba.tpjava.Constantes.*;
 
@@ -88,5 +90,31 @@ public class PokemonResourceFactory {
 
     public String createHabilidadSFXPath(Habilidad habilidad) {
         return RUTA_SFX_HABILIDADES + habilidad.getNombre() + ".mp3";
+    }
+
+    public Background createClimaOverlay(String clima, double x, double y) throws FileNotFoundException {
+        Image backgroundImage = null;
+        String path;
+        // Load the image
+        try {
+            path = RUTA_CLIMAS + clima + ".gif";
+            backgroundImage = new Image(new File(path).toURI().toString());
+        } catch (Exception e) {
+            try {
+                path = RUTA_CLIMAS + clima + ".png";
+                backgroundImage = new Image(new File(path).toURI().toString());
+            } catch (Exception e2) {
+                throw new FileNotFoundException();
+            }
+        }
+        // Create a BackgroundImage
+        BackgroundImage background = new BackgroundImage(
+                backgroundImage,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER,
+                new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false)
+        );
+        return new Background(background);
     }
 }

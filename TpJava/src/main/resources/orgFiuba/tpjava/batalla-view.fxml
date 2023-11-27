@@ -6,66 +6,64 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox fx:id="pantalla" alignment="BOTTOM_CENTER" prefHeight="400.0" prefWidth="600.0" styleClass="bodyFondoSeleccionPokemon" stylesheets="@StyleCss/fondo_batalla.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="orgFiuba.tpjava.Controller.BatallaController">
-   <children>
+<VBox fx:id="pantalla" alignment="BOTTOM_CENTER" prefHeight="400.0" prefWidth="600.0"
+      styleClass="bodyFondoSeleccionPokemon" stylesheets="@StyleCss/fondo_batalla.css"
+      xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="orgFiuba.tpjava.Controller.BatallaController">
+   <VBox fx:id="climaOverlay" alignment="BOTTOM_CENTER" prefHeight="400.0" prefWidth="600.0">
       <HBox fx:id="pokemones" alignment="TOP_CENTER" prefHeight="269.0" prefWidth="600.0">
-         <children>
-            <VBox fx:id="pokemonJ1Box" alignment="CENTER_LEFT">
-               <children>
-                  <HBox fx:id="pokemonJ1Stats" prefHeight="166.0" prefWidth="300.0">
-                     <children>
-                        <ProgressBar fx:id="pokemonJ1HP" prefWidth="200.0" progress="0.0" style="-fx-background-color: Green;" />
-                        <Text fx:id="pokemonJ1StatsText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                     </children></HBox>
-                  <HBox fx:id="pokemonJ1ViewBox" prefHeight="270.0" prefWidth="300.0">
-                     <children>
-                        <ImageView fx:id="pokemonJ1View" fitHeight="196.0" fitWidth="301.0" layoutX="-Infinity" pickOnBounds="true" preserveRatio="true">
-                        </ImageView>
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
-            <VBox fx:id="pokemonJ2Box" alignment="CENTER_RIGHT">
-               <children>
-                  <HBox fx:id="pokemonJ2ViewBox" prefHeight="270.0" prefWidth="300.0">
-                     <children>
-                        <ImageView fx:id="pokemonJ2View" fitHeight="196.0" fitWidth="301.0" layoutX="-Infinity" pickOnBounds="true" preserveRatio="true" />
-                     </children>
-                  </HBox>
-                  <HBox fx:id="pokemonJ2Stats" prefHeight="166.0" prefWidth="300.0">
-                     <children>
-                        <ProgressBar fx:id="pokemonJ2HP" prefWidth="200.0" progress="0.0" />
-                        <Text fx:id="pokemonJ2StatsText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                     </children></HBox>
-               </children>
-            </VBox>
-         </children>
          <VBox.margin>
-            <Insets />
+            <Insets/>
          </VBox.margin>
+         <VBox fx:id="pokemonJ1Box" alignment="CENTER_LEFT">
+            <HBox fx:id="pokemonJ1Stats" prefHeight="166.0" prefWidth="300.0">
+               <ProgressBar fx:id="pokemonJ1HP" prefWidth="200.0" progress="0.0"
+                            style="-fx-background-color: Green;"/>
+               <Text fx:id="pokemonJ1StatsText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text"/>
+            </HBox>
+            <HBox fx:id="pokemonJ1ViewBox" prefHeight="270.0" prefWidth="300.0">
+               <ImageView fx:id="pokemonJ1View" fitHeight="196.0" fitWidth="301.0" layoutX="-Infinity"
+                          pickOnBounds="true" preserveRatio="true">
+               </ImageView>
+            </HBox>
+         </VBox>
+         <VBox fx:id="pokemonJ2Box" alignment="CENTER_RIGHT">
+            <HBox fx:id="pokemonJ2ViewBox" prefHeight="270.0" prefWidth="300.0">
+               <ImageView fx:id="pokemonJ2View" fitHeight="196.0" fitWidth="301.0" layoutX="-Infinity"
+                          pickOnBounds="true" preserveRatio="true"/>
+            </HBox>
+            <HBox fx:id="pokemonJ2Stats" prefHeight="166.0" prefWidth="300.0">
+               <ProgressBar fx:id="pokemonJ2HP" prefWidth="200.0" progress="0.0"/>
+               <Text fx:id="pokemonJ2StatsText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text"/>
+            </HBox>
+         </VBox>
       </HBox>
-      <HBox fx:id="dialogoYMenuBox" alignment="CENTER_RIGHT" fillHeight="false" layoutY="275.0" prefHeight="125.0" prefWidth="600.0" styleClass="bodyFondoSeleccionPokemon" stylesheets="@StyleCss/fondo_text_box.css">
-         <children>
-            <VBox fx:id="dialogoBox" prefHeight="126.0" prefWidth="390.0" />
-            <GridPane fx:id="menuGrid" prefHeight="105.0" prefWidth="215.0">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <padding>
-                  <Insets right="40.0" />
-               </padding>
-               <children>
-                  <Button fx:id="atacarButton" mnemonicParsing="false" prefHeight="56.0" prefWidth="96.0" text="ATACAR" />
-                  <Button fx:id="itemButton" mnemonicParsing="false" prefHeight="56.0" prefWidth="96.0" text="ITEM" GridPane.rowIndex="1"  />
-                  <Button fx:id="pokemonButton" mnemonicParsing="false" prefHeight="56.0" prefWidth="96.0" text="POKEMON" GridPane.columnIndex="1" />
-                  <Button fx:id="rendirseButton" mnemonicParsing="false" prefHeight="56.0" prefWidth="96.0" text="RENDIRSE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-               </children>
-            </GridPane>
-         </children></HBox>
-   </children>
+      <HBox fx:id="dialogoYMenuBox" alignment="CENTER_RIGHT" fillHeight="false" prefHeight="125.0" prefWidth="600.0"
+            styleClass="bodyFondoSeleccionPokemon" stylesheets="@StyleCss/fondo_text_box.css">
+         <VBox fx:id="dialogoBox" prefHeight="112.0" prefWidth="350.0">
+            <TextArea prefHeight="200.0" prefWidth="200.0"/>
+         </VBox>
+         <GridPane fx:id="menuGrid" prefHeight="105.0" prefWidth="215.0">
+            <columnConstraints>
+               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            </columnConstraints>
+            <rowConstraints>
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <padding>
+               <Insets right="40.0"/>
+            </padding>
+            <Button fx:id="atacarButton" mnemonicParsing="false" prefHeight="56.0" prefWidth="96.0"
+                    text="ATACAR"/>
+            <Button fx:id="itemButton" mnemonicParsing="false" prefHeight="56.0" prefWidth="96.0" text="ITEM"
+                    GridPane.rowIndex="1"/>
+            <Button fx:id="pokemonButton" mnemonicParsing="false" prefHeight="56.0" prefWidth="96.0"
+                    text="POKEMON" GridPane.columnIndex="1"/>
+            <Button fx:id="rendirseButton" mnemonicParsing="false" prefHeight="56.0" prefWidth="96.0"
+                    text="RENDIRSE" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+         </GridPane>
+      </HBox>
+   </VBox>
 </VBox>

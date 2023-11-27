@@ -32,6 +32,4 @@ public class ItemsResourceFactory {
         itemData.setTranslateY(50);
         return itemData;
     }
-
-
 }

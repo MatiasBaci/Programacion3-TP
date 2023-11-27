@@ -1,5 +1,6 @@
 package orgFiuba.tpjava.Model;
 
+import orgFiuba.tpjava.Model.Climas.Clima;
 import orgFiuba.tpjava.Model.Climas.SistemaDeClima;
 import orgFiuba.tpjava.Model.Pokemones.Pokemon;
 import orgFiuba.tpjava.View.GeneralView;
@@ -82,11 +83,11 @@ public class Juego {
         if (this.pokemonJugador1EsRapido(this.jugador1.getPokemonActual(), this.jugador2.getPokemonActual())) {
             this.jugador1.setAtacante(true);
             this.jugadorActual = this.jugador1;
-            System.out.println(ANSI_VERDEOSCURO + "COMIENZA ATACANDO " + this.jugador1.getNombre().toUpperCase() + ANSI_RESET);
+            //System.out.println(ANSI_VERDEOSCURO + "COMIENZA ATACANDO " + this.jugador1.getNombre().toUpperCase() + ANSI_RESET);
         } else {
             this.jugador2.setAtacante(true);
             this.jugadorActual = this.jugador2;
-            System.out.println(ANSI_VERDEOSCURO + "COMIENZA ATACANDO " + this.jugador2.getNombre().toUpperCase() + ANSI_RESET);
+            //System.out.println(ANSI_VERDEOSCURO + "COMIENZA ATACANDO " + this.jugador2.getNombre().toUpperCase() + ANSI_RESET);
         }
     }
 
@@ -164,5 +165,9 @@ public class Juego {
 
     public void setJugadorActual(Jugador jugador) {
         this.jugadorActual = jugador;
+    }
+
+    public Clima getClimaActual(){
+        return SistemaDeClima.getClimaActual();
     }
 }

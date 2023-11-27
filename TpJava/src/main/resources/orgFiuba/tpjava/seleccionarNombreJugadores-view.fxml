@@ -3,15 +3,32 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<VBox alignment="CENTER" prefHeight="331.0" prefWidth="334.0" spacing="20.0" styleClass="bodyFondoSeleccionPokemon" stylesheets="@StyleCss/fondo_seleccion_nombre.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="orgFiuba.tpjava.Controller.SeleccionarNombreJugadoresController">
+<VBox alignment="CENTER" prefHeight="331.0" prefWidth="334.0" spacing="20.0" styleClass="bodyFondoSeleccionPokemon"
+      stylesheets="@StyleCss/fondo_seleccion_nombre.css" xmlns="http://javafx.com/javafx/20.0.1"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="orgFiuba.tpjava.Controller.SeleccionarNombreJugadoresController">
    <padding>
-      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
    </padding>
-   <children>
-      <Label style="-fx-background-color: WHITE;" text="Ingrese el nombre del jugador" />
-      <TextField fx:id="nombreJugador" onAction="#siguienteVentana" promptText="Ingrese el nombre del jugador" />
-      <Button mnemonicParsing="false" onAction="#siguienteVentana" text="Siguiente" />
-      <Label fx:id="label" />
-   </children>
+   <Label prefHeight="27.0" prefWidth="250.0" style="-fx-background-color: WHITE;"
+          text=" Ingrese el nombre del jugador ">
+      <font>
+         <Font size="18.0"/>
+      </font>
+   </Label>
+   <Pane prefHeight="80.0" prefWidth="294.0"/>
+   <TextField fx:id="nombreJugador" onAction="#siguienteVentana" maxWidth="-Infinity" prefHeight="40.0"
+              prefWidth="266.0" promptText="Ingrese su nombre">
+      <font>
+         <Font size="18.0"/>
+      </font>
+   </TextField>
+   <Button mnemonicParsing="false" onAction="#siguienteVentana" text="Continuar">
+      <font>
+         <Font size="18.0"/>
+      </font>
+   </Button>
+   <Label fx:id="label"/>
 </VBox>

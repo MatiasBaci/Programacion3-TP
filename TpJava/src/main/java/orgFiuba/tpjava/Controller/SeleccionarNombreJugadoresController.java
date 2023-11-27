@@ -1,10 +1,9 @@
 package orgFiuba.tpjava.Controller;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
+import orgFiuba.tpjava.Controller.Eventos.JugadorNombradoEvent;
 import orgFiuba.tpjava.Model.Jugador;
 
 import java.io.IOException;
@@ -21,7 +20,7 @@ public class SeleccionarNombreJugadoresController {
         this.juegoController = juegoController;
     }
 
-    public void siguienteVentana(ActionEvent event) throws IOException {
+    public void siguienteVentana(ActionEvent event) {
 
         String nombre = this.nombreJugador.getText();
         System.out.println(nombre);
