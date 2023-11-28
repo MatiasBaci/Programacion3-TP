@@ -39,7 +39,7 @@
     "nombre" : "Revivir",
     "id": 71,
     "descripcion": "Revive al pokemon con toda su salud",
-    "tipoDeModificacion": "estado"
+    "tipoDeModificacion": "inhabilitado"
   },
   {
     "nombre" : "Cura Todo",
