@@ -32,7 +32,7 @@ public class SceneFactory {
         escenas.put("sceneSeleccionNombreJugador2", sceneSeleccionNombreJugador2);
 
         FXMLLoader fxmlLoaderP = new FXMLLoader(MainJavaFX.class.getResource("seleccionarPokemon-view.fxml"));
-        GridPane seleccionarPokemonLoader = fxmlLoaderP.load();
+        VBox seleccionarPokemonLoader = fxmlLoaderP.load();
         SeleccionarPokemonController seleccionarPokemonController = fxmlLoaderP.getController();
         seleccionarPokemonController.inicializar(juego.getJugadorActual(), juegoController);
         Scene sceneSeleccionPokemonJugador = new Scene(seleccionarPokemonLoader, 1024, 768);

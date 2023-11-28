@@ -3,6 +3,7 @@ package orgFiuba.tpjava.Controller;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -29,6 +30,8 @@ public class SeleccionarPokemonController {
     private Jugador jugador;
     private JuegoController juegoController;
     private Item itemAplicar;
+    @FXML
+    private Label afirmador;
     @FXML
     public GridPane gridPanePokemones;
 
@@ -155,5 +158,21 @@ public class SeleccionarPokemonController {
                 juegoController.handle(new PokemonSeleccionadoEvent(jugador, pokemon));
             }
         };
+    }
+
+    @FXML
+    private void volverMenu(){
+
+        this.afirmador.setText("");
+        System.out.println("adsfsdfsdfsdfsdfsdfsdfdsfsdfsdsd");
+        if(this.jugador.getPokemonActual() == null){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("Informacion");
+            alert.setContentText("No tiene seleccionado ningun Pokemon.");
+            alert.showAndWait();
+        }else{
+            juegoController.volverMenu();
+        }
     }
 }

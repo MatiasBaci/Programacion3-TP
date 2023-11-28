@@ -308,4 +308,8 @@ public class JuegoController extends Parent implements EventHandler<Event> {
         this.mostrarVentanaBatalla();
     }
 
+    public void volverMenu(){
+        this.mostrarVentanaBatalla();
+    }
+
 }
