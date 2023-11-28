@@ -91,20 +91,19 @@ public class SeleccionarPokemonController {
 
                 if(this.itemAplicar == null){
                     if(pokemones.get(index).estaConsciente()){
-                        pokemonView.setOnMouseClicked(createImageViewClickHandler(pokemonView, this.juegoController, this.jugador, pokemones.get(index)));
+                        pokemonView.setOnMouseClicked(createImageViewClickHandler(this.juegoController, this.jugador, pokemones.get(index)));
                     }
                 }else{
-                    pokemonView.setOnMouseClicked(createImageViewClickHandlerItemAplicar(pokemonView, this.juegoController, this.jugador, pokemones.get(index), this.itemAplicar));
+                    pokemonView.setOnMouseClicked(createImageViewClickHandlerItemAplicar(this.juegoController, this.jugador, pokemones.get(index), this.itemAplicar));
                 }
 
                 this.gridPanePokemones.add(pokemonView, col, row);
-
                 index++;
             }
         }
     }
 
-    private EventHandler<? super MouseEvent> createImageViewClickHandlerItemAplicar(HBox imageView, JuegoController juegoController, Jugador jugador, Pokemon pokemon, Item itemAplicar) {
+    private EventHandler<? super MouseEvent> createImageViewClickHandlerItemAplicar(JuegoController juegoController, Jugador jugador, Pokemon pokemon, Item itemAplicar) {
         return event -> {
             if(pokemon.getCualidades().getVida() == 0 && !Objects.equals(itemAplicar.getNombre(), "Revivir")) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -129,7 +128,6 @@ public class SeleccionarPokemonController {
             }
             else{
                 jugador.elegirItem(itemAplicar.getNombre()).aplicarItem(pokemon.getCualidades());
-
             }
             try {
                 juegoController.handle(new ItemAplicadoEvent(jugador, itemAplicar, pokemon));
@@ -139,15 +137,12 @@ public class SeleccionarPokemonController {
             //Hay que mejorar a forma de volver al menu, lo ideal seria no avanazar a 133 en los casos negayivos
             // y agregar un boton para volver al menu sin consumir turno para no estancase.
             //juegoController.handle(new PokemonSeleccionadoEvent(jugador, pokemon)); // Replace yourFunction with the actual function name
-
         };
-
     }
 
     // Create an event handler for ImageView click events
-    private EventHandler<MouseEvent> createImageViewClickHandler(HBox imageView, JuegoController juegoController, Jugador jugador, Pokemon pokemon) {
+    private EventHandler<MouseEvent> createImageViewClickHandler(JuegoController juegoController, Jugador jugador, Pokemon pokemon) {
         return event -> {
-            System.out.println("ImageView clicked! " + imageView.getId());
             if(pokemon.getCualidades().getVida() == 0) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setHeaderText(null);

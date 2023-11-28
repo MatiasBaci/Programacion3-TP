@@ -40,6 +40,7 @@ public class JuegoController extends Parent implements EventHandler<Event> {
 
     public void inicializar(Stage stage, Juego juego) throws IOException {
         this.stage = stage;
+        this.stage.setResizable(false);
         this.juego = juego;
         this.juego.setJugadorActual(this.juego.getJugador1());
         this.inicializarEscenas();
@@ -144,7 +145,7 @@ public class JuegoController extends Parent implements EventHandler<Event> {
         this.stage.show();
     }
 
-    public void crearVentanaSeleccionarItem(Jugador jugador) throws IOException {
+    public void crearVentanaSeleccionarItem(Jugador jugador) {
 
         try {
             this.seleccionarItemController.actualizarVista(jugador);
@@ -225,10 +226,8 @@ public class JuegoController extends Parent implements EventHandler<Event> {
     }
 
     public void handle(JugadorNombradoEvent jugadorNombradoEvent) {
-        //if (jugadorNombradoEvent.getJugador() == this.juego.getJugador1()) {
         if (this.juego.getJugador2().getNombre().isBlank()) {
             try {
-                System.out.println("Jugador 2");
                 this.crearVentanaSeleccionNombre(2);
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -255,7 +254,6 @@ public class JuegoController extends Parent implements EventHandler<Event> {
     public void handle(PokemonSeleccionadoEvent pokemonSeleccionadoEvent) {
 
         pokemonSeleccionadoEvent.getJugador().setPokemonActual(pokemonSeleccionadoEvent.getPokemon());
-
         PokemonResourceFactory pokemonResourceFactory = new PokemonResourceFactory();
         reproducirSoundEffect(pokemonResourceFactory.createCrySFXPath(pokemonSeleccionadoEvent.getPokemon()));
 
@@ -267,11 +265,9 @@ public class JuegoController extends Parent implements EventHandler<Event> {
                 throw new RuntimeException(e);
             }
         } else {
-            System.out.println("Continúa a la ventana de Juego");
             if (this.esPrimerTurno) {this.elegirJugadorInicial();}
             else {this.juego.cambiarTurno();}
             this.cicloDeTurnos();
-            //this.crearVentanaBatalla();
         }
     }
 
@@ -287,10 +283,8 @@ public class JuegoController extends Parent implements EventHandler<Event> {
         this.batallaController.actualizarVista(this.juego);
     }
 
-    public void handle(MenuItemEvent menuItemEvent) throws IOException {
-
+    public void handle(MenuItemEvent menuItemEvent) {
         this.crearVentanaSeleccionarItem(menuItemEvent.getJugador());
-        //menuItemEvent.getJugador().elegirItem(menuItemEvent.getItem().getNombre());
     }
 
     public void handle(RendirseEvent rendirseEvent) {

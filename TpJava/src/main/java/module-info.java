@@ -14,4 +14,7 @@ module orgFiuba.tpjava {
     opens orgFiuba.tpjava.Controller to javafx.fxml;
     exports orgFiuba.tpjava.Controller.Eventos;
     opens orgFiuba.tpjava.Controller.Eventos to javafx.fxml;
+    exports orgFiuba.tpjava.Model.Pokemones;
+    exports orgFiuba.tpjava.Model;
+    exports orgFiuba.tpjava.Model.Items;
 }

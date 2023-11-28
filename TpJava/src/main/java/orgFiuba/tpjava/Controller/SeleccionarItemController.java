@@ -27,7 +27,6 @@ public class SeleccionarItemController {
     public VBox vboxMenuItems;
 
     public List<Item> items;
-    private Jugador jugador;
     private JuegoController juegoController;
     @FXML
     public GridPane gridPaneItems;
@@ -37,7 +36,7 @@ public class SeleccionarItemController {
     public Label afirmador;
 
 
-    public void inicializar(Jugador jugador, JuegoController juegoController) throws IOException {
+    public void inicializar(Jugador jugador, JuegoController juegoController) {
         juegoController.setSeleccionarItemController(this);
         this.juegoController = juegoController;
         this.crearVentanaMenuItem(jugador);
@@ -46,12 +45,11 @@ public class SeleccionarItemController {
 
     public void crearVentanaMenuItem(Jugador jugador){
 
-        this.jugador = jugador;
         this.itemsViews = new HashMap<>();
         this.items = new ArrayList<>();
         ItemsResourceFactory itemsResourceFactory = new ItemsResourceFactory();
 
-        this.jugador.getItems().forEach((k, v) -> items.add(v));
+        jugador.getItems().forEach((k, v) -> items.add(v));
 
         HBox itemsView;
         HBox itemIconoYNombre;
@@ -68,28 +66,20 @@ public class SeleccionarItemController {
             itemIconoYNombre.setTranslateX(40);
             itemIconoYNombre.setTranslateY(20);
 
-
             itemsView.getChildren().add(itemIconoYNombre);
 
-            itemsView.setOnMouseClicked(createImageViewClickHandler(itemsView, this.juegoController, this.jugador, item));
+            itemsView.setOnMouseClicked(createImageViewClickHandler(this.juegoController, jugador, item));
 
             itemsView.setOnMouseEntered(event -> descripcionItem.setText(item.getDescripcion()));
-
-            itemsView.setOnMouseExited(event -> {
-                descripcionItem.setText("");
-                descripcionItem.setTranslateY(100);
-            });
-
+            itemsView.setOnMouseExited(event -> descripcionItem.setText(""));
             gridPaneItems.add(itemsView, 0, row);
-
             index++;
         }
     }
 
     // Create an event handler for ImageView click events
-    private EventHandler<MouseEvent> createImageViewClickHandler(HBox imageView, JuegoController juegoController, Jugador jugador, Item item) {
+    private EventHandler<MouseEvent> createImageViewClickHandler(JuegoController juegoController, Jugador jugador, Item item) {
         return event -> {
-            System.out.println("ItemView clicked! " + imageView.getId());
             if(item.getCantidad() == 0){
                 Alert alert  = new Alert(Alert.AlertType.INFORMATION);
                 alert.setHeaderText(null);
@@ -110,19 +100,14 @@ public class SeleccionarItemController {
         try {
             gridPaneItems.getChildren().clear();
         } catch (Exception ignored) {}
-
         this.crearVentanaMenuItem(jugador);
     }
 
     @FXML
     public void volverMenu(){
-
         this.afirmador.setText("");
         juegoController.volverMenu();
-
     }
-
-
 }
 
 

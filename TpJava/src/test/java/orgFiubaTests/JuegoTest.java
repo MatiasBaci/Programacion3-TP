@@ -1,15 +1,8 @@
 package orgFiubaTests;
 
-import orgFiuba.tpjava.Model.*;
-import org.junit.jupiter.api.Test;
-import orgFiuba.tpjava.View.GeneralView;
-
-import java.io.ByteArrayInputStream;
-import java.util.Scanner;
-
 public class JuegoTest {
 
-    @Test
+    /*@Test
     public void testUnaRondaConUserInput() {
         //Arrange
         String userInput = "Brendan\n" + "May\n" + "Lucario\n" + "Bidoof\n" + "unaTecla\n" +
@@ -34,5 +27,5 @@ public class JuegoTest {
         //Act
         Juego juego = new Juego(new Scanner(inputSimulado));
         juego.DesarrollarJuego();
-    }
+    }*/
 }

@@ -1,11 +1,12 @@
 package orgFiuba.tpjava.Controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import orgFiuba.tpjava.Controller.Eventos.AtaqueSeleccionadoEvent;
 import orgFiuba.tpjava.Controller.Eventos.MenuCambiarPokemonEvent;
@@ -19,9 +20,9 @@ import orgFiuba.tpjava.Model.Pokemones.Pokemon;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public class BatallaController {
 
@@ -29,10 +30,8 @@ public class BatallaController {
     VBox pantalla;
     @FXML
     ImageView climaOverlay;
-
     @FXML
     StackPane stackPaneFondo;
-
     @FXML
     HBox pokemones;
     @FXML
@@ -65,6 +64,8 @@ public class BatallaController {
     VBox dialogoBox;
     @FXML
     TextArea dialogo;
+    @FXML
+    VBox ataquesBox;
     @FXML
     GridPane menuGrid;
     @FXML
@@ -103,22 +104,6 @@ public class BatallaController {
             this.climaOverlay.setImage(null);
         }
 
-        /*try {
-            Background background = pokemonResourceFactory.createClimaOverlay(clima, this.climaOverlay.getHeight(), this.climaOverlay.getWidth());
-            this.climaOverlay.setBackground(background);
-        } catch (Exception e) {
-            this.climaOverlay.setBackground(null);
-        }*/
-
-        /*this.pokemonJ1StatsText.setText(juego.getJugadorActual().getPokemonActual()
-                .getNombre() + "\n" +
-                "Lv " + juego.getJugadorActual().getPokemonActual().getCualidades().getNivel());
-        this.pokemonJ1HP.setProgress(juego.getJugadorActual().getPokemonActual().getCualidades().getPorcentajeVida());
-        this.pokemonJ2StatsText.setText(juego.getJugadorActual().getAdversario().getPokemonActual()
-                .getNombre() + "\n" +
-                "Lv " + juego.getJugadorActual().getAdversario().getPokemonActual().getCualidades().getNivel());*/
-
-
         this.dibujarPokeballs(juego.getJugadorActual(),pokeballs1,pokemonResourceFactory);
         this.dibujarPokeballs(juego.getJugadorActual().getAdversario(),pokeballs2,pokemonResourceFactory);
 
@@ -128,7 +113,6 @@ public class BatallaController {
         this.pokemonJ2StatsText.setText(pokemonResourceFactory.createBatallaStats(juego.getJugadorActual().getAdversario().getPokemonActual()));
         this.pokemonJ1StatsText.setText(pokemonResourceFactory.createBatallaStats(juego.getJugadorActual().getPokemonActual()));
 
-
         this.pokemonJ1View.setImage(pokemonResourceFactory.createPokemonBattleView(juego.getJugadorActual().getPokemonActual(), "Espalda").getImage());
         this.pokemonJ1View.setFitHeight(this.pokemonJ1View.getImage().getHeight()*3);
         this.pokemonJ1View.setFitWidth(this.pokemonJ1View.getImage().getWidth()*3);
@@ -136,21 +120,35 @@ public class BatallaController {
         this.pokemonJ2View.setFitHeight(this.pokemonJ2View.getImage().getHeight()*3);
         this.pokemonJ2View.setFitWidth(this.pokemonJ2View.getImage().getWidth()*3);
 
-        this.atacarButton.setOnAction(event -> crearMenuAtaques(juego.getJugadorActual().getPokemonActual()));
+        this.atacarButton.setOnAction(event -> {
+            this.ataquesBox.getChildren().clear();
+            crearMenuAtaques(juego.getJugadorActual().getPokemonActual());
+        });
+
         this.itemButton.setOnAction(event -> {
             try {
+                this.ataquesBox.getChildren().clear();
                 crearMenuItem(juego.getJugadorActual());
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         });
-        this.pokemonButton.setOnAction(event -> this.juegoController.handle(new MenuCambiarPokemonEvent(juego.getJugadorActual())));
-        this.rendirseButton.setOnAction(event -> this.juegoController.handle(new RendirseEvent(juego.getJugadorActual())));
+
+        this.pokemonButton.setOnAction(event -> {
+            this.ataquesBox.getChildren().clear();
+            this.juegoController.handle(new MenuCambiarPokemonEvent(juego.getJugadorActual()));
+        });
+
+        this.rendirseButton.setOnAction(event -> {
+            if (showConfirmationDialog()) {
+                this.juegoController.handle(new RendirseEvent(juego.getJugadorActual()));
+            }
+        });
     }
 
     private void crearMenuItem(Jugador jugadorActual) throws IOException {
-        // Call a function from your object
-        juegoController.handle(new MenuItemEvent(jugadorActual)); // Replace yourFunction with the actual function name
+        this.ataquesBox.getChildren().clear();
+        juegoController.handle(new MenuItemEvent(jugadorActual));
     }
 
 
@@ -164,14 +162,15 @@ public class BatallaController {
             for (int j = 0; j < 2; j++) {
                 Habilidad habilidad = habilidades.get(index);
                 Button ataque = new Button(habilidad.getNombre());
-                ataque.setPrefHeight(50);
-                ataque.setPrefWidth(100);
+                ataque.setPrefHeight(100);
+                ataque.setPrefWidth(200);
+                ataque.setStyle("-fx-font-size: 18px");
                 ataque.setOnAction(event -> this.juegoController.handle(new AtaqueSeleccionadoEvent(habilidad, pokemon)));
                 ataques.add(ataque, j, i);
                 index++;
             }
         }
-        this.dialogoBox.getChildren().add(ataques);
+        this.ataquesBox.getChildren().add(ataques);
     }
 
     public void actualizarVista(Juego juego) {
@@ -196,13 +195,24 @@ public class BatallaController {
     }
 
     public void dibujarPokeballs(Jugador unJugador, HBox pokeballs, PokemonResourceFactory resourceFactory){
-        Map<String,Pokemon> pokemons = new HashMap<>();
+        Map<String,Pokemon> pokemons;
         pokemons = unJugador.getMisPokemones();
-
         pokemons.forEach((x,v) -> pokeballs.getChildren().add(resourceFactory.getPokeball(v)));
+    }
 
+    private boolean showConfirmationDialog() {
+        // Create confirmation dialog
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.setTitle("Confirmation");
+        dialog.setHeaderText("Querés rendirte?");
 
+        // Add buttons to the dialog
+        dialog.getDialogPane().getButtonTypes().addAll(ButtonType.YES, ButtonType.NO);
 
+        // Show the dialog and wait for user input
+        Optional<ButtonType> result = dialog.showAndWait();
 
+        // Return true if the user clicked "Yes", false otherwise
+        return result.isPresent() && result.get() == ButtonType.YES;
     }
 }
