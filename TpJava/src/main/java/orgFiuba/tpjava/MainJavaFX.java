@@ -28,7 +28,7 @@ public class MainJavaFX extends Application {
 
         JuegoController juegoController = fxmlLoader.getController();
 
-        Scene sceneInicio = new Scene(root, 1280, 768);
+        Scene sceneInicio = new Scene(root, 1024, 768);
         stage.setTitle("Batalla Pokémon");
         stage.setScene(sceneInicio);
 
