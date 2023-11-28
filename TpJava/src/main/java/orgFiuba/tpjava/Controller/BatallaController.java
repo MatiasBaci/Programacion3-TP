@@ -19,7 +19,9 @@ import orgFiuba.tpjava.Model.Pokemones.Pokemon;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class BatallaController {
 
@@ -116,11 +118,16 @@ public class BatallaController {
                 .getNombre() + "\n" +
                 "Lv " + juego.getJugadorActual().getAdversario().getPokemonActual().getCualidades().getNivel());*/
 
-        this.pokemonJ1StatsText.setText(pokemonResourceFactory.createBatallaStats(juego.getJugadorActual().getPokemonActual()));
-        this.pokemonJ2StatsText.setText(pokemonResourceFactory.createBatallaStats(juego.getJugadorActual().getAdversario().getPokemonActual()));
+
+        this.dibujarPokeballs(juego.getJugadorActual(),pokeballs1,pokemonResourceFactory);
+        this.dibujarPokeballs(juego.getJugadorActual().getAdversario(),pokeballs2,pokemonResourceFactory);
 
         this.dibujarHPBar(juego.getJugadorActual().getPokemonActual(), this.pokemonJ1HP);
         this.dibujarHPBar(juego.getJugadorActual().getAdversario().getPokemonActual(), this.pokemonJ2HP);
+
+        this.pokemonJ2StatsText.setText(pokemonResourceFactory.createBatallaStats(juego.getJugadorActual().getAdversario().getPokemonActual()));
+        this.pokemonJ1StatsText.setText(pokemonResourceFactory.createBatallaStats(juego.getJugadorActual().getPokemonActual()));
+
 
         this.pokemonJ1View.setImage(pokemonResourceFactory.createPokemonBattleView(juego.getJugadorActual().getPokemonActual(), "Espalda").getImage());
         this.pokemonJ1View.setFitHeight(this.pokemonJ1View.getImage().getHeight()*3);
@@ -169,6 +176,8 @@ public class BatallaController {
 
     public void actualizarVista(Juego juego) {
         this.dialogoBox.getChildren().clear();
+        this.pokeballs1.getChildren().clear();
+        this.pokeballs2.getChildren().clear();
         this.crearVentanaBatalla(juego);
     }
 
@@ -184,5 +193,16 @@ public class BatallaController {
             barra.setStyle("-fx-accent: yellow;");
         else
             barra.setStyle("-fx-accent: red;");
+    }
+
+    public void dibujarPokeballs(Jugador unJugador, HBox pokeballs, PokemonResourceFactory resourceFactory){
+        Map<String,Pokemon> pokemons = new HashMap<>();
+        pokemons = unJugador.getMisPokemones();
+
+        pokemons.forEach((x,v) -> pokeballs.getChildren().add(resourceFactory.getPokeball(v)));
+
+
+
+
     }
 }

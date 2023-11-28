@@ -134,4 +134,6 @@ public class Constantes {
 
     public static final String RUTA_ICONO = "/orgFiuba/tpjava/Imagenes/Iconos/Team_Galactic_Logo.png";
 
+    public static final String RUTA_ICONO_POKEBALL = "TpJava/src/main/resources/orgFiuba/tpjava/StyleCss/Pokeball.png";
+
 }

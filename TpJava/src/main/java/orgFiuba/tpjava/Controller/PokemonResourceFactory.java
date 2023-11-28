@@ -136,4 +136,21 @@ public class PokemonResourceFactory {
         );*/
         return backgroundImage;
     }
+
+    public ImageView getPokeball(Pokemon unPokemon) {
+        Image unaImagen = new Image(new File(RUTA_ICONO_POKEBALL).toURI().toString());
+        ImageView unaPokeballView = new ImageView();
+        unaPokeballView.setImage(unaImagen);
+
+        unaPokeballView.setFitHeight(24);
+        unaPokeballView.setFitWidth(24);
+        if(!unPokemon.estaConsciente()){
+            ColorAdjust colorAdjust = new ColorAdjust();
+            colorAdjust.setSaturation(-1); // Set saturation to -1 for grayscale
+            unaPokeballView.setEffect(colorAdjust);
+        }
+
+        return unaPokeballView;
+
+    }
 }
