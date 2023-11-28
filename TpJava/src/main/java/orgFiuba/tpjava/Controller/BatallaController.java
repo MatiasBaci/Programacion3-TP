@@ -177,6 +177,7 @@ public class BatallaController {
         this.dialogoBox.getChildren().clear();
         this.pokeballs1.getChildren().clear();
         this.pokeballs2.getChildren().clear();
+        this.ataquesBox.getChildren().clear();
         this.crearVentanaBatalla(juego);
     }
 

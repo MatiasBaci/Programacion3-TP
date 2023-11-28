@@ -106,25 +106,13 @@ public class SeleccionarPokemonController {
     private EventHandler<? super MouseEvent> createImageViewClickHandlerItemAplicar(JuegoController juegoController, Jugador jugador, Pokemon pokemon, Item itemAplicar) {
         return event -> {
             if(pokemon.getCualidades().getVida() == 0 && !Objects.equals(itemAplicar.getNombre(), "Revivir")) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setHeaderText(null);
-                alert.setTitle("Informacion");
-                alert.setContentText("El pokemon no tiene vida, no se puede usar este item.");
-                alert.showAndWait();
+                alerta("El pokemon no tiene vida, no se puede usar este item.");
             }
             else if((pokemon.getCualidades().getVida() == pokemon.getCualidades().getVidaMaxima() && itemAplicar.getUnaModificacion().getClass() == ModificacionVida.class)){
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setHeaderText(null);
-                alert.setTitle("Informacion");
-                alert.setContentText("El pokemon tiene toda la vida, no se puede curar.");
-                alert.showAndWait();
+                alerta("El pokemon tiene toda la vida, no se puede curar.");
             }
             else if(pokemon.getCualidades().getVida() == pokemon.getCualidades().getVidaMaxima() && Objects.equals(itemAplicar.getNombre(), "Revivir")){
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setHeaderText(null);
-                alert.setTitle("Informacion");
-                alert.setContentText("El pokemon tiene toda la vida, no se puede revivir.");
-                alert.showAndWait();
+                alerta("El pokemon tiene toda la vida, no se puede revivir.");
             }
             else{
                 jugador.elegirItem(itemAplicar.getNombre()).aplicarItem(pokemon.getCualidades());
@@ -144,11 +132,7 @@ public class SeleccionarPokemonController {
     private EventHandler<MouseEvent> createImageViewClickHandler(JuegoController juegoController, Jugador jugador, Pokemon pokemon) {
         return event -> {
             if(pokemon.getCualidades().getVida() == 0) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setHeaderText(null);
-                alert.setTitle("Informacion");
-                alert.setContentText("El pokemon no tiene vida, no se puede elegir.");
-                alert.showAndWait();
+                alerta("El pokemon no tiene vida, no se puede elegir.");
             }else{
                 juegoController.handle(new PokemonSeleccionadoEvent(jugador, pokemon));
             }
@@ -159,15 +143,20 @@ public class SeleccionarPokemonController {
     private void volverMenu(){
 
         this.afirmador.setText("");
-        System.out.println("adsfsdfsdfsdfsdfsdfsdfdsfsdfsdsd");
-        if(this.jugador.getPokemonActual() == null){
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setHeaderText(null);
-            alert.setTitle("Informacion");
-            alert.setContentText("No tiene seleccionado ningun Pokemon.");
-            alert.showAndWait();
-        }else{
+        if(this.jugador.getPokemonActual() == null) {
+            alerta("No tiene seleccionado ningun Pokemon.");
+        } else if (!this.jugador.getPokemonActual().estaConsciente()) {
+            alerta("Tenés que seleccionar un Pokemon.");
+        } else {
             juegoController.volverMenu();
         }
+    }
+
+    private void alerta(String mensaje) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText(null);
+        alert.setTitle("Informacion");
+        alert.setContentText(mensaje);
+        alert.showAndWait();
     }
 }
