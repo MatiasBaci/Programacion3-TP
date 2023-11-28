@@ -1,15 +1,18 @@
 package orgFiuba.tpjava.Controller;
 
+import javafx.geometry.NodeOrientation;
 import javafx.scene.Node;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import orgFiuba.tpjava.Model.Pokemones.Habilidad;
-import orgFiuba.tpjava.Model.Pokemones.Pokemon;
+import javafx.scene.text.TextAlignment;
+import orgFiuba.tpjava.Model.Pokemones.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -103,11 +106,10 @@ public class PokemonResourceFactory {
                 todosLosEstados.append(unEstado).append(" ");
             }
         }
-        String unTextoCompleto =  "HP: " + (int)unPokemon.getCualidades().getVida() + "\n" +
+
+        return "HP: " + (int)unPokemon.getCualidades().getVida() + "\n" +
                 "Lv " +(int)unPokemon.getCualidades().getNivel()+ "\n" +
                 unPokemon.getNombre() + "\n"+  todosLosEstados;
-
-        return  unTextoCompleto;
     }
 
     public String createHabilidadSFXPath(Habilidad habilidad) {
@@ -155,5 +157,146 @@ public class PokemonResourceFactory {
 
         return unaPokeballView;
 
+    }
+
+    public Pane generarBotonAtaque(Habilidad habilidad) {
+        Pane ataque = new Pane();
+        ataque.setPrefHeight(100);
+        ataque.setPrefWidth(200);
+        ataque.setStyle("-fx-font-size: 18px");
+        ataque.setNodeOrientation(NodeOrientation.INHERIT);
+        ataque.setStyle("-fx-background-color: #ffffff; -fx-border-color: #000000; -fx-border-width: 1px; -fx-border-radius: 5px; -fx-background-radius: 5px; -fx-background-insets: 0px; -fx-padding: 5px;");
+        /*Text texto = new Text(habilidad.getNombre());
+        texto.setTextAlignment(TextAlignment.CENTER);
+        ataque.getChildren().add(texto);*/
+        agregarIconos(ataque, habilidad);
+        return ataque;
+    }
+
+    private void agregarIconos(Pane ataque, Habilidad habilidad) {
+        if (habilidad.getClass().equals(HabilidadAtaque.class)) {
+            agregarIconosAtaque(ataque, (HabilidadAtaque) habilidad);
+        } else if (habilidad.getClass().equals(HabilidadEstadistica.class)) {
+            agregarIconosEstadistica(ataque, (HabilidadEstadistica) habilidad);
+        } else if (habilidad.getClass().equals(HabilidadEstado.class)) {
+            agregarIconosEstado(ataque, (HabilidadEstado) habilidad);
+        } else if (habilidad.getClass().equals(HabilidadClima.class)) {
+            agregarIconosClima(ataque, (HabilidadClima) habilidad);
+        }
+    }
+
+    private void agregarIconosClima(Pane ataque, HabilidadClima habilidad) {
+
+        VBox ataqueVBox = crearVBoxParaHabilidad(ataque);
+
+        ImageView iconoClima = new ImageView();
+        String rutaIcono = RUTA_ICONOS + "clima.png";
+        iconoClima.setImage(new Image(new File(rutaIcono).toURI().toString()));
+        iconoClima.setFitWidth(20);
+        iconoClima.setFitHeight(20);
+        iconoClima.setTranslateX(50);
+        iconoClima.setTranslateY(8);
+        ataqueVBox.getChildren().add(iconoClima);
+
+        Text texto = new Text(habilidad.getNombre());
+        texto.setText(texto.getText() +
+                "\nClima: " + habilidad.getClimaNombre() +
+                "\nPP: " + habilidad.getCantidadDeUsos());
+        texto.setFont(Font.font("Verdana", FontWeight.BOLD, 16));
+        texto.setTextAlignment(TextAlignment.LEFT);
+        texto.setLineSpacing(0);
+        texto.setTranslateX(10);
+        texto.setTranslateY(10);
+        ataqueVBox.getChildren().add(texto);
+
+        ataque.getChildren().add(ataqueVBox);
+    }
+
+    private void agregarIconosEstado(Pane ataque, HabilidadEstado habilidad) {
+
+        VBox ataqueVBox = crearVBoxParaHabilidad(ataque);
+
+        ImageView iconoEstado = new ImageView();
+        String rutaIcono = RUTA_ICONOS + "Estados/" + habilidad.getEstado().getNombre() + ".png";
+        iconoEstado.setImage(new Image(new File(rutaIcono).toURI().toString()));
+        iconoEstado.setFitWidth(20);
+        iconoEstado.setFitHeight(20);
+        iconoEstado.setTranslateX(50);
+        iconoEstado.setTranslateY(8);
+        ataqueVBox.getChildren().add(iconoEstado);
+
+        Text texto = new Text(habilidad.getNombre());
+        texto.setText(texto.getText() +
+                "\nEstado: " + habilidad.getEstado().getNombre() +
+                "\nPP: " + habilidad.getCantidadDeUsos());
+        texto.setFont(Font.font("Verdana", FontWeight.BOLD, 16));
+        texto.setTextAlignment(TextAlignment.LEFT);
+        texto.setLineSpacing(0);
+        texto.setTranslateX(10);
+        texto.setTranslateY(10);
+        ataqueVBox.getChildren().add(texto);
+
+        ataque.getChildren().add(ataqueVBox);
+    }
+
+    private void agregarIconosEstadistica(Pane ataque, HabilidadEstadistica habilidad) {
+
+        VBox ataqueVBox = crearVBoxParaHabilidad(ataque);
+
+        ImageView iconoEstadistica = new ImageView();
+        String rutaIcono = RUTA_ICONOS + "Estadisticas/" + habilidad.getModificacion() + ".png";
+        iconoEstadistica.setImage(new Image(new File(rutaIcono).toURI().toString()));
+        iconoEstadistica.setFitWidth(20);
+        iconoEstadistica.setFitHeight(20);
+        iconoEstadistica.setTranslateX(50);
+        iconoEstadistica.setTranslateY(8);
+        ataqueVBox.getChildren().add(iconoEstadistica);
+
+        Text texto = new Text(habilidad.getNombre());
+        texto.setText(texto.getText() +
+                "\nEfecto: " + habilidad.getModificacion() +
+                "\nPP: " + habilidad.getCantidadDeUsos());
+        texto.setFont(Font.font("Verdana", FontWeight.BOLD, 16));
+        texto.setTextAlignment(TextAlignment.LEFT);
+        texto.setLineSpacing(0);
+        texto.setTranslateX(10);
+        texto.setTranslateY(10);
+        ataqueVBox.getChildren().add(texto);
+
+        ataque.getChildren().add(ataqueVBox);
+    }
+
+    private void agregarIconosAtaque(Pane ataque, HabilidadAtaque habilidad) {
+
+        VBox ataqueVBox = crearVBoxParaHabilidad(ataque);
+
+        ImageView iconoAtaque = new ImageView();
+        String rutaIcono = RUTA_ICONOS + "Tipos/" + habilidad.getTipo().getNombre() + ".png";
+        iconoAtaque.setImage(new Image(new File(rutaIcono).toURI().toString()));
+        iconoAtaque.setFitWidth(100);
+        iconoAtaque.setFitHeight(20);
+        iconoAtaque.setTranslateX(50);
+        iconoAtaque.setTranslateY(8);
+        ataqueVBox.getChildren().add(iconoAtaque);
+
+        Text texto = new Text(habilidad.getNombre());
+        texto.setText(texto.getText() +
+                "\nPoder: " + habilidad.getPoder() +
+                "\nPP: " + habilidad.getCantidadDeUsos());
+        texto.setFont(Font.font("Verdana", FontWeight.BOLD, 16));
+        texto.setTextAlignment(TextAlignment.LEFT);
+        texto.setLineSpacing(0);
+        texto.setTranslateX(10);
+        texto.setTranslateY(10);
+        ataqueVBox.getChildren().add(texto);
+
+        ataque.getChildren().add(ataqueVBox);
+    }
+
+    private VBox crearVBoxParaHabilidad(Pane panelHabilidad) {
+        VBox ataqueVBox = new VBox();
+        ataqueVBox.setPrefWidth(panelHabilidad.getPrefWidth());
+        ataqueVBox.setPrefHeight(panelHabilidad.getPrefHeight());
+        return ataqueVBox;
     }
 }

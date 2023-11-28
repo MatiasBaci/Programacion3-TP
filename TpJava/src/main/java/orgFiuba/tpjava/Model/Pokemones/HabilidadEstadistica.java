@@ -47,4 +47,8 @@ public class HabilidadEstadistica extends Habilidad{
             this.unaModificacion.modificar(cualidadesPokemonEnemigo,this.etapas);
         }
     }
+
+    public String getModificacion() {
+        return this.unaModificacion.obtenerNombreModificacion();
+    }
 }

@@ -10,23 +10,23 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties
 public class HabilidadEstado extends Habilidad{
 
-    private final Estado unEstado;
+    private final Estado estado;
     @JsonCreator
     public HabilidadEstado(
             @JsonProperty("nombre") String nombre,
             @JsonProperty("cantidad") int cantidad,
-            @JsonProperty("estado") Estado unEstado) {
+            @JsonProperty("estado") Estado estado) {
         super(nombre, cantidad);
-        this.unEstado = unEstado;
+        this.estado = estado;
     }
 
-    public Estado getUnEstado() {
-        return unEstado;
+    public Estado getEstado() {
+        return estado;
     }
 
     @Override
     public void usarHabilidad(Cualidades cualidadesPokemonEnemigo,Cualidades cualidadesPokemonPropio) {
         this.cantidadDeUsos --;
-        cualidadesPokemonEnemigo.agregarEstado(this.unEstado);
+        cualidadesPokemonEnemigo.agregarEstado(this.estado);
     }
 }

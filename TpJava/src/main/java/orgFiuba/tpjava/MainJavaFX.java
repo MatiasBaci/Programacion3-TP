@@ -11,7 +11,7 @@ import orgFiuba.tpjava.Model.Juego;
 
 import java.io.IOException;
 
-import static orgFiuba.tpjava.Constantes.RUTA_ICONO;
+import static orgFiuba.tpjava.Constantes.RUTA_ICONO_LOGO;
 
 public class MainJavaFX extends Application {
 
@@ -24,7 +24,7 @@ public class MainJavaFX extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(MainJavaFX.class.getResource("inicio-view.fxml"));
         VBox root = fxmlLoader.load();
 
-        stage.getIcons().add(new Image(MainJavaFX.class.getResourceAsStream(RUTA_ICONO)));
+        stage.getIcons().add(new Image(MainJavaFX.class.getResourceAsStream(RUTA_ICONO_LOGO)));
 
         JuegoController juegoController = fxmlLoader.getController();
 

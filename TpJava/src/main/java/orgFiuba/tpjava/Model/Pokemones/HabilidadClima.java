@@ -12,7 +12,7 @@ public class HabilidadClima extends Habilidad {
         this.clima = clima;
     }
 
-    public String getClima() {
+    public String getClimaNombre() {
         return clima;
     }
 

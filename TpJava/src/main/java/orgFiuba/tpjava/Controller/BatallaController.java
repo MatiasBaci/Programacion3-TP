@@ -3,10 +3,7 @@ package orgFiuba.tpjava.Controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import orgFiuba.tpjava.Controller.Eventos.AtaqueSeleccionadoEvent;
 import orgFiuba.tpjava.Controller.Eventos.MenuCambiarPokemonEvent;
@@ -18,7 +15,6 @@ import orgFiuba.tpjava.Model.Pokemones.Habilidad;
 import orgFiuba.tpjava.Model.Pokemones.Pokemon;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -152,16 +148,14 @@ public class BatallaController {
         GridPane ataques = new GridPane();
 
         List<Habilidad> habilidades = new ArrayList<>(pokemon.getMisHabilidades().values());
+        PokemonResourceFactory pokemonResourceFactory = new PokemonResourceFactory();
 
         int index = 0;
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < 2; j++) {
                 Habilidad habilidad = habilidades.get(index);
-                Button ataque = new Button(habilidad.getNombre());
-                ataque.setPrefHeight(100);
-                ataque.setPrefWidth(200);
-                ataque.setStyle("-fx-font-size: 18px");
-                ataque.setOnAction(event -> this.juegoController.handle(new AtaqueSeleccionadoEvent(habilidad, pokemon)));
+                Pane ataque = pokemonResourceFactory.generarBotonAtaque(habilidad);
+                ataque.setOnMouseClicked(event -> this.juegoController.handle(new AtaqueSeleccionadoEvent(habilidad, pokemon)));
                 ataques.add(ataque, j, i);
                 index++;
             }
