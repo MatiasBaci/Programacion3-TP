@@ -4,55 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="81ad5f3d-e77a-4eab-8f82-726006efbf84" name="Changes" comment="Bugfix">
-      <change afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Cries/Alakazam.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Cries/Araquanid.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Cries/Bidoof.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Cries/Charizard.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Cries/Crobat.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Cries/Dusknoir.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Cries/Golem.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Cries/Lucario.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Cries/Pikachu.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Cries/Rayquaza.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Cries/Squirtle.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Cries/Trevenant.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Musica/Pokemon Uranium - Vs. Gym Leader (Last Pokemon).mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Musica/Pokémon Uranium - Battle! Vs. Wild Nuclear Pokémon.mp3" afterDir="false" />
+    <list default="true" id="81ad5f3d-e77a-4eab-8f82-726006efbf84" name="Changes" comment="Delete Auxiliar :P">
+      <change afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/StyleCss/Pokeball.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/StyleCss/Pokeball2.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Constantes.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Constantes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Controller/BatallaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Controller/BatallaController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Controller/JuegoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Controller/JuegoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Controller/PokemonImageFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Controller/PokemonResourceFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/MainJavaFX.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/MainJavaFX.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Espalda/169_Crobat.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Espalda/25_Pikachu.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Espalda/283_Araquanid.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Espalda/384_Rayquaza.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Espalda/399_Bidoof.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Espalda/412_Trevenant.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Espalda/448_Lucario.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Espalda/477_Dusknoir.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Espalda/65_Alakazam.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Espalda/6_Charizard.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Espalda/76_Golem.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Espalda/7_Squirtle.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Frente/412_Trevenant.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Frente/alakazam.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Frente/bidoof.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Frente/charizard.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Frente/crobat.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Frente/dusknoir.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Frente/golem.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Frente/lucario.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Frente/noAraquanid.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Frente/pikachu.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Frente/rayquaza.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Frente/squirtle.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Frente/static_pikachu.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/inicio-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/inicio-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/seleccionarNombreJugadores-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/seleccionarNombreJugadores-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Controller/PokemonResourceFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Controller/PokemonResourceFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/batalla-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/batalla-view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/TpJava_jar/TpJava.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/TpJava_jar/TpJava.jar" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -94,26 +53,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "TP__3__JavaFX",
-    "last_opened_file_path": "C:/Users/Mati/Documents/GitHub/Programacion3-TP/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemon/main-sprites/black-white/pokemonesEjemplo",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;TP__3__JavaFX&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Dayru/OneDrive/Documents/Algoritmo y Programacion 3 -  CANO/TP1 - ALGO3/Programacion3-TP/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="Item" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Dayru\OneDrive\Documents\Algoritmo y Programacion 3 -  CANO\TP1 - ALGO3\Programacion3-TP\TpJava\src\main\resources\orgFiuba\tpjava\Imagenes" />
+      <recent name="C:\Users\Dayru\OneDrive\Documents\Algoritmo y Programacion 3 -  CANO\TP1 - ALGO3\Programacion3-TP\TpJava\src\main\resources\orgFiuba\tpjava" />
+      <recent name="C:\Users\Dayru\OneDrive\Documents\Algoritmo y Programacion 3 -  CANO\TP1 - ALGO3\Programacion3-TP\TpJava\src\main\java\orgFiuba\tpjava\Controller" />
       <recent name="C:\Users\Mati\Documents\GitHub\Programacion3-TP\TpJava\src\main\resources\orgFiuba\tpjava\Imagenes\pokemon\main-sprites\black-white\pokemonesEjemplo" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -180,17 +142,17 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Main" />
       <item itemvalue="Application.MainJavaFX" />
-      <item itemvalue="JUnit.java in TpJava" />
+      <item itemvalue="Application.Main" />
       <item itemvalue="JUnit.ModificacionAtaqueTest.testModificacionAtaqueModificaAtaque" />
+      <item itemvalue="JUnit.java in TpJava" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.MainJavaFX" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.ModificacionAtaqueTest.testModificacionAtaqueModificaAtaque" />
         <item itemvalue="JUnit.java in TpJava" />
-        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -235,7 +197,23 @@
       <option name="project" value="LOCAL" />
       <updated>1700622092430</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Mas cambios a menu Items">
+      <option name="closed" value="true" />
+      <created>1701106624966</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1701106624967</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Delete Auxiliar :P">
+      <option name="closed" value="true" />
+      <created>1701106715755</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1701106715755</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -249,7 +227,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="Funcional" />
+                        <option value="origin/TP_3_JavaFX" />
                       </list>
                     </value>
                   </entry>
@@ -267,16 +245,20 @@
     <MESSAGE value="cosas de JavaFx con Santi" />
     <MESSAGE value="Imagenes de Pokemon animadas. Por ahora solo muestra los dos Pokemon juntos" />
     <MESSAGE value="Bugfix" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bugfix" />
+    <MESSAGE value="Mas cambios a menu Items" />
+    <MESSAGE value="Delete Auxiliar :P" />
+    <option name="LAST_COMMIT_MESSAGE" value="Delete Auxiliar :P" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <breakpoint enabled="true" type="java-exception">
-          <properties class="java.lang.NullPointerException" package="java.lang" />
-          <option name="timeStamp" value="1" />
-        </breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="orgFiuba.Model.Pokemones.Cualidades" memberName="ataque" />
+        <PinnedItemInfo parentTag="orgFiuba.Model.Pokemones.Pokemon" memberName="cualidades" />
+        <PinnedItemInfo parentTag="org.fiuba.algoritmos3.Cualidades" memberName="nivel" />
+      </pinned-members>
+    </pin-to-top-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Programacion3_TP$All_in_TpJava.ic" NAME="All in TpJava Coverage Results" MODIFIED="1699114316912" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

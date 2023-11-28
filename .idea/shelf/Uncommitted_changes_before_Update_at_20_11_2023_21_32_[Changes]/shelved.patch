@@ -1,0 +1,239 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"81ad5f3d-e77a-4eab-8f82-726006efbf84\" name=\"Changes\" comment=\"\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/HabilidadAtaque.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/HabilidadAtaque.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Controlador.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Controlador.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/HabilidadAtaque.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/HabilidadAtaque.class\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n        <option value=\"Interface\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"Prueba\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProblemsViewState\">\r\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\r\n  </component>\r\n  <component name=\"ProjectCodeStyleSettingsMigration\">\r\n    <option name=\"version\" value=\"2\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 1\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2VZWDceRPeCVhqYCOKGBo7NpSdD\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\r\n    \"last_opened_file_path\": \"C:/Users/Dayru/OneDrive/Documents/Algoritmo y Programacion 3 -  CANO/TP1 - ALGO3/Tp1_local\",\r\n    \"project.structure.last.edited\": \"Project\",\r\n    \"project.structure.proportion\": \"0.0\",\r\n    \"project.structure.side.proportion\": \"0.0\",\r\n    \"run.code.analysis.last.selected.profile\": \"pProject Default\",\r\n    \"settings.editor.selected.configurable\": \"preferences.editor\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CreateClassDialog.RecentsKey\">\r\n      <recent name=\"Item\" />\r\n    </key>\r\n    <key name=\"CopyClassDialog.RECENTS_KEY\">\r\n      <recent name=\"Item\" />\r\n      <recent name=\"Tipo\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"81ad5f3d-e77a-4eab-8f82-726006efbf84\" name=\"Changes\" comment=\"\" />\r\n      <created>1695043963160</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1695043963160</updated>\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State>\r\n              <option name=\"FILTERS\">\r\n                <map>\r\n                  <entry key=\"branch\">\r\n                    <value>\r\n                      <list>\r\n                        <option value=\"Funcional\" />\r\n                      </list>\r\n                    </value>\r\n                  </entry>\r\n                </map>\r\n              </option>\r\n            </State>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <breakpoint enabled=\"true\" type=\"java-exception\">\r\n          <properties class=\"java.lang.NullPointerException\" package=\"java.lang\" />\r\n          <option name=\"timeStamp\" value=\"1\" />\r\n        </breakpoint>\r\n      </breakpoints>\r\n    </breakpoint-manager>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 7d24fa4ca375350f601457954b60813f90bcfe3e)
++++ b/.idea/workspace.xml	(date 1700526729700)
+@@ -4,11 +4,9 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="81ad5f3d-e77a-4eab-8f82-726006efbf84" name="Changes" comment="">
++    <list default="true" id="db9b83d2-6275-4a4f-a6da-5bb18b9fb6c8" name="Changes" comment="">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/HabilidadAtaque.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/HabilidadAtaque.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Controlador.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Controlador.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/HabilidadAtaque.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/HabilidadAtaque.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/artifacts/TpJava_jar/TpJava.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/TpJava_jar/TpJava.jar" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -18,63 +16,113 @@
+   <component name="FileTemplateManagerImpl">
+     <option name="RECENT_TEMPLATES">
+       <list>
+-        <option value="Class" />
+         <option value="Interface" />
++        <option value="Class" />
+       </list>
+     </option>
+   </component>
+   <component name="Git.Settings">
+-    <option name="RECENT_BRANCH_BY_REPOSITORY">
+-      <map>
+-        <entry key="$PROJECT_DIR$" value="Prueba" />
+-      </map>
+-    </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+-  </component>
+-  <component name="ProblemsViewState">
+-    <option name="selectedTabId" value="CurrentFile" />
+   </component>
+   <component name="ProjectCodeStyleSettingsMigration">
+     <option name="version" value="2" />
+   </component>
+   <component name="ProjectColorInfo">{
+-  &quot;associatedIndex&quot;: 1
++  &quot;associatedIndex&quot;: 6
+ }</component>
+-  <component name="ProjectId" id="2VZWDceRPeCVhqYCOKGBo7NpSdD" />
++  <component name="ProjectId" id="2XP1xd5SwhcjrSwcrMCFxsEs3uC" />
+   <component name="ProjectViewState">
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
++    <option name="sortKey" value="BY_TIME_DESCENDING" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "RunOnceActivity.OpenProjectViewOnStart": "true",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+-    "last_opened_file_path": "C:/Users/Dayru/OneDrive/Documents/Algoritmo y Programacion 3 -  CANO/TP1 - ALGO3/Tp1_local",
+-    "project.structure.last.edited": "Project",
+-    "project.structure.proportion": "0.0",
+-    "project.structure.side.proportion": "0.0",
+-    "run.code.analysis.last.selected.profile": "pProject Default",
+-    "settings.editor.selected.configurable": "preferences.editor"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
++    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-20&quot;,
++    &quot;last_opened_file_path&quot;: &quot;C:/Users/Dayru/OneDrive/Documents/Algoritmo y Programacion 3 -  CANO/TP1 - ALGO3/Programacion3-TP/TpJava/outputJson&quot;,
++    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
++    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
++    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
++    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="RecentsManager">
+     <key name="CreateClassDialog.RecentsKey">
+-      <recent name="Item" />
++      <recent name="org.fiuba.algoritmos3" />
++    </key>
++    <key name="CopyFile.RECENT_KEYS">
++      <recent name="C:\Users\Dayru\OneDrive\Documents\Algoritmo y Programacion 3 -  CANO\TP1 - ALGO3\Programacion3-TP\TpJava\outputJson" />
++    </key>
++    <key name="MoveFile.RECENT_KEYS">
++      <recent name="C:\Users\Dayru\OneDrive\Documents\Algoritmo y Programacion 3 -  CANO\TP1 - ALGO3\Programacion3-TP\TpJava\src\main\java" />
+     </key>
+     <key name="CopyClassDialog.RECENTS_KEY">
+-      <recent name="Item" />
+-      <recent name="Tipo" />
++      <recent name="orgFiuba.Model.SerializacionDeserealizacion" />
++      <recent name="orgFiuba.Model.Exceptions" />
++      <recent name="SerializacionDeserealizacion" />
++      <recent name="org.fiuba.algoritmos3" />
+     </key>
++  </component>
++  <component name="RunManager" selected="Application.orgFiuba.Main">
++    <configuration name="orgFiuba.Main" type="Application" factoryName="Application" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="orgFiuba.Main" />
++      <module name="TpJava" />
++      <extension name="coverage">
++        <pattern>
++          <option name="PATTERN" value="org.fiuba.algoritmos3.*" />
++          <option name="ENABLED" value="true" />
++        </pattern>
++      </extension>
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <configuration name="All in TpJava" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
++      <module name="TpJava" />
++      <option name="PACKAGE_NAME" value="" />
++      <option name="TEST_OBJECT" value="package" />
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <configuration name="TipoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
++      <module name="TpJava" />
++      <extension name="coverage">
++        <pattern>
++          <option name="PATTERN" value="TipoTests.*" />
++          <option name="ENABLED" value="true" />
++        </pattern>
++      </extension>
++      <option name="PACKAGE_NAME" value="TipoTests" />
++      <option name="MAIN_CLASS_NAME" value="TipoTests.TipoTest" />
++      <option name="TEST_OBJECT" value="class" />
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <list>
++      <item itemvalue="Application.orgFiuba.Main" />
++      <item itemvalue="JUnit.All in TpJava" />
++      <item itemvalue="JUnit.TipoTest" />
++    </list>
++    <recent_temporary>
++      <list>
++        <item itemvalue="JUnit.All in TpJava" />
++        <item itemvalue="JUnit.TipoTest" />
++      </list>
++    </recent_temporary>
+   </component>
+   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+   <component name="TaskManager">
+     <task active="true" id="Default" summary="Default task">
+-      <changelist id="81ad5f3d-e77a-4eab-8f82-726006efbf84" name="Changes" comment="" />
+-      <created>1695043963160</created>
++      <changelist id="db9b83d2-6275-4a4f-a6da-5bb18b9fb6c8" name="Changes" comment="" />
++      <created>1698516155399</created>
+       <option name="number" value="Default" />
+       <option name="presentableId" value="Default" />
+-      <updated>1695043963160</updated>
++      <updated>1698516155399</updated>
+     </task>
+     <servers />
+   </component>
+@@ -89,7 +137,7 @@
+                   <entry key="branch">
+                     <value>
+                       <list>
+-                        <option value="Funcional" />
++                        <option value="origin/TP_3_Pruebas" />
+                       </list>
+                     </value>
+                   </entry>
+@@ -104,11 +152,57 @@
+   <component name="XDebuggerManager">
+     <breakpoint-manager>
+       <breakpoints>
+-        <breakpoint enabled="true" type="java-exception">
+-          <properties class="java.lang.NullPointerException" package="java.lang" />
+-          <option name="timeStamp" value="1" />
+-        </breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/TpJava/src/main/java/view/EstadosView/EstadoDormidoView.java</url>
++          <line>19</line>
++          <option name="timeStamp" value="7" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/TpJava/src/main/java/Item/Revivir.java</url>
++          <line>16</line>
++          <option name="timeStamp" value="22" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/TpJava/src/main/java/Item/PocionCuracionEstados.java</url>
++          <line>14</line>
++          <option name="timeStamp" value="23" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/TpJava/src/main/java/Item/ItemsEstado.java</url>
++          <line>27</line>
++          <option name="timeStamp" value="24" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/Main.java</url>
++          <line>61</line>
++          <option name="timeStamp" value="28" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/Main.java</url>
++          <line>49</line>
++          <option name="timeStamp" value="31" />
++        </line-breakpoint>
+       </breakpoints>
+     </breakpoint-manager>
++    <pin-to-top-manager>
++      <pinned-members>
++        <PinnedItemInfo parentTag="orgFiuba.Model.Pokemones.Cualidades" memberName="ataque" />
++        <PinnedItemInfo parentTag="orgFiuba.Model.Pokemones.Pokemon" memberName="cualidades" />
++        <PinnedItemInfo parentTag="org.fiuba.algoritmos3.Cualidades" memberName="nivel" />
++      </pinned-members>
++    </pin-to-top-manager>
++    <watches-manager>
++      <configuration name="Application">
++        <watch expression="habilidades.get(2)" language="JAVA" />
++        <watch expression="listaPokemon.get(0).unPokemon.misHabilidades" language="JAVA" />
++      </configuration>
++    </watches-manager>
++  </component>
++  <component name="XSLT-Support.FileAssociations.UIState">
++    <expand />
++    <select />
++  </component>
++  <component name="com.intellij.coverage.CoverageDataManagerImpl">
++    <SUITE FILE_PATH="coverage/Programacion3_TP$All_in_TpJava.ic" NAME="All in TpJava Coverage Results" MODIFIED="1699114316912" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+   </component>
+ </project>
+\ No newline at end of file

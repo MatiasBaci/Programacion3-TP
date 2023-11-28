@@ -14,6 +14,8 @@ import orgFiuba.tpjava.Model.Pokemones.Pokemon;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static orgFiuba.tpjava.Constantes.*;
 
@@ -87,12 +89,29 @@ public class PokemonResourceFactory {
         pokemonStats.setTranslateY(30);
         return pokemonStats;
     }
+    public String  createBatallaStats(Pokemon unPokemon){
+
+
+        List<String> estados = new ArrayList<>();
+        unPokemon.getCualidades().obtenerEstadosActuales().forEach(x -> estados.add(x.getNombre()));
+        String todosLosEstados = "Estados: ";
+        for (String unEstado : estados){
+            if(unEstado != "Normal" ){
+                todosLosEstados += unEstado + " ";
+            }
+        }
+        String unTextoCompleto =  "HP: " + (int)unPokemon.getCualidades().getVida() + "\n" +
+                "Lv " +(int)unPokemon.getCualidades().getNivel()+ "\n" +
+                unPokemon.getNombre() + "\n"+  todosLosEstados;
+
+        return  unTextoCompleto;
+    }
 
     public String createHabilidadSFXPath(Habilidad habilidad) {
         return RUTA_SFX_HABILIDADES + habilidad.getNombre() + ".mp3";
     }
 
-    public Background createClimaOverlay(String clima, double x, double y) throws FileNotFoundException {
+    public Image createClimaOverlay(String clima) throws FileNotFoundException {
         Image backgroundImage = null;
         String path;
         // Load the image
@@ -108,13 +127,13 @@ public class PokemonResourceFactory {
             }
         }
         // Create a BackgroundImage
-        BackgroundImage background = new BackgroundImage(
+       /*BackgroundImage background = new BackgroundImage(
                 backgroundImage,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.CENTER,
                 new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false)
-        );
-        return new Background(background);
+        );*/
+        return backgroundImage;
     }
 }

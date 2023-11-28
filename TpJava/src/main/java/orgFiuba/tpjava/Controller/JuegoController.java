@@ -11,6 +11,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import orgFiuba.tpjava.Controller.Eventos.*;
+import orgFiuba.tpjava.Model.Climas.SistemaDeClima;
 import orgFiuba.tpjava.Model.Items.Item;
 import orgFiuba.tpjava.Model.Juego;
 import orgFiuba.tpjava.Model.Jugador;
@@ -85,6 +86,8 @@ public class JuegoController extends Parent implements EventHandler<Event> {
 
     public void turno(Jugador jugador) {
 
+        jugador.aplicarEfectoPasivo();
+        SistemaDeClima.aplicarClimaActual(jugador.getPokemonActual());
         if (!jugador.getPokemonActual().estaConsciente()) {
             //mostrar pantalla de cambio de pokemon
             this.seleccionarPokemonController.actualizarVista(jugador);

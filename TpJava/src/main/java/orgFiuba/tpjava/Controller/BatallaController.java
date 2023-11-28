@@ -5,10 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import orgFiuba.tpjava.Controller.Eventos.AtaqueSeleccionadoEvent;
 import orgFiuba.tpjava.Controller.Eventos.MenuCambiarPokemonEvent;
@@ -19,6 +16,7 @@ import orgFiuba.tpjava.Model.Jugador;
 import orgFiuba.tpjava.Model.Pokemones.Habilidad;
 import orgFiuba.tpjava.Model.Pokemones.Pokemon;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,13 +26,17 @@ public class BatallaController {
     @FXML
     VBox pantalla;
     @FXML
-    VBox climaOverlay;
+    ImageView climaOverlay;
+
+    @FXML
+    StackPane stackPaneFondo;
+
     @FXML
     HBox pokemones;
     @FXML
     VBox pokemonJ1Box;
     @FXML
-    HBox pokemonJ1Stats;
+    VBox pokemonJ1Stats;
     @FXML
     ProgressBar pokemonJ1HP;
     @FXML
@@ -50,7 +52,7 @@ public class BatallaController {
     @FXML
     ImageView pokemonJ2View;
     @FXML
-    HBox pokemonJ2Stats;
+    VBox pokemonJ2Stats;
     @FXML
     ProgressBar pokemonJ2HP;
     @FXML
@@ -71,10 +73,14 @@ public class BatallaController {
     Button itemButton;
     @FXML
     Button rendirseButton;
+    @FXML
+    HBox pokeballs1;
+    @FXML
+    HBox pokeballs2;
     private JuegoController juegoController;
 
 
-    public void inicializar(Juego juego, JuegoController juegoController) {
+    public void inicializar(Juego juego, JuegoController juegoController){
 
         this.juegoController = juegoController;
         this.juegoController.setBatallaController(this);
@@ -86,21 +92,35 @@ public class BatallaController {
         PokemonResourceFactory pokemonResourceFactory = new PokemonResourceFactory();
 
         String clima = juego.getClimaActual().getNombre();
-        try {
+        try{
+            this.climaOverlay.setImage(pokemonResourceFactory.createClimaOverlay(clima));
+            // Bind the dimensions of the ImageView to the dimensions of the StackPane
+            this.climaOverlay.fitWidthProperty().bind(this.stackPaneFondo.widthProperty());
+            this.climaOverlay.fitHeightProperty().bind(this.stackPaneFondo.heightProperty());
+        }catch (FileNotFoundException e){
+            this.climaOverlay.setImage(null);
+        }
+
+        /*try {
             Background background = pokemonResourceFactory.createClimaOverlay(clima, this.climaOverlay.getHeight(), this.climaOverlay.getWidth());
             this.climaOverlay.setBackground(background);
         } catch (Exception e) {
             this.climaOverlay.setBackground(null);
-        }
+        }*/
 
-        this.pokemonJ1StatsText.setText(juego.getJugadorActual().getPokemonActual()
+        /*this.pokemonJ1StatsText.setText(juego.getJugadorActual().getPokemonActual()
                 .getNombre() + "\n" +
                 "Lv " + juego.getJugadorActual().getPokemonActual().getCualidades().getNivel());
         this.pokemonJ1HP.setProgress(juego.getJugadorActual().getPokemonActual().getCualidades().getPorcentajeVida());
         this.pokemonJ2StatsText.setText(juego.getJugadorActual().getAdversario().getPokemonActual()
                 .getNombre() + "\n" +
-                "Lv " + juego.getJugadorActual().getAdversario().getPokemonActual().getCualidades().getNivel());
-        this.pokemonJ2HP.setProgress(juego.getJugadorActual().getAdversario().getPokemonActual().getCualidades().getPorcentajeVida());
+                "Lv " + juego.getJugadorActual().getAdversario().getPokemonActual().getCualidades().getNivel());*/
+
+        this.pokemonJ1StatsText.setText(pokemonResourceFactory.createBatallaStats(juego.getJugadorActual().getPokemonActual()));
+        this.pokemonJ2StatsText.setText(pokemonResourceFactory.createBatallaStats(juego.getJugadorActual().getAdversario().getPokemonActual()));
+
+        this.dibujarHPBar(juego.getJugadorActual().getPokemonActual(), this.pokemonJ1HP);
+        this.dibujarHPBar(juego.getJugadorActual().getAdversario().getPokemonActual(), this.pokemonJ2HP);
 
         this.pokemonJ1View.setImage(pokemonResourceFactory.createPokemonBattleView(juego.getJugadorActual().getPokemonActual(), "Espalda").getImage());
         this.pokemonJ1View.setFitHeight(this.pokemonJ1View.getImage().getHeight()*3);
@@ -154,5 +174,15 @@ public class BatallaController {
 
     public void mostrarMensaje(String mensaje) {
         this.dialogo.setText(mensaje);
+    }
+
+    public void dibujarHPBar(Pokemon pokemon, ProgressBar barra) {
+        barra.setProgress(pokemon.getCualidades().getPorcentajeVida());
+        if (pokemon.getCualidades().getPorcentajeVida() > 0.5)
+            barra.setStyle("-fx-accent: green;");
+        else if (pokemon.getCualidades().getPorcentajeVida() > 0.25)
+            barra.setStyle("-fx-accent: yellow;");
+        else
+            barra.setStyle("-fx-accent: red;");
     }
 }
