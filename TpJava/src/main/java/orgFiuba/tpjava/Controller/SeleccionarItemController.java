@@ -10,10 +10,10 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import orgFiuba.tpjava.Controller.Eventos.ItemSeleccionadoEvent;
 import orgFiuba.tpjava.Model.Items.Item;
 import orgFiuba.tpjava.Model.Jugador;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

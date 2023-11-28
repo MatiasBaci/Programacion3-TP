@@ -65,9 +65,10 @@ public class Jugador {
 
     public void setPokemonActual(Pokemon pokemonActual) {this.pokemonActual = pokemonActual;}
 
-    public void setPokemon(Pokemon pokemon){
+    public void actualizarPokemon(Pokemon pokemon){
         this.misPokemones.replace(pokemon.getNombre(), pokemon);
     }
+
     public void setAdversario(Jugador unEnemigo) {
         this.adversario = unEnemigo;
     }

@@ -2,20 +2,19 @@ package orgFiuba.tpjava.Controller;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import orgFiuba.tpjava.Controller.Eventos.ItemAplicadoEvent;
 import orgFiuba.tpjava.Controller.Eventos.PokemonSeleccionadoEvent;
 import orgFiuba.tpjava.Model.Items.Item;
 import orgFiuba.tpjava.Model.Jugador;
 import orgFiuba.tpjava.Model.Modificaciones.ModificacionVida;
 import orgFiuba.tpjava.Model.Pokemones.Pokemon;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -133,7 +132,11 @@ public class SeleccionarPokemonController {
             if(pokemon.getCualidades().getVida() == 0) {
                 PantallaInformacion.mostrarInformacion("El pokemon no tiene vida, no se puede elegir.");
             }else{
-                juegoController.handle(new PokemonSeleccionadoEvent(jugador, pokemon));
+                Boolean pokemonAnteriorMurio = false;
+                try {
+                    pokemonAnteriorMurio = !jugador.getPokemonActual().estaConsciente();
+                } catch (NullPointerException ignored) {}
+                juegoController.handle(new PokemonSeleccionadoEvent(jugador, pokemon, pokemonAnteriorMurio));
             }
         };
     }
@@ -150,5 +153,4 @@ public class SeleccionarPokemonController {
             juegoController.volverMenu();
         }
     }
-
 }

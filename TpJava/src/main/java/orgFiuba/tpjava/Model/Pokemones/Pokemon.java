@@ -53,13 +53,11 @@ public class Pokemon {
     public void atacar(Pokemon pokemonEnemigoActual, String nombreDeHabilidad) {
 
         Habilidad unaHabilidad = this.seleccionarHabilidad(nombreDeHabilidad);
-
-
         if (this.cualidades.atacarConEstadosActuales()) {
             unaHabilidad.usarHabilidad(pokemonEnemigoActual.getCualidades(), this.cualidades);
+            // lanzar evento de ataque
         }
     }
 
     public Tipo obtenerTipo() {return this.cualidades.getTipo(); }
-
 }

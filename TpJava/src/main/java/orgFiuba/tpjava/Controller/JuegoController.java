@@ -43,6 +43,7 @@ public class JuegoController extends Parent implements EventHandler<Event> {
         this.stage.setResizable(false);
         this.juego = juego;
         this.juego.setJugadorActual(this.juego.getJugador1());
+        this.esPrimerTurno = true;
         this.inicializarEscenas();
         this.reproducirMusica(RUTA_SOUNDTRACK_INICIO);
         this.stage.show();
@@ -58,47 +59,6 @@ public class JuegoController extends Parent implements EventHandler<Event> {
     protected void onHelloButtonClick() throws IOException {
         welcomeText.setText("");
         this.crearVentanaSeleccionNombre(1);
-    }
-
-
-    public void cicloDeTurnos() {
-        if (!this.juego.getJugadorActual().perdio() && !this.juego.getJugadorActual().getAdversario().perdio()){
-
-            this.turno(this.juego.getJugadorActual());
-        }
-        else if(this.juego.getJugadorActual().perdio()){
-            mostrarPantallaFinDeJuego(this.juego.getJugadorActual().getAdversario());
-            this.stage.close();
-        } else {
-            mostrarPantallaFinDeJuego(this.juego.getJugadorActual());
-            this.stage.close();
-        }
-    }
-
-    private void mostrarPantallaFinDeJuego(Jugador jugadorActual) {
-
-        this.reproducirMusica(RUTA_SOUNDTRACK_VICTORIA);
-        Alert alert  = new Alert(Alert.AlertType.INFORMATION);
-        alert.setHeaderText(null);
-        alert.setTitle("FIN DEL JUEGO");
-        alert.setContentText(jugadorActual.getNombre() + " es el ganador!!!");
-        alert.showAndWait();
-    }
-
-    public void turno(Jugador jugador) {
-
-        jugador.aplicarEfectoPasivo();
-        SistemaDeClima.aplicarClimaActual(jugador.getPokemonActual());
-        if (!jugador.getPokemonActual().estaConsciente()) {
-            //mostrar pantalla de cambio de pokemon
-            this.seleccionarPokemonController.actualizarVista(jugador);
-            this.stage.setScene(this.escenas.get("sceneSeleccionPokemon"));
-        }
-        else try {
-            this.mostrarVentanaBatalla();
-        } catch (NullPointerException e) {
-            this.crearVentanaBatalla();
-        }
     }
 
     private void elegirJugadorInicial() {
@@ -117,6 +77,45 @@ public class JuegoController extends Parent implements EventHandler<Event> {
         }
     }
 
+    private void mostrarPantallaFinDeJuego(Jugador jugadorActual) {
+
+        this.reproducirMusica(RUTA_SOUNDTRACK_VICTORIA);
+        Alert alert  = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText(null);
+        alert.setTitle("FIN DEL JUEGO");
+        alert.setContentText(jugadorActual.getNombre() + " es el ganador!!!");
+        alert.showAndWait();
+    }
+
+    public void cicloDeTurnos() {
+        if (!this.juego.getJugadorActual().perdio() && !this.juego.getJugadorActual().getAdversario().perdio()){
+
+            this.turno(this.juego.getJugadorActual());
+        }
+        else if(this.juego.getJugadorActual().perdio()){
+            mostrarPantallaFinDeJuego(this.juego.getJugadorActual().getAdversario());
+            this.stage.close();
+        } else {
+            mostrarPantallaFinDeJuego(this.juego.getJugadorActual());
+            this.stage.close();
+        }
+    }
+
+    public void turno(Jugador jugador) {
+
+        jugador.aplicarEfectoPasivo();
+        SistemaDeClima.aplicarClimaActual(jugador.getPokemonActual());
+        if (!jugador.getPokemonActual().estaConsciente()) {
+            //mostrar pantalla de cambio de pokemon
+            this.seleccionarPokemonController.actualizarVista(jugador);
+            this.stage.setScene(this.escenas.get("sceneSeleccionPokemon"));
+        }
+        else try {
+            this.mostrarVentanaBatalla();
+        } catch (NullPointerException e) {
+            this.crearVentanaBatalla();
+        }
+    }
 
     private void crearVentanaBatalla() {
 
@@ -182,7 +181,6 @@ public class JuegoController extends Parent implements EventHandler<Event> {
 
     }
 
-
     public void reproducirMusica(String ruta) {
         try {
             this.musicPlayer.stop();
@@ -206,6 +204,7 @@ public class JuegoController extends Parent implements EventHandler<Event> {
     public void setBatallaController(BatallaController batallaController) {
         this.batallaController = batallaController;
     }
+
     public void setSeleccionarPokemonController(SeleccionarPokemonController seleccionarPokemonController) {
         this.seleccionarPokemonController = seleccionarPokemonController;
     }
@@ -249,8 +248,13 @@ public class JuegoController extends Parent implements EventHandler<Event> {
             this.juego.setJugadorActual(this.juego.getJugador2());
             this.crearVentanaSeleccionarPokemon(juego.getJugador2());
         } else {
-            if (this.esPrimerTurno) {this.elegirJugadorInicial();}
-            else {this.juego.cambiarTurno();}
+            if (this.esPrimerTurno) {
+                this.elegirJugadorInicial();
+            } else {
+                this.batallaController.mostrarMensaje(pokemonSeleccionadoEvent.getJugador().getNombre() + " seleccionó a " + pokemonSeleccionadoEvent.getPokemon().getNombre() + "!");
+                if (!pokemonSeleccionadoEvent.pokemonAnteriorMurio()) {
+                this.juego.cambiarTurno();}
+            }
             this.cicloDeTurnos();
         }
     }
@@ -262,6 +266,8 @@ public class JuegoController extends Parent implements EventHandler<Event> {
         } catch (Exception ignored) {}
 
         this.juego.getJugadorActual().atacarJugador(this.juego.getJugadorActual().getAdversario(), ataqueSeleccionadoEvent.getHabilidad().getNombre());
+        //this.batallaController.mostrarMensaje("es suerefectivo!");
+        this.batallaController.mostrarMensaje(ataqueSeleccionadoEvent.getPokemon().getNombre() + " usó " + ataqueSeleccionadoEvent.getHabilidad().getNombre() + "!");
         this.juego.cambiarTurno();
         this.cicloDeTurnos();
         this.batallaController.actualizarVista(this.juego);
@@ -285,7 +291,10 @@ public class JuegoController extends Parent implements EventHandler<Event> {
     }
 
     public void handle(ItemAplicadoEvent itemAplicadoEvent) {
-        this.juego.getJugadorActual().setPokemon(itemAplicadoEvent.getPokemon());
+        this.juego.getJugadorActual().actualizarPokemon(itemAplicadoEvent.getPokemon());
+        this.batallaController.mostrarMensaje(itemAplicadoEvent.getJugador().getNombre() + " aplicó " + itemAplicadoEvent.getItem().getNombre() + " a " + itemAplicadoEvent.getPokemon().getNombre() + ".");
+        this.juego.cambiarTurno();
+        this.cicloDeTurnos();
         this.mostrarVentanaBatalla();
     }
 

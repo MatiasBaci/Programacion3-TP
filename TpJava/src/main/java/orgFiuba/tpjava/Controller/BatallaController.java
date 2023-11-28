@@ -59,7 +59,7 @@ public class BatallaController {
     @FXML
     VBox dialogoBox;
     @FXML
-    TextArea dialogo;
+    Text dialogo;
     @FXML
     VBox ataquesBox;
     @FXML
@@ -77,17 +77,20 @@ public class BatallaController {
     @FXML
     HBox pokeballs2;
     private JuegoController juegoController;
+    private List<String> mensajes;
 
 
     public void inicializar(Juego juego, JuegoController juegoController){
 
         this.juegoController = juegoController;
         this.juegoController.setBatallaController(this);
+        this.mensajes = new ArrayList<>();
         this.crearVentanaBatalla(juego);
     }
 
     public void crearVentanaBatalla(Juego juego) {
 
+        this.mostrarMensaje("Es el turno de " + juego.getJugadorActual().getNombre() + "!");
         PokemonResourceFactory pokemonResourceFactory = new PokemonResourceFactory();
 
         String clima = juego.getClimaActual().getNombre();
@@ -143,7 +146,6 @@ public class BatallaController {
         juegoController.handle(new MenuItemEvent(jugadorActual));
     }
 
-
     public void crearMenuAtaques(Pokemon pokemon) {
         GridPane ataques = new GridPane();
 
@@ -164,7 +166,6 @@ public class BatallaController {
     }
 
     public void actualizarVista(Juego juego) {
-        this.dialogoBox.getChildren().clear();
         this.pokeballs1.getChildren().clear();
         this.pokeballs2.getChildren().clear();
         this.ataquesBox.getChildren().clear();
@@ -172,7 +173,14 @@ public class BatallaController {
     }
 
     public void mostrarMensaje(String mensaje) {
-        this.dialogo.setText(mensaje);
+        this.mensajes.add(mensaje);
+        StringBuilder concatenado = new StringBuilder();
+        if (this.mensajes.size() > 5)
+            this.mensajes.remove(0);
+        for (String mensajeActual : this.mensajes) {
+            concatenado.append(mensajeActual).append("\n");
+        }
+        this.dialogo.setText(concatenado.toString());
     }
 
     public void dibujarHPBar(Pokemon pokemon, ProgressBar barra) {

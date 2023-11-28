@@ -83,6 +83,5 @@ public class HabilidadAtaque extends Habilidad {
         double danio = Math.round(this.atacar(cualidadesPokemonPropio,cualidadesPokemonEnemigo));
         this.danioRealizado = danio;
         cualidadesPokemonEnemigo.recibirDanio(danio);
-
     }
 }
