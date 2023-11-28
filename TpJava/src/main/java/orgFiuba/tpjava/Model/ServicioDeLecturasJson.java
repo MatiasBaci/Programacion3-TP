@@ -94,6 +94,8 @@ public class ServicioDeLecturasJson {
                 return new ModificacionVida();
             case "estado":
                 return new ModificacionEstado();
+            case "inhabilitado":
+                return new ModificacionEstadoInhabilitado();
             default:
                 throw new IllegalArgumentException("Tipo de modificación desconocido: " + tipo);
         }
