@@ -14,14 +14,12 @@ public abstract class Estado {
     protected boolean eliminarse =  false;
 
     public static Estado instaciarUnEstadoDe(String unEstado){
-        if(unEstado.equals(ESTADO_DORMIDO)){
-            return new EstadoDormido();
-        } else if (unEstado.equals(ESTADO_PARALIZADO)) {
-            return new EstadoParalizado();
-        } else if (unEstado.equals(ESTADO_CONFUSO)) {
-            return new EstadoConfuso();
-        }
-        return new EstadoEnvenenado();
+        return switch (unEstado) {
+            case ESTADO_DORMIDO -> new EstadoDormido();
+            case ESTADO_PARALIZADO -> new EstadoParalizado();
+            case ESTADO_CONFUSO -> new EstadoConfuso();
+            default -> new EstadoEnvenenado();
+        };
     }
     public String getNombre() {
         return nombre;

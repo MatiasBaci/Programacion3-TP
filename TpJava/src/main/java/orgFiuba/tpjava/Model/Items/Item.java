@@ -28,7 +28,7 @@ public abstract class Item {
         return descripcion;
     }
 
-    protected String descripcion;
+    protected final String descripcion;
     public Modificacion unaModificacion;
 
     public Item(String nombre, int cantidad,String descripcion) {

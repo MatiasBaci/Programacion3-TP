@@ -34,13 +34,13 @@ public class CualidadesView {
                         " Ataque: " + ANSI_MARRON + this.cualidades.getAtaque() + ANSI_RESET);
         System.out.println(" Estado: ");
         this.cualidades.obtenerEstadosActuales().forEach(estado -> {
-            if(estado.getNombre() == "Inhabilitado" && this.cualidades.obtenerEstadosActuales().size() == 1){
+            if(estado.getNombre().equals("Inhabilitado") && this.cualidades.obtenerEstadosActuales().size() == 1){
                 System.out.println(" " + estado.getNombreConColor());
             }
-            if(estado.getNombre() != "Normal" && this.cualidades.obtenerEstadosActuales().size() > 1){
+            if(!estado.getNombre().equals("Normal") && this.cualidades.obtenerEstadosActuales().size() > 1){
                 System.out.println(" " + estado.getNombreConColor());
             }
-            if(estado.getNombre() == "Normal" && this.cualidades.obtenerEstadosActuales().size() == 1){
+            if(estado.getNombre().equals("Normal") && this.cualidades.obtenerEstadosActuales().size() == 1){
                 System.out.println(" " + estado.getNombreConColor());
             }
         });

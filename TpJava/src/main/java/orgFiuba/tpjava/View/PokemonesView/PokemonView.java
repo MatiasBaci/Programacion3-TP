@@ -3,6 +3,7 @@ package orgFiuba.tpjava.View.PokemonesView;
 import orgFiuba.tpjava.Model.Pokemones.Habilidad;
 import orgFiuba.tpjava.Model.Pokemones.Pokemon;
 import orgFiuba.tpjava.Model.Tipos.Tipo;
+import orgFiuba.tpjava.View.EstadosView.EstadoView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -66,6 +67,6 @@ public class PokemonView {
     }
 
     public void mostrarEfectoPasivo(){
-        this.cualidadesView.getEstadosActualesView().forEach(estadoView -> estadoView.mostrarEfectoPasivoDeEstado());
+        this.cualidadesView.getEstadosActualesView().forEach(EstadoView::mostrarEfectoPasivoDeEstado);
     }
 }

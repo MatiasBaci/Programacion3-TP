@@ -6,8 +6,6 @@ import javafx.scene.control.TextField;
 import orgFiuba.tpjava.Controller.Eventos.JugadorNombradoEvent;
 import orgFiuba.tpjava.Model.Jugador;
 
-import java.io.IOException;
-
 public class SeleccionarNombreJugadoresController {
 
     public TextField nombreJugador;

@@ -7,7 +7,7 @@ import orgFiuba.tpjava.Model.Pokemones.Pokemon;
 
 public class PokemonSeleccionadoEvent extends Event {
 
-    public static EventType<PokemonSeleccionadoEvent> POKEMON_SELECCIONADO_EVENT = new EventType<>("Pokemon seleccionado Event");
+    public static final EventType<PokemonSeleccionadoEvent> POKEMON_SELECCIONADO_EVENT = new EventType<>("Pokemon seleccionado Event");
     private final Pokemon pokemon;
     private final Jugador jugador;
 

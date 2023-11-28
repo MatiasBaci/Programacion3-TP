@@ -11,13 +11,13 @@
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
    <Pane prefHeight="91.0" prefWidth="299.0">
-      <children>
-         <ImageView translateX="160" translateY="-200" fitHeight="300.0" fitWidth="600.0" layoutX="37.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-               <Image url="@Imagenes/Iconos/SeleccionDeNombre.png" />
-            </image>
-         </ImageView>
-      </children></Pane>
+      <ImageView translateX="160" translateY="-200" fitHeight="300.0" fitWidth="600.0" layoutX="37.0" layoutY="10.0"
+                 pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Imagenes/Iconos/SeleccionDeNombre.png"/>
+         </image>
+      </ImageView>
+   </Pane>
    <TextField fx:id="nombreJugador" maxWidth="-Infinity" onAction="#siguienteVentana" prefHeight="40.0" prefWidth="266.0" promptText="Ingrese su nombre">
       <font>
          <Font size="18.0" />

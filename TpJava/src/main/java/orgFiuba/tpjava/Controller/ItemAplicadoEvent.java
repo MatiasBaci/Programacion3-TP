@@ -12,7 +12,7 @@ public class ItemAplicadoEvent extends Event {
     private final Item item;
 
     private final Pokemon pokemon;
-    public static EventType<CambioDeTurnoEvent> ITEM_APLICADO_EVENT = new EventType<>("Item Aplicado Event");
+    public static final EventType<CambioDeTurnoEvent> ITEM_APLICADO_EVENT = new EventType<>("Item Aplicado Event");
 
     public ItemAplicadoEvent(Jugador jugador, Item item, Pokemon pokemon) {
         super(ITEM_APLICADO_EVENT);

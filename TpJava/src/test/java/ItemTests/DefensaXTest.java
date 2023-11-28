@@ -1,5 +1,6 @@
 package ItemTests;
 
+import org.junit.jupiter.api.Nested;
 import orgFiuba.tpjava.Model.Estados.Estado;
 import orgFiuba.tpjava.Model.Items.DefensaX;
 import orgFiuba.tpjava.Model.Items.Revivir;
@@ -31,7 +32,8 @@ public class DefensaXTest {
         assert realizo;
     }
 
-    static class RevivirTest {
+    @Nested
+    class RevivirTest {
 
         @Test
         public void testAplicarItemCuandoEstaInhabilitado() {

@@ -1,10 +1,8 @@
 package ClimaTests;
 
-import orgFiuba.tpjava.Model.Climas.Clima;
 import orgFiuba.tpjava.Model.Climas.ClimaLLuvia;
 import orgFiuba.tpjava.Model.Climas.ClimaTormentaElectrica;
 import orgFiuba.tpjava.Model.Pokemones.Cualidades;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

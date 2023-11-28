@@ -138,7 +138,7 @@ public class JuegoController extends Parent implements EventHandler<Event> {
         this.stage.show();
     }
 
-    public void crearVentanaSeleccionNombre(int numero) throws IOException {
+    public void crearVentanaSeleccionNombre(int numero) {
 
         this.stage.setScene(this.escenas.get("sceneSeleccionNombreJugador" + numero));
         this.stage.setTitle("Escriba el Nombre del Jugador " + numero);
@@ -157,7 +157,7 @@ public class JuegoController extends Parent implements EventHandler<Event> {
         this.stage.show();
     }
 
-    public void crearVentanaSeleccionarPokemon(Jugador jugador) throws IOException {
+    public void crearVentanaSeleccionarPokemon(Jugador jugador) {
         try {
             //this.stage.setScene(this.escenas.get("sceneSeleccionPokemonInicialJugador" + numero));
             this.seleccionarPokemonController.actualizarVista(jugador);
@@ -227,27 +227,15 @@ public class JuegoController extends Parent implements EventHandler<Event> {
 
     public void handle(JugadorNombradoEvent jugadorNombradoEvent) {
         if (this.juego.getJugador2().getNombre().isBlank()) {
-            try {
-                this.crearVentanaSeleccionNombre(2);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            this.crearVentanaSeleccionNombre(2);
         } else {
-            try {
-                this.juego.setJugadorActual(this.juego.getJugador1());
-                this.crearVentanaSeleccionarPokemon(this.juego.getJugadorActual());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            this.juego.setJugadorActual(this.juego.getJugador1());
+            this.crearVentanaSeleccionarPokemon(this.juego.getJugadorActual());
         }
     }
 
     public void handle(MenuCambiarPokemonEvent menuCambiarPokemonEvent) {
-        try {
-            this.crearVentanaSeleccionarPokemon(menuCambiarPokemonEvent.getJugador());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        this.crearVentanaSeleccionarPokemon(menuCambiarPokemonEvent.getJugador());
 
     }
 
@@ -258,12 +246,8 @@ public class JuegoController extends Parent implements EventHandler<Event> {
         reproducirSoundEffect(pokemonResourceFactory.createCrySFXPath(pokemonSeleccionadoEvent.getPokemon()));
 
         if (this.juego.getJugador2().getPokemonActual() == null) {
-            try {
-                this.juego.setJugadorActual(this.juego.getJugador2());
-                this.crearVentanaSeleccionarPokemon(juego.getJugador2());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            this.juego.setJugadorActual(this.juego.getJugador2());
+            this.crearVentanaSeleccionarPokemon(juego.getJugador2());
         } else {
             if (this.esPrimerTurno) {this.elegirJugadorInicial();}
             else {this.juego.cambiarTurno();}
@@ -296,11 +280,11 @@ public class JuegoController extends Parent implements EventHandler<Event> {
         this.batallaController.mostrarMensaje(mostrarMensajeEvent.getMensaje());
     }
 
-    public void handle(ItemSeleccionadoEvent itemSeleccionadoEvent) throws  IOException{
+    public void handle(ItemSeleccionadoEvent itemSeleccionadoEvent) {
         this.crearVentanaSeleccionarPokemonItem(itemSeleccionadoEvent.getJugador(), itemSeleccionadoEvent.getItem());
     }
 
-    public void handle(ItemAplicadoEvent itemAplicadoEvent) throws IOException{
+    public void handle(ItemAplicadoEvent itemAplicadoEvent) {
         this.juego.getJugadorActual().setPokemonActual(itemAplicadoEvent.getPokemon());
         this.mostrarVentanaBatalla();
     }

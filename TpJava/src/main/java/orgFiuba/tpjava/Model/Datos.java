@@ -3,12 +3,9 @@ package orgFiuba.tpjava.Model;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import orgFiuba.tpjava.Model.Estados.*;
 import orgFiuba.tpjava.Model.Items.*;
-import orgFiuba.tpjava.Model.Modificaciones.*;
 import orgFiuba.tpjava.Model.Pokemones.*;
 import orgFiuba.tpjava.Model.SerializacionDeserealizacion.*;
-import orgFiuba.tpjava.Model.Tipos.Tipo;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,8 +13,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static orgFiuba.tpjava.Constantes.*;
 
 public class Datos {
 
@@ -70,7 +65,8 @@ public class Datos {
             module.addDeserializer(Jugador.class, new PartidaDeserializer()); ///-> PokemonIds
             objectMapperPokemon.registerModule(module);
 
-            List<Jugador> listaDeJugadores = objectMapperPokemon.readValue(partidaFile,new TypeReference<List<Jugador>>() {});
+            List<Jugador> listaDeJugadores = objectMapperPokemon.readValue(partidaFile, new TypeReference<>() {
+            });
             //System.out.println(listaDeJugadores);
             return listaDeJugadores;
 

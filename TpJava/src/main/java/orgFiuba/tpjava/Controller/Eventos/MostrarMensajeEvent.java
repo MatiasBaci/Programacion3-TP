@@ -5,7 +5,7 @@ import javafx.event.EventType;
 
 public class MostrarMensajeEvent extends Event {
 
-    public static EventType<MostrarMensajeEvent> MOSTRAR_MENSAJE_EVENT = new EventType<>("Mostrar MensajeE vent");
+    public static final EventType<MostrarMensajeEvent> MOSTRAR_MENSAJE_EVENT = new EventType<>("Mostrar MensajeE vent");
     private final String mensaje;
 
     public MostrarMensajeEvent(String mensaje) {

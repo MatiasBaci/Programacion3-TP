@@ -10,7 +10,7 @@ public class ItemSeleccionadoEvent extends Event {
 
     private final Jugador jugador;
     private final Item item;
-    public static EventType<CambioDeTurnoEvent> ITEM_SELECCIONADO_EVENT = new EventType<>("Item Seleccionado Event");
+    public static final EventType<CambioDeTurnoEvent> ITEM_SELECCIONADO_EVENT = new EventType<>("Item Seleccionado Event");
 
     public ItemSeleccionadoEvent(Jugador jugador, Item item) {
         super(ITEM_SELECCIONADO_EVENT);

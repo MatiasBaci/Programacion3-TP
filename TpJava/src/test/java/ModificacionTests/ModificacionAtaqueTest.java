@@ -1,6 +1,5 @@
 package ModificacionTests;
 
-import org.junit.jupiter.api.BeforeEach;
 import orgFiuba.tpjava.Model.Modificaciones.ModificacionAtaque;
 import orgFiuba.tpjava.Model.Pokemones.Cualidades;
 import org.junit.jupiter.api.Test;

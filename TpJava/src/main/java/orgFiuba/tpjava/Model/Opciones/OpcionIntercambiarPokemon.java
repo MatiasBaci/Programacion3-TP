@@ -7,7 +7,6 @@ import orgFiuba.tpjava.View.GeneralView;
 import orgFiuba.tpjava.View.JugadorView;
 
 import java.util.Objects;
-import java.util.Scanner;
 
 import static orgFiuba.tpjava.Constantes.ANSI_RESET;
 import static orgFiuba.tpjava.Constantes.ANSI_VERDEOSCURO;
@@ -41,7 +40,7 @@ public class OpcionIntercambiarPokemon implements Opcion{
                 generalView.mostrarMensajeNoSeRealizoIntercambio();
 
             }
-            decision = ServicioDeUserInput.input();
+            //decision = ServicioDeUserInput.input();
         }
     }
 }

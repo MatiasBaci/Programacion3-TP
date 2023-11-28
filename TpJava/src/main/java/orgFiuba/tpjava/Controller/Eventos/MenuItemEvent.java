@@ -8,7 +8,7 @@ public class MenuItemEvent extends Event{
 
     private final Jugador jugador;
 
-    public static EventType<MenuItemEvent> APLICAR_ITEM_EVENT = new EventType<>("Aplicar Item Event");
+    public static final EventType<MenuItemEvent> APLICAR_ITEM_EVENT = new EventType<>("Aplicar Item Event");
 
     public MenuItemEvent(Jugador jugador){
         super(APLICAR_ITEM_EVENT);

@@ -117,11 +117,7 @@ public class SeleccionarPokemonController {
             else{
                 jugador.elegirItem(itemAplicar.getNombre()).aplicarItem(pokemon.getCualidades());
             }
-            try {
-                juegoController.handle(new ItemAplicadoEvent(jugador, itemAplicar, pokemon));
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            juegoController.handle(new ItemAplicadoEvent(jugador, itemAplicar, pokemon));
             //Hay que mejorar a forma de volver al menu, lo ideal seria no avanazar a 133 en los casos negayivos
             // y agregar un boton para volver al menu sin consumir turno para no estancase.
             //juegoController.handle(new PokemonSeleccionadoEvent(jugador, pokemon)); // Replace yourFunction with the actual function name

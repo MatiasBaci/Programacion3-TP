@@ -4,7 +4,6 @@ import javafx.scene.Node;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -16,6 +15,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static orgFiuba.tpjava.Constantes.*;
 
@@ -42,6 +42,10 @@ public class PokemonResourceFactory {
         }
         String path = RUTA_MENU_SPRITES + carpeta + "/" + pokemon.getNombre() + extension;
         Image pokemonImage = new Image(new File(path).toURI().toString());
+        return getImageView(pokemonEstaVivo, pokemonImage);
+    }
+
+    private static ImageView getImageView(Boolean pokemonEstaVivo, Image pokemonImage) {
         ImageView pokemonImageView = new ImageView();
         pokemonImageView.setImage(pokemonImage);
         pokemonImageView.setFitHeight(pokemonImage.getHeight()*3);
@@ -91,13 +95,12 @@ public class PokemonResourceFactory {
     }
     public String  createBatallaStats(Pokemon unPokemon){
 
-
         List<String> estados = new ArrayList<>();
         unPokemon.getCualidades().obtenerEstadosActuales().forEach(x -> estados.add(x.getNombre()));
-        String todosLosEstados = "Estados: ";
+        StringBuilder todosLosEstados = new StringBuilder("Estados: ");
         for (String unEstado : estados){
-            if(unEstado != "Normal" ){
-                todosLosEstados += unEstado + " ";
+            if(!Objects.equals(unEstado, "Normal")){
+                todosLosEstados.append(unEstado).append(" ");
             }
         }
         String unTextoCompleto =  "HP: " + (int)unPokemon.getCualidades().getVida() + "\n" +

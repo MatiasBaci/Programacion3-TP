@@ -28,14 +28,10 @@ public class OpcionAplicarItem implements Opcion{
         generalView.mostrarCasoModicicacion(itemAplicable.getUnaModificacion(), pokemnAux);
         if(jugador.usarItem(nombrePokemon, itemAplicable)) {
             generalView.mostrarMensajeAplicoItem(jugador, itemAplicable.getNombre());
-
-
-            decision = ServicioDeUserInput.input();
+            //decision = ServicioDeUserInput.input();
         }
-
-
-
     }
+
     @Override
     public void aplicarOpcion(Jugador jugador, GeneralView generalView){
 
@@ -61,7 +57,6 @@ public class OpcionAplicarItem implements Opcion{
             return;
         }
         this.decidirAplicarItem(jugador,nombrePokemon,itemAplicable, generalView);
-
     }
 }
 

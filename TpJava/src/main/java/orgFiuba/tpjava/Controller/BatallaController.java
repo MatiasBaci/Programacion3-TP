@@ -126,12 +126,8 @@ public class BatallaController {
         });
 
         this.itemButton.setOnAction(event -> {
-            try {
-                this.ataquesBox.getChildren().clear();
-                crearMenuItem(juego.getJugadorActual());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            this.ataquesBox.getChildren().clear();
+            crearMenuItem(juego.getJugadorActual());
         });
 
         this.pokemonButton.setOnAction(event -> {
@@ -146,7 +142,7 @@ public class BatallaController {
         });
     }
 
-    private void crearMenuItem(Jugador jugadorActual) throws IOException {
+    private void crearMenuItem(Jugador jugadorActual) {
         this.ataquesBox.getChildren().clear();
         juegoController.handle(new MenuItemEvent(jugadorActual));
     }

@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 })
 public interface Modificacion {
 
-    public abstract void modificar(Cualidades cualidades, int etapas);
+    void modificar(Cualidades cualidades, int etapas);
 
-    public abstract String obtenerNombreModificacion();
+    String obtenerNombreModificacion();
 }

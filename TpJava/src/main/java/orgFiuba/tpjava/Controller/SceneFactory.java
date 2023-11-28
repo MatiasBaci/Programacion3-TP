@@ -2,7 +2,6 @@ package orgFiuba.tpjava.Controller;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import orgFiuba.tpjava.MainJavaFX;
 import orgFiuba.tpjava.Model.Juego;

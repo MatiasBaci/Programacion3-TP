@@ -6,7 +6,7 @@ import orgFiuba.tpjava.Model.Jugador;
 
 public class RendirseEvent extends Event {
 
-    public static EventType<RendirseEvent> RENDIRSE_EVENT = new EventType<>("Rendirse Event");
+    public static final EventType<RendirseEvent> RENDIRSE_EVENT = new EventType<>("Rendirse Event");
     private final Jugador jugador;
 
     public RendirseEvent(Jugador jugador) {

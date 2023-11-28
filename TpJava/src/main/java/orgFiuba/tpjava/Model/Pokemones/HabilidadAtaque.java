@@ -62,11 +62,11 @@ public class HabilidadAtaque extends Habilidad {
     }
 
     private double calculoAtaqueSegunEstadisticas(Cualidades cualidadesPropio, Cualidades cualidadesEnemigo) {
-        double ataque = (double)cualidadesPropio.getAtaque();
-        double defensa = (double)cualidadesEnemigo.getDefensa();
-        double poderHabilidad = (double) this.poder;
+        double ataque = cualidadesPropio.getAtaque();
+        double defensa = cualidadesEnemigo.getDefensa();
+        double poderHabilidad = this.poder;
         double critico = this.calculoCritico();
-        double nivel = (double)cualidadesPropio.getNivel();
+        double nivel = cualidadesPropio.getNivel();
 
         return (2.0*nivel*poderHabilidad*ataque*critico/(defensa*5.0)+2.0)/50.0;
     }

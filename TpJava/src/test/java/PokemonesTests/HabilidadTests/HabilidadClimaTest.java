@@ -1,6 +1,5 @@
 package PokemonesTests.HabilidadTests;
 
-import orgFiuba.tpjava.Model.Climas.Clima;
 import orgFiuba.tpjava.Model.Climas.SistemaDeClima;
 import orgFiuba.tpjava.Model.Pokemones.Cualidades;
 import orgFiuba.tpjava.Model.Pokemones.HabilidadClima;
@@ -8,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 
 import static orgFiuba.tpjava.Constantes.CLIMA_TORMENTA_DE_ARENA;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class HabilidadClimaTest {

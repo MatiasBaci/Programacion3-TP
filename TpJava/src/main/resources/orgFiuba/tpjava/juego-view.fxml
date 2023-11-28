@@ -8,7 +8,7 @@
 
 <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/20.0.1"
       fx:controller="orgFiuba.tpjava.Controller.JuegoController">
-    <Text fx:id="jugadorActualNombre" textAlignment="LEFT"/>
+    <Text fx:id="jugadorActualNombre"/>
     <TextField fx:id="nameField" onAction="#onHelloButtonClick" promptText="Nombre del jugador"/>
     <VBox prefHeight="200.0" prefWidth="100.0">
         <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true"/>

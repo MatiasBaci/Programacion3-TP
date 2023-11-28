@@ -26,7 +26,7 @@ public class Cualidades {
     private Tipo tipo;
     @JsonManagedReference
     @JsonIgnore
-    private Set<Estado> estados = new HashSet<>();
+    private final Set<Estado> estados = new HashSet<>();
 
 
     //Metodos:
@@ -76,13 +76,13 @@ public class Cualidades {
     }
 
     public boolean atacarConEstadosActuales(){
-        boolean puedeAtacarConSusEstados = this.estados.stream().allMatch(estado -> estado.puedeAtacar());
+        boolean puedeAtacarConSusEstados = this.estados.stream().allMatch(Estado::puedeAtacar);
         this.estados.removeIf(Estado::debeSerEliminado);
         return puedeAtacarConSusEstados;
     }
 
     public void aplicarEfectoPasivoDeEstadosActuales(){
-        this.estados.forEach(estado -> estado.aplicarEfectoPasivoDeEstado());
+        this.estados.forEach(Estado::aplicarEfectoPasivoDeEstado);
     }
 
     public Tipo getTipo() {return tipo;}
@@ -124,15 +124,15 @@ public class Cualidades {
     }
 
     public void modificarVelocidad(int etapas){
-        this.velocidad += this.velocidad * etapas * PORCENTAJE;
+        this.velocidad += (int) (this.velocidad * etapas * PORCENTAJE);
     }
 
     public void modificarDefensa(int etapas){
-        this.defensa += this.defensa * etapas * PORCENTAJE;
+        this.defensa += (int) (this.defensa * etapas * PORCENTAJE);
     }
 
     public void modificarAtaque(int etapas){
-        this.ataque += this.ataque * etapas * PORCENTAJE;
+        this.ataque += (int) (this.ataque * etapas * PORCENTAJE);
     }
 
     public double getPorcentajeVida() {

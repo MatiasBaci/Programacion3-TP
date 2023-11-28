@@ -48,26 +48,17 @@ public class ItemDeserializer extends StdDeserializer<ItemsIdsCustom> {
         return new ItemsIdsCustom(id,unItem);
     }
     private Item creandoItemsSegunElNomnbre(String nombre,int cantidad,Modificacion unaModificacion,String descripcion){
-        switch (nombre) {
-            case "Hiper Pocion":
-                return new HiperPocion(nombre, cantidad,unaModificacion,descripcion);
-            case "Pocion":
-                return new Pocion(nombre, cantidad,unaModificacion,descripcion);
-            case "Mega Pocion":
-                return new MegaPocion(nombre, cantidad,unaModificacion,descripcion);
-            case "Pocion MolestaAlumnos":
-                return new PocionMolestaAlumnos(nombre,cantidad,unaModificacion,descripcion);
-            case "AtaqueX":
-                return new AtaqueX(nombre,cantidad,unaModificacion,descripcion);
-            case "DefensaX":
-                return new DefensaX(nombre,cantidad,unaModificacion,descripcion);
-            case "Revivir":
-                return new Revivir(nombre,cantidad,unaModificacion,descripcion);
-            case "Cura Todo":
-                return new PocionCuracionEstados(nombre,cantidad,unaModificacion,descripcion);
-            default:
-                // Puedes lanzar una excepción si el nombre no coincide con ninguna clase conocida
-                throw new IllegalArgumentException("Nombre de Item desconocido: " + nombre);
-        }
+        // Puedes lanzar una excepción si el nombre no coincide con ninguna clase conocida
+        return switch (nombre) {
+            case "Hiper Pocion" -> new HiperPocion(nombre, cantidad, unaModificacion, descripcion);
+            case "Pocion" -> new Pocion(nombre, cantidad, unaModificacion, descripcion);
+            case "Mega Pocion" -> new MegaPocion(nombre, cantidad, unaModificacion, descripcion);
+            case "Pocion MolestaAlumnos" -> new PocionMolestaAlumnos(nombre, cantidad, unaModificacion, descripcion);
+            case "AtaqueX" -> new AtaqueX(nombre, cantidad, unaModificacion, descripcion);
+            case "DefensaX" -> new DefensaX(nombre, cantidad, unaModificacion, descripcion);
+            case "Revivir" -> new Revivir(nombre, cantidad, unaModificacion, descripcion);
+            case "Cura Todo" -> new PocionCuracionEstados(nombre, cantidad, unaModificacion, descripcion);
+            default -> throw new IllegalArgumentException("Nombre de Item desconocido: " + nombre);
+        };
     }
 }

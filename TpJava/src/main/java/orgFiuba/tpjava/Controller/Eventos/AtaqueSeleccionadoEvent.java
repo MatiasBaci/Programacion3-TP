@@ -7,7 +7,7 @@ import orgFiuba.tpjava.Model.Pokemones.Pokemon;
 
 public class AtaqueSeleccionadoEvent extends Event {
 
-    public static EventType<AtaqueSeleccionadoEvent> ATAQUE_SELECCIONADO_EVENT = new EventType<>("Ataque seleccionado Event");
+    public static final EventType<AtaqueSeleccionadoEvent> ATAQUE_SELECCIONADO_EVENT = new EventType<>("Ataque seleccionado Event");
     private final Habilidad habilidad;
     private final Pokemon pokemon;
 

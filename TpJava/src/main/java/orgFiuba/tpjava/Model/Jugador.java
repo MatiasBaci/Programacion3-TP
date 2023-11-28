@@ -10,8 +10,8 @@ public class Jugador {
 
     //Atributos:
     private String nombre;
-    private Map<String, Pokemon> misPokemones;
-    private Map<String, Item> items;
+    private final Map<String, Pokemon> misPokemones;
+    private final Map<String, Item> items;
     private Pokemon pokemonActual;
     private Jugador adversario;
     private boolean atacante;
@@ -78,7 +78,7 @@ public class Jugador {
     }
 
     public boolean perdio() {
-        return (!this.misPokemones.values().stream().anyMatch(Pokemon::estaConsciente)||
+        return (this.misPokemones.values().stream().noneMatch(Pokemon::estaConsciente) ||
         this.esPerdedor);
     }
 

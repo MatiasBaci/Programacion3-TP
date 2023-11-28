@@ -4,7 +4,6 @@ import orgFiuba.tpjava.Model.Pokemones.Cualidades;
 import orgFiuba.tpjava.Model.Modificaciones.ModificacionVida;
 import org.junit.jupiter.api.Test;
 
-import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.*;
 
 public class ModificacionVidaTest {

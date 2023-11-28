@@ -123,8 +123,6 @@ public class Juego {
         this.generalView.getJugadorAdversarioView().setPokemonActualView(jugadorAversario.getPokemonActual());
         this.generalView.mostrarEfectoPasivo();
         this.controlador.opcionesJugadores(jugador, this.generalView);
-        //jugadorAversario.setAtacante(true);
-        //this.jugadorActual = jugadorAversario;
         this.cambiarTurno();
     }
 

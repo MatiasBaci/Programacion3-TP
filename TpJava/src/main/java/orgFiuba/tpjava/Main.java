@@ -26,7 +26,7 @@ import static orgFiuba.tpjava.Constantes.RUTA_POKEMONS_JSON;
 
 public class Main {
 
-public static void main(String[] args) throws IOException {
+public static void main(String[] args) {
     Juego juego = new Juego();
     juego.DesarrollarJuego();
     //-----------------------------------------------------------------------------------------------------------

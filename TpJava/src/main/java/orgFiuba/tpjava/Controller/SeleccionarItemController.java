@@ -87,11 +87,7 @@ public class SeleccionarItemController {
                 alert.setContentText("No hay Items.");
                 alert.showAndWait();
             }else{
-                try {
-                    juegoController.handle(new ItemSeleccionadoEvent(jugador, item)); // Replace yourFunction with the actual function name
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+                juegoController.handle(new ItemSeleccionadoEvent(jugador, item)); // Replace yourFunction with the actual function name
             }
         };
     }

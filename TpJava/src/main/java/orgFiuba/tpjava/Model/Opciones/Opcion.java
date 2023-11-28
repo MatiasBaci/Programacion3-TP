@@ -5,6 +5,6 @@ import orgFiuba.tpjava.View.GeneralView;
 
 public interface Opcion {
 
-    public abstract void aplicarOpcion(Jugador jugador, GeneralView generalView);
+    void aplicarOpcion(Jugador jugador, GeneralView generalView);
 
 }
