@@ -285,7 +285,7 @@ public class JuegoController extends Parent implements EventHandler<Event> {
     }
 
     public void handle(ItemAplicadoEvent itemAplicadoEvent) {
-        this.juego.getJugadorActual().setPokemonActual(itemAplicadoEvent.getPokemon());
+        this.juego.getJugadorActual().setPokemon(itemAplicadoEvent.getPokemon());
         this.mostrarVentanaBatalla();
     }
 

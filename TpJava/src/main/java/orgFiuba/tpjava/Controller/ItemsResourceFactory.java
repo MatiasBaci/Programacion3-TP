@@ -20,7 +20,7 @@ public class ItemsResourceFactory {
         itemImageView.setImage(itemImage);
         itemImageView.setFitHeight(50);
         itemImageView.setFitWidth(50);
-        itemImageView.setTranslateY(20);
+        itemImageView.setTranslateY(-9);
         return itemImageView;
     }
 
@@ -28,8 +28,6 @@ public class ItemsResourceFactory {
         Text itemData = new Text(item.getNombre() +" | " + " X " + item.getCantidad());
         itemData.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
         itemData.setFill(Color.BLACK);
-        itemData.setTranslateX(50);
-        itemData.setTranslateY(50);
         return itemData;
     }
 }

@@ -21,6 +21,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
+import static orgFiuba.tpjava.Constantes.ESTADO_NORMAL;
+
 public class SeleccionarPokemonController {
 
     @FXML
@@ -106,21 +108,22 @@ public class SeleccionarPokemonController {
     private EventHandler<? super MouseEvent> createImageViewClickHandlerItemAplicar(JuegoController juegoController, Jugador jugador, Pokemon pokemon, Item itemAplicar) {
         return event -> {
             if(pokemon.getCualidades().getVida() == 0 && !Objects.equals(itemAplicar.getNombre(), "Revivir")) {
-                alerta("El pokemon no tiene vida, no se puede usar este item.");
+                PantallaInformacion.mostrarInformacion("El pokemon no tiene vida, no se puede usar este item.");
             }
             else if((pokemon.getCualidades().getVida() == pokemon.getCualidades().getVidaMaxima() && itemAplicar.getUnaModificacion().getClass() == ModificacionVida.class)){
-                alerta("El pokemon tiene toda la vida, no se puede curar.");
+                PantallaInformacion.mostrarInformacion("El pokemon tiene toda la vida, no se puede curar.");
             }
-            else if(pokemon.getCualidades().getVida() == pokemon.getCualidades().getVidaMaxima() && Objects.equals(itemAplicar.getNombre(), "Revivir")){
-                alerta("El pokemon tiene toda la vida, no se puede revivir.");
+            else if(pokemon.getCualidades().estaConsciente() && Objects.equals(itemAplicar.getNombre(), "Revivir")){
+                PantallaInformacion.mostrarInformacion("El pokemon esta consciente, no se puede revivir.");
             }
+            else if(itemAplicar.getNombre().equals("Cura Todo") && pokemon.getCualidades().obtenerEstadosActuales().stream().anyMatch(unEstado -> unEstado.getNombre().equals(ESTADO_NORMAL) && pokemon.getCualidades().obtenerEstadosActuales().size() == 1)){
+                PantallaInformacion.mostrarInformacion("El pokemon esta normal, no se puede aplicar un Cura Todo.");
+            }
+
             else{
                 jugador.elegirItem(itemAplicar.getNombre()).aplicarItem(pokemon.getCualidades());
+                juegoController.handle(new ItemAplicadoEvent(jugador, itemAplicar, pokemon));
             }
-            juegoController.handle(new ItemAplicadoEvent(jugador, itemAplicar, pokemon));
-            //Hay que mejorar a forma de volver al menu, lo ideal seria no avanazar a 133 en los casos negayivos
-            // y agregar un boton para volver al menu sin consumir turno para no estancase.
-            //juegoController.handle(new PokemonSeleccionadoEvent(jugador, pokemon)); // Replace yourFunction with the actual function name
         };
     }
 
@@ -128,7 +131,7 @@ public class SeleccionarPokemonController {
     private EventHandler<MouseEvent> createImageViewClickHandler(JuegoController juegoController, Jugador jugador, Pokemon pokemon) {
         return event -> {
             if(pokemon.getCualidades().getVida() == 0) {
-                alerta("El pokemon no tiene vida, no se puede elegir.");
+                PantallaInformacion.mostrarInformacion("El pokemon no tiene vida, no se puede elegir.");
             }else{
                 juegoController.handle(new PokemonSeleccionadoEvent(jugador, pokemon));
             }
@@ -140,19 +143,12 @@ public class SeleccionarPokemonController {
 
         this.afirmador.setText("");
         if(this.jugador.getPokemonActual() == null) {
-            alerta("No tiene seleccionado ningun Pokemon.");
+            PantallaInformacion.mostrarInformacion("No tiene seleccionado ningun Pokemon Inicial.");
         } else if (!this.jugador.getPokemonActual().estaConsciente()) {
-            alerta("Tenés que seleccionar un Pokemon.");
+            PantallaInformacion.mostrarInformacion("Tiene que seleccionar un Pokemon para pelear.");
         } else {
             juegoController.volverMenu();
         }
     }
 
-    private void alerta(String mensaje) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setHeaderText(null);
-        alert.setTitle("Informacion");
-        alert.setContentText(mensaje);
-        alert.showAndWait();
-    }
 }

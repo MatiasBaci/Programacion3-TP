@@ -23,18 +23,10 @@ public class SeleccionarNombreJugadoresController {
         String nombre = this.nombreJugador.getText();
         System.out.println(nombre);
         if(nombre.isEmpty()){
-            Alert alert  = new Alert(Alert.AlertType.INFORMATION);
-            alert.setHeaderText(null);
-            alert.setTitle("Informacion");
-            alert.setContentText("No hay ningun caracter en el nombre.");
-            alert.showAndWait();
+            PantallaInformacion.mostrarInformacion("No hay caracteres ingresados.");
         }
         else if(nombre.length() > 50){
-            Alert alert  = new Alert(Alert.AlertType.INFORMATION);
-            alert.setHeaderText(null);
-            alert.setTitle("Informacion");
-            alert.setContentText("Hay mas de 50 caracteres en el nombre.");
-            alert.showAndWait();
+            PantallaInformacion.mostrarInformacion("Hay mas de 50 caracteres en el nombre.");
         }
         else{
             this.jugador.setNombre(nombre);
