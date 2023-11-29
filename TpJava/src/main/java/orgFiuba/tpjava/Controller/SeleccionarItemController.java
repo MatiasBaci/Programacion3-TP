@@ -13,6 +13,7 @@ import javafx.scene.text.Text;
 import orgFiuba.tpjava.Controller.Eventos.ItemSeleccionadoEvent;
 import orgFiuba.tpjava.Model.Items.Item;
 import orgFiuba.tpjava.Model.Jugador;
+import orgFiuba.tpjava.Model.Modificaciones.Modificacion;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -63,6 +64,7 @@ public class SeleccionarItemController {
 
             itemIconoYNombre.getChildren().add(itemsResourceFactory.createItemMenuView(item));
             itemIconoYNombre.getChildren().add(itemsResourceFactory.createItemData(item));
+            itemIconoYNombre.getChildren().add(itemsResourceFactory.createModificacionesView(item.getUnaModificacion()));
             itemIconoYNombre.setTranslateX(40);
             itemIconoYNombre.setTranslateY(20);
 
@@ -77,17 +79,12 @@ public class SeleccionarItemController {
         }
     }
 
-    // Create an event handler for ImageView click events
     private EventHandler<MouseEvent> createImageViewClickHandler(JuegoController juegoController, Jugador jugador, Item item) {
         return event -> {
             if(item.getCantidad() == 0){
-                Alert alert  = new Alert(Alert.AlertType.INFORMATION);
-                alert.setHeaderText(null);
-                alert.setTitle("Informacion");
-                alert.setContentText("No hay Items.");
-                alert.showAndWait();
+                PantallaInformacion.mostrarInformacion("Se quedo sin este tipo de items.");
             }else{
-                juegoController.handle(new ItemSeleccionadoEvent(jugador, item)); // Replace yourFunction with the actual function name
+                juegoController.handle(new ItemSeleccionadoEvent(jugador, item));
             }
         };
     }
