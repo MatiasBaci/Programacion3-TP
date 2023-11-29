@@ -3,6 +3,8 @@ package orgFiuba.tpjava.Model;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
+import orgFiuba.tpjava.Model.Exceptions.ItemNoEncontradoException;
+import orgFiuba.tpjava.Model.Exceptions.PokemonNoEncontradoException;
 import orgFiuba.tpjava.Model.Items.Item;
 import orgFiuba.tpjava.Model.Modificaciones.*;
 import orgFiuba.tpjava.Model.Pokemones.Habilidad;
@@ -19,6 +21,7 @@ import java.util.stream.Collectors;
 public class ServicioDeLecturasJson {
 
     private static List<PokemonIdsCustom> pokemonsId = new ArrayList<>();
+    private static List<ItemsIdsCustom> itemsId = new ArrayList<>();
 
     static public Map<Integer, Habilidad> lecturaHabilidadesJson(String habilidadesPath){
         try {
@@ -54,7 +57,7 @@ public class ServicioDeLecturasJson {
             pokemonsId = listaPokemon;
 
             Map<Integer, Pokemon> pokemonID = listaPokemon.stream()
-                    .collect(Collectors.toMap(PokemonIdsCustom::getId, PokemonIdsCustom::getUnaHabilida));
+                    .collect(Collectors.toMap(PokemonIdsCustom::getId, PokemonIdsCustom::getUnPokemon));
             return pokemonID;
 
         } catch (IOException e) {
@@ -71,6 +74,7 @@ public class ServicioDeLecturasJson {
             objectMapperPokemon.registerModule(module);
 
             List<ItemsIdsCustom> listaItems = objectMapperPokemon.readValue(itemFile,new TypeReference<List<ItemsIdsCustom>>() {});
+            itemsId = listaItems;
             //System.out.println(listaItems);
 
             Map<Integer, Item> itemID = listaItems.stream()
@@ -104,5 +108,25 @@ public class ServicioDeLecturasJson {
 
     public static List<PokemonIdsCustom> getPokemonsId(){
         return pokemonsId;
+    }
+
+    public static int obtenerIdPokemonPorNombre(String unNombrePokemon) throws PokemonNoEncontradoException {
+        List<PokemonIdsCustom> pokemonIdsCustoms = pokemonsId;
+        for (PokemonIdsCustom unPokemonID : pokemonIdsCustoms ){
+            if(unNombrePokemon.equals(unPokemonID.getUnPokemon().getNombre() )){
+                return unPokemonID.getId();
+            }
+        }
+        throw new PokemonNoEncontradoException("Pokemon no encontrado para serializar,con el nombre : " + unNombrePokemon);
+    }
+
+    public static int obtenerIdItemsPorNombre(String unNombreItem) throws ItemNoEncontradoException {
+        List<ItemsIdsCustom> pokemonIdsCustoms = itemsId;
+        for (ItemsIdsCustom unItemID : pokemonIdsCustoms ){
+            if(unNombreItem.equals(unItemID.getUnItem().getNombre() )){
+                return unItemID.getId();
+            }
+        }
+        throw new ItemNoEncontradoException("Item no encontrado para serializar,con el nombre : " + unNombreItem);
     }
 }

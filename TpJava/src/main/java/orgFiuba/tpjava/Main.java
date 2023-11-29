@@ -29,7 +29,7 @@ public class Main {
 
 public static void main(String[] args) throws IOException {
     Juego juego = new Juego();
-    //juego.DesarrollarJuego();
+    juego.DesarrollarJuego();
     //-----------------------------------------------------------------------------------------------------------
    // String path = "TpJava/outputJson/pokemon.json"; //--> Ruta Relativa
    // Pokemon unPokemon = new Pokemon("Charizard", 50, "Fuego", "Se dice que el fuego de Charizard arde con más fuerza cuantas más duras batallas haya vivido.",
@@ -42,9 +42,9 @@ public static void main(String[] args) throws IOException {
   //  objectMapper.writeValue(new File(path),unPokemon); //-----------> Serializacion
     //------------------------------------------------------------------------------------------------------------
 
-    String path = RUTA_RESUMEN_PARTIDA;
+    /*String path = RUTA_RESUMEN_PARTIDA;
     ObjectMapper objectMapper = new ObjectMapper();
     objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
-    objectMapper.writeValue(new File(path), juego);
+    objectMapper.writeValue(new File(path), juego);*/
  }
 }

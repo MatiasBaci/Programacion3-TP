@@ -1,5 +1,7 @@
 package orgFiuba.tpjava.Controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -84,6 +86,15 @@ public class JuegoController extends Parent implements EventHandler<Event> {
         alert.setTitle("FIN DEL JUEGO");
         alert.setContentText(jugadorActual.getNombre() + " es el ganador!!!");
         alert.showAndWait();
+
+        String path = RUTA_RESUMEN_PARTIDA;
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+        try {
+            objectMapper.writeValue(new File(path), this.juego);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void cicloDeTurnos() {

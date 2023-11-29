@@ -1,5 +1,7 @@
 package orgFiuba.tpjava;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -9,9 +11,11 @@ import javafx.stage.Stage;
 import orgFiuba.tpjava.Controller.JuegoController;
 import orgFiuba.tpjava.Model.Juego;
 
+import java.io.File;
 import java.io.IOException;
 
 import static orgFiuba.tpjava.Constantes.RUTA_ICONO_LOGO;
+import static orgFiuba.tpjava.Constantes.RUTA_RESUMEN_PARTIDA;
 
 public class MainJavaFX extends Application {
 
@@ -33,6 +37,12 @@ public class MainJavaFX extends Application {
         stage.setScene(sceneInicio);
 
         juegoController.inicializar(stage, juego);
+
+        /*String path = RUTA_RESUMEN_PARTIDA;
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+        objectMapper.writeValue(new File(path), juego);*/
+
         //stage.show();
     }
 

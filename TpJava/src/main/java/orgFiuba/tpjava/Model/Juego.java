@@ -1,5 +1,7 @@
 package orgFiuba.tpjava.Model;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import orgFiuba.tpjava.Model.Climas.Clima;
 import orgFiuba.tpjava.Model.Climas.SistemaDeClima;
@@ -7,10 +9,10 @@ import orgFiuba.tpjava.Model.Pokemones.Pokemon;
 import orgFiuba.tpjava.Model.SerializacionDeserealizacion.JuegoSerializer;
 import orgFiuba.tpjava.View.GeneralView;
 
+import java.io.File;
 import java.util.Scanner;
 
-import static orgFiuba.tpjava.Constantes.ANSI_RESET;
-import static orgFiuba.tpjava.Constantes.ANSI_VERDEOSCURO;
+import static orgFiuba.tpjava.Constantes.*;
 
 @JsonSerialize(using = JuegoSerializer.class)
 public class Juego {

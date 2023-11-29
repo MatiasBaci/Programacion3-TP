@@ -4,12 +4,18 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
-import com.fasterxml.jackson.databind.ser.std.StdSerializer;
+import orgFiuba.tpjava.Model.Estados.Estado;
+import orgFiuba.tpjava.Model.Exceptions.ItemNoEncontradoException;
+import orgFiuba.tpjava.Model.Exceptions.PokemonNoEncontradoException;
 import orgFiuba.tpjava.Model.Juego;
 import orgFiuba.tpjava.Model.Jugador;
 import orgFiuba.tpjava.Model.Pokemones.Pokemon;
+import orgFiuba.tpjava.Model.Items.Item;
+import orgFiuba.tpjava.Model.ServicioDeLecturasJson;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 public class JuegoSerializer extends JsonSerializer<Juego> {
 
@@ -26,8 +32,21 @@ public class JuegoSerializer extends JsonSerializer<Juego> {
         jgen.writeStartArray(); // Comienza la lista de jugadores
 
         // Serializa cada jugador en el juego
-        escribirJugador(jgen, juego.getJugador1());
-        escribirJugador(jgen, juego.getJugador2());
+        try {
+            escribirJugador(jgen, juego.getJugador1());
+        } catch (PokemonNoEncontradoException e) {
+            throw new RuntimeException(e);
+        } catch (ItemNoEncontradoException e) {
+            throw new RuntimeException(e);
+        }
+
+        try {
+            escribirJugador(jgen, juego.getJugador2());
+        } catch (PokemonNoEncontradoException e) {
+            throw new RuntimeException(e);
+        } catch (ItemNoEncontradoException e) {
+            throw new RuntimeException(e);
+        }
 
         jgen.writeEndArray(); // Termina la lista de jugadores
         //jgen.writeNumberField("",);
@@ -39,18 +58,48 @@ public class JuegoSerializer extends JsonSerializer<Juego> {
         jgen.writeStringField("direccion_numero", persona.getDireccion().getNumero());
         jgen.writeStringField("direccion_ciudad", persona.getDireccion().getCiudad());
         jgen.writeEndObject();*/
+
     }
-    private void escribirJugador(JsonGenerator jgen, Jugador jugador) throws IOException {
+    private void escribirJugador(JsonGenerator jgen, Jugador jugador) throws IOException, PokemonNoEncontradoException, ItemNoEncontradoException {
         jgen.writeStartObject(); // Comienza un objeto para un jugador
         jgen.writeStringField("nombre", jugador.getNombre());
-        jgen.writeBooleanField("ganador", jugador.esPerdedor());
-        // Serializa otros campos de Jugador (items, pokemons, etc.) según sea necesario
-        //jgen.writeObjectField("items", jugador.getItems());
-        //jgen.writeObjectField("pokemons", jugador.getPokemons());
-        jgen.writeEndObject(); // Termina el objeto para un jugador
-    }
-    private void escribirPokemon(JsonGenerator jgen, Pokemon pokemon)throws IOException{
+        jgen.writeBooleanField("ganador", !jugador.esPerdedor());
 
+        jgen.writeFieldName("items");
+        jgen.writeStartObject();
+
+        for (Map.Entry<String, Item> entry : jugador.getItems().entrySet()) {
+            escribirItem(jgen, entry.getValue());
+        }
+
+        jgen.writeEndObject();
+
+
+        jgen.writeFieldName("misPokemones");
+        jgen.writeStartArray();
+        for (Map.Entry<String, Pokemon> entry : jugador.getMisPokemones().entrySet()) {
+            escribirPokemon(jgen, entry.getValue());
+        }
+        jgen.writeEndArray();
+        jgen.writeEndObject();
+    }
+    private void escribirPokemon(JsonGenerator jgen, Pokemon pokemon) throws IOException, PokemonNoEncontradoException {
+        jgen.writeStartObject();
+        jgen.writeStringField("nombre", pokemon.getNombre()); // Suponiendo que hay un método getNombre en la clase Pokemon
+        jgen.writeNumberField("id", ServicioDeLecturasJson.obtenerIdPokemonPorNombre(pokemon.getNombre()));
+        jgen.writeNumberField("vidaRestante", pokemon.getCualidades().getVida());
+        jgen.writeFieldName("estadosActuales");
+        jgen.writeStartArray();
+        for ( Estado unEstado : pokemon.getCualidades().obtenerEstadosActuales()) {
+            jgen.writeString(unEstado.getNombre());
+        }
+        jgen.writeEndArray();
+
+        jgen.writeEndObject();
+    }
+    private void escribirItem(JsonGenerator jgen, Item unItem) throws ItemNoEncontradoException, IOException {
+        int idItem = ServicioDeLecturasJson.obtenerIdItemsPorNombre(unItem.getNombre());
+        jgen.writeNumberField(String.valueOf(idItem),unItem.getCantidad());
     }
 
 

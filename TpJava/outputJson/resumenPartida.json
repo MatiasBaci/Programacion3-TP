@@ -1,7 +1,89 @@
 [ {
-  "nombre" : "",
-  "ganador" : false
+  "nombre" : "Mario",
+  "ganador" : false,
+  "items" : {
+    "32" : 2,
+    "71" : 2,
+    "57" : 2,
+    "0" : 1,
+    "4" : 3,
+    "46" : 3,
+    "63" : 4,
+    "88" : 2
+  },
+  "misPokemones" : [ {
+    "nombre" : "Lucario",
+    "id" : 35,
+    "vidaRestante" : 100.0,
+    "estadosActuales" : [ "Normal" ]
+  }, {
+    "nombre" : "Pikachu",
+    "id" : 22,
+    "vidaRestante" : 0.0,
+    "estadosActuales" : [ "Inhabilitado" ]
+  }, {
+    "nombre" : "Charizard",
+    "id" : 15,
+    "vidaRestante" : 153.0,
+    "estadosActuales" : [ "Normal" ]
+  }, {
+    "nombre" : "Squirtle",
+    "id" : 7,
+    "vidaRestante" : 119.0,
+    "estadosActuales" : [ "Normal" ]
+  }, {
+    "nombre" : "Crobat",
+    "id" : 53,
+    "vidaRestante" : 160.0,
+    "estadosActuales" : [ "Dormido", "Normal" ]
+  }, {
+    "nombre" : "Dusknoir",
+    "id" : 41,
+    "vidaRestante" : 120.0,
+    "estadosActuales" : [ "Normal" ]
+  } ]
 }, {
-  "nombre" : "",
-  "ganador" : false
+  "nombre" : "Poulette",
+  "ganador" : true,
+  "items" : {
+    "32" : 2,
+    "71" : 2,
+    "57" : 2,
+    "0" : 1,
+    "4" : 3,
+    "46" : 3,
+    "63" : 4,
+    "88" : 2
+  },
+  "misPokemones" : [ {
+    "nombre" : "Golem",
+    "id" : 26,
+    "vidaRestante" : 100.0,
+    "estadosActuales" : [ "Normal" ]
+  }, {
+    "nombre" : "Trevenant",
+    "id" : 11,
+    "vidaRestante" : 100.0,
+    "estadosActuales" : [ "Normal" ]
+  }, {
+    "nombre" : "Araquanid",
+    "id" : 84,
+    "vidaRestante" : 100.0,
+    "estadosActuales" : [ "Normal" ]
+  }, {
+    "nombre" : "Rayquaza",
+    "id" : 49,
+    "vidaRestante" : 95.0,
+    "estadosActuales" : [ "Normal", "Envenenado" ]
+  }, {
+    "nombre" : "Alakazam",
+    "id" : 68,
+    "vidaRestante" : 100.0,
+    "estadosActuales" : [ "Normal" ]
+  }, {
+    "nombre" : "Bidoof",
+    "id" : 5,
+    "vidaRestante" : 42.0,
+    "estadosActuales" : [ "Normal" ]
+  } ]
 } ]

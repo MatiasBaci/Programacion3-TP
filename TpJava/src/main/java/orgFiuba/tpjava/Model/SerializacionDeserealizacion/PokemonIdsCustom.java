@@ -13,7 +13,7 @@ public class PokemonIdsCustom {
 
     public int getId() {return this.id ;}
 
-    public Pokemon getUnaHabilida() {return this.unPokemon;}
+    public Pokemon getUnPokemon() {return this.unPokemon;}
     public void setId(int id) {this.id = id;}
 
     public void setUnPokemon(Pokemon unPokemon) {this.unPokemon = unPokemon;}
