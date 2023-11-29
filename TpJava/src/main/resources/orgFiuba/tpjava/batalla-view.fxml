@@ -62,17 +62,17 @@
          </HBox>
          <HBox fx:id="dialogoYMenuBox" alignment="CENTER_RIGHT" fillHeight="false" prefHeight="300.0" prefWidth="1018.0" styleClass="bodyFondoSeleccionPokemon" stylesheets="@StyleCss/fondo_text_box.css">
             <VBox fx:id="dialogoBox" alignment="CENTER_RIGHT" prefHeight="178.0" prefWidth="266.0">
-               <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="178.0" prefWidth="227.0" style="-fx-background-color: white;">
-                  <children>
-                     <Text fx:id="dialogo" layoutX="10.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="JUSTIFY" wrappingWidth="180.0">
-                        <font>
-                           <Font size="14.0" />
-                        </font>
-                     </Text>
-                  </children>
+               <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                     prefHeight="178.0" prefWidth="227.0" style="-fx-background-color: white;">
+                  <Text fx:id="dialogo" layoutX="10.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text"
+                        textAlignment="JUSTIFY" wrappingWidth="180.0">
+                     <font>
+                        <Font size="14.0"/>
+                     </font>
+                  </Text>
                </Pane>
             </VBox>
-            <VBox fx:id="ataquesBox" alignment="CENTER_RIGHT" prefHeight="178.0" prefWidth="400.0" />
+            <VBox fx:id="ataquesBox" alignment="CENTER_RIGHT" prefHeight="178.0" prefWidth="400.0" styleClass="bodyFondoPanelAtaques" stylesheets="@StyleCss/fondo_panel_ataques.css" />
             <GridPane fx:id="menuGrid" alignment="CENTER_LEFT" prefHeight="175.0" prefWidth="329.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
