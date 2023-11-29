@@ -90,6 +90,10 @@ public class Jugador {
         this.esPerdedor = true;
     }
 
+    public boolean esPerdedor(){
+        return this.esPerdedor;
+    }
+
     private Pokemon seleccionarPokemon(String unPokemon) {
         return this.misPokemones.get(unPokemon);
     }

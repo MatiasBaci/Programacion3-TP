@@ -4,14 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="81ad5f3d-e77a-4eab-8f82-726006efbf84" name="Changes" comment="Delete Auxiliar :P">
-      <change afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/StyleCss/Pokeball.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/StyleCss/Pokeball2.png" afterDir="false" />
+    <list default="true" id="81ad5f3d-e77a-4eab-8f82-726006efbf84" name="Changes" comment="Agregando imagen pokeballs">
+      <change afterPath="$PROJECT_DIR$/TpJava/outputJson/resumenPartida.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Model/SerializacionDeserealizacion/JuegoSerializer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Model/SerializacionDeserealizacion/PokemonSerializer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/StyleCss/1ee5974d8a89c40cf852d5f5684d1baa.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/StyleCss/LEWr3q.gif" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Controller/BatallaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Controller/BatallaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Controller/JuegoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Controller/JuegoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Controller/PokemonResourceFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Controller/PokemonResourceFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/batalla-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/batalla-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Constantes.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Constantes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Model/Climas/SistemaDeClima.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Model/Climas/SistemaDeClima.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Model/Estados/EstadoConfuso.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Model/Estados/EstadoConfuso.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Model/Estados/EstadoDormido.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Model/Estados/EstadoDormido.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Model/Juego.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Model/Juego.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Model/Jugador.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Model/Jugador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Model/Pokemones/Pokemon.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Model/Pokemones/Pokemon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Model/ServicioDeLecturasJson.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Model/ServicioDeLecturasJson.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/TpJava_jar/TpJava.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/TpJava_jar/TpJava.jar" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -85,6 +94,7 @@
       <recent name="orgFiuba.tpjava.Controller" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="orgFiuba.tpjava.Model.SerializacionDeserealizacion" />
       <recent name="Item" />
       <recent name="Tipo" />
     </key>
@@ -213,7 +223,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701106715755</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Agregando imagen pokeballs">
+      <option name="closed" value="true" />
+      <created>1701149800585</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1701149800585</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -247,12 +265,23 @@
     <MESSAGE value="Bugfix" />
     <MESSAGE value="Mas cambios a menu Items" />
     <MESSAGE value="Delete Auxiliar :P" />
-    <option name="LAST_COMMIT_MESSAGE" value="Delete Auxiliar :P" />
+    <MESSAGE value="Agregando imagen pokeballs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Agregando imagen pokeballs" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Model/Estados/EstadoDormido.java</url>
+          <line>38</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="orgFiuba.Model.Pokemones.Cualidades" memberName="ataque" />
+        <PinnedItemInfo parentTag="orgFiuba.tpjava.Model.Pokemones.Pokemon" memberName="cualidades" />
         <PinnedItemInfo parentTag="orgFiuba.Model.Pokemones.Pokemon" memberName="cualidades" />
         <PinnedItemInfo parentTag="org.fiuba.algoritmos3.Cualidades" memberName="nivel" />
       </pinned-members>

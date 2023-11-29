@@ -39,6 +39,7 @@ public class EstadoDormido extends Estado{
         if (this.turnosDormido >= this.duracionMaxima || this.probabilidadDeDormir <= this.probabilidadDeDespertar){
 
             this.eliminarse = true;
+            this.turnosDormido = 0;
             return true;
         } else {
             this.turnosDormido ++;

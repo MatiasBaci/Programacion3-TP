@@ -46,6 +46,7 @@ public class SistemaDeClima {
     public static void aumentarClimaActual(){
         climaActual.aumentarDuracion();
         if(climaActual.getDuracionActual() >= DURACION_MAXIMA_DE_CLIMA + 1){
+            climaActual.duracionActual = 0;
             climaActual = new ClimaNormal();
         }
     }

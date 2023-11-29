@@ -23,12 +23,13 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import static orgFiuba.tpjava.Constantes.RUTA_POKEMONS_JSON;
+import static orgFiuba.tpjava.Constantes.RUTA_RESUMEN_PARTIDA;
 
 public class Main {
 
-public static void main(String[] args) {
+public static void main(String[] args) throws IOException {
     Juego juego = new Juego();
-    juego.DesarrollarJuego();
+    //juego.DesarrollarJuego();
     //-----------------------------------------------------------------------------------------------------------
    // String path = "TpJava/outputJson/pokemon.json"; //--> Ruta Relativa
    // Pokemon unPokemon = new Pokemon("Charizard", 50, "Fuego", "Se dice que el fuego de Charizard arde con más fuerza cuantas más duras batallas haya vivido.",
@@ -41,31 +42,9 @@ public static void main(String[] args) {
   //  objectMapper.writeValue(new File(path),unPokemon); //-----------> Serializacion
     //------------------------------------------------------------------------------------------------------------
 
-
-    /*String pathItems = "TpJava/outputJson/itemPrueba.json";
-    Item unItem = new HiperPocion("Hiper Pocion",5,new ModificacionVida());
-    ObjectMapper objectMapperItems = new ObjectMapper();
-    objectMapperItems.enable(SerializationFeature.INDENT_OUTPUT);
-    objectMapperItems.writeValue(new File(pathItems),unItem); //-----------> Serializacion*/
-
-    /*String pathPartida="TpJava/outputJson/partida.json";
-    try {
-        File partidaFile = new File(pathPartida);
-        ObjectMapper objectMapperPokemon = new ObjectMapper();
-        SimpleModule module = new SimpleModule();
-        module.addDeserializer(Jugador.class, new PartidaDeserializer()); ///-> PokemonIds
-        objectMapperPokemon.registerModule(module);
-
-        List<Jugador> listaDeJugadores = objectMapperPokemon.readValue(partidaFile,new TypeReference<List<Jugador>>() {});
-        System.out.println(listaDeJugadores);
-
-        //Map<Integer, Pokemon> pokemonID = listaPokemon.stream()
-                //.collect(Collectors.toMap(PokemonIdsCustom::getId, PokemonIdsCustom::getUnaHabilida));
-        //return pokemonID;
-
-    } catch (IOException e) {
-        e.printStackTrace();
-        //return null;
-    }*/
+    String path = RUTA_RESUMEN_PARTIDA;
+    ObjectMapper objectMapper = new ObjectMapper();
+    objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+    objectMapper.writeValue(new File(path), juego);
  }
 }

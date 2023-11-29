@@ -17,4 +17,5 @@ module orgFiuba.tpjava {
     exports orgFiuba.tpjava.Model.Pokemones;
     exports orgFiuba.tpjava.Model;
     exports orgFiuba.tpjava.Model.Items;
+    exports orgFiuba.tpjava.Model.SerializacionDeserealizacion;
 }

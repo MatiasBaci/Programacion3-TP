@@ -1,11 +1,14 @@
 package orgFiuba.tpjava.Model.Pokemones;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import orgFiuba.tpjava.Model.SerializacionDeserealizacion.PokemonSerializer;
 import orgFiuba.tpjava.Model.Tipos.Tipo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.HashMap;
 import java.util.Map;
 @JsonIgnoreProperties(ignoreUnknown = true)
+@JsonSerialize(using = PokemonSerializer.class)
 public class Pokemon {
 
     //Atributos:
@@ -15,9 +18,6 @@ public class Pokemon {
 
     private Map<String, Habilidad> misHabilidades;
 
-    public Pokemon(){
-
-    }
     //Metodos:
     public Pokemon(String nombre, int nivel,String tipo, String historia,double vidaMax,int velocidad,int defensa,int ataque){
         this.nombre = nombre;

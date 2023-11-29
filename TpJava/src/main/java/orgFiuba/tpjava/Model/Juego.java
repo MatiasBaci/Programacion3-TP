@@ -1,8 +1,10 @@
 package orgFiuba.tpjava.Model;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import orgFiuba.tpjava.Model.Climas.Clima;
 import orgFiuba.tpjava.Model.Climas.SistemaDeClima;
 import orgFiuba.tpjava.Model.Pokemones.Pokemon;
+import orgFiuba.tpjava.Model.SerializacionDeserealizacion.JuegoSerializer;
 import orgFiuba.tpjava.View.GeneralView;
 
 import java.util.Scanner;
@@ -10,6 +12,7 @@ import java.util.Scanner;
 import static orgFiuba.tpjava.Constantes.ANSI_RESET;
 import static orgFiuba.tpjava.Constantes.ANSI_VERDEOSCURO;
 
+@JsonSerialize(using = JuegoSerializer.class)
 public class Juego {
 
     //Atributos:
@@ -137,6 +140,7 @@ public class Juego {
                 this.aplicarIteracion(this.jugador2, this.jugador1);
             }
         }
+
         if(this.jugador1.perdio()){
             this.generalView.felicitar(this.jugador2);
         } else{

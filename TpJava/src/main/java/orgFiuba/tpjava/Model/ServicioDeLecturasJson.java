@@ -11,6 +11,7 @@ import orgFiuba.tpjava.Model.SerializacionDeserealizacion.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -19,6 +20,8 @@ import java.util.stream.Collectors;
 import static orgFiuba.tpjava.Constantes.RUTA_POKEMONS_JSON;
 
 public class ServicioDeLecturasJson {
+
+    private static List<PokemonIdsCustom> pokemonsId = new ArrayList<>();
 
     static public Map<Integer, Habilidad> lecturaHabilidadesJson(String habilidadesPath){
         try {
@@ -51,6 +54,7 @@ public class ServicioDeLecturasJson {
 
             List<PokemonIdsCustom> listaPokemon = objectMapperPokemon.readValue(pokemonFile,new TypeReference<List<PokemonIdsCustom>>() {});
             System.out.println(listaPokemon);
+            pokemonsId = listaPokemon;
 
             Map<Integer, Pokemon> pokemonID = listaPokemon.stream()
                     .collect(Collectors.toMap(PokemonIdsCustom::getId, PokemonIdsCustom::getUnaHabilida));
@@ -99,5 +103,9 @@ public class ServicioDeLecturasJson {
             default:
                 throw new IllegalArgumentException("Tipo de modificación desconocido: " + tipo);
         }
+    }
+
+    public static List<PokemonIdsCustom> getPokemonsId(){
+        return pokemonsId;
     }
 }
