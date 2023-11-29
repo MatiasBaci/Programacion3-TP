@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox fx:id="pantalla" alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" styleClass="bodyFondoSeleccionPokemon" stylesheets="@StyleCss/fondo_batalla.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="orgFiuba.tpjava.Controller.BatallaController">
+<VBox fx:id="pantalla" alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" styleClass="bodyFondoSeleccionPokemon" stylesheets="@StyleCss/fondo_batalla.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="orgFiuba.tpjava.Controller.BatallaController">
    <StackPane fx:id="stackPaneFondo" prefHeight="768.0" prefWidth="1024.0">
       <ImageView fx:id="climaOverlay" fitHeight="768.0" fitWidth="1024.0" preserveRatio="true" />
       <VBox alignment="BOTTOM_CENTER" prefHeight="768.0" prefWidth="1024.0">
@@ -15,7 +15,7 @@
                <Insets />
             </VBox.margin>
             <VBox fx:id="pokemonJ1Box" alignment="BOTTOM_RIGHT" prefHeight="556.0" prefWidth="512.0">
-               <VBox fx:id="pokemonJ1Stats" alignment="CENTER_LEFT" prefHeight="166.0" prefWidth="300.0" style="-fx-background-color: white;">
+               <VBox fx:id="pokemonJ1Stats" alignment="CENTER_LEFT" prefHeight="207.0" prefWidth="506.0" style="-fx-background-color: white;" styleClass="bodyPantalla" stylesheets="@StyleCss/Pantala.css">
                   <HBox fx:id="pokeballs1" prefHeight="23.0" prefWidth="466.0" />
                   <ProgressBar fx:id="pokemonJ1HP" prefHeight="30.0" prefWidth="362.0" progress="0.0" style="-fx-background-color: green;" />
                   <Text fx:id="pokemonJ1StatsText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
@@ -36,7 +36,7 @@
                <HBox fx:id="pokemonJ2ViewBox" alignment="BOTTOM_CENTER" prefHeight="368.0" prefWidth="512.0">
                   <ImageView fx:id="pokemonJ2View" fitHeight="367.0" fitWidth="449.0" layoutX="-Infinity" pickOnBounds="true" preserveRatio="true" />
                </HBox>
-               <VBox fx:id="pokemonJ2Stats" alignment="CENTER_RIGHT" prefHeight="166.0" prefWidth="382.0" style="-fx-background-color: white;">
+               <VBox fx:id="pokemonJ2Stats" alignment="CENTER_RIGHT" prefHeight="201.0" prefWidth="512.0" style="-fx-background-color: white;" styleClass="bodyPantalla" stylesheets="@StyleCss/Pantala.css">
                   <HBox fx:id="pokeballs2" alignment="TOP_RIGHT" prefHeight="23.0" prefWidth="466.0">
                      <opaqueInsets>
                         <Insets />
