@@ -25,7 +25,7 @@ public class ItemsResourceFactory {
     }
 
     public Text createItemData(Item item) {
-        Text itemData = new Text(item.getNombre() +" | " + " X " + item.getCantidad());
+        Text itemData = new Text(item.getNombre() +" | " + " X " + item.getCantidad() + " | " + "Modificacion: " + item.getUnaModificacion().obtenerNombreModificacion());
         itemData.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
         itemData.setFill(Color.BLACK);
         return itemData;
