@@ -8,8 +8,9 @@
 
 <VBox fx:id="pantalla" alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" styleClass="bodyFondoSeleccionPokemon" stylesheets="@StyleCss/fondo_batalla.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="orgFiuba.tpjava.Controller.BatallaController">
    <StackPane fx:id="stackPaneFondo" prefHeight="768.0" prefWidth="1024.0">
+      <ImageView fx:id="climaOverlay" fitHeight="768.0" fitWidth="1024.0" preserveRatio="true" />
       <VBox alignment="BOTTOM_CENTER" prefHeight="768.0" prefWidth="1024.0">
-         <HBox fx:id="pokemones" alignment="CENTER" prefHeight="644.0" prefWidth="1024.0">
+         <HBox fx:id="pokemones" alignment="CENTER" prefHeight="644.0" prefWidth="1024.0" stylesheets="@StyleCss/menu.css">
             <VBox.margin>
                <Insets />
             </VBox.margin>
@@ -62,12 +63,10 @@
          </HBox>
          <HBox fx:id="dialogoYMenuBox" alignment="CENTER_RIGHT" fillHeight="false" prefHeight="300.0" prefWidth="1018.0" styleClass="bodyFondoSeleccionPokemon" stylesheets="@StyleCss/fondo_text_box.css">
             <VBox fx:id="dialogoBox" alignment="CENTER_RIGHT" prefHeight="178.0" prefWidth="266.0">
-               <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-                     prefHeight="178.0" prefWidth="227.0" style="-fx-background-color: white;">
-                  <Text fx:id="dialogo" layoutX="10.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text"
-                        textAlignment="JUSTIFY" wrappingWidth="180.0">
+               <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="178.0" prefWidth="227.0" style="-fx-background-color: white;">
+                  <Text fx:id="dialogo" layoutX="10.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="180.0">
                      <font>
-                        <Font size="14.0"/>
+                        <Font size="14.0" />
                      </font>
                   </Text>
                </Pane>
@@ -111,6 +110,5 @@
             </GridPane>
          </HBox>
       </VBox>
-      <ImageView fx:id="climaOverlay" fitHeight="768.0" fitWidth="1024.0" preserveRatio="true" />
    </StackPane>
 </VBox>

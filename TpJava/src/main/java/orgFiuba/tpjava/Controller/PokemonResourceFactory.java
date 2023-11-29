@@ -118,27 +118,7 @@ public class PokemonResourceFactory {
 
     public Image createClimaOverlay(String clima) throws FileNotFoundException {
         Image backgroundImage = null;
-        String path;
-        // Load the image
-        try {
-            path = RUTA_CLIMAS + clima + ".gif";
-            backgroundImage = new Image(new File(path).toURI().toString());
-        } catch (Exception e) {
-            try {
-                path = RUTA_CLIMAS + clima + ".png";
-                backgroundImage = new Image(new File(path).toURI().toString());
-            } catch (Exception e2) {
-                throw new FileNotFoundException();
-            }
-        }
-        // Create a BackgroundImage
-       /*BackgroundImage background = new BackgroundImage(
-                backgroundImage,
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundPosition.CENTER,
-                new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false)
-        );*/
+        backgroundImage = new Image(new File(RUTA_CLIMAS + clima + ".gif").toURI().toString());
         return backgroundImage;
     }
 
