@@ -21,7 +21,7 @@ public class SeleccionarNombreJugadoresController {
     public void siguienteVentana(ActionEvent event) {
 
         String nombre = this.nombreJugador.getText();
-        System.out.println(nombre);
+        //System.out.println(nombre);
         if(nombre.isEmpty()){
             PantallaInformacion.mostrarInformacion("No hay caracteres ingresados.");
         }

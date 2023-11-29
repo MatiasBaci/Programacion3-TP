@@ -29,7 +29,7 @@ public class ItemsResourceFactory {
 
         String extension = ".png";
         String path = "Imagenes/Iconos/Estadisticas/"   + modificacion.obtenerNombreModificacion().toLowerCase() + extension;
-        System.out.println(path);
+        //System.out.println(path);
         Image modificacionImage = new Image(getClass().getResource("/orgFiuba/tpjava/" + path).toString());
         ImageView modificacionImageView = new ImageView();
         modificacionImageView.setImage(modificacionImage);

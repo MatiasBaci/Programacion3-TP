@@ -13,11 +13,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Collectors;
-
-import static orgFiuba.tpjava.Constantes.RUTA_POKEMONS_JSON;
 
 public class ServicioDeLecturasJson {
 
@@ -32,7 +29,7 @@ public class ServicioDeLecturasJson {
             objectMapper2.registerModule(module);
 
             List<HabilidadIdsCustom> habilidades = objectMapper2.readValue(habilidadesFile, new TypeReference<List<HabilidadIdsCustom>>() {});
-            System.out.println(habilidades);
+            //System.out.println(habilidades);
             Map<Integer, Habilidad> habilidadesID = habilidades.stream()
                     .collect(Collectors.toMap(HabilidadIdsCustom::getId, HabilidadIdsCustom::getUnaHabilida)); // ---> Lo tranformo en Hash para no usar Fors
             return habilidadesID;
@@ -53,7 +50,7 @@ public class ServicioDeLecturasJson {
             objectMapperPokemon.registerModule(module);
 
             List<PokemonIdsCustom> listaPokemon = objectMapperPokemon.readValue(pokemonFile,new TypeReference<List<PokemonIdsCustom>>() {});
-            System.out.println(listaPokemon);
+            //System.out.println(listaPokemon);
             pokemonsId = listaPokemon;
 
             Map<Integer, Pokemon> pokemonID = listaPokemon.stream()
@@ -74,7 +71,7 @@ public class ServicioDeLecturasJson {
             objectMapperPokemon.registerModule(module);
 
             List<ItemsIdsCustom> listaItems = objectMapperPokemon.readValue(itemFile,new TypeReference<List<ItemsIdsCustom>>() {});
-            System.out.println(listaItems);
+            //System.out.println(listaItems);
 
             Map<Integer, Item> itemID = listaItems.stream()
             .collect(Collectors.toMap(ItemsIdsCustom::getId, ItemsIdsCustom::getUnItem));
