@@ -104,11 +104,11 @@
     "poder": 80
   },
   {
-    "nombre" : "Pulso Noche",
+    "nombre" : "Puño Hielo",
     "tipoDeHabilidad": "ataque",
     "id" : 29,
     "cantidad": 15,
-    "tipo": "Normal",
+    "tipo": "Hielo",
     "poder": 80
   },
   {
@@ -324,7 +324,7 @@
     "tipoDeHabilidad": "ataque",
     "id" : 89,
     "cantidad": 20,
-    "tipo": "Normal",
+    "tipo": "Bicho",
     "poder": 70
   },
   {
@@ -365,5 +365,33 @@
     "cantidad": 5,
     "tipo": "Normal",
     "poder": 110
+  } ,
+  {
+    "nombre" : "Dia Soleado",
+    "tipoDeHabilidad": "clima",
+    "id" : 100,
+    "cantidad": 5,
+    "tipoDeClima": "Soleado"
+  } ,
+  {
+    "nombre" : "Tormenta De Nieve",
+    "tipoDeHabilidad": "clima",
+    "id" : 101,
+    "cantidad": 5,
+    "tipoDeClima": "Tormenta de Nieve"
+  } ,
+  {
+    "nombre" : "Niebla",
+    "tipoDeHabilidad": "clima",
+    "id" : 102,
+    "cantidad": 5,
+    "tipoDeClima": "Niebla"
+  } ,
+  {
+    "nombre" : "Huracan",
+    "tipoDeHabilidad": "clima",
+    "id" : 103,
+    "cantidad": 5,
+    "tipoDeClima": "Huracan"
   }
 ]

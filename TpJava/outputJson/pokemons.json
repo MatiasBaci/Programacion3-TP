@@ -7,7 +7,7 @@
   "velocidad" : 63 ,
   "defensa" : 85 ,
   "ataque" : 70 ,
-  "habilidades": [ 37 , 12 , 85, 24 ]
+  "habilidades": [ 37 , 101 , 85, 24 ]
 }, {"nombre" : "Charizard",
   "id": 15,
   "nivel": 50 ,
@@ -17,7 +17,7 @@
   "velocidad" : 120 ,
   "defensa" : 105 ,
   "ataque" : 129 ,
-  "habilidades": [ 68 , 51 , 19, 73]
+  "habilidades": [ 68 , 51 , 19, 100]
 },
   {"nombre" : "Pikachu",
     "id": 22,
@@ -105,7 +105,7 @@
     "velocidad" : 115 ,
     "defensa" : 90 ,
     "ataque" : 170 ,
-    "habilidades": [ 53 , 74 , 23 , 65]
+    "habilidades": [ 53 , 74 , 103 , 65]
   },
   {"nombre" : "Araquanid",
     "id": 84,
@@ -127,7 +127,7 @@
     "velocidad" : 65 ,
     "defensa" : 60 ,
     "ataque" : 110 ,
-    "habilidades": [ 44 , 71 , 31 , 79]
+    "habilidades": [ 44 , 102 , 31 , 79]
   }
 ]
 
