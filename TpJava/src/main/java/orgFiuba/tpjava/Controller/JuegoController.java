@@ -49,7 +49,6 @@ public class JuegoController extends Parent implements EventHandler<Event> {
         this.stage.show();
     }
 
-
     private void inicializarEscenas() throws IOException {
         SceneFactory sceneFactory = new SceneFactory();
         this.escenas = sceneFactory.createScenesIniciales(this.juego, this);

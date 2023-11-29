@@ -15,10 +15,7 @@ import orgFiuba.tpjava.Model.Pokemones.Habilidad;
 import orgFiuba.tpjava.Model.Pokemones.Pokemon;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public class BatallaController {
 
@@ -78,6 +75,7 @@ public class BatallaController {
     HBox pokeballs2;
     private JuegoController juegoController;
     private List<String> mensajes;
+    //private Set<String> mensajes;
 
 
     public void inicializar(Juego juego, JuegoController juegoController){
@@ -85,6 +83,7 @@ public class BatallaController {
         this.juegoController = juegoController;
         this.juegoController.setBatallaController(this);
         this.mensajes = new ArrayList<>();
+        //this.mensajes = new HashSet<>();
         this.crearVentanaBatalla(juego);
     }
 
@@ -173,12 +172,18 @@ public class BatallaController {
     }
 
     public void mostrarMensaje(String mensaje) {
-        this.mensajes.add(mensaje);
         StringBuilder concatenado = new StringBuilder();
-        if (this.mensajes.size() > 5)
-            this.mensajes.remove(0);
+
+        if (this.mensajes.isEmpty()) {
+            this.mensajes.add(mensaje);
+        } else if (!Objects.equals(mensaje, mensajes.get(mensajes.size() - 1))) {
+            this.mensajes.add(mensaje);
+
+            if (this.mensajes.size() > 4)
+                this.mensajes.remove(0);
+        }
         for (String mensajeActual : this.mensajes) {
-            concatenado.append(mensajeActual).append("\n");
+                concatenado.append(mensajeActual).append("\n\n");
         }
         this.dialogo.setText(concatenado.toString());
     }
