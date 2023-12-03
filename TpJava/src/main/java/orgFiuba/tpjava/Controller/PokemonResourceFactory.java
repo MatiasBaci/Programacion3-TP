@@ -2,9 +2,11 @@ package orgFiuba.tpjava.Controller;
 
 import javafx.geometry.NodeOrientation;
 import javafx.scene.Node;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -12,7 +14,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import orgFiuba.tpjava.Model.Estados.Estado;
 import orgFiuba.tpjava.Model.Pokemones.*;
+import orgFiuba.tpjava.Model.Tipos.Tipo;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -84,17 +88,31 @@ public class PokemonResourceFactory {
 
     public Node createPokemonStats(Pokemon pokemon) {
 
-        Text pokemonStats = new Text("HP: " + (int)pokemon.getCualidades().getVida() + "\n" +
+        HBox estadosBox = new HBox();
+        estadosBox.setSpacing(5);
+        pokemon.getCualidades().obtenerEstadosActuales().forEach(x -> estadosBox.getChildren().add(createIconoEstado(x)));
+
+        ProgressBar hpBar = new ProgressBar();
+        hpBar.setPrefWidth(100);
+        dibujarHPBar(pokemon, hpBar);
+
+        Text pokemonStats = new Text("HP: " + (int)pokemon.getCualidades().getVida() + "/" + (int)pokemon.getCualidades().getVidaMaxima() + "\n" +
+                /*"Estados: " + pokemon.getCualidades().obtenerEstadosActuales() + "\n" +*/
                 "Ataque: " + pokemon.getCualidades().getAtaque() + "\n" +
                 "Defensa: " + pokemon.getCualidades().getDefensa() + "\n" +
                 "Velocidad: " + pokemon.getCualidades().getVelocidad() + "\n" +
-                "Tipo: " + pokemon.getCualidades().getTipo().getNombre() + "\n" +
+                /*"Tipo: " + pokemon.getCualidades().getTipo().getNombre() + "\n" +*/
                 "Nivel: " + (int)pokemon.getCualidades().getNivel());
-        pokemonStats.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
+        pokemonStats.setFont(Font.font("Verdana", FontWeight.BOLD, 17));
         pokemonStats.setFill(Color.BLACK);
-        pokemonStats.setTranslateX(80);
-        pokemonStats.setTranslateY(30);
-        return pokemonStats;
+
+        ImageView iconoTipo = createIconoTipo(pokemon.getCualidades().getTipo());
+
+        VBox pokemonStatsBox = new VBox();
+        pokemonStatsBox.getChildren().addAll(estadosBox, hpBar, pokemonStats, iconoTipo);
+        pokemonStatsBox.setTranslateX(80);
+        pokemonStatsBox.setTranslateY(10);
+        return pokemonStatsBox;
     }
     public String  createBatallaStats(Pokemon unPokemon){
 
@@ -139,16 +157,13 @@ public class PokemonResourceFactory {
 
     }
 
-    public Pane generarBotonAtaque(Habilidad habilidad) {
+    public Pane generarBotonHabilidad(Habilidad habilidad) {
         Pane ataque = new Pane();
         ataque.setPrefHeight(100);
         ataque.setPrefWidth(200);
         ataque.setStyle("-fx-font-size: 18px");
         ataque.setNodeOrientation(NodeOrientation.INHERIT);
         ataque.setStyle("-fx-background-color: #ffffff; -fx-border-color: #000000; -fx-border-width: 1px; -fx-border-radius: 5px; -fx-background-radius: 5px; -fx-background-insets: 0px; -fx-padding: 5px;");
-        /*Text texto = new Text(habilidad.getNombre());
-        texto.setTextAlignment(TextAlignment.CENTER);
-        ataque.getChildren().add(texto);*/
         agregarIconos(ataque, habilidad);
         return ataque;
     }
@@ -196,9 +211,7 @@ public class PokemonResourceFactory {
 
         VBox ataqueVBox = crearVBoxParaHabilidad(ataque);
 
-        ImageView iconoEstado = new ImageView();
-        String rutaIcono = RUTA_ICONOS + "Estados/" + habilidad.getEstado().getNombre() + ".png";
-        iconoEstado.setImage(new Image(new File(rutaIcono).toURI().toString()));
+        ImageView iconoEstado = createIconoEstado(habilidad.getEstado());
         iconoEstado.setFitWidth(20);
         iconoEstado.setFitHeight(20);
         iconoEstado.setTranslateX(50);
@@ -217,6 +230,15 @@ public class PokemonResourceFactory {
         ataqueVBox.getChildren().add(texto);
 
         ataque.getChildren().add(ataqueVBox);
+    }
+
+    private ImageView createIconoEstado(Estado estado) {
+        ImageView iconoEstado = new ImageView();
+        String rutaIcono = RUTA_ICONOS + "Estados/" + estado.getNombre() + ".png";
+        iconoEstado.setImage(new Image(new File(rutaIcono).toURI().toString()));
+        iconoEstado.setFitWidth(20);
+        iconoEstado.setFitHeight(20);
+        return iconoEstado;
     }
 
     private void agregarIconosEstadistica(Pane ataque, HabilidadEstadistica habilidad) {
@@ -250,11 +272,7 @@ public class PokemonResourceFactory {
 
         VBox ataqueVBox = crearVBoxParaHabilidad(ataque);
 
-        ImageView iconoAtaque = new ImageView();
-        String rutaIcono = RUTA_ICONOS + "Tipos/" + habilidad.getTipo().getNombre() + ".png";
-        iconoAtaque.setImage(new Image(new File(rutaIcono).toURI().toString()));
-        iconoAtaque.setFitWidth(100);
-        iconoAtaque.setFitHeight(20);
+        ImageView iconoAtaque = createIconoTipo(habilidad.getTipo());
         iconoAtaque.setTranslateX(50);
         iconoAtaque.setTranslateY(8);
         ataqueVBox.getChildren().add(iconoAtaque);
@@ -271,6 +289,25 @@ public class PokemonResourceFactory {
         ataqueVBox.getChildren().add(texto);
 
         ataque.getChildren().add(ataqueVBox);
+    }
+
+    private ImageView createIconoTipo(Tipo tipo) {
+        ImageView iconoTipo = new ImageView();
+        String rutaIcono = RUTA_ICONOS + "Tipos/" + tipo.getNombre() + ".png";
+        iconoTipo.setImage(new Image(new File(rutaIcono).toURI().toString()));
+        iconoTipo.setFitWidth(100);
+        iconoTipo.setFitHeight(20);
+        return iconoTipo;
+    }
+
+    public void dibujarHPBar(Pokemon pokemon, ProgressBar barra) {
+        barra.setProgress(pokemon.getCualidades().getPorcentajeVida());
+        if (pokemon.getCualidades().getPorcentajeVida() > 0.5)
+            barra.setStyle("-fx-accent: green;");
+        else if (pokemon.getCualidades().getPorcentajeVida() > 0.25)
+            barra.setStyle("-fx-accent: yellow;");
+        else
+            barra.setStyle("-fx-accent: red;");
     }
 
     private VBox crearVBoxParaHabilidad(Pane panelHabilidad) {

@@ -1,6 +1,6 @@
 [ {
-  "nombre" : "Mario",
-  "ganador" : false,
+  "nombre" : "8574",
+  "ganador" : true,
   "items" : {
     "32" : 2,
     "71" : 2,
@@ -19,8 +19,8 @@
   }, {
     "nombre" : "Pikachu",
     "id" : 22,
-    "vidaRestante" : 0.0,
-    "estadosActuales" : [ "Inhabilitado" ]
+    "vidaRestante" : 110.0,
+    "estadosActuales" : [ "Normal" ]
   }, {
     "nombre" : "Charizard",
     "id" : 15,
@@ -35,7 +35,7 @@
     "nombre" : "Crobat",
     "id" : 53,
     "vidaRestante" : 160.0,
-    "estadosActuales" : [ "Dormido", "Normal" ]
+    "estadosActuales" : [ "Normal" ]
   }, {
     "nombre" : "Dusknoir",
     "id" : 41,
@@ -43,8 +43,8 @@
     "estadosActuales" : [ "Normal" ]
   } ]
 }, {
-  "nombre" : "Poulette",
-  "ganador" : true,
+  "nombre" : "6",
+  "ganador" : false,
   "items" : {
     "32" : 2,
     "71" : 2,
@@ -63,8 +63,8 @@
   }, {
     "nombre" : "Trevenant",
     "id" : 11,
-    "vidaRestante" : 100.0,
-    "estadosActuales" : [ "Normal" ]
+    "vidaRestante" : 97.0,
+    "estadosActuales" : [ "Normal", "Paralizado" ]
   }, {
     "nombre" : "Araquanid",
     "id" : 84,
@@ -73,8 +73,8 @@
   }, {
     "nombre" : "Rayquaza",
     "id" : 49,
-    "vidaRestante" : 95.0,
-    "estadosActuales" : [ "Normal", "Envenenado" ]
+    "vidaRestante" : 100.0,
+    "estadosActuales" : [ "Normal" ]
   }, {
     "nombre" : "Alakazam",
     "id" : 68,
@@ -83,7 +83,7 @@
   }, {
     "nombre" : "Bidoof",
     "id" : 5,
-    "vidaRestante" : 42.0,
+    "vidaRestante" : 100.0,
     "estadosActuales" : [ "Normal" ]
   } ]
 } ]

@@ -83,6 +83,7 @@ public class BatallaController {
         this.juegoController = juegoController;
         this.juegoController.setBatallaController(this);
         this.mensajes = new ArrayList<>();
+        this.mensajes.add("Comienza la batalla!");
         //this.mensajes = new HashSet<>();
         this.crearVentanaBatalla(juego);
     }
@@ -93,6 +94,8 @@ public class BatallaController {
         PokemonResourceFactory pokemonResourceFactory = new PokemonResourceFactory();
 
         String clima = juego.getClimaActual().getNombre();
+        this.mostrarMensaje("El clima es " + clima);
+
         try{
             this.climaOverlay.setImage(pokemonResourceFactory.createClimaOverlay(clima));
             // Bind the dimensions of the ImageView to the dimensions of the StackPane
@@ -105,8 +108,8 @@ public class BatallaController {
         this.dibujarPokeballs(juego.getJugadorActual(),pokeballs1,pokemonResourceFactory);
         this.dibujarPokeballs(juego.getJugadorActual().getAdversario(),pokeballs2,pokemonResourceFactory);
 
-        this.dibujarHPBar(juego.getJugadorActual().getPokemonActual(), this.pokemonJ1HP);
-        this.dibujarHPBar(juego.getJugadorActual().getAdversario().getPokemonActual(), this.pokemonJ2HP);
+        pokemonResourceFactory.dibujarHPBar(juego.getJugadorActual().getPokemonActual(), this.pokemonJ1HP);
+        pokemonResourceFactory.dibujarHPBar(juego.getJugadorActual().getAdversario().getPokemonActual(), this.pokemonJ2HP);
 
         this.pokemonJ2StatsText.setText(pokemonResourceFactory.createBatallaStats(juego.getJugadorActual().getAdversario().getPokemonActual()));
         this.pokemonJ1StatsText.setText(pokemonResourceFactory.createBatallaStats(juego.getJugadorActual().getPokemonActual()));
@@ -155,7 +158,7 @@ public class BatallaController {
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < 2; j++) {
                 Habilidad habilidad = habilidades.get(index);
-                Pane ataque = pokemonResourceFactory.generarBotonAtaque(habilidad);
+                Pane ataque = pokemonResourceFactory.generarBotonHabilidad(habilidad);
                 ataque.setOnMouseClicked(event -> this.juegoController.handle(new AtaqueSeleccionadoEvent(habilidad, pokemon)));
                 ataques.add(ataque, j, i);
                 index++;
@@ -174,9 +177,9 @@ public class BatallaController {
     public void mostrarMensaje(String mensaje) {
         StringBuilder concatenado = new StringBuilder();
 
-        if (this.mensajes.isEmpty()) {
+        if (this.mensajes.size() <= 2) {
             this.mensajes.add(mensaje);
-        } else if (!Objects.equals(mensaje, mensajes.get(mensajes.size() - 1))) {
+        } else if (!Objects.equals(mensaje, mensajes.get(mensajes.size() - 1)) && !Objects.equals(mensaje, mensajes.get(mensajes.size() - 2))) {
             this.mensajes.add(mensaje);
 
             if (this.mensajes.size() > 4)
@@ -188,15 +191,7 @@ public class BatallaController {
         this.dialogo.setText(concatenado.toString());
     }
 
-    public void dibujarHPBar(Pokemon pokemon, ProgressBar barra) {
-        barra.setProgress(pokemon.getCualidades().getPorcentajeVida());
-        if (pokemon.getCualidades().getPorcentajeVida() > 0.5)
-            barra.setStyle("-fx-accent: green;");
-        else if (pokemon.getCualidades().getPorcentajeVida() > 0.25)
-            barra.setStyle("-fx-accent: yellow;");
-        else
-            barra.setStyle("-fx-accent: red;");
-    }
+
 
     public void dibujarPokeballs(Jugador unJugador, HBox pokeballs, PokemonResourceFactory resourceFactory){
         Map<String,Pokemon> pokemons;
