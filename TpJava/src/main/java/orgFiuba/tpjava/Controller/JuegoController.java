@@ -271,16 +271,19 @@ public class JuegoController extends Parent implements EventHandler<Event> {
 
     public void handle(AtaqueSeleccionadoEvent ataqueSeleccionadoEvent) {
         PokemonResourceFactory pokemonResourceFactory = new PokemonResourceFactory();
-        try {
-            this.reproducirSoundEffect(pokemonResourceFactory.createHabilidadSFXPath(ataqueSeleccionadoEvent.getHabilidad()));
-        } catch (Exception ignored) {}
-
-        this.juego.getJugadorActual().atacarJugador(this.juego.getJugadorActual().getAdversario(), ataqueSeleccionadoEvent.getHabilidad().getNombre());
-        //this.batallaController.mostrarMensaje("es suerefectivo!");
-        this.batallaController.mostrarMensaje(ataqueSeleccionadoEvent.getPokemon().getNombre() + " usó " + ataqueSeleccionadoEvent.getHabilidad().getNombre() + "!");
-        this.juego.cambiarTurno();
-        this.cicloDeTurnos();
-        this.batallaController.actualizarVista(this.juego);
+        if(ataqueSeleccionadoEvent.sePuedeUsar()){
+            try {
+                this.reproducirSoundEffect(pokemonResourceFactory.createHabilidadSFXPath(ataqueSeleccionadoEvent.getHabilidad()));
+            } catch (Exception ignored) {}
+            this.juego.getJugadorActual().atacarJugador(this.juego.getJugadorActual().getAdversario(), ataqueSeleccionadoEvent.getHabilidad().getNombre());
+            //this.batallaController.mostrarMensaje("es suerefectivo!");
+            this.batallaController.mostrarMensaje(ataqueSeleccionadoEvent.getPokemon().getNombre() + " usó " + ataqueSeleccionadoEvent.getHabilidad().getNombre() + "!");
+            this.juego.cambiarTurno();
+            this.cicloDeTurnos();
+            this.batallaController.actualizarVista(this.juego);
+        }else{
+            this.batallaController.mostrarMensaje("No quedan PP de "+ataqueSeleccionadoEvent.getNombreHabilidad());
+        }
     }
 
     public void handle(MenuItemEvent menuItemEvent) {

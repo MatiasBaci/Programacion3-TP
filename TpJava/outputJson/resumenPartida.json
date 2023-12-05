@@ -1,5 +1,5 @@
 [ {
-  "nombre" : "8574",
+  "nombre" : "asdasdasd",
   "ganador" : true,
   "items" : {
     "32" : 2,
@@ -19,7 +19,7 @@
   }, {
     "nombre" : "Pikachu",
     "id" : 22,
-    "vidaRestante" : 110.0,
+    "vidaRestante" : 7.0,
     "estadosActuales" : [ "Normal" ]
   }, {
     "nombre" : "Charizard",
@@ -43,7 +43,7 @@
     "estadosActuales" : [ "Normal" ]
   } ]
 }, {
-  "nombre" : "6",
+  "nombre" : "asdasdasd",
   "ganador" : false,
   "items" : {
     "32" : 2,
@@ -63,8 +63,8 @@
   }, {
     "nombre" : "Trevenant",
     "id" : 11,
-    "vidaRestante" : 97.0,
-    "estadosActuales" : [ "Normal", "Paralizado" ]
+    "vidaRestante" : 100.0,
+    "estadosActuales" : [ "Normal" ]
   }, {
     "nombre" : "Araquanid",
     "id" : 84,
@@ -83,7 +83,7 @@
   }, {
     "nombre" : "Bidoof",
     "id" : 5,
-    "vidaRestante" : 100.0,
-    "estadosActuales" : [ "Normal" ]
+    "vidaRestante" : 0.0,
+    "estadosActuales" : [ "Inhabilitado" ]
   } ]
 } ]

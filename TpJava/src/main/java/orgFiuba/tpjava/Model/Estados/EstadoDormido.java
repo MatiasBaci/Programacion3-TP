@@ -7,7 +7,7 @@ public class EstadoDormido extends Estado{
 
     private int turnosDormido;
     private final int duracionMaxima;
-    private double probabilidadDeDormir;
+    private double suerteDespertar;
     private double probabilidadDeDespertar;
 
     public EstadoDormido(){
@@ -25,24 +25,26 @@ public class EstadoDormido extends Estado{
         return this.duracionMaxima;
     }
 
-    public double getProbabilidadDeDormir() {return this.probabilidadDeDormir;}
+    public double getSuerteDespertar() {return this.suerteDespertar;}
 
     public double getProbabilidadDeDespertar(){return this.probabilidadDeDespertar;}
 
     @Override
     public boolean puedeAtacar(){
 
-        this.probabilidadDeDespertar = Math.round((0.25 + this.turnosDormido * 0.25) * 100.0) / 100.0; //--> para que genere una numero de dos cirfas signficativas
-        this.probabilidadDeDormir = ServicioDeRandoms.obtenerRandomParaEstadoPuedeAtacar();
+        this.probabilidadDeDespertar = 1 - Math.round((0.25 + this.turnosDormido * 0.25) * 100.0) / 100.0; //--> para que genere una numero de dos cirfas signficativas
+        this.suerteDespertar = ServicioDeRandoms.obtenerRandomParaEstadoPuedeAtacar();
 
 
-        if (this.turnosDormido >= this.duracionMaxima || this.probabilidadDeDormir <= this.probabilidadDeDespertar){
+        if (this.turnosDormido >= this.duracionMaxima || this.suerteDespertar >= this.probabilidadDeDespertar){
 
             this.eliminarse = true;
             this.turnosDormido = 0;
+            System.out.println(turnosDormido); //--> Eliminar esto
             return true;
         } else {
             this.turnosDormido ++;
+            System.out.println(turnosDormido); //--> Eliminar esto
             return false;
         }
     }

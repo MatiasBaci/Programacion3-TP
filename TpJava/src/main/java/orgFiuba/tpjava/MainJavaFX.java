@@ -23,7 +23,6 @@ public class MainJavaFX extends Application {
     public void start(Stage stage) throws IOException {
 
         Juego juego = new Juego();
-        //System.out.println(juego.getClimaActual().getNombre());
 
         FXMLLoader fxmlLoader = new FXMLLoader(MainJavaFX.class.getResource("inicio-view.fxml"));
         VBox root = fxmlLoader.load();
@@ -37,13 +36,6 @@ public class MainJavaFX extends Application {
         stage.setScene(sceneInicio);
 
         juegoController.inicializar(stage, juego);
-
-        /*String path = RUTA_RESUMEN_PARTIDA;
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
-        objectMapper.writeValue(new File(path), juego);*/
-
-        //stage.show();
     }
 
 

@@ -67,6 +67,7 @@ public class Cualidades {
         return this.estados;
     }
     public  void agregarEstado(Estado unEstado){
+        unEstado.reiniciarAtributos();
         unEstado.setCualidades(this);
         this.estados.add(unEstado);
     }

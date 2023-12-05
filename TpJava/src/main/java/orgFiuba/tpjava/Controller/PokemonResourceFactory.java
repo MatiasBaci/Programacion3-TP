@@ -124,7 +124,7 @@ public class PokemonResourceFactory {
             }
         }
 
-        return "HP: " + (int)unPokemon.getCualidades().getVida() + "\n" +
+        return "HP: " + (int)unPokemon.getCualidades().getVida() + "/"+ (int)unPokemon.getCualidades().getVidaMaxima() +"\n" +
                 "Lv " +(int)unPokemon.getCualidades().getNivel()+ "\n" +
                 unPokemon.getNombre() + "\n"+  todosLosEstados;
     }

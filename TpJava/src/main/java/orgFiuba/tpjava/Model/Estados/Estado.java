@@ -33,10 +33,15 @@ public abstract class Estado {
         return cualidades;
     }
 
-    public void setCualidades(Cualidades cualidades){this.cualidades = cualidades;}
+    public void setCualidades(Cualidades cualidades){
+
+        this.cualidades = cualidades;}
 
     public boolean debeSerEliminado(){ return this.eliminarse;}
     public abstract boolean puedeAtacar();
 
+    public void reiniciarAtributos(){
+        this.eliminarse =  false;
+    }
     public abstract void aplicarEfectoPasivoDeEstado();
 }

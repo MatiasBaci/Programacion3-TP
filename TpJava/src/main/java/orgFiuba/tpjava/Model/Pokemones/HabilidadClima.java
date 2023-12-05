@@ -18,6 +18,7 @@ public class HabilidadClima extends Habilidad {
 
     @Override
     public void usarHabilidad(Cualidades cualidadesPokemonEnemigo, Cualidades cualidadesPokemonPropio) {
+        this.cantidadDeUsos--;
         SistemaDeClima.setClimaActual(clima);
     }
 }

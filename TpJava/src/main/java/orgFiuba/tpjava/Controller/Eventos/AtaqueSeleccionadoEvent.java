@@ -24,4 +24,12 @@ public class AtaqueSeleccionadoEvent extends Event {
     public Pokemon getPokemon() {
         return pokemon;
     }
+
+    public boolean sePuedeUsar() {
+        return this.habilidad.getCantidadDeUsos()>0;
+    }
+
+    public String getNombreHabilidad() {
+        return this.habilidad.getNombre();
+    }
 }
