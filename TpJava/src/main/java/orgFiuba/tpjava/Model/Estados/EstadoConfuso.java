@@ -39,21 +39,18 @@ public class EstadoConfuso extends Estado{
     public boolean puedeAtacar(){
 
         if(this.turnosConfuso >= this.duracionMaxima){
-            //this.cualidades.cambiarseEstado(new EstadoNormal()); // cambiarlo------------>
-            //this.cualidades.eliminarEstado(this);
             this.turnosConfuso = 0;
             this.eliminarse = true;
             return true;
         }
         this.turnosConfuso++;
 
-        double probabilidad = ServicioDeRandoms.obtenerRandomParaEstadoPuedeAtacar(); //Numero random de 0(incluyendo) a 1(excluyendo)
-        this.confundido = probabilidad <= PROBABILIDAD_DE_HERIRSE; // quiero que se guarde para luego usarlo en aplicar EfectoPasivoEstado
+        double probabilidad = ServicioDeRandoms.obtenerRandomParaEstadoPuedeAtacar();
+        this.confundido = probabilidad <= PROBABILIDAD_DE_HERIRSE;
 
         if(confundido){
             this.danioPorConfusion = PORCENTAJE_DANIO_CONFUSO * this.cualidades.getVidaMaxima();
             this.cualidades.recibirDanio(danioPorConfusion);
-            //this.cualidades.actualizarEstados(); // para que todos los estados sepan que se actualizaron
             return false;
         } else return true;
     }

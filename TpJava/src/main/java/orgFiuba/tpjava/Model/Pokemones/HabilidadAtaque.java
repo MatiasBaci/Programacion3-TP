@@ -64,11 +64,10 @@ public class HabilidadAtaque extends Habilidad {
     private double calculoAtaqueSegunEstadisticas(Cualidades cualidadesPropio, Cualidades cualidadesEnemigo) {
         double ataque = cualidadesPropio.getAtaque();
         double defensa = cualidadesEnemigo.getDefensa();
-        double poderHabilidad = this.poder;
         double critico = this.calculoCritico();
         double nivel = cualidadesPropio.getNivel();
 
-        return (2.0*nivel*poderHabilidad*ataque*critico/(defensa*5.0)+2.0)/50.0;
+        return (2.0*nivel* (double) this.poder *ataque*critico/(defensa*5.0)+2.0)/50.0;
     }
 
         private double atacar(Cualidades cualidadesPokemonPropio, Cualidades cualidadesPokemonEnemigo){

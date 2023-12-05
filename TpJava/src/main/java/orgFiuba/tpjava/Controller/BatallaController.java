@@ -96,14 +96,10 @@ public class BatallaController {
         String clima = juego.getClimaActual().getNombre();
         this.mostrarMensaje("El clima es " + clima);
 
-        try{
-            this.climaOverlay.setImage(pokemonResourceFactory.createClimaOverlay(clima));
-            // Bind the dimensions of the ImageView to the dimensions of the StackPane
-            this.climaOverlay.fitWidthProperty().bind(this.stackPaneFondo.widthProperty());
-            this.climaOverlay.fitHeightProperty().bind(this.stackPaneFondo.heightProperty());
-        }catch (FileNotFoundException e){
-            this.climaOverlay.setImage(null);
-        }
+        this.climaOverlay.setImage(pokemonResourceFactory.createClimaOverlay(clima));
+        // Bind the dimensions of the ImageView to the dimensions of the StackPane
+        this.climaOverlay.fitWidthProperty().bind(this.stackPaneFondo.widthProperty());
+        this.climaOverlay.fitHeightProperty().bind(this.stackPaneFondo.heightProperty());
 
         this.dibujarPokeballs(juego.getJugadorActual(),pokeballs1,pokemonResourceFactory);
         this.dibujarPokeballs(juego.getJugadorActual().getAdversario(),pokeballs2,pokemonResourceFactory);

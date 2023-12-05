@@ -14,6 +14,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static orgFiuba.tpjava.Constantes.RUTA_PARTIDA_JSON;
+
 public class Datos {
 
     //Atributos:
@@ -57,21 +59,18 @@ public class Datos {
 
 
     private List<Jugador> lecturaJugadoresJson(){
-        String pathPartida="TpJava/outputJson/partida.json";
         try {
-            File partidaFile = new File(pathPartida);
+            File partidaFile = new File(RUTA_PARTIDA_JSON);
             ObjectMapper objectMapperPokemon = new ObjectMapper();
             SimpleModule module = new SimpleModule();
             module.addDeserializer(Jugador.class, new PartidaDeserializer()); ///-> PokemonIds
             objectMapperPokemon.registerModule(module);
 
-            List<Jugador> listaDeJugadores = objectMapperPokemon.readValue(partidaFile, new TypeReference<>() {
-            });
             //System.out.println(listaDeJugadores);
-            return listaDeJugadores;
+            return objectMapperPokemon.readValue(partidaFile, new TypeReference<>() {
+            });
 
         } catch (IOException e) {
-            e.printStackTrace();
             //return null;
         }
         return null;

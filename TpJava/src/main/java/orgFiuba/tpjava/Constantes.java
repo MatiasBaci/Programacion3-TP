@@ -126,6 +126,7 @@ public class Constantes {
     public static final String ANSI_BOLD = "\u001B[1m";
     public static final String ANSI_UNDERLINE = "\u001B[4m";
 
+    public static final String RUTA_PARTIDA_JSON = "TpJava/outputJson/partida.json";
 
     public static final String RUTA_SOUNDTRACK_INICIO = "TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Musica/Pokemon Uranium - Vs. Gym Leader (Last Pokemon).mp3";
     public static final String RUTA_SOUNDTRACK_BATALLA = "TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Musica/Pokemon Uranium OST - Trainer Battle.mp3";

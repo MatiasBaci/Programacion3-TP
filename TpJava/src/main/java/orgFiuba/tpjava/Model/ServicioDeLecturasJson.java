@@ -32,13 +32,12 @@ public class ServicioDeLecturasJson {
             objectMapper2.registerModule(module);
 
             List<HabilidadIdsCustom> habilidades = objectMapper2.readValue(habilidadesFile, new TypeReference<List<HabilidadIdsCustom>>() {});
-            //System.out.println(habilidades);
+
             Map<Integer, Habilidad> habilidadesID = habilidades.stream()
                     .collect(Collectors.toMap(HabilidadIdsCustom::getId, HabilidadIdsCustom::getUnaHabilida)); // ---> Lo tranformo en Hash para no usar Fors
             return habilidadesID;
 
         } catch (IOException e) {
-            e.printStackTrace();
             // Manejar la excepción adecuadamente
             return null;
         }
@@ -61,7 +60,6 @@ public class ServicioDeLecturasJson {
             return pokemonID;
 
         } catch (IOException e) {
-            e.printStackTrace();
             return null;
         }
     }
@@ -75,14 +73,13 @@ public class ServicioDeLecturasJson {
 
             List<ItemsIdsCustom> listaItems = objectMapperPokemon.readValue(itemFile,new TypeReference<List<ItemsIdsCustom>>() {});
             itemsId = listaItems;
-            //System.out.println(listaItems);
+
 
             Map<Integer, Item> itemID = listaItems.stream()
             .collect(Collectors.toMap(ItemsIdsCustom::getId, ItemsIdsCustom::getUnItem));
             return itemID;
 
         } catch (IOException e) {
-            e.printStackTrace();
             return null;
         }
     }
@@ -106,9 +103,6 @@ public class ServicioDeLecturasJson {
         }
     }
 
-    public static List<PokemonIdsCustom> getPokemonsId(){
-        return pokemonsId;
-    }
 
     public static int obtenerIdPokemonPorNombre(String unNombrePokemon) throws PokemonNoEncontradoException {
         List<PokemonIdsCustom> pokemonIdsCustoms = pokemonsId;

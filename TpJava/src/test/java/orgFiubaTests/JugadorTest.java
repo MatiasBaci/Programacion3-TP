@@ -136,28 +136,7 @@ public class JugadorTest {
         assertTrue(jugador.elegirPokemon("Pikachu"));
     }
 
-/*    @Test //TODO testear como test de integracion
-    public void testUsarItemCuandoTodaviaQueda() {
-        //Arrange
-        Cualidades cualidades = mock(Cualidades.class);
-
-        Map<String, Pokemon> misPokemones = new HashMap<>();
-        Pokemon pokemon = mock(Pokemon.class);
-        when(pokemon.getCualidades()).thenReturn(cualidades);
-        misPokemones.put("Pikachu", pokemon);
-
-        Map<String, Item> items = new HashMap<>();
-        Item pocion = mock(Item.class);
-        when(pocion.realizarCasosDeApliacion(cualidades)).thenReturn(true);
-        items.put("Pocion", pocion);
-
-        Jugador jugador = new Jugador("Ash", misPokemones, items);
-        //Act
-        //Assert
-        assertTrue(jugador.usarItem("Pocion", pocion));
-    }*/
-
-    // TESTS DE INTEGRACION
+// TESTS DE INTEGRACION
 
     @Test
     public void testJugadorUsaCuraTodoEnLucarioParaCurarleVenenoYParalisis() {

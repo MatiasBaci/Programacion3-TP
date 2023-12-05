@@ -1,9 +1,9 @@
 [ {
-  "nombre" : "asdasdasd",
+  "nombre" : "asdasd",
   "ganador" : true,
   "items" : {
     "32" : 2,
-    "71" : 2,
+    "71" : 1,
     "57" : 2,
     "0" : 1,
     "4" : 3,
@@ -19,23 +19,23 @@
   }, {
     "nombre" : "Pikachu",
     "id" : 22,
-    "vidaRestante" : 7.0,
-    "estadosActuales" : [ "Normal" ]
+    "vidaRestante" : 52.0,
+    "estadosActuales" : [ "Envenenado", "Normal" ]
   }, {
     "nombre" : "Charizard",
     "id" : 15,
-    "vidaRestante" : 153.0,
-    "estadosActuales" : [ "Normal" ]
+    "vidaRestante" : 0.0,
+    "estadosActuales" : [ "Inhabilitado" ]
   }, {
     "nombre" : "Squirtle",
     "id" : 7,
-    "vidaRestante" : 119.0,
-    "estadosActuales" : [ "Normal" ]
+    "vidaRestante" : 0.0,
+    "estadosActuales" : [ "Inhabilitado" ]
   }, {
     "nombre" : "Crobat",
     "id" : 53,
-    "vidaRestante" : 160.0,
-    "estadosActuales" : [ "Normal" ]
+    "vidaRestante" : 0.0,
+    "estadosActuales" : [ "Inhabilitado" ]
   }, {
     "nombre" : "Dusknoir",
     "id" : 41,
@@ -43,10 +43,10 @@
     "estadosActuales" : [ "Normal" ]
   } ]
 }, {
-  "nombre" : "asdasdasd",
-  "ganador" : false,
+  "nombre" : "asdasda",
+  "ganador" : true,
   "items" : {
-    "32" : 2,
+    "32" : 1,
     "71" : 2,
     "57" : 2,
     "0" : 1,
@@ -58,28 +58,28 @@
   "misPokemones" : [ {
     "nombre" : "Golem",
     "id" : 26,
-    "vidaRestante" : 100.0,
-    "estadosActuales" : [ "Normal" ]
+    "vidaRestante" : 0.0,
+    "estadosActuales" : [ "Inhabilitado" ]
   }, {
     "nombre" : "Trevenant",
     "id" : 11,
-    "vidaRestante" : 100.0,
-    "estadosActuales" : [ "Normal" ]
+    "vidaRestante" : 0.0,
+    "estadosActuales" : [ "Inhabilitado" ]
   }, {
     "nombre" : "Araquanid",
     "id" : 84,
-    "vidaRestante" : 100.0,
-    "estadosActuales" : [ "Normal" ]
+    "vidaRestante" : 0.0,
+    "estadosActuales" : [ "Inhabilitado" ]
   }, {
     "nombre" : "Rayquaza",
     "id" : 49,
-    "vidaRestante" : 100.0,
-    "estadosActuales" : [ "Normal" ]
+    "vidaRestante" : 0.0,
+    "estadosActuales" : [ "Inhabilitado" ]
   }, {
     "nombre" : "Alakazam",
     "id" : 68,
-    "vidaRestante" : 100.0,
-    "estadosActuales" : [ "Normal" ]
+    "vidaRestante" : 0.0,
+    "estadosActuales" : [ "Inhabilitado" ]
   }, {
     "nombre" : "Bidoof",
     "id" : 5,

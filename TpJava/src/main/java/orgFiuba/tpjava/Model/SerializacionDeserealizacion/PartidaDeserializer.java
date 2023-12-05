@@ -8,11 +8,9 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
-import orgFiuba.tpjava.Model.Exceptions.HabilidadNoEncontradaException;
 import orgFiuba.tpjava.Model.Exceptions.PokemonNoEncontradoException;
 import orgFiuba.tpjava.Model.Items.Item;
 import orgFiuba.tpjava.Model.Jugador;
-import orgFiuba.tpjava.Model.Pokemones.Habilidad;
 import orgFiuba.tpjava.Model.Pokemones.Pokemon;
 import orgFiuba.tpjava.Model.ServicioDeLecturasJson;
 

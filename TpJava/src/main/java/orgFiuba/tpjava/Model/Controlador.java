@@ -18,9 +18,6 @@ public class Controlador {
         this.inicializarOpciones();
     }
 
-    public Map<String, Opcion> getOpciones() {
-        return this.opciones;
-    }
 
     public void inicializarOpciones(){
 

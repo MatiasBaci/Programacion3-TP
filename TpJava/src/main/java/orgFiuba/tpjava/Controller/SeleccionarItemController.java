@@ -2,7 +2,6 @@ package orgFiuba.tpjava.Controller;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -13,7 +12,6 @@ import javafx.scene.text.Text;
 import orgFiuba.tpjava.Controller.Eventos.ItemSeleccionadoEvent;
 import orgFiuba.tpjava.Model.Items.Item;
 import orgFiuba.tpjava.Model.Jugador;
-import orgFiuba.tpjava.Model.Modificaciones.Modificacion;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,8 +19,10 @@ import java.util.List;
 
 public class SeleccionarItemController {
 
-    @FXML
-    public HashMap<String, ImageView> itemsViews;
+// --Commented out by Inspection START (05/12/2023 19:29):
+//    @FXML
+//    public HashMap<String, ImageView> itemsViews;
+// --Commented out by Inspection STOP (05/12/2023 19:29)
 
     @FXML
     public VBox vboxMenuItems;
@@ -46,7 +46,7 @@ public class SeleccionarItemController {
 
     public void crearVentanaMenuItem(Jugador jugador){
 
-        this.itemsViews = new HashMap<>();
+        //this.itemsViews = new HashMap<>();
         this.items = new ArrayList<>();
         ItemsResourceFactory itemsResourceFactory = new ItemsResourceFactory();
 

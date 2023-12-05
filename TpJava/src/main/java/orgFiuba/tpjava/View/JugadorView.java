@@ -1,6 +1,5 @@
 package orgFiuba.tpjava.View;
 
-import orgFiuba.tpjava.Model.Pokemones.Cualidades;
 import orgFiuba.tpjava.Model.Pokemones.Pokemon;
 import orgFiuba.tpjava.Model.Items.Item;
 import orgFiuba.tpjava.Model.Jugador;

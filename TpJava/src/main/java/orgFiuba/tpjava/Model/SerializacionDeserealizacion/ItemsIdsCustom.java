@@ -15,8 +15,5 @@ public class ItemsIdsCustom {
     public int getId() {return this.id ;}
 
     public Item getUnItem() {return this.unItem;}
-    public void setId(int id) {this.id = id;}
-
-    public void setUnPokemon(Item unItem) {this.unItem = unItem;}
 
 }

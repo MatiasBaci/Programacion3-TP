@@ -133,7 +133,7 @@ public class PokemonResourceFactory {
         return RUTA_SFX_HABILIDADES + habilidad.getNombre() + ".mp3";
     }
 
-    public Image createClimaOverlay(String clima) throws FileNotFoundException {
+    public Image createClimaOverlay(String clima) {
         Image backgroundImage = null;
         backgroundImage = new Image(new File(RUTA_CLIMAS + clima + ".gif").toURI().toString());
         return backgroundImage;

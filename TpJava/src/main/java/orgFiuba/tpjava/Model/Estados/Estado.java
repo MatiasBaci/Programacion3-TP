@@ -29,9 +29,6 @@ public abstract class Estado {
         return this.color + this.getNombre() + "\u001B[0m";
     }
 
-    public Cualidades getCualidades() {
-        return cualidades;
-    }
 
     public void setCualidades(Cualidades cualidades){
 

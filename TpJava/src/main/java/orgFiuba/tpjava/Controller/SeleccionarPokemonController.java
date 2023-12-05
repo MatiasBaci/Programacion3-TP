@@ -24,8 +24,7 @@ import static orgFiuba.tpjava.Constantes.ESTADO_NORMAL;
 
 public class SeleccionarPokemonController {
 
-    @FXML
-    public HashMap<String, ImageView> pokemonMenuViews;
+
 
     public List<Pokemon> pokemones;
     private Jugador jugador;
@@ -65,7 +64,6 @@ public class SeleccionarPokemonController {
     public void crearVentanaSeleccionarPokemon(Jugador jugador) {
 
         this.jugador = jugador;
-        this.pokemonMenuViews = new HashMap<>();
         this.pokemones = new ArrayList<>();
         PokemonResourceFactory pokemonResourceFactory = new PokemonResourceFactory();
 

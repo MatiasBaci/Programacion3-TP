@@ -40,11 +40,9 @@ public class EstadoDormido extends Estado{
 
             this.eliminarse = true;
             this.turnosDormido = 0;
-            System.out.println(turnosDormido); //--> Eliminar esto
             return true;
         } else {
             this.turnosDormido ++;
-            System.out.println(turnosDormido); //--> Eliminar esto
             return false;
         }
     }

@@ -19,18 +19,13 @@ public class PokemonSerializer extends StdSerializer<Pokemon> {
     }
 
     @Override
-    public void serialize(Pokemon pokemon, JsonGenerator jgen, SerializerProvider provider) throws IOException, JsonProcessingException {
+    public void serialize(Pokemon pokemon, JsonGenerator jgen, SerializerProvider provider) throws IOException {
 
         jgen.writeStartObject();
         jgen.writeNumberField("vida",pokemon.getCualidades().getVida());
 
         jgen.writeObjectField("estados",pokemon.getCualidades().obtenerEstadosActuales());
 
-        /*jgen.writeStringField("apellido", persona.getApellido());
-        jgen.writeStringField("direccion_calle", persona.getDireccion().getCalle());
-        jgen.writeStringField("direccion_numero", persona.getDireccion().getNumero());
-        jgen.writeStringField("direccion_ciudad", persona.getDireccion().getCiudad());
-        jgen.writeEndObject();*/
     }
 
 

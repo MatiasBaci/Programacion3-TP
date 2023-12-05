@@ -14,8 +14,5 @@ public class HabilidadIdsCustom {
     public int getId() {return this.id ;}
 
     public Habilidad getUnaHabilida() {return this.unaHabilidad;}
-    public void setId(int id) {this.id = id;}
-
-    public void setUnaHabilidad(Habilidad unaHabilidad) {this.unaHabilidad = unaHabilidad;}
 
 }

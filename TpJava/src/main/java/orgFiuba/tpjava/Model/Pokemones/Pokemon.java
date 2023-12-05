@@ -12,11 +12,11 @@ import java.util.Map;
 public class Pokemon {
 
     //Atributos:
-    private String nombre;
-    private String historia;
-    private Cualidades cualidades;
+    private final String nombre;
+    private final String historia;
+    private final Cualidades cualidades;
 
-    private Map<String, Habilidad> misHabilidades;
+    private final Map<String, Habilidad> misHabilidades;
 
     //Metodos:
     public Pokemon(String nombre, int nivel,String tipo, String historia,double vidaMax,int velocidad,int defensa,int ataque){

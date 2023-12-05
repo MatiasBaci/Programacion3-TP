@@ -72,10 +72,6 @@ public class Cualidades {
         this.estados.add(unEstado);
     }
 
-    public void eliminarEstado(Estado unEstado) {
-        this.estados.remove(unEstado);
-    }
-
     public boolean atacarConEstadosActuales(){
         boolean puedeAtacarConSusEstados = this.estados.stream().allMatch(Estado::puedeAtacar);
         this.estados.removeIf(Estado::debeSerEliminado);

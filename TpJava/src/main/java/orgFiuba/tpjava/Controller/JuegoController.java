@@ -57,7 +57,7 @@ public class JuegoController extends Parent implements EventHandler<Event> {
     }
 
     @FXML
-    protected void onHelloButtonClick() throws IOException {
+    protected void onHelloButtonClick() {
         welcomeText.setText("");
         this.crearVentanaSeleccionNombre(1);
     }
@@ -87,11 +87,10 @@ public class JuegoController extends Parent implements EventHandler<Event> {
         alert.setContentText(jugadorActual.getNombre() + " es el ganador!!!");
         alert.showAndWait();
 
-        String path = RUTA_RESUMEN_PARTIDA;
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         try {
-            objectMapper.writeValue(new File(path), this.juego);
+            objectMapper.writeValue(new File(RUTA_RESUMEN_PARTIDA), this.juego);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

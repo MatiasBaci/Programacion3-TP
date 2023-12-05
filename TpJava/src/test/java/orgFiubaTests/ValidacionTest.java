@@ -17,7 +17,7 @@ public class ValidacionTest {
     @Test
     public void testEstaContenidoHabilidadValida() {
         //Arrange
-        Map<String, Habilidad> habilidades = new HashMap<>();;
+        Map<String, Habilidad> habilidades = new HashMap<>();
         Habilidad impactrueno = mock(Habilidad.class);
         habilidades.put("Impactrueno", impactrueno);
         Validacion validacion = new Validacion();
@@ -29,7 +29,7 @@ public class ValidacionTest {
     @Test
     public void testEstaContenidoHabilidadInvalida() {
         //Arrange
-        Map<String, Habilidad> habilidades = new HashMap<>();;
+        Map<String, Habilidad> habilidades = new HashMap<>();
         Habilidad impactrueno = mock(Habilidad.class);
         habilidades.put("Impactrueno", impactrueno);
         Validacion validacion = new Validacion();
@@ -41,7 +41,7 @@ public class ValidacionTest {
     @Test
     public void testEstaContenidoPokemonValido() {
         //Arrange
-        Map<String, Pokemon> pokemones = new HashMap<>();;
+        Map<String, Pokemon> pokemones = new HashMap<>();
         Pokemon pikachu = mock(Pokemon.class);
         pokemones.put("Pikachu", pikachu);
         Validacion validacion = new Validacion();
@@ -53,7 +53,7 @@ public class ValidacionTest {
     @Test
     public void testEstaContenidoPokemonInvalido() {
         //Arrange
-        Map<String, Pokemon> pokemones = new HashMap<>();;
+        Map<String, Pokemon> pokemones = new HashMap<>();
         Pokemon pikachu = mock(Pokemon.class);
         pokemones.put("Pikachu", pikachu);
         Validacion validacion = new Validacion();
@@ -65,7 +65,7 @@ public class ValidacionTest {
     @Test
     public void testEstaContenidoItemValido() {
         //Arrange
-        Map<String, Item> items = new HashMap<>();;
+        Map<String, Item> items = new HashMap<>();
         Item pocion = mock(Item.class);
         items.put("Pocion", pocion);
         Validacion validacion = new Validacion();
@@ -77,7 +77,7 @@ public class ValidacionTest {
     @Test
     public void testEstaContenidoItemInvalido() {
         //Arrange
-        Map<String, Item> items = new HashMap<>();;
+        Map<String, Item> items = new HashMap<>();
         Item pocion = mock(Item.class);
         items.put("Pocion", pocion);
         Validacion validacion = new Validacion();

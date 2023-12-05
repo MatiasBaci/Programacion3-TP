@@ -14,7 +14,6 @@ import orgFiuba.tpjava.Model.Items.Item;
 import orgFiuba.tpjava.Model.ServicioDeLecturasJson;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Map;
 
 public class JuegoSerializer extends JsonSerializer<Juego> {
@@ -27,7 +26,7 @@ public class JuegoSerializer extends JsonSerializer<Juego> {
     }
 
     @Override
-    public void serialize(Juego juego, JsonGenerator jgen, SerializerProvider provider) throws IOException, JsonProcessingException {
+    public void serialize(Juego juego, JsonGenerator jgen, SerializerProvider provider) throws IOException {
 
         jgen.writeStartArray(); // Comienza la lista de jugadores
 
@@ -52,12 +51,6 @@ public class JuegoSerializer extends JsonSerializer<Juego> {
         //jgen.writeNumberField("",);
 
         //jgen.writeObjectField("estados",pokemon.getCualidades().obtenerEstadosActuales());
-
-        /*jgen.writeStringField("apellido", persona.getApellido());
-        jgen.writeStringField("direccion_calle", persona.getDireccion().getCalle());
-        jgen.writeStringField("direccion_numero", persona.getDireccion().getNumero());
-        jgen.writeStringField("direccion_ciudad", persona.getDireccion().getCiudad());
-        jgen.writeEndObject();*/
 
     }
     private void escribirJugador(JsonGenerator jgen, Jugador jugador) throws IOException, PokemonNoEncontradoException, ItemNoEncontradoException {
