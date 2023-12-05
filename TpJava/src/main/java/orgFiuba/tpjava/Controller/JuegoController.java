@@ -116,11 +116,11 @@ public class JuegoController extends Parent implements EventHandler<Event> {
         jugador.aplicarEfectoPasivo();
         SistemaDeClima.aplicarClimaActual(jugador.getPokemonActual());
         if (!jugador.getPokemonActual().estaConsciente()) {
-            //mostrar pantalla de cambio de pokemon
             this.seleccionarPokemonController.actualizarVista(jugador);
             this.stage.setScene(this.escenas.get("sceneSeleccionPokemon"));
-        }
-        else try {
+        } else if (jugador.perdio()) {
+            mostrarPantallaFinDeJuego(jugador.getAdversario());
+        } else try {
             this.mostrarVentanaBatalla();
         } catch (NullPointerException e) {
             this.crearVentanaBatalla();

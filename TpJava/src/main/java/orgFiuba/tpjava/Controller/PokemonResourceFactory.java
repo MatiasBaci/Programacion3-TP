@@ -101,7 +101,6 @@ public class PokemonResourceFactory {
                 "Ataque: " + pokemon.getCualidades().getAtaque() + "\n" +
                 "Defensa: " + pokemon.getCualidades().getDefensa() + "\n" +
                 "Velocidad: " + pokemon.getCualidades().getVelocidad() + "\n" +
-                /*"Tipo: " + pokemon.getCualidades().getTipo().getNombre() + "\n" +*/
                 "Nivel: " + (int)pokemon.getCualidades().getNivel());
         pokemonStats.setFont(Font.font("Verdana", FontWeight.BOLD, 17));
         pokemonStats.setFill(Color.BLACK);
