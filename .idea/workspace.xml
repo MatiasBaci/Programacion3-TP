@@ -4,11 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="81ad5f3d-e77a-4eab-8f82-726006efbf84" name="Changes" comment="">
+    <list default="true" id="81ad5f3d-e77a-4eab-8f82-726006efbf84" name="Changes" comment="Agregando imagen pokeballs">
+      <change afterPath="$PROJECT_DIR$/TpJava/outputJson/resumenPartida.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Model/SerializacionDeserealizacion/JuegoSerializer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Model/SerializacionDeserealizacion/PokemonSerializer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/StyleCss/1ee5974d8a89c40cf852d5f5684d1baa.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/StyleCss/LEWr3q.gif" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/HabilidadAtaque.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/HabilidadAtaque.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Controlador.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Controlador.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/HabilidadAtaque.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/HabilidadAtaque.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Constantes.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Constantes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Model/Climas/SistemaDeClima.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Model/Climas/SistemaDeClima.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Model/Estados/EstadoConfuso.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Model/Estados/EstadoConfuso.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Model/Estados/EstadoDormido.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Model/Estados/EstadoDormido.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Model/Juego.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Model/Juego.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Model/Jugador.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Model/Jugador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Model/Pokemones/Pokemon.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Model/Pokemones/Pokemon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Model/ServicioDeLecturasJson.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Model/ServicioDeLecturasJson.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/TpJava_jar/TpJava.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/TpJava_jar/TpJava.jar" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,8 +31,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -41,31 +55,116 @@
   &quot;associatedIndex&quot;: 1
 }</component>
   <component name="ProjectId" id="2VZWDceRPeCVhqYCOKGBo7NpSdD" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/Users/Dayru/OneDrive/Documents/Algoritmo y Programacion 3 -  CANO/TP1 - ALGO3/Tp1_local",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.editor"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;TP__3__JavaFX&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Dayru/OneDrive/Documents/Algoritmo y Programacion 3 -  CANO/TP1 - ALGO3/Programacion3-TP/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="Item" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Dayru\OneDrive\Documents\Algoritmo y Programacion 3 -  CANO\TP1 - ALGO3\Programacion3-TP\TpJava\src\main\resources\orgFiuba\tpjava\Imagenes" />
+      <recent name="C:\Users\Dayru\OneDrive\Documents\Algoritmo y Programacion 3 -  CANO\TP1 - ALGO3\Programacion3-TP\TpJava\src\main\resources\orgFiuba\tpjava" />
+      <recent name="C:\Users\Dayru\OneDrive\Documents\Algoritmo y Programacion 3 -  CANO\TP1 - ALGO3\Programacion3-TP\TpJava\src\main\java\orgFiuba\tpjava\Controller" />
+      <recent name="C:\Users\Mati\Documents\GitHub\Programacion3-TP\TpJava\src\main\resources\orgFiuba\tpjava\Imagenes\pokemon\main-sprites\black-white\pokemonesEjemplo" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Mati\Documents\GitHub\Programacion3-TP\TpJava\src\main\resources\orgFiuba\tpjava" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="orgFiuba.tpjava.Controller" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="orgFiuba.tpjava.Model.SerializacionDeserealizacion" />
       <recent name="Item" />
       <recent name="Tipo" />
     </key>
+  </component>
+  <component name="RunManager" selected="Application.MainJavaFX">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="orgFiuba.tpjava.Main" />
+      <module name="TpJava" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="orgFiuba.tpjava.Controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainJavaFX" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="orgFiuba.tpjava.MainJavaFX" />
+      <module name="TpJava" />
+      <option name="VM_PARAMETERS" value="--add-modules javafx.controls,javafx.fxml,javafx.media" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="orgFiuba.tpjava.Controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ModificacionAtaqueTest.testModificacionAtaqueModificaAtaque" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TpJava" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ModificacionTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ModificacionTests" />
+      <option name="MAIN_CLASS_NAME" value="ModificacionTests.ModificacionAtaqueTest" />
+      <option name="METHOD_NAME" value="testModificacionAtaqueModificaAtaque" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="java in TpJava" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TpJava" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/TpJava/src/test/java" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.MainJavaFX" />
+      <item itemvalue="Application.Main" />
+      <item itemvalue="JUnit.ModificacionAtaqueTest.testModificacionAtaqueModificaAtaque" />
+      <item itemvalue="JUnit.java in TpJava" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.MainJavaFX" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.ModificacionAtaqueTest.testModificacionAtaqueModificaAtaque" />
+        <item itemvalue="JUnit.java in TpJava" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -76,6 +175,63 @@
       <option name="presentableId" value="Default" />
       <updated>1695043963160</updated>
     </task>
+    <task id="LOCAL-00001" summary="algunas PNGs">
+      <option name="closed" value="true" />
+      <created>1700528995157</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1700528995157</updated>
+    </task>
+    <task id="LOCAL-00002" summary="cosas de JavaFx con Santi">
+      <option name="closed" value="true" />
+      <created>1700604919660</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1700604919660</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Imagenes de Pokemon animadas. Por ahora solo muestra los dos Pokemon juntos">
+      <option name="closed" value="true" />
+      <created>1700621063853</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1700621063853</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Bugfix">
+      <option name="closed" value="true" />
+      <created>1700622092430</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1700622092430</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Mas cambios a menu Items">
+      <option name="closed" value="true" />
+      <created>1701106624966</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1701106624967</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Delete Auxiliar :P">
+      <option name="closed" value="true" />
+      <created>1701106715755</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1701106715755</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Agregando imagen pokeballs">
+      <option name="closed" value="true" />
+      <created>1701149800585</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1701149800585</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -89,7 +245,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="Funcional" />
+                        <option value="origin/TP_3_JavaFX" />
                       </list>
                     </value>
                   </entry>
@@ -101,14 +257,37 @@
       </map>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="algunas PNGs" />
+    <MESSAGE value="cosas de JavaFx con Santi" />
+    <MESSAGE value="Imagenes de Pokemon animadas. Por ahora solo muestra los dos Pokemon juntos" />
+    <MESSAGE value="Bugfix" />
+    <MESSAGE value="Mas cambios a menu Items" />
+    <MESSAGE value="Delete Auxiliar :P" />
+    <MESSAGE value="Agregando imagen pokeballs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Agregando imagen pokeballs" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <breakpoint enabled="true" type="java-exception">
-          <properties class="java.lang.NullPointerException" package="java.lang" />
-          <option name="timeStamp" value="1" />
-        </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Model/Estados/EstadoDormido.java</url>
+          <line>38</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="orgFiuba.Model.Pokemones.Cualidades" memberName="ataque" />
+        <PinnedItemInfo parentTag="orgFiuba.tpjava.Model.Pokemones.Pokemon" memberName="cualidades" />
+        <PinnedItemInfo parentTag="orgFiuba.Model.Pokemones.Pokemon" memberName="cualidades" />
+        <PinnedItemInfo parentTag="org.fiuba.algoritmos3.Cualidades" memberName="nivel" />
+      </pinned-members>
+    </pin-to-top-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Programacion3_TP$All_in_TpJava.ic" NAME="All in TpJava Coverage Results" MODIFIED="1699114316912" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

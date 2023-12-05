@@ -1,8 +1,8 @@
 package PokemonesTests.HabilidadTests;
 
-import Estados.EstadoParalizado;
-import Pokemones.Cualidades;
-import Pokemones.HabilidadEstado;
+import orgFiuba.tpjava.Model.Estados.EstadoParalizado;
+import orgFiuba.tpjava.Model.Pokemones.Cualidades;
+import orgFiuba.tpjava.Model.Pokemones.HabilidadEstado;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

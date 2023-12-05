@@ -1,7 +1,7 @@
 package PokemonesTests;
 
-import Estados.Estado;
-import Pokemones.Cualidades;
+import orgFiuba.tpjava.Model.Estados.Estado;
+import orgFiuba.tpjava.Model.Pokemones.Cualidades;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -151,7 +151,7 @@ public class CualidadesTest {
         //Act
         cualidades.agregarEstado(estadoParalizado);
         //Assert
-        assert(cualidades.getEstadosActuales().contains(estadoParalizado));
+        assert(cualidades.obtenerEstadosActuales().contains(estadoParalizado));
     }
 
     @Test

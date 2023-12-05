@@ -1,0 +1,19 @@
+<changelist name="Uncommitted_changes_before_Update_at_28_11_2023_20_15_[Changes]" date="1701213311407" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_28_11_2023_20_15_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 28/11/2023 20:15 [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="out/artifacts/TpJava_jar/TpJava.jar" />
+    <option name="AFTER_PATH" value="out/artifacts/TpJava_jar/TpJava.jar" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_28_11_2023_20_15_[Changes]/TpJava.jar" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="TpJava/src/main/resources/orgFiuba/tpjava/StyleCss/LEWr3q.gif" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_28_11_2023_20_15_[Changes]/LEWr3q.gif" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="TpJava/src/main/resources/orgFiuba/tpjava/StyleCss/1ee5974d8a89c40cf852d5f5684d1baa.gif" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_28_11_2023_20_15_[Changes]/1ee5974d8a89c40cf852d5f5684d1baa.gif" />
+  </binary>
+</changelist>

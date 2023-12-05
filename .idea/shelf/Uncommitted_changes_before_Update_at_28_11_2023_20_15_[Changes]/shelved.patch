@@ -1,0 +1,467 @@
+Index: TpJava/src/main/java/orgFiuba/tpjava/Model/ServicioDeLecturasJson.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package orgFiuba.tpjava.Model;\r\n\r\nimport com.fasterxml.jackson.core.type.TypeReference;\r\nimport com.fasterxml.jackson.databind.ObjectMapper;\r\nimport com.fasterxml.jackson.databind.module.SimpleModule;\r\nimport orgFiuba.tpjava.Model.Items.Item;\r\nimport orgFiuba.tpjava.Model.Modificaciones.*;\r\nimport orgFiuba.tpjava.Model.Pokemones.Habilidad;\r\nimport orgFiuba.tpjava.Model.Pokemones.Pokemon;\r\nimport orgFiuba.tpjava.Model.SerializacionDeserealizacion.*;\r\n\r\nimport java.io.File;\r\nimport java.io.IOException;\r\nimport java.util.List;\r\nimport java.util.Locale;\r\nimport java.util.Map;\r\nimport java.util.stream.Collectors;\r\n\r\nimport static orgFiuba.tpjava.Constantes.RUTA_POKEMONS_JSON;\r\n\r\npublic class ServicioDeLecturasJson {\r\n\r\n    static public Map<Integer, Habilidad> lecturaHabilidadesJson(String habilidadesPath){\r\n        try {\r\n            File habilidadesFile = new File(habilidadesPath);\r\n            ObjectMapper objectMapper2 = new ObjectMapper();\r\n            SimpleModule module = new SimpleModule();\r\n            module.addDeserializer(List.class, new HabilidadDeserializer());\r\n            objectMapper2.registerModule(module);\r\n\r\n            List<HabilidadIdsCustom> habilidades = objectMapper2.readValue(habilidadesFile, new TypeReference<List<HabilidadIdsCustom>>() {});\r\n            System.out.println(habilidades);\r\n            Map<Integer, Habilidad> habilidadesID = habilidades.stream()\r\n                    .collect(Collectors.toMap(HabilidadIdsCustom::getId, HabilidadIdsCustom::getUnaHabilida)); // ---> Lo tranformo en Hash para no usar Fors\r\n            return habilidadesID;\r\n\r\n        } catch (IOException e) {\r\n            e.printStackTrace();\r\n            // Manejar la excepción adecuadamente\r\n            return null;\r\n        }\r\n    }\r\n\r\n    public static Map<Integer, Pokemon> lecturaPokemonJson(String pokemonsPath){\r\n        try {\r\n            File pokemonFile = new File(pokemonsPath);\r\n            ObjectMapper objectMapperPokemon = new ObjectMapper();\r\n            SimpleModule module = new SimpleModule();\r\n            module.addDeserializer(PokemonIdsCustom.class, new PokemonDeserializer()); ///-> PokemonIds\r\n            objectMapperPokemon.registerModule(module);\r\n\r\n            List<PokemonIdsCustom> listaPokemon = objectMapperPokemon.readValue(pokemonFile,new TypeReference<List<PokemonIdsCustom>>() {});\r\n            System.out.println(listaPokemon);\r\n\r\n            Map<Integer, Pokemon> pokemonID = listaPokemon.stream()\r\n                    .collect(Collectors.toMap(PokemonIdsCustom::getId, PokemonIdsCustom::getUnaHabilida));\r\n            return pokemonID;\r\n\r\n        } catch (IOException e) {\r\n            e.printStackTrace();\r\n            return null;\r\n        }\r\n    }\r\n    public static Map<Integer, Item> lecturaItemsJson(String itemsPath){\r\n        try {\r\n            File itemFile = new File(itemsPath);\r\n            ObjectMapper objectMapperPokemon = new ObjectMapper();\r\n            SimpleModule module = new SimpleModule();\r\n            module.addDeserializer(ItemsIdsCustom.class, new ItemDeserializer()); ///-> PokemonIds\r\n            objectMapperPokemon.registerModule(module);\r\n\r\n            List<ItemsIdsCustom> listaItems = objectMapperPokemon.readValue(itemFile,new TypeReference<List<ItemsIdsCustom>>() {});\r\n            System.out.println(listaItems);\r\n\r\n            Map<Integer, Item> itemID = listaItems.stream()\r\n            .collect(Collectors.toMap(ItemsIdsCustom::getId, ItemsIdsCustom::getUnItem));\r\n            return itemID;\r\n\r\n        } catch (IOException e) {\r\n            e.printStackTrace();\r\n            return null;\r\n        }\r\n    }\r\n\r\n    public static Modificacion obtenerModificacion(String tipo) {\r\n        switch (tipo) {\r\n            case \"velocidad\":\r\n                return new ModificacionVelocidad();\r\n            case \"ataque\":\r\n                return new ModificacionAtaque();\r\n            case \"defensa\":\r\n                return new ModificacionDefensa();\r\n            case \"vida\":\r\n                return new ModificacionVida();\r\n            case \"estado\":\r\n                return new ModificacionEstado();\r\n            case \"inhabilitado\":\r\n                return new ModificacionEstadoInhabilitado();\r\n            default:\r\n                throw new IllegalArgumentException(\"Tipo de modificación desconocido: \" + tipo);\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/orgFiuba/tpjava/Model/ServicioDeLecturasJson.java b/TpJava/src/main/java/orgFiuba/tpjava/Model/ServicioDeLecturasJson.java
+--- a/TpJava/src/main/java/orgFiuba/tpjava/Model/ServicioDeLecturasJson.java	(revision e64c523c0dd91a5b94c3db82d9dffcac794cdd0c)
++++ b/TpJava/src/main/java/orgFiuba/tpjava/Model/ServicioDeLecturasJson.java	(date 1701205072439)
+@@ -11,6 +11,7 @@
+ 
+ import java.io.File;
+ import java.io.IOException;
++import java.util.ArrayList;
+ import java.util.List;
+ import java.util.Locale;
+ import java.util.Map;
+@@ -20,6 +21,8 @@
+ 
+ public class ServicioDeLecturasJson {
+ 
++    private static List<PokemonIdsCustom> pokemonsId = new ArrayList<>();
++
+     static public Map<Integer, Habilidad> lecturaHabilidadesJson(String habilidadesPath){
+         try {
+             File habilidadesFile = new File(habilidadesPath);
+@@ -51,6 +54,7 @@
+ 
+             List<PokemonIdsCustom> listaPokemon = objectMapperPokemon.readValue(pokemonFile,new TypeReference<List<PokemonIdsCustom>>() {});
+             System.out.println(listaPokemon);
++            pokemonsId = listaPokemon;
+ 
+             Map<Integer, Pokemon> pokemonID = listaPokemon.stream()
+                     .collect(Collectors.toMap(PokemonIdsCustom::getId, PokemonIdsCustom::getUnaHabilida));
+@@ -100,4 +104,8 @@
+                 throw new IllegalArgumentException("Tipo de modificación desconocido: " + tipo);
+         }
+     }
++
++    public static List<PokemonIdsCustom> getPokemonsId(){
++        return pokemonsId;
++    }
+ }
+Index: TpJava/src/main/java/orgFiuba/tpjava/Model/Juego.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package orgFiuba.tpjava.Model;\r\n\r\nimport orgFiuba.tpjava.Model.Climas.Clima;\r\nimport orgFiuba.tpjava.Model.Climas.SistemaDeClima;\r\nimport orgFiuba.tpjava.Model.Pokemones.Pokemon;\r\nimport orgFiuba.tpjava.View.GeneralView;\r\n\r\nimport java.util.Scanner;\r\n\r\nimport static orgFiuba.tpjava.Constantes.ANSI_RESET;\r\nimport static orgFiuba.tpjava.Constantes.ANSI_VERDEOSCURO;\r\n\r\npublic class Juego {\r\n\r\n    //Atributos:\r\n    private final Jugador jugador1;\r\n    private final Jugador jugador2;\r\n    private Jugador jugadorActual;\r\n    private final Controlador controlador;\r\n    private GeneralView generalView;\r\n\r\n    //Metodos:\r\n\r\n    public Jugador getJugador1() {\r\n        return jugador1;\r\n    }\r\n\r\n    public Jugador getJugador2() {\r\n        return jugador2;\r\n    }\r\n\r\n    public Jugador getJugadorActual() {\r\n        return jugadorActual;\r\n    }\r\n\r\n    public Juego(){\r\n\r\n        ServicioDeUserInput.inicializarScanner();\r\n\r\n        Datos datos = new Datos();\r\n        this.jugador1 = new Jugador(\"\", datos.getMochilaJugador1(), datos.getItemsJugador1());\r\n        this.jugador2 = new Jugador(\"\", datos.getMochilaJugador2(), datos.getItemsJugador2());\r\n\r\n        this.jugador1.setAdversario(jugador2);\r\n        this.jugador2.setAdversario(jugador1);\r\n        this.controlador = new Controlador();\r\n\r\n        SistemaDeClima.iniciarSistemaDeClima();\r\n        SistemaDeClima.inicializarClimaActual();\r\n        this.generalView = new GeneralView(jugador1, SistemaDeClima.getClimaActual());\r\n    }\r\n\r\n    public Juego(Scanner scanner){\r\n\r\n        ServicioDeUserInput.setScanner(scanner);\r\n\r\n        Datos datos = new Datos();\r\n        this.jugador1 = new Jugador(\"-\", datos.getMochilaJugador1(), datos.getItemsJugador1());\r\n        this.jugador2 = new Jugador(\"-\", datos.getMochilaJugador2(), datos.getItemsJugador2());\r\n\r\n        this.jugador1.setAdversario(jugador2);\r\n        this.jugador2.setAdversario(jugador1);\r\n        this.controlador = new Controlador();\r\n\r\n        SistemaDeClima.iniciarSistemaDeClima();\r\n        SistemaDeClima.inicializarClimaActual();\r\n        this.generalView = new GeneralView(jugador1, SistemaDeClima.getClimaActual());\r\n    }\r\n\r\n    public Juego(Jugador jugador1, Jugador jugador2, Controlador controlador, GeneralView generalView){\r\n        this.jugador1 = jugador1;\r\n        this.jugador2 = jugador2;\r\n        this.controlador = controlador;\r\n        this.generalView = generalView;\r\n    }\r\n\r\n    private boolean pokemonJugador1EsRapido(Pokemon pokemonJugador1, Pokemon pokemonJugador2){\r\n        return pokemonJugador1.obtenerVelocidad() >= pokemonJugador2.obtenerVelocidad();\r\n    }\r\n\r\n\r\n    public void logicaDeTurnoSegunVelocidad() {\r\n        if (this.pokemonJugador1EsRapido(this.jugador1.getPokemonActual(), this.jugador2.getPokemonActual())) {\r\n            this.jugador1.setAtacante(true);\r\n            this.jugadorActual = this.jugador1;\r\n            //System.out.println(ANSI_VERDEOSCURO + \"COMIENZA ATACANDO \" + this.jugador1.getNombre().toUpperCase() + ANSI_RESET);\r\n        } else {\r\n            this.jugador2.setAtacante(true);\r\n            this.jugadorActual = this.jugador2;\r\n            //System.out.println(ANSI_VERDEOSCURO + \"COMIENZA ATACANDO \" + this.jugador2.getNombre().toUpperCase() + ANSI_RESET);\r\n        }\r\n    }\r\n\r\n    private void decidirTurnoInicial() {\r\n        this.logicaDeTurnoSegunVelocidad();\r\n        System.out.println(\"\\n\");\r\n        System.out.println(ANSI_VERDEOSCURO + \"Oprima una tecla para salir: \" + ANSI_RESET);\r\n        //String decision = ServicioDeUserInput.input();\r\n        System.out.println(\"\\n\");\r\n    }\r\n\r\n\r\n    public void menuSeleccion() {\r\n\r\n        this.generalView.mostrarMensajeBienvenida();\r\n        this.controlador.validarNombresJugador(this.jugador1);\r\n        this.controlador.validarNombresJugador(this.jugador2);\r\n        this.generalView = new GeneralView(jugador1, SistemaDeClima.getClimaActual());\r\n        this.generalView.getJugadorView().setJugadorAdversarioView(jugador2);\r\n        this.controlador.seleccionarPokemon(this.jugador1, this.generalView.getJugadorView());\r\n        this.controlador.seleccionarPokemon(this.jugador2, this.generalView.getJugadorAdversarioView());\r\n        this.decidirTurnoInicial();\r\n    }\r\n\r\n    public void aplicarIteracion(Jugador jugador, Jugador jugadorAversario){\r\n\r\n        jugador.aplicarEfectoPasivo();\r\n        SistemaDeClima.aplicarClimaActual(jugador.getPokemonActual());\r\n        this.generalView.modificarClimaActualView(SistemaDeClima.getClimaActual());\r\n        this.generalView.setJugadorView(jugador);\r\n        this.generalView.getJugadorView().setJugadorAdversarioView(jugadorAversario);\r\n        this.generalView.getJugadorView().setPokemonActualView(jugador.getPokemonActual());\r\n        this.generalView.getJugadorAdversarioView().setPokemonActualView(jugadorAversario.getPokemonActual());\r\n        this.generalView.mostrarEfectoPasivo();\r\n        this.controlador.opcionesJugadores(jugador, this.generalView);\r\n        this.cambiarTurno();\r\n    }\r\n\r\n\r\n    public void iteracionesJugadores() {\r\n\r\n        while (!this.jugador1.perdio() && !this.jugador2.perdio()){\r\n\r\n            if(this.jugador1.isAtacante()){\r\n                this.aplicarIteracion(this.jugador1, this.jugador2);\r\n            } else{\r\n                this.aplicarIteracion(this.jugador2, this.jugador1);\r\n            }\r\n        }\r\n        if(this.jugador1.perdio()){\r\n            this.generalView.felicitar(this.jugador2);\r\n        } else{\r\n            this.generalView.felicitar(this.jugador1);\r\n        }\r\n    }\r\n\r\n    public void DesarrollarJuego(){\r\n        this.menuSeleccion();\r\n        this.iteracionesJugadores();\r\n    }\r\n\r\n    public void cambiarTurno() {\r\n        if (this.jugadorActual == this.jugador1) {\r\n            jugador1.setAtacante(false);\r\n            jugador2.setAtacante(true);\r\n            this.jugadorActual = this.jugador2;\r\n        } else {\r\n            jugador2.setAtacante(false);\r\n            jugador1.setAtacante(true);\r\n            this.jugadorActual = this.jugador1;\r\n        }\r\n    }\r\n\r\n    public void setJugadorActual(Jugador jugador) {\r\n        this.jugadorActual = jugador;\r\n    }\r\n\r\n    public Clima getClimaActual(){\r\n        return SistemaDeClima.getClimaActual();\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/orgFiuba/tpjava/Model/Juego.java b/TpJava/src/main/java/orgFiuba/tpjava/Model/Juego.java
+--- a/TpJava/src/main/java/orgFiuba/tpjava/Model/Juego.java	(revision e64c523c0dd91a5b94c3db82d9dffcac794cdd0c)
++++ b/TpJava/src/main/java/orgFiuba/tpjava/Model/Juego.java	(date 1701210689650)
+@@ -1,8 +1,10 @@
+ package orgFiuba.tpjava.Model;
+ 
++import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+ import orgFiuba.tpjava.Model.Climas.Clima;
+ import orgFiuba.tpjava.Model.Climas.SistemaDeClima;
+ import orgFiuba.tpjava.Model.Pokemones.Pokemon;
++import orgFiuba.tpjava.Model.SerializacionDeserealizacion.JuegoSerializer;
+ import orgFiuba.tpjava.View.GeneralView;
+ 
+ import java.util.Scanner;
+@@ -10,6 +12,7 @@
+ import static orgFiuba.tpjava.Constantes.ANSI_RESET;
+ import static orgFiuba.tpjava.Constantes.ANSI_VERDEOSCURO;
+ 
++@JsonSerialize(using = JuegoSerializer.class)
+ public class Juego {
+ 
+     //Atributos:
+@@ -137,6 +140,7 @@
+                 this.aplicarIteracion(this.jugador2, this.jugador1);
+             }
+         }
++
+         if(this.jugador1.perdio()){
+             this.generalView.felicitar(this.jugador2);
+         } else{
+Index: TpJava/src/main/java/orgFiuba/tpjava/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package orgFiuba.tpjava;\r\n\r\nimport orgFiuba.tpjava.Model.Items.HiperPocion;\r\nimport orgFiuba.tpjava.Model.Items.Item;\r\nimport orgFiuba.tpjava.Model.Juego;\r\nimport orgFiuba.tpjava.Model.Jugador;\r\nimport orgFiuba.tpjava.Model.Modificaciones.ModificacionVida;\r\nimport orgFiuba.tpjava.Model.Pokemones.Habilidad;\r\nimport orgFiuba.tpjava.Model.Pokemones.HabilidadEstadistica;\r\nimport orgFiuba.tpjava.Model.Pokemones.Pokemon;\r\nimport orgFiuba.tpjava.Model.SerializacionDeserealizacion.*;\r\nimport com.fasterxml.jackson.core.type.TypeReference;\r\nimport com.fasterxml.jackson.databind.JavaType;\r\nimport com.fasterxml.jackson.databind.ObjectMapper;\r\nimport com.fasterxml.jackson.databind.SerializationFeature; //--> para los tabs\r\nimport com.fasterxml.jackson.databind.module.SimpleModule;\r\nimport com.fasterxml.jackson.databind.type.TypeFactory;\r\n\r\nimport java.io.File;\r\nimport java.io.IOException;\r\nimport java.util.List;\r\nimport java.util.Map;\r\nimport java.util.stream.Collectors;\r\n\r\nimport static orgFiuba.tpjava.Constantes.RUTA_POKEMONS_JSON;\r\n\r\npublic class Main {\r\n\r\npublic static void main(String[] args) {\r\n    Juego juego = new Juego();\r\n    juego.DesarrollarJuego();\r\n    //-----------------------------------------------------------------------------------------------------------\r\n   // String path = \"TpJava/outputJson/pokemon.json\"; //--> Ruta Relativa\r\n   // Pokemon unPokemon = new Pokemon(\"Charizard\", 50, \"Fuego\", \"Se dice que el fuego de Charizard arde con más fuerza cuantas más duras batallas haya vivido.\",\r\n  //          153, 120, 105, 129);\r\n  //  Habilidad respiro = new HabilidadEstadistica(\"Respiro\", 5, true, (int)(unPokemon.obtenerVidaMaxima()/2), new ModificacionVida());\r\n   // unPokemon.aniadirHabilidad(respiro);\r\n\r\n  //  ObjectMapper objectMapper = new ObjectMapper();\r\n  //  objectMapper.enable(SerializationFeature.INDENT_OUTPUT);\r\n  //  objectMapper.writeValue(new File(path),unPokemon); //-----------> Serializacion\r\n    //------------------------------------------------------------------------------------------------------------\r\n\r\n\r\n    /*String pathItems = \"TpJava/outputJson/itemPrueba.json\";\r\n    Item unItem = new HiperPocion(\"Hiper Pocion\",5,new ModificacionVida());\r\n    ObjectMapper objectMapperItems = new ObjectMapper();\r\n    objectMapperItems.enable(SerializationFeature.INDENT_OUTPUT);\r\n    objectMapperItems.writeValue(new File(pathItems),unItem); //-----------> Serializacion*/\r\n\r\n    /*String pathPartida=\"TpJava/outputJson/partida.json\";\r\n    try {\r\n        File partidaFile = new File(pathPartida);\r\n        ObjectMapper objectMapperPokemon = new ObjectMapper();\r\n        SimpleModule module = new SimpleModule();\r\n        module.addDeserializer(Jugador.class, new PartidaDeserializer()); ///-> PokemonIds\r\n        objectMapperPokemon.registerModule(module);\r\n\r\n        List<Jugador> listaDeJugadores = objectMapperPokemon.readValue(partidaFile,new TypeReference<List<Jugador>>() {});\r\n        System.out.println(listaDeJugadores);\r\n\r\n        //Map<Integer, Pokemon> pokemonID = listaPokemon.stream()\r\n                //.collect(Collectors.toMap(PokemonIdsCustom::getId, PokemonIdsCustom::getUnaHabilida));\r\n        //return pokemonID;\r\n\r\n    } catch (IOException e) {\r\n        e.printStackTrace();\r\n        //return null;\r\n    }*/\r\n }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/orgFiuba/tpjava/Main.java b/TpJava/src/main/java/orgFiuba/tpjava/Main.java
+--- a/TpJava/src/main/java/orgFiuba/tpjava/Main.java	(revision e64c523c0dd91a5b94c3db82d9dffcac794cdd0c)
++++ b/TpJava/src/main/java/orgFiuba/tpjava/Main.java	(date 1701211170938)
+@@ -23,12 +23,13 @@
+ import java.util.stream.Collectors;
+ 
+ import static orgFiuba.tpjava.Constantes.RUTA_POKEMONS_JSON;
++import static orgFiuba.tpjava.Constantes.RUTA_RESUMEN_PARTIDA;
+ 
+ public class Main {
+ 
+-public static void main(String[] args) {
++public static void main(String[] args) throws IOException {
+     Juego juego = new Juego();
+-    juego.DesarrollarJuego();
++    //juego.DesarrollarJuego();
+     //-----------------------------------------------------------------------------------------------------------
+    // String path = "TpJava/outputJson/pokemon.json"; //--> Ruta Relativa
+    // Pokemon unPokemon = new Pokemon("Charizard", 50, "Fuego", "Se dice que el fuego de Charizard arde con más fuerza cuantas más duras batallas haya vivido.",
+@@ -41,31 +42,9 @@
+   //  objectMapper.writeValue(new File(path),unPokemon); //-----------> Serializacion
+     //------------------------------------------------------------------------------------------------------------
+ 
+-
+-    /*String pathItems = "TpJava/outputJson/itemPrueba.json";
+-    Item unItem = new HiperPocion("Hiper Pocion",5,new ModificacionVida());
+-    ObjectMapper objectMapperItems = new ObjectMapper();
+-    objectMapperItems.enable(SerializationFeature.INDENT_OUTPUT);
+-    objectMapperItems.writeValue(new File(pathItems),unItem); //-----------> Serializacion*/
+-
+-    /*String pathPartida="TpJava/outputJson/partida.json";
+-    try {
+-        File partidaFile = new File(pathPartida);
+-        ObjectMapper objectMapperPokemon = new ObjectMapper();
+-        SimpleModule module = new SimpleModule();
+-        module.addDeserializer(Jugador.class, new PartidaDeserializer()); ///-> PokemonIds
+-        objectMapperPokemon.registerModule(module);
+-
+-        List<Jugador> listaDeJugadores = objectMapperPokemon.readValue(partidaFile,new TypeReference<List<Jugador>>() {});
+-        System.out.println(listaDeJugadores);
+-
+-        //Map<Integer, Pokemon> pokemonID = listaPokemon.stream()
+-                //.collect(Collectors.toMap(PokemonIdsCustom::getId, PokemonIdsCustom::getUnaHabilida));
+-        //return pokemonID;
+-
+-    } catch (IOException e) {
+-        e.printStackTrace();
+-        //return null;
+-    }*/
++    String path = RUTA_RESUMEN_PARTIDA;
++    ObjectMapper objectMapper = new ObjectMapper();
++    objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
++    objectMapper.writeValue(new File(path), juego);
+  }
+ }
+Index: TpJava/src/main/java/module-info.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>module orgFiuba.tpjava {\r\n    requires javafx.controls;\r\n    requires javafx.fxml;\r\n\r\n    requires org.controlsfx.controls;\r\n    requires com.dlsc.formsfx;\r\n    requires com.fasterxml.jackson.core;\r\n    requires com.fasterxml.jackson.databind;\r\n    requires javafx.media;\r\n\r\n    opens orgFiuba.tpjava to javafx.fxml;\r\n    exports orgFiuba.tpjava;\r\n    exports orgFiuba.tpjava.Controller;\r\n    opens orgFiuba.tpjava.Controller to javafx.fxml;\r\n    exports orgFiuba.tpjava.Controller.Eventos;\r\n    opens orgFiuba.tpjava.Controller.Eventos to javafx.fxml;\r\n    exports orgFiuba.tpjava.Model.Pokemones;\r\n    exports orgFiuba.tpjava.Model;\r\n    exports orgFiuba.tpjava.Model.Items;\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/module-info.java b/TpJava/src/main/java/module-info.java
+--- a/TpJava/src/main/java/module-info.java	(revision e64c523c0dd91a5b94c3db82d9dffcac794cdd0c)
++++ b/TpJava/src/main/java/module-info.java	(date 1701211227849)
+@@ -17,4 +17,5 @@
+     exports orgFiuba.tpjava.Model.Pokemones;
+     exports orgFiuba.tpjava.Model;
+     exports orgFiuba.tpjava.Model.Items;
++    exports orgFiuba.tpjava.Model.SerializacionDeserealizacion;
+ }
+\ No newline at end of file
+Index: TpJava/src/main/java/orgFiuba/tpjava/Model/Jugador.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package orgFiuba.tpjava.Model;\r\n\r\nimport orgFiuba.tpjava.Model.Items.Item;\r\nimport orgFiuba.tpjava.Model.Pokemones.Pokemon;\r\n\r\nimport java.util.Map;\r\nimport java.util.Objects;\r\n\r\npublic class Jugador {\r\n\r\n    //Atributos:\r\n    private String nombre;\r\n    private final Map<String, Pokemon> misPokemones;\r\n    private final Map<String, Item> items;\r\n    private Pokemon pokemonActual;\r\n    private Jugador adversario;\r\n    private boolean atacante;\r\n    private boolean esPerdedor;\r\n\r\n    // Metodos:\r\n\r\n    public Jugador(String nombre, Map<String, Pokemon> misPokemones, Map<String, Item> items) {\r\n        this.nombre = nombre;\r\n        this.misPokemones = misPokemones;\r\n        this.items = items;\r\n        this.atacante = false;\r\n        this.esPerdedor = false;\r\n    }\r\n\r\n    public Map<String, Pokemon> getMisPokemones() {\r\n        return misPokemones;\r\n    }\r\n\r\n    public Map<String, Item> getItems() {\r\n        return items;\r\n    }\r\n\r\n    public Pokemon getPokemonActual() {\r\n        return pokemonActual;\r\n    }\r\n\r\n    public Pokemon getPokemon(String nombrePokemon) {\r\n        return misPokemones.get(nombrePokemon);\r\n    }\r\n\r\n    public String getNombre() {return nombre;}\r\n\r\n    public Jugador getAdversario() { return adversario; }\r\n\r\n    public Map<String, Item> getItem(){\r\n        return items;\r\n    }\r\n\r\n    public String getNombrePokemonActual(){\r\n        return this.pokemonActual.getNombre();\r\n    }\r\n\r\n    public void setNombre(String nombre) {\r\n        this.nombre = nombre;\r\n    }\r\n\r\n    public void setAtacante(boolean atacante) {\r\n        this.atacante = atacante;\r\n    }\r\n\r\n    public void setPokemonActual(Pokemon pokemonActual) {this.pokemonActual = pokemonActual;}\r\n\r\n    public void setPokemon(Pokemon pokemon){\r\n        this.misPokemones.replace(pokemon.getNombre(), pokemon);\r\n    }\r\n    public void setAdversario(Jugador unEnemigo) {\r\n        this.adversario = unEnemigo;\r\n    }\r\n\r\n    public boolean verficarEstadoPokemonActual(){\r\n        return this.pokemonActual.getCualidades().estaConsciente();\r\n    }\r\n\r\n    public boolean isAtacante() {\r\n        return atacante;\r\n    }\r\n\r\n    public boolean perdio() {\r\n        return (this.misPokemones.values().stream().noneMatch(Pokemon::estaConsciente) ||\r\n        this.esPerdedor);\r\n    }\r\n\r\n    public void perder() {\r\n        this.esPerdedor = true;\r\n    }\r\n\r\n    private Pokemon seleccionarPokemon(String unPokemon) {\r\n        return this.misPokemones.get(unPokemon);\r\n    }\r\n\r\n    public void aplicarEfectoPasivo() {\r\n        this.pokemonActual.aplicarEfectoPasivoPokemon();\r\n    }\r\n\r\n    public Item elegirItem(String nombreItem){\r\n        return this.items.get(nombreItem);\r\n    }\r\n\r\n    public boolean elegirPokemon(String unPokemon) {\r\n        if (this.seleccionarPokemon(unPokemon) == null) {\r\n            return false;\r\n        }\r\n        else if (!this.seleccionarPokemon(unPokemon).estaConsciente()) {\r\n            return false;\r\n        }\r\n        else if(this.pokemonActual != null){\r\n            if(Objects.equals(unPokemon, pokemonActual.getNombre())) {\r\n                return false;\r\n            }\r\n        }\r\n        this.pokemonActual = this.seleccionarPokemon(unPokemon);\r\n        return true;\r\n    }\r\n\r\n    public void atacarJugador(Jugador jugadorAdversario, String nombreHabilidad){\r\n\r\n        pokemonActual.atacar(jugadorAdversario.getPokemonActual(), nombreHabilidad);\r\n        setAtacante(false);\r\n    }\r\n\r\n    public boolean usarItem(String nombrePokemon, Item itemAplicable){\r\n        if (itemAplicable.realizarCasosDeApliacion(misPokemones.get(nombrePokemon).getCualidades())){\r\n            this.setAtacante(false);\r\n            return true;\r\n        }\r\n        return false;\r\n    }\r\n\r\n    public boolean validarHabilidadPokemon(String nombreHabilidad){\r\n        Validacion validacion = new Validacion();\r\n        return validacion.estaContenidoHabilidad(nombreHabilidad,this.pokemonActual.getMisHabilidades());\r\n    }\r\n\r\n    public boolean validadorClaveItems(String nombreItem){\r\n        Validacion validacion = new Validacion();\r\n        return validacion.estaContenidoItem(nombreItem,this.items);\r\n    }\r\n\r\n    public boolean validadorClavePokemones(String nombrePokemon){\r\n        Validacion validacion = new Validacion();\r\n        return validacion.estaContenidoPokemon(nombrePokemon,this.misPokemones);\r\n    }\r\n}\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/orgFiuba/tpjava/Model/Jugador.java b/TpJava/src/main/java/orgFiuba/tpjava/Model/Jugador.java
+--- a/TpJava/src/main/java/orgFiuba/tpjava/Model/Jugador.java	(revision e64c523c0dd91a5b94c3db82d9dffcac794cdd0c)
++++ b/TpJava/src/main/java/orgFiuba/tpjava/Model/Jugador.java	(date 1701210689629)
+@@ -89,6 +89,10 @@
+         this.esPerdedor = true;
+     }
+ 
++    public boolean esPerdedor(){
++        return this.esPerdedor;
++    }
++
+     private Pokemon seleccionarPokemon(String unPokemon) {
+         return this.misPokemones.get(unPokemon);
+     }
+Index: TpJava/src/main/java/orgFiuba/tpjava/Model/Pokemones/Pokemon.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package orgFiuba.tpjava.Model.Pokemones;\r\n\r\nimport orgFiuba.tpjava.Model.Tipos.Tipo;\r\nimport com.fasterxml.jackson.annotation.JsonIgnoreProperties;\r\n\r\nimport java.util.HashMap;\r\nimport java.util.Map;\r\n@JsonIgnoreProperties(ignoreUnknown = true)\r\npublic class Pokemon {\r\n\r\n    //Atributos:\r\n    private String nombre;\r\n    private String historia;\r\n    private Cualidades cualidades;\r\n\r\n    private Map<String, Habilidad> misHabilidades;\r\n\r\n    public Pokemon(){\r\n\r\n    }\r\n    //Metodos:\r\n    public Pokemon(String nombre, int nivel,String tipo, String historia,double vidaMax,int velocidad,int defensa,int ataque){\r\n        this.nombre = nombre;\r\n        this.historia = historia;\r\n        this.cualidades = new Cualidades(vidaMax,nivel,velocidad,defensa,ataque, tipo);\r\n        this.misHabilidades = new HashMap<>();\r\n    }\r\n\r\n    public void aplicarEfectoPasivoPokemon(){\r\n        this.cualidades.aplicarEfectoPasivoDeEstadosActuales(); // cambiarlo a aplicarEfectoPasivoEstadosActuales\r\n    }\r\n    public String getNombre() {return nombre;}\r\n    public Map<String, Habilidad> getMisHabilidades() {\r\n        return misHabilidades;\r\n    }\r\n    public Cualidades getCualidades() {return cualidades;}\r\n    public int obtenerVelocidad() {return cualidades.getVelocidad();}\r\n    public double obtenerVidaMaxima() {return this.cualidades.getVidaMaxima();}\r\n    public String getHistoria() {\r\n        return historia;\r\n    }\r\n\r\n    public void aniadirHabilidad(Habilidad unaHabilidad){\r\n        this.misHabilidades.put(unaHabilidad.getNombre(), unaHabilidad);\r\n    }\r\n\r\n    public Habilidad seleccionarHabilidad(String unaHabilidad){\r\n        return misHabilidades.get(unaHabilidad);\r\n    }\r\n\r\n    public boolean estaConsciente() {return this.cualidades.estaConsciente();}\r\n\r\n    public void atacar(Pokemon pokemonEnemigoActual, String nombreDeHabilidad) {\r\n\r\n        Habilidad unaHabilidad = this.seleccionarHabilidad(nombreDeHabilidad);\r\n\r\n\r\n        if (this.cualidades.atacarConEstadosActuales()) {\r\n            unaHabilidad.usarHabilidad(pokemonEnemigoActual.getCualidades(), this.cualidades);\r\n        }\r\n    }\r\n\r\n    public Tipo obtenerTipo() {return this.cualidades.getTipo(); }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/orgFiuba/tpjava/Model/Pokemones/Pokemon.java b/TpJava/src/main/java/orgFiuba/tpjava/Model/Pokemones/Pokemon.java
+--- a/TpJava/src/main/java/orgFiuba/tpjava/Model/Pokemones/Pokemon.java	(revision e64c523c0dd91a5b94c3db82d9dffcac794cdd0c)
++++ b/TpJava/src/main/java/orgFiuba/tpjava/Model/Pokemones/Pokemon.java	(date 1701205072428)
+@@ -1,11 +1,14 @@
+ package orgFiuba.tpjava.Model.Pokemones;
+ 
++import com.fasterxml.jackson.databind.annotation.JsonSerialize;
++import orgFiuba.tpjava.Model.SerializacionDeserealizacion.PokemonSerializer;
+ import orgFiuba.tpjava.Model.Tipos.Tipo;
+ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+ 
+ import java.util.HashMap;
+ import java.util.Map;
+ @JsonIgnoreProperties(ignoreUnknown = true)
++@JsonSerialize(using = PokemonSerializer.class)
+ public class Pokemon {
+ 
+     //Atributos:
+@@ -15,9 +18,6 @@
+ 
+     private Map<String, Habilidad> misHabilidades;
+ 
+-    public Pokemon(){
+-
+-    }
+     //Metodos:
+     public Pokemon(String nombre, int nivel,String tipo, String historia,double vidaMax,int velocidad,int defensa,int ataque){
+         this.nombre = nombre;
+Index: TpJava/src/main/java/orgFiuba/tpjava/Constantes.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package orgFiuba.tpjava;\r\n\r\npublic class Constantes {\r\n    public static final String OPCION_UNO = \"1\";\r\n    public static final String OPCION_DOS = \"2\";\r\n\r\n    public static final String OPCION_TRES = \"3\";\r\n    public static final String OPCION_CUATRO = \"4\";\r\n    public static final String OPCION_CINCO = \"5\";\r\n\r\n    public static final int LIMITE_CARACTERES = 50;\r\n\r\n    public static final double PORCENTAJE = 0.1;\r\n\r\n    public static final double PORCENTAJE_VENENO = 0.05;\r\n\r\n    public static final String ESTADO_NORMAL = \"Normal\";\r\n    public static final String ESTADO_INHABILITADO = \"Inhabilitado\";\r\n    public static final String ESTADO_PARALIZADO = \"Paralizado\";\r\n    public static final String ESTADO_DORMIDO = \"Dormido\";\r\n    public static final String ESTADO_ENVENENADO = \"Envenenado\";\r\n    public static final String ESTADO_CONFUSO = \"Confundido\";\r\n\r\n    public static final String TIPO_AGUA = \"Agua\";\r\n    public static final String TIPO_BICHO = \"Bicho\";\r\n    public static final String TIPO_DRAGON = \"Dragon\";\r\n    public static final String TIPO_ELECTRICO = \"Electrico\";\r\n    public static final String TIPO_FANTASMA = \"Fantasma\";\r\n    public static final String TIPO_FUEGO = \"Fuego\";\r\n    public static final String TIPO_HIELO = \"Hielo\";\r\n    public static final String TIPO_LUCHA = \"Lucha\";\r\n    public static final String TIPO_NORMAL = \"Normal\";\r\n    public static final String TIPO_PLANTA = \"Planta\";\r\n    public static final String TIPO_PSIQUICO = \"Psiquico\";\r\n    public static final String TIPO_ROCA = \"Roca\";\r\n    public static final String TIPO_TIERRA = \"Tierra\";\r\n    public static final String TIPO_VENENO = \"Veneno\";\r\n    public static final String TIPO_VOLADOR = \"Volador\";\r\n\r\n    public static final String RELACION_FUERTE = \"Fuerte\";\r\n    public static final String RELACION_NORMAL = \"Normal\";\r\n    public static final String RELACION_DEBIL = \"Debil\";\r\n    public static final String RELACION_NULA = \"Nula\";\r\n\r\n    public static final String RUTA_CLIMAS = \"TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/Climas/\";\r\n    public static final String CLIMA_SOLEADO = \"Soleado\";\r\n    public static final String CLIMA_LLUVIA = \"Lluvia\";\r\n    public static final String CLIMA_TORMENTA_DE_ARENA= \"Tormenta De Arena\";\r\n    public static final String CLIMA_NIEBLA = \"Niebla\";\r\n    public static final String CLIMA_NEVADO = \"Nevado\";\r\n    public static final String CLIMA_TORMENTA_DE_RAYOS = \"Tormenta Electrica\";\r\n    public static final String CLIMA_TORMENTA_DE_NIEVE= \"Tormenta de Nieve\";\r\n    public static final String CLIMA_HURACAN = \"Huracan\";\r\n    public static final String CLIMA_NORMAL= \"Normal\";\r\n\r\n    public static final int DURACION_MAXIMA_DE_CLIMA = 10;\r\n\r\n    public static final double PORCENTAJE_DANIO_CLIMA_ABRASIVO = 0.03;\r\n\r\n    public static final String MODIFICACION_VIDA = \"Vida\";\r\n    public static final String MODIFICACION_ATAQUE = \"Ataque\";\r\n    public static final String MODIFICACION_DEFENSA = \"Defensa\";\r\n    public static final String MODIFICACION_VELOCIDAD = \"Velocidad\";\r\n    public static final String MODIFICACION_ESTADO = \"Estado\";\r\n    public static final String MODIFICACION_INHABILITADO = \"Inhabilitado\";\r\n\r\n    public static final double MULTIPLICADOR_FUERTE = 2;\r\n    public static final double MULTIPLICADOR_DEBIL = 0.5;\r\n    public static final double MULTIPLICADOR_NULA = 0;\r\n    public static final double MULTIPLICADOR_NEUTRAL = 1;\r\n\r\n    public static final double MULTIPLICADOR_CLIMA_FUERTE = 1.1;\r\n    public static final double MULTIPLICADOR_CLIMA_NEUTRAL = 1;\r\n\r\n    public static final double BONUS_MISMO_TIPO = 1.5;\r\n    public static final double BONUS_NEUTRAL = 1;\r\n\r\n    public static final int PROBABILIDAD_CRITICO = 90;\r\n    public static final double CRITICO = 2.0;\r\n    public static final double NO_CRITICO = 1.0;\r\n\r\n    public static final double PROBABILIDAD_DE_HERIRSE = 0.33;\r\n    public static final double PORCENTAJE_DANIO_CONFUSO = 0.15;\r\n\r\n    public static final String RUTA_HABILIDADES_JSON = \"TpJava/outputJson/habilidades.json\";\r\n    public static final String RUTA_POKEMONS_JSON = \"TpJava/outputJson/pokemons.json\";\r\n    public static final String RUTA_ITEMS_JSON = \"TpJava/outputJson/items.json\";\r\n    public static final String ANSI_NEGRO = \"\\u001B[30m\";\r\n    public static final String ANSI_ROJO = \"\\u001B[31m\";\r\n    public static final String ANSI_VERDE = \"\\u001B[32m\";\r\n    public static final String ANSI_AMARILLO = \"\\u001B[33m\";\r\n    public static final String ANSI_CELESTE = \"\\u001B[34m\";\r\n    public static final String ANSI_PURPURA = \"\\u001B[35m\";\r\n    public static final String ANSI_CYAN = \"\\u001B[36m\";\r\n    public static final String ANSI_BLANCO = \"\\u001B[37m\";\r\n    public static final String ANSI_MAGENTA = \"\\\\u001B[45m\";\r\n    public static final String ANSI_LILA = \"\\u001b[38;5;99m\";\r\n    public static final String ANSI_VERDEOSCURO = \"\\u001b[38;5;34m\";\r\n    public static final String ANSI_VERDECLARO = \"\\u001b[38;5;47m\";\r\n    public static final String ANSI_CELESTECLARO = \"\\u001b[38;5;195m\";\r\n    public static final String ANSI_MARRON = \"\\u001b[38;5;94m\";\r\n    public static final String ANSI_MARRONOSCURO = \"\\u001b[38;5;88m\";\r\n    public static final String ANSI_ROSACLARO = \"\\u001b[38;5;213m\";\r\n    public static final String ANSI_GRISCLARO = \"\\u001b[38;5;7m\";\r\n    public static final String ANSI_GRISOSCURO = \"\\u001b[38;5;8m\";\r\n    public static final String ANSI_NARANJA = \"\\u001b[38;5;203m\";\r\n    public static final String ANSI_AZUL = \"\\u001b[38;5;21m\";\r\n    public static final String ANSI_AZULFUERTE = \"\\u001b[38;5;12m\";\r\n    public static final String ANSI_VIOLETA = \"\\u001b[38;5;134m\";\r\n    public static final String ANSI_VIOLETAOSCURO = \"\\u001b[38;5;5m\";\r\n\r\n    public static final String ANSI_FONDO_NEGRO = \"\\u001B[40m\";\r\n    public static final String ANSI_FONDO_ROJO = \"\\u001B[41m\";\r\n    public static final String ANSI_FONDO_VERDE = \"\\u001B[42m\";\r\n    public static final String ANSI_FONDO_AMARILLO = \"\\u001B[43m\";\r\n    public static final String ANSI_FONDO_AZUL = \"\\u001B[44m\";\r\n    public static final String ANSI_FONDO_PURPURA = \"\\u001B[45m\";\r\n    public static final String ANSI_FONDO_CYAN = \"\\u001B[46m\";\r\n    public static final String ANSI_FONDO_BLANCO = \"\\u001B[47m\";\r\n    public static final String ANSI_FONDO_VIOLETA = \"\\u001b[48;5;93m\";\r\n    \r\n    public static final String ANSI_RESET = \"\\u001B[0m\";\r\n    \r\n    public static final String ANSI_BOLD = \"\\u001B[1m\";\r\n    public static final String ANSI_UNDERLINE = \"\\u001B[4m\";\r\n\r\n\r\n    public static final String RUTA_SOUNDTRACK_INICIO = \"TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Musica/Pokemon Uranium - Vs. Gym Leader (Last Pokemon).mp3\";\r\n    public static final String RUTA_SOUNDTRACK_BATALLA = \"TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Musica/Pokemon Uranium OST - Trainer Battle.mp3\";\r\n    public static final String RUTA_SOUNDTRACK_VICTORIA = \"TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Musica/Victory! Trainer Theme - Pokémon Black & White.mp3\";\r\n    public static final String RUTA_SFX_CRIES = \"TpJava/src/main/resources/orgFiuba/tpjava/Sonido/SFX/Cries/\";\r\n    public static final String RUTA_SFX_HABILIDADES = \"TpJava/src/main/resources/orgFiuba/tpjava/Sonido/SFX/Habilidades/\";\r\n    public static final String RUTA_MENU_SPRITES = \"TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/Pokemon/Menu Sprites/\";\r\n\r\n    public static final String RUTA_ICONO_LOGO = \"/orgFiuba/tpjava/Imagenes/Iconos/Team_Galactic_Logo.png\";\r\n    public static final String RUTA_ICONO_POKEBALL = \"TpJava/src/main/resources/orgFiuba/tpjava/StyleCss/Pokeball.png\";\r\n\r\n    public static final String RUTA_ICONOS = \"TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/Iconos/\";\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/orgFiuba/tpjava/Constantes.java b/TpJava/src/main/java/orgFiuba/tpjava/Constantes.java
+--- a/TpJava/src/main/java/orgFiuba/tpjava/Constantes.java	(revision e64c523c0dd91a5b94c3db82d9dffcac794cdd0c)
++++ b/TpJava/src/main/java/orgFiuba/tpjava/Constantes.java	(date 1701205072465)
+@@ -85,6 +85,8 @@
+     public static final String RUTA_HABILIDADES_JSON = "TpJava/outputJson/habilidades.json";
+     public static final String RUTA_POKEMONS_JSON = "TpJava/outputJson/pokemons.json";
+     public static final String RUTA_ITEMS_JSON = "TpJava/outputJson/items.json";
++
++    public static final String RUTA_RESUMEN_PARTIDA = "TpJava/outputJson/resumenPartida.json";
+     public static final String ANSI_NEGRO = "\u001B[30m";
+     public static final String ANSI_ROJO = "\u001B[31m";
+     public static final String ANSI_VERDE = "\u001B[32m";
+Index: TpJava/src/main/java/orgFiuba/tpjava/Model/SerializacionDeserealizacion/PokemonSerializer.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/orgFiuba/tpjava/Model/SerializacionDeserealizacion/PokemonSerializer.java b/TpJava/src/main/java/orgFiuba/tpjava/Model/SerializacionDeserealizacion/PokemonSerializer.java
+new file mode 100644
+--- /dev/null	(date 1701205072490)
++++ b/TpJava/src/main/java/orgFiuba/tpjava/Model/SerializacionDeserealizacion/PokemonSerializer.java	(date 1701205072490)
+@@ -0,0 +1,37 @@
++package orgFiuba.tpjava.Model.SerializacionDeserealizacion;
++
++import com.fasterxml.jackson.core.JsonGenerator;
++import com.fasterxml.jackson.core.JsonProcessingException;
++import com.fasterxml.jackson.databind.SerializerProvider;
++import com.fasterxml.jackson.databind.ser.std.StdSerializer;
++import orgFiuba.tpjava.Model.Pokemones.Pokemon;
++
++import java.io.IOException;
++
++public class PokemonSerializer extends StdSerializer<Pokemon> {
++
++    public PokemonSerializer() {
++        this(null);
++    }
++
++    public PokemonSerializer(Class<Pokemon> t) {
++        super(t);
++    }
++
++    @Override
++    public void serialize(Pokemon pokemon, JsonGenerator jgen, SerializerProvider provider) throws IOException, JsonProcessingException {
++
++        jgen.writeStartObject();
++        jgen.writeNumberField("vida",pokemon.getCualidades().getVida());
++
++        jgen.writeObjectField("estados",pokemon.getCualidades().obtenerEstadosActuales());
++
++        /*jgen.writeStringField("apellido", persona.getApellido());
++        jgen.writeStringField("direccion_calle", persona.getDireccion().getCalle());
++        jgen.writeStringField("direccion_numero", persona.getDireccion().getNumero());
++        jgen.writeStringField("direccion_ciudad", persona.getDireccion().getCiudad());
++        jgen.writeEndObject();*/
++    }
++
++
++}
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"81ad5f3d-e77a-4eab-8f82-726006efbf84\" name=\"Changes\" comment=\"Delete Auxiliar :P\">\r\n      <change afterPath=\"$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/StyleCss/Pokeball.png\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/StyleCss/Pokeball2.png\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Controller/BatallaController.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Controller/BatallaController.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Controller/JuegoController.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Controller/JuegoController.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Controller/PokemonResourceFactory.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Controller/PokemonResourceFactory.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/batalla-view.fxml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/batalla-view.fxml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/artifacts/TpJava_jar/TpJava.jar\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/out/artifacts/TpJava_jar/TpJava.jar\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Interface\" />\r\n        <option value=\"FxmlFile\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"Prueba\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProblemsViewState\">\r\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\r\n  </component>\r\n  <component name=\"ProjectCodeStyleSettingsMigration\">\r\n    <option name=\"version\" value=\"2\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 1\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2VZWDceRPeCVhqYCOKGBo7NpSdD\" />\r\n  <component name=\"ProjectLevelVcsManager\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;TP__3__JavaFX&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/Users/Dayru/OneDrive/Documents/Algoritmo y Programacion 3 -  CANO/TP1 - ALGO3/Programacion3-TP/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes&quot;,\r\n    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,\r\n    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,\r\n    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,\r\n    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CreateClassDialog.RecentsKey\">\r\n      <recent name=\"Item\" />\r\n    </key>\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\Dayru\\OneDrive\\Documents\\Algoritmo y Programacion 3 -  CANO\\TP1 - ALGO3\\Programacion3-TP\\TpJava\\src\\main\\resources\\orgFiuba\\tpjava\\Imagenes\" />\r\n      <recent name=\"C:\\Users\\Dayru\\OneDrive\\Documents\\Algoritmo y Programacion 3 -  CANO\\TP1 - ALGO3\\Programacion3-TP\\TpJava\\src\\main\\resources\\orgFiuba\\tpjava\" />\r\n      <recent name=\"C:\\Users\\Dayru\\OneDrive\\Documents\\Algoritmo y Programacion 3 -  CANO\\TP1 - ALGO3\\Programacion3-TP\\TpJava\\src\\main\\java\\orgFiuba\\tpjava\\Controller\" />\r\n      <recent name=\"C:\\Users\\Mati\\Documents\\GitHub\\Programacion3-TP\\TpJava\\src\\main\\resources\\orgFiuba\\tpjava\\Imagenes\\pokemon\\main-sprites\\black-white\\pokemonesEjemplo\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\Mati\\Documents\\GitHub\\Programacion3-TP\\TpJava\\src\\main\\resources\\orgFiuba\\tpjava\" />\r\n    </key>\r\n    <key name=\"MoveClassesOrPackagesDialog.RECENTS_KEY\">\r\n      <recent name=\"orgFiuba.tpjava.Controller\" />\r\n    </key>\r\n    <key name=\"CopyClassDialog.RECENTS_KEY\">\r\n      <recent name=\"Item\" />\r\n      <recent name=\"Tipo\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Application.MainJavaFX\">\r\n    <configuration name=\"Main\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"orgFiuba.tpjava.Main\" />\r\n      <module name=\"TpJava\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"orgFiuba.tpjava.Controller.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"MainJavaFX\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"orgFiuba.tpjava.MainJavaFX\" />\r\n      <module name=\"TpJava\" />\r\n      <option name=\"VM_PARAMETERS\" value=\"--add-modules javafx.controls,javafx.fxml,javafx.media\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"orgFiuba.tpjava.Controller.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"ModificacionAtaqueTest.testModificacionAtaqueModificaAtaque\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"TpJava\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"ModificacionTests.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <option name=\"PACKAGE_NAME\" value=\"ModificacionTests\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"ModificacionTests.ModificacionAtaqueTest\" />\r\n      <option name=\"METHOD_NAME\" value=\"testModificacionAtaqueModificaAtaque\" />\r\n      <option name=\"TEST_OBJECT\" value=\"method\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"java in TpJava\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"TpJava\" />\r\n      <option name=\"TEST_OBJECT\" value=\"directory\" />\r\n      <dir value=\"$PROJECT_DIR$/TpJava/src/test/java\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <list>\r\n      <item itemvalue=\"Application.MainJavaFX\" />\r\n      <item itemvalue=\"Application.Main\" />\r\n      <item itemvalue=\"JUnit.ModificacionAtaqueTest.testModificacionAtaqueModificaAtaque\" />\r\n      <item itemvalue=\"JUnit.java in TpJava\" />\r\n    </list>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.MainJavaFX\" />\r\n        <item itemvalue=\"Application.Main\" />\r\n        <item itemvalue=\"JUnit.ModificacionAtaqueTest.testModificacionAtaqueModificaAtaque\" />\r\n        <item itemvalue=\"JUnit.java in TpJava\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"81ad5f3d-e77a-4eab-8f82-726006efbf84\" name=\"Changes\" comment=\"\" />\r\n      <created>1695043963160</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1695043963160</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"algunas PNGs\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1700528995157</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1700528995157</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"cosas de JavaFx con Santi\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1700604919660</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1700604919660</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"Imagenes de Pokemon animadas. Por ahora solo muestra los dos Pokemon juntos\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1700621063853</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1700621063853</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"Bugfix\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1700622092430</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1700622092430</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"Mas cambios a menu Items\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1701106624966</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701106624967</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"Delete Auxiliar :P\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1701106715755</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701106715755</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"7\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State>\r\n              <option name=\"FILTERS\">\r\n                <map>\r\n                  <entry key=\"branch\">\r\n                    <value>\r\n                      <list>\r\n                        <option value=\"origin/TP_3_JavaFX\" />\r\n                      </list>\r\n                    </value>\r\n                  </entry>\r\n                </map>\r\n              </option>\r\n            </State>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <option name=\"ADD_EXTERNAL_FILES_SILENTLY\" value=\"true\" />\r\n    <MESSAGE value=\"algunas PNGs\" />\r\n    <MESSAGE value=\"cosas de JavaFx con Santi\" />\r\n    <MESSAGE value=\"Imagenes de Pokemon animadas. Por ahora solo muestra los dos Pokemon juntos\" />\r\n    <MESSAGE value=\"Bugfix\" />\r\n    <MESSAGE value=\"Mas cambios a menu Items\" />\r\n    <MESSAGE value=\"Delete Auxiliar :P\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Delete Auxiliar :P\" />\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <pin-to-top-manager>\r\n      <pinned-members>\r\n        <PinnedItemInfo parentTag=\"orgFiuba.Model.Pokemones.Cualidades\" memberName=\"ataque\" />\r\n        <PinnedItemInfo parentTag=\"orgFiuba.Model.Pokemones.Pokemon\" memberName=\"cualidades\" />\r\n        <PinnedItemInfo parentTag=\"org.fiuba.algoritmos3.Cualidades\" memberName=\"nivel\" />\r\n      </pinned-members>\r\n    </pin-to-top-manager>\r\n  </component>\r\n  <component name=\"com.intellij.coverage.CoverageDataManagerImpl\">\r\n    <SUITE FILE_PATH=\"coverage/Programacion3_TP$All_in_TpJava.ic\" NAME=\"All in TpJava Coverage Results\" MODIFIED=\"1699114316912\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"idea\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"false\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision e64c523c0dd91a5b94c3db82d9dffcac794cdd0c)
++++ b/.idea/workspace.xml	(date 1701213303107)
+@@ -4,14 +4,20 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="81ad5f3d-e77a-4eab-8f82-726006efbf84" name="Changes" comment="Delete Auxiliar :P">
+-      <change afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/StyleCss/Pokeball.png" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/StyleCss/Pokeball2.png" afterDir="false" />
++    <list default="true" id="81ad5f3d-e77a-4eab-8f82-726006efbf84" name="Changes" comment="Agregando imagen pokeballs">
++      <change afterPath="$PROJECT_DIR$/TpJava/outputJson/resumenPartida.json" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Model/SerializacionDeserealizacion/JuegoSerializer.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Model/SerializacionDeserealizacion/PokemonSerializer.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/StyleCss/1ee5974d8a89c40cf852d5f5684d1baa.gif" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/StyleCss/LEWr3q.gif" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Controller/BatallaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Controller/BatallaController.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Controller/JuegoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Controller/JuegoController.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Controller/PokemonResourceFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Controller/PokemonResourceFactory.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/batalla-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/batalla-view.fxml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/module-info.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Constantes.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Constantes.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Main.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Model/Juego.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Model/Juego.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Model/Jugador.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Model/Jugador.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Model/Pokemones/Pokemon.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Model/Pokemones/Pokemon.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Model/ServicioDeLecturasJson.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Model/ServicioDeLecturasJson.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/out/artifacts/TpJava_jar/TpJava.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/TpJava_jar/TpJava.jar" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+@@ -85,11 +91,12 @@
+       <recent name="orgFiuba.tpjava.Controller" />
+     </key>
+     <key name="CopyClassDialog.RECENTS_KEY">
++      <recent name="orgFiuba.tpjava.Model.SerializacionDeserealizacion" />
+       <recent name="Item" />
+       <recent name="Tipo" />
+     </key>
+   </component>
+-  <component name="RunManager" selected="Application.MainJavaFX">
++  <component name="RunManager" selected="Application.Main">
+     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+       <option name="MAIN_CLASS_NAME" value="orgFiuba.tpjava.Main" />
+       <module name="TpJava" />
+@@ -149,8 +156,8 @@
+     </list>
+     <recent_temporary>
+       <list>
+-        <item itemvalue="Application.MainJavaFX" />
+         <item itemvalue="Application.Main" />
++        <item itemvalue="Application.MainJavaFX" />
+         <item itemvalue="JUnit.ModificacionAtaqueTest.testModificacionAtaqueModificaAtaque" />
+         <item itemvalue="JUnit.java in TpJava" />
+       </list>
+@@ -213,7 +220,15 @@
+       <option name="project" value="LOCAL" />
+       <updated>1701106715755</updated>
+     </task>
+-    <option name="localTasksCounter" value="7" />
++    <task id="LOCAL-00007" summary="Agregando imagen pokeballs">
++      <option name="closed" value="true" />
++      <created>1701149800585</created>
++      <option name="number" value="00007" />
++      <option name="presentableId" value="LOCAL-00007" />
++      <option name="project" value="LOCAL" />
++      <updated>1701149800585</updated>
++    </task>
++    <option name="localTasksCounter" value="8" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+@@ -247,9 +262,19 @@
+     <MESSAGE value="Bugfix" />
+     <MESSAGE value="Mas cambios a menu Items" />
+     <MESSAGE value="Delete Auxiliar :P" />
+-    <option name="LAST_COMMIT_MESSAGE" value="Delete Auxiliar :P" />
++    <MESSAGE value="Agregando imagen pokeballs" />
++    <option name="LAST_COMMIT_MESSAGE" value="Agregando imagen pokeballs" />
+   </component>
+   <component name="XDebuggerManager">
++    <breakpoint-manager>
++      <breakpoints>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Model/Datos.java</url>
++          <line>79</line>
++          <option name="timeStamp" value="10" />
++        </line-breakpoint>
++      </breakpoints>
++    </breakpoint-manager>
+     <pin-to-top-manager>
+       <pinned-members>
+         <PinnedItemInfo parentTag="orgFiuba.Model.Pokemones.Cualidades" memberName="ataque" />
+Index: TpJava/src/main/java/orgFiuba/tpjava/Model/SerializacionDeserealizacion/JuegoSerializer.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/orgFiuba/tpjava/Model/SerializacionDeserealizacion/JuegoSerializer.java b/TpJava/src/main/java/orgFiuba/tpjava/Model/SerializacionDeserealizacion/JuegoSerializer.java
+new file mode 100644
+--- /dev/null	(date 1701212461719)
++++ b/TpJava/src/main/java/orgFiuba/tpjava/Model/SerializacionDeserealizacion/JuegoSerializer.java	(date 1701212461719)
+@@ -0,0 +1,57 @@
++package orgFiuba.tpjava.Model.SerializacionDeserealizacion;
++
++import com.fasterxml.jackson.core.JsonGenerator;
++import com.fasterxml.jackson.core.JsonProcessingException;
++import com.fasterxml.jackson.databind.JsonSerializer;
++import com.fasterxml.jackson.databind.SerializerProvider;
++import com.fasterxml.jackson.databind.ser.std.StdSerializer;
++import orgFiuba.tpjava.Model.Juego;
++import orgFiuba.tpjava.Model.Jugador;
++import orgFiuba.tpjava.Model.Pokemones.Pokemon;
++
++import java.io.IOException;
++
++public class JuegoSerializer extends JsonSerializer<Juego> {
++
++    public JuegoSerializer() {
++        this(null);
++    }
++
++    public JuegoSerializer(Class<Juego> t) {
++    }
++
++    @Override
++    public void serialize(Juego juego, JsonGenerator jgen, SerializerProvider provider) throws IOException, JsonProcessingException {
++
++        jgen.writeStartArray(); // Comienza la lista de jugadores
++
++        // Serializa cada jugador en el juego
++        escribirJugador(jgen, juego.getJugador1());
++        escribirJugador(jgen, juego.getJugador2());
++
++        jgen.writeEndArray(); // Termina la lista de jugadores
++        //jgen.writeNumberField("",);
++
++        //jgen.writeObjectField("estados",pokemon.getCualidades().obtenerEstadosActuales());
++
++        /*jgen.writeStringField("apellido", persona.getApellido());
++        jgen.writeStringField("direccion_calle", persona.getDireccion().getCalle());
++        jgen.writeStringField("direccion_numero", persona.getDireccion().getNumero());
++        jgen.writeStringField("direccion_ciudad", persona.getDireccion().getCiudad());
++        jgen.writeEndObject();*/
++    }
++    private void escribirJugador(JsonGenerator jgen, Jugador jugador) throws IOException {
++        jgen.writeStartObject(); // Comienza un objeto para un jugador
++        jgen.writeStringField("nombre", jugador.getNombre());
++        jgen.writeBooleanField("ganador", jugador.esPerdedor());
++        // Serializa otros campos de Jugador (items, pokemons, etc.) según sea necesario
++        //jgen.writeObjectField("items", jugador.getItems());
++        //jgen.writeObjectField("pokemons", jugador.getPokemons());
++        jgen.writeEndObject(); // Termina el objeto para un jugador
++    }
++    private void escribirPokemon(JsonGenerator jgen, Pokemon pokemon)throws IOException{
++
++    }
++
++
++}
+Index: TpJava/outputJson/resumenPartida.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/outputJson/resumenPartida.json b/TpJava/outputJson/resumenPartida.json
+new file mode 100644
+--- /dev/null	(date 1701211344648)
++++ b/TpJava/outputJson/resumenPartida.json	(date 1701211344648)
+@@ -0,0 +1,7 @@
++[ {
++  "nombre" : "",
++  "ganador" : false
++}, {
++  "nombre" : "",
++  "ganador" : false
++} ]
+\ No newline at end of file

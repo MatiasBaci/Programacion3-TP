@@ -1,7 +1,7 @@
 package ModificacionTests;
 
-import Modificaciones.ModificacionEstadoInhabilitado;
-import Pokemones.Cualidades;
+import orgFiuba.tpjava.Model.Modificaciones.ModificacionEstadoInhabilitado;
+import orgFiuba.tpjava.Model.Pokemones.Cualidades;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

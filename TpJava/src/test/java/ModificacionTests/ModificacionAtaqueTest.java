@@ -1,7 +1,7 @@
 package ModificacionTests;
 
-import Modificaciones.ModificacionAtaque;
-import Pokemones.Cualidades;
+import orgFiuba.tpjava.Model.Modificaciones.ModificacionAtaque;
+import orgFiuba.tpjava.Model.Pokemones.Cualidades;
 import org.junit.jupiter.api.Test;
 
 import static org.mockito.Mockito.*;

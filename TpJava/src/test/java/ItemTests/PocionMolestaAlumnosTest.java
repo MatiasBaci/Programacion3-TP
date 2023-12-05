@@ -1,8 +1,8 @@
 package ItemTests;
 
-import Item.PocionMolestaAlumnos;
-import Modificaciones.ModificacionVida;
-import Pokemones.Cualidades;
+import orgFiuba.tpjava.Model.Items.PocionMolestaAlumnos;
+import orgFiuba.tpjava.Model.Modificaciones.ModificacionVida;
+import orgFiuba.tpjava.Model.Pokemones.Cualidades;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -20,7 +20,7 @@ public class PocionMolestaAlumnosTest {
         when(cualidades.getVidaMaxima()).thenReturn(100.0);
         ModificacionVida modificacion = mock(ModificacionVida.class);
 
-        PocionMolestaAlumnos pocionMolestaAlumnos = new PocionMolestaAlumnos("Pocion Molesta Alumnos", 10, modificacion);
+        PocionMolestaAlumnos pocionMolestaAlumnos = new PocionMolestaAlumnos("Pocion Molesta Alumnos", 10, modificacion,"");
         //Act
         boolean itemAplicado = pocionMolestaAlumnos.aplicarItem(cualidades);
         //Assert
@@ -36,7 +36,7 @@ public class PocionMolestaAlumnosTest {
         when(cualidades.getVidaMaxima()).thenReturn(100.0);
         ModificacionVida modificacion = mock(ModificacionVida.class);
 
-        PocionMolestaAlumnos pocionMolestaAlumnos = new PocionMolestaAlumnos("Pocion Molesta Alumnos", 10, modificacion);
+        PocionMolestaAlumnos pocionMolestaAlumnos = new PocionMolestaAlumnos("Pocion Molesta Alumnos", 10, modificacion,"");
         //Act
         boolean itemAplicado = pocionMolestaAlumnos.aplicarItem(cualidades);
         //Assert
@@ -52,7 +52,7 @@ public class PocionMolestaAlumnosTest {
         when(cualidades.getVidaMaxima()).thenReturn(100.0);
         ModificacionVida modificacion = mock(ModificacionVida.class);
 
-        PocionMolestaAlumnos pocionMolestaAlumnos = new PocionMolestaAlumnos("Pocion Molesta Alumnos", 10, modificacion);
+        PocionMolestaAlumnos pocionMolestaAlumnos = new PocionMolestaAlumnos("Pocion Molesta Alumnos", 10, modificacion,"");
         //Act
         boolean itemAplicado = pocionMolestaAlumnos.aplicarItem(cualidades);
         //Assert

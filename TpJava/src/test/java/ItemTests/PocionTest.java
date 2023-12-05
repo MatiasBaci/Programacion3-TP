@@ -1,8 +1,8 @@
 package ItemTests;
 
-import Item.Pocion;
-import Pokemones.Cualidades;
-import Modificaciones.ModificacionVida;
+import orgFiuba.tpjava.Model.Items.Pocion;
+import orgFiuba.tpjava.Model.Pokemones.Cualidades;
+import orgFiuba.tpjava.Model.Modificaciones.ModificacionVida;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -20,7 +20,7 @@ public class PocionTest {
         when(cualidades.getVidaMaxima()).thenReturn(100.0);
         ModificacionVida modificacion = mock(ModificacionVida.class);
 
-        Pocion pocion = new Pocion("Pocion", 10, modificacion);
+        Pocion pocion = new Pocion("Pocion", 10, modificacion,"");
         //Act
         boolean itemAplicado = pocion.aplicarItem(cualidades);
         //Assert
@@ -36,7 +36,7 @@ public class PocionTest {
         when(cualidades.getVidaMaxima()).thenReturn(100.0);
         ModificacionVida modificacion = mock(ModificacionVida.class);
 
-        Pocion pocion = new Pocion("Pocion", 10, modificacion);
+        Pocion pocion = new Pocion("Pocion", 10, modificacion,"");
         //Act
         boolean itemAplicado = pocion.aplicarItem(cualidades);
         //Assert
@@ -52,7 +52,7 @@ public class PocionTest {
         when(cualidades.getVidaMaxima()).thenReturn(100.0);
         ModificacionVida modificacion = mock(ModificacionVida.class);
 
-        Pocion pocion = new Pocion("Pocion", 10, modificacion);
+        Pocion pocion = new Pocion("Pocion", 10, modificacion,"");
         //Act
         boolean itemAplicado = pocion.aplicarItem(cualidades);
         //Assert

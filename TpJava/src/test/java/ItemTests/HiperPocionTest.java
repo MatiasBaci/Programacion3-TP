@@ -1,8 +1,8 @@
 package ItemTests;
 
-import Item.HiperPocion;
-import Pokemones.Cualidades;
-import Modificaciones.ModificacionVida;
+import orgFiuba.tpjava.Model.Items.HiperPocion;
+import orgFiuba.tpjava.Model.Pokemones.Cualidades;
+import orgFiuba.tpjava.Model.Modificaciones.ModificacionVida;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -20,7 +20,7 @@ public class HiperPocionTest {
         when(cualidades.getVidaMaxima()).thenReturn(100.0);
         ModificacionVida modificacion = mock(ModificacionVida.class);
 
-        HiperPocion hiperPocion = new HiperPocion("HiperPocion", 1, modificacion);
+        HiperPocion hiperPocion = new HiperPocion("HiperPocion", 1, modificacion,"");
         //Act
         boolean itemAplicado = hiperPocion.aplicarItem(cualidades);
         //Assert
@@ -36,7 +36,7 @@ public class HiperPocionTest {
         when(cualidades.getVidaMaxima()).thenReturn(100.0);
         ModificacionVida modificacion = mock(ModificacionVida.class);
 
-        HiperPocion hiperPocion = new HiperPocion("HiperPocion", 1, modificacion);
+        HiperPocion hiperPocion = new HiperPocion("HiperPocion", 1, modificacion,"");
         //Act
         boolean itemAplicado = hiperPocion.aplicarItem(cualidades);
         //Assert
@@ -52,7 +52,7 @@ public class HiperPocionTest {
         when(cualidades.getVidaMaxima()).thenReturn(100.0);
         ModificacionVida modificacion = mock(ModificacionVida.class);
 
-        HiperPocion hiperPocion = new HiperPocion("HiperPocion", 1, modificacion);
+        HiperPocion hiperPocion = new HiperPocion("HiperPocion", 1, modificacion,"");
         //Act
         boolean itemAplicado = hiperPocion.aplicarItem(cualidades);
         //Assert

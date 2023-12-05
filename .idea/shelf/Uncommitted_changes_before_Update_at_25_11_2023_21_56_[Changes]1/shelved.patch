@@ -1,0 +1,400 @@
+Index: TpJava/src/main/java/orgFiuba/tpjava/Controller/SeleccionarNombreJugadoresController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package orgFiuba.tpjava.Controller;\r\n\r\nimport javafx.event.ActionEvent;\r\nimport javafx.fxml.FXML;\r\nimport javafx.fxml.FXMLLoader;\r\nimport javafx.scene.Scene;\r\nimport javafx.scene.control.Alert;\r\nimport javafx.scene.control.Label;\r\nimport javafx.scene.control.TextField;\r\nimport javafx.scene.layout.VBox;\r\nimport javafx.stage.Stage;\r\nimport orgFiuba.tpjava.MainJavaFX;\r\nimport orgFiuba.tpjava.Model.Juego;\r\nimport orgFiuba.tpjava.Model.Jugador;\r\n\r\nimport java.io.IOException;\r\n\r\npublic class SeleccionarNombreJugadoresController {\r\n\r\n    public TextField nombreJugador;\r\n    @FXML\r\n    private Stage stageNombreJugador;\r\n\r\n\r\n    private Jugador jugador;\r\n\r\n\r\n    public void inicializador(Jugador jugador, Stage stageNombreJugador1){\r\n        this.jugador = jugador;\r\n        this.stageNombreJugador = stageNombreJugador1;\r\n    }\r\n\r\n    public void siguienteVentana(ActionEvent event) throws IOException {\r\n\r\n        String nombre = this.nombreJugador.getText();\r\n        System.out.println(nombre);\r\n        if(nombre.isEmpty()){\r\n            Alert alert  = new Alert(Alert.AlertType.INFORMATION);\r\n            alert.setHeaderText(null);\r\n            alert.setTitle(\"Informacion\");\r\n            alert.setContentText(\"No hay ningun caracter en el nombre.\");\r\n            alert.showAndWait();\r\n        }\r\n        else if(nombre.length() > 50){\r\n            Alert alert  = new Alert(Alert.AlertType.INFORMATION);\r\n            alert.setHeaderText(null);\r\n            alert.setTitle(\"Informacion\");\r\n            alert.setContentText(\"Hay mas de 50 caracteres en el nombre.\");\r\n            alert.showAndWait();\r\n        }\r\n        else{\r\n            this.jugador.setNombre(nombre);\r\n            this.stageNombreJugador.close();\r\n        }\r\n\r\n\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/orgFiuba/tpjava/Controller/SeleccionarNombreJugadoresController.java b/TpJava/src/main/java/orgFiuba/tpjava/Controller/SeleccionarNombreJugadoresController.java
+--- a/TpJava/src/main/java/orgFiuba/tpjava/Controller/SeleccionarNombreJugadoresController.java	(revision 9c6725605eaadee064d4914bcc12f4ec0580b207)
++++ b/TpJava/src/main/java/orgFiuba/tpjava/Controller/SeleccionarNombreJugadoresController.java	(date 1700951416484)
+@@ -21,13 +21,16 @@
+     @FXML
+     private Stage stageNombreJugador;
+ 
++    private InicioController inicioController;
++
+ 
+     private Jugador jugador;
+ 
+ 
+-    public void inicializador(Jugador jugador, Stage stageNombreJugador1){
++    public void inicializador(Jugador jugador, InicioController inicioController){
+         this.jugador = jugador;
+-        this.stageNombreJugador = stageNombreJugador1;
++        this.inicioController = inicioController;
++        //this.stageNombreJugador = stageNombreJugador1;
+     }
+ 
+     public void siguienteVentana(ActionEvent event) throws IOException {
+@@ -50,9 +53,8 @@
+         }
+         else{
+             this.jugador.setNombre(nombre);
+-            this.stageNombreJugador.close();
++            this.inicioController.cambiarDeEscena("seleccionarNombreJugadores.fxml",this.jugador);
++            //this.stageNombreJugador.close();
+         }
+-
+-
+     }
+ }
+Index: TpJava/src/main/java/orgFiuba/tpjava/Controller/InicioController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package orgFiuba.tpjava.Controller;\r\n\r\nimport javafx.fxml.FXML;\r\nimport javafx.fxml.FXMLLoader;\r\nimport javafx.scene.Scene;\r\nimport javafx.scene.control.Label;\r\nimport javafx.scene.layout.VBox;\r\nimport javafx.stage.Stage;\r\nimport orgFiuba.tpjava.MainJavaFX;\r\nimport orgFiuba.tpjava.Model.Juego;\r\nimport orgFiuba.tpjava.Model.Jugador;\r\n\r\nimport java.io.IOException;\r\n\r\npublic class InicioController {\r\n    @FXML\r\n    private Label welcomeText;\r\n\r\n    @FXML\r\n    private Stage stageInicio;\r\n\r\n    private Juego juego;\r\n\r\n    public void setStageInicio(Stage stageInicio) {\r\n        this.stageInicio = stageInicio;\r\n    }\r\n\r\n    public void setJuego(Juego juego) {\r\n        this.juego = juego;\r\n    }\r\n\r\n    public void crearVentanaSeleccionNombre(Jugador jugador) throws IOException {\r\n        FXMLLoader fxmlLoader = new FXMLLoader(MainJavaFX.class.getResource(\"seleccionarNombreJugadores-view.fxml\"));\r\n        VBox root = fxmlLoader.load();\r\n        SeleccionarNombreJugadoresController controller = fxmlLoader.getController();\r\n        Scene scene = new Scene(root, 1280, 768);\r\n        Stage stageNombreJugador = new Stage();\r\n        stageNombreJugador.setScene(scene);\r\n        controller.inicializador(jugador, stageNombreJugador);\r\n        stageNombreJugador.show();\r\n        stageNombreJugador.setTitle(\"Seleccionar Nombre Jugador\");\r\n    }\r\n\r\n    public void crearVentanaSeleccionarPokemonInicial(Jugador jugador) throws IOException {\r\n\r\n    }\r\n\r\n    @FXML\r\n    protected void onHelloButtonClick() throws IOException {\r\n\r\n        welcomeText.setText(\"\");\r\n        this.stageInicio.close();\r\n        this.crearVentanaSeleccionNombre(juego.getJugador1());\r\n        this.crearVentanaSeleccionNombre(juego.getJugador2());\r\n        //this.crearVentanaSeleccionarPokemonInicial();\r\n\r\n    }\r\n\r\n    public void abrirStageInicio() {\r\n        this.stageInicio.show();\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/orgFiuba/tpjava/Controller/InicioController.java b/TpJava/src/main/java/orgFiuba/tpjava/Controller/InicioController.java
+--- a/TpJava/src/main/java/orgFiuba/tpjava/Controller/InicioController.java	(revision 9c6725605eaadee064d4914bcc12f4ec0580b207)
++++ b/TpJava/src/main/java/orgFiuba/tpjava/Controller/InicioController.java	(date 1700951416477)
+@@ -4,6 +4,8 @@
+ import javafx.fxml.FXMLLoader;
+ import javafx.scene.Scene;
+ import javafx.scene.control.Label;
++import javafx.scene.image.ImageView;
++import javafx.scene.layout.AnchorPane;
+ import javafx.scene.layout.VBox;
+ import javafx.stage.Stage;
+ import orgFiuba.tpjava.MainJavaFX;
+@@ -19,8 +21,25 @@
+     @FXML
+     private Stage stageInicio;
+ 
++    @FXML
++    private VBox vbox;
++    @FXML
++    private AnchorPane anchorPane;
++
++    @FXML
++    private ImageView imageView;
+     private Juego juego;
+ 
++    /*public void initialize() {
++        // Vincula las propiedades de ancho y alto del AnchorPane y la ImageView con las del VBox
++        anchorPane.prefWidthProperty().bind(vbox.widthProperty());
++        anchorPane.prefHeightProperty().bind(vbox.heightProperty());
++
++        imageView.fitWidthProperty().bind(anchorPane.widthProperty());
++        imageView.fitHeightProperty().bind(anchorPane.heightProperty());
++
++        // Otros nodos dentro del AnchorPane
++    }*/
+     public void setStageInicio(Stage stageInicio) {
+         this.stageInicio = stageInicio;
+     }
+@@ -36,7 +55,7 @@
+         Scene scene = new Scene(root, 1280, 768);
+         Stage stageNombreJugador = new Stage();
+         stageNombreJugador.setScene(scene);
+-        controller.inicializador(jugador, stageNombreJugador);
++       //controller.inicializador(jugador);
+         stageNombreJugador.show();
+         stageNombreJugador.setTitle("Seleccionar Nombre Jugador");
+     }
+@@ -49,11 +68,26 @@
+     protected void onHelloButtonClick() throws IOException {
+ 
+         welcomeText.setText("");
+-        this.stageInicio.close();
+-        this.crearVentanaSeleccionNombre(juego.getJugador1());
+-        this.crearVentanaSeleccionNombre(juego.getJugador2());
++        //this.stageInicio.close();
++
++        //this.crearVentanaSeleccionNombre(juego.getJugador1());
++        //this.crearVentanaSeleccionNombre(juego.getJugador2());
+         //this.crearVentanaSeleccionarPokemonInicial();
+ 
++        this.cambiarDeEscena("seleccionarNombreJugadores-view.fxml",this.juego.getJugador1());
++        this.cambiarDeEscena("seleccionarNombreJugadores-view.fxml",this.juego.getJugador2());
++    }
++    public void cambiarDeEscena(String fxml,Jugador jugador) throws IOException{
++        FXMLLoader fxmlLoader = new FXMLLoader(MainJavaFX.class.getResource(fxml));
++        VBox root = fxmlLoader.load();
++
++        if (fxml.equals("seleccionarNombreJugadores-view.fxml")) {
++            SeleccionarNombreJugadoresController controller = fxmlLoader.getController();
++            controller.inicializador(jugador,this);
++        }
++        Scene scene = new Scene(root, 1280, 768);
++        stageInicio.setScene(scene);
++        stageInicio.show();
+     }
+ 
+     public void abrirStageInicio() {
+Index: TpJava/src/main/resources/orgFiuba/tpjava/inicio-view.fxml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n\r\n<?import javafx.geometry.*?>\r\n<?import javafx.scene.control.*?>\r\n<?import javafx.scene.layout.*?>\r\n\r\n<VBox alignment=\"CENTER\" prefHeight=\"366.0\" prefWidth=\"418.0\" spacing=\"20.0\" xmlns=\"http://javafx.com/javafx/17.0.2-ea\" xmlns:fx=\"http://javafx.com/fxml/1\" fx:controller=\"orgFiuba.tpjava.Controller.InicioController\">\r\n  <padding>\r\n    <Insets bottom=\"20.0\" left=\"20.0\" right=\"20.0\" top=\"20.0\" />\r\n  </padding>\r\n   <Label text=\"BIENVENIDO A POKEMON\" />\r\n    <Label fx:id=\"welcomeText\" />\r\n    <Button onAction=\"#onHelloButtonClick\" text=\"Boton\" />\r\n</VBox>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/resources/orgFiuba/tpjava/inicio-view.fxml b/TpJava/src/main/resources/orgFiuba/tpjava/inicio-view.fxml
+--- a/TpJava/src/main/resources/orgFiuba/tpjava/inicio-view.fxml	(revision 9c6725605eaadee064d4914bcc12f4ec0580b207)
++++ b/TpJava/src/main/resources/orgFiuba/tpjava/inicio-view.fxml	(date 1700946251907)
+@@ -1,14 +1,38 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ 
+-<?import javafx.geometry.*?>
+-<?import javafx.scene.control.*?>
+-<?import javafx.scene.layout.*?>
++<?import java.net.URL?>
++<?import javafx.geometry.Insets?>
++<?import javafx.geometry.Rectangle2D?>
++<?import javafx.scene.control.Button?>
++<?import javafx.scene.control.Label?>
++<?import javafx.scene.image.Image?>
++<?import javafx.scene.image.ImageView?>
++<?import javafx.scene.layout.AnchorPane?>
++<?import javafx.scene.layout.VBox?>
+ 
+-<VBox alignment="CENTER" prefHeight="366.0" prefWidth="418.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="orgFiuba.tpjava.Controller.InicioController">
++<VBox fx:id="vbox" alignment="CENTER" prefHeight="344.0" prefWidth="533.0" spacing="20.0" styleClass="bodyMenu" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="orgFiuba.tpjava.Controller.InicioController">
+   <padding>
+     <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+-   <Label text="BIENVENIDO A POKEMON" />
+     <Label fx:id="welcomeText" />
+-    <Button onAction="#onHelloButtonClick" text="Boton" />
++   <AnchorPane >
++      <children>
++          <Button alignment="CENTER" layoutX="192.0" layoutY="103.0" onAction="#onHelloButtonClick" text="APACHURRALE START" />
++         <ImageView fitHeight="80.0" fitWidth="179.0" layoutX="169.0" layoutY="151.0">
++            <image>
++               <Image url="@StyleCss/presStart.gif" />
++            </image>
++            <viewport>
++               <Rectangle2D />
++            </viewport>
++         </ImageView>
++      </children>
++      <VBox.margin>
++         <Insets />
++      </VBox.margin>
++   </AnchorPane>
++   <stylesheets>
++      <URL value="@StyleCss/menu.css" />
++      <URL value="@StyleCss/titlee.css" />
++   </stylesheets>
+ </VBox>
+Index: TpJava/src/main/resources/orgFiuba/tpjava/juego-view.fxml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n\r\n        <?import javafx.geometry.*?>\r\n        <?import javafx.scene.control.*?>\r\n        <?import javafx.scene.image.*?>\r\n        <?import javafx.scene.layout.*?>\r\n        <?import javafx.scene.text.*?>\r\n\r\n<VBox alignment=\"CENTER\" spacing=\"20.0\" xmlns:fx=\"http://javafx.com/fxml/1\" xmlns=\"http://javafx.com/javafx/17.0.2-ea\"\r\n      fx:controller=\"orgFiuba.tpjava.Controller.JuegoController\">\r\n    <Text fx:id=\"jugadorActualNombre\" textAlignment=\"LEFT\"/>\r\n    <TextField fx:id=\"nameField\" onAction=\"#onHelloButtonClick\" promptText=\"Nombre del jugador\"/>\r\n    <VBox prefHeight=\"200.0\" prefWidth=\"100.0\">\r\n        <ImageView fitHeight=\"150.0\" fitWidth=\"200.0\" pickOnBounds=\"true\" preserveRatio=\"true\"/>\r\n    </VBox>\r\n    <Label fx:id=\"welcomeText\"/>\r\n    <Button onAction=\"#onHelloButtonClick\" text=\"Hello!\"/>\r\n    <padding>\r\n        <Insets bottom=\"20.0\" left=\"20.0\" right=\"20.0\" top=\"20.0\"/>\r\n    </padding>\r\n    <HBox spacing=\"20.0\" xmlns:fx=\"http://javafx.com/fxml\">\r\n        <ImageView fx:id=\"pokemonJ2ImageView\" fitHeight=\"300.0\" fitWidth=\"300.0\" pickOnBounds=\"true\"\r\n                   preserveRatio=\"true\"/>\r\n        <ImageView fx:id=\"pokemonJ1ImageView\" fitHeight=\"300.0\" fitWidth=\"300.0\" pickOnBounds=\"true\"\r\n                   preserveRatio=\"true\"/>\r\n    </HBox>\r\n</VBox>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/resources/orgFiuba/tpjava/juego-view.fxml b/TpJava/src/main/resources/orgFiuba/tpjava/juego-view.fxml
+--- a/TpJava/src/main/resources/orgFiuba/tpjava/juego-view.fxml	(revision 9c6725605eaadee064d4914bcc12f4ec0580b207)
++++ b/TpJava/src/main/resources/orgFiuba/tpjava/juego-view.fxml	(date 1700789917304)
+@@ -1,27 +1,24 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ 
+-        <?import javafx.geometry.*?>
+-        <?import javafx.scene.control.*?>
+-        <?import javafx.scene.image.*?>
+-        <?import javafx.scene.layout.*?>
+-        <?import javafx.scene.text.*?>
++<?import javafx.geometry.*?>
++<?import javafx.scene.control.*?>
++<?import javafx.scene.image.*?>
++<?import javafx.scene.layout.*?>
++<?import javafx.scene.text.*?>
+ 
+-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea"
+-      fx:controller="orgFiuba.tpjava.Controller.JuegoController">
+-    <Text fx:id="jugadorActualNombre" textAlignment="LEFT"/>
+-    <TextField fx:id="nameField" onAction="#onHelloButtonClick" promptText="Nombre del jugador"/>
++<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="orgFiuba.tpjava.Controller.JuegoController">
++    <Text fx:id="jugadorActualNombre" textAlignment="LEFT" />
++    <TextField fx:id="nameField" onAction="#onHelloButtonClick" prefHeight="26.0" prefWidth="139.0" promptText="Nombre del jugador" />
+     <VBox prefHeight="200.0" prefWidth="100.0">
+-        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true"/>
++        <ImageView fitHeight="207.0" fitWidth="633.0" pickOnBounds="true" preserveRatio="true" />
+     </VBox>
+-    <Label fx:id="welcomeText"/>
+-    <Button onAction="#onHelloButtonClick" text="Hello!"/>
++    <Label fx:id="welcomeText" prefWidth="119.0" />
++    <Button onAction="#onHelloButtonClick" text="Hello!" />
++    <HBox spacing="20.0" xmlns:fx="http://javafx.com/fxml">
++        <ImageView fx:id="pokemonJ2ImageView" fitHeight="300.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
++        <ImageView fx:id="pokemonJ1ImageView" fitHeight="300.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
++    </HBox>
+     <padding>
+-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
++        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+     </padding>
+-    <HBox spacing="20.0" xmlns:fx="http://javafx.com/fxml">
+-        <ImageView fx:id="pokemonJ2ImageView" fitHeight="300.0" fitWidth="300.0" pickOnBounds="true"
+-                   preserveRatio="true"/>
+-        <ImageView fx:id="pokemonJ1ImageView" fitHeight="300.0" fitWidth="300.0" pickOnBounds="true"
+-                   preserveRatio="true"/>
+-    </HBox>
+-</VBox>
+\ No newline at end of file
++</VBox>
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"81ad5f3d-e77a-4eab-8f82-726006efbf84\" name=\"Changes\" comment=\"\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/HabilidadAtaque.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/HabilidadAtaque.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Controlador.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Controlador.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/HabilidadAtaque.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/HabilidadAtaque.class\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n        <option value=\"Interface\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"Prueba\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProblemsViewState\">\r\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\r\n  </component>\r\n  <component name=\"ProjectCodeStyleSettingsMigration\">\r\n    <option name=\"version\" value=\"2\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 1\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2VZWDceRPeCVhqYCOKGBo7NpSdD\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/Users/Dayru/OneDrive/Documents/Algoritmo y Programacion 3 -  CANO/TP1 - ALGO3/Tp1_local&quot;,\r\n    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,\r\n    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,\r\n    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,\r\n    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.editor&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CreateClassDialog.RecentsKey\">\r\n      <recent name=\"Item\" />\r\n    </key>\r\n    <key name=\"CopyClassDialog.RECENTS_KEY\">\r\n      <recent name=\"Item\" />\r\n      <recent name=\"Tipo\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Application.MainJavaFX\">\r\n    <configuration name=\"Main\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"orgFiuba.tpjava.Main\" />\r\n      <module name=\"TpJava\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"orgFiuba.tpjava.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"MainJavaFX\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"orgFiuba.tpjava.MainJavaFX\" />\r\n      <module name=\"TpJava\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"orgFiuba.tpjava.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.MainJavaFX\" />\r\n        <item itemvalue=\"Application.Main\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"81ad5f3d-e77a-4eab-8f82-726006efbf84\" name=\"Changes\" comment=\"\" />\r\n      <created>1695043963160</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1695043963160</updated>\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State>\r\n              <option name=\"FILTERS\">\r\n                <map>\r\n                  <entry key=\"branch\">\r\n                    <value>\r\n                      <list>\r\n                        <option value=\"Funcional\" />\r\n                      </list>\r\n                    </value>\r\n                  </entry>\r\n                </map>\r\n              </option>\r\n            </State>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <breakpoint enabled=\"true\" type=\"java-exception\">\r\n          <properties class=\"java.lang.NullPointerException\" package=\"java.lang\" />\r\n          <option name=\"timeStamp\" value=\"1\" />\r\n        </breakpoint>\r\n      </breakpoints>\r\n    </breakpoint-manager>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 9c6725605eaadee064d4914bcc12f4ec0580b207)
++++ b/.idea/workspace.xml	(date 1700948973221)
+@@ -5,10 +5,21 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="81ad5f3d-e77a-4eab-8f82-726006efbf84" name="Changes" comment="">
++      <change afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/StyleCss/MenuStart.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/StyleCss/Rayquaza_Esmeralda-825x464.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/StyleCss/menu.css" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/StyleCss/menuFallido.gif" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/StyleCss/presStart.gif" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/StyleCss/titlee.css" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/StyleCss/titule.png" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_02_10_2023_10_59__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_02_10_2023_10_59__Changes_.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_09_2023_10_45__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_09_2023_10_45__Changes_.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/HabilidadAtaque.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/org/fiuba/algoritmos3/HabilidadAtaque.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Controlador.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/Controlador.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/HabilidadAtaque.class" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/target/classes/org/fiuba/algoritmos3/HabilidadAtaque.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Controller/InicioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Controller/InicioController.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Controller/SeleccionarNombreJugadoresController.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Controller/SeleccionarNombreJugadoresController.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/inicio-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/inicio-view.fxml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/juego-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/juego-view.fxml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/artifacts/TpJava_jar/TpJava.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/TpJava_jar/TpJava.jar" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -41,26 +52,37 @@
+   &quot;associatedIndex&quot;: 1
+ }</component>
+   <component name="ProjectId" id="2VZWDceRPeCVhqYCOKGBo7NpSdD" />
++  <component name="ProjectLevelVcsManager">
++    <ConfirmationsSetting value="2" id="Add" />
++  </component>
+   <component name="ProjectViewState">
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent">{
+-  &quot;keyToString&quot;: {
+-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Dayru/OneDrive/Documents/Algoritmo y Programacion 3 -  CANO/TP1 - ALGO3/Tp1_local&quot;,
+-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.editor&quot;
++  <component name="PropertiesComponent"><![CDATA[{
++  "keyToString": {
++    "ASKED_ADD_EXTERNAL_FILES": "true",
++    "RunOnceActivity.OpenProjectViewOnStart": "true",
++    "RunOnceActivity.ShowReadmeOnStart": "true",
++    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
++    "last_opened_file_path": "C:/Users/Dayru/OneDrive/Documents/Algoritmo y Programacion 3 -  CANO/TP1 - ALGO3/Programacion3-TP/TpJava/src/main/resources/orgFiuba/tpjava/StyleCss",
++    "project.structure.last.edited": "Project",
++    "project.structure.proportion": "0.0",
++    "project.structure.side.proportion": "0.0",
++    "run.code.analysis.last.selected.profile": "pProject Default",
++    "settings.editor.selected.configurable": "preferences.JavaFX"
+   }
+-}</component>
++}]]></component>
+   <component name="RecentsManager">
+     <key name="CreateClassDialog.RecentsKey">
+       <recent name="Item" />
++    </key>
++    <key name="CopyFile.RECENT_KEYS">
++      <recent name="C:\Users\Dayru\OneDrive\Documents\Algoritmo y Programacion 3 -  CANO\TP1 - ALGO3\Programacion3-TP\TpJava\src\main\resources\orgFiuba\tpjava\StyleCss" />
++    </key>
++    <key name="MoveFile.RECENT_KEYS">
++      <recent name="C:\Users\Dayru\OneDrive\Documents\Algoritmo y Programacion 3 -  CANO\TP1 - ALGO3\Programacion3-TP\TpJava\src\main\resources\orgFiuba\tpjava\StyleCss" />
++      <recent name="C:\Users\Dayru\OneDrive\Documents\Algoritmo y Programacion 3 -  CANO\TP1 - ALGO3\Programacion3-TP\TpJava\src\main\resources\orgFiuba\tpjava\ImagenesMenu" />
+     </key>
+     <key name="CopyClassDialog.RECENTS_KEY">
+       <recent name="Item" />
+@@ -134,6 +156,9 @@
+         </entry>
+       </map>
+     </option>
++  </component>
++  <component name="VcsManagerConfiguration">
++    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+   </component>
+   <component name="XDebuggerManager">
+     <breakpoint-manager>
+@@ -142,7 +167,32 @@
+           <properties class="java.lang.NullPointerException" package="java.lang" />
+           <option name="timeStamp" value="1" />
+         </breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Main.java</url>
++          <line>59</line>
++          <option name="timeStamp" value="36" />
++        </line-breakpoint>
+       </breakpoints>
+     </breakpoint-manager>
++    <pin-to-top-manager>
++      <pinned-members>
++        <PinnedItemInfo parentTag="orgFiuba.Model.Pokemones.Cualidades" memberName="ataque" />
++        <PinnedItemInfo parentTag="orgFiuba.Model.Pokemones.Pokemon" memberName="cualidades" />
++        <PinnedItemInfo parentTag="org.fiuba.algoritmos3.Cualidades" memberName="nivel" />
++      </pinned-members>
++    </pin-to-top-manager>
++    <watches-manager>
++      <configuration name="Application">
++        <watch expression="habilidades.get(2)" language="JAVA" />
++        <watch expression="listaPokemon.get(0).unPokemon.misHabilidades" language="JAVA" />
++      </configuration>
++    </watches-manager>
++  </component>
++  <component name="XSLT-Support.FileAssociations.UIState">
++    <expand />
++    <select />
++  </component>
++  <component name="com.intellij.coverage.CoverageDataManagerImpl">
++    <SUITE FILE_PATH="coverage/Programacion3_TP$All_in_TpJava.ic" NAME="All in TpJava Coverage Results" MODIFIED="1699114316912" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: TpJava/src/main/resources/orgFiuba/tpjava/StyleCss/menu.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/resources/orgFiuba/tpjava/StyleCss/menu.css b/TpJava/src/main/resources/orgFiuba/tpjava/StyleCss/menu.css
+new file mode 100644
+--- /dev/null	(date 1700940332153)
++++ b/TpJava/src/main/resources/orgFiuba/tpjava/StyleCss/menu.css	(date 1700940332153)
+@@ -0,0 +1,7 @@
++.bodyMenu{
++    -fx-background-image: url('MenuStart.png');
++    -fx-background-size: contain;
++    -fx-background-repeat: no-repeat;
++    -fx-background-position: center;
++    -fx-background-size: 100% 100%;
++}
+\ No newline at end of file
+Index: TpJava/src/main/resources/orgFiuba/tpjava/StyleCss/titlee.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/resources/orgFiuba/tpjava/StyleCss/titlee.css b/TpJava/src/main/resources/orgFiuba/tpjava/StyleCss/titlee.css
+new file mode 100644
+--- /dev/null	(date 1700938701330)
++++ b/TpJava/src/main/resources/orgFiuba/tpjava/StyleCss/titlee.css	(date 1700938701330)
+@@ -0,0 +1,6 @@
++.bodyTitle{
++    -fx-background-size: cover;
++    -fx-background-repeat: no-repeat;
++    -fx-background-position: center center;
++    -fx-background-size: 100% 100%;
++}
+\ No newline at end of file

@@ -1,7 +1,7 @@
 package EstadoTests;
 
-import Estados.EstadoParalizado;
-import org.fiuba.algoritmos3.ServicioDeRandoms;
+import orgFiuba.tpjava.Model.Estados.EstadoParalizado;
+import orgFiuba.tpjava.Model.ServicioDeRandoms;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 

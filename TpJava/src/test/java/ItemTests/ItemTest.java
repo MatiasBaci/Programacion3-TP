@@ -1,8 +1,8 @@
 package ItemTests;
 
-import Item.AtaqueX;
-import Modificaciones.ModificacionAtaque;
-import Pokemones.Cualidades;
+import orgFiuba.tpjava.Model.Items.AtaqueX;
+import orgFiuba.tpjava.Model.Modificaciones.ModificacionAtaque;
+import orgFiuba.tpjava.Model.Pokemones.Cualidades;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -17,7 +17,7 @@ public class ItemTest {
         Cualidades cualidades = mock(Cualidades.class);
         when(cualidades.getVida()).thenReturn(100.0);
         ModificacionAtaque modificacion = mock(ModificacionAtaque.class);
-        AtaqueX ataqueX = new AtaqueX("Ataque X", 5, modificacion);
+        AtaqueX ataqueX = new AtaqueX("Ataque X", 5, modificacion,"");
         //Act
         boolean realizado = ataqueX.realizarCasosDeApliacion(cualidades);
         //Assert
@@ -30,7 +30,7 @@ public class ItemTest {
         Cualidades cualidades = mock(Cualidades.class);
         when(cualidades.getVida()).thenReturn(100.0);
         ModificacionAtaque modificacion = mock(ModificacionAtaque.class);
-        AtaqueX ataqueX = new AtaqueX("Ataque X", 0, modificacion);
+        AtaqueX ataqueX = new AtaqueX("Ataque X", 0, modificacion,"");
         //Act
         boolean realizado = ataqueX.realizarCasosDeApliacion(cualidades);
         //Assert

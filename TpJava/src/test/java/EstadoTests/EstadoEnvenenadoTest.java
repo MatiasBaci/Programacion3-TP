@@ -1,10 +1,9 @@
 package EstadoTests;
 
-import Estados.EstadoEnvenenado;
-import Pokemones.Cualidades;
+import orgFiuba.tpjava.Model.Estados.EstadoEnvenenado;
+import orgFiuba.tpjava.Model.Pokemones.Cualidades;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class EstadoEnvenenadoTest {

@@ -1,6 +1,6 @@
 package EstadoTests;
 
-import Estados.EstadoInhabilitado;
+import orgFiuba.tpjava.Model.Estados.EstadoInhabilitado;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

@@ -1,9 +1,9 @@
 package PokemonesTests.HabilidadTests;
 
-import Pokemones.Cualidades;
-import Pokemones.HabilidadAtaque;
-import Tipo.Tipo;
-import org.fiuba.algoritmos3.ServicioDeRandoms;
+import orgFiuba.tpjava.Model.Pokemones.Cualidades;
+import orgFiuba.tpjava.Model.Pokemones.HabilidadAtaque;
+import orgFiuba.tpjava.Model.Tipos.Tipo;
+import orgFiuba.tpjava.Model.ServicioDeRandoms;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 

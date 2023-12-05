@@ -1,11 +1,11 @@
 package ModificacionTests;
 
-import Estados.EstadoParalizado;
-import Modificaciones.ModificacionEstado;
-import Pokemones.Cualidades;
+import orgFiuba.tpjava.Model.Estados.EstadoParalizado;
+import orgFiuba.tpjava.Model.Modificaciones.ModificacionEstado;
+import orgFiuba.tpjava.Model.Pokemones.Cualidades;
 import org.junit.jupiter.api.Test;
 
-import static org.fiuba.algoritmos3.Constantes.*;
+import static orgFiuba.tpjava.Constantes.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ModificacionEstadoTest {
@@ -21,7 +21,7 @@ class ModificacionEstadoTest {
         //Act
         modificacionEstado.modificar(cualidades, (int) cualidades.getVidaMaxima());
         //Assert
-        assert(cualidades.getEstadosActuales().stream().allMatch(unEstado -> unEstado.getNombre().equals(ESTADO_NORMAL)));
+        assert(cualidades.obtenerEstadosActuales().stream().allMatch(unEstado -> unEstado.getNombre().equals(ESTADO_NORMAL)));
     }
 
     @Test
@@ -36,6 +36,6 @@ class ModificacionEstadoTest {
         //Act
         modificacionEstado.modificar(cualidades, (int) cualidades.getVidaMaxima());
         //Assert
-        assert(cualidades.getEstadosActuales().stream().allMatch(unEstado -> unEstado.getNombre().equals(ESTADO_INHABILITADO)));
+        assert(cualidades.obtenerEstadosActuales().stream().allMatch(unEstado -> unEstado.getNombre().equals(ESTADO_INHABILITADO)));
     }
 }

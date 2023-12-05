@@ -1,17 +1,18 @@
 package ItemTests;
 
-import Estados.Estado;
-import Item.DefensaX;
-import Item.Revivir;
-import Modificaciones.ModificacionDefensa;
-import Modificaciones.ModificacionEstado;
-import Pokemones.Cualidades;
+import org.junit.jupiter.api.Nested;
+import orgFiuba.tpjava.Model.Estados.Estado;
+import orgFiuba.tpjava.Model.Items.DefensaX;
+import orgFiuba.tpjava.Model.Items.Revivir;
+import orgFiuba.tpjava.Model.Modificaciones.ModificacionDefensa;
+import orgFiuba.tpjava.Model.Modificaciones.ModificacionEstado;
+import orgFiuba.tpjava.Model.Pokemones.Cualidades;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.fiuba.algoritmos3.Constantes.ESTADO_INHABILITADO;
+import static orgFiuba.tpjava.Constantes.ESTADO_INHABILITADO;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -24,14 +25,15 @@ public class DefensaXTest {
         Cualidades cualidades = mock(Cualidades.class);
         when(cualidades.getVida()).thenReturn(10.0);
         ModificacionDefensa modificacion = mock(ModificacionDefensa.class);
-        DefensaX defensaX = new DefensaX("Defensa X", 5, modificacion);
+        DefensaX defensaX = new DefensaX("Defensa X", 5, modificacion,"");
         //Act
         boolean realizo = defensaX.aplicarItem(cualidades);
         //Assert
         assert realizo;
     }
 
-    static class RevivirTest {
+    @Nested
+    class RevivirTest {
 
         @Test
         public void testAplicarItemCuandoEstaInhabilitado() {
@@ -41,9 +43,9 @@ public class DefensaXTest {
             Estado unEstado = mock(Estado.class);
             when(unEstado.getNombre()).thenReturn(ESTADO_INHABILITADO);
             estadosActuales.add(unEstado);
-            when(cualidades.getEstadosActuales()).thenReturn(estadosActuales);
+            when(cualidades.obtenerEstadosActuales()).thenReturn(estadosActuales);
             ModificacionEstado modificacion = mock(ModificacionEstado.class);
-            Revivir revivir = new Revivir("Revive", 1, modificacion);
+            Revivir revivir = new Revivir("Revive", 1, modificacion,"");
 
             //Act
             boolean realizo = revivir.aplicarItem(cualidades);
@@ -60,9 +62,9 @@ public class DefensaXTest {
             Estado unEstado = mock(Estado.class);
             when(unEstado.getNombre()).thenReturn("Otro");
             estadosActuales.add(unEstado);
-            when(cualidades.getEstadosActuales()).thenReturn(estadosActuales);
+            when(cualidades.obtenerEstadosActuales()).thenReturn(estadosActuales);
             ModificacionEstado modificacion = mock(ModificacionEstado.class);
-            Revivir revivir = new Revivir("Revive", 1, modificacion);
+            Revivir revivir = new Revivir("Revive", 1, modificacion,"");
 
             //Act
             boolean realizo = revivir.aplicarItem(cualidades);

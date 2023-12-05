@@ -1,9 +1,9 @@
 package ItemTests;
 
-import Item.ItemsCuracion;
-import Item.Pocion;
-import Pokemones.Cualidades;
-import Modificaciones.ModificacionVida;
+import orgFiuba.tpjava.Model.Items.ItemsCuracion;
+import orgFiuba.tpjava.Model.Items.Pocion;
+import orgFiuba.tpjava.Model.Pokemones.Cualidades;
+import orgFiuba.tpjava.Model.Modificaciones.ModificacionVida;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -20,7 +20,7 @@ public class ItemsCuracionTest {
         when(cualidades.getVidaMaxima()).thenReturn(100.0);
         ModificacionVida modificacion = new ModificacionVida();
 
-        ItemsCuracion item = new Pocion("Pocion", 10, modificacion);
+        ItemsCuracion item = new Pocion("Pocion", 10, modificacion,"");
         //Act
         boolean usado = item.realizarUsadoItemsDeCuracion(cualidades);
         //Assert
@@ -36,7 +36,7 @@ public class ItemsCuracionTest {
         when(cualidades.getVidaMaxima()).thenReturn(100.0);
         ModificacionVida modificacion = new ModificacionVida();
 
-        ItemsCuracion item = new Pocion("Pocion", 10, modificacion);
+        ItemsCuracion item = new Pocion("Pocion", 10, modificacion,"");
         //Act
         boolean usado = item.realizarUsadoItemsDeCuracion(cualidades);
         //Assert
@@ -52,7 +52,7 @@ public class ItemsCuracionTest {
         when(cualidades.getVidaMaxima()).thenReturn(100.0);
         ModificacionVida modificacion = new ModificacionVida();
 
-        ItemsCuracion item = new Pocion("Pocion", 10, modificacion);
+        ItemsCuracion item = new Pocion("Pocion", 10, modificacion,"");
         //Act
         boolean usado = item.realizarUsadoItemsDeCuracion(cualidades);
         //Assert

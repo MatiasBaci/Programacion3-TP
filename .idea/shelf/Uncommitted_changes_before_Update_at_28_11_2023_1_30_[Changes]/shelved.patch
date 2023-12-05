@@ -1,0 +1,570 @@
+Index: TpJava/src/main/java/orgFiuba/tpjava/Controller/JuegoController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package orgFiuba.tpjava.Controller;\r\n\r\nimport javafx.event.Event;\r\nimport javafx.event.EventHandler;\r\nimport javafx.fxml.FXML;\r\nimport javafx.scene.Parent;\r\nimport javafx.scene.Scene;\r\nimport javafx.scene.control.Alert;\r\nimport javafx.scene.control.Label;\r\nimport javafx.scene.media.Media;\r\nimport javafx.scene.media.MediaPlayer;\r\nimport javafx.stage.Stage;\r\nimport orgFiuba.tpjava.Controller.Eventos.*;\r\nimport orgFiuba.tpjava.Model.Items.Item;\r\nimport orgFiuba.tpjava.Model.Juego;\r\nimport orgFiuba.tpjava.Model.Jugador;\r\n\r\nimport java.io.File;\r\nimport java.io.IOException;\r\nimport java.util.Map;\r\n\r\nimport static orgFiuba.tpjava.Constantes.*;\r\n\r\npublic class JuegoController extends Parent implements EventHandler<Event> {\r\n    @FXML\r\n    private Label welcomeText;\r\n    @FXML\r\n    private Stage stage;\r\n    private Juego juego;\r\n    @FXML\r\n    private MediaPlayer musicPlayer;\r\n    @FXML\r\n    private MediaPlayer soundEffectPlayer;\r\n    private Map<String, Scene> escenas;\r\n    private BatallaController batallaController;\r\n    private SeleccionarPokemonController seleccionarPokemonController;\r\n    private SeleccionarItemController seleccionarItemController;\r\n    private boolean esPrimerTurno;\r\n\r\n    public void inicializar(Stage stage, Juego juego) throws IOException {\r\n        this.stage = stage;\r\n        this.juego = juego;\r\n        this.juego.setJugadorActual(this.juego.getJugador1());\r\n        this.inicializarEscenas();\r\n        this.reproducirMusica(RUTA_SOUNDTRACK_INICIO);\r\n        this.stage.show();\r\n    }\r\n\r\n\r\n    private void inicializarEscenas() throws IOException {\r\n        SceneFactory sceneFactory = new SceneFactory();\r\n        this.escenas = sceneFactory.createScenesIniciales(this.juego, this);\r\n    }\r\n\r\n    @FXML\r\n    protected void onHelloButtonClick() throws IOException {\r\n        welcomeText.setText(\"\");\r\n        this.crearVentanaSeleccionNombre(1);\r\n    }\r\n\r\n\r\n    public void cicloDeTurnos() {\r\n        if (!this.juego.getJugadorActual().perdio() && !this.juego.getJugadorActual().getAdversario().perdio()){\r\n\r\n            this.turno(this.juego.getJugadorActual());\r\n        }\r\n        else if(this.juego.getJugadorActual().perdio()){\r\n            mostrarPantallaFinDeJuego(this.juego.getJugadorActual().getAdversario());\r\n            this.stage.close();\r\n        } else {\r\n            mostrarPantallaFinDeJuego(this.juego.getJugadorActual());\r\n            this.stage.close();\r\n        }\r\n    }\r\n\r\n    private void mostrarPantallaFinDeJuego(Jugador jugadorActual) {\r\n\r\n        this.reproducirMusica(RUTA_SOUNDTRACK_VICTORIA);\r\n        Alert alert  = new Alert(Alert.AlertType.INFORMATION);\r\n        alert.setHeaderText(null);\r\n        alert.setTitle(\"FIN DEL JUEGO\");\r\n        alert.setContentText(jugadorActual.getNombre() + \" es el ganador!!!\");\r\n        alert.showAndWait();\r\n    }\r\n\r\n    public void turno(Jugador jugador) {\r\n\r\n        if (!jugador.getPokemonActual().estaConsciente()) {\r\n            //mostrar pantalla de cambio de pokemon\r\n            this.seleccionarPokemonController.actualizarVista(jugador);\r\n            this.stage.setScene(this.escenas.get(\"sceneSeleccionPokemon\"));\r\n        }\r\n        else try {\r\n            this.mostrarVentanaBatalla();\r\n        } catch (NullPointerException e) {\r\n            this.crearVentanaBatalla();\r\n        }\r\n    }\r\n\r\n    private void elegirJugadorInicial() {\r\n\r\n        if (this.esPrimerTurno) {\r\n            if (this.juego.getJugador1().getPokemonActual().getCualidades().getVelocidad() > this.juego.getJugador2().getPokemonActual().getCualidades().getVelocidad()) {\r\n                this.juego.getJugador1().setAtacante(true);\r\n                this.juego.getJugador2().setAtacante(false);\r\n                this.juego.setJugadorActual(this.juego.getJugador1());\r\n            } else {\r\n                this.juego.getJugador1().setAtacante(false);\r\n                this.juego.getJugador2().setAtacante(true);\r\n                this.juego.setJugadorActual(this.juego.getJugador2());\r\n            }\r\n            this.esPrimerTurno = false;\r\n        }\r\n    }\r\n\r\n\r\n    private void crearVentanaBatalla() {\r\n\r\n            this.reproducirMusica(RUTA_SOUNDTRACK_BATALLA);\r\n\r\n            SceneFactory sceneFactory = new SceneFactory();\r\n            try {\r\n                this.escenas.put(\"sceneBatalla\", sceneFactory.crearEscenaBatalla(this.juego, this));\r\n            } catch (IOException e) {\r\n                throw new RuntimeException(e);\r\n            }\r\n            mostrarVentanaBatalla();\r\n    }\r\n\r\n    private void mostrarVentanaBatalla() {\r\n        this.batallaController.actualizarVista(this.juego);\r\n        this.stage.setScene(this.escenas.get(\"sceneBatalla\"));\r\n        this.stage.setTitle(\"Batalla Pokemon\");\r\n        this.stage.show();\r\n    }\r\n\r\n    public void crearVentanaSeleccionNombre(int numero) throws IOException {\r\n\r\n        this.stage.setScene(this.escenas.get(\"sceneSeleccionNombreJugador\" + numero));\r\n        this.stage.setTitle(\"Escriba el Nombre del Jugador \" + numero);\r\n        this.stage.show();\r\n    }\r\n\r\n    public void crearVentanaSeleccionarItem(Jugador jugador) throws IOException {\r\n\r\n        try {\r\n            this.seleccionarItemController.actualizarVista(jugador);\r\n            this.stage.setScene(this.escenas.get(\"sceneAplicarItem\"));\r\n        } catch (NullPointerException e) {\r\n            System.out.println(\"NullPointerException\");\r\n        }\r\n        this.stage.setTitle(\"Aplicar item jugador \" + jugador.getNombre());\r\n        this.stage.show();\r\n    }\r\n\r\n    public void crearVentanaSeleccionarPokemon(Jugador jugador) throws IOException {\r\n        try {\r\n            //this.stage.setScene(this.escenas.get(\"sceneSeleccionPokemonInicialJugador\" + numero));\r\n            this.seleccionarPokemonController.actualizarVista(jugador);\r\n            this.stage.setScene(this.escenas.get(\"sceneSeleccionPokemon\"));\r\n        } catch (NullPointerException e) {\r\n            System.out.println(\"NullPointerException\");\r\n        }\r\n        this.stage.setTitle(\"Seleccion de Pokemon Jugador \" + jugador.getNombre());\r\n        this.stage.show();\r\n    }\r\n\r\n    private void crearVentanaSeleccionarPokemonItem(Jugador jugador, Item itemAplicar) {\r\n\r\n        try{\r\n            this.seleccionarPokemonController.actualizarVistaAplicarItem(jugador, itemAplicar);\r\n            this.stage.setScene(this.escenas.get(\"sceneSeleccionPokemon\"));\r\n        } catch (NullPointerException e) {\r\n        System.out.println(\"NullPointerException\");\r\n    }\r\n        this.stage.setTitle(\"Seleccion de Pokemon Jugador \" + jugador.getNombre());\r\n        this.stage.show();\r\n\r\n    }\r\n\r\n\r\n    public void reproducirMusica(String ruta) {\r\n        try {\r\n            this.musicPlayer.stop();\r\n        } catch (Exception ignored) {}\r\n        this.musicPlayer = new MediaPlayer(new Media(new File(ruta).toURI().toString()));\r\n        this.musicPlayer.setCycleCount(MediaPlayer.INDEFINITE);\r\n        this.musicPlayer.setVolume(0.2);\r\n        this.musicPlayer.play();\r\n    }\r\n\r\n    public void reproducirSoundEffect(String ruta) {\r\n        try {\r\n            this.soundEffectPlayer.stop();\r\n        } catch (Exception ignored) {}\r\n        this.soundEffectPlayer = new MediaPlayer(new Media(new File(ruta).toURI().toString()));\r\n        this.soundEffectPlayer.setCycleCount(1);\r\n        this.soundEffectPlayer.setVolume(0.2);\r\n        this.soundEffectPlayer.play();\r\n    }\r\n\r\n    public void setBatallaController(BatallaController batallaController) {\r\n        this.batallaController = batallaController;\r\n    }\r\n    public void setSeleccionarPokemonController(SeleccionarPokemonController seleccionarPokemonController) {\r\n        this.seleccionarPokemonController = seleccionarPokemonController;\r\n    }\r\n\r\n    public void setSeleccionarItemController(SeleccionarItemController seleccionarItemController) {\r\n        this.seleccionarItemController = seleccionarItemController;\r\n    }\r\n\r\n    // HANDLE ________________________________________________________________\r\n\r\n    @Override\r\n    public void handle(Event event) {\r\n        if (event instanceof JugadorNombradoEvent) {\r\n            this.handle((JugadorNombradoEvent) event);\r\n        } else if (event instanceof PokemonSeleccionadoEvent) {\r\n            this.handle((PokemonSeleccionadoEvent) event);\r\n        }\r\n    }\r\n\r\n    public void handle(JugadorNombradoEvent jugadorNombradoEvent) {\r\n        //if (jugadorNombradoEvent.getJugador() == this.juego.getJugador1()) {\r\n        if (this.juego.getJugador2().getNombre().isBlank()) {\r\n            try {\r\n                System.out.println(\"Jugador 2\");\r\n                this.crearVentanaSeleccionNombre(2);\r\n            } catch (IOException e) {\r\n                throw new RuntimeException(e);\r\n            }\r\n        } else {\r\n            try {\r\n                this.juego.setJugadorActual(this.juego.getJugador1());\r\n                this.crearVentanaSeleccionarPokemon(this.juego.getJugadorActual());\r\n            } catch (IOException e) {\r\n                throw new RuntimeException(e);\r\n            }\r\n        }\r\n    }\r\n\r\n    public void handle(MenuCambiarPokemonEvent menuCambiarPokemonEvent) {\r\n        try {\r\n            this.crearVentanaSeleccionarPokemon(menuCambiarPokemonEvent.getJugador());\r\n        } catch (IOException e) {\r\n            throw new RuntimeException(e);\r\n        }\r\n\r\n    }\r\n\r\n    public void handle(PokemonSeleccionadoEvent pokemonSeleccionadoEvent) {\r\n\r\n        pokemonSeleccionadoEvent.getJugador().setPokemonActual(pokemonSeleccionadoEvent.getPokemon());\r\n\r\n        PokemonResourceFactory pokemonResourceFactory = new PokemonResourceFactory();\r\n        reproducirSoundEffect(pokemonResourceFactory.createCrySFXPath(pokemonSeleccionadoEvent.getPokemon()));\r\n\r\n        if (this.juego.getJugador2().getPokemonActual() == null) {\r\n            try {\r\n                this.juego.setJugadorActual(this.juego.getJugador2());\r\n                this.crearVentanaSeleccionarPokemon(juego.getJugador2());\r\n            } catch (IOException e) {\r\n                throw new RuntimeException(e);\r\n            }\r\n        } else {\r\n            System.out.println(\"Continúa a la ventana de Juego\");\r\n            if (this.esPrimerTurno) {this.elegirJugadorInicial();}\r\n            else {this.juego.cambiarTurno();}\r\n            this.cicloDeTurnos();\r\n            //this.crearVentanaBatalla();\r\n        }\r\n    }\r\n\r\n    public void handle(AtaqueSeleccionadoEvent ataqueSeleccionadoEvent) {\r\n        PokemonResourceFactory pokemonResourceFactory = new PokemonResourceFactory();\r\n        try {\r\n            this.reproducirSoundEffect(pokemonResourceFactory.createHabilidadSFXPath(ataqueSeleccionadoEvent.getHabilidad()));\r\n        } catch (Exception ignored) {}\r\n\r\n        this.juego.getJugadorActual().atacarJugador(this.juego.getJugadorActual().getAdversario(), ataqueSeleccionadoEvent.getHabilidad().getNombre());\r\n        this.juego.cambiarTurno();\r\n        this.cicloDeTurnos();\r\n        this.batallaController.actualizarVista(this.juego);\r\n    }\r\n\r\n    public void handle(MenuItemEvent menuItemEvent) throws IOException {\r\n\r\n        this.crearVentanaSeleccionarItem(menuItemEvent.getJugador());\r\n        //menuItemEvent.getJugador().elegirItem(menuItemEvent.getItem().getNombre());\r\n    }\r\n\r\n    public void handle(RendirseEvent rendirseEvent) {\r\n        rendirseEvent.getJugador().perder();\r\n        this.cicloDeTurnos();\r\n    }\r\n\r\n    public void handle(MostrarMensajeEvent mostrarMensajeEvent) {\r\n        this.batallaController.mostrarMensaje(mostrarMensajeEvent.getMensaje());\r\n    }\r\n\r\n    public void handle(ItemSeleccionadoEvent itemSeleccionadoEvent) throws  IOException{\r\n        this.crearVentanaSeleccionarPokemonItem(itemSeleccionadoEvent.getJugador(), itemSeleccionadoEvent.getItem());\r\n    }\r\n\r\n    public void handle(ItemAplicadoEvent itemAplicadoEvent) throws IOException{\r\n        this.juego.getJugadorActual().setPokemonActual(itemAplicadoEvent.getPokemon());\r\n        this.mostrarVentanaBatalla();\r\n    }\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/orgFiuba/tpjava/Controller/JuegoController.java b/TpJava/src/main/java/orgFiuba/tpjava/Controller/JuegoController.java
+--- a/TpJava/src/main/java/orgFiuba/tpjava/Controller/JuegoController.java	(revision 49d29392f26afb9ddba01fd216e5d9269fec8286)
++++ b/TpJava/src/main/java/orgFiuba/tpjava/Controller/JuegoController.java	(date 1701145540796)
+@@ -11,6 +11,7 @@
+ import javafx.scene.media.MediaPlayer;
+ import javafx.stage.Stage;
+ import orgFiuba.tpjava.Controller.Eventos.*;
++import orgFiuba.tpjava.Model.Climas.SistemaDeClima;
+ import orgFiuba.tpjava.Model.Items.Item;
+ import orgFiuba.tpjava.Model.Juego;
+ import orgFiuba.tpjava.Model.Jugador;
+@@ -85,6 +86,8 @@
+ 
+     public void turno(Jugador jugador) {
+ 
++        jugador.aplicarEfectoPasivo();
++        SistemaDeClima.aplicarClimaActual(jugador.getPokemonActual());
+         if (!jugador.getPokemonActual().estaConsciente()) {
+             //mostrar pantalla de cambio de pokemon
+             this.seleccionarPokemonController.actualizarVista(jugador);
+Index: TpJava/src/main/java/orgFiuba/tpjava/Controller/PokemonResourceFactory.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package orgFiuba.tpjava.Controller;\r\n\r\nimport javafx.scene.Node;\r\nimport javafx.scene.effect.ColorAdjust;\r\nimport javafx.scene.image.Image;\r\nimport javafx.scene.image.ImageView;\r\nimport javafx.scene.layout.*;\r\nimport javafx.scene.paint.Color;\r\nimport javafx.scene.text.Font;\r\nimport javafx.scene.text.FontWeight;\r\nimport javafx.scene.text.Text;\r\nimport orgFiuba.tpjava.Model.Pokemones.Habilidad;\r\nimport orgFiuba.tpjava.Model.Pokemones.Pokemon;\r\n\r\nimport java.io.File;\r\nimport java.io.FileNotFoundException;\r\n\r\nimport static orgFiuba.tpjava.Constantes.*;\r\n\r\npublic class PokemonResourceFactory {\r\n\r\n    public ImageView createPokemonBattleView(Pokemon pokemon, String cara) { //cara puede ser \"Frente\" o \"Espalda\"\r\n        String path = \"Imagenes/Pokemon/Battle Sprites/\" + cara + \"/\" + pokemon.getNombre() + \".gif\";\r\n        Image pokemonImage = new Image(getClass().getResource(\"/orgFiuba/tpjava/\" + path).toString());\r\n        ImageView pokemonImageView = new ImageView();\r\n        pokemonImageView.setImage(pokemonImage);\r\n\r\n        return pokemonImageView;\r\n    }\r\n\r\n    public ImageView createPokemonMenuView(Pokemon pokemon, Boolean pokemonEstaVivo) {\r\n        String extension;\r\n        String carpeta;\r\n        if (pokemonEstaVivo) {\r\n            extension = \".gif\";\r\n            carpeta = \"Animadas\";\r\n        } else {\r\n            extension = \".png\";\r\n            carpeta = \"Estaticas\";\r\n        }\r\n        String path = RUTA_MENU_SPRITES + carpeta + \"/\" + pokemon.getNombre() + extension;\r\n        Image pokemonImage = new Image(new File(path).toURI().toString());\r\n        ImageView pokemonImageView = new ImageView();\r\n        pokemonImageView.setImage(pokemonImage);\r\n        pokemonImageView.setFitHeight(pokemonImage.getHeight()*3);\r\n        pokemonImageView.setFitWidth(pokemonImage.getWidth()*3);\r\n\r\n        pokemonImageView.setTranslateX(30);\r\n        pokemonImageView.setTranslateY(30);\r\n\r\n        if (!pokemonEstaVivo) {\r\n            //pokemonImageView.setRotate(180);\r\n            ColorAdjust colorAdjust = new ColorAdjust();\r\n            colorAdjust.setSaturation(-1); // Set saturation to -1 for grayscale\r\n            pokemonImageView.setEffect(colorAdjust);\r\n        }\r\n        return pokemonImageView;\r\n    }\r\n\r\n    public Text createPokemonName(Pokemon pokemon) {\r\n        Text pokemonName = new Text(pokemon.getNombre());\r\n        pokemonName.setFont(Font.font(\"Verdana\", FontWeight.BOLD, 20));\r\n        pokemonName.setFill(Color.BLACK);\r\n        pokemonName.setTranslateX(30);\r\n        pokemonName.setTranslateY(30);\r\n        if (!pokemon.estaConsciente()) {\r\n            pokemonName.setStrikethrough(true);\r\n        }\r\n        return pokemonName;\r\n    }\r\n\r\n    public String createCrySFXPath(Pokemon pokemon) {\r\n        return RUTA_SFX_CRIES + pokemon.getNombre() + \".mp3\";\r\n    }\r\n\r\n    public Node createPokemonStats(Pokemon pokemon) {\r\n\r\n        Text pokemonStats = new Text(\"HP: \" + (int)pokemon.getCualidades().getVida() + \"\\n\" +\r\n                \"Ataque: \" + pokemon.getCualidades().getAtaque() + \"\\n\" +\r\n                \"Defensa: \" + pokemon.getCualidades().getDefensa() + \"\\n\" +\r\n                \"Velocidad: \" + pokemon.getCualidades().getVelocidad() + \"\\n\" +\r\n                \"Tipo: \" + pokemon.getCualidades().getTipo().getNombre() + \"\\n\" +\r\n                \"Nivel: \" + (int)pokemon.getCualidades().getNivel());\r\n        pokemonStats.setFont(Font.font(\"Verdana\", FontWeight.BOLD, 20));\r\n        pokemonStats.setFill(Color.BLACK);\r\n        pokemonStats.setTranslateX(80);\r\n        pokemonStats.setTranslateY(30);\r\n        return pokemonStats;\r\n    }\r\n\r\n    public String createHabilidadSFXPath(Habilidad habilidad) {\r\n        return RUTA_SFX_HABILIDADES + habilidad.getNombre() + \".mp3\";\r\n    }\r\n\r\n    public Background createClimaOverlay(String clima, double x, double y) throws FileNotFoundException {\r\n        Image backgroundImage = null;\r\n        String path;\r\n        // Load the image\r\n        try {\r\n            path = RUTA_CLIMAS + clima + \".gif\";\r\n            backgroundImage = new Image(new File(path).toURI().toString());\r\n        } catch (Exception e) {\r\n            try {\r\n                path = RUTA_CLIMAS + clima + \".png\";\r\n                backgroundImage = new Image(new File(path).toURI().toString());\r\n            } catch (Exception e2) {\r\n                throw new FileNotFoundException();\r\n            }\r\n        }\r\n        // Create a BackgroundImage\r\n        BackgroundImage background = new BackgroundImage(\r\n                backgroundImage,\r\n                BackgroundRepeat.NO_REPEAT,\r\n                BackgroundRepeat.NO_REPEAT,\r\n                BackgroundPosition.CENTER,\r\n                new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false)\r\n        );\r\n        return new Background(background);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/orgFiuba/tpjava/Controller/PokemonResourceFactory.java b/TpJava/src/main/java/orgFiuba/tpjava/Controller/PokemonResourceFactory.java
+--- a/TpJava/src/main/java/orgFiuba/tpjava/Controller/PokemonResourceFactory.java	(revision 49d29392f26afb9ddba01fd216e5d9269fec8286)
++++ b/TpJava/src/main/java/orgFiuba/tpjava/Controller/PokemonResourceFactory.java	(date 1701144419037)
+@@ -14,6 +14,8 @@
+ 
+ import java.io.File;
+ import java.io.FileNotFoundException;
++import java.util.ArrayList;
++import java.util.List;
+ 
+ import static orgFiuba.tpjava.Constantes.*;
+ 
+@@ -87,12 +89,29 @@
+         pokemonStats.setTranslateY(30);
+         return pokemonStats;
+     }
++    public String  createBatallaStats(Pokemon unPokemon){
++
++
++        List<String> estados = new ArrayList<>();
++        unPokemon.getCualidades().obtenerEstadosActuales().forEach(x -> estados.add(x.getNombre()));
++        String todosLosEstados = "Estados: ";
++        for (String unEstado : estados){
++            if(unEstado != "Normal" ){
++                todosLosEstados += unEstado + " ";
++            }
++        }
++        String unTextoCompleto =  "HP: " + (int)unPokemon.getCualidades().getVida() + "\n" +
++                "Lv " +(int)unPokemon.getCualidades().getNivel()+ "\n" +
++                unPokemon.getNombre() + "\n"+  todosLosEstados;
++
++        return  unTextoCompleto;
++    }
+ 
+     public String createHabilidadSFXPath(Habilidad habilidad) {
+         return RUTA_SFX_HABILIDADES + habilidad.getNombre() + ".mp3";
+     }
+ 
+-    public Background createClimaOverlay(String clima, double x, double y) throws FileNotFoundException {
++    public Image createClimaOverlay(String clima) throws FileNotFoundException {
+         Image backgroundImage = null;
+         String path;
+         // Load the image
+@@ -108,13 +127,13 @@
+             }
+         }
+         // Create a BackgroundImage
+-        BackgroundImage background = new BackgroundImage(
++       /*BackgroundImage background = new BackgroundImage(
+                 backgroundImage,
+                 BackgroundRepeat.NO_REPEAT,
+                 BackgroundRepeat.NO_REPEAT,
+                 BackgroundPosition.CENTER,
+                 new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false)
+-        );
+-        return new Background(background);
++        );*/
++        return backgroundImage;
+     }
+ }
+Index: TpJava/src/main/java/orgFiuba/tpjava/Controller/BatallaController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package orgFiuba.tpjava.Controller;\r\n\r\nimport javafx.fxml.FXML;\r\nimport javafx.scene.control.Button;\r\nimport javafx.scene.control.ProgressBar;\r\nimport javafx.scene.control.TextArea;\r\nimport javafx.scene.image.ImageView;\r\nimport javafx.scene.layout.Background;\r\nimport javafx.scene.layout.GridPane;\r\nimport javafx.scene.layout.HBox;\r\nimport javafx.scene.layout.VBox;\r\nimport javafx.scene.text.Text;\r\nimport orgFiuba.tpjava.Controller.Eventos.AtaqueSeleccionadoEvent;\r\nimport orgFiuba.tpjava.Controller.Eventos.MenuCambiarPokemonEvent;\r\nimport orgFiuba.tpjava.Controller.Eventos.MenuItemEvent;\r\nimport orgFiuba.tpjava.Controller.Eventos.RendirseEvent;\r\nimport orgFiuba.tpjava.Model.Juego;\r\nimport orgFiuba.tpjava.Model.Jugador;\r\nimport orgFiuba.tpjava.Model.Pokemones.Habilidad;\r\nimport orgFiuba.tpjava.Model.Pokemones.Pokemon;\r\n\r\nimport java.io.IOException;\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\npublic class BatallaController {\r\n\r\n    @FXML\r\n    VBox pantalla;\r\n    @FXML\r\n    VBox climaOverlay;\r\n    @FXML\r\n    HBox pokemones;\r\n    @FXML\r\n    VBox pokemonJ1Box;\r\n    @FXML\r\n    HBox pokemonJ1Stats;\r\n    @FXML\r\n    ProgressBar pokemonJ1HP;\r\n    @FXML\r\n    Text pokemonJ1StatsText;\r\n    @FXML\r\n    HBox pokemonJ1ViewBox;\r\n    @FXML\r\n    ImageView pokemonJ1View;\r\n    @FXML\r\n    VBox pokemonJ2Box;\r\n    @FXML\r\n    HBox pokemonJ2ViewBox;\r\n    @FXML\r\n    ImageView pokemonJ2View;\r\n    @FXML\r\n    HBox pokemonJ2Stats;\r\n    @FXML\r\n    ProgressBar pokemonJ2HP;\r\n    @FXML\r\n    Text pokemonJ2StatsText;\r\n    @FXML\r\n    HBox dialogoYMenuBox;\r\n    @FXML\r\n    VBox dialogoBox;\r\n    @FXML\r\n    TextArea dialogo;\r\n    @FXML\r\n    GridPane menuGrid;\r\n    @FXML\r\n    Button atacarButton;\r\n    @FXML\r\n    Button pokemonButton;\r\n    @FXML\r\n    Button itemButton;\r\n    @FXML\r\n    Button rendirseButton;\r\n    private JuegoController juegoController;\r\n\r\n\r\n    public void inicializar(Juego juego, JuegoController juegoController) {\r\n\r\n        this.juegoController = juegoController;\r\n        this.juegoController.setBatallaController(this);\r\n        this.crearVentanaBatalla(juego);\r\n    }\r\n\r\n    public void crearVentanaBatalla(Juego juego) {\r\n\r\n        PokemonResourceFactory pokemonResourceFactory = new PokemonResourceFactory();\r\n\r\n        String clima = juego.getClimaActual().getNombre();\r\n        try {\r\n            Background background = pokemonResourceFactory.createClimaOverlay(clima, this.climaOverlay.getHeight(), this.climaOverlay.getWidth());\r\n            this.climaOverlay.setBackground(background);\r\n        } catch (Exception e) {\r\n            this.climaOverlay.setBackground(null);\r\n        }\r\n\r\n        this.pokemonJ1StatsText.setText(juego.getJugadorActual().getPokemonActual()\r\n                .getNombre() + \"\\n\" +\r\n                \"Lv \" + juego.getJugadorActual().getPokemonActual().getCualidades().getNivel());\r\n        this.pokemonJ2StatsText.setText(juego.getJugadorActual().getAdversario().getPokemonActual()\r\n                .getNombre() + \"\\n\" +\r\n                \"Lv \" + juego.getJugadorActual().getAdversario().getPokemonActual().getCualidades().getNivel());\r\n\r\n        this.dibujarHPBar(juego.getJugadorActual().getPokemonActual(), this.pokemonJ1HP);\r\n        this.dibujarHPBar(juego.getJugadorActual().getAdversario().getPokemonActual(), this.pokemonJ2HP);\r\n\r\n        this.pokemonJ1View.setImage(pokemonResourceFactory.createPokemonBattleView(juego.getJugadorActual().getPokemonActual(), \"Espalda\").getImage());\r\n        this.pokemonJ1View.setFitHeight(this.pokemonJ1View.getImage().getHeight()*3);\r\n        this.pokemonJ1View.setFitWidth(this.pokemonJ1View.getImage().getWidth()*3);\r\n        this.pokemonJ2View.setImage(pokemonResourceFactory.createPokemonBattleView(juego.getJugadorActual().getAdversario().getPokemonActual(), \"Frente\").getImage());\r\n        this.pokemonJ2View.setFitHeight(this.pokemonJ2View.getImage().getHeight()*3);\r\n        this.pokemonJ2View.setFitWidth(this.pokemonJ2View.getImage().getWidth()*3);\r\n\r\n        this.atacarButton.setOnAction(event -> crearMenuAtaques(juego.getJugadorActual().getPokemonActual()));\r\n        this.itemButton.setOnAction(event -> {\r\n            try {\r\n                crearMenuItem(juego.getJugadorActual());\r\n            } catch (IOException e) {\r\n                throw new RuntimeException(e);\r\n            }\r\n        });\r\n        this.pokemonButton.setOnAction(event -> this.juegoController.handle(new MenuCambiarPokemonEvent(juego.getJugadorActual())));\r\n        this.rendirseButton.setOnAction(event -> this.juegoController.handle(new RendirseEvent(juego.getJugadorActual())));\r\n    }\r\n\r\n    private void crearMenuItem(Jugador jugadorActual) throws IOException {\r\n        // Call a function from your object\r\n        juegoController.handle(new MenuItemEvent(jugadorActual)); // Replace yourFunction with the actual function name\r\n    }\r\n\r\n\r\n    public void crearMenuAtaques(Pokemon pokemon) {\r\n        GridPane ataques = new GridPane();\r\n\r\n        List<Habilidad> habilidades = new ArrayList<>(pokemon.getMisHabilidades().values());\r\n\r\n        int index = 0;\r\n        for (int i = 0; i < 2; i++) {\r\n            for (int j = 0; j < 2; j++) {\r\n                Habilidad habilidad = habilidades.get(index);\r\n                Button ataque = new Button(habilidad.getNombre());\r\n                ataque.setPrefHeight(50);\r\n                ataque.setPrefWidth(100);\r\n                ataque.setOnAction(event -> this.juegoController.handle(new AtaqueSeleccionadoEvent(habilidad, pokemon)));\r\n                ataques.add(ataque, j, i);\r\n                index++;\r\n            }\r\n        }\r\n        this.dialogoBox.getChildren().add(ataques);\r\n    }\r\n\r\n    public void actualizarVista(Juego juego) {\r\n        this.dialogoBox.getChildren().clear();\r\n        this.crearVentanaBatalla(juego);\r\n    }\r\n\r\n    public void mostrarMensaje(String mensaje) {\r\n        this.dialogo.setText(mensaje);\r\n    }\r\n\r\n    public void dibujarHPBar(Pokemon pokemon, ProgressBar barra) {\r\n        barra.setProgress(pokemon.getCualidades().getPorcentajeVida());\r\n        if (pokemon.getCualidades().getPorcentajeVida() > 0.5)\r\n            barra.setStyle(\"-fx-accent: green;\");\r\n        else if (pokemon.getCualidades().getPorcentajeVida() > 0.25)\r\n            barra.setStyle(\"-fx-accent: yellow;\");\r\n        else\r\n            barra.setStyle(\"-fx-accent: red;\");\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/java/orgFiuba/tpjava/Controller/BatallaController.java b/TpJava/src/main/java/orgFiuba/tpjava/Controller/BatallaController.java
+--- a/TpJava/src/main/java/orgFiuba/tpjava/Controller/BatallaController.java	(revision 49d29392f26afb9ddba01fd216e5d9269fec8286)
++++ b/TpJava/src/main/java/orgFiuba/tpjava/Controller/BatallaController.java	(date 1701143457055)
+@@ -5,10 +5,7 @@
+ import javafx.scene.control.ProgressBar;
+ import javafx.scene.control.TextArea;
+ import javafx.scene.image.ImageView;
+-import javafx.scene.layout.Background;
+-import javafx.scene.layout.GridPane;
+-import javafx.scene.layout.HBox;
+-import javafx.scene.layout.VBox;
++import javafx.scene.layout.*;
+ import javafx.scene.text.Text;
+ import orgFiuba.tpjava.Controller.Eventos.AtaqueSeleccionadoEvent;
+ import orgFiuba.tpjava.Controller.Eventos.MenuCambiarPokemonEvent;
+@@ -19,6 +16,7 @@
+ import orgFiuba.tpjava.Model.Pokemones.Habilidad;
+ import orgFiuba.tpjava.Model.Pokemones.Pokemon;
+ 
++import java.io.FileNotFoundException;
+ import java.io.IOException;
+ import java.util.ArrayList;
+ import java.util.List;
+@@ -28,13 +26,17 @@
+     @FXML
+     VBox pantalla;
+     @FXML
+-    VBox climaOverlay;
++    ImageView climaOverlay;
++
++    @FXML
++    StackPane stackPaneFondo;
++
+     @FXML
+     HBox pokemones;
+     @FXML
+     VBox pokemonJ1Box;
+     @FXML
+-    HBox pokemonJ1Stats;
++    VBox pokemonJ1Stats;
+     @FXML
+     ProgressBar pokemonJ1HP;
+     @FXML
+@@ -50,7 +52,7 @@
+     @FXML
+     ImageView pokemonJ2View;
+     @FXML
+-    HBox pokemonJ2Stats;
++    VBox pokemonJ2Stats;
+     @FXML
+     ProgressBar pokemonJ2HP;
+     @FXML
+@@ -71,10 +73,14 @@
+     Button itemButton;
+     @FXML
+     Button rendirseButton;
++    @FXML
++    HBox pokeballs1;
++    @FXML
++    HBox pokeballs2;
+     private JuegoController juegoController;
+ 
+ 
+-    public void inicializar(Juego juego, JuegoController juegoController) {
++    public void inicializar(Juego juego, JuegoController juegoController){
+ 
+         this.juegoController = juegoController;
+         this.juegoController.setBatallaController(this);
+@@ -86,19 +92,31 @@
+         PokemonResourceFactory pokemonResourceFactory = new PokemonResourceFactory();
+ 
+         String clima = juego.getClimaActual().getNombre();
+-        try {
++        try{
++            this.climaOverlay.setImage(pokemonResourceFactory.createClimaOverlay(clima));
++            // Bind the dimensions of the ImageView to the dimensions of the StackPane
++            this.climaOverlay.fitWidthProperty().bind(this.stackPaneFondo.widthProperty());
++            this.climaOverlay.fitHeightProperty().bind(this.stackPaneFondo.heightProperty());
++        }catch (FileNotFoundException e){
++            this.climaOverlay.setImage(null);
++        }
++
++        /*try {
+             Background background = pokemonResourceFactory.createClimaOverlay(clima, this.climaOverlay.getHeight(), this.climaOverlay.getWidth());
+             this.climaOverlay.setBackground(background);
+         } catch (Exception e) {
+             this.climaOverlay.setBackground(null);
+-        }
++        }*/
+ 
+-        this.pokemonJ1StatsText.setText(juego.getJugadorActual().getPokemonActual()
++        /*this.pokemonJ1StatsText.setText(juego.getJugadorActual().getPokemonActual()
+                 .getNombre() + "\n" +
+                 "Lv " + juego.getJugadorActual().getPokemonActual().getCualidades().getNivel());
+         this.pokemonJ2StatsText.setText(juego.getJugadorActual().getAdversario().getPokemonActual()
+                 .getNombre() + "\n" +
+-                "Lv " + juego.getJugadorActual().getAdversario().getPokemonActual().getCualidades().getNivel());
++                "Lv " + juego.getJugadorActual().getAdversario().getPokemonActual().getCualidades().getNivel());*/
++
++        this.pokemonJ1StatsText.setText(pokemonResourceFactory.createBatallaStats(juego.getJugadorActual().getPokemonActual()));
++        this.pokemonJ2StatsText.setText(pokemonResourceFactory.createBatallaStats(juego.getJugadorActual().getAdversario().getPokemonActual()));
+ 
+         this.dibujarHPBar(juego.getJugadorActual().getPokemonActual(), this.pokemonJ1HP);
+         this.dibujarHPBar(juego.getJugadorActual().getAdversario().getPokemonActual(), this.pokemonJ2HP);
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"81ad5f3d-e77a-4eab-8f82-726006efbf84\" name=\"Changes\" comment=\"Bugfix\">\r\n      <change afterPath=\"$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Cries/Alakazam.mp3\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Cries/Araquanid.mp3\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Cries/Bidoof.mp3\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Cries/Charizard.mp3\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Cries/Crobat.mp3\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Cries/Dusknoir.mp3\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Cries/Golem.mp3\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Cries/Lucario.mp3\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Cries/Pikachu.mp3\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Cries/Rayquaza.mp3\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Cries/Squirtle.mp3\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Cries/Trevenant.mp3\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Musica/Pokemon Uranium - Vs. Gym Leader (Last Pokemon).mp3\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Musica/Pokémon Uranium - Battle! Vs. Wild Nuclear Pokémon.mp3\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/pom.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/pom.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/java/module-info.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/src/main/java/module-info.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Constantes.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Constantes.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Controller/JuegoController.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Controller/JuegoController.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Controller/PokemonImageFactory.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Controller/PokemonResourceFactory.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/MainJavaFX.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/MainJavaFX.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Espalda/169_Crobat.png\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Espalda/25_Pikachu.png\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Espalda/283_Araquanid.png\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Espalda/384_Rayquaza.png\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Espalda/399_Bidoof.png\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Espalda/412_Trevenant.png\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Espalda/448_Lucario.png\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Espalda/477_Dusknoir.png\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Espalda/65_Alakazam.png\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Espalda/6_Charizard.png\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Espalda/76_Golem.png\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Espalda/7_Squirtle.png\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Frente/412_Trevenant.png\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Frente/alakazam.png\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Frente/bidoof.png\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Frente/charizard.png\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Frente/crobat.png\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Frente/dusknoir.png\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Frente/golem.png\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Frente/lucario.png\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Frente/noAraquanid.png\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Frente/pikachu.png\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Frente/rayquaza.png\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Frente/squirtle.png\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Frente/static_pikachu.png\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/inicio-view.fxml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/inicio-view.fxml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/seleccionarNombreJugadores-view.fxml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/seleccionarNombreJugadores-view.fxml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/artifacts/TpJava_jar/TpJava.jar\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/out/artifacts/TpJava_jar/TpJava.jar\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Interface\" />\r\n        <option value=\"FxmlFile\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"Prueba\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProblemsViewState\">\r\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\r\n  </component>\r\n  <component name=\"ProjectCodeStyleSettingsMigration\">\r\n    <option name=\"version\" value=\"2\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 1\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2VZWDceRPeCVhqYCOKGBo7NpSdD\" />\r\n  <component name=\"ProjectLevelVcsManager\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"ASKED_ADD_EXTERNAL_FILES\": \"true\",\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\r\n    \"git-widget-placeholder\": \"TP__3__JavaFX\",\r\n    \"last_opened_file_path\": \"C:/Users/Mati/Documents/GitHub/Programacion3-TP/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemon/main-sprites/black-white/pokemonesEjemplo\",\r\n    \"project.structure.last.edited\": \"Project\",\r\n    \"project.structure.proportion\": \"0.0\",\r\n    \"project.structure.side.proportion\": \"0.0\",\r\n    \"run.code.analysis.last.selected.profile\": \"pProject Default\",\r\n    \"settings.editor.selected.configurable\": \"reference.settings.project.maven.repository.indices\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CreateClassDialog.RecentsKey\">\r\n      <recent name=\"Item\" />\r\n    </key>\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\Mati\\Documents\\GitHub\\Programacion3-TP\\TpJava\\src\\main\\resources\\orgFiuba\\tpjava\\Imagenes\\pokemon\\main-sprites\\black-white\\pokemonesEjemplo\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\Mati\\Documents\\GitHub\\Programacion3-TP\\TpJava\\src\\main\\resources\\orgFiuba\\tpjava\" />\r\n    </key>\r\n    <key name=\"MoveClassesOrPackagesDialog.RECENTS_KEY\">\r\n      <recent name=\"orgFiuba.tpjava.Controller\" />\r\n    </key>\r\n    <key name=\"CopyClassDialog.RECENTS_KEY\">\r\n      <recent name=\"Item\" />\r\n      <recent name=\"Tipo\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Application.MainJavaFX\">\r\n    <configuration name=\"Main\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"orgFiuba.tpjava.Main\" />\r\n      <module name=\"TpJava\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"orgFiuba.tpjava.Controller.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"MainJavaFX\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"orgFiuba.tpjava.MainJavaFX\" />\r\n      <module name=\"TpJava\" />\r\n      <option name=\"VM_PARAMETERS\" value=\"--add-modules javafx.controls,javafx.fxml,javafx.media\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"orgFiuba.tpjava.Controller.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"ModificacionAtaqueTest.testModificacionAtaqueModificaAtaque\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"TpJava\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"ModificacionTests.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <option name=\"PACKAGE_NAME\" value=\"ModificacionTests\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"ModificacionTests.ModificacionAtaqueTest\" />\r\n      <option name=\"METHOD_NAME\" value=\"testModificacionAtaqueModificaAtaque\" />\r\n      <option name=\"TEST_OBJECT\" value=\"method\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"java in TpJava\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"TpJava\" />\r\n      <option name=\"TEST_OBJECT\" value=\"directory\" />\r\n      <dir value=\"$PROJECT_DIR$/TpJava/src/test/java\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <list>\r\n      <item itemvalue=\"Application.Main\" />\r\n      <item itemvalue=\"Application.MainJavaFX\" />\r\n      <item itemvalue=\"JUnit.java in TpJava\" />\r\n      <item itemvalue=\"JUnit.ModificacionAtaqueTest.testModificacionAtaqueModificaAtaque\" />\r\n    </list>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.MainJavaFX\" />\r\n        <item itemvalue=\"JUnit.ModificacionAtaqueTest.testModificacionAtaqueModificaAtaque\" />\r\n        <item itemvalue=\"JUnit.java in TpJava\" />\r\n        <item itemvalue=\"Application.Main\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"81ad5f3d-e77a-4eab-8f82-726006efbf84\" name=\"Changes\" comment=\"\" />\r\n      <created>1695043963160</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1695043963160</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"algunas PNGs\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1700528995157</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1700528995157</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"cosas de JavaFx con Santi\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1700604919660</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1700604919660</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"Imagenes de Pokemon animadas. Por ahora solo muestra los dos Pokemon juntos\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1700621063853</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1700621063853</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"Bugfix\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1700622092430</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1700622092430</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"5\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State>\r\n              <option name=\"FILTERS\">\r\n                <map>\r\n                  <entry key=\"branch\">\r\n                    <value>\r\n                      <list>\r\n                        <option value=\"Funcional\" />\r\n                      </list>\r\n                    </value>\r\n                  </entry>\r\n                </map>\r\n              </option>\r\n            </State>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <option name=\"ADD_EXTERNAL_FILES_SILENTLY\" value=\"true\" />\r\n    <MESSAGE value=\"algunas PNGs\" />\r\n    <MESSAGE value=\"cosas de JavaFx con Santi\" />\r\n    <MESSAGE value=\"Imagenes de Pokemon animadas. Por ahora solo muestra los dos Pokemon juntos\" />\r\n    <MESSAGE value=\"Bugfix\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Bugfix\" />\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <breakpoint enabled=\"true\" type=\"java-exception\">\r\n          <properties class=\"java.lang.NullPointerException\" package=\"java.lang\" />\r\n          <option name=\"timeStamp\" value=\"1\" />\r\n        </breakpoint>\r\n      </breakpoints>\r\n    </breakpoint-manager>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 49d29392f26afb9ddba01fd216e5d9269fec8286)
++++ b/.idea/workspace.xml	(date 1701145540966)
+@@ -4,55 +4,15 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="81ad5f3d-e77a-4eab-8f82-726006efbf84" name="Changes" comment="Bugfix">
+-      <change afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Cries/Alakazam.mp3" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Cries/Araquanid.mp3" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Cries/Bidoof.mp3" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Cries/Charizard.mp3" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Cries/Crobat.mp3" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Cries/Dusknoir.mp3" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Cries/Golem.mp3" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Cries/Lucario.mp3" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Cries/Pikachu.mp3" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Cries/Rayquaza.mp3" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Cries/Squirtle.mp3" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Cries/Trevenant.mp3" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Musica/Pokemon Uranium - Vs. Gym Leader (Last Pokemon).mp3" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Sonido/Musica/Pokémon Uranium - Battle! Vs. Wild Nuclear Pokémon.mp3" afterDir="false" />
++    <list default="true" id="81ad5f3d-e77a-4eab-8f82-726006efbf84" name="Changes" comment="Delete Auxiliar :P">
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_02_10_2023_10_59__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_02_10_2023_10_59__Changes_.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_09_2023_10_45__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_09_2023_10_45__Changes_.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/pom.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/module-info.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Constantes.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Constantes.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Controller/BatallaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Controller/BatallaController.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Controller/JuegoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Controller/JuegoController.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Controller/PokemonImageFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Controller/PokemonResourceFactory.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/MainJavaFX.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/MainJavaFX.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Espalda/169_Crobat.png" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Espalda/25_Pikachu.png" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Espalda/283_Araquanid.png" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Espalda/384_Rayquaza.png" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Espalda/399_Bidoof.png" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Espalda/412_Trevenant.png" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Espalda/448_Lucario.png" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Espalda/477_Dusknoir.png" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Espalda/65_Alakazam.png" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Espalda/6_Charizard.png" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Espalda/76_Golem.png" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Espalda/7_Squirtle.png" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Frente/412_Trevenant.png" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Frente/alakazam.png" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Frente/bidoof.png" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Frente/charizard.png" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Frente/crobat.png" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Frente/dusknoir.png" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Frente/golem.png" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Frente/lucario.png" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Frente/noAraquanid.png" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Frente/pikachu.png" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Frente/rayquaza.png" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Frente/squirtle.png" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemonesEjemplo/Frente/static_pikachu.png" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/inicio-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/inicio-view.fxml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/seleccionarNombreJugadores-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/seleccionarNombreJugadores-view.fxml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Controller/PokemonResourceFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/java/orgFiuba/tpjava/Controller/PokemonResourceFactory.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/batalla-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/TpJava/src/main/resources/orgFiuba/tpjava/batalla-view.fxml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/out/artifacts/TpJava_jar/TpJava.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/TpJava_jar/TpJava.jar" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+@@ -94,26 +54,29 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "ASKED_ADD_EXTERNAL_FILES": "true",
+-    "RunOnceActivity.OpenProjectViewOnStart": "true",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+-    "git-widget-placeholder": "TP__3__JavaFX",
+-    "last_opened_file_path": "C:/Users/Mati/Documents/GitHub/Programacion3-TP/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes/pokemon/main-sprites/black-white/pokemonesEjemplo",
+-    "project.structure.last.edited": "Project",
+-    "project.structure.proportion": "0.0",
+-    "project.structure.side.proportion": "0.0",
+-    "run.code.analysis.last.selected.profile": "pProject Default",
+-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;TP__3__JavaFX&quot;,
++    &quot;last_opened_file_path&quot;: &quot;C:/Users/Dayru/OneDrive/Documents/Algoritmo y Programacion 3 -  CANO/TP1 - ALGO3/Programacion3-TP/TpJava/src/main/resources/orgFiuba/tpjava/Imagenes&quot;,
++    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
++    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
++    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
++    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
++    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="RecentsManager">
+     <key name="CreateClassDialog.RecentsKey">
+       <recent name="Item" />
+     </key>
+     <key name="CopyFile.RECENT_KEYS">
++      <recent name="C:\Users\Dayru\OneDrive\Documents\Algoritmo y Programacion 3 -  CANO\TP1 - ALGO3\Programacion3-TP\TpJava\src\main\resources\orgFiuba\tpjava\Imagenes" />
++      <recent name="C:\Users\Dayru\OneDrive\Documents\Algoritmo y Programacion 3 -  CANO\TP1 - ALGO3\Programacion3-TP\TpJava\src\main\resources\orgFiuba\tpjava" />
++      <recent name="C:\Users\Dayru\OneDrive\Documents\Algoritmo y Programacion 3 -  CANO\TP1 - ALGO3\Programacion3-TP\TpJava\src\main\java\orgFiuba\tpjava\Controller" />
+       <recent name="C:\Users\Mati\Documents\GitHub\Programacion3-TP\TpJava\src\main\resources\orgFiuba\tpjava\Imagenes\pokemon\main-sprites\black-white\pokemonesEjemplo" />
+     </key>
+     <key name="MoveFile.RECENT_KEYS">
+@@ -180,17 +143,17 @@
+       </method>
+     </configuration>
+     <list>
+-      <item itemvalue="Application.Main" />
+       <item itemvalue="Application.MainJavaFX" />
++      <item itemvalue="Application.Main" />
++      <item itemvalue="JUnit.ModificacionAtaqueTest.testModificacionAtaqueModificaAtaque" />
+       <item itemvalue="JUnit.java in TpJava" />
+-      <item itemvalue="JUnit.ModificacionAtaqueTest.testModificacionAtaqueModificaAtaque" />
+     </list>
+     <recent_temporary>
+       <list>
+         <item itemvalue="Application.MainJavaFX" />
++        <item itemvalue="Application.Main" />
+         <item itemvalue="JUnit.ModificacionAtaqueTest.testModificacionAtaqueModificaAtaque" />
+         <item itemvalue="JUnit.java in TpJava" />
+-        <item itemvalue="Application.Main" />
+       </list>
+     </recent_temporary>
+   </component>
+@@ -235,7 +198,23 @@
+       <option name="project" value="LOCAL" />
+       <updated>1700622092430</updated>
+     </task>
+-    <option name="localTasksCounter" value="5" />
++    <task id="LOCAL-00005" summary="Mas cambios a menu Items">
++      <option name="closed" value="true" />
++      <created>1701106624966</created>
++      <option name="number" value="00005" />
++      <option name="presentableId" value="LOCAL-00005" />
++      <option name="project" value="LOCAL" />
++      <updated>1701106624967</updated>
++    </task>
++    <task id="LOCAL-00006" summary="Delete Auxiliar :P">
++      <option name="closed" value="true" />
++      <created>1701106715755</created>
++      <option name="number" value="00006" />
++      <option name="presentableId" value="LOCAL-00006" />
++      <option name="project" value="LOCAL" />
++      <updated>1701106715755</updated>
++    </task>
++    <option name="localTasksCounter" value="7" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+@@ -249,7 +228,7 @@
+                   <entry key="branch">
+                     <value>
+                       <list>
+-                        <option value="Funcional" />
++                        <option value="origin/TP_3_JavaFX" />
+                       </list>
+                     </value>
+                   </entry>
+@@ -267,16 +246,20 @@
+     <MESSAGE value="cosas de JavaFx con Santi" />
+     <MESSAGE value="Imagenes de Pokemon animadas. Por ahora solo muestra los dos Pokemon juntos" />
+     <MESSAGE value="Bugfix" />
+-    <option name="LAST_COMMIT_MESSAGE" value="Bugfix" />
++    <MESSAGE value="Mas cambios a menu Items" />
++    <MESSAGE value="Delete Auxiliar :P" />
++    <option name="LAST_COMMIT_MESSAGE" value="Delete Auxiliar :P" />
+   </component>
+   <component name="XDebuggerManager">
+-    <breakpoint-manager>
+-      <breakpoints>
+-        <breakpoint enabled="true" type="java-exception">
+-          <properties class="java.lang.NullPointerException" package="java.lang" />
+-          <option name="timeStamp" value="1" />
+-        </breakpoint>
+-      </breakpoints>
+-    </breakpoint-manager>
++    <pin-to-top-manager>
++      <pinned-members>
++        <PinnedItemInfo parentTag="orgFiuba.Model.Pokemones.Cualidades" memberName="ataque" />
++        <PinnedItemInfo parentTag="orgFiuba.Model.Pokemones.Pokemon" memberName="cualidades" />
++        <PinnedItemInfo parentTag="org.fiuba.algoritmos3.Cualidades" memberName="nivel" />
++      </pinned-members>
++    </pin-to-top-manager>
++  </component>
++  <component name="com.intellij.coverage.CoverageDataManagerImpl">
++    <SUITE FILE_PATH="coverage/Programacion3_TP$All_in_TpJava.ic" NAME="All in TpJava Coverage Results" MODIFIED="1699114316912" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: TpJava/src/main/resources/orgFiuba/tpjava/batalla-view.fxml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n\r\n<?import javafx.geometry.*?>\r\n<?import javafx.scene.control.*?>\r\n<?import javafx.scene.image.*?>\r\n<?import javafx.scene.layout.*?>\r\n<?import javafx.scene.text.*?>\r\n\r\n<VBox fx:id=\"pantalla\" alignment=\"BOTTOM_CENTER\" prefHeight=\"400.0\" prefWidth=\"600.0\"\r\n      styleClass=\"bodyFondoSeleccionPokemon\" stylesheets=\"@StyleCss/fondo_batalla.css\"\r\n      xmlns=\"http://javafx.com/javafx/21\" xmlns:fx=\"http://javafx.com/fxml/1\"\r\n      fx:controller=\"orgFiuba.tpjava.Controller.BatallaController\">\r\n   <VBox fx:id=\"climaOverlay\" alignment=\"BOTTOM_CENTER\" prefHeight=\"400.0\" prefWidth=\"600.0\">\r\n      <HBox fx:id=\"pokemones\" alignment=\"TOP_CENTER\" prefHeight=\"269.0\" prefWidth=\"600.0\">\r\n         <VBox.margin>\r\n            <Insets/>\r\n         </VBox.margin>\r\n         <VBox fx:id=\"pokemonJ1Box\" alignment=\"CENTER_LEFT\">\r\n            <HBox fx:id=\"pokemonJ1Stats\" prefHeight=\"166.0\" prefWidth=\"300.0\">\r\n               <ProgressBar fx:id=\"pokemonJ1HP\" prefWidth=\"200.0\" progress=\"0.0\"\r\n                            style=\"-fx-background-color: Green;\"/>\r\n               <Text fx:id=\"pokemonJ1StatsText\" strokeType=\"OUTSIDE\" strokeWidth=\"0.0\" text=\"Text\"/>\r\n            </HBox>\r\n            <HBox fx:id=\"pokemonJ1ViewBox\" prefHeight=\"270.0\" prefWidth=\"300.0\">\r\n               <ImageView fx:id=\"pokemonJ1View\" fitHeight=\"196.0\" fitWidth=\"301.0\" layoutX=\"-Infinity\"\r\n                          pickOnBounds=\"true\" preserveRatio=\"true\">\r\n               </ImageView>\r\n            </HBox>\r\n         </VBox>\r\n         <VBox fx:id=\"pokemonJ2Box\" alignment=\"CENTER_RIGHT\">\r\n            <HBox fx:id=\"pokemonJ2ViewBox\" prefHeight=\"270.0\" prefWidth=\"300.0\">\r\n               <ImageView fx:id=\"pokemonJ2View\" fitHeight=\"196.0\" fitWidth=\"301.0\" layoutX=\"-Infinity\"\r\n                          pickOnBounds=\"true\" preserveRatio=\"true\"/>\r\n            </HBox>\r\n            <HBox fx:id=\"pokemonJ2Stats\" prefHeight=\"166.0\" prefWidth=\"300.0\">\r\n               <ProgressBar fx:id=\"pokemonJ2HP\" prefWidth=\"200.0\" progress=\"0.0\"/>\r\n               <Text fx:id=\"pokemonJ2StatsText\" strokeType=\"OUTSIDE\" strokeWidth=\"0.0\" text=\"Text\"/>\r\n            </HBox>\r\n         </VBox>\r\n      </HBox>\r\n      <HBox fx:id=\"dialogoYMenuBox\" alignment=\"CENTER_RIGHT\" fillHeight=\"false\" prefHeight=\"125.0\" prefWidth=\"600.0\"\r\n            styleClass=\"bodyFondoSeleccionPokemon\" stylesheets=\"@StyleCss/fondo_text_box.css\">\r\n         <VBox fx:id=\"dialogoBox\" prefHeight=\"112.0\" prefWidth=\"350.0\">\r\n            <TextArea prefHeight=\"200.0\" prefWidth=\"200.0\"/>\r\n         </VBox>\r\n         <GridPane fx:id=\"menuGrid\" prefHeight=\"105.0\" prefWidth=\"215.0\">\r\n            <columnConstraints>\r\n               <ColumnConstraints hgrow=\"SOMETIMES\" minWidth=\"10.0\" prefWidth=\"100.0\"/>\r\n               <ColumnConstraints hgrow=\"SOMETIMES\" minWidth=\"10.0\" prefWidth=\"100.0\"/>\r\n            </columnConstraints>\r\n            <rowConstraints>\r\n               <RowConstraints minHeight=\"10.0\" prefHeight=\"30.0\" vgrow=\"SOMETIMES\"/>\r\n               <RowConstraints minHeight=\"10.0\" prefHeight=\"30.0\" vgrow=\"SOMETIMES\"/>\r\n            </rowConstraints>\r\n            <padding>\r\n               <Insets right=\"40.0\"/>\r\n            </padding>\r\n            <Button fx:id=\"atacarButton\" mnemonicParsing=\"false\" prefHeight=\"56.0\" prefWidth=\"96.0\"\r\n                    text=\"ATACAR\"/>\r\n            <Button fx:id=\"itemButton\" mnemonicParsing=\"false\" prefHeight=\"56.0\" prefWidth=\"96.0\" text=\"ITEM\"\r\n                    GridPane.rowIndex=\"1\"/>\r\n            <Button fx:id=\"pokemonButton\" mnemonicParsing=\"false\" prefHeight=\"56.0\" prefWidth=\"96.0\"\r\n                    text=\"POKEMON\" GridPane.columnIndex=\"1\"/>\r\n            <Button fx:id=\"rendirseButton\" mnemonicParsing=\"false\" prefHeight=\"56.0\" prefWidth=\"96.0\"\r\n                    text=\"RENDIRSE\" GridPane.columnIndex=\"1\" GridPane.rowIndex=\"1\"/>\r\n         </GridPane>\r\n      </HBox>\r\n   </VBox>\r\n</VBox>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/TpJava/src/main/resources/orgFiuba/tpjava/batalla-view.fxml b/TpJava/src/main/resources/orgFiuba/tpjava/batalla-view.fxml
+--- a/TpJava/src/main/resources/orgFiuba/tpjava/batalla-view.fxml	(revision 49d29392f26afb9ddba01fd216e5d9269fec8286)
++++ b/TpJava/src/main/resources/orgFiuba/tpjava/batalla-view.fxml	(date 1701141582616)
+@@ -1,69 +1,88 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ 
+-<?import javafx.geometry.*?>
+-<?import javafx.scene.control.*?>
+-<?import javafx.scene.image.*?>
+-<?import javafx.scene.layout.*?>
+-<?import javafx.scene.text.*?>
++<?import javafx.geometry.Insets?>
++<?import javafx.scene.control.Button?>
++<?import javafx.scene.control.ProgressBar?>
++<?import javafx.scene.control.TextArea?>
++<?import javafx.scene.image.ImageView?>
++<?import javafx.scene.layout.ColumnConstraints?>
++<?import javafx.scene.layout.GridPane?>
++<?import javafx.scene.layout.HBox?>
++<?import javafx.scene.layout.RowConstraints?>
++<?import javafx.scene.layout.StackPane?>
++<?import javafx.scene.layout.VBox?>
++<?import javafx.scene.text.Text?>
+ 
+-<VBox fx:id="pantalla" alignment="BOTTOM_CENTER" prefHeight="400.0" prefWidth="600.0"
+-      styleClass="bodyFondoSeleccionPokemon" stylesheets="@StyleCss/fondo_batalla.css"
+-      xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+-      fx:controller="orgFiuba.tpjava.Controller.BatallaController">
+-   <VBox fx:id="climaOverlay" alignment="BOTTOM_CENTER" prefHeight="400.0" prefWidth="600.0">
+-      <HBox fx:id="pokemones" alignment="TOP_CENTER" prefHeight="269.0" prefWidth="600.0">
+-         <VBox.margin>
+-            <Insets/>
+-         </VBox.margin>
+-         <VBox fx:id="pokemonJ1Box" alignment="CENTER_LEFT">
+-            <HBox fx:id="pokemonJ1Stats" prefHeight="166.0" prefWidth="300.0">
+-               <ProgressBar fx:id="pokemonJ1HP" prefWidth="200.0" progress="0.0"
+-                            style="-fx-background-color: Green;"/>
+-               <Text fx:id="pokemonJ1StatsText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text"/>
+-            </HBox>
+-            <HBox fx:id="pokemonJ1ViewBox" prefHeight="270.0" prefWidth="300.0">
+-               <ImageView fx:id="pokemonJ1View" fitHeight="196.0" fitWidth="301.0" layoutX="-Infinity"
+-                          pickOnBounds="true" preserveRatio="true">
++<VBox fx:id="pantalla" alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" styleClass="bodyFondoSeleccionPokemon" stylesheets="@StyleCss/fondo_batalla.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="orgFiuba.tpjava.Controller.BatallaController">
++   <StackPane fx:id="stackPaneFondo" prefHeight="768.0" prefWidth="1024.0">
++      <children>
++         <VBox alignment="BOTTOM_CENTER" prefHeight="768.0" prefWidth="1024.0">
++            <HBox fx:id="pokemones" alignment="CENTER" prefHeight="644.0" prefWidth="1024.0">
++               <VBox.margin>
++                  <Insets />
++               </VBox.margin>
++               <VBox fx:id="pokemonJ1Box" alignment="BOTTOM_RIGHT" prefHeight="556.0" prefWidth="512.0">
++                  <VBox fx:id="pokemonJ1Stats" alignment="CENTER_LEFT" prefHeight="166.0" prefWidth="300.0" style="-fx-background-color: white;">
++                     <HBox fx:id="pokeballs1" prefHeight="23.0" prefWidth="466.0" />
++                     <ProgressBar fx:id="pokemonJ1HP" prefHeight="30.0" prefWidth="362.0" progress="0.0" style="-fx-background-color: green;" />
++                     <Text fx:id="pokemonJ1StatsText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
++                     <padding>
++                        <Insets left="20.0" />
++                     </padding>
++                  </VBox>
++                  <HBox fx:id="pokemonJ1ViewBox" alignment="CENTER" prefHeight="368.0" prefWidth="512.0">
++                     <ImageView fx:id="pokemonJ1View" fitHeight="345.0" fitWidth="507.0" layoutX="-Infinity" pickOnBounds="true" preserveRatio="true">
+                </ImageView>
+-            </HBox>
+-         </VBox>
+-         <VBox fx:id="pokemonJ2Box" alignment="CENTER_RIGHT">
+-            <HBox fx:id="pokemonJ2ViewBox" prefHeight="270.0" prefWidth="300.0">
+-               <ImageView fx:id="pokemonJ2View" fitHeight="196.0" fitWidth="301.0" layoutX="-Infinity"
+-                          pickOnBounds="true" preserveRatio="true"/>
+-            </HBox>
+-            <HBox fx:id="pokemonJ2Stats" prefHeight="166.0" prefWidth="300.0">
+-               <ProgressBar fx:id="pokemonJ2HP" prefWidth="200.0" progress="0.0"/>
+-               <Text fx:id="pokemonJ2StatsText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text"/>
+-            </HBox>
+-         </VBox>
+-      </HBox>
+-      <HBox fx:id="dialogoYMenuBox" alignment="CENTER_RIGHT" fillHeight="false" prefHeight="125.0" prefWidth="600.0"
+-            styleClass="bodyFondoSeleccionPokemon" stylesheets="@StyleCss/fondo_text_box.css">
+-         <VBox fx:id="dialogoBox" prefHeight="112.0" prefWidth="350.0">
+-            <TextArea prefHeight="200.0" prefWidth="200.0"/>
+-         </VBox>
+-         <GridPane fx:id="menuGrid" prefHeight="105.0" prefWidth="215.0">
+-            <columnConstraints>
+-               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+-               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+-            </columnConstraints>
+-            <rowConstraints>
+-               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+-               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+-            </rowConstraints>
+-            <padding>
+-               <Insets right="40.0"/>
+-            </padding>
+-            <Button fx:id="atacarButton" mnemonicParsing="false" prefHeight="56.0" prefWidth="96.0"
+-                    text="ATACAR"/>
+-            <Button fx:id="itemButton" mnemonicParsing="false" prefHeight="56.0" prefWidth="96.0" text="ITEM"
+-                    GridPane.rowIndex="1"/>
+-            <Button fx:id="pokemonButton" mnemonicParsing="false" prefHeight="56.0" prefWidth="96.0"
+-                    text="POKEMON" GridPane.columnIndex="1"/>
+-            <Button fx:id="rendirseButton" mnemonicParsing="false" prefHeight="56.0" prefWidth="96.0"
+-                    text="RENDIRSE" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+-         </GridPane>
+-      </HBox>
+-   </VBox>
++                  </HBox>
++               </VBox>
++               <VBox fx:id="pokemonJ2Box" alignment="BOTTOM_RIGHT" prefWidth="512.0">
++                  <HBox fx:id="pokemonJ2ViewBox" alignment="BOTTOM_CENTER" prefHeight="368.0" prefWidth="512.0">
++                     <ImageView fx:id="pokemonJ2View" fitHeight="367.0" fitWidth="449.0" layoutX="-Infinity" pickOnBounds="true" preserveRatio="true" />
++                  </HBox>
++                  <VBox fx:id="pokemonJ2Stats" alignment="TOP_RIGHT" prefHeight="166.0" prefWidth="300.0" style="-fx-background-color: white;">
++                     <HBox fx:id="pokeballs2" alignment="TOP_RIGHT" prefHeight="23.0" prefWidth="466.0">
++                        <opaqueInsets>
++                           <Insets />
++                        </opaqueInsets>
++                     </HBox>
++                     <ProgressBar fx:id="pokemonJ2HP" prefHeight="30.0" prefWidth="362.0" progress="0.0">
++                        <opaqueInsets>
++                           <Insets />
++                        </opaqueInsets></ProgressBar>
++                     <Text fx:id="pokemonJ2StatsText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
++                     <opaqueInsets>
++                        <Insets />
++                     </opaqueInsets>
++                     <padding>
++                        <Insets right="23.0" />
++                     </padding>
++                  </VBox>
++               </VBox>
++            </HBox>
++            <HBox fx:id="dialogoYMenuBox" alignment="CENTER_RIGHT" fillHeight="false" prefHeight="300.0" prefWidth="1018.0" styleClass="bodyFondoSeleccionPokemon" stylesheets="@StyleCss/fondo_text_box.css">
++               <VBox fx:id="dialogoBox" prefHeight="178.0" prefWidth="678.0">
++                  <TextArea maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="177.0" prefWidth="690.0" />
++               </VBox>
++               <GridPane fx:id="menuGrid" prefHeight="181.0" prefWidth="280.0">
++                  <columnConstraints>
++                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
++                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
++                  </columnConstraints>
++                  <rowConstraints>
++                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
++                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
++                  </rowConstraints>
++                  <padding>
++                     <Insets right="40.0" />
++                  </padding>
++                  <Button fx:id="atacarButton" mnemonicParsing="false" prefHeight="56.0" prefWidth="96.0" text="ATACAR" />
++                  <Button fx:id="itemButton" mnemonicParsing="false" prefHeight="56.0" prefWidth="96.0" text="ITEM" GridPane.rowIndex="1" />
++                  <Button fx:id="pokemonButton" mnemonicParsing="false" prefHeight="56.0" prefWidth="96.0" text="POKEMON" GridPane.columnIndex="1" />
++                  <Button fx:id="rendirseButton" mnemonicParsing="false" prefHeight="56.0" prefWidth="96.0" text="RENDIRSE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
++               </GridPane>
++            </HBox>
++         </VBox>
++         <ImageView fx:id="climaOverlay" fitHeight="768.0" fitWidth="1024.0" preserveRatio="true" />
++      </children>
++   </StackPane>
+ </VBox>

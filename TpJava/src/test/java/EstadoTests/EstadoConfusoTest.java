@@ -1,8 +1,8 @@
 package EstadoTests;
 
-import Estados.EstadoConfuso;
-import Pokemones.Cualidades;
-import org.fiuba.algoritmos3.ServicioDeRandoms;
+import orgFiuba.tpjava.Model.Estados.EstadoConfuso;
+import orgFiuba.tpjava.Model.Pokemones.Cualidades;
+import orgFiuba.tpjava.Model.ServicioDeRandoms;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 

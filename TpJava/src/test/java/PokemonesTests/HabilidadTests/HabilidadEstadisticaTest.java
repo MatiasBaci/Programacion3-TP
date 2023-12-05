@@ -1,8 +1,8 @@
 package PokemonesTests.HabilidadTests;
 
-import Modificaciones.Modificacion;
-import Pokemones.Cualidades;
-import Pokemones.HabilidadEstadistica;
+import orgFiuba.tpjava.Model.Modificaciones.Modificacion;
+import orgFiuba.tpjava.Model.Pokemones.Cualidades;
+import orgFiuba.tpjava.Model.Pokemones.HabilidadEstadistica;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
